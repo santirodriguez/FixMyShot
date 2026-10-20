@@ -73,7 +73,7 @@ class CodecSmokeTest {
                                         decoded.getPixels(actual, 0, width, 0, y, width, 1)
                                         for (x in 0 until width) {
                                             if (Color.alpha(expected[x]) == 0) assertEquals(0, Color.alpha(actual[x]))
-                                            else assertEquals("$fixture/$format at $x,$y", expected[x], actual[x])
+                                            else if (expected[x] != actual[x]) fail("$fixture/$format differs at $x,$y")
                                         }
                                     }
                                     results.put(JSONObject().put("fixture", fixture).put("width", width)

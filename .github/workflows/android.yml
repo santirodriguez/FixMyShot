@@ -25,7 +25,7 @@ jobs:
       - name: Validate bootstrap resources
         run: python3 scripts/check-bootstrap.py
       - name: Install pinned Android build packages
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+        run: bash scripts/setup-android.sh
       - name: Generate verified standard wrapper
         run: bash scripts/bootstrap-gradle.sh
       - name: Resolve and build the initial candidate
@@ -75,7 +75,7 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Install pinned Android build packages
-        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+        run: bash scripts/setup-android.sh
       - run: bash scripts/bootstrap-gradle.sh
       - name: Enable runner virtualization
         run: |
