@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FixMyShot</string>
+    <string name="tagline">Capturas listas para publicar.</string>
+    <string name="development_status">Versión de desarrollo</string>
+    <string name="development_detail">Estamos validando el motor de imágenes. Esta versión todavía no permite importar, editar ni exportar.</string>
+</resources>

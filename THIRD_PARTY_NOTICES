@@ -1,0 +1,32 @@
+FixMyShot - initial build/source inventory
+
+FixMyShot source: GNU GPL version 3 only. See LICENSE.
+
+libwebp 1.6.0
+Source: https://github.com/webmproject/libwebp
+Revision: 4fa21912338357f89e4fd51cf2368325b59e9bd9
+Use: source-built runtime lossless encoder in libfixmyshot_webp.so.
+License: upstream BSD-style license. Exact upstream COPYING and PATENTS
+are bundled under codec-native/src/main/assets/licenses/libwebp/.
+The complete source checkout also retains AUTHORS and source notices.
+The CMake fetch retains complete corresponding source in its build workspace.
+No opaque precompiled WebP binary is used.
+
+AndroidX / Jetpack Compose
+Source: https://android.googlesource.com/platform/frameworks/support/
+Use: Android UI and test dependencies, Apache License 2.0.
+Exact directly selected versions: gradle/libs.versions.toml.
+Resolved transitive inventory/notices remain a G1 review deliverable.
+
+Kotlin and Gradle
+Sources: https://github.com/JetBrains/kotlin and https://github.com/gradle/gradle
+Build tooling / Kotlin runtime: Apache License 2.0.
+Bootstrap pins: Kotlin 2.2.21, Gradle 8.13.
+
+JUnit 4.13.2 (test only)
+Source: https://github.com/junit-team/junit4
+License: Eclipse Public License 1.0.
+
+This is an initial inventory, not a completed distribution notice bundle.
+Resolve and review all runtime and native transitive notices before a
+functional release. Signing, publication and store submission are separate.

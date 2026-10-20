@@ -1,0 +1,105 @@
+name: Android bootstrap
+on:
+  push:
+    branches: [main, 'release/**']
+    paths-ignore: ['**.md', 'LICENSE']
+  pull_request:
+    paths-ignore: ['**.md', 'LICENSE']
+permissions:
+  contents: read
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate bootstrap resources
+        run: python3 scripts/check-bootstrap.py
+      - name: Install pinned Android build packages
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+      - name: Generate verified standard wrapper
+        run: bash scripts/bootstrap-gradle.sh
+      - name: Resolve and build the initial candidate
+        run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/source-sha.txt
+          java -version 2> evidence/java-version.txt
+          ./gradlew --version > evidence/gradle-version.txt
+          # Bootstrap-only trust capture. These generated candidates need review/commit before G1 closes.
+          ./gradlew --no-daemon --write-locks --write-verification-metadata sha256 \
+            :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease :app:assembleDebugAndroidTest
+      - name: Inspect actual APK libraries
+        run: |
+          python3 scripts/check-apk.py app/build/outputs/apk/debug/app-debug.apk > evidence/debug-native.json
+          python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json
+      - name: Preserve source-bound reports and bootstrap candidates
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bootstrap-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            evidence/
+            gradlew
+            gradlew.bat
+            gradle/wrapper/
+            gradle/verification-metadata.xml
+            **/gradle.lockfile
+            core/build/test-results/
+            app/build/reports/
+            app/build/outputs/apk/
+  smoke:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [26, 36]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install pinned Android build packages
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+      - run: bash scripts/bootstrap-gradle.sh
+      - name: Enable runner virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Real PNG and lossless WebP fixture tests
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          target: google_apis
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save
+          script: bash scripts/run-device-smoke.sh
+      - name: Preserve emulator evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: smoke-api-${{ matrix.api }}-${{ github.sha }}
+          retention-days: 14
+          path: |
+            evidence/
+            app/build/reports/androidTests/
+            app/build/outputs/androidTest-results/

@@ -1,0 +1,1 @@
+-keep class org.cajapersonal.fixmyshot.codec.NativeWebp { *; }
