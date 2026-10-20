@@ -7,8 +7,7 @@ plugins {
 }
 allprojects {
     dependencyLocking { lockAllConfigurations() }
-    configurations.configureEach {
-        resolutionStrategy.failOnDynamicVersions()
-        resolutionStrategy.failOnChangingVersions()
-    }
+    // Dependency locking is the resolution mode; Gradle rejects combining it
+    // with failOnDynamicVersions/failOnChangingVersions. Direct pins are checked
+    // by check-bootstrap.py, and resolved locks require review before G1 closes.
 }
