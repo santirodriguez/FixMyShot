@@ -64,6 +64,28 @@ API 36 in that same run passed three tests but rejected the image matrix before 
 
 The runtime reads the growth limit separately from the maximum heap; see the [AOSP AndroidRuntime source](https://android.googlesource.com/platform/frameworks/base/+/68a9de91fe00f08542dbd1a3a6ca824c039b8abb/core/jni/AndroidRuntime.cpp). A hardware heap-size setting alone did not change the observed API 36 growth limit.
 
+## Verified current-head API 26 and API 36 matrix
+
+Source `29281389acd27c5addb3609a727ba9a5f2bb305e`, GitHub Actions run [39523935503](https://github.com/santirodriguez/FixMyShot/actions/runs/39523935503), completed SUCCESS on all three jobs. The build job repeated all 23 JVM tests and 18 host regressions, with zero lint errors and 13 unsuppressed warnings. Debug, unsigned release and test APKs were built and passed the shipping-ABI/ELF/ZIP inspection. Verified bootstrap artifact `12311724558` has SHA-256 `097bee43fb0c779db950cf6bafb18095f62be88f906beb3f6a2578133ca3761e`.
+
+Both x86_64 emulator jobs passed all four instrumentation tests and all 80 synthetic PNG/WebP encodes. Each fixture was encoded twice per format, validated on-device for header/chunks, independent reopen and normalized pixel equality; failures/cancellation/insufficient budgets remained explicit. API 26 used Android PNG and source-built LIBWEBP; API 36 used Android PNG and explicit Android WEBP_LOSSLESS. The two device ZIPs passed provider SHA-256 and ZIP CRC checks, with their source SHA matching the build:
+
+| API | Device artifact | ZIP SHA-256 | Measured normal heap | Actual page size | Native output route |
+|---|---|---|---:|---:|---|
+| 26 | `12311224775` | `7ffef84f8bce7cca7569a0a7ad33a201a4322b4224b3c4333cb7294320044e66` | 512 MiB | 4096 bytes | LIBWEBP |
+| 36 | `12312665165` | `4d8f0567716ad894ab107a1a9bcc30affd5d6dd6ba1c01789e8a409697b89b5c` | 512 MiB | 4096 bytes | ANDROID_WEBP_LOSSLESS |
+
+The disposable API 36 emulator initially reported heapgrowthlimit=192m and heapsize=576m; the CI-only checked helper set both to 512m and restarted its runtime before instrumentation. The application still enforces its original half-heap/dynamic memory guard, and this adjusted emulator is **not** evidence that the same full-size case works on a 192 MiB device.
+
+Independently of Android's decoder, Pillow 12.3.0/libwebp 1.6.0 reopened both 1344×2992 fixture-0 exports from **each** API. Every one of their 4,021,248 RGB pixels matched an independently regenerated fixture. All four decoded RGB rasters have SHA-256 `214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861`. The two APIs produced different file bytes while preserving the normalized raster:
+
+| API | PNG SHA-256 / bytes | WebP SHA-256 / bytes | Color-tag observation |
+|---|---|---|---|
+| 26 | `47e4ec5d95fff2aef67d55a913fd9581c4a28284e7ae5ee6b80675a093f9f734` / 92,485 | `1f9ddb0ee982acaa1a68582f782c3f0dfd75b49bd88deef0165b6e8f534a99e2` / 2,084 | PNG has no explicit sRGB/ICC tag; WebP has a VP8L chunk |
+| 36 | `e6a0f5fa4860b96417fa1b7aa74d63391bbd41b9fee4e0b852c31d0aa2ee7013` / 92,498 | `04919ebce818eee266bc53d6122245f1ec6f58ba3b11c191a1585a49984eb85c` / 2,354 | PNG has sRGB; WebP has VP8X/ICCP (456-byte ICC payload)/VP8L |
+
+First/repeat fixture-0 encode time (seconds): API 26 PNG 0.115/0.085, WebP 0.802/0.816; API 36 PNG 1.361/0.891, WebP 0.439/0.388. These are emulator fixture observations, **not** process-cold Pixel performance, p95, peak Java/native/PSS memory, universal color-management acceptance, real-device evidence or 16 KiB runtime acceptance. The lack of explicit sRGB tagging on API 26 remains a color-policy follow-up even though synthetic pixels match.
+
 ## Open G1 acceptance
 
 The initial slice does not close G1. Standard wrapper/lockfile/verification review and persistence, security/license inventory, complete PNG/WebP performance and native/PSS peaks, mid-encode cancellation/timeouts, physical Pixel and second-family HEIC/AVIF output, bounded JXL build/cost decision, 16 KiB runtime and independent clean-build comparison remain open. A successful synthetic emulator matrix does not replace these gates or the real-image/manual evidence in the [governing blueprint](blueprints/first-functional-release.md).
