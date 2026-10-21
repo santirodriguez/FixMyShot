@@ -105,14 +105,18 @@ class EvidenceTests(unittest.TestCase):
         grid_spec = importlib.util.spec_from_file_location('grid_validation', SCRIPTS / 'check-native-grid.py')
         grid_module = importlib.util.module_from_spec(grid_spec)
         grid_spec.loader.exec_module(grid_module)
-        (self.root / 'grid-fixture.json').write_text(json.dumps(dict(
-            schema=1, kind='GRID_AND_PADDING_DIAGNOSTIC', status='DIAGNOSTIC_COMPLETE', api=36,
+        grid_report = dict(
+            schema=2, kind='GRID_AND_PADDING_DIAGNOSTIC', status='DIAGNOSTIC_COMPLETE', api=36,
             samples=[dict(format=fmt, width=w, height=h, source_width=sw, source_height=sh,
                           padded=(w, h) != (sw, sh), grid=grid,
                           color_profile_inspection='NOT_PERFORMED', status='UNAVAILABLE',
                           reason='INVALID_OUTPUT')
                      for w, h, sw, sh, grid in grid_module.MODES
-                     for fmt in grid_module.FORMATS])))
+                     for fmt in grid_module.FORMATS])
+        for sample in grid_report['samples']:
+            if sample['format'] == 'HEIC':
+                sample['encoder_trace'] = {'status': 'NOT_CREATED'}
+        (self.root / 'grid-fixture.json').write_text(json.dumps(grid_report))
         (scripts / 'check-native-grid.py').write_bytes((SCRIPTS / 'check-native-grid.py').read_bytes())
         bin_dir = self.root / 'bin'; bin_dir.mkdir()
         (bin_dir / 'git').write_text('#!/bin/sh\nprintf "test-source-sha\\n"\n')
