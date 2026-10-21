@@ -86,6 +86,23 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
                 bounds.outHeight != request.size.height || !mimeValid) {
                 return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
             }
+            // Header/dimension parsing may succeed even if the device cannot decode actual pixels.
+            // Use a bounded sampled decode for large images; full-size pixel fidelity is a separate gate.
+            var sampleSize = 1
+            while (maxOf(request.size.width, request.size.height) / sampleSize > 512 &&
+                sampleSize < 1_048_576) {
+                sampleSize *= 2
+            }
+            val decoded = BitmapFactory.decodeFile(file.absolutePath, BitmapFactory.Options().apply {
+                inSampleSize = sampleSize
+            }) ?: return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
+            try {
+                if (decoded.width <= 0 || decoded.height <= 0) {
+                    return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
+                }
+            } finally {
+                decoded.recycle()
+            }
             retained = true
             EncodeResult.Encoded(file, route, System.nanoTime() - started)
         } catch (_: TimeoutException) {

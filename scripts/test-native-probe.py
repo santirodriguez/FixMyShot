@@ -44,6 +44,13 @@ class ProbeTests(unittest.TestCase):
         self.check()
         (self.root / "g1-native-fixture.avif").write_bytes(b"NOT_AN_AVIF_FILE_____")
         with self.assertRaises(ValueError): self.check()
+    def test_unreopenable_output_is_explicitly_unavailable(self):
+        self.data['samples'][0]['reason'] = 'INVALID_OUTPUT'
+        self.assertEqual('UNAVAILABLE', self.check()['samples'][0]['status'])
+    def test_false_success_adb_text_is_rejected_by_validator(self):
+        self.data = report(26)
+        (self.root / 'g1-native-fixture.heic').write_text('cat: files/g1-native-fixture.heic: No such file or directory\n')
+        with self.assertRaises(ValueError): self.check()
     def test_incomplete_duplicate_or_deceptive(self):
         self.data["status"] = "INCOMPLETE"
         with self.assertRaises(ValueError): self.check()

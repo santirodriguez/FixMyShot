@@ -40,8 +40,15 @@ cat evidence/native-instrumentation.txt
 adb exec-out run-as "$package" cat files/g1-native-probe.json > evidence/g1-native-probe.json
 native_report_result=$?
 for extension in heic avif; do
-  if ! adb exec-out run-as "$package" cat "files/g1-native-fixture.$extension" > "evidence/g1-native-fixture.$extension"; then
-    rm -f "evidence/g1-native-fixture.$extension"
+  native_output="evidence/g1-native-fixture.$extension"
+  if adb exec-out run-as "$package" cat "files/g1-native-fixture.$extension" > "$native_output"; then
+    # Some adb/run-as combinations return 0 while stdout contains a device-side cat error.
+    # Such text is not a file. Positive probe reports still require a real BMFF in the host validator.
+    if [[ "$(dd if="$native_output" bs=1 skip=4 count=4 2>/dev/null)" != "ftyp" ]]; then
+      rm -f "$native_output"
+    fi
+  else
+    rm -f "$native_output"
   fi
 done
 set -e

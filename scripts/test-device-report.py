@@ -116,18 +116,24 @@ elif 'cat' in args:
     elif name.endswith('g1-smoke.json'):
         print('run-as: unknown package' if os.environ.get('BAD_REPORT') else Path('fixture.json').read_text())
     elif name.endswith(('.heic', '.avif')):
-        sys.exit(1)
+        if os.environ.get('ADB_FALSE_SUCCESS'):
+            print(f'cat: {name}: No such file or directory')
+        else:
+            sys.exit(1)
     else:
         sys.stdout.buffer.write(b'RIFF' if name.endswith('.webp') else b'\\x89PNG\\r\\n\\x1a\\n')
 ''')
         for p in bin_dir.iterdir(): p.chmod(0o755)
         env = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ['PATH'])
-        for bad in (False, True):
+        for bad, false_success in ((False, True), (True, True)):
             current = dict(env)
             if bad: current['BAD_REPORT'] = '1'
+            if false_success: current['ADB_FALSE_SUCCESS'] = '1'
             result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
                 env=current, capture_output=True, text=True, timeout=45)
             self.assertEqual(bad, result.returncode != 0, result.stdout + result.stderr)
+            self.assertFalse((self.root / 'evidence/g1-native-fixture.heic').exists())
+            self.assertFalse((self.root / 'evidence/g1-native-fixture.avif').exists())
         self.assertIn('UNAVAILABLE', (self.root / 'evidence/page-size-shell.txt').read_text())
 
 
