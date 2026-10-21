@@ -73,6 +73,12 @@ The new **read-only** `scripts/audit-gradle-candidates.py` independently re-pars
 
 **Decision:** Keep dependency verification candidate status **GENERATED_ONLY / NOT APPROVED**. Do not silently commit generated metadata or switch to strict freezing until the initial artifact authenticity/security/issuer evidence is checked. Do not infer finished JXL Android feasibility or improved app quality before the opt-in job completes. The main full Android integration checkpoint (`.ci/android-validation-request.txt`) remains separate and awaits the completed coherent app batch.
 
+## 6. First opt-in JXL Actions observation and scoped NDK-path fix
+
+Opt-in Actions run [39645153818](https://github.com/santirodriguez/FixMyShot/actions/runs/39645153818), source `650a023f2e956ad1427c3e00b65701fe279ce40f`, started the three JXL reference ABI jobs and finished **FAILURE before cloning or compiling libjxl**. The runner installed Android NDK r28c, but the preflight prioritized its pre-existing `ANDROID_NDK_HOME` environment variable, which may point to a different NDK version. All three jobs returned `NOT_RUN: exact NDK ... unavailable`, with only setup/log evidence uploaded. This is an environment selection error, **not** a compiler, source or compatibility result.
+
+The corrected helper now inspects the **sdkmanager-installed** `$ANDROID_HOME/ndk/28.2.13676358` first and confirms its exact `Pkg.Revision` and toolchain file before falling back to other candidate paths. A new four-case offline preflight regression checks the stale-env scenario, missing/wrong revision and unsafe ABI selection; existing ten ELF host regressions still pass. The opt-in marker is updated for exactly one **targeted retry**, with no full app/emulator CI. Report the next actual run by exact SHA and artifact rather than treating CI status as codec acceptance.
+
 ## Integration checkpoint and next blockers
 
 Do **not** infer new Android acceptance from the local work above. Continue safely batching independent work. At a genuine integration checkpoint, trigger exactly one source-bound full build + API26/API36 matrix by updating `.ci/android-validation-request.txt` in the release branch and examine the resulting APK/test evidence. The JXL reference Android ABI source-build helper is a separate costly one-off trial; execute it deliberately on an authorized disposable build runner, capture failures and full source provenance, and do not hide a failed/absent benchmark behind a green unrelated build.

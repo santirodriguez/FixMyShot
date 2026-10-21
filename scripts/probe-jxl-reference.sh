@@ -22,9 +22,19 @@ if [[ "$root" != /* || "$root" == / || "$root" == /mnt/data || -e "$root" ]]; th
   echo 'Use a new absolute disposable directory; existing data must not be overwritten' >&2
   exit 2
 fi
-ndk="${ANDROID_NDK_HOME:-${ANDROID_NDK_ROOT:-${ANDROID_HOME:-}/ndk/$NDK_VERSION}}"
-if [[ ! -f "$ndk/build/cmake/android.toolchain.cmake" ]] ||
-   ! grep -Eq "^Pkg.Revision[[:space:]]*=[[:space:]]*$NDK_VERSION([[:space:]]*)$" "$ndk/source.properties" 2>/dev/null; then
+# GitHub-hosted runners can pre-populate ANDROID_NDK_HOME with a DIFFERENT NDK.
+# Resolve the exact package installed by sdkmanager first; never trust that default.
+sdk_root="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-}}"
+ndk=''
+for candidate in "${sdk_root:+$sdk_root/ndk/$NDK_VERSION}"                  "${ANDROID_NDK_HOME:-}" "${ANDROID_NDK_ROOT:-}"; do
+  [[ -n "$candidate" && -f "$candidate/build/cmake/android.toolchain.cmake" &&
+     -f "$candidate/source.properties" ]] || continue
+  if grep -Eq '^Pkg[.]Revision[[:space:]]*=[[:space:]]*28[.]2[.]13676358[[:space:]]*$'        "$candidate/source.properties"; then
+    ndk="$candidate"
+    break
+  fi
+done
+if [[ -z "$ndk" ]]; then
   echo 'NOT_RUN: exact NDK r28.2.13676358 unavailable; no Android build claimed' >&2
   exit 2
 fi

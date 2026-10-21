@@ -32,6 +32,7 @@ jobs:
       - name: Verify local ELF and source-preflight guards
         run: |
           python3 scripts/test-jxl-elf.py -q
+          python3 scripts/test-jxl-preflight.py -q
           bash -n scripts/probe-jxl-reference.sh
       - name: Install fixed Android NDK through the existing SDK setup
         run: bash scripts/setup-android.sh
@@ -44,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: jxl-reference-${{ matrix.abi }}-${{ github.sha }}
-          retention-days: 14
+          retention-days: 7
           if-no-files-found: warn
           path: |
             evidence/

@@ -1,3 +1,3 @@
-JXL reference source-feasibility checkpoint, 2026-10-21.
-Pinned libjxl v0.12.0, Android NDK 28.2.13676358, ABI-specific source builds.
-This single targeted action does not run app emulators or grant format compatibility.
+JXL reference source feasibility checkpoint #2, 2026-10-21.
+Pinned NDK r28c resolution now ignores stale runner ANDROID_NDK_HOME.
+Re-run only source-built JXL ABI jobs, not Android app/emulator tests.
