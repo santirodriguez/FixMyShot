@@ -1,0 +1,51 @@
+name: JXL source feasibility (opt-in)
+
+# Independent reference-build experiment; never runs on ordinary code changes.
+# It does NOT replace the final Android app/emulator integration checkpoint.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/jxl-probe-request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: jxl-reference-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source-build:
+    name: Source-built libjxl / ${{ matrix.abi }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 32
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        abi: [arm64-v8a, armeabi-v7a, x86_64]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify local ELF and source-preflight guards
+        run: |
+          python3 scripts/test-jxl-elf.py -q
+          bash -n scripts/probe-jxl-reference.sh
+      - name: Install fixed Android NDK through the existing SDK setup
+        run: bash scripts/setup-android.sh
+      - name: Compile pinned reference, record raw ABI size and ELF alignment
+        env:
+          JXL_PROBE_ABI: ${{ matrix.abi }}
+        run: bash scripts/probe-jxl-reference.sh "$RUNNER_TEMP/fixmyshot-jxl-${{ matrix.abi }}"
+      - name: Preserve source-bound experiment logs and measured library manifests
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: jxl-reference-${{ matrix.abi }}-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            evidence/
+            ${{ runner.temp }}/fixmyshot-jxl-${{ matrix.abi }}/evidence/

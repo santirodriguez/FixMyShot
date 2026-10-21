@@ -25,6 +25,9 @@ The release branch runs the full build plus API 26/API 36 emulator matrix only w
 
 Do not write a checkpoint file at the start of development or for documentation-only commits. Rework related failures as one bounded slice, and honor the 5-minute normal/10-minute hard passive CI waiting limit. Preserve all formal Phase G1/G5/G6 hardware, codec, reproducibility and signing gates regardless of the reduced routine CI frequency.
 
+
+For the **isolated JXL 0.12 reference feasibility** run, review the pinned source-build helper and then update `.ci/jxl-probe-request.txt` on the release branch. The separate read-only Actions matrix builds the three native ABIs without launching full app/emulator CI; its library-size and ELF alignment reports do not certify a shipping encoder. Before interpreting the Gradle trust candidates, run `python3 scripts/test-gradle-candidates.py` and `python3 scripts/audit-gradle-candidates.py <source-bound-bootstrap-artifact.zip>`; generated hashes remain untrusted until independently corroborated. Details and actual experiment state are in `docs/feasibility/phase1-batch-preflight.md`.
+
 ## Ownership
 
 - `core`: platform-independent format, eligibility and resource contracts.
