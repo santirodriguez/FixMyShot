@@ -1,8 +1,6 @@
-Photo Picker and immutable preview-plan review UI integration checkpoint.
-Parent: 501d17bce08af254452a373a55e6ec2a20670c99
-Scope: source-bound SDR JPEG/PNG/WebP intake into bounded private staging,
-EXIF-normalized sampled preview, exact contain geometry and automatic edge
-background, localized batch/individual settings and explicit unavailable outputs.
-Add four synthetic Android renderer checks; no finished export or gallery claims.
-No INTERNET/storage read permission, signer, native codec, release or main change.
-This commit SHA (including this marker) is the sole CI source identity.
+Bounded Android compile repair after Actions 39686372324.
+Previous source: 7ddea5bc786f841b56f0354db8822ef477bf1a8e
+Fix a missing Compose MaterialTheme import in ReviewControls.kt only.
+Original picker, bounded preview and synthetic renderer checks unchanged.
+This marker defines the exact next build/API26/API36 validation source.
+No output publication, new dependency, manifest/permission or release change.
