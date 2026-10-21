@@ -26,6 +26,7 @@ jobs:
         run: |
           python3 scripts/check-bootstrap.py
           python3 scripts/test-device-report.py
+          python3 scripts/test-emulator-heap.py
       - name: Install pinned Android build packages
         run: bash scripts/setup-android.sh
       - name: Generate verified standard wrapper
@@ -103,7 +104,9 @@ jobs:
           heap-size: 512M
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
-          script: bash scripts/run-device-smoke.sh candidate
+          script: |
+            bash scripts/configure-emulator-heap.sh ${{ matrix.api }}
+            bash scripts/run-device-smoke.sh candidate
       - name: Preserve emulator evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
