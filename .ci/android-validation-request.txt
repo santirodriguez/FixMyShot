@@ -1,4 +1,8 @@
-HEIC codec diagnostic: fix schema-2 collector simulation after run 39669631900.
-The earlier run failed before Android compilation because test-device-report
-still generated a schema-1 grid report; keep all new trace fields validated.
-CI source SHA is the commit carrying this request.
+HEIC paired Android decoder pixel-layout diagnostic.
+Base: 23c54ceb27ed3a2c92b929d4592a421bbf77445d
+Compare the exact synthetic 66x68 and 96x68 HEIC files already produced by
+NativeGridDiagnosticTest using BitmapFactory and API28-gated ImageDecoder.
+Report per-pixel crop, row-major stride hypotheses and cross-decoder agreement.
+Fail-closed source-bound host checks; preserve minSdk26 and production writer.
+No product export, format availability, permissions, or metadata changes.
+The full Android CI source SHA is the commit carrying this checkpoint.

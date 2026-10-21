@@ -20,7 +20,7 @@ if ! adb shell getconf PAGE_SIZE > evidence/page-size-shell.txt 2>/dev/null; the
 fi
 adb install -r "$candidate/app/build/outputs/apk/debug/app-debug.apk"
 adb install -r "$candidate/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif files/g1-grid-diagnostic.json files/g1-grid-heic-64x64-off.heic files/g1-grid-heic-65x67-off.heic files/g1-grid-heic-66x68-off.heic files/g1-grid-heic-66x68-on.heic files/g1-grid-avif-64x64-off.avif files/g1-grid-avif-65x67-off.avif files/g1-grid-avif-66x68-off.avif files/g1-grid-avif-66x68-on.avif files/g1-grid-heic-96x68-off.heic files/g1-grid-avif-96x68-off.avif files/g1-grid-heic-128x96-off.heic files/g1-grid-avif-128x96-off.avif
+adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif files/g1-grid-diagnostic.json files/g1-heic-pixel-layout.json files/g1-grid-heic-64x64-off.heic files/g1-grid-heic-65x67-off.heic files/g1-grid-heic-66x68-off.heic files/g1-grid-heic-66x68-on.heic files/g1-grid-avif-64x64-off.avif files/g1-grid-avif-65x67-off.avif files/g1-grid-avif-66x68-off.avif files/g1-grid-avif-66x68-on.avif files/g1-grid-heic-96x68-off.heic files/g1-grid-avif-96x68-off.avif files/g1-grid-heic-128x96-off.heic files/g1-grid-avif-128x96-off.avif
 set +e
 timeout 12m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.CodecSmokeTest \
@@ -73,10 +73,20 @@ for format in heic avif; do
     fi
   done
 done
+# Compare retained synthetic HEIC files with Android decoder paths.
+timeout 2m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.NativeHeicPixelLayoutTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/heic-layout-instrumentation.txt 2>&1
+layout_result=$?
+cat evidence/heic-layout-instrumentation.txt
+adb exec-out run-as "$package" cat files/g1-heic-pixel-layout.json > evidence/g1-heic-pixel-layout.json
+layout_report_result=$?
 set -e
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
 python3 scripts/check-native-probe.py evidence
 python3 scripts/check-native-grid.py evidence
+python3 scripts/check-heic-layout.py evidence
 [[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 &&
-   "$grid_result" -eq 0 && "$grid_report_result" -eq 0 ]]
+   "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
+   "$layout_result" -eq 0 && "$layout_report_result" -eq 0 ]]

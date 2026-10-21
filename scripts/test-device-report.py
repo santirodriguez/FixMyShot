@@ -118,6 +118,11 @@ class EvidenceTests(unittest.TestCase):
                 sample['encoder_trace'] = {'status': 'NOT_CREATED'}
         (self.root / 'grid-fixture.json').write_text(json.dumps(grid_report))
         (scripts / 'check-native-grid.py').write_bytes((SCRIPTS / 'check-native-grid.py').read_bytes())
+        (self.root / 'heic-layout-fixture.json').write_text(json.dumps(dict(
+            schema=1, kind='HEIC_PIXEL_LAYOUT_DIAGNOSTIC', api=36,
+            status='UNAVAILABLE', reason='SOURCE_OUTPUT_UNAVAILABLE')))
+        (scripts / 'check-heic-layout.py').write_bytes(
+            (SCRIPTS / 'check-heic-layout.py').read_bytes())
         bin_dir = self.root / 'bin'; bin_dir.mkdir()
         (bin_dir / 'git').write_text('#!/bin/sh\nprintf "test-source-sha\\n"\n')
         (bin_dir / 'adb').write_text('''#!/usr/bin/env python3
@@ -126,7 +131,7 @@ from pathlib import Path
 args = sys.argv[1:]
 if 'getconf' in args: sys.exit(127)
 if 'instrument' in args:
-    native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest') for a in args)
+    native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest', 'NativeHeicPixelLayoutTest') for a in args)
     print('INSTRUMENTATION_RESULT: stream=\\n\\nOK (1 test)\\n\\nINSTRUMENTATION_CODE: -1' if native
           else 'INSTRUMENTATION_RESULT: stream=\\n\\nOK (4 tests)\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
@@ -135,6 +140,8 @@ elif 'cat' in args:
         print(Path('native-fixture.json').read_text())
     elif name.endswith('g1-grid-diagnostic.json'):
         print(Path('grid-fixture.json').read_text())
+    elif name.endswith('g1-heic-pixel-layout.json'):
+        print(Path('heic-layout-fixture.json').read_text())
     elif name.endswith('g1-smoke.json'):
         print('run-as: unknown package' if os.environ.get('BAD_REPORT') else Path('fixture.json').read_text())
     elif name.endswith(('.heic', '.avif')):
