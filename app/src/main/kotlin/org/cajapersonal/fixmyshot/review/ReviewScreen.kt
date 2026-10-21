@@ -4,7 +4,8 @@ import android.graphics.Bitmap
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
@@ -40,6 +42,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
@@ -57,6 +61,7 @@ internal fun ReviewScreen(
     draft: DraftSession,
     selectedId: String?,
     preview: Bitmap?,
+    thumbnails: Map<String, Bitmap>,
     busy: Boolean,
     invalidImports: Int,
     previewUnavailable: Boolean,
@@ -92,13 +97,29 @@ internal fun ReviewScreen(
             Text(stringResource(R.string.preview_only_notice), style = MaterialTheme.typography.bodySmall)
         } else {
             Text(stringResource(R.string.batch_count, draft.images.size), style = MaterialTheme.typography.titleMedium)
-            // The first slice uses bounded numbered selectors; image thumbnails follow with the cache.
-            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                draft.images.forEachIndexed { index, image ->
-                    OutlinedButton(onClick = { onSelect(image.id) }) {
-                        val marker = if (image.id == selectedId) "● " else ""
-                        Text("$marker${index + 1} · ${image.orientedSize.width}×${image.orientedSize.height}")
+            // A lazy strip avoids composing 100 image controls at once.
+            // Thumbnails depict originals, not scaled output or completed exports.
+            LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                itemsIndexed(draft.images, key = { _, image -> image.id }) { index, image ->
+                    val selectedThumbnail = image.id == selectedId
+                    OutlinedButton(onClick = { onSelect(image.id) },
+                        modifier = Modifier.semantics { selected = selectedThumbnail }) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                            val thumbnail = thumbnails[image.id]
+                            if (thumbnail != null && !thumbnail.isRecycled) {
+                                Image(thumbnail.asImageBitmap(),
+                                    contentDescription = stringResource(R.string.thumbnail_description,
+                                        index + 1, draft.images.size),
+                                    modifier = Modifier.size(64.dp), contentScale = ContentScale.Fit)
+                            } else {
+                                Box(Modifier.size(64.dp), contentAlignment = Alignment.Center) {
+                                    Text("…")
+                                }
+                            }
+                            val marker = if (selectedThumbnail) "● " else ""
+                            Text("$marker${index + 1}")
+                        }
                     }
                 }
             }

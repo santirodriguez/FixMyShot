@@ -71,9 +71,14 @@ data class DraftImage(
     val sourceHasAlpha: Boolean,
     val revision: Long = 0,
     val overrides: ItemOverrides = ItemOverrides(),
+    /** SHA-256 of the privately staged original bytes; verified again before any future export. */
+    val contentSha256: String? = null,
 ) {
     init {
         require(id.isNotBlank() && sourceToken.isNotBlank() && revision >= 0)
+        require(contentSha256 == null || Regex("[0-9a-f]{64}").matches(contentSha256)) {
+            "Invalid source fingerprint"
+        }
     }
 }
 

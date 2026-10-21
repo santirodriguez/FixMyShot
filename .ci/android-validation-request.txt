@@ -1,6 +1,5 @@
-Bounded Android compile repair after Actions 39686372324.
-Previous source: 7ddea5bc786f841b56f0354db8822ef477bf1a8e
-Fix a missing Compose MaterialTheme import in ReviewControls.kt only.
-Original picker, bounded preview and synthetic renderer checks unchanged.
-This marker defines the exact next build/API26/API36 validation source.
-No output publication, new dependency, manifest/permission or release change.
+Batch validation: thumbnails and private PNG/WebP preflight.
+Parent d8aff4448ef90148300d9ba9657d80ae1d29f855.
+Bounded LRU, source fingerprint, lazy batch thumbnails, typed plans and tests.
+No public export, new permissions, HEIC/AVIF enablement or release.
+The commit containing this marker is the exact CI source.

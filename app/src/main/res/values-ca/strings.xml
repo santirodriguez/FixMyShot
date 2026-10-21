@@ -7,6 +7,7 @@
     <string name="choose_prompt">Tria una o diverses imatges per revisar.</string>
     <string name="import_in_progress">Preparant les imatges…</string>
     <string name="import_skipped">No s\'han pogut importar %1$d imatges. Revisa el format, el color o la mida.</string>
+    <string name="thumbnail_description">Imatge %1$d de %2$d, miniatura original</string>
     <string name="batch_count">Imatges del lot: %1$d</string>
     <string name="preview_description">Previsualització de la imatge seleccionada amb els marges previstos</string>
     <string name="preview_loading">Preparant la previsualització…</string>

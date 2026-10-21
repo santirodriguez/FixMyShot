@@ -1,5 +1,6 @@
 package org.cajapersonal.fixmyshot
 
+import android.content.ComponentCallbacks2
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -29,10 +30,13 @@ import java.util.concurrent.Executors
 
 class MainActivity : ComponentActivity() {
     private val worker = Executors.newSingleThreadExecutor()
+    // A separate serial queue allows one main preview and one small thumbnail decode at most.
+    private val thumbnailWorker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private lateinit var model: ReviewViewModel
     private lateinit var sources: ReviewSources
     private var generation = 0L
+    private val pendingThumbnails = mutableSetOf<String>()
 
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) addImages(uris)
@@ -46,6 +50,7 @@ class MainActivity : ComponentActivity() {
         model.isBusy = false // An old activity can be destroyed before its import callback.
         worker.execute { sources.pruneExpired() }
         if (model.selectedId != null) loadPreview()
+        scheduleThumbnails(model.draft.images.map { it.id })
         setContent {
             MaterialTheme(colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()) {
                 Surface(Modifier.fillMaxSize()) {
@@ -53,6 +58,7 @@ class MainActivity : ComponentActivity() {
                         draft = model.draft,
                         selectedId = model.selectedId,
                         preview = model.preview,
+                        thumbnails = model.thumbnails,
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
                         previewUnavailable = model.previewUnavailable,
@@ -60,7 +66,12 @@ class MainActivity : ComponentActivity() {
                         onChoose = {
                             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         },
-                        onSelect = { id -> model.selectedId = id; loadPreview() },
+                        onSelect = { id ->
+                            model.selectedId = id
+                            model.selectThumbnail(id)
+                            scheduleThumbnails(listOf(id))
+                            loadPreview()
+                        },
                         onDestination = { value -> updateDraft(model.draft.setDestination(value)) },
                         onFormat = { value, onlySelected ->
                             val selected = model.selectedId
@@ -124,6 +135,33 @@ class MainActivity : ComponentActivity() {
                 if (model.selectedId == null) model.selectedId = model.draft.images.firstOrNull()?.id
                 model.isBusy = false
                 loadPreview()
+                scheduleThumbnails(additions.map { it.id })
+            }
+        }
+    }
+
+    /** One bounded decode at a time; old UI snapshots remain valid after LRU eviction. */
+    private fun scheduleThumbnails(ids: List<String>) {
+        for (id in ids.distinct()) {
+            if (model.hasThumbnail(id) || !pendingThumbnails.add(id)) continue
+            thumbnailWorker.execute {
+                val bitmap = try {
+                    sources.decodeSample(id, maxLongSide = 256)
+                } catch (_: IOException) {
+                    null
+                } catch (_: SecurityException) {
+                    null
+                } catch (_: IllegalArgumentException) {
+                    null
+                }
+                main.post {
+                    pendingThumbnails.remove(id)
+                    if (bitmap != null) {
+                        if (!isDestroyed && model.draft.images.any { it.id == id }) {
+                            model.storeThumbnail(id, bitmap)
+                        } else bitmap.recycle()
+                    }
+                }
             }
         }
     }
@@ -165,6 +203,7 @@ class MainActivity : ComponentActivity() {
         val id = model.selectedId ?: return
         model.draft = model.draft.removeItem(id)
         model.selectedId = model.draft.images.firstOrNull()?.id
+        model.removeThumbnail(id)
         worker.execute { sources.discard(id) }
         loadPreview()
     }
@@ -174,14 +213,23 @@ class MainActivity : ComponentActivity() {
         model.draft = DraftSession()
         model.selectedId = null
         model.preview = null
+        model.clearThumbnails()
         model.invalidImports = 0
         ++generation
         worker.execute { sources.discardAll(ids) }
     }
 
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (::model.isInitialized && level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
+            model.clearThumbnails()
+        }
+    }
+
     override fun onDestroy() {
         generation++
         worker.shutdownNow()
+        thumbnailWorker.shutdownNow()
         super.onDestroy()
     }
 }

@@ -7,6 +7,7 @@
     <string name="choose_prompt">Elegí una o varias imágenes para revisar.</string>
     <string name="import_in_progress">Preparando las imágenes…</string>
     <string name="import_skipped">No se pudieron importar %1$d imágenes. Revisá el formato, el color o el tamaño.</string>
+    <string name="thumbnail_description">Imagen %1$d de %2$d, miniatura original</string>
     <string name="batch_count">Imágenes en el lote: %1$d</string>
     <string name="preview_description">Vista previa de la imagen seleccionada con los márgenes previstos</string>
     <string name="preview_loading">Preparando vista previa…</string>

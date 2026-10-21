@@ -7,6 +7,7 @@
     <string name="choose_prompt">Choose one or more images to review.</string>
     <string name="import_in_progress">Preparing selected images…</string>
     <string name="import_skipped">%1$d images could not be imported. Check format, color or size.</string>
+    <string name="thumbnail_description">Image %1$d of %2$d, original thumbnail</string>
     <string name="batch_count">Images in batch: %1$d</string>
     <string name="preview_description">Preview of the selected image with planned margins</string>
     <string name="preview_loading">Preparing preview…</string>

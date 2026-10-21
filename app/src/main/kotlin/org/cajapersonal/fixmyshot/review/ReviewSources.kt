@@ -14,6 +14,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.security.MessageDigest
 import java.util.UUID
 
 /** All provider I/O is performed on a dedicated worker; no user path or URI is logged. */
@@ -41,6 +42,7 @@ internal class ReviewSources(private val context: Context) {
         val id = UUID.randomUUID().toString().replace("-", "")
         val target = File(directory, "$id.source")
         var accepted = false
+        val digest = MessageDigest.getInstance("SHA-256")
         try {
             val input = context.contentResolver.openInputStream(uri) ?: return ImportResult.Rejected(Failure.UNREADABLE)
             var count = 0L
@@ -54,6 +56,7 @@ internal class ReviewSources(private val context: Context) {
                         if (count > maxInputBytes || total + count > maxStagingBytes) {
                             return ImportResult.Rejected(Failure.TOO_LARGE)
                         }
+                        digest.update(block, 0, size)
                         to.write(block, 0, size)
                     }
                     to.fd.sync()
@@ -81,8 +84,10 @@ internal class ReviewSources(private val context: Context) {
             if (orientation !in 1..8) return ImportResult.Rejected(Failure.UNSUPPORTED)
             val rotated = orientation in setOf(5, 6, 7, 8)
             val size = if (rotated) PixelSize(height, width) else PixelSize(width, height)
+            val hash = digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
             accepted = true
-            return ImportResult.Added(DraftImage(id, uri.toString(), size, sourceHasAlpha = bounds.outMimeType != "image/jpeg"))
+            return ImportResult.Added(DraftImage(id, uri.toString(), size,
+                sourceHasAlpha = bounds.outMimeType != "image/jpeg", contentSha256 = hash))
         } catch (_: IOException) {
             return ImportResult.Rejected(Failure.UNREADABLE)
         } catch (_: SecurityException) {
