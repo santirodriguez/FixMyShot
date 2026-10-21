@@ -47,6 +47,23 @@ The source-bound build completed 23 JVM tests with no failures/errors; all three
 
 **Native device truth remains unchanged even with the ImageDecoder alternative:** API 26 HEIC and AVIF are `UNAVAILABLE / UNSUPPORTED_API`; API 36 HEIC and AVIF are both `UNAVAILABLE / INVALID_OUTPUT`. No encoded HEIC or AVIF files were retained. A passing typed classification is not proof of native encoder availability or output fidelity. The next bounded question is whether platform codec behavior changes with even vs odd geometry or on the required physical Pixel 9 Pro XL and a second supported hardware family; those acceptance gates remain NOT RUN.
 
+## Experimental grid, padding and RGB diagnostics (`28aa20b8`)
+
+`NativeGridDiagnosticTest` is an **additional separate one-test instrumentation class**, not an application encoder selector or a new product capability. It compares both HEIC and AVIF under the following exact requested configurations:
+
+| Encoded size | Source-content ROI | Grid request | Interpretation |
+|---|---|---|---|
+| 64x64 | 64x64 | OFF | Compare with the earlier successful 64x64 default-grid writer |
+| 65x67 | 65x67 | OFF | Test whether disabling grid affects odd geometry |
+| 66x68 | 65x67 with replicated right/bottom edge pixels | OFF | Distinguish even-aligned padded encoding from actual 65x67 export |
+| 66x68 | Same padded 65x67 source | ON | Distinguish requested grid setting from output size |
+
+Eight format/geometry outcomes appear in `g1-grid-diagnostic.json` alongside the original four native probes in `g1-native-probe.json`. Each experimental output must have the expected BMFF brand, actual decoded size, sampled pixel reopening, bounded size/time and typed failure handling; the host validator rejects missing/extra/false-positive files, duplicate cases, silently changed dimensions and unsupported API claims. Successful experimental bytes are named `g1-grid-<format>-<size>-<off|on>.<extension>` and retained only in the private test artifact. Padded output is **66x68** and must never be represented as lossless or faithful 65x67 output. Small image sizes may cause the AndroidX writer to automatically disable real tiling even when grid is requested; these settings record the requested configuration, **not a verified internal grid layout**.
+
+For decodable outputs, the Android diagnostic reports RGB PSNR and channel-wise median absolute errors over the **unpadded input ROI**, plus whether the decoded bitmap identifies sRGB. The report explicitly sets `color_profile_inspection=NOT_PERFORMED`: Android pixel reopening does not prove that ICC/nclx tags are present or correct. Any positively retained artifact still requires independent full decode, color-box/profile inspection and user-visible quality checks. This high-frequency synthetic fixture does **not** replace the calibrated full-size screenshot regression target or physical Pixel9ProXL/second-family gates.
+
+Host-only checks: `python3 scripts/test-native-grid.py` (7 cases), existing `scripts/test-native-probe.py` (9), `scripts/test-emulator-heap.py` (10), collector simulation `scripts/test-device-report.py` and `scripts/check-bootstrap.py` passed before commit. Actual API26/API36 outcomes and source-bound hashes for this experiment remain **PENDING** Actions [39625536410](https://github.com/santirodriguez/FixMyShot/actions/runs/39625536410) on source `28aa20b8d65a31d97001d9d0e2c6cddd44e9c952`. Do not infer runtime availability from local checks or a build-only green job.
+
 ## Bounded native geometry outcome (986aee43)
 
 GitHub Actions [39618903599](https://github.com/santirodriguez/FixMyShot/actions/runs/39618903599), source `986aee4340aa3be00bb3d0b8e48336b0d36721d8`, **COMPLETED SUCCESS**: build, API 26 smoke, and API 36 smoke. The preceding source `1c327a1b` already contained the geometry/codec-inventory instrumentation; the only intervening runtime modification retries a transient `adb root` handshake under the CI-only emulator guards. `main` is not involved.
