@@ -20,9 +20,19 @@ if [[ "$1" == 26 ]]; then
   exit 0
 fi
 [[ "$(property ro.debuggable)" == 1 ]] || { echo 'Requires a debuggable emulator' >&2; exit 1; }
-adb root
-timeout 30s adb wait-for-device
-[[ "$(adb shell id -u | tr -d '\r')" == 0 ]] || { echo 'Emulator root unavailable' >&2; exit 1; }
+# On cold-booted CI emulators adb root can briefly close the transport while restarting adbd.
+# Retry only after emulator/API/debuggable guards and still require uid 0 before VM changes.
+root_ready=0
+for attempt in 1 2 3; do
+  adb root >/dev/null 2>&1 || true
+  if timeout 20s adb wait-for-device >/dev/null 2>&1 &&
+     [[ "$(adb shell id -u 2>/dev/null | tr -d '\r')" == 0 ]]; then
+    root_ready=1
+    break
+  fi
+  if (( attempt < 3 )); then sleep 2; fi
+done
+[[ "$root_ready" == 1 ]] || { echo 'Emulator root unavailable after bounded retries' >&2; exit 1; }
 adb shell stop
 trap 'adb shell start >/dev/null 2>&1 || true' EXIT
 adb shell setprop dalvik.vm.heapsize 512m

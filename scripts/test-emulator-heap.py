@@ -20,7 +20,12 @@ case "$*" in
  'shell getprop dalvik.vm.heapsize')
    if [[ -f heap ]]; then cat heap; else echo 576m; fi ;;
  'shell getprop sys.boot_completed') echo 1 ;;
- 'shell id -u') echo 0 ;;
+ 'root')
+   if [[ "${ROOT_NEVER:-0}" == 1 ]]; then exit 1; fi
+   if [[ "${ROOT_ONCE:-0}" == 1 && ! -f root-failed ]]; then touch root-failed; exit 1; fi
+   touch root-ready ;;
+ 'shell id -u')
+   if [[ "${ROOT_NEVER:-0}" == 1 || ( "${ROOT_ONCE:-0}" == 1 && ! -f root-ready ) ]]; then echo 2000; else echo 0; fi ;;
  'shell setprop dalvik.vm.heapgrowthlimit 512m')
    if [[ "${REFUSE_PROPERTY:-0}" != 1 ]]; then echo 512m > growth; fi ;;
  'shell setprop dalvik.vm.heapsize 512m') echo 512m > heap ;;
@@ -82,6 +87,19 @@ class EmulatorHeapTests(unittest.TestCase):
         self.assertIn('shell stop', log)
         self.assertIn('shell start', log)
         self.assertIn('heapgrowthlimit_after=512m', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
+
+    def test_transient_adb_root_transport_retries_only_on_guarded_emulator(self):
+        result, log, root = self.run_helper(ROOT_ONCE='1')
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(2, len([call for call in log.splitlines() if call == 'root']))
+        self.assertIn('adjustment=CI_EMULATOR_ONLY', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
+
+    def test_unavailable_root_remains_a_failure_without_setprop(self):
+        result, log, _ = self.run_helper(ROOT_NEVER='1')
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(3, len([call for call in log.splitlines() if call == 'root']))
+        self.assertNotIn('setprop', log)
+        self.assertNotIn('shell stop', log)
 
     def test_failed_property_change_is_not_success(self):
         result, log, _ = self.run_helper(REFUSE_PROPERTY='1')
