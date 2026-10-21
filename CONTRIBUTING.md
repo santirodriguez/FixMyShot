@@ -13,14 +13,12 @@ python3 scripts/check-bootstrap.py
 
 The temporary bootstrap downloads the official Gradle distribution, verifies its published SHA-256 and generates/checks the standard wrapper in an isolated empty project. **Committing the reviewed standard wrapper, resolved lockfiles and verification metadata is still required before G1 closes.** CI captures those files as candidates and does not commit them or grant itself repository write access. Initial `--write-verification-metadata` output records observed bytes; it does not prove their trustworthiness. Replace trust-capture mode with strict committed verification after review.
 
-HEIC/AVIF native writer feasibility uses the pinned AndroidX HeifWriter release candidate; inspect actual device output before advertising those formats. No imported input or public export pipeline exists yet.
-
 Native WebP is built from the immutable upstream revision in `codec-native/src/main/cpp/CMakeLists.txt`. Builds need network access to trusted artifact repositories and that source revision; the installed application does not. Never add opaque prebuilt codec binaries or runtime downloads.
 
 ## Ownership
 
 - `core`: platform-independent format, eligibility and resource contracts.
-- `codec-native`: source-built WebP/JNI, bounded lossless encoding and a separate native HEIC/AVIF writer feasibility adapter.
+- `codec-native`: source-built WebP/JNI and bounded Android lossless encoding.
 - `app`: provisional Compose launcher, localized resources and Android fixture tests.
 
 The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an app-private candidate. It is not the import, metadata-preservation, geometry or public-export pipeline. Call it off the main thread, preserve its sequential execution and dispose of candidates explicitly.

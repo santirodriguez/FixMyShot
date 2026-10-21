@@ -12,12 +12,6 @@ The complete source checkout also retains AUTHORS and source notices.
 The CMake fetch retains complete corresponding source in its build workspace.
 No opaque precompiled WebP binary is used.
 
-AndroidX HeifWriter 1.2.0-rc01 (release candidate)
-Source: https://android.googlesource.com/platform/frameworks/support/
-Use: Android native-device HEIC/AVIF bitmap-input still-image writer candidate.
-License: Apache License 2.0. Selected version in gradle/libs.versions.toml.
-Actual device capability, color fidelity and transitive inventory remain subject to G1 review.
-
 AndroidX / Jetpack Compose
 Source: https://android.googlesource.com/platform/frameworks/support/
 Use: Android UI and test dependencies, Apache License 2.0.

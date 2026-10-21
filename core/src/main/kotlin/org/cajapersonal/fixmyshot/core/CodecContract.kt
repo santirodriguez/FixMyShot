@@ -55,16 +55,16 @@ object CodecCapabilities {
                     )
                 }
             }
-            OutputFormat.HEIC -> futureNative(api, 29, request, CodecRoute.NATIVE_HEIC)
-            OutputFormat.AVIF -> futureNative(api, 34, request, CodecRoute.NATIVE_AVIF)
+            OutputFormat.HEIC -> futureNative(api, 29, request)
+            OutputFormat.AVIF -> futureNative(api, 34, request)
             OutputFormat.JXL -> CodecEligibility.Unavailable(FailureCode.NOT_INTEGRATED)
         }
     }
 
-    private fun futureNative(api: Int, minimumApi: Int, request: EncodeRequest, route: CodecRoute): CodecEligibility = when {
+    private fun futureNative(api: Int, minimumApi: Int, request: EncodeRequest): CodecEligibility = when {
         api < minimumApi -> CodecEligibility.Unavailable(FailureCode.UNSUPPORTED_API)
         request.hasAlpha -> CodecEligibility.Unavailable(FailureCode.UNSUPPORTED_ALPHA)
-        else -> CodecEligibility.ProbeRequired(route)
+        else -> CodecEligibility.Unavailable(FailureCode.NOT_INTEGRATED)
     }
 }
 

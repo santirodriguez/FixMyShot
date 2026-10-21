@@ -12,12 +12,6 @@ The schema-2 device report records first/repeat timings and before/after memory 
 
 `check-device-report.py` rejects incomplete/failed/crashed instrumentation, incorrect test counts, missing or duplicated matrix results, wrong dimensions/routes, invalid measurements and missing synthetic output files. Its ten host-side regression tests also exercise the collector with a missing `getconf` and unusable report text. Eight additional tests cover the CI heap helper's guards, unchanged API 26 behavior, intended API 36 setup and property-change failure. Mocked collector/setup tests are not Android codec evidence.
 
-## Native HEIC/AVIF feasibility spike
-
-`NativeCodecProbeTest` is a **separate one-test Android instrumentation run** after the existing four-test/80-encode PNG/WebP matrix. It attempts one already-normalized, opaque 65×67 synthetic image per native format through the selected AndroidX bitmap writer. The result `g1-native-probe.json` records either a real encoded-and-reopened sample or a typed unavailable reason. Successful output bytes are retained under `g1-native-fixture.heic` / `g1-native-fixture.avif` for independent container and appearance inspection. Host validation requires an actual positive instrumentation result and truthful samples, refusing corrupt, mismatched or missing output. A native probe failure does **not** downgrade to another format or purport to be availability. An emulator failure is evidence of that environment, not device-wide impossibility. The AndroidX 1.2.0-rc01 release candidate contains color-aspect and AVIF fixes absent from observed stable 1.1.0; build success alone is not quality acceptance.
-
-These tiny probes do **not** satisfy the mandatory full-size Pixel/other-hardware, calibrated-patch, text-edge, PSNR, color-tag, performance or cancellation gates. The lossless G1 matrix remains independently regression-tested and unchanged.
-
 ## Running
 
 ```sh
