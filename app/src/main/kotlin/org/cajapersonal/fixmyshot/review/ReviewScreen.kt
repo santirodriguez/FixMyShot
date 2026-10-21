@@ -103,7 +103,7 @@ internal fun ReviewScreen(
                 itemsIndexed(draft.images, key = { _, image -> image.id }) { index, image ->
                     val selectedThumbnail = image.id == selectedId
                     OutlinedButton(onClick = { onSelect(image.id) },
-                        modifier = Modifier.semantics { selected = selectedThumbnail }) {
+                        modifier = Modifier.semantics { this.selected = selectedThumbnail }) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             val thumbnail = thumbnails[image.id]

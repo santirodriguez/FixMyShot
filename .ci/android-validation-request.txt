@@ -1,3 +1,4 @@
-Thumbnail host-fixture correction: mocked three-test instrumentation.
-Prior source 817a26e5a9e5ba4abc97c0f1a969e903da13b271.
-No Android implementation changed. Validate complete build and emulator matrix.
+ReviewScreen Compose semantics compile fix after Actions39691864840.
+Base executable source043bc371dc943c7141bc1fc83a585e71c64b5edf.
+Disambiguate SemanticsPropertyReceiver.selected from local selected image.
+No import/cache/preflight/export/permissions changes; full CI rerun for this commit.
