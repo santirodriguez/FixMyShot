@@ -1,5 +1,3 @@
-Batch validation: thumbnails and private PNG/WebP preflight.
-Parent d8aff4448ef90148300d9ba9657d80ae1d29f855.
-Bounded LRU, source fingerprint, lazy batch thumbnails, typed plans and tests.
-No public export, new permissions, HEIC/AVIF enablement or release.
-The commit containing this marker is the exact CI source.
+Thumbnail host-fixture correction: mocked three-test instrumentation.
+Prior source 817a26e5a9e5ba4abc97c0f1a969e903da13b271.
+No Android implementation changed. Validate complete build and emulator matrix.

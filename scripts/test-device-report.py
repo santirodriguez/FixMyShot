@@ -132,8 +132,10 @@ args = sys.argv[1:]
 if 'getconf' in args: sys.exit(127)
 if 'instrument' in args:
     native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest', 'NativeHeicPixelLayoutTest') for a in args)
-    print('INSTRUMENTATION_RESULT: stream=\\n\\nOK (1 test)\\n\\nINSTRUMENTATION_CODE: -1' if native
-          else 'INSTRUMENTATION_RESULT: stream=\\n\\nOK (4 tests)\\n\\nINSTRUMENTATION_CODE: -1')
+    thumbnail = any('ReviewThumbnailCacheTest' in a for a in args)
+    count = 1 if native else 3 if thumbnail else 4
+    print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
+          ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
     name = args[-1]
     if name.endswith('g1-native-probe.json'):
