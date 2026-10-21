@@ -1,10 +1,13 @@
 name: Android bootstrap
+# Release work is batch-validated, not rebuilt for each development commit.
+# GitHub workflow_dispatch is not usable until a workflow is on the default branch.
 on:
   push:
-    branches: [main, 'release/**']
-    paths-ignore: ['**.md', 'LICENSE']
+    branches: ['release/**']
+    paths:
+      - '.ci/android-validation-request.txt'
   pull_request:
-    paths-ignore: ['**.md', 'LICENSE']
+    branches: [main]
 permissions:
   contents: read
 concurrency:
