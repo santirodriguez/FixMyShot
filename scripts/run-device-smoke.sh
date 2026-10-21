@@ -20,7 +20,7 @@ if ! adb shell getconf PAGE_SIZE > evidence/page-size-shell.txt 2>/dev/null; the
 fi
 adb install -r "$candidate/app/build/outputs/apk/debug/app-debug.apk"
 adb install -r "$candidate/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-fixture.heic files/g1-native-fixture.avif
+adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif
 set +e
 timeout 12m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.CodecSmokeTest \
@@ -39,17 +39,18 @@ native_result=$?
 cat evidence/native-instrumentation.txt
 adb exec-out run-as "$package" cat files/g1-native-probe.json > evidence/g1-native-probe.json
 native_report_result=$?
-for extension in heic avif; do
-  native_output="evidence/g1-native-fixture.$extension"
-  if adb exec-out run-as "$package" cat "files/g1-native-fixture.$extension" > "$native_output"; then
-    # Some adb/run-as combinations return 0 while stdout contains a device-side cat error.
-    # Such text is not a file. Positive probe reports still require a real BMFF in the host validator.
-    if [[ "$(dd if="$native_output" bs=1 skip=4 count=4 2>/dev/null)" != "ftyp" ]]; then
+for size in 64x64 65x67; do
+  for extension in heic avif; do
+    native_output="evidence/g1-native-$size.$extension"
+    if adb exec-out run-as "$package" cat "files/g1-native-$size.$extension" > "$native_output"; then
+      # adb may succeed while returning a device-side missing-file error as stdout.
+      if [[ "$(dd if="$native_output" bs=1 skip=4 count=4 2>/dev/null)" != "ftyp" ]]; then
+        rm -f "$native_output"
+      fi
+    else
       rm -f "$native_output"
     fi
-  else
-    rm -f "$native_output"
-  fi
+  done
 done
 set -e
 # Successful adb exits alone do not certify images, sample coverage or native capabilities.

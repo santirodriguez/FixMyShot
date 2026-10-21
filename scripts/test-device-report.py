@@ -92,9 +92,13 @@ class EvidenceTests(unittest.TestCase):
         (scripts / 'check-device-report.py').write_bytes((SCRIPTS / 'check-device-report.py').read_bytes())
         (self.root / 'fixture.json').write_text(json.dumps(self.report))
         (self.root / 'native-fixture.json').write_text(json.dumps(dict(
-            schema=1, status='PROBE_COMPLETE', api=36, size=[65, 67],
-            samples=[dict(format=fmt, route=route, status='UNAVAILABLE',
-                          reason='ENCODE_FAILED') for fmt, route in
+            schema=2, status='PROBE_COMPLETE', api=36, sizes=[[64, 64], [65, 67]],
+            codec_inventory={mime: {'encoders': [], 'decoders': []}
+                             for mime in ('video/hevc', 'video/av01',
+                                          'image/vnd.android.heic', 'image/avif')},
+            samples=[dict(format=fmt, route=route, width=w, height=h,
+                          status='UNAVAILABLE', reason='ENCODE_FAILED')
+                     for w, h in ((64, 64), (65, 67)) for fmt, route in
                      (('HEIC', 'NATIVE_HEIC'), ('AVIF', 'NATIVE_AVIF'))])))
         (scripts / 'check-native-probe.py').write_bytes(
             (SCRIPTS / 'check-native-probe.py').read_bytes())
@@ -132,8 +136,9 @@ elif 'cat' in args:
             result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
                 env=current, capture_output=True, text=True, timeout=45)
             self.assertEqual(bad, result.returncode != 0, result.stdout + result.stderr)
-            self.assertFalse((self.root / 'evidence/g1-native-fixture.heic').exists())
-            self.assertFalse((self.root / 'evidence/g1-native-fixture.avif').exists())
+            for size in ('64x64', '65x67'):
+                self.assertFalse((self.root / f'evidence/g1-native-{size}.heic').exists())
+                self.assertFalse((self.root / f'evidence/g1-native-{size}.avif').exists())
         self.assertIn('UNAVAILABLE', (self.root / 'evidence/page-size-shell.txt').read_text())
 
 
