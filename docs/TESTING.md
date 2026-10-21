@@ -12,6 +12,27 @@ The schema-2 device report records first/repeat timings and before/after memory 
 
 `check-device-report.py` rejects incomplete/failed/crashed instrumentation, incorrect test counts, missing or duplicated matrix results, wrong dimensions/routes, invalid measurements and missing synthetic output files. Its ten host-side regression tests also exercise the collector with a missing `getconf` and unusable report text. Eight additional tests cover the CI heap helper's guards, unchanged API 26 behavior, intended API 36 setup and property-change failure. Mocked collector/setup tests are not Android codec evidence.
 
+## Verified API 26/36 native feasibility classification (21c49ca3)
+
+GitHub Actions [39605715333](https://github.com/santirodriguez/FixMyShot/actions/runs/39605715333), source `21c49ca3b362c76a9f183761ae11cc82feff8428`, completed SUCCESS (build, API 26 and API 36). Independently downloaded and checked ZIP SHA-256, CRC, source identity, PNG/WebP pixels and native-report contents:
+
+| Artifact | GitHub ID | ZIP SHA-256 |
+|---|---:|---|
+| Build | 12347534056 | `5cf719881fd1fe807a74a821a1d26075c3ea63a3520b117de91e94e0da9b7c1f` |
+| API 26 | 12347969759 | `a604d0c0b4308dc221e5abe78b6a360d0c41b5f7701f142a1eacac39cd719b96` |
+| API 36 | 12348114344 | `f9c21619c346df9276201ac2d7e867a80d2f0e0f37cfa8c74540dce4f2f62692` |
+
+Both x86_64 emulators passed four PNG/WebP instrumentation tests, 80 synthetic PNG/WebP encodes each, and one native classification instrumentation test each. The four fixture-0 (1344x2992) PNG/WebP outputs, decoded independently using Pillow 12.3.0/libwebp 1.6.0, matched all 4,021,248 synthetic RGB pixels. All decoded RGB SHA-256 hashes were `214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861`. Measured process heap was 512 MiB and page size 4096 bytes in both emulators; the CI-only heap setup and snapshots are **not** device-memory or 16 KiB runtime acceptance.
+
+Native writer test reports were **PROBE_COMPLETE but neither format was successfully encoded and reopened**:
+
+| Environment | HEIC 65x67 | AVIF 65x67 |
+|---|---|---|
+| API 26 emulator | `UNAVAILABLE / UNSUPPORTED_API` | `UNAVAILABLE / UNSUPPORTED_API` |
+| API 36 emulator | `UNAVAILABLE / INVALID_OUTPUT` | `UNAVAILABLE / INVALID_OUTPUT` |
+
+API 26 therefore demonstrated correct version gating, app startup and unaffected lossless routing. On API 36, the native candidates had plausible container brand and decoded bounds but failed a bounded BitmapFactory pixel decode; they were deleted, with no format substitution. This is evidence about these emulators, **not** proof that HEIC/AVIF cannot work on capable phones or proof of their availability. The next diagnostic tries the distinct API 28+ ImageDecoder pixel path on the same sample while retaining strict rejection if both decoders fail; its CI result must be verified separately. Full-size Pixel 9 Pro XL, a second physical hardware family, odd-size fidelity/color, peak memory, 16 KiB runtime and all remaining G1 requirements remain NOT RUN.
+
 ## Native HEIC/AVIF feasibility spike
 
 `NativeCodecProbeTest` is a **separate one-test Android instrumentation run** after the existing four-test/80-encode PNG/WebP matrix. It attempts one already-normalized, opaque 65×67 synthetic image per native format through the selected AndroidX bitmap writer. The result `g1-native-probe.json` records either a real encoded-and-reopened sample or a typed unavailable reason. Successful output bytes are retained under `g1-native-fixture.heic` / `g1-native-fixture.avif` for independent container and appearance inspection. Host validation requires an actual positive instrumentation result and truthful samples, refusing corrupt, mismatched or missing output. A malformed native file or a file that only exposes bounds/MIME but cannot decode actual pixels yields typed `INVALID_OUTPUT`; the synthetic probe then continues to the other format. The collector filters device-side `cat: ... No such file` text even when `adb` returns status zero; successful output still requires independent BMFF validation. A native probe failure does **not** downgrade to another format or purport to be availability. An emulator failure is evidence of that environment, not device-wide impossibility. The AndroidX 1.2.0-rc01 release candidate contains color-aspect and AVIF fixes absent from observed stable 1.1.0; build success alone is not quality acceptance.
