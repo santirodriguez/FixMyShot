@@ -1,11 +1,14 @@
 package org.cajapersonal.fixmyshot
 
+import android.app.ActivityManager
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Debug
+import android.system.Os
+import android.system.OsConstants
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.cajapersonal.fixmyshot.codec.EncodeResult
@@ -39,9 +42,12 @@ class CodecSmokeTest {
     @Test fun syntheticPngAndWebpRoundTrips() {
         val directory = File(context.cacheDir, "g1-${System.nanoTime()}")
         val results = JSONArray()
-        val report = JSONObject().put("schema", 1).put("status", "INCOMPLETE")
+        val report = JSONObject().put("schema", 2).put("status", "INCOMPLETE")
             .put("api", Build.VERSION.SDK_INT).put("device", Build.MODEL)
             .put("abis", JSONArray(Build.SUPPORTED_ABIS.toList()))
+            .put("page_size_bytes", Os.sysconf(OsConstants._SC_PAGE_SIZE))
+            .put("process_heap_limit_bytes", Runtime.getRuntime().maxMemory())
+            .put("memory_class_mib", context.getSystemService(ActivityManager::class.java).memoryClass)
             .put("memory_measurement", "before/after snapshots, NOT peak")
             .put("timing", "first and repeat fixture runs, NOT process-cold benchmarks")
             .put("samples", results)
@@ -50,6 +56,10 @@ class CodecSmokeTest {
             repeat(20) { fixture ->
                 val width = if (fixture == 0) 1344 else 127 + fixture * 7
                 val height = if (fixture == 0) 2992 else 241 + fixture * 11
+                val preflight = EncodeRequest(PixelSize(width, height), OutputFormat.WEBP_LOSSLESS)
+                assertTrue("Fixture environment has insufficient heap: limit=${Runtime.getRuntime().maxMemory()}, " +
+                    "estimated=${CodecMemoryBudget.estimatedBytes(preflight)}; do not relax the production budget",
+                    CodecMemoryBudget.permits(preflight, Runtime.getRuntime().maxMemory()))
                 val source = makeFixture(width, height, fixture)
                 try {
                     for (format in listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
@@ -75,6 +85,9 @@ class CodecSmokeTest {
                                             if (Color.alpha(expected[x]) == 0) assertEquals(0, Color.alpha(actual[x]))
                                             else if (expected[x] != actual[x]) fail("$fixture/$format differs at $x,$y")
                                         }
+                                    }
+                                    if (fixture == 0 && iteration == 0) {
+                                        result.file.copyTo(File(context.filesDir, "g1-fixture-0.${format.extension}"), overwrite = true)
                                     }
                                     results.put(JSONObject().put("fixture", fixture).put("width", width)
                                         .put("height", height).put("alpha", source.hasAlpha())
@@ -109,6 +122,20 @@ class CodecSmokeTest {
             assertEquals(EncodeResult.Failed(FailureCode.INVALID_INPUT),
                 codec.encode(source, request.copy(size = PixelSize(129, 128))))
             assertEquals(0, directory.listFiles()?.size ?: 0)
+        } finally { source.recycle(); directory.deleteRecursively() }
+    }
+
+    @Test fun insufficientBudgetLeavesNoCandidate() {
+        val directory = File(context.cacheDir, "budget-${System.nanoTime()}")
+        val source = makeFixture(128, 128, 1)
+        try {
+            val codec = LosslessEncoder(directory, 16L * 1_048_576L)
+            for (format in listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
+                val request = EncodeRequest(PixelSize(128, 128), format)
+                assertFalse(CodecMemoryBudget.permits(request, 16L * 1_048_576L))
+                assertEquals(EncodeResult.Failed(FailureCode.RESOURCE_LIMIT), codec.encode(source, request))
+                assertEquals(0, directory.listFiles()?.size ?: 0)
+            }
         } finally { source.recycle(); directory.deleteRecursively() }
     }
 
