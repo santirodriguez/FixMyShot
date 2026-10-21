@@ -6,11 +6,11 @@ FixMyShot is an Android application being built to prepare screenshots for publi
 
 ## Current state
 
-**Unreleased development bootstrap: `0.1.0-alpha.1`.** This is not the first functional release. The launcher only describes development status. Import, editing, saving and sharing are not implemented yet; no download or completed-format support is promised.
+**Unreleased development bootstrap: `0.1.0-alpha.1`.** This is not the first functional release. The launcher now offers a first system Photo Picker and a bounded, plan-driven review preview for supported SDR JPEG/PNG/WebP sources. Destination, format, background, batch and per-image planning are available; **there is still no public export, share-result flow or release download**. This is a development slice, not a finished editor.
 
-The current engineering groundwork includes Kotlin/Compose modules, a bounded PNG/lossless WebP codec adapter, an offline destination catalog, immutable crop and per-image batch-setting models, and synthetic device tests. The new planning models are not wired to a user-facing editor or export transaction yet. HEIC/AVIF integration and the bounded JPEG XL experiment remain Phase 1 work, not accepted features or rejected requirements. The complete implementation contract is in [the release blueprint](docs/blueprints/first-functional-release.md).
+The engineering groundwork contains Kotlin/Compose modules, a bounded PNG/lossless WebP codec adapter, an offline destination catalog, immutable crop and per-image batch-setting models, a private staged-image reader, an sRGB contain preview renderer, and synthetic device tests. HEIC/AVIF integration and the bounded JPEG XL experiment remain Phase 1 work, not accepted features or rejected requirements. The complete implementation contract is in [the release blueprint](docs/blueprints/first-functional-release.md).
 
-Android 8/API 26 is the minimum application target. The bootstrap includes English, Argentine Spanish and Catalan copy; full localized product coverage and manual selection belong to the later interaction phase. It requests no permissions and does not include networking, accounts or analytics.
+Android 8/API 26 is the minimum application target. The bootstrap includes English, Argentine Spanish and Catalan copy; full localized product coverage and manual selection belong to the later interaction phase. The review picker requests no broad storage permission; sources are copied to bounded private cache storage for the current session and are removed on user discard or age-based cleanup. Process-death recovery, full color-management/HDR, animated-image handling, manual locale selection, thumbnail caching and share-intent entry remain incomplete. The app itself requests no permissions and includes no networking, accounts or analytics.
 
 ## Development
 
