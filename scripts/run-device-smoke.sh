@@ -20,7 +20,7 @@ if ! adb shell getconf PAGE_SIZE > evidence/page-size-shell.txt 2>/dev/null; the
 fi
 adb install -r "$candidate/app/build/outputs/apk/debug/app-debug.apk"
 adb install -r "$candidate/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif
+adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif files/g1-grid-diagnostic.json files/g1-grid-heic-64x64-off.heic files/g1-grid-heic-65x67-off.heic files/g1-grid-heic-66x68-off.heic files/g1-grid-heic-66x68-on.heic files/g1-grid-avif-64x64-off.avif files/g1-grid-avif-65x67-off.avif files/g1-grid-avif-66x68-off.avif files/g1-grid-avif-66x68-on.avif
 set +e
 timeout 12m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.CodecSmokeTest \
@@ -52,8 +52,31 @@ for size in 64x64 65x67; do
     fi
   done
 done
+# Experimental grid/padding comparison is separate from the existing native capability probe.
+# An output padded from 65x67 to 66x68 is NEVER advertised as a 65x67 export.
+timeout 4m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.NativeGridDiagnosticTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/grid-instrumentation.txt 2>&1
+grid_result=$?
+cat evidence/grid-instrumentation.txt
+adb exec-out run-as "$package" cat files/g1-grid-diagnostic.json > evidence/g1-grid-diagnostic.json
+grid_report_result=$?
+for format in heic avif; do
+  for variant in 64x64-off 65x67-off 66x68-off 66x68-on; do
+    grid_file="evidence/g1-grid-$format-$variant.$format"
+    if adb exec-out run-as "$package" cat "files/g1-grid-$format-$variant.$format" > "$grid_file"; then
+      if [[ "$(dd if="$grid_file" bs=1 skip=4 count=4 2>/dev/null)" != "ftyp" ]]; then
+        rm -f "$grid_file"
+      fi
+    else
+      rm -f "$grid_file"
+    fi
+  done
+done
 set -e
-# Successful adb exits alone do not certify images, sample coverage or native capabilities.
+# Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
 python3 scripts/check-native-probe.py evidence
-[[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 ]]
+python3 scripts/check-native-grid.py evidence
+[[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 &&
+   "$grid_result" -eq 0 && "$grid_report_result" -eq 0 ]]

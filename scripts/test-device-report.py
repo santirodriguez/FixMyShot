@@ -102,6 +102,18 @@ class EvidenceTests(unittest.TestCase):
                      (('HEIC', 'NATIVE_HEIC'), ('AVIF', 'NATIVE_AVIF'))])))
         (scripts / 'check-native-probe.py').write_bytes(
             (SCRIPTS / 'check-native-probe.py').read_bytes())
+        grid_spec = importlib.util.spec_from_file_location('grid_validation', SCRIPTS / 'check-native-grid.py')
+        grid_module = importlib.util.module_from_spec(grid_spec)
+        grid_spec.loader.exec_module(grid_module)
+        (self.root / 'grid-fixture.json').write_text(json.dumps(dict(
+            schema=1, kind='GRID_AND_PADDING_DIAGNOSTIC', status='DIAGNOSTIC_COMPLETE', api=36,
+            samples=[dict(format=fmt, width=w, height=h, source_width=sw, source_height=sh,
+                          padded=(w, h) != (sw, sh), grid=grid,
+                          color_profile_inspection='NOT_PERFORMED', status='UNAVAILABLE',
+                          reason='INVALID_OUTPUT')
+                     for w, h, sw, sh, grid in grid_module.MODES
+                     for fmt in grid_module.FORMATS])))
+        (scripts / 'check-native-grid.py').write_bytes((SCRIPTS / 'check-native-grid.py').read_bytes())
         bin_dir = self.root / 'bin'; bin_dir.mkdir()
         (bin_dir / 'git').write_text('#!/bin/sh\nprintf "test-source-sha\\n"\n')
         (bin_dir / 'adb').write_text('''#!/usr/bin/env python3
@@ -110,13 +122,15 @@ from pathlib import Path
 args = sys.argv[1:]
 if 'getconf' in args: sys.exit(127)
 if 'instrument' in args:
-    native = any('NativeCodecProbeTest' in a for a in args)
+    native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest') for a in args)
     print('INSTRUMENTATION_RESULT: stream=\\n\\nOK (1 test)\\n\\nINSTRUMENTATION_CODE: -1' if native
           else 'INSTRUMENTATION_RESULT: stream=\\n\\nOK (4 tests)\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
     name = args[-1]
     if name.endswith('g1-native-probe.json'):
         print(Path('native-fixture.json').read_text())
+    elif name.endswith('g1-grid-diagnostic.json'):
+        print(Path('grid-fixture.json').read_text())
     elif name.endswith('g1-smoke.json'):
         print('run-as: unknown package' if os.environ.get('BAD_REPORT') else Path('fixture.json').read_text())
     elif name.endswith(('.heic', '.avif')):
@@ -133,12 +147,18 @@ elif 'cat' in args:
             current = dict(env)
             if bad: current['BAD_REPORT'] = '1'
             if false_success: current['ADB_FALSE_SUCCESS'] = '1'
-            result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
-                env=current, capture_output=True, text=True, timeout=45)
-            self.assertEqual(bad, result.returncode != 0, result.stdout + result.stderr)
+            # Use a file, not inherited pipes: timeout's adb child may outlive bash briefly.
+            with tempfile.TemporaryFile(mode='w+t') as output:
+                result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
+                    env=current, stdout=output, stderr=subprocess.STDOUT, text=True, timeout=90)
+                output.seek(0)
+                self.assertEqual(bad, result.returncode != 0, output.read())
             for size in ('64x64', '65x67'):
                 self.assertFalse((self.root / f'evidence/g1-native-{size}.heic').exists())
                 self.assertFalse((self.root / f'evidence/g1-native-{size}.avif').exists())
+            for fmt in ('heic', 'avif'):
+                for variant in ('64x64-off', '65x67-off', '66x68-off', '66x68-on'):
+                    self.assertFalse((self.root / f'evidence/g1-grid-{fmt}-{variant}.{fmt}').exists())
         self.assertIn('UNAVAILABLE', (self.root / 'evidence/page-size-shell.txt').read_text())
 
 
