@@ -38,4 +38,6 @@ dependencies {
     implementation(libs.activity.compose)
     androidTestImplementation(libs.android.test.runner)
     androidTestImplementation(libs.android.test.junit)
+    // The target app already packages HeifWriter via :codec-native; tests only need its types.
+    androidTestCompileOnly(libs.heifwriter)
 }
