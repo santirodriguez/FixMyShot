@@ -1,0 +1,3 @@
+Phase 1 native codec geometry diagnostic batch
+Aligned-width HEIC/AVIF diagnostics (96x68, 128x96) alongside existing 64x64, 65x67, 66x68 cases.
+No production codec behavior or minSdk change.

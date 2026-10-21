@@ -20,7 +20,7 @@ if ! adb shell getconf PAGE_SIZE > evidence/page-size-shell.txt 2>/dev/null; the
 fi
 adb install -r "$candidate/app/build/outputs/apk/debug/app-debug.apk"
 adb install -r "$candidate/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif files/g1-grid-diagnostic.json files/g1-grid-heic-64x64-off.heic files/g1-grid-heic-65x67-off.heic files/g1-grid-heic-66x68-off.heic files/g1-grid-heic-66x68-on.heic files/g1-grid-avif-64x64-off.avif files/g1-grid-avif-65x67-off.avif files/g1-grid-avif-66x68-off.avif files/g1-grid-avif-66x68-on.avif
+adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-64x64.heic files/g1-native-64x64.avif files/g1-native-65x67.heic files/g1-native-65x67.avif files/g1-grid-diagnostic.json files/g1-grid-heic-64x64-off.heic files/g1-grid-heic-65x67-off.heic files/g1-grid-heic-66x68-off.heic files/g1-grid-heic-66x68-on.heic files/g1-grid-avif-64x64-off.avif files/g1-grid-avif-65x67-off.avif files/g1-grid-avif-66x68-off.avif files/g1-grid-avif-66x68-on.avif files/g1-grid-heic-96x68-off.heic files/g1-grid-avif-96x68-off.avif files/g1-grid-heic-128x96-off.heic files/g1-grid-avif-128x96-off.avif
 set +e
 timeout 12m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.CodecSmokeTest \
@@ -62,7 +62,7 @@ cat evidence/grid-instrumentation.txt
 adb exec-out run-as "$package" cat files/g1-grid-diagnostic.json > evidence/g1-grid-diagnostic.json
 grid_report_result=$?
 for format in heic avif; do
-  for variant in 64x64-off 65x67-off 66x68-off 66x68-on; do
+  for variant in 64x64-off 65x67-off 66x68-off 66x68-on 96x68-off 128x96-off; do
     grid_file="evidence/g1-grid-$format-$variant.$format"
     if adb exec-out run-as "$package" cat "files/g1-grid-$format-$variant.$format" > "$grid_file"; then
       if [[ "$(dd if="$grid_file" bs=1 skip=4 count=4 2>/dev/null)" != "ftyp" ]]; then

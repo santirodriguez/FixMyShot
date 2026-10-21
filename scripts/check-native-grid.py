@@ -8,7 +8,8 @@ import struct
 import sys
 
 MODES = ((64, 64, 64, 64, False), (65, 67, 65, 67, False),
-         (66, 68, 65, 67, False), (66, 68, 65, 67, True))
+         (66, 68, 65, 67, False), (66, 68, 65, 67, True),
+         (96, 68, 65, 67, False), (128, 96, 65, 67, False))
 FORMATS = {"HEIC": (29, "heic"), "AVIF": (34, "avif")}
 REASONS = {"ENCODE_FAILED", "NATIVE_UNAVAILABLE", "INVALID_OUTPUT", "IO_ERROR", "TIMEOUT"}
 
@@ -42,7 +43,7 @@ def validate(directory: Path) -> dict:
         raise ValueError("Invalid runtime API")
     samples = data.get("samples")
     if not isinstance(samples, list) or len(samples) != len(MODES) * len(FORMATS):
-        raise ValueError("Expected exactly 8 grid/padding cases")
+        raise ValueError(f"Expected exactly {len(MODES) * len(FORMATS)} grid/padding cases")
     seen, files = set(), set()
     for sample in samples:
         fmt = sample.get("format")
@@ -104,4 +105,4 @@ if __name__ == '__main__':
     except (OSError, ValueError, KeyError, TypeError, UnicodeError) as exc:
         sys.exit(f"FAIL: {exc}")
     success = sum(s["status"] == "ENCODED_AND_REOPENED" for s in report["samples"])
-    print(f"PASS: grid diagnostic API {report['api']}, {success} positive/8 attempts; NOT an output capability guarantee")
+    print(f"PASS: grid diagnostic API {report['api']}, {success} positive/{len(MODES) * len(FORMATS)} attempts; NOT an output capability guarantee")

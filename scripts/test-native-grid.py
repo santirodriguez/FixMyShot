@@ -37,8 +37,8 @@ class ReportTests(unittest.TestCase):
         (self.root / 'g1-grid-diagnostic.json').write_text(json.dumps(self.data))
         return checker.validate(self.root)
 
-    def test_eight_unavailable_cases_count_as_truthful_collection_only(self):
-        self.assertEqual(8, len(self.check()['samples']))
+    def test_all_unavailable_cases_count_as_truthful_collection_only(self):
+        self.assertEqual(len(checker.MODES) * len(checker.FORMATS), len(self.check()['samples']))
 
     def test_under_api_requires_hard_rejection(self):
         self.data = report(26)
@@ -86,6 +86,8 @@ class ReportTests(unittest.TestCase):
         self.assertNotIn('ImageDecoder.decodeBitmap', runner)
         self.assertIn('Build.VERSION.SDK_INT >= 28', runner)
         self.assertIn('Api28GridDecoder.decode(file)', runner)
+        self.assertIn('Geometry(96, 68, 65, 67, false)', runner)
+        self.assertIn('Geometry(128, 96, 65, 67, false)', runner)
         self.assertIn('@TargetApi(28)', helper)
         self.assertIn('ImageDecoder.decodeBitmap', helper)
 

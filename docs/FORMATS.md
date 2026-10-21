@@ -8,7 +8,7 @@
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
 | HEIC | Native AndroidX `HeifWriter` candidate from API 29; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; only a successfully encoded/reopened sample proves a particular configuration. Pixel and second-family acceptance remain mandatory. |
 | AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
-| JXL | Not integrated or exposed in UI | Bounded reference-implementation experiment remains pending. No inclusion or deferral decision has been made. |
+| JXL | Reference libjxl 0.12.0 compiled from pinned source for three Android ABIs, but not integrated or exposed in UI | Preliminary cross-build checks passed; uploaded artifacts include reports, not independently rehashable native libraries. JNI, APK delta, device fidelity/performance and inclusion/deferral decision remain open. |
 
 JPEG input is required by the functional blueprint but import is not yet implemented. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
 

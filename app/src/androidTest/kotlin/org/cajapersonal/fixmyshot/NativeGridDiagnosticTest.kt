@@ -22,7 +22,7 @@ import kotlin.math.min
 
 /**
  * Grid/alignment diagnostic only; this does not expose a product encoding route.
- * 66x68 contains edge-replicated padding from 65x67 and is NOT a valid 65x67 export.
+ * Padded diagnostic rasters do NOT qualify as exports at the original 65x67 dimensions.
  */
 @RunWith(AndroidJUnit4::class)
 class NativeGridDiagnosticTest {
@@ -43,6 +43,9 @@ class NativeGridDiagnosticTest {
         Geometry(65, 67, 65, 67, false),
         Geometry(66, 68, 65, 67, false),
         Geometry(66, 68, 65, 67, true),
+        // Compare decoder stride/block geometry at 32- and 64-pixel-aligned widths.
+        Geometry(96, 68, 65, 67, false),
+        Geometry(128, 96, 65, 67, false),
     )
 
     @Test fun gridAndPaddingAreDiagnosedWithoutChangingTheExportContract() {
