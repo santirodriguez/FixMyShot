@@ -150,7 +150,13 @@ data class DraftSession(
     fun addImages(additions: List<DraftImage>): DraftSession {
         val seenIds = images.mapTo(mutableSetOf()) { it.id }
         val seenTokens = images.mapTo(mutableSetOf()) { it.sourceToken }
-        val unique = additions.filter { seenIds.add(it.id) && seenTokens.add(it.sourceToken) }
+        val unique = additions.filter { item ->
+            if (item.id in seenIds || item.sourceToken in seenTokens) false else {
+                seenIds.add(item.id)
+                seenTokens.add(item.sourceToken)
+                true
+            }
+        }
         if (unique.isEmpty()) return this
         require(images.size + unique.size <= 100) { "Batch limit exceeded" }
         return copy(images = images + unique, revision = nextRevision(), previous = snapshot())

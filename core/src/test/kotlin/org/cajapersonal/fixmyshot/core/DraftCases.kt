@@ -104,6 +104,9 @@ fun draftCases(): List<Pair<String, () -> Unit>> {
         "invalid and duplicate imports are handled without moving existing items" to {
             val d = DraftSession().addImages(listOf(item(), item("b", "source-b")))
             check(d.addImages(listOf(item("x", "source-a"), item("b", "source-c"))) == d)
+            val distinctAfterDuplicate = d.addImages(listOf(item("x", "source-a"), item("x", "source-x")))
+            check(distinctAfterDuplicate.images.last().id == "x")
+            check(distinctAfterDuplicate.images.last().sourceToken == "source-x")
             val reordered = d.reorder(listOf("b", "a"))
             check(reordered.images.map { it.id } == listOf("b", "a"))
             check(reordered.removeItem("b").images.single().id == "a")
