@@ -95,7 +95,10 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
             }
             val decoded = BitmapFactory.decodeFile(file.absolutePath, BitmapFactory.Options().apply {
                 inSampleSize = sampleSize
-            }) ?: return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
+            }) ?: if (Build.VERSION.SDK_INT >= 28) {
+                PlatformStillDecoder.decode(file, sampleSize)
+            } else null
+            if (decoded == null) return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
             try {
                 if (decoded.width <= 0 || decoded.height <= 0) {
                     return EncodeResult.Failed(FailureCode.INVALID_OUTPUT)
@@ -103,6 +106,7 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
             } finally {
                 decoded.recycle()
             }
+            if (System.nanoTime() >= deadline) return EncodeResult.Failed(FailureCode.TIMEOUT)
             retained = true
             EncodeResult.Encoded(file, route, System.nanoTime() - started)
         } catch (_: TimeoutException) {

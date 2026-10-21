@@ -51,7 +51,15 @@ class NativeCodecProbeTest {
                 when (val encoded = adapter.encode(bitmap, request, timeoutMillis = 40_000)) {
                     is EncodeResult.Encoded -> {
                         assertEquals(expected, encoded.route)
-                        val reopened = checkNotNull(android.graphics.BitmapFactory.decodeFile(encoded.file.absolutePath)) {
+                        val decoded = android.graphics.BitmapFactory.decodeFile(encoded.file.absolutePath)
+                            ?: if (Build.VERSION.SDK_INT >= 28) {
+                                try {
+                                    android.graphics.ImageDecoder.decodeBitmap(
+                                        android.graphics.ImageDecoder.createSource(encoded.file),
+                                    )
+                                } catch (_: java.io.IOException) { null }
+                            } else null
+                        val reopened = checkNotNull(decoded) {
                             "Native sample cannot be independently decoded: ${format.name}"
                         }
                         try {
