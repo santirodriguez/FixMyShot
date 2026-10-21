@@ -78,6 +78,17 @@ class ReportTests(unittest.TestCase):
         self.data['samples'][0]['color_profile_inspection'] = 'ICC_PRESENT'
         with self.assertRaises(ValueError): self.check()
 
+    def test_android8_junit_runner_does_not_resolve_api28_decoder_signatures(self):
+        android_test = Path(__file__).resolve().parents[1] / 'app/src/androidTest/kotlin/org/cajapersonal/fixmyshot'
+        runner = (android_test / 'NativeGridDiagnosticTest.kt').read_text(encoding='utf-8')
+        helper = (android_test / 'Api28GridDecoder.kt').read_text(encoding='utf-8')
+        self.assertNotIn('android.graphics.ImageDecoder', runner)
+        self.assertNotIn('ImageDecoder.decodeBitmap', runner)
+        self.assertIn('Build.VERSION.SDK_INT >= 28', runner)
+        self.assertIn('Api28GridDecoder.decode(file)', runner)
+        self.assertIn('@TargetApi(28)', helper)
+        self.assertIn('ImageDecoder.decodeBitmap', helper)
+
     def test_instrumentation_failure(self):
         (self.root / 'grid-instrumentation.txt').write_text('OK (0 tests)\nINSTRUMENTATION_CODE: -1\n')
         with self.assertRaises(ValueError): self.check()

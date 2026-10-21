@@ -3,7 +3,6 @@ package org.cajapersonal.fixmyshot
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.ImageDecoder
 import android.os.Build
 import androidx.heifwriter.AvifWriter
 import androidx.heifwriter.HeifWriter
@@ -165,13 +164,9 @@ class NativeGridDiagnosticTest {
     private fun decode(file: File): Bitmap? {
         val bitmap = BitmapFactory.decodeFile(file.absolutePath)
         if (bitmap != null) return bitmap
-        return if (Build.VERSION.SDK_INT >= 28) try {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(file)) { decoder, _, _ ->
-                decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE)
-            }
-        } catch (_: IOException) { null }
-        catch (_: RuntimeException) { null }
-        else null
+        // Never reference newer framework decoder signatures in this JUnit4 test class.
+        // On API 26, JUnit scans synthetic methods before it can apply runtime API guards.
+        return if (Build.VERSION.SDK_INT >= 28) Api28GridDecoder.decode(file) else null
     }
 
     private fun measureColor(decoded: Bitmap, g: Geometry): Pair<Double, IntArray> {
