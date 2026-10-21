@@ -33,6 +33,20 @@ Native writer test reports were **PROBE_COMPLETE but neither format was successf
 
 API 26 therefore demonstrated correct version gating, app startup and unaffected lossless routing. On API 36, the native candidates had plausible container brand and decoded bounds but failed a bounded BitmapFactory pixel decode; they were deleted, with no format substitution. This is evidence about these emulators, **not** proof that HEIC/AVIF cannot work on capable phones or proof of their availability. The next diagnostic tries the distinct API 28+ ImageDecoder pixel path on the same sample while retaining strict rejection if both decoders fail; its CI result must be verified separately. Full-size Pixel 9 Pro XL, a second physical hardware family, odd-size fidelity/color, peak memory, 16 KiB runtime and all remaining G1 requirements remain NOT RUN.
 
+## ImageDecoder alternative: exact-source regression receipt (`fab2c362`)
+
+GitHub Actions [39609785200](https://github.com/santirodriguez/FixMyShot/actions/runs/39609785200), source `fab2c362783ffd8469644b5bade2195837b4d364`, finished with **build SUCCESS, API 26 SUCCESS, API 36 SUCCESS**. Three provider ZIP files were downloaded, CRC and SHA-256 validated, and their source identity checked:
+
+| Artifact | ID | SHA-256 |
+|---|---:|---|
+| Build | 12350595578 | `1e322e85a3d8ce6ef542d54d4355b04464deea3850f3589794ccbeda449b8128` |
+| API 26 | 12349993586 | `4fa4bcc52e92ce48eb87247dd493f8910aa2c379efd848ef249eab04765038fa` |
+| API 36 | 12350307997 | `2809c42f74099ac6de280654afaa81431401e2c9e8b8e97ce3282be4d533efa6` |
+
+The source-bound build completed 23 JVM tests with no failures/errors; all three development APKs were built and native ELF/ZIP alignment reports passed. Both x86_64 emulator jobs passed four lossless tests + one native availability/classification test and 80 PNG/WebP encodes each. Independently decoded fixture-0 PNG and WebP bytes at API 26 and 36 still match all 4,021,248 RGB pixels of the 1344x2992 synthetic source, SHA-256 `214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861`. Normal app heap was measured as 512 MiB; page size was 4096 bytes in each emulator, not a 16 KiB runtime acceptance.
+
+**Native device truth remains unchanged even with the ImageDecoder alternative:** API 26 HEIC and AVIF are `UNAVAILABLE / UNSUPPORTED_API`; API 36 HEIC and AVIF are both `UNAVAILABLE / INVALID_OUTPUT`. No encoded HEIC or AVIF files were retained. A passing typed classification is not proof of native encoder availability or output fidelity. The next bounded question is whether platform codec behavior changes with even vs odd geometry or on the required physical Pixel 9 Pro XL and a second supported hardware family; those acceptance gates remain NOT RUN.
+
 ## Native HEIC/AVIF feasibility spike
 
 `NativeCodecProbeTest` is a **separate one-test Android instrumentation run** after the existing four-test/80-encode PNG/WebP matrix. It attempts one already-normalized, opaque 65×67 synthetic image per native format through the selected AndroidX bitmap writer. The result `g1-native-probe.json` records either a real encoded-and-reopened sample or a typed unavailable reason. Successful output bytes are retained under `g1-native-fixture.heic` / `g1-native-fixture.avif` for independent container and appearance inspection. Host validation requires an actual positive instrumentation result and truthful samples, refusing corrupt, mismatched or missing output. A malformed native file or a file that only exposes bounds/MIME but cannot decode actual pixels yields typed `INVALID_OUTPUT`; the synthetic probe then continues to the other format. The collector filters device-side `cat: ... No such file` text even when `adb` returns status zero; successful output still requires independent BMFF validation. A native probe failure does **not** downgrade to another format or purport to be availability. An emulator failure is evidence of that environment, not device-wide impossibility. The AndroidX 1.2.0-rc01 release candidate contains color-aspect and AVIF fixes absent from observed stable 1.1.0; build success alone is not quality acceptance.
