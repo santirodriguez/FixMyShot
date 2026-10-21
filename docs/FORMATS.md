@@ -6,8 +6,8 @@
 |---|---|---|
 | PNG | Android PNG encoder on API 26+ | Synthetic instrumentation asserts opaque RGB / alpha RGBA, container CRCs, independent reopen and exact normalized pixels. Runtime/device results must come from the matching CI/device report. |
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
-| HEIC | Not integrated; selected writer contract starts at API 29 | Required Phase 1 continuation. Native output is planned as lossy and opaque; physical Pixel and another hardware family remain mandatory. |
-| AVIF | Not integrated; selected native route starts at API 34 | Required Phase 1 continuation, with the same device/configuration distinction. |
+| HEIC | Native AndroidX `HeifWriter` candidate from API 29; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; only a successfully encoded/reopened sample proves a particular configuration. Pixel and second-family acceptance remain mandatory. |
+| AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
 | JXL | Not integrated or exposed in UI | Bounded reference-implementation experiment remains pending. No inclusion or deferral decision has been made. |
 
 JPEG input is required by the functional blueprint but import is not yet implemented. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
@@ -20,11 +20,11 @@ PNG and WebP receive pixels only, not source EXIF/XMP. Metadata-preservation req
 
 Candidates remain app-private; no MediaStore/SAF publication occurs. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
 
-## Native writer integration compatibility checkpoint
+## Native writer candidate
 
-An isolated Phase 1 integration experiment at commit `a9215c2ad467856467053e998191bfbf6f050327` attempted `androidx.heifwriter:heifwriter:1.2.0-rc01` for HEIC/AVIF bitmap encoding. The real Android build (Actions run `39535673813`) failed at `:app:processDebugMainManifest`: that AAR requires `minSdkVersion 29`, while FixMyShot's fixed app minimum remains 26. The experiment was not built or executed as an APK and must not be reported as codec acceptance.
+The AndroidX 1.2.0-rc01 writer AAR declares `minSdk 29`; FixMyShot keeps app `minSdk 26`. The app uses the manifest merger's exact-package `tools:overrideLibrary="androidx.heifwriter"` only because native HEIC paths are entered at API 29+ and AVIF paths at API 34+, and no library writer code may be invoked on lower APIs. This exception is a **build-time compatibility mechanism, not evidence of runtime safety**; API 26 launch/PNG/WebP/native rejection tests and API 36 real encoding probes are mandatory acceptance gates. If API 26 fails, remove the exception and restore the last verified build. No `minSdk` increase or format substitution is allowed.
 
-The branch restores the last passing API 26 application/dependency layout until a reviewed packaging strategy can retain API 26 installations **without silently bypassing dependency API safety**. HEIC/AVIF remain first-functional-delivery targets, not deferred decisions: resolve a safe API-gated integration architecture and run actual encoding/reopen/color validation on capable devices. API 26 must continue to launch and execute its complete PNG/WebP matrix.
+`NativeStillEncoder` uses `androidx.heifwriter:heifwriter:1.2.0-rc01`, a release candidate selected after comparison with stable 1.1.0: the 1.2 line contains material color-aspect and AVIF encoding fixes. It runs only off the main thread, accepts normalized opaque ARGB_8888 SDR sRGB pixels, refuses unsupported API/alpha/metadata policy/resource requests, uses AndroidX bitmap-input writers with quality 100 and a single still, and verifies ISO BMFF brand and platform reopened dimensions/MIME before retaining a candidate. Device-specific output and appearance still require independent validation. `NativeCodecProbeTest` attempts only a small odd-dimension synthetic sample on each test API and records actual success or a typed failure; an absent encoder is not presented as success. These routes are not yet exposed through an import/edit/export UI. Native writer cancellation is cooperative at boundaries and mid-encode latency remains an open G1 gate. **Quality 100 does not mean lossless.**
 
 ## Source
 

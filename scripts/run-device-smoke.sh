@@ -20,7 +20,7 @@ if ! adb shell getconf PAGE_SIZE > evidence/page-size-shell.txt 2>/dev/null; the
 fi
 adb install -r "$candidate/app/build/outputs/apk/debug/app-debug.apk"
 adb install -r "$candidate/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
-adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp
+adb shell run-as "$package" rm -f files/g1-smoke.json files/g1-fixture-0.png files/g1-fixture-0.webp files/g1-native-probe.json files/g1-native-fixture.heic files/g1-native-fixture.avif
 set +e
 timeout 12m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.CodecSmokeTest \
@@ -31,7 +31,21 @@ adb exec-out run-as "$package" cat files/g1-smoke.json > evidence/g1-smoke.json
 for extension in png webp; do
   adb exec-out run-as "$package" cat "files/g1-fixture-0.$extension" > "evidence/g1-fixture-0.$extension"
 done
+# Native writers run separately so the established four-test lossless matrix remains comparable.
+timeout 3m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.NativeCodecProbeTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/native-instrumentation.txt 2>&1
+native_result=$?
+cat evidence/native-instrumentation.txt
+adb exec-out run-as "$package" cat files/g1-native-probe.json > evidence/g1-native-probe.json
+native_report_result=$?
+for extension in heic avif; do
+  if ! adb exec-out run-as "$package" cat "files/g1-native-fixture.$extension" > "evidence/g1-native-fixture.$extension"; then
+    rm -f "evidence/g1-native-fixture.$extension"
+  fi
+done
 set -e
-# am instrument may return zero even after a failed/crashed/empty test run.
+# Successful adb exits alone do not certify images, sample coverage or native capabilities.
 python3 scripts/check-device-report.py evidence
-[[ "$result" -eq 0 ]]
+python3 scripts/check-native-probe.py evidence
+[[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 ]]

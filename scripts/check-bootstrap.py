@@ -26,6 +26,12 @@ def check() -> None:
         ET.parse(path)
     manifest = ET.parse(ROOT / "app/src/main/AndroidManifest.xml").getroot()
     assert not manifest.findall("uses-permission"), "Bootstrap must not request permissions"
+    merger = "{http://schemas.android.com/tools}"
+    uses_sdk = manifest.find("uses-sdk")
+    assert uses_sdk is not None and uses_sdk.attrib == {merger + "overrideLibrary": "androidx.heifwriter"}, \
+        "Only the audited AndroidX writer may override the dependency minSdk manifest check"
+    assert "minSdk = 26" in (ROOT / "app/build.gradle.kts").read_text(encoding="utf-8"), \
+        "Application minSdk must remain 26"
     app = manifest.find("application")
     assert app is not None and app.attrib[ANDROID + "allowBackup"] == "false"
     assert app.attrib.get(ANDROID + "largeHeap", "false") == "false"

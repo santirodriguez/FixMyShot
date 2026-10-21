@@ -29,11 +29,11 @@ fun contractCases(): List<Pair<String, () -> Unit>> {
         "API 29 WebP does not use the ambiguous legacy enum" to { route(29, OutputFormat.WEBP_LOSSLESS, CodecRoute.LIBWEBP) },
         "API 30 WebP uses the explicit lossless mode" to { route(30, OutputFormat.WEBP_LOSSLESS, CodecRoute.ANDROID_WEBP_LOSSLESS) },
         "HEIC below selected API 29 writer remains unavailable" to { unavailable(28, request(OutputFormat.HEIC), FailureCode.UNSUPPORTED_API) },
-        "HEIC is not enabled just by API level" to { unavailable(36, request(OutputFormat.HEIC), FailureCode.NOT_INTEGRATED) },
+        "HEIC API eligibility still requires a real codec probe" to { route(36, OutputFormat.HEIC, CodecRoute.NATIVE_HEIC) },
         "native HEIC rejects alpha" to { unavailable(36, request(OutputFormat.HEIC, true), FailureCode.UNSUPPORTED_ALPHA) },
         "AVIF below API 34 remains unavailable" to { unavailable(33, request(OutputFormat.AVIF), FailureCode.UNSUPPORTED_API) },
         "native AVIF rejects alpha" to { unavailable(36, request(OutputFormat.AVIF, true), FailureCode.UNSUPPORTED_ALPHA) },
-        "AVIF is not enabled just by API level" to { unavailable(36, request(OutputFormat.AVIF), FailureCode.NOT_INTEGRATED) },
+        "AVIF API eligibility still requires a real codec probe" to { route(36, OutputFormat.AVIF, CodecRoute.NATIVE_AVIF) },
         "JXL is pending evaluation not silently substituted" to { unavailable(36, request(OutputFormat.JXL), FailureCode.NOT_INTEGRATED) },
         "WebP rejects its unrepresentable edge" to {
             unavailable(36, request(OutputFormat.WEBP_LOSSLESS, w = 16_384, h = 1), FailureCode.RESOURCE_LIMIT)
