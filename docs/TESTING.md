@@ -188,23 +188,23 @@ Independently of Android's decoder, Pillow 12.3.0/libwebp 1.6.0 reopened both 13
 
 First/repeat fixture-0 encode time (seconds): API 26 PNG 0.115/0.085, WebP 0.802/0.816; API 36 PNG 1.361/0.891, WebP 0.439/0.388. These are emulator fixture observations, **not** process-cold Pixel performance, p95, peak Java/native/PSS memory, universal color-management acceptance, real-device evidence or 16 KiB runtime acceptance. The lack of explicit sRGB tagging on API 26 remains a color-policy follow-up even though synthetic pixels match.
 
-## Aligned-width native codec follow-up — exact source \`952307d\`
+## Aligned-width native codec follow-up — exact source `952307d`
 
-**Source:** \`952307d31a15850e7549bc52e3a24dae1dd91c80\` on \`release/0.1.0\`. GitHub Actions [39657526056](https://github.com/santirodriguez/FixMyShot/actions/runs/39657526056) completed with **build SUCCESS, API 26 smoke SUCCESS and API 36 smoke SUCCESS**. This is an experimental alignment diagnosis, not an accepted device capability or a change to the production native writer. The executable change adds 96×68 and 128×96 padded controls to the existing 64×64, 65×67 and 66×68 grid experiment (12 format/geometry attempts in total).
+**Source:** `952307d31a15850e7549bc52e3a24dae1dd91c80` on `release/0.1.0`. GitHub Actions [39657526056](https://github.com/santirodriguez/FixMyShot/actions/runs/39657526056) completed with **build SUCCESS, API 26 smoke SUCCESS and API 36 smoke SUCCESS**. This is an experimental alignment diagnosis, not an accepted device capability or a change to the production native writer. The executable change adds 96×68 and 128×96 padded controls to the existing 64×64, 65×67 and 66×68 grid experiment (12 format/geometry attempts in total).
 
-All three provider ZIP archives were downloaded and independently verified with SHA-256, ZIP CRC and exact \`source-sha.txt\`:
+All three provider ZIP archives were downloaded and independently verified with SHA-256, ZIP CRC and exact `source-sha.txt`:
 
 | Evidence | GitHub artifact ID | ZIP SHA-256 |
 |---|---:|---|
-| Build | \`12373235060\` | \`f5ba518f5f9affed142e4a7bf904747710f6ba72fd8089d8d3a7727475b800ed\` |
-| API 26 | \`12372747068\` | \`21c2c8f47ffa576450bb3a1200b219b8082ae0d361ae4a5d66931b4d2fb365c4\` |
-| API 36 | \`12371393881\` | \`ff76d34c07902a545d89a43233c143b421515390da2d82c8fec292fd3ed6a4d2\` |
+| Build | `12373235060` | `f5ba518f5f9affed142e4a7bf904747710f6ba72fd8089d8d3a7727475b800ed` |
+| API 26 | `12372747068` | `21c2c8f47ffa576450bb3a1200b219b8082ae0d361ae4a5d66931b4d2fb365c4` |
+| API 36 | `12371393881` | `ff76d34c07902a545d89a43233c143b421515390da2d82c8fec292fd3ed6a4d2` |
 
-The exact archived source's host validators accepted both emulator reports; the source's eight host grid regressions and nine native-probe regressions passed independently. The build contains 23 core contract and 14 geometry tests, **0 failures/errors**, and lint reported **0 errors / 13 warnings**. Each emulator passed four established PNG/WebP instrumentation tests and 80 real synthetic encodes. Independently reopening its fixture-0 PNG and WebP with Pillow 12.3.0 yielded the same **1344×2992 raster / 4,021,248 RGB pixels** with SHA-256 \`214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861\` in all four outputs. The measured emulator page size remained 4096 bytes; API 36 uses the documented disposable emulator-only 512 MiB heap adjustment.
+The exact archived source's host validators accepted both emulator reports; the source's eight host grid regressions and nine native-probe regressions passed independently. The build contains 23 core contract and 14 geometry tests, **0 failures/errors**, and lint reported **0 errors / 13 warnings**. Each emulator passed four established PNG/WebP instrumentation tests and 80 real synthetic encodes. Independently reopening its fixture-0 PNG and WebP with Pillow 12.3.0 yielded the same **1344×2992 raster / 4,021,248 RGB pixels** with SHA-256 `214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861` in all four outputs. The measured emulator page size remained 4096 bytes; API 36 uses the documented disposable emulator-only 512 MiB heap adjustment.
 
-**API 26:** every one of the 12 native diagnostic attempts returned \`UNAVAILABLE / UNSUPPORTED_API\` and retained no HEIC/AVIF output. **API 36:** five HEIC attempts encoded and reopened; **all six AVIF attempts** and the unpadded HEIC 65×67 attempt returned \`UNAVAILABLE / INVALID_OUTPUT\`, retaining no file.
+**API 26:** every one of the 12 native diagnostic attempts returned `UNAVAILABLE / UNSUPPORTED_API` and retained no HEIC/AVIF output. **API 36:** five HEIC attempts encoded and reopened; **all six AVIF attempts** and the unpadded HEIC 65×67 attempt returned `UNAVAILABLE / INVALID_OUTPUT`, retaining no file.
 
-| API 36 HEIC diagnostic | Container \`ispe\` dimensions | Android reopened dimensions | Android synthetic ROI PSNR (dB) | Independent libheif 1.19.8 source-ROI PSNR (dB) |
+| API 36 HEIC diagnostic | Container `ispe` dimensions | Android reopened dimensions | Android synthetic ROI PSNR (dB) | Independent libheif 1.19.8 source-ROI PSNR (dB) |
 |---|---|---|---:|---:|
 | 64×64, grid off | 64×64 | 64×64 | 19.9909 | 19.9947 |
 | 66×68, grid off | 66×68 | 66×68 | **10.5327** | 20.0830 |
@@ -214,11 +214,11 @@ The exact archived source's host validators accepted both emulator reports; the 
 
 For padded images, the reference ROI is the same original **65×67** high-frequency synthetic pattern, edge-replicated into the larger input; the 64×64 row uses its own 64×64 reference. **Padded output is not a valid export at the original 65×67 dimensions.** These high-frequency synthetic PSNR values are neither the calibrated full-size ≥38 dB target nor a visual screenshot-quality acceptance.
 
-**Exact binary finding:** \`g1-grid-heic-66x68-off.heic\` (3438 bytes; SHA-256 \`8b42b0f4bbef1ac325e7b626390d246afdfe52969fde119215e3742fbe1665af\`) and \`g1-grid-heic-96x68-off.heic\` (3438 bytes; SHA-256 \`6d728db1ef71ecd0c09766f6f33efcb5a42b61a394c3cce46e02fd8b20e36ac5\`) differ at **exactly one byte, zero-based file offset 295**, changing the \`ispe\` width value \`0x42\` (66) to \`0x60\` (96). Their \`mdat\` image payloads are byte-for-byte identical, SHA-256 \`847ca43594ed63f23384109f9c89d2593c80155a954b0f141e4c5ffe358a70b7\`. The 66×68 grid-on and grid-off files are also byte-identical, not evidence of grid tiling.
+**Exact binary finding:** `g1-grid-heic-66x68-off.heic` (3438 bytes; SHA-256 `8b42b0f4bbef1ac325e7b626390d246afdfe52969fde119215e3742fbe1665af`) and `g1-grid-heic-96x68-off.heic` (3438 bytes; SHA-256 `6d728db1ef71ecd0c09766f6f33efcb5a42b61a394c3cce46e02fd8b20e36ac5`) differ at **exactly one byte, zero-based file offset 295**, changing the `ispe` width value `0x42` (66) to `0x60` (96). Their `mdat` image payloads are byte-for-byte identical, SHA-256 `847ca43594ed63f23384109f9c89d2593c80155a954b0f141e4c5ffe358a70b7`. The 66×68 grid-on and grid-off files are also byte-identical, not evidence of grid tiling.
 
-Independent \`heif-info\` reports a 66×68 logical image for the 66-width file, but \`ffprobe\` reports a 96×68 HEVC stream (coded 96×72). \`heif-convert\` 1.19.8 decodes **both the 66-width and 96-width files into identical 96×68 PNG rasters**, while the Android decoder reports a 66×68 bitmap and a severely degraded ROI comparison for the 66-width case. The evidence isolates a **container-dimension / underlying coded-width / decoder-interpretation disagreement** on this emulator. It does not establish which specific Android/AndroidX/libheif component is defective or that a differently padded production file would solve the issue.
+Independent `heif-info` reports a 66×68 logical image for the 66-width file, but `ffprobe` reports a 96×68 HEVC stream (coded 96×72). `heif-convert` 1.19.8 decodes **both the 66-width and 96-width files into identical 96×68 PNG rasters**, while the Android decoder reports a 66×68 bitmap and a severely degraded ROI comparison for the 66-width case. The evidence isolates a **container-dimension / underlying coded-width / decoder-interpretation disagreement** on this emulator. It does not establish which specific Android/AndroidX/libheif component is defective or that a differently padded production file would solve the issue.
 
-All positive HEIC files were 8-bit YCbCr 4:2:0 with no embedded ICC/color profile reported by \`heif-info\` and no \`colr\` box in the observed \`meta\` containers. The actual sRGB/transfer/range appearance contract remains unverified. No AVIF sample was recovered. Neither native format should be globally advertised or enabled based on this probe. **G1 remains OPEN** for calibrated 1344×2992 screenshots, exact user-selected dimensions, Pixel 9 Pro XL plus another hardware family, color/metadata, 16 KiB runtime, cancellation, peak resource and p95 measurements.
+All positive HEIC files were 8-bit YCbCr 4:2:0 with no embedded ICC/color profile reported by `heif-info` and no `colr` box in the observed `meta` containers. The actual sRGB/transfer/range appearance contract remains unverified. No AVIF sample was recovered. Neither native format should be globally advertised or enabled based on this probe. **G1 remains OPEN** for calibrated 1344×2992 screenshots, exact user-selected dimensions, Pixel 9 Pro XL plus another hardware family, color/metadata, 16 KiB runtime, cancellation, peak resource and p95 measurements.
 
 ## Open G1 acceptance
 
