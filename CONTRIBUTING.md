@@ -17,6 +17,14 @@ HEIC/AVIF native writer feasibility uses the pinned AndroidX HeifWriter release 
 
 Native WebP is built from the immutable upstream revision in `codec-native/src/main/cpp/CMakeLists.txt`. Builds need network access to trusted artifact repositories and that source revision; the installed application does not. Never add opaque prebuilt codec binaries or runtime downloads.
 
+## Development validation cadence
+
+Work in coherent implementation batches instead of launching both Android emulators on every small commit. During a batch, use relevant source review, Kotlin/JVM or dependency-free Python checks, and other inexpensive targeted validation. Such checks are not equivalent to an Android build or physical-device acceptance.
+
+The release branch runs the full build plus API 26/API 36 emulator matrix only when a commit explicitly creates or updates `.ci/android-validation-request.txt`. Include the batch purpose and the precise source state in that checkpoint commit; inspect that exact Actions run and source-bound artifacts before declaring the batch accepted. A pull request into `main` retains the complete matrix before a separately authorized merge. A manual workflow-dispatch button is unavailable while this workflow does not exist on the default branch; do not merge prematurely just to expose one.
+
+Do not write a checkpoint file at the start of development or for documentation-only commits. Rework related failures as one bounded slice, and honor the 5-minute normal/10-minute hard passive CI waiting limit. Preserve all formal Phase G1/G5/G6 hardware, codec, reproducibility and signing gates regardless of the reduced routine CI frequency.
+
 ## Ownership
 
 - `core`: platform-independent format, eligibility and resource contracts.

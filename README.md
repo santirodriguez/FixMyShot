@@ -14,7 +14,7 @@ Android 8/API 26 is the minimum application target. The bootstrap includes Engli
 
 ## Development
 
-See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
+See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). At explicit batch validation checkpoints and pull requests to `main`, GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks; ordinary development commits do not launch the costly emulator matrix. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
 
 The intended first functional distribution is a GitHub prerelease with Obtainium support. There is no published release, production signing identity or deployed project website established by this bootstrap.
 
