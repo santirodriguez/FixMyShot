@@ -37,7 +37,7 @@ Actual **host Linux baseline** (FFmpeg 7.1.5, dynamically linked to distro libjx
 
 The small fixture is intentionally low-complexity; these sizes/times are **not** representative Android results. Measurements are process-level peak RSS for one FFmpeg invocation, not app Java/native/PSS budget, NDK 16 KiB compatibility or pixel appearance acceptance. Distro libjxl0.11.1 **must not be used as the shipping security baseline**; these are temporary tool-side experiments with synthetic data only.
 
-The original pinned source-build preflight `scripts/probe-jxl-reference.sh` was checked with `bash -n` and invoked once in the isolated execution environment. It returned `NOT_RUN: pinned Android NDK r28 toolchain unavailable`. External source fetching was also unavailable from this isolated container. **No v0.12.0 source build, Android ABI output, compressed APK delta or JNI encode/decode has occurred**. The helper is a bounded, explicit future integration-time Android build attempt targeting arm64-v8a, armeabi-v7a and x86_64, recording pinned commit/submodules/build logs/sizes. Its results are not automatically accepted; inspect actual linked native runtime objects and user-facing behavior before a G1 decision. The required official source-and-hardware run remains open. No JXL format selector should be enabled meanwhile.
+**Historical preflight (before Actions):** the isolated development environment lacked the exact Android NDK and external source fetch, so `scripts/probe-jxl-reference.sh` initially returned `NOT_RUN`. That was an environment limitation, **superseded by the bounded Android source builds in §7 below**. The official libjxl v0.12.0 reference code subsequently compiled for all three requested ABIs on GitHub Actions, but **no application JNI integration, on-device JXL encode/decode, independently supplied native ELF, compressed APK delta or G1 format acceptance** has occurred. Do not enable a JXL format selector based on this reference build.
 
 ## 3. Gradle trust-candidate audit
 
@@ -77,7 +77,31 @@ The new **read-only** `scripts/audit-gradle-candidates.py` independently re-pars
 
 Opt-in Actions run [39645153818](https://github.com/santirodriguez/FixMyShot/actions/runs/39645153818), source `650a023f2e956ad1427c3e00b65701fe279ce40f`, started the three JXL reference ABI jobs and finished **FAILURE before cloning or compiling libjxl**. The runner installed Android NDK r28c, but the preflight prioritized its pre-existing `ANDROID_NDK_HOME` environment variable, which may point to a different NDK version. All three jobs returned `NOT_RUN: exact NDK ... unavailable`, with only setup/log evidence uploaded. This is an environment selection error, **not** a compiler, source or compatibility result.
 
-The corrected helper now inspects the **sdkmanager-installed** `$ANDROID_HOME/ndk/28.2.13676358` first and confirms its exact `Pkg.Revision` and toolchain file before falling back to other candidate paths. A new four-case offline preflight regression checks the stale-env scenario, missing/wrong revision and unsafe ABI selection; existing ten ELF host regressions still pass. The opt-in marker is updated for exactly one **targeted retry**, with no full app/emulator CI. Report the next actual run by exact SHA and artifact rather than treating CI status as codec acceptance.
+The corrected helper now inspects the **sdkmanager-installed** `$ANDROID_HOME/ndk/28.2.13676358` first and confirms its exact `Pkg.Revision` and toolchain file before falling back to other candidate paths. A new four-case offline preflight regression checks the stale-env scenario, missing/wrong revision and unsafe ABI selection; existing ten ELF host regressions still pass. The opt-in marker was updated for **one targeted retry**, with no full app/emulator CI. That retry completed successfully for the three build targets; the exact run and evidence are recorded in §7. The original failed NDK-path run remains valuable as a bounded preflight failure, **not** a failure of libjxl itself.
+
+## 7. Source-bound three-ABI libjxl 0.12 reference build (2026-10-21)
+
+The corrected opt-in GitHub Actions [run 39646055054](https://github.com/santirodriguez/FixMyShot/actions/runs/39646055054) executed at exact source commit `0887a7279510962560ae7cf2b9c360dd9dd4cecf`, starting 2026-10-21 17:41:37 UTC and completing **SUCCESS** at 17:45:56 UTC. All three source-build jobs passed (arm64-v8a `119381810294`, x86_64 `119381810572`, armeabi-v7a `119381810772`). This run is specifically the pinned libjxl reference **compilation experiment**, not a build of the FixMyShot application or an API 26/API 36 emulator test.
+
+The recorded source is upstream `libjxl v0.12.0`, git commit `a7a9c787341cf703dede03c2009fa460cae5e5df`, built with NDK revision `28.2.13676358`, Android API 26. Each artifact reports the same three gitlink-selected submodule commits: `brotli 028fb5a23661f123017c060daa546b55cf4bde29`, `highway 457c891775a7397bdb0376bb1031e6e027af1c48`, and `skcms 96d9171c94b937a1b5f0293de7309ac16311b722`. The upstream v0.12.0 tag-to-commit reference was checked separately. These are provenance records, **not** an independent source security or licensing audit.
+
+| Build target | Jobs / evidence artifact ID | Six shared objects, unstripped raw bytes | Independent per-library DEFLATE bytes | Reported ELF machine and PT_LOAD alignment | Build wall time / max process RSS |
+|---|---|---:|---:|---|---|
+| armeabi-v7a | `119381810772` / `12368510001` | 55,631,612 | 17,137,684 | ARM, ELF32; **4 KiB PASS** | 62.39 s / 290,324 KiB |
+| arm64-v8a | `119381810294` / `12368485523` | 138,120,928 | 29,498,399 | AArch64, ELF64; **16 KiB PASS** | 207.68 s / 906,940 KiB |
+| x86_64 | `119381810572` / `12366943136` | 82,829,352 | 21,387,261 | x86-64, ELF64; **16 KiB PASS** | 136.61 s / 451,596 KiB |
+
+Each job built and measured the following six shared objects: `libjxl.so`, `libjxl_dec.so`, `libjxl_cms.so`, `libjxl_threads.so`, `libbrotlicommon.so` and `libbrotlienc.so`. The per-library totals include binaries that may not all be needed together in a future narrowed shipping design; some library capabilities and dependencies may overlap. These are **unstripped reference builds**, and the independent per-library DEFLATE sum is **not** an actual APK size increase, Play-delivered ABI selection, stripped-size forecast or warm/cold memory measurement.
+
+**Evidence boundary — report vs binary:** The three downloadable Actions ZIPs contain `source-sha.txt`, fixed-NDK parameters, pinned-submodule manifest, compile/configure/clone logs, timing and `jxl-probe-summary.json`. **They do not contain the original `.so` files.** The repository's inspector computed native library SHA-256, ELF machine/class and `PT_LOAD` alignment on the disposable Actions runner; the downloaded evidence independently confirms only that the reports are internally consistent, not the original ELF bytes or their segment headers. ZIP-level SHA-256, CRC, reported source SHA and JSON consistency were independently checked against the actual downloaded artifacts:
+
+| Target | Downloaded ZIP SHA-256 |
+|---|---|
+| armeabi-v7a | `4b53c54e4082455d33e8bf51d4a72d01f3da645af510063dcb41f9bd448222d9` |
+| arm64-v8a | `234b1e2f7410088dc416710f1736df8988473965afffa51efc3e00198417a68f` |
+| x86_64 | `3e7eab9fcbcdf0eecf311990c7d46b4f1c49a3573ecdcade9bcc0b8e40eb3961` |
+
+**Feasibility conclusion:** The previously open question *"can the pinned upstream libjxl 0.12 code compile as Android shared libraries for all three intended ABIs?"* now has a **positive source-build result**, with test-runner-reported ELF alignment. It does **not** settle the materially different shipping decisions: actual necessary dependencies, stripped and optimized APK/AAB delta, independent reinspection of source-built ELF bytes, a small JNI integration, Android physical JXL encode/decode and exact pixel/color handling, JNI cancellation, p50/p95 speed and Java/native/PSS peaks, runtime on true 16 KiB hardware, and dependency licensing/security. JXL remains **experimental and unavailable in the app**. No format selection, production codec, app permission, or `main` merge was changed.
 
 ## Integration checkpoint and next blockers
 
