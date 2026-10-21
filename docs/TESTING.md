@@ -222,6 +222,38 @@ Independent `heif-info` reports a 66×68 logical image for the 66-width file, bu
 
 All positive HEIC files were 8-bit YCbCr 4:2:0 with no embedded ICC/color profile reported by `heif-info` and no `colr` box in the observed `meta` containers. The actual sRGB/transfer/range appearance contract remains unverified. No AVIF sample was recovered. Neither native format should be globally advertised or enabled based on this probe. **G1 remains OPEN** for calibrated 1344×2992 screenshots, exact user-selected dimensions, Pixel 9 Pro XL plus another hardware family, color/metadata, 16 KiB runtime, cancellation, peak resource and p95 measurements.
 
+## Instrumented HEIC codec selection and row geometry — exact source `7dac2661`
+
+**Source:** `7dac26612c1dfc8f16b96374bc4b53712eda61f5`, child of the test-only instrumentation commit `f8f4170212f866fd1dce344f74d2e69d3cb9e7a8`. [GitHub Actions 39669792028](https://github.com/santirodriguez/FixMyShot/actions/runs/39669792028) completed **build SUCCESS, API 26 SUCCESS, API 36 SUCCESS**. The initial instrumentation run [39669631900](https://github.com/santirodriguez/FixMyShot/actions/runs/39669631900) failed *before Android compilation* because a host collector test still fabricated grid report schema 1; `7dac2661` updated only that synthetic fixture and the CI trigger to schema 2. No product/native writer, output geometry, codec selector, permissions, or user-data handling changed.
+
+The three downloaded Actions artifact ZIPs independently passed SHA-256 and ZIP CRC checks, and `source-sha.txt` identified the same exact source. The checked source archive reconstructed Git tree `17b5cb6b16114de0d5f22b7bdc520d67776e7b01`, matching the source commit. These are source-bound experiment receipts, not physical hardware results:
+
+| Artifact | GitHub ID | ZIP SHA-256 |
+|---|---:|---|
+| Build | `12378808439` | `14fc8bed0deab3b3a43896bd9f9cf1684d85b93ead2f9486bad885f71d09e661` |
+| API 26 | `12378703795` | `e020fbc4aa22696598534d4f1c1120674f9936d25dfbe748ecdf23e8899f7402` |
+| API 36 | `12378963753` | `2209b451061dff0e9544550daf7af160f0bfcb272a130904c804007d52aa0fd9` |
+
+The build's archived test XML contains **23 core policy and 14 geometry cases, zero failures/errors**. Both API emulators independently passed the report checkers for four lossless instrumentation tests and **80 real PNG/WebP encodes per API**. An independent Pillow reopen of the four retained full-size 1344×2992 fixture-0 PNG/WebP files returned the same normalized RGB SHA-256 `214ef1dd2d3e692b99c3c24e822424a38597051bdc791ac09806bb5468045861`. The checked source's grid validator accepted API 26 **0/12 positive** (all `UNSUPPORTED_API`) and API 36 **5/12 positive** (five HEIC, no AVIF); nine native-probe and ten grid-validator host regressions passed separately. Emulators report **4096-byte pages**; API 36 retains the disposable CI-only 512 MiB heap adjustment. No real Pixel, other hardware, 16 KiB runtime, or calibrated full-resolution HEIC acceptance is implied.
+
+**Actual API 36 writer introspection:** the test reads the `MediaCodec` owned by the constructed AndroidX `HeifWriter` and its configured `MediaFormat` (test-only, best-effort reflection). All six HEIC construction attempts reported `CAPTURED` with codec **`c2.android.hevc.encoder`** and configured/output-polled MIME **`video/hevc`**. A pre-`stop()` `codec.outputFormat` poll returned `AVAILABLE` for each test case. The poll observes the raw codec's format *before* final writer closure, **not** AndroidX's private muxer callback `MediaFormat`; it must not be described as the container's advertised dimensions or as proof of the exact compiled AAR implementation.
+
+| HEIC requested dimensions / grid request | Real configured and pre-stop polled codec dimensions | AndroidX internal effective grid | Android decoded bitmap / rowBytes | Diagnostic status |
+|---|---|---|---|---|
+| 64×64 / OFF | 64×64 | OFF | 64×64 / 256, `ARGB_8888` | `ENCODED_AND_REOPENED` |
+| 65×67 / OFF | 512×512 | ON (forced internally) | none | `INVALID_OUTPUT` |
+| 66×68 / OFF | **96×68** | OFF | 66×68 / 264, `ARGB_8888` | `ENCODED_AND_REOPENED` |
+| 66×68 / ON | **96×68** | **OFF** (request disabled internally) | 66×68 / 264, `ARGB_8888` | `ENCODED_AND_REOPENED` |
+| 96×68 / OFF | 96×68 | OFF | 96×68 / 384, `ARGB_8888` | `ENCODED_AND_REOPENED` |
+| 128×96 / OFF | 128×96 | OFF | 128×96 / 512, `ARGB_8888` | `ENCODED_AND_REOPENED` |
+
+This is direct runtime evidence that for the 66×68 cases AndroidX configured the **96×68** HEVC codec path while retaining requested visible width 66 in the produced HEIC `ispe`. The rowBytes are consistent with Android's *final visible bitmaps* at 4 bytes/pixel; they **do not** reveal the decoder's intermediate frame stride/crop or establish where the image was reinterpreted. The forced 512×512 grid route for 65×67 produced no valid output; internal grid selection without an output does not prove a viable odd-dimension tiling path.
+
+**Reconfirmed exact binary and independent decoder control:** API 36 66×68 OFF and 96×68 OFF files are each 3438 bytes, differing at exactly zero-based offset **295** (`ispe` width 66 versus 96); their prior recorded SHA-256 values remained unchanged. `heif-info` identified the 66×68 logical item, whereas `ffprobe` observed an underlying 96×68 HEVC stream (coded 96×72). An independent `heif-convert` decode produced identical 96×68 RGB images for both, normalized RGB SHA-256 **`7a95956725c0aa61090fb189e877ac0b2502a0a9f1312921167095208d24c850`**. Android's 66×68 decoded ROI still measures **10.5327 dB PSNR** versus **20.0810 dB** on the 96×68 control, using the same deliberately high-frequency original 65×67 source ROI. This further localizes the anomaly to container-visible versus coded-width interpretation on this emulator, but does **not** distinguish a framework decoder defect from writer/container or codec incompatibility. The files still lack an independently verified color-profile/transfer contract and are not accepted as screenshot-faithful.
+
+**Next bounded diagnosis:** compare Android `BitmapFactory` and `ImageDecoder` full synthetic pixel positions for the byte-neighbor 66×68 and 96×68 HEIC samples; measure row/column alignment against the common 96×68 decoded control and record container crop/clean-aperture behavior without patching any production HEIC bytes or exporting padded user images. Then run exact-size, color and gallery/share acceptance on Pixel 9 Pro XL plus a second hardware family when available. All native HEIC/AVIF production claims, full-size/color/latency/memory acceptance, JXL integration and independent Gradle publisher trust remain **OPEN**.
+
+
 ## Open G1 acceptance
 
 The initial slice does not close G1. Standard wrapper/lockfile/verification review and persistence, security/license inventory, complete PNG/WebP performance and native/PSS peaks, mid-encode cancellation/timeouts, physical Pixel and second-family HEIC/AVIF output, bounded JXL build/cost decision, 16 KiB runtime and independent clean-build comparison remain open. A successful synthetic emulator matrix does not replace these gates or the real-image/manual evidence in the [governing blueprint](blueprints/first-functional-release.md).
