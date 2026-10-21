@@ -49,7 +49,7 @@ class NativeGridDiagnosticTest {
     )
 
     @Test fun gridAndPaddingAreDiagnosedWithoutChangingTheExportContract() {
-        val report = JSONObject().put("schema", 1).put("status", "INCOMPLETE")
+        val report = JSONObject().put("schema", 2).put("status", "INCOMPLETE")
             .put("api", Build.VERSION.SDK_INT).put("kind", "GRID_AND_PADDING_DIAGNOSTIC")
             .put("samples", JSONArray())
         val samples = report.getJSONArray("samples")
@@ -96,6 +96,9 @@ class NativeGridDiagnosticTest {
             .put("source_width", g.sourceWidth).put("source_height", g.sourceHeight)
             .put("padded", g.padded).put("grid", g.grid)
             .put("color_profile_inspection", "NOT_PERFORMED")
+        if (format == "HEIC" && Build.VERSION.SDK_INT >= 29) {
+            sample.put("encoder_trace", JSONObject().put("status", "NOT_CREATED"))
+        }
         val minApi = if (format == "HEIC") 29 else 34
         if (Build.VERSION.SDK_INT < minApi) {
             return sample.put("status", "UNAVAILABLE").put("reason", "UNSUPPORTED_API")
@@ -109,7 +112,12 @@ class NativeGridDiagnosticTest {
             if (format == "HEIC") {
                 HeifWriter.Builder(candidate.absolutePath, g.width, g.height, HeifWriter.INPUT_MODE_BITMAP)
                     .setMaxImages(1).setQuality(100).setGridEnabled(g.grid).build().use { writer ->
-                        writer.start(); writer.addBitmap(bitmap); writer.stop(15_000)
+                        val trace = HeicCodecTrace.capture(writer)
+                        sample.put("encoder_trace", trace)
+                        writer.start()
+                        writer.addBitmap(bitmap)
+                        HeicCodecTrace.pollBeforeStop(writer, trace)
+                        writer.stop(15_000)
                     }
             } else {
                 AvifWriter.Builder(candidate.absolutePath, g.width, g.height, AvifWriter.INPUT_MODE_BITMAP)
@@ -135,6 +143,8 @@ class NativeGridDiagnosticTest {
                     .put("elapsed_ns", System.nanoTime() - started)
                     .put("decoded_width", decoded.width).put("decoded_height", decoded.height)
                     .put("decoded_srgb", decoded.colorSpace?.isSrgb == true)
+                    .put("decoded_row_bytes", decoded.rowBytes)
+                    .put("decoded_bitmap_config", decoded.config?.name ?: "UNKNOWN")
                     .put("psnr_rgb_db", stats.first)
                     .put("median_abs_rgb", JSONArray(stats.second.toList()))
             } finally { decoded.recycle() }

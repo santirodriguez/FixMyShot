@@ -15,7 +15,7 @@ SUCCESS_LOG = 'INSTRUMENTATION_RESULT: stream=\n\nOK (1 test)\n\nINSTRUMENTATION
 
 
 def report(api=36):
-    return dict(schema=1, kind='GRID_AND_PADDING_DIAGNOSTIC',
+    data = dict(schema=2, kind='GRID_AND_PADDING_DIAGNOSTIC',
                 status='DIAGNOSTIC_COMPLETE', api=api,
                 samples=[dict(format=fmt, width=w, height=h, source_width=sw, source_height=sh,
                               padded=(w, h) != (sw, sh), grid=grid,
@@ -23,6 +23,11 @@ def report(api=36):
                               reason='UNSUPPORTED_API' if api < min_api else 'INVALID_OUTPUT')
                          for w, h, sw, sh, grid in checker.MODES
                          for fmt, (min_api, _) in checker.FORMATS.items()])
+    if api >= 29:
+        for sample in data["samples"]:
+            if sample["format"] == "HEIC":
+                sample["encoder_trace"] = {"status": "NOT_CREATED"}
+    return data
 
 
 class ReportTests(unittest.TestCase):
@@ -60,7 +65,14 @@ class ReportTests(unittest.TestCase):
         sample = self.data['samples'][0]
         sample.update(status='ENCODED_AND_REOPENED', bytes=20, elapsed_ns=5,
                       decoded_width=64, decoded_height=64, decoded_srgb=True,
+                      decoded_row_bytes=256, decoded_bitmap_config='ARGB_8888',
                       psnr_rgb_db=25.4, median_abs_rgb=[2, 1, 1])
+        sample['encoder_trace'] = dict(status='CAPTURED', source='ANDROIDX_TEST_REFLECTION',
+                                      codec_name='c2.android.hevc.encoder',
+                                      configured_mime='video/hevc',
+                                      configured_width=64, configured_height=64,
+                                      requested_width=64, requested_height=64,
+                                      effective_grid=False, pre_stop_output_status='NOT_READY')
         file = self.root / checker.expected_filename('HEIC', 64, 64, False)
         file.write_bytes(struct.pack('>I', 20) + b'ftypheic' + struct.pack('>I', 0) + b'mif1')
         self.check()
@@ -68,6 +80,30 @@ class ReportTests(unittest.TestCase):
         with self.assertRaises(ValueError): self.check()
         sample['decoded_width'] = 64
         file.write_text('cat: no such file')
+        with self.assertRaises(ValueError): self.check()
+
+    def test_missing_and_fabricated_codec_trace_rejected(self):
+        sample = self.data['samples'][0]
+        sample.pop('encoder_trace')
+        with self.assertRaises(ValueError): self.check()
+        sample['encoder_trace'] = dict(status='UNAVAILABLE', reason='REFLECTION_UNAVAILABLE')
+        self.check()
+        sample['encoder_trace'] = dict(status='CAPTURED', source='ANDROIDX_TEST_REFLECTION',
+                                      codec_name='c2.android.hevc.encoder',
+                                      configured_mime='video/hevc',
+                                      configured_width=96, configured_height=72,
+                                      requested_width=65, requested_height=64,
+                                      effective_grid=False, pre_stop_output_status='NOT_READY')
+        with self.assertRaises(ValueError): self.check()
+
+    def test_unobserved_pre_stop_format_cannot_be_marked_available(self):
+        sample = self.data['samples'][0]
+        sample['encoder_trace'] = dict(status='CAPTURED', source='ANDROIDX_TEST_REFLECTION',
+                                      codec_name='c2.android.hevc.encoder',
+                                      configured_mime='video/hevc',
+                                      configured_width=96, configured_height=72,
+                                      requested_width=64, requested_height=64,
+                                      effective_grid=False, pre_stop_output_status='AVAILABLE')
         with self.assertRaises(ValueError): self.check()
 
     def test_failing_case_may_not_retain_output(self):
@@ -88,6 +124,8 @@ class ReportTests(unittest.TestCase):
         self.assertIn('Api28GridDecoder.decode(file)', runner)
         self.assertIn('Geometry(96, 68, 65, 67, false)', runner)
         self.assertIn('Geometry(128, 96, 65, 67, false)', runner)
+        self.assertIn('HeicCodecTrace.capture(writer)', runner)
+        self.assertIn('HeicCodecTrace.pollBeforeStop(writer, trace)', runner)
         self.assertIn('@TargetApi(28)', helper)
         self.assertIn('ImageDecoder.decodeBitmap', helper)
 

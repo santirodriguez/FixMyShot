@@ -1,3 +1,6 @@
-Phase 1 native codec geometry diagnostic batch
-Aligned-width HEIC/AVIF diagnostics (96x68, 128x96) alongside existing 64x64, 65x67, 66x68 cases.
-No production codec behavior or minSdk change.
+HEIC codec selection/configured-width diagnostic and decoder row-layout batch.
+Base: a6a9de534f19b7dc3cfa841469403880484758bb
+Synthetic AndroidX writer introspection and explicitly bounded pre-stop MediaFormat
+poll; schema-2 host validation; API 26 gating must still pass.
+No production encoder, geometry, format selection, metadata or permissions change.
+CI source SHA is the commit containing this checkpoint.

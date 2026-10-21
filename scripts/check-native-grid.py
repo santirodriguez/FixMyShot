@@ -36,7 +36,7 @@ def validate(directory: Path) -> dict:
             or any(token in log for token in ("FAILURES!!!", "Process crashed", "INSTRUMENTATION_FAILED"))):
         raise ValueError("Native diagnostic instrumentation failed")
     data = json.loads((directory / "g1-grid-diagnostic.json").read_text(encoding="utf-8"))
-    if data.get("schema") != 1 or data.get("status") != "DIAGNOSTIC_COMPLETE" or data.get("kind") != "GRID_AND_PADDING_DIAGNOSTIC":
+    if data.get("schema") != 2 or data.get("status") != "DIAGNOSTIC_COMPLETE" or data.get("kind") != "GRID_AND_PADDING_DIAGNOSTIC":
         raise ValueError("Missing or incomplete experimental report")
     api = data.get("api")
     if type(api) is not int or api < 26:
@@ -60,6 +60,41 @@ def validate(directory: Path) -> dict:
         seen.add((fmt, mode))
         if sample.get("color_profile_inspection") != "NOT_PERFORMED":
             raise ValueError("Color tagging is not established by an Android pixel decode")
+        if fmt == "HEIC" and api >= 29:
+            trace = sample.get("encoder_trace")
+            if not isinstance(trace, dict):
+                raise ValueError("Missing actual HEIC writer introspection status")
+            trace_status = trace.get("status")
+            if trace_status == "CAPTURED":
+                if trace.get("source") != "ANDROIDX_TEST_REFLECTION":
+                    raise ValueError("Untrusted HEIC codec trace source")
+                name, mime = trace.get("codec_name"), trace.get("configured_mime")
+                if (not isinstance(name, str) or not 1 <= len(name) <= 256 or
+                        not isinstance(mime, str) or not 1 <= len(mime) <= 128):
+                    raise ValueError("Invalid selected codec identity")
+                if (trace.get("requested_width"), trace.get("requested_height")) != numbers[:2]:
+                    raise ValueError("HEIC writer requested dimensions differ")
+                if any(type(trace.get(field)) is not int or not 1 <= trace[field] <= 16384
+                       for field in ("configured_width", "configured_height")):
+                    raise ValueError("Invalid configured MediaFormat geometry")
+                if type(trace.get("effective_grid")) is not bool:
+                    raise ValueError("Missing effective grid mode")
+                output_status = trace.get("pre_stop_output_status")
+                if output_status == "AVAILABLE":
+                    if (not isinstance(trace.get("pre_stop_output_mime"), str) or
+                            not trace["pre_stop_output_mime"] or
+                            any(type(trace.get(field)) is not int or not 1 <= trace[field] <= 16384
+                                for field in ("pre_stop_output_width", "pre_stop_output_height"))):
+                        raise ValueError("Invalid pre-stop MediaCodec format poll")
+                elif output_status != "NOT_READY":
+                    raise ValueError("Invalid pre-stop output status")
+            elif trace_status == "UNAVAILABLE":
+                if trace.get("reason") != "REFLECTION_UNAVAILABLE":
+                    raise ValueError("Missing reflection failure reason")
+            elif trace_status != "NOT_CREATED":
+                raise ValueError("Invalid HEIC codec trace state")
+            if sample.get("status") == "ENCODED_AND_REOPENED" and trace_status == "NOT_CREATED":
+                raise ValueError("Successful HEIC write without constructed writer")
         file = directory / expected_filename(fmt, *numbers[:2], grid)
         status = sample.get("status")
         if api < FORMATS[fmt][0]:
@@ -72,6 +107,12 @@ def validate(directory: Path) -> dict:
                 raise ValueError("Missing encode timing")
             if sample.get("decoded_width") != numbers[0] or sample.get("decoded_height") != numbers[1]:
                 raise ValueError("Padding/visible dimensions were silently changed")
+            if (type(sample.get("decoded_row_bytes")) is not int or
+                    sample["decoded_row_bytes"] < numbers[0] * 4 or
+                    sample["decoded_row_bytes"] > 16384 * 16 or
+                    sample.get("decoded_bitmap_config") not in
+                    ("ARGB_8888", "RGB_565", "RGBA_F16", "HARDWARE", "UNKNOWN")):
+                raise ValueError("Missing/invalid Android bitmap row layout")
             if type(sample.get("decoded_srgb")) is not bool:
                 raise ValueError("Missing decoded sRGB property")
             psnr = sample.get("psnr_rgb_db")
