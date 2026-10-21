@@ -91,6 +91,13 @@ class EvidenceTests(unittest.TestCase):
         scripts = self.root / 'scripts'; scripts.mkdir()
         (scripts / 'check-device-report.py').write_bytes((SCRIPTS / 'check-device-report.py').read_bytes())
         (self.root / 'fixture.json').write_text(json.dumps(self.report))
+        (self.root / 'native-fixture.json').write_text(json.dumps(dict(
+            schema=1, status='PROBE_COMPLETE', api=36, size=[65, 67],
+            samples=[dict(format=fmt, route=route, status='UNAVAILABLE',
+                          reason='ENCODE_FAILED') for fmt, route in
+                     (('HEIC', 'NATIVE_HEIC'), ('AVIF', 'NATIVE_AVIF'))])))
+        (scripts / 'check-native-probe.py').write_bytes(
+            (SCRIPTS / 'check-native-probe.py').read_bytes())
         bin_dir = self.root / 'bin'; bin_dir.mkdir()
         (bin_dir / 'git').write_text('#!/bin/sh\nprintf "test-source-sha\\n"\n')
         (bin_dir / 'adb').write_text('''#!/usr/bin/env python3
@@ -99,11 +106,17 @@ from pathlib import Path
 args = sys.argv[1:]
 if 'getconf' in args: sys.exit(127)
 if 'instrument' in args:
-    print('INSTRUMENTATION_RESULT: stream=\\n\\nOK (4 tests)\\n\\nINSTRUMENTATION_CODE: -1')
+    native = any('NativeCodecProbeTest' in a for a in args)
+    print('INSTRUMENTATION_RESULT: stream=\\n\\nOK (1 test)\\n\\nINSTRUMENTATION_CODE: -1' if native
+          else 'INSTRUMENTATION_RESULT: stream=\\n\\nOK (4 tests)\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
     name = args[-1]
-    if name.endswith('.json'):
+    if name.endswith('g1-native-probe.json'):
+        print(Path('native-fixture.json').read_text())
+    elif name.endswith('g1-smoke.json'):
         print('run-as: unknown package' if os.environ.get('BAD_REPORT') else Path('fixture.json').read_text())
+    elif name.endswith(('.heic', '.avif')):
+        sys.exit(1)
     else:
         sys.stdout.buffer.write(b'RIFF' if name.endswith('.webp') else b'\\x89PNG\\r\\n\\x1a\\n')
 ''')

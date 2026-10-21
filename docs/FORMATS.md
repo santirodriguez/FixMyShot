@@ -6,8 +6,8 @@
 |---|---|---|
 | PNG | Android PNG encoder on API 26+ | Synthetic instrumentation asserts opaque RGB / alpha RGBA, container CRCs, independent reopen and exact normalized pixels. Runtime/device results must come from the matching CI/device report. |
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
-| HEIC | Not integrated; selected writer contract starts at API 29 | Required Phase 1 continuation. Native output is planned as lossy and opaque; physical Pixel and another hardware family remain mandatory. |
-| AVIF | Not integrated; selected native route starts at API 34 | Required Phase 1 continuation, with the same device/configuration distinction. |
+| HEIC | Native AndroidX `HeifWriter` candidate from API 29; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; only a successfully encoded/reopened sample proves a particular configuration. Pixel and second-family acceptance remain mandatory. |
+| AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
 | JXL | Not integrated or exposed in UI | Bounded reference-implementation experiment remains pending. No inclusion or deferral decision has been made. |
 
 JPEG input is required by the functional blueprint but import is not yet implemented. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
@@ -19,6 +19,10 @@ Inputs must already be ARGB_8888, SDR sRGB, oriented and within 24 megapixels pl
 PNG and WebP receive pixels only, not source EXIF/XMP. Metadata-preservation requests fail explicitly until the bounded allowlist pipeline exists. Semi-transparent edge/color fidelity, all EXIF orientations, HDR handling and payload-preserving no-op exports remain later acceptance work. The current synthetic alpha fixtures cover transparent/opaque edges, not the full semi-transparent color contract.
 
 Candidates remain app-private; no MediaStore/SAF publication occurs. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
+
+## Native writer candidate
+
+`NativeStillEncoder` uses `androidx.heifwriter:heifwriter:1.2.0-rc01`, a release candidate selected after comparison with stable 1.1.0: the 1.2 line contains material color-aspect and AVIF encoding fixes. It runs only off the main thread, accepts normalized opaque ARGB_8888 SDR sRGB pixels, refuses unsupported API/alpha/metadata policy/resource requests, uses AndroidX bitmap-input writers with quality 100 and a single still, and verifies ISO BMFF brand and platform reopened dimensions/MIME before retaining a candidate. Device-specific output and appearance still require independent validation. `NativeCodecProbeTest` attempts only a small odd-dimension synthetic sample on each test API and records actual success or a typed failure; an absent encoder is not presented as success. These routes are not yet exposed through an import/edit/export UI. Native writer cancellation is cooperative at boundaries and mid-encode latency remains an open G1 gate. **Quality 100 does not mean lossless.**
 
 ## Source
 
