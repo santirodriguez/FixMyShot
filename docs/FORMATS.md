@@ -10,7 +10,7 @@
 | AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
 | JXL | Reference libjxl 0.12.0 compiled from pinned source for three Android ABIs, but not integrated or exposed in UI | Preliminary cross-build checks passed; uploaded artifacts include reports, not independently rehashable native libraries. JNI, APK delta, device fidelity/performance and inclusion/deferral decision remain open. |
 
-JPEG input is required by the functional blueprint but import is not yet implemented. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
+A bounded Photo Picker import/review path accepts supported static SDR JPEG, PNG and WebP sources. That is not yet a full production export pipeline; JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
 
 ## Adapter limits
 
@@ -18,7 +18,7 @@ Inputs must already be ARGB_8888, SDR sRGB, oriented and within 24 megapixels pl
 
 PNG and WebP receive pixels only, not source EXIF/XMP. Metadata-preservation requests fail explicitly until the bounded allowlist pipeline exists. Semi-transparent edge/color fidelity, all EXIF orientations, HDR handling and payload-preserving no-op exports remain later acceptance work. The current synthetic alpha fixtures cover transparent/opaque edges, not the full semi-transparent color contract.
 
-Candidates remain app-private; no MediaStore/SAF publication occurs. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
+The immutable PNG/WebP preflight binds staged source SHA-256, geometry, per-item/session revisions, format, metadata policy and provisional memory estimates; the later renderer/encoder must rehash the source and resolve any automatic background before producing a candidate. This preflight neither renders nor publishes output. Codec-test candidates remain app-private; no MediaStore/SAF publication occurs. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
 
 ## Native writer candidate
 
