@@ -48,8 +48,14 @@ object GeometryPlanner {
         source: PixelSize,
         ratio: ExactRatio,
         maxCanvasPixels: Long = DEFAULT_MAX_CANVAS_PIXELS,
+        minimumShortSide: Int = 0,
     ): ContainGeometry {
-        val k = maxOf(ceilDiv(source.width.toLong(), ratio.p), ceilDiv(source.height.toLong(), ratio.q))
+        require(minimumShortSide >= 0) { "Minimum side cannot be negative" }
+        val k = maxOf(
+            ceilDiv(source.width.toLong(), ratio.p),
+            ceilDiv(source.height.toLong(), ratio.q),
+            if (minimumShortSide == 0) 0L else ceilDiv(minimumShortSide.toLong(), minOf(ratio.p, ratio.q)),
+        )
         val canvasWidth = checkedMultiply(ratio.p, k)
         val canvasHeight = checkedMultiply(ratio.q, k)
         return place(source, canvasWidth, canvasHeight, source.width.toLong(), source.height.toLong(), maxCanvasPixels)

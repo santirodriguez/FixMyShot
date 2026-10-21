@@ -8,7 +8,7 @@ FixMyShot is an Android application being built to prepare screenshots for publi
 
 **Unreleased development bootstrap: `0.1.0-alpha.1`.** This is not the first functional release. The launcher only describes development status. Import, editing, saving and sharing are not implemented yet; no download or completed-format support is promised.
 
-The initial engineering slice contains Kotlin/Compose modules, a bounded PNG/lossless WebP codec adapter and synthetic device tests. HEIC/AVIF integration and the bounded JPEG XL experiment remain Phase 1 work, not accepted features or rejected requirements. The complete implementation contract is in [the release blueprint](docs/blueprints/first-functional-release.md).
+The current engineering groundwork includes Kotlin/Compose modules, a bounded PNG/lossless WebP codec adapter, an offline destination catalog, immutable crop and per-image batch-setting models, and synthetic device tests. The new planning models are not wired to a user-facing editor or export transaction yet. HEIC/AVIF integration and the bounded JPEG XL experiment remain Phase 1 work, not accepted features or rejected requirements. The complete implementation contract is in [the release blueprint](docs/blueprints/first-functional-release.md).
 
 Android 8/API 26 is the minimum application target. The bootstrap includes English, Argentine Spanish and Catalan copy; full localized product coverage and manual selection belong to the later interaction phase. It requests no permissions and does not include networking, accounts or analytics.
 
