@@ -74,4 +74,9 @@
     <string name="export_history_checking">Revisando las exportaciones anteriores…</string>
     <string name="export_history_pending">Lotes anteriores para revisar: %1$d. Puede haber archivos guardados. Comprobá la carpeta antes de continuar.</string>
     <string name="export_history_acknowledge">Ya revisé estos resultados de exportación</string>
+    <string name="export_output_present_uncertain">El contenido coincide con el registro, pero la publicación es incierta. Revisá el destino.</string>
+    <string name="export_output_missing">No se encontró el archivo registrado. No se inició otro intento.</string>
+    <string name="export_output_changed">El archivo es distinto del registro guardado. Revisalo antes de volver a exportar.</string>
+    <string name="export_output_pending">El archivo todavía está pendiente de publicación. Revisá su estado antes de reintentar.</string>
+    <string name="export_output_unverifiable">No se pudo verificar el archivo. Revisá el acceso y la carpeta de destino.</string>
 </resources>

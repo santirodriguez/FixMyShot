@@ -120,7 +120,7 @@ batch_result=$?
 cat evidence/batch-instrumentation.txt
 # Prior-job discovery and item-journal reconciliation use synthetic app-owned files only.
 timeout 3m adb shell am instrument -w -r \
-  -e class org.cajapersonal.fixmyshot.BatchRecoveryScannerTest,org.cajapersonal.fixmyshot.BatchRecoveryReconciliationTest,org.cajapersonal.fixmyshot.ReviewRecoveryUiTest \
+  -e class org.cajapersonal.fixmyshot.BatchRecoveryScannerTest,org.cajapersonal.fixmyshot.BatchRecoveryReconciliationTest,org.cajapersonal.fixmyshot.ReviewRecoveryUiTest,org.cajapersonal.fixmyshot.OutputRecoveryVerifierTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/batch-recovery-instrumentation.txt 2>&1
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
@@ -131,7 +131,7 @@ grep -q 'OK (6 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (9 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
-grep -q 'OK (4 tests)' evidence/batch-recovery-instrumentation.txt
+grep -q 'OK (8 tests)' evidence/batch-recovery-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
 python3 scripts/check-native-probe.py evidence

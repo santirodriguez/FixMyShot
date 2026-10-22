@@ -74,4 +74,9 @@
     <string name="export_history_checking">Revisant les exportacions anteriors…</string>
     <string name="export_history_pending">Lots anteriors per revisar: %1$d. És possible que ja hi hagi fitxers desats. Comprova la carpeta abans de continuar.</string>
     <string name="export_history_acknowledge">Ja he revisat aquests resultats d’exportació</string>
+    <string name="export_output_present_uncertain">El contingut coincideix amb el registre, però la publicació és incerta. Comprova la destinació.</string>
+    <string name="export_output_missing">No s\'ha trobat el fitxer registrat. No se n\'ha iniciat cap altre intent.</string>
+    <string name="export_output_changed">El fitxer no coincideix amb el registre desat. Comprova-ho abans de tornar a exportar.</string>
+    <string name="export_output_pending">El fitxer encara està pendent de publicació. Revisa-ne l\'estat abans de repetir-ho.</string>
+    <string name="export_output_unverifiable">No s\'ha pogut verificar el fitxer. Comprova l\'accés i la carpeta de destinació.</string>
 </resources>

@@ -234,6 +234,20 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
             }
             Text(stringResource(R.string.export_item_status, index + 1, stringResource(label)),
                 style = MaterialTheme.typography.bodySmall)
+            if (item.phase == BatchItemPhase.NEEDS_REVIEW) {
+                val reason = when (item.reason) {
+                    "OUTPUT_PRESENT_UNCERTAIN" -> R.string.export_output_present_uncertain
+                    "OUTPUT_MISSING" -> R.string.export_output_missing
+                    "OUTPUT_CHANGED" -> R.string.export_output_changed
+                    "OUTPUT_PENDING" -> R.string.export_output_pending
+                    "OUTPUT_UNVERIFIABLE" -> R.string.export_output_unverifiable
+                    else -> null
+                }
+                if (reason != null) {
+                    Text(stringResource(reason), style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.error)
+                }
+            }
         }
     }
     if (state.phase == ExportUiPhase.RUNNING) {

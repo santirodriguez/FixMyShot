@@ -12,6 +12,7 @@ import org.cajapersonal.fixmyshot.export.BatchOutputCoordinator
 import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
 import org.cajapersonal.fixmyshot.export.BatchRecoveryReconciliation
+import org.cajapersonal.fixmyshot.export.OutputRecoveryVerifier
 import org.cajapersonal.fixmyshot.export.RecoveryItem
 import org.cajapersonal.fixmyshot.export.OwnedOutputPort
 import java.util.concurrent.Executors
@@ -56,8 +57,9 @@ internal class ReviewViewModel : ViewModel() {
         val token = found.token
         val snapshot = found.snapshot
         return if (token != null && snapshot != null) {
+            val verifier = OutputRecoveryVerifier(context.contentResolver)
             found.copy(snapshot = BatchRecoveryReconciliation.inspect(
-                File(File(context.filesDir, "export-jobs"), token), snapshot))
+                File(File(context.filesDir, "export-jobs"), token), snapshot, verifier::verify))
         } else found
     }
 

@@ -48,3 +48,16 @@ user images. Preserve previous passing UI-to-export and codec suites.
 Run the four recovery instrumentation cases on API26 and API36.
 No new Android permissions, credentials, signing, native codec enablement,
 main merge or release.
+
+
+G4 output-provider verification checkpoint following successful Actions 39798085167.
+Read previously recorded content URIs only, bounded by single-item and aggregate
+byte limits. Check actual stored SHA-256 and MediaStore pending state when
+available. An indeterminate commit remains NEEDS_REVIEW even when bytes match;
+mismatched/missing/inaccessible outputs also require explicit review.
+No re-publish, retry, rename, overwrite, delete, broad storage permission or
+network access on restart. Keep API26 legacy behavior fail-closed.
+Run eight batch recovery instrumentation tests (prior four plus three
+reconciliation cases and one API29+ synthetic MediaStore verification case)
+on API26 and API36, plus all earlier export/codec/storage suites.
+This checkpoint does not close G4 or authorize merge, signing, or publication.

@@ -317,3 +317,24 @@ This receipt does **not** establish a real batch export UI, persistent batch res
 ## Open G1 acceptance
 
 The initial slice does not close G1. Standard wrapper/lockfile/verification review and persistence, security/license inventory, complete PNG/WebP performance and native/PSS peaks, mid-encode cancellation/timeouts, physical Pixel and second-family HEIC/AVIF output, bounded JXL build/cost decision, 16 KiB runtime and independent clean-build comparison remain open. A successful synthetic emulator matrix does not replace these gates or the real-image/manual evidence in the [governing blueprint](blueprints/first-functional-release.md).
+
+
+## Foreground batch export and persisted recovery — exact-source CI `e1a30a6`
+
+[GitHub Actions run 39798085167](https://github.com/santirodriguez/FixMyShot/actions/runs/39798085167) completed **SUCCESS** for all three jobs at exact executable source **`e1a30a6a42fde2804c543dc5ad3557185d4455f1`**: Android build/lint and x86_64 emulator smoke on API 26 and API 36. The job logs were checked for actual instrumented suite counts, not only the green overall status:
+
+| Test class / path | API 26 | API 36 |
+|---|---:|---:|
+| `ReviewExportFlowTest` (synthetic staged PNG → verified destination and UI) | 3 pass | 3 pass |
+| `BatchOutputCoordinatorTest` (serialized mixed outcomes and duplicate prevention) | 5 pass | 5 pass |
+| `BatchRecoveryScannerTest`, `BatchRecoveryReconciliationTest`, `ReviewRecoveryUiTest` (historical receipts and review barrier) | 4 pass | 4 pass |
+| `TransactionalOutputSaverTest` (fault-injected item commit boundary) | 9 pass | 9 pass |
+| `PrivateOutputExecutorTest` (private render and candidate verification) | 6 pass | 6 pass |
+| `ReviewRenderTest` / `ReviewThumbnailCacheTest` | 4 / 3 pass | 4 / 3 pass |
+| PNG / lossless WebP synthetic fixture matrix | 80 encodes pass | 80 encodes pass |
+
+The source-bound host/bootstrap check found **75 matching localization keys** in English, Argentine Spanish and Catalan; the API 26 and API 36 logs reported **4096-byte pages**. Native HEIC/AVIF instrumentation remains diagnostic, **not production acceptance**. No independent artifact-ZIP SHA-256/CRC verification or manual physical-device tests are claimed by this new receipt.
+
+**Exact behavior tested:** `e1a30a6` discovers prior app-private batch receipts on the next start, displays them even when the draft was lost, compares batch and per-item journals, blocks a new export until the user explicitly acknowledges each old job, and does not perform automatic retry, publication or deletion. The success of these synthetic tests does **not** verify that a recorded output still exists in a gallery/SAF provider, that its digest still matches, or that a publication marked indeterminate actually completed.
+
+**Remaining G4 work:** bounded read-only provider verification after restart, explicit handling of provider uncertainty, selected-output sharing, actual API 26/28 user-selected SAF folder/provider tests and permission recovery, kill/restart/provider-denial/low-space cases, and the full 100-image mixed-result exercise. Pixel 9 Pro XL plus second-hardware-family and other manual acceptance remain NOT RUN. Do not describe G4 as completed from this checkpoint.

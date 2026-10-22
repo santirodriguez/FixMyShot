@@ -74,4 +74,9 @@
     <string name="export_history_checking">Checking previous export records…</string>
     <string name="export_history_pending">Previous batches to review: %1$d. Some files may already exist. Check the destination before continuing.</string>
     <string name="export_history_acknowledge">I checked these export results</string>
+    <string name="export_output_present_uncertain">The bytes match the record, but publication is uncertain. Check the destination.</string>
+    <string name="export_output_missing">The recorded file was not found. No retry was started.</string>
+    <string name="export_output_changed">The recorded file differs from its saved fingerprint. Review it before retrying.</string>
+    <string name="export_output_pending">The file is still pending publication. Check its status before retrying.</string>
+    <string name="export_output_unverifiable">The file could not be verified. Check access and destination.</string>
 </resources>
