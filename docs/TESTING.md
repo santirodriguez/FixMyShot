@@ -298,6 +298,22 @@ Two exact-source integration failures were identified and repaired without specu
 The new thumbnail eviction tests show cache ownership, size and non-recycling behavior on synthetic emulator bitmaps. Neither those checks nor `ExportPreparation.inspect` exercise a complete real-image import/gallery export, source fingerprint revalidation, automatic-color full-resolution render, file metadata sanitizer, interruption/recovery transaction or manual device UX. Those remain **NOT RUN** or **OPEN** under G2–G5. User-requested manual physical-device checks are postponed, not waived.
 
 
+## Source-bound AndroidX EXIF and SAF adapter smoke — 2026-10-22
+
+[GitHub Actions 39710667723](https://github.com/santirodriguez/FixMyShot/actions/runs/39710667723) executed **`059f116ba411f905cb3fc20e5bd8586e12b767f0`** and completed **SUCCESS**: Gradle build, core tests, lint and Android test APK succeeded, plus independent smoke jobs for API **26** and **36**. The build checked the 52 resource keys in en/es/ca and ran `:core:test`. The two emulator job logs explicitly include:
+
+| Executed suite | Android 8 / API 26 | API 36 |
+|---|---|---|
+| `PrivateOutputExecutorTest` (real private candidate + EXIF-6 JPEG) | `OK (6 tests)` | `OK (6 tests)` |
+| `TransactionalOutputSaverTest` (fake provider faults and API29+ conditional path) | `OK (9 tests)` | `OK (9 tests)` |
+| `ReviewThumbnailCacheTest` | `OK (3 tests)` | `OK (3 tests)` |
+| `ReviewRenderTest` | `OK (4 tests)` | `OK (4 tests)` |
+| Actual PNG / lossless WebP encoder matrix | 80 synthetic encodes PASS | 80 synthetic encodes PASS |
+
+The previously failing JPEG EXIF-6 fixture passed on API 26 after switching the app's import/decoder and instrumentation to pinned official `androidx.exifinterface:exifinterface:1.4.2`. The API29+ fake/real-output seam, including the SAF visibility journal state and non-tree rejection, passed on its defined instrumentation routes. API26 did **not** publish a MediaStore item or exercise an actual chosen SAF provider tree; API36's real MediaStore test owns and deletes only its synthetic item. The existing native HEIC/AVIF diagnostic attempts are **not acceptance** or a reason to expose those formats. Both emulators report 4 KiB pages, not the required 16 KiB native-runtime test.
+
+This receipt does **not** establish a real batch export UI, persistent batch resume, 100-item mixed-result operation, physical Pixel 9 Pro XL/other-vendor output, color/HDR/metadata opt-out or manual gallery/share acceptance. The public Export action remains disabled pending G2–G5. Source-bound CI is the only claim here; hardware and manual acceptance stay **NOT RUN**.
+
 ## Open G1 acceptance
 
 The initial slice does not close G1. Standard wrapper/lockfile/verification review and persistence, security/license inventory, complete PNG/WebP performance and native/PSS peaks, mid-encode cancellation/timeouts, physical Pixel and second-family HEIC/AVIF output, bounded JXL build/cost decision, 16 KiB runtime and independent clean-build comparison remain open. A successful synthetic emulator matrix does not replace these gates or the real-image/manual evidence in the [governing blueprint](blueprints/first-functional-release.md).
