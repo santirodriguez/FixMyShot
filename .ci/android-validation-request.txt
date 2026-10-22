@@ -89,3 +89,14 @@ Share result verification correction: the output journal's transaction token
 is intentionally different from the batch token. Verify PUBLISHED stage, stable
 item id, exact output URI and provider SHA-256 instead of equating tokens.
 Repeat the same share-intent/MediaStore integration and regression matrix.
+
+SAF unexpected-created-URI boundary checkpoint.
+Parent: 810c207754def1ea77d3b042142c4689f06da596.
+Reject a provider result outside the selected SAF tree without cleanup.
+Require the expanded ten-case TransactionalOutputSaverTest, including injected
+different-tree, different-authority and non-tree returns with zero deletion,
+on API26 and API36; preserve four share-intent, three export-flow and eight
+recovery cases plus all earlier codec/render/cache regressions.
+The successful sharing baseline is Actions39853261424 at 3df5262.
+Actual API26/28 picker grants and external receiver acceptance remain NOT RUN.
+No new permission, native format enablement, main merge, signing or release.
