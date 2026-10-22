@@ -7,6 +7,7 @@ junit = "4.13.2"
 android-test-runner = "1.6.2"
 android-test-junit = "1.2.1"
 heifwriter = "1.2.0-rc01"
+exifinterface = "1.4.2"
 
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -17,6 +18,7 @@ junit = { module = "junit:junit", version.ref = "junit" }
 android-test-runner = { module = "androidx.test:runner", version.ref = "android-test-runner" }
 android-test-junit = { module = "androidx.test.ext:junit", version.ref = "android-test-junit" }
 heifwriter = { module = "androidx.heifwriter:heifwriter", version.ref = "heifwriter" }
+exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
