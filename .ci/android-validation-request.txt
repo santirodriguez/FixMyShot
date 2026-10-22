@@ -1,9 +1,12 @@
-Full-resolution private PNG/WebP executor CI repair.
-Parent 60dd578e738818066612ad2822aadae02e587317.
-Inspected exact Actions 39697755309 emulator artifacts:
-PNG sBIT 8-bit channel hints, WebP VP8X + generated ICCP sRGB profile.
-Verifier now permits only validated color-critical generated profile structures;
-EXIF/XMP/animation remain rejected. API26 JPEG EXIF fixture now uses
-a synthetic APP1 tag instead of unsupported ExifInterface.saveAttributes.
-No MediaStore/SAF save, permissions, native format or app UX changes.
-Use exact SHA of commit containing this marker as build/API26/API36 evidence.
+G4 first transactional output-adapter validation checkpoint.
+Parent: df2089f8fc0e4fdbfe479e84b8fc20065460dd8f.
+API29+ MediaStore owned images: Pictures/FixMyShot with IS_PENDING,
+source-private, bitstream-validated candidate, atomic single-item journal,
+verified transfer digest, published only after copy, conservative indeterminate
+handling after provider ambiguity, and own-output cleanup before publication.
+API26/28: no direct gallery write or new permission; explicit SAF/legacy UI not yet integrated.
+Test fake provider failure boundaries and one owned temporary API29+ MediaStore
+item, deleted after the test. Revalidate the API26 JPEG orientation stream fix.
+Do not expose user-facing Export, create/delete credentials, enable native formats,
+change manifest permissions or publish a GitHub release.
+Use commit SHA containing this marker for source-bound build/API26/API36 evidence.
