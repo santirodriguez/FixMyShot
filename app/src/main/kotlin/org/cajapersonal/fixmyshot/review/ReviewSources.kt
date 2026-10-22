@@ -99,9 +99,45 @@ internal class ReviewSources(private val context: Context) {
         }
     }
 
-    /** Caller must close returned Bitmaps by dropping references once no longer displayed. */
-    fun decodeSample(id: String, maxLongSide: Int = 1500): Bitmap {
-        require(validId.matches(id) && maxLongSide in 64..1600)
+    /** Only privately staged bytes matching the frozen digest may enter output preparation. */
+    fun matchesFingerprint(id: String, expectedSha256: String): Boolean {
+        if (!validId.matches(id) || !Regex("[0-9a-f]{64}").matches(expectedSha256)) return false
+        val file = File(directory, "$id.source")
+        if (!file.isFile || file.length() !in 1L..maxInputBytes) return false
+        return try {
+            val digest = MessageDigest.getInstance("SHA-256")
+            FileInputStream(file).use { input ->
+                val block = ByteArray(16 * 1024)
+                while (true) {
+                    val read = input.read(block)
+                    if (read < 0) break
+                    if (read > 0) digest.update(block, 0, read)
+                }
+            }
+            digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) } == expectedSha256
+        } catch (_: IOException) {
+            false
+        } catch (_: SecurityException) {
+            false
+        }
+    }
+
+    /** Full pixels, not a sampled UI preview; callers must preflight memory first. */
+    fun decodeOriginal(id: String, expectedOriented: PixelSize): Bitmap {
+        val original = decodeNormalized(id, null)
+        if (original.width != expectedOriented.width || original.height != expectedOriented.height) {
+            original.recycle()
+            throw IOException("Staged source dimensions changed")
+        }
+        return original
+    }
+
+    /** Caller must drop references to old UI bitmaps without recycling visible snapshots. */
+    fun decodeSample(id: String, maxLongSide: Int = 1500): Bitmap =
+        decodeNormalized(id, maxLongSide)
+
+    private fun decodeNormalized(id: String, maxLongSide: Int?): Bitmap {
+        require(validId.matches(id) && (maxLongSide == null || maxLongSide in 64..1600))
         val file = File(directory, "$id.source")
         if (!file.isFile) throw IOException("Staged image is unavailable")
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
@@ -109,17 +145,23 @@ internal class ReviewSources(private val context: Context) {
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0 ||
             bounds.outWidth.toLong() * bounds.outHeight > maxSourcePixels) throw IOException("Invalid source bounds")
         var sample = 1
-        while (maxOf(bounds.outWidth / sample, bounds.outHeight / sample) > maxLongSide) sample *= 2
+        if (maxLongSide != null) {
+            while (maxOf(bounds.outWidth / sample, bounds.outHeight / sample) > maxLongSide) sample *= 2
+        }
         val options = BitmapFactory.Options().apply {
             inSampleSize = sample
             inPreferredConfig = Bitmap.Config.ARGB_8888
+            inScaled = false
             inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB)
         }
         val original = BitmapFactory.decodeFile(file.absolutePath, options)
             ?: throw IOException("Unable to decode selected image")
         try {
-            if (original.colorSpace?.isSrgb != true ||
-                (Build.VERSION.SDK_INT >= 34 && original.hasGainmap())) throw IOException("Unsupported HDR or color space")
+            if (original.config != Bitmap.Config.ARGB_8888 ||
+                original.colorSpace?.isSrgb != true ||
+                (Build.VERSION.SDK_INT >= 34 && original.hasGainmap())) {
+                throw IOException("Unsupported HDR, color space or decoder output")
+            }
             val orientation = if (bounds.outMimeType == "image/jpeg") ExifInterface(file.absolutePath)
                 .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
                 else ExifInterface.ORIENTATION_NORMAL

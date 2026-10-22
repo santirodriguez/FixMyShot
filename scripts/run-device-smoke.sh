@@ -93,9 +93,16 @@ timeout 2m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/thumbnail-instrumentation.txt 2>&1
 thumbnail_result=$?
 cat evidence/thumbnail-instrumentation.txt
+# The private executor uses synthetic staged bytes; it never publishes outputs.
+timeout 4m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.PrivateOutputExecutorTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/private-output-instrumentation.txt 2>&1
+private_result=$?
+cat evidence/private-output-instrumentation.txt
 set -e
 grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
+grep -q 'OK (6 tests)' evidence/private-output-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
 python3 scripts/check-native-probe.py evidence
@@ -104,4 +111,4 @@ python3 scripts/check-heic-layout.py evidence
 [[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 &&
    "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
-   "$review_result" -eq 0 && "$thumbnail_result" -eq 0 ]]
+   "$review_result" -eq 0 && "$thumbnail_result" -eq 0 && "$private_result" -eq 0 ]]

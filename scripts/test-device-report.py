@@ -133,7 +133,8 @@ if 'getconf' in args: sys.exit(127)
 if 'instrument' in args:
     native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest', 'NativeHeicPixelLayoutTest') for a in args)
     thumbnail = any('ReviewThumbnailCacheTest' in a for a in args)
-    count = 1 if native else 3 if thumbnail else 4
+    private_output = any('PrivateOutputExecutorTest' in a for a in args)
+    count = 1 if native else 3 if thumbnail else 6 if private_output else 4
     print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
           ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:

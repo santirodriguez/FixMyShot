@@ -1,4 +1,7 @@
-ReviewScreen Compose semantics compile fix after Actions39691864840.
-Base executable source043bc371dc943c7141bc1fc83a585e71c64b5edf.
-Disambiguate SemanticsPropertyReceiver.selected from local selected image.
-No import/cache/preflight/export/permissions changes; full CI rerun for this commit.
+Private full-resolution PNG/lossless WebP candidate execution checkpoint.
+Parent: 925dc8302e466ee203ad6630bf576b76fd61daa6.
+Scope: original-source SHA-256 verification, oriented sRGB full decode,
+contain-plan placement, frozen automatic background, reuse LosslessEncoder,
+strict generated-container inspection and synthetic device fixture tests.
+No MediaStore/SAF/public export/share, no permissions, no native format enablement.
+Use the commit containing this marker as exact build/API26/API36 source.
