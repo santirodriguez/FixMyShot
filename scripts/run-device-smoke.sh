@@ -99,18 +99,25 @@ timeout 4m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/private-output-instrumentation.txt 2>&1
 private_result=$?
 cat evidence/private-output-instrumentation.txt
-# The seven scoped save tests use a fake provider plus one synthetic API29+ MediaStore item.
+# The nine scoped save tests use a fake provider plus one synthetic API29+ MediaStore item.
 # API26 exercises only the permission-free fake transaction and skips the API29 provider branch.
 timeout 4m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.TransactionalOutputSaverTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/transaction-instrumentation.txt 2>&1
 transaction_result=$?
 cat evidence/transaction-instrumentation.txt
+# A separate fault-injected batch suite checks sequential output state and restart barriers.
+timeout 4m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.BatchOutputCoordinatorTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/batch-instrumentation.txt 2>&1
+batch_result=$?
+cat evidence/batch-instrumentation.txt
 set -e
 grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (6 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (9 tests)' evidence/transaction-instrumentation.txt
+grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
 python3 scripts/check-native-probe.py evidence
@@ -120,4 +127,4 @@ python3 scripts/check-heic-layout.py evidence
    "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
    "$review_result" -eq 0 && "$thumbnail_result" -eq 0 &&
-   "$private_result" -eq 0 && "$transaction_result" -eq 0 ]]
+   "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 ]]

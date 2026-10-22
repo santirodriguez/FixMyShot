@@ -16,3 +16,10 @@ Use commit SHA containing this marker for source-bound build/API26/API36 evidenc
 Fix Android 8 orientation read using stable androidx.exifinterface 1.4.2.
 Require source-bound build, six private output cases and nine output
 transaction tests in both API 26 and 36 smoke jobs; no public Export UI.
+
+Batch orchestration checkpoint after verified Actions 39710667723.
+Frozen all-item preflight; serialized private candidate rendering and isolated
+per-item publication journals; explicit cancellation and indeterminate/restart
+barriers. The new five-case instrumentation suite must pass on API26 and API36.
+The Export UI remains disabled; no actual user-selected SAF folder/write,
+permissions, native formats, signing, release or main merge.
