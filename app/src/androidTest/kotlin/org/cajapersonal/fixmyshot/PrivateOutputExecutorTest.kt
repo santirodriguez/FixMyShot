@@ -30,43 +30,34 @@ class PrivateOutputExecutorTest {
         val dir = File(context.cacheDir, "review-sources").apply { mkdirs() }
         val id = UUID.randomUUID().toString().replace("-", "")
         val file = File(dir, "$id.source")
+        val jpegFile = File(dir, "$id.jpg")
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         try {
             bitmap.setHasAlpha(alpha)
             bitmap.eraseColor(if (alpha) Color.TRANSPARENT else Color.BLUE)
             bitmap.setPixel(width / 2, height / 2, Color.RED)
-            file.outputStream().use { output ->
+            (if (orientation == ExifInterface.ORIENTATION_NORMAL) file else jpegFile).outputStream().use { output ->
                 assertTrue(bitmap.compress(
                     if (orientation == ExifInterface.ORIENTATION_NORMAL) Bitmap.CompressFormat.PNG
                     else Bitmap.CompressFormat.JPEG, 100, output))
             }
         } finally { bitmap.recycle() }
         if (orientation != ExifInterface.ORIENTATION_NORMAL) {
-            // API 26 ExifInterface.saveAttributes can reject extensionless staged JPEGs.
-            // Insert a minimal synthetic APP1 orientation tag without an OS EXIF writer.
-            val jpeg = file.readBytes()
-            assertTrue(jpeg.size >= 4 && jpeg[0] == 0xff.toByte() && jpeg[1] == 0xd8.toByte())
-            val tiff = byteArrayOf(
-                0x45, 0x78, 0x69, 0x66, 0, 0,
-                0x49, 0x49, 0x2a, 0, 8, 0, 0, 0,
-                1, 0, 0x12, 1, 3, 0, 1, 0, 0, 0,
-                orientation.toByte(), 0, 0, 0,
-                0, 0, 0, 0,
-            )
-            val size = tiff.size + 2
-            val app1 = byteArrayOf(0xff.toByte(), 0xe1.toByte(),
-                (size ushr 8).toByte(), size.toByte()) + tiff
-            // Preserve a platform JPEG's APP0/JFIF segment before adding the synthetic EXIF.
-            val afterApp0 = if (jpeg.size > 6 && jpeg[2] == 0xff.toByte() &&
-                jpeg[3] == 0xe0.toByte()) {
-                4 + ((jpeg[4].toInt() and 255) shl 8) + (jpeg[5].toInt() and 255)
-            } else 2
-            require(afterApp0 <= jpeg.size)
-            file.writeBytes(jpeg.copyOfRange(0, afterApp0) + app1 +
-                jpeg.copyOfRange(afterApp0, jpeg.size))
-            val parsed = FileInputStream(file).use { ExifInterface(it).getAttributeInt(
-                ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED) }
-            assertEquals(orientation, parsed)
+            try {
+                // Write platform-generated EXIF before staging an extensionless file.
+                ExifInterface(jpegFile.absolutePath).apply {
+                    setAttribute(ExifInterface.TAG_ORIENTATION, orientation.toString())
+                    saveAttributes()
+                }
+                assertTrue("Staging the synthetic JPEG failed", jpegFile.renameTo(file))
+                val parsed = FileInputStream(file).use { input ->
+                    ExifInterface(input).getAttributeInt(
+                        ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+                }
+                assertEquals(orientation, parsed)
+            } finally {
+                jpegFile.delete()
+            }
         }
         val sha = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
             .joinToString("") { "%02x".format(it.toInt() and 255) }
