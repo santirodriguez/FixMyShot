@@ -32,8 +32,7 @@ internal class SafTreeOutputPort(
         val parent = DocumentsContract.buildDocumentUriUsingTree(
             tree, DocumentsContract.getTreeDocumentId(tree))
         val created = DocumentsContract.createDocument(resolver, parent, mime, name) ?: return null
-        if (created.scheme != ContentResolver.SCHEME_CONTENT ||
-            created.authority != tree.authority || !hasExactName(created, name)) {
+        if (!withinTree(created) || !hasExactName(created, name)) {
             runCatching { DocumentsContract.deleteDocument(resolver, created) }
             return null
         }
@@ -46,13 +45,23 @@ internal class SafTreeOutputPort(
         } == true
     } catch (_: Exception) { false }
 
-    override fun openWrite(uri: Uri): OutputStream? =
-        resolver.openFileDescriptor(uri, "w")?.let { ParcelFileDescriptor.AutoCloseOutputStream(it) }
+    private fun withinTree(uri: Uri): Boolean = try {
+        uri.scheme == ContentResolver.SCHEME_CONTENT && uri.authority == tree.authority &&
+            DocumentsContract.isTreeUri(uri) &&
+            DocumentsContract.getTreeDocumentId(uri) == DocumentsContract.getTreeDocumentId(tree)
+    } catch (_: IllegalArgumentException) { false }
 
-    override fun openRead(uri: Uri): InputStream? = resolver.openInputStream(uri)
+    override fun openWrite(uri: Uri): OutputStream? =
+        if (!withinTree(uri)) null else resolver.openFileDescriptor(uri, "w")?.let {
+            ParcelFileDescriptor.AutoCloseOutputStream(it)
+        }
+
+    override fun openRead(uri: Uri): InputStream? =
+        if (!withinTree(uri)) null else resolver.openInputStream(uri)
 
     /** This acknowledges validated completion, not an atomic publication switch. */
-    override fun publish(uri: Uri): Boolean = true
+    override fun publish(uri: Uri): Boolean = withinTree(uri)
 
-    override fun delete(uri: Uri): Boolean = DocumentsContract.deleteDocument(resolver, uri)
+    override fun delete(uri: Uri): Boolean =
+        withinTree(uri) && DocumentsContract.deleteDocument(resolver, uri)
 }
