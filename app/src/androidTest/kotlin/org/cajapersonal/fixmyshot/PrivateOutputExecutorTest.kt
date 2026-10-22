@@ -14,6 +14,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.io.FileInputStream
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -55,9 +56,17 @@ class PrivateOutputExecutorTest {
             val size = tiff.size + 2
             val app1 = byteArrayOf(0xff.toByte(), 0xe1.toByte(),
                 (size ushr 8).toByte(), size.toByte()) + tiff
-            file.writeBytes(jpeg.copyOfRange(0, 2) + app1 + jpeg.copyOfRange(2, jpeg.size))
-            assertEquals(orientation, ExifInterface(file.absolutePath).getAttributeInt(
-                ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED))
+            // Preserve a platform JPEG's APP0/JFIF segment before adding the synthetic EXIF.
+            val afterApp0 = if (jpeg.size > 6 && jpeg[2] == 0xff.toByte() &&
+                jpeg[3] == 0xe0.toByte()) {
+                4 + ((jpeg[4].toInt() and 255) shl 8) + (jpeg[5].toInt() and 255)
+            } else 2
+            require(afterApp0 <= jpeg.size)
+            file.writeBytes(jpeg.copyOfRange(0, afterApp0) + app1 +
+                jpeg.copyOfRange(afterApp0, jpeg.size))
+            val parsed = FileInputStream(file).use { ExifInterface(it).getAttributeInt(
+                ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED) }
+            assertEquals(orientation, parsed)
         }
         val sha = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
             .joinToString("") { "%02x".format(it.toInt() and 255) }

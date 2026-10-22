@@ -76,11 +76,7 @@ internal class ReviewSources(private val context: Context) {
                 return ImportResult.Rejected(Failure.UNSUPPORTED)
             }
             // Android's BitmapFactory leaves JPEG orientation to the caller.
-            val orientation = if (bounds.outMimeType == "image/jpeg") {
-                ExifInterface(target.absolutePath).getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL,
-                )
-            } else ExifInterface.ORIENTATION_NORMAL
+            val orientation = readOrientation(target, bounds.outMimeType)
             if (orientation !in 1..8) return ImportResult.Rejected(Failure.UNSUPPORTED)
             val rotated = orientation in setOf(5, 6, 7, 8)
             val size = if (rotated) PixelSize(height, width) else PixelSize(width, height)
@@ -162,9 +158,7 @@ internal class ReviewSources(private val context: Context) {
                 (Build.VERSION.SDK_INT >= 34 && original.hasGainmap())) {
                 throw IOException("Unsupported HDR, color space or decoder output")
             }
-            val orientation = if (bounds.outMimeType == "image/jpeg") ExifInterface(file.absolutePath)
-                .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
-                else ExifInterface.ORIENTATION_NORMAL
+            val orientation = readOrientation(file, bounds.outMimeType)
             if (orientation == ExifInterface.ORIENTATION_NORMAL) return original
             val transform = Matrix().apply {
                 when (orientation) {
@@ -184,6 +178,15 @@ internal class ReviewSources(private val context: Context) {
         } catch (error: Exception) {
             if (!original.isRecycled) original.recycle()
             throw error
+        }
+    }
+
+    /** The stream constructor avoids API26 filename-based limitations for .source files. */
+    private fun readOrientation(file: File, mime: String?): Int {
+        if (mime != "image/jpeg") return ExifInterface.ORIENTATION_NORMAL
+        return FileInputStream(file).use { input ->
+            ExifInterface(input).getAttributeInt(
+                ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         }
     }
 
