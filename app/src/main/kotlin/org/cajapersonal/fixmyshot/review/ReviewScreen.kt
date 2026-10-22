@@ -54,8 +54,9 @@ import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
+import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
-/** A functional picker/review slice, not a claim that output publication is implemented. */
+/** Review plus deliberate, foreground-only batch export and bounded progress. */
 @Composable
 internal fun ReviewScreen(
     draft: DraftSession,
@@ -66,6 +67,9 @@ internal fun ReviewScreen(
     invalidImports: Int,
     previewUnavailable: Boolean,
     api: Int,
+    exportState: ReviewExportState,
+    onExport: () -> Unit,
+    onCancelExport: () -> Unit,
     onChoose: () -> Unit,
     onSelect: (String) -> Unit,
     onDestination: (DestinationChoice) -> Unit,
@@ -79,6 +83,7 @@ internal fun ReviewScreen(
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
+    val editEnabled = !busy && !exportState.isLocked
 
 
     Column(
@@ -88,7 +93,7 @@ internal fun ReviewScreen(
     ) {
         Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
         Text(stringResource(R.string.tagline), style = MaterialTheme.typography.bodyMedium)
-        Button(onClick = onChoose, enabled = !busy) { Text(stringResource(R.string.choose_images)) }
+        Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
         if (busy) Text(stringResource(R.string.import_in_progress))
         if (invalidImports > 0) Text(stringResource(R.string.import_skipped, invalidImports),
             color = MaterialTheme.colorScheme.error)
@@ -102,7 +107,7 @@ internal fun ReviewScreen(
             LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 itemsIndexed(draft.images, key = { _, image -> image.id }) { index, image ->
                     val selectedThumbnail = image.id == selectedId
-                    OutlinedButton(onClick = { onSelect(image.id) },
+                    OutlinedButton(onClick = { onSelect(image.id) }, enabled = editEnabled,
                         modifier = Modifier.semantics { this.selected = selectedThumbnail }) {
                         Column(horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -147,7 +152,7 @@ internal fun ReviewScreen(
                 }
             }
             ReviewControls(
-                draft = draft, plan = plan,
+                draft = draft, plan = plan, enabled = editEnabled,
                 onDestination = onDestination, onFormat = onFormat, onBackground = onBackground,
             )
             Text(stringResource(R.string.metadata_removed), style = MaterialTheme.typography.bodySmall)
@@ -168,15 +173,69 @@ internal fun ReviewScreen(
                 }
                 if (selected.overrides.hasCustomValues) Text(stringResource(R.string.custom_settings_label))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    OutlinedButton(onClick = onResetSelected) { Text(stringResource(R.string.reset_image)) }
-                    OutlinedButton(onClick = onUndo) { Text(stringResource(R.string.undo_last)) }
-                    OutlinedButton(onClick = onRemove) { Text(stringResource(R.string.remove_image)) }
+                    OutlinedButton(onClick = onResetSelected, enabled = editEnabled) { Text(stringResource(R.string.reset_image)) }
+                    OutlinedButton(onClick = onUndo, enabled = editEnabled) { Text(stringResource(R.string.undo_last)) }
+                    OutlinedButton(onClick = onRemove, enabled = editEnabled) { Text(stringResource(R.string.remove_image)) }
                 }
-                Button(onClick = {}, enabled = false) { Text(stringResource(R.string.export_not_ready)) }
-                Text(stringResource(R.string.preview_only_notice), style = MaterialTheme.typography.bodySmall)
+                Button(onClick = onExport, enabled = editEnabled &&
+                    exportState.phase == ExportUiPhase.IDLE) {
+                    Text(stringResource(R.string.export_batch, draft.images.size))
+                }
+                Text(stringResource(if (api >= 29) R.string.export_destination_pictures
+                    else R.string.export_destination_saf), style = MaterialTheme.typography.bodySmall)
+                if (exportState.phase == ExportUiPhase.IDLE) {
+                    Text(stringResource(R.string.preview_only_notice),
+                        style = MaterialTheme.typography.bodySmall)
+                }
+                if (exportState.phase != ExportUiPhase.IDLE) {
+                    ExportProgress(exportState, onCancelExport)
+                }
             }
-            OutlinedButton(onClick = onDiscard) { Text(stringResource(R.string.discard_session)) }
+            OutlinedButton(onClick = onDiscard, enabled = editEnabled) { Text(stringResource(R.string.discard_session)) }
         }
     }
 }
 
+@Composable
+private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
+    val headline = when (state.phase) {
+        ExportUiPhase.IDLE -> null
+        ExportUiPhase.CHOOSING_FOLDER -> R.string.export_select_folder
+        ExportUiPhase.RUNNING -> R.string.export_in_progress
+        ExportUiPhase.COMPLETED -> R.string.export_finished
+        ExportUiPhase.BLOCKED -> R.string.export_blocked
+        ExportUiPhase.NEEDS_REVIEW -> R.string.export_requires_review
+        ExportUiPhase.CANCELLED -> R.string.export_cancelled
+        ExportUiPhase.ERROR -> R.string.export_destination_error
+    }
+    if (headline != null) {
+        val message = when (state.phase) {
+            ExportUiPhase.COMPLETED -> stringResource(headline, state.published, state.failed)
+            ExportUiPhase.BLOCKED -> stringResource(headline, state.blocked)
+            else -> stringResource(headline)
+        }
+        Text(message, style = MaterialTheme.typography.titleSmall)
+    }
+    if (state.total > 0) {
+        Text(stringResource(R.string.export_progress, state.processed, state.total),
+            style = MaterialTheme.typography.bodyMedium)
+        state.items.forEachIndexed { index, item ->
+            val label = when (item.phase) {
+                BatchItemPhase.QUEUED -> R.string.export_item_queued
+                BatchItemPhase.ENCODING -> R.string.export_item_encoding
+                BatchItemPhase.SAVING -> R.string.export_item_saving
+                BatchItemPhase.PUBLISHED -> R.string.export_item_published
+                BatchItemPhase.FAILED -> R.string.export_item_failed
+                BatchItemPhase.CANCELLED -> R.string.export_item_cancelled
+                BatchItemPhase.NEEDS_REVIEW -> R.string.export_item_needs_review
+            }
+            Text(stringResource(R.string.export_item_status, index + 1, stringResource(label)),
+                style = MaterialTheme.typography.bodySmall)
+        }
+    }
+    if (state.phase == ExportUiPhase.RUNNING) {
+        OutlinedButton(onClick = onCancel, enabled = !state.cancelRequested) {
+            Text(stringResource(R.string.export_cancel_action))
+        }
+    }
+}

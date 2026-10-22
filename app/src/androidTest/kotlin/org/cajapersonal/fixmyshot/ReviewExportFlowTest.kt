@@ -1,0 +1,194 @@
+package org.cajapersonal.fixmyshot
+
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import org.cajapersonal.fixmyshot.core.*
+import org.cajapersonal.fixmyshot.export.MediaStore29Port
+import org.cajapersonal.fixmyshot.export.OwnedOutputPort
+import org.cajapersonal.fixmyshot.review.ExportUiPhase
+import org.cajapersonal.fixmyshot.review.ReviewExportState
+import org.cajapersonal.fixmyshot.review.ReviewViewModel
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.InputStream
+import java.io.OutputStream
+import java.security.MessageDigest
+import java.util.UUID
+import java.util.concurrent.ConcurrentHashMap
+
+/** Full staged source -> immutable batch -> PNG encode -> verified destination -> UI result. */
+@RunWith(AndroidJUnit4::class)
+class ReviewExportFlowTest {
+    private val instrumentation = InstrumentationRegistry.getInstrumentation()
+    private val app = instrumentation.targetContext
+
+    private class Owner : ViewModelStoreOwner {
+        override val viewModelStore = ViewModelStore()
+        val model get() = ViewModelProvider(this)[ReviewViewModel::class.java]
+    }
+
+    private class MemoryPort : OwnedOutputPort {
+        val data = ConcurrentHashMap<String, ByteArray>()
+        var inserted = 0
+        var published = 0
+        override fun create(name: String, mime: String): Uri {
+            val id = ++inserted
+            return Uri.parse("content://fixmyshot-test/export/$id")
+        }
+        override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+            override fun close() {
+                data[uri.toString()] = toByteArray()
+                super.close()
+            }
+        }
+        override fun openRead(uri: Uri): InputStream? =
+            data[uri.toString()]?.let(::ByteArrayInputStream)
+        override fun publish(uri: Uri): Boolean {
+            if (!data.containsKey(uri.toString())) return false
+            published++
+            return true
+        }
+        override fun delete(uri: Uri): Boolean = data.remove(uri.toString()) != null
+    }
+
+    private class RecordingPort(private val delegate: OwnedOutputPort) : OwnedOutputPort by delegate {
+        val created = mutableListOf<Uri>()
+        override fun create(name: String, mime: String): Uri? =
+            delegate.create(name, mime)?.also { created += it }
+        fun deleteOwnOutputs() { created.forEach { runCatching { delegate.delete(it) } } }
+    }
+
+    private fun stageSynthetic(color: Int): Pair<DraftImage, File> {
+        val root = File(app.cacheDir, "review-sources").apply { mkdirs() }
+        val id = UUID.randomUUID().toString().replace("-", "")
+        val file = File(root, "$id.source")
+        val bitmap = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888)
+        try {
+            bitmap.setHasAlpha(false)
+            bitmap.eraseColor(color)
+            file.outputStream().use { output ->
+                assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, output))
+            }
+        } finally { bitmap.recycle() }
+        val digest = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+            .joinToString("") { "%02x".format(it.toInt() and 255) }
+        return DraftImage(id, "test-$id", PixelSize(64, 64), false,
+            contentSha256 = digest) to file
+    }
+
+    private fun draftOf(vararg images: DraftImage) =
+        DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+            batch = EditSettings(background = BackgroundChoice.White))
+            .addImages(images.toList())
+
+    private fun waitForResult(model: ReviewViewModel): ReviewExportState {
+        val deadline = System.currentTimeMillis() + 130_000L
+        while (System.currentTimeMillis() < deadline) {
+            instrumentation.waitForIdleSync()
+            val state = model.exportState
+            if (state.phase !in setOf(ExportUiPhase.CHOOSING_FOLDER,
+                    ExportUiPhase.RUNNING, ExportUiPhase.IDLE)) return state
+            Thread.sleep(90)
+        }
+        fail("Export did not finish within the instrumentation limit")
+        return model.exportState
+    }
+
+    private inline fun withCleanup(block: (MutableList<File>, Owner) -> Unit) {
+        val previously = File(app.filesDir, "export-jobs").listFiles()
+            ?.mapTo(mutableSetOf()) { it.name } ?: mutableSetOf()
+        val owner = Owner()
+        val files = mutableListOf<File>()
+        try { block(files, owner) } finally {
+            owner.viewModelStore.clear()
+            files.forEach { it.delete() }
+            File(app.filesDir, "export-jobs").listFiles()
+                ?.filter { it.name !in previously }?.forEach { it.deleteRecursively() }
+        }
+    }
+
+    @Test fun stagedImagesProduceVerifiedPngAndNoAutomaticSecondPublication() = withCleanup { files, owner ->
+        val (a, af) = stageSynthetic(Color.BLUE)
+        val (b, bf) = stageSynthetic(Color.RED)
+        files += af; files += bf
+        val port = MemoryPort()
+        val model = owner.model
+        instrumentation.runOnMainSync {
+            model.draft = draftOf(a, b)
+            assertTrue(model.prepareExport())
+            model.startPreparedExport(app, port)
+        }
+        val done = waitForResult(model)
+        assertEquals(ExportUiPhase.COMPLETED, done.phase)
+        assertEquals(2, done.published)
+        assertEquals(2, port.inserted)
+        assertEquals(2, port.published)
+        assertEquals(0, done.failed + done.needsReview)
+        port.data.values.forEach { bytes ->
+            val bitmap = requireNotNull(BitmapFactory.decodeByteArray(bytes, 0, bytes.size))
+            try {
+                assertEquals(64, bitmap.width)
+                assertEquals(64, bitmap.height)
+                assertTrue(bitmap.getPixel(32, 32) in setOf(Color.BLUE, Color.RED))
+            } finally { bitmap.recycle() }
+        }
+        instrumentation.runOnMainSync {
+            assertFalse("Same revision must require explicit reset before retry", model.prepareExport())
+        }
+        assertEquals(2, port.published)
+    }
+
+    @Test fun rejectedWholeBatchCannotCreateAFile() = withCleanup { files, owner ->
+        val (a, af) = stageSynthetic(Color.GREEN)
+        files += af
+        val missing = a.copy(id = UUID.randomUUID().toString().replace("-", ""),
+            sourceToken = "test-missing", contentSha256 = null)
+        val model = owner.model
+        instrumentation.runOnMainSync {
+            model.draft = draftOf(a, missing)
+            assertFalse(model.prepareExport())
+            assertEquals(ExportUiPhase.BLOCKED, model.exportState.phase)
+            assertEquals(1, model.exportState.blocked)
+        }
+    }
+
+    @Test fun api29WritesOwnOutputToPicturesThenRemovesTestImage() = withCleanup { files, owner ->
+        if (Build.VERSION.SDK_INT < 29) return@withCleanup
+        val (image, file) = stageSynthetic(Color.MAGENTA)
+        files += file
+        val port = RecordingPort(MediaStore29Port(app.contentResolver))
+        try {
+            val model = owner.model
+            instrumentation.runOnMainSync {
+                model.draft = draftOf(image)
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(app, port)
+            }
+            val state = waitForResult(model)
+            assertEquals(ExportUiPhase.COMPLETED, state.phase)
+            assertEquals(1, state.published)
+            assertEquals(1, port.created.size)
+            app.contentResolver.query(port.created.single(),
+                arrayOf(MediaStore.MediaColumns.IS_PENDING,
+                    MediaStore.MediaColumns.RELATIVE_PATH), null, null, null).use { cursor ->
+                val row = requireNotNull(cursor)
+                assertTrue(row.moveToFirst())
+                assertEquals(0, row.getInt(0))
+                assertEquals("Pictures/FixMyShot", row.getString(1).trimEnd('/'))
+            }
+        } finally { port.deleteOwnOutputs() }
+    }
+}

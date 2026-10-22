@@ -51,4 +51,24 @@
     <string name="remove_image">Remove</string>
     <string name="discard_session">Discard session</string>
     <string name="export_not_ready">Export · coming later</string>
+    <string name="export_batch">Export %1$d images</string>
+    <string name="export_destination_pictures">Save location: Pictures/FixMyShot. Originals are not changed.</string>
+    <string name="export_destination_saf">Choose a folder to save. Files may be visible before writing finishes.</string>
+    <string name="export_select_folder">Select a destination folder to continue.</string>
+    <string name="export_in_progress">Exporting images</string>
+    <string name="export_finished">Export finished: %1$d saved, %2$d failed.</string>
+    <string name="export_blocked">Export blocked: review %1$d images before saving.</string>
+    <string name="export_requires_review">An output may already exist. Check the selected folder before trying again.</string>
+    <string name="export_cancelled">Export stopped. Images already saved have been kept.</string>
+    <string name="export_destination_error">The selected destination is unavailable. Nothing new was started.</string>
+    <string name="export_progress">Completed %1$d of %2$d</string>
+    <string name="export_item_queued">Waiting</string>
+    <string name="export_item_encoding">Preparing image</string>
+    <string name="export_item_saving">Saving</string>
+    <string name="export_item_published">Saved</string>
+    <string name="export_item_failed">Failed</string>
+    <string name="export_item_cancelled">Cancelled</string>
+    <string name="export_item_needs_review">Check output</string>
+    <string name="export_item_status">Image %1$d: %2$s</string>
+    <string name="export_cancel_action">Stop export</string>
 </resources>

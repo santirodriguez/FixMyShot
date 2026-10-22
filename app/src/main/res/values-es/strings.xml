@@ -51,4 +51,24 @@
     <string name="remove_image">Quitar</string>
     <string name="discard_session">Descartar sesión</string>
     <string name="export_not_ready">Exportar · próximamente</string>
+    <string name="export_batch">Exportar %1$d imágenes</string>
+    <string name="export_destination_pictures">Destino: Pictures/FixMyShot. Los originales no se modifican.</string>
+    <string name="export_destination_saf">Elegí una carpeta. Los archivos pueden ser visibles antes de terminar de guardarse.</string>
+    <string name="export_select_folder">Elegí una carpeta de destino para continuar.</string>
+    <string name="export_in_progress">Exportando imágenes</string>
+    <string name="export_finished">Exportación terminada: %1$d guardadas, %2$d fallidas.</string>
+    <string name="export_blocked">Exportación bloqueada: revisá %1$d imágenes antes de guardar.</string>
+    <string name="export_requires_review">Puede existir un archivo de salida. Revisá la carpeta elegida antes de reintentar.</string>
+    <string name="export_cancelled">Exportación detenida. Las imágenes ya guardadas se conservaron.</string>
+    <string name="export_destination_error">No se puede acceder al destino elegido. No se inició ningún guardado nuevo.</string>
+    <string name="export_progress">Completadas %1$d de %2$d</string>
+    <string name="export_item_queued">Pendiente</string>
+    <string name="export_item_encoding">Preparando imagen</string>
+    <string name="export_item_saving">Guardando</string>
+    <string name="export_item_published">Guardada</string>
+    <string name="export_item_failed">Fallida</string>
+    <string name="export_item_cancelled">Cancelada</string>
+    <string name="export_item_needs_review">Verificar salida</string>
+    <string name="export_item_status">Imagen %1$d: %2$s</string>
+    <string name="export_cancel_action">Detener exportación</string>
 </resources>

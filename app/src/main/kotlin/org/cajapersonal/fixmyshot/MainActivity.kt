@@ -1,6 +1,7 @@
 package org.cajapersonal.fixmyshot
 
 import android.content.ComponentCallbacks2
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -21,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ItemValue
+import org.cajapersonal.fixmyshot.export.MediaStore29Port
+import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
 import org.cajapersonal.fixmyshot.review.ReviewSources
@@ -40,6 +43,27 @@ class MainActivity : ComponentActivity() {
 
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) addImages(uris)
+    }
+
+    // On Android 8/9, output is permitted only inside a folder explicitly selected here.
+    private val folderPicker = registerForActivityResult(
+        ActivityResultContracts.OpenDocumentTree()
+    ) { uri ->
+        if (!::model.isInitialized) return@registerForActivityResult
+        if (uri == null) {
+            model.destinationCancelled()
+        } else {
+            try {
+                contentResolver.takePersistableUriPermission(uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+                model.startPreparedExport(applicationContext,
+                    SafTreeOutputPort(contentResolver, uri))
+            } catch (_: SecurityException) {
+                model.destinationUnavailable()
+            } catch (_: IllegalArgumentException) {
+                model.destinationUnavailable()
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,10 +87,14 @@ class MainActivity : ComponentActivity() {
                         invalidImports = model.invalidImports,
                         previewUnavailable = model.previewUnavailable,
                         api = Build.VERSION.SDK_INT,
+                        exportState = model.exportState,
+                        onExport = { beginExport() },
+                        onCancelExport = { model.cancelExport() },
                         onChoose = {
                             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         },
-                        onSelect = { id ->
+                        onSelect = selectImage@{ id ->
+                            if (model.exportState.isLocked) return@selectImage
                             model.selectedId = id
                             model.selectThumbnail(id)
                             scheduleThumbnails(listOf(id))
@@ -99,15 +127,25 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private fun beginExport() {
+        if (!model.prepareExport()) return
+        if (Build.VERSION.SDK_INT >= 29) {
+            model.startPreparedExport(applicationContext, MediaStore29Port(contentResolver))
+        } else {
+            folderPicker.launch(null)
+        }
+    }
+
     private fun updateDraft(value: DraftSession) {
-        if (value == model.draft) return
+        if (model.exportState.isLocked || value == model.draft) return
         model.draft = value
+        model.onDraftEdited()
         if (model.selectedId !in value.images.map { it.id }) model.selectedId = value.images.firstOrNull()?.id
         loadPreview()
     }
 
     private fun addImages(uris: List<Uri>) {
-        if (model.isBusy) return
+        if (model.isBusy || model.exportState.isLocked) return
         val known = model.draft.images.mapTo(mutableSetOf()) { it.sourceToken }
         val remaining = 100 - model.draft.images.size
         val wanted = uris.distinctBy { it.toString() }.filter { it.toString() !in known }.take(remaining)
@@ -132,6 +170,7 @@ class MainActivity : ComponentActivity() {
                     }
                 model.invalidImports += staged.size - additions.size
                 model.draft = model.draft.addImages(additions)
+                model.onDraftEdited()
                 if (model.selectedId == null) model.selectedId = model.draft.images.firstOrNull()?.id
                 model.isBusy = false
                 loadPreview()
@@ -200,8 +239,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun removeSelected() {
+        if (model.exportState.isLocked) return
         val id = model.selectedId ?: return
         model.draft = model.draft.removeItem(id)
+        model.onDraftEdited()
         model.selectedId = model.draft.images.firstOrNull()?.id
         model.removeThumbnail(id)
         worker.execute { sources.discard(id) }
@@ -209,8 +250,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun discardDraft() {
+        if (model.exportState.isLocked) return
         val ids = model.draft.images.map { it.id }
         model.draft = DraftSession()
+        model.onDraftEdited()
         model.selectedId = null
         model.preview = null
         model.clearThumbnails()

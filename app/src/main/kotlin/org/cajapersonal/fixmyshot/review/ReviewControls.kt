@@ -34,6 +34,7 @@ import org.cajapersonal.fixmyshot.core.PreviewPlan
 internal fun ReviewControls(
     draft: DraftSession,
     plan: PreviewPlan?,
+    enabled: Boolean,
     onDestination: (DestinationChoice) -> Unit,
     onFormat: (OutputFormat, Boolean) -> Unit,
     onBackground: (BackgroundChoice, Boolean) -> Unit,
@@ -47,56 +48,56 @@ internal fun ReviewControls(
     androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(stringResource(R.string.destination_heading), style = MaterialTheme.typography.titleMedium)
             Box {
-                OutlinedButton(onClick = { chooseDestination = true }) {
+                OutlinedButton(enabled = enabled, onClick = { chooseDestination = true }) {
                     Text(destinationLabel(draft.destination))
                 }
                 DropdownMenu(expanded = chooseDestination, onDismissRequest = { chooseDestination = false }) {
                     DestinationCatalog.presets.filter { it.id != DestinationCatalog.CUSTOM_RATIO }.forEach { preset ->
-                        DropdownMenuItem(text = { Text(destinationLabel(DestinationChoice.Preset(preset.id))) },
+                        DropdownMenuItem(enabled = enabled, text = { Text(destinationLabel(DestinationChoice.Preset(preset.id))) },
                             onClick = { chooseDestination = false; onDestination(DestinationChoice.Preset(preset.id)) })
                     }
                 }
             }
             Text(stringResource(R.string.custom_ratio_label), style = MaterialTheme.typography.bodyMedium)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(ratioW, onValueChange = { ratioW = it.take(5).filter(Char::isDigit) },
+                OutlinedTextField(ratioW, enabled = enabled, onValueChange = { ratioW = it.take(5).filter(Char::isDigit) },
                     label = { Text(stringResource(R.string.ratio_width)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true, modifier = Modifier.weight(1f))
-                OutlinedTextField(ratioH, onValueChange = { ratioH = it.take(5).filter(Char::isDigit) },
+                OutlinedTextField(ratioH, enabled = enabled, onValueChange = { ratioH = it.take(5).filter(Char::isDigit) },
                     label = { Text(stringResource(R.string.ratio_height)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = true, modifier = Modifier.weight(1f))
             }
             val numerator = ratioW.toIntOrNull()
             val denominator = ratioH.toIntOrNull()
-            OutlinedButton(enabled = numerator != null && denominator != null && numerator in 1..10000 && denominator in 1..10000,
+            OutlinedButton(enabled = enabled && numerator != null && denominator != null && numerator in 1..10000 && denominator in 1..10000,
                 onClick = { onDestination(DestinationChoice.Custom.of(requireNotNull(numerator), requireNotNull(denominator))) }) {
                 Text(stringResource(R.string.apply_custom_ratio))
             }
             Text(stringResource(R.string.preserve_content), style = MaterialTheme.typography.bodyMedium)
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(checked = selectedOnly, onCheckedChange = { selectedOnly = it })
+                Checkbox(checked = selectedOnly, enabled = enabled, onCheckedChange = { selectedOnly = it })
                 Text(stringResource(R.string.selected_only))
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Box {
-                    OutlinedButton(onClick = { chooseFormat = true }) {
+                    OutlinedButton(enabled = enabled, onClick = { chooseFormat = true }) {
                         Text(formatLabel(plan?.settings?.format ?: draft.batch.format))
                     }
                     DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
                         OutputFormat.entries.forEach { format ->
-                            DropdownMenuItem(text = { Text(formatLabel(format)) },
+                            DropdownMenuItem(enabled = enabled, text = { Text(formatLabel(format)) },
                                 onClick = { chooseFormat = false; onFormat(format, selectedOnly) })
                         }
                     }
                 }
                 Box {
-                    OutlinedButton(onClick = { chooseBackground = true }) {
+                    OutlinedButton(enabled = enabled, onClick = { chooseBackground = true }) {
                         Text(backgroundLabel(plan?.settings?.background ?: draft.batch.background))
                     }
                     DropdownMenu(expanded = chooseBackground, onDismissRequest = { chooseBackground = false }) {
                         listOf(BackgroundChoice.Automatic, BackgroundChoice.White, BackgroundChoice.Black,
                             BackgroundChoice.Transparent).forEach { choice ->
-                            DropdownMenuItem(text = { Text(backgroundLabel(choice)) },
+                            DropdownMenuItem(enabled = enabled, text = { Text(backgroundLabel(choice)) },
                                 onClick = { chooseBackground = false; onBackground(choice, selectedOnly) })
                         }
                     }

@@ -106,6 +106,12 @@ timeout 4m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/transaction-instrumentation.txt 2>&1
 transaction_result=$?
 cat evidence/transaction-instrumentation.txt
+# From app-private source through actual codec, validated provider and UI state.
+timeout 4m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.ReviewExportFlowTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/export-flow-instrumentation.txt 2>&1
+export_flow_result=$?
+cat evidence/export-flow-instrumentation.txt
 # A separate fault-injected batch suite checks sequential output state and restart barriers.
 timeout 4m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.BatchOutputCoordinatorTest \
@@ -117,6 +123,7 @@ grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (6 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (9 tests)' evidence/transaction-instrumentation.txt
+grep -q 'OK (3 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
@@ -127,4 +134,5 @@ python3 scripts/check-heic-layout.py evidence
    "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
    "$review_result" -eq 0 && "$thumbnail_result" -eq 0 &&
-   "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 ]]
+   "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 &&
+   "$export_flow_result" -eq 0 ]]

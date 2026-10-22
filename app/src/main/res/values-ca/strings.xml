@@ -51,4 +51,24 @@
     <string name="remove_image">Elimina</string>
     <string name="discard_session">Descarta la sessió</string>
     <string name="export_not_ready">Exporta · properament</string>
+    <string name="export_batch">Exporta %1$d imatges</string>
+    <string name="export_destination_pictures">Destinació: Pictures/FixMyShot. Les imatges originals no es modifiquen.</string>
+    <string name="export_destination_saf">Tria una carpeta. Els fitxers poden ser visibles abans de completar el desament.</string>
+    <string name="export_select_folder">Tria una carpeta de destinació per continuar.</string>
+    <string name="export_in_progress">Exportant imatges</string>
+    <string name="export_finished">Exportació acabada: %1$d desades, %2$d fallides.</string>
+    <string name="export_blocked">Exportació bloquejada: revisa %1$d imatges abans de desar.</string>
+    <string name="export_requires_review">Pot haver-hi un fitxer de sortida. Revisa la carpeta triada abans de tornar-ho a provar.</string>
+    <string name="export_cancelled">Exportació aturada. Les imatges ja desades es conserven.</string>
+    <string name="export_destination_error">No es pot accedir a la destinació triada. No ha començat cap desament nou.</string>
+    <string name="export_progress">Completades %1$d de %2$d</string>
+    <string name="export_item_queued">Pendent</string>
+    <string name="export_item_encoding">Preparant imatge</string>
+    <string name="export_item_saving">Desant</string>
+    <string name="export_item_published">Desada</string>
+    <string name="export_item_failed">Fallida</string>
+    <string name="export_item_cancelled">Cancel·lada</string>
+    <string name="export_item_needs_review">Comprova la sortida</string>
+    <string name="export_item_status">Imatge %1$d: %2$s</string>
+    <string name="export_cancel_action">Atura la exportació</string>
 </resources>

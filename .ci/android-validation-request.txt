@@ -23,3 +23,17 @@ per-item publication journals; explicit cancellation and indeterminate/restart
 barriers. The new five-case instrumentation suite must pass on API26 and API36.
 The Export UI remains disabled; no actual user-selected SAF folder/write,
 permissions, native formats, signing, release or main merge.
+
+Explicit batch Export UI integration checkpoint.
+ReviewViewModel freezes the edited draft before any destination selection, 
+runs the existing sequential coordinator off the UI thread and reports
+per-item output states without original paths or metadata. API29+ uses
+owned MediaStore pending publication; API26-28 requires a user-chosen
+SAF folder and read/write persistable grant before writing. 
+New ReviewExportFlowTest uses synthetic private sources, checks actual
+lossless PNG candidate, readback and app-owned API29+ gallery cleanup;
+it never depends on manual user-device testing.
+Test build, five batch coordinator, six private output, nine single-output,
+three UI-to-export integration and all prior suites on API26 and API36.
+No broad storage/Internet permissions, native format enablement, signing,
+main merge, release or deployment.
