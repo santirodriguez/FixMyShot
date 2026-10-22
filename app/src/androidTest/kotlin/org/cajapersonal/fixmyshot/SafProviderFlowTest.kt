@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.cajapersonal.fixmyshot.core.*
+import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
 import org.cajapersonal.fixmyshot.review.ExportUiPhase
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
 import org.json.JSONArray
@@ -26,6 +27,7 @@ import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.io.FileOutputStream
 import java.security.MessageDigest
 import java.util.UUID
 
@@ -160,6 +162,73 @@ class SafProviderFlowTest {
         } finally { bitmap.recycle() }
     }
 
+    /** Failure-only probe of this real provider; never turns a failed batch into a pass. */
+    private fun diagnoseProvider(source: File): JSONObject {
+        val details = JSONObject()
+        val steps = JSONArray()
+        val port = SafTreeOutputPort(app.contentResolver, tree)
+        var uri: Uri? = null
+        var stage = "CREATE"
+        fun error(error: Exception) = JSONObject()
+            .put("type", error.javaClass.simpleName)
+            .put("message", error.message.orEmpty().replace(
+                Regex("content://[^\\s]+"), "[synthetic-uri]").take(200))
+        try {
+            val name = "FixMyShot_20261022T120000Z_" +
+                UUID.randomUUID().toString().replace("-", "").take(8) + ".png"
+            uri = port.create(name, "image/png")
+            if (uri == null) return details.put("failed_at", stage).put("null_result", true)
+            steps.put(stage)
+            stage = "OPEN_WRITE"
+            val output = requireNotNull(port.openWrite(uri))
+            output.use { target ->
+                steps.put(stage)
+                stage = "WRITE"
+                source.inputStream().use { it.copyTo(target) }
+                steps.put(stage)
+                stage = "FLUSH"
+                target.flush()
+                steps.put(stage)
+                stage = "SYNC"
+                if (target is FileOutputStream) {
+                    try {
+                        target.fd.sync()
+                        steps.put(stage)
+                    } catch (failure: Exception) {
+                        details.put("sync_error", error(failure))
+                    }
+                }
+                stage = "CLOSE"
+            }
+            steps.put(stage)
+            stage = "READBACK"
+            val digest = MessageDigest.getInstance("SHA-256")
+            requireNotNull(port.openRead(uri)).use { input ->
+                val buffer = ByteArray(8192)
+                var total = 0
+                while (true) {
+                    val count = input.read(buffer)
+                    if (count < 0) break
+                    total += count
+                    check(total <= 1_048_576)
+                    digest.update(buffer, 0, count)
+                }
+            }
+            details.put("readback_matches", hash(source) == digest.digest()
+                .joinToString("") { "%02x".format(it.toInt() and 255) })
+            steps.put(stage)
+        } catch (failure: Exception) {
+            details.put("failed_at", stage).put("error", error(failure))
+        } finally {
+            details.put("steps", steps)
+            uri?.let { created ->
+                try { details.put("probe_deleted", port.delete(created)) }
+                catch (failure: Exception) { details.put("cleanup_error", error(failure)) }
+            }
+        }
+        return details
+    }
+
     @Test fun selectCancelAndPublishThroughActualFolderGrant() {
         guard()
         assertFalse("Fixture must start without a grant", hasGrant())
@@ -203,7 +272,17 @@ class SafProviderFlowTest {
                     model.exportState.phase !in setOf(ExportUiPhase.CHOOSING_FOLDER, ExportUiPhase.RUNNING)
                 }
                 assertEquals(ExportUiPhase.COMPLETED, model.exportState.phase)
-                assertEquals(2, model.exportState.published)
+                if (model.exportState.published != 2) {
+                    val items = JSONArray(model.exportState.items.map { item ->
+                        JSONObject().put("phase", item.phase.name)
+                            .put("reason", item.reason ?: "NONE")
+                    })
+                    val diagnostic = JSONObject().put("schema", 1)
+                        .put("api", Build.VERSION.SDK_INT).put("format", format.name)
+                        .put("items", items).put("provider_probe", diagnoseProvider(pngFile))
+                    File(app.filesDir, "saf-provider-failure.json").writeText(diagnostic.toString())
+                    fail("Real SAF export failed: $diagnostic")
+                }
                 assertTrue(hasGrant())
                 for (item in model.exportState.items) {
                     val uri = Uri.parse(requireNotNull(item.uri))

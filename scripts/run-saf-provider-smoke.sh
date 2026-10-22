@@ -19,6 +19,9 @@ fixture="/sdcard/Download/FixMyShotSaf_$token"
 adb shell mkdir -p /sdcard/Download
 adb shell mkdir "$fixture"
 cleanup() {
+  # Preserve optional synthetic-only diagnostics without changing the test result.
+  adb exec-out run-as "$package" cat files/saf-provider-failure.json > evidence/saf-provider-failure.json 2>/dev/null || true
+  adb logcat -d -t 200 -s DocumentsContract:E FileSystemProvider:E > evidence/saf-provider-platform.txt 2>/dev/null || true
   # This exact newly created fixture is the only external directory removed by this script.
   adb shell rm -rf "$fixture"
 }

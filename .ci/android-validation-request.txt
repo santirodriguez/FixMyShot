@@ -122,3 +122,14 @@ Use UiAutomation GLOBAL_ACTION_BACK for the actual system picker instead,
 assert its dispatch, and preserve all cancellation/export/grant/restart/revocation checks.
 Require build, smoke26/36 and both saf-provider26/28 two-phase jobs on this exact SHA.
 No production app/manifest/permission/dependency change or main merge/release.
+
+API26 real-SAF publication diagnosis after Actions39860824433.
+Parent: 9aa67f10e1c9f86f822f887b08fd26a77205bac2.
+API28 passed both actual-picker/grant/export/restart/revocation phases.
+API26 cancellation passed but a completed batch had zero of two outputs published.
+Preserve the original success assertions. On failure only, capture item phase/reason
+and an isolated same-provider synthetic probe covering create/write/flush/sync/readback.
+Keep diagnostic sync errors separate from production success; never suppress saver errors.
+Collect optional synthetic failure JSON/provider logs before deleting the unique fixture.
+Rebuild and run smoke26/36 plus both saf-provider26/28 phases on this exact source.
+No production code, new permission, dependency, signing, main merge or release change.
