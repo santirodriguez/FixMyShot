@@ -69,3 +69,18 @@ Accept journal URI for read-only checking only if batch URI is absent; reject
 conflicting concrete URIs, never promote uncertain commits automatically.
 Repeat the exact eight-case recovery suite plus prior API26/API36 regressions.
 No broader storage permission, signing, main merge, or release.
+
+
+Explicit successful-output share chooser and SAF permission guard after green
+Actions 39846364699 at e794a5e. Only explicitly selected PUBLISHED image
+items with matching app-private transaction records and reverified provider
+SHA-256 bytes may reach ACTION_SEND or ACTION_SEND_MULTIPLE with ClipData,
+MIME-specific streams and temporary read grants. Uncertain, missing,
+unverifiable and failed outputs must never be shared or auto-retried.
+Android 8/9 SAF tree selection must show an existing persistable read/write
+grant before the queue starts; no general storage permission is added.
+Run four new ExportShareIntentsTest instrumentation cases on API26/API36,
+and the enhanced API29+ MediaStore end-to-end share-payload regression,
+plus all previous eight recovery and export/codec regression suites.
+No actual human-selected SAF picker, receiver-app acceptance or 100-item
+manual process-kill test is claimed by this checkpoint.
