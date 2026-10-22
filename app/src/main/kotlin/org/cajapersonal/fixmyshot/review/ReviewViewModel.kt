@@ -38,6 +38,70 @@ internal class ReviewViewModel : ViewModel() {
     var isBusy by mutableStateOf(false)
     var invalidImports by mutableStateOf(0)
     var previewUnavailable by mutableStateOf(false)
+    var importLimitExceeded by mutableStateOf(false)
+    var pendingImportCount by mutableStateOf(0)
+        private set
+    private val importWorker = Executors.newSingleThreadExecutor()
+    private val pendingImports = linkedMapOf<String, Uri>()
+    private var importGeneration = 0L
+    private var activeImports: Set<String> = emptySet()
+
+    /** Hold temporary grants in this process and stage as soon as the current operation permits. */
+    fun enqueueImports(uris: List<Uri>) {
+        val known = draft.images.mapTo(mutableSetOf()) { it.sourceToken }
+        val offered = uris.distinctBy(Uri::toString).filter {
+            it.toString() !in known && it.toString() !in pendingImports && it.toString() !in activeImports
+        }
+        if (draft.images.size + pendingImports.size + activeImports.size + offered.size > 100) {
+            importLimitExceeded = true
+            return
+        }
+        importLimitExceeded = false
+        offered.forEach { pendingImports[it.toString()] = it }
+        pendingImportCount = pendingImports.size
+    }
+
+    /** ViewModel ownership keeps imports alive through rotation and locale recreation. */
+    fun drainImports(context: Context) {
+        if (isBusy || exportState.isLocked || pendingImports.isEmpty()) return
+        val wanted = pendingImports.values.toList()
+        pendingImports.clear()
+        pendingImportCount = 0
+        activeImports = wanted.mapTo(mutableSetOf(), Uri::toString)
+        isBusy = true
+        val token = importGeneration
+        val sources = ReviewSources(context.applicationContext)
+        importWorker.execute {
+            val staged = wanted.map { sources.stage(it) }
+            main.post {
+                activeImports = emptySet()
+                val added = staged.filterIsInstance<ReviewSources.ImportResult.Added>().map { it.image }
+                if (token != importGeneration) {
+                    added.forEach { sources.discard(it.id) }
+                    isBusy = false
+                    return@post
+                }
+                val known = draft.images.mapTo(mutableSetOf()) { it.sourceToken }
+                val additions = added.filter { known.add(it.sourceToken) }
+                val discarded = added.filter { it !in additions }
+                if (discarded.isNotEmpty()) importWorker.execute {
+                    discarded.forEach { sources.discard(it.id) }
+                }
+                invalidImports += staged.size - additions.size
+                draft = draft.addImages(additions)
+                onDraftEdited()
+                if (selectedId == null) selectedId = draft.images.firstOrNull()?.id
+                isBusy = false
+            }
+        }
+    }
+
+    fun clearPendingImports() {
+        ++importGeneration
+        pendingImports.clear()
+        pendingImportCount = 0
+        importLimitExceeded = false
+    }
 
     var exportState by mutableStateOf(ReviewExportState(ExportUiPhase.CHECKING_HISTORY))
         private set
@@ -143,7 +207,7 @@ internal class ReviewViewModel : ViewModel() {
     /** Verify the whole batch before requesting a destination or creating output. */
     fun prepareExport(): Boolean {
         if (!checkedPreviousJobs || exportState.phase != ExportUiPhase.IDLE ||
-            reviewToken != null || isBusy || draft.images.isEmpty() ||
+            reviewToken != null || isBusy || pendingImportCount > 0 || draft.images.isEmpty() ||
             lastAttemptDraft == draft) return false
         val preparation = try {
             ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, Runtime.getRuntime().maxMemory())
@@ -309,7 +373,9 @@ internal class ReviewViewModel : ViewModel() {
 
     override fun onCleared() {
         cancelJob?.set(true)
+        ++importGeneration
         exportWorker.shutdown()
+        importWorker.shutdown()
         super.onCleared()
     }
 
@@ -335,3 +401,4 @@ internal class ReviewViewModel : ViewModel() {
         thumbnails = emptyMap()
     }
 }
+

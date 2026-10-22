@@ -85,4 +85,28 @@
     <string name="export_share_verifying">Verifying selected output files…</string>
     <string name="export_share_unavailable">Sharing is unavailable. Check the saved files and access, then try again.</string>
     <string name="export_share_chooser">Share FixMyShot images</string>
+    <string name="settings_title">Settings and help</string>
+    <string name="settings_theme">Appearance</string>
+    <string name="follow_system">Follow system</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_wait">Appearance and language can be changed when the current operation finishes.</string>
+    <string name="settings_save_error">The setting could not be saved. Try again.</string>
+    <string name="help_title">Quick help</string>
+    <string name="help_body">Choose images or share them to FixMyShot from another app. Select a destination or ratio, review the preview and export new copies. PNG is the default. Lossless WebP is also available. Settings can apply to the whole batch or only the selected image. On Android 10 or later, copies are saved in Pictures/FixMyShot. Older versions ask for a folder. Select saved images in the results to share them. If a previous export needs review, check its results before starting another.</string>
+    <string name="privacy_title">Privacy</string>
+    <string name="privacy_body">Images are processed on your device. FixMyShot has no network permission, account or analytics. Original files are read only. Identifying metadata is removed from new copies. Private working copies may remain until you discard the session, reopen the app for age-based cleanup, clear app data or uninstall. External image providers may use the network independently. Links below open an external browser only when you choose them.</string>
+    <string name="about_version">Version %1$s · development build</string>
+    <string name="about_author">Created by Santiago Rodriguez</string>
+    <string name="about_license">GNU GPL version 3 only</string>
+    <string name="about_source">Source code</string>
+    <string name="about_notices">Third-party notices</string>
+    <string name="about_website">Author website</string>
+    <string name="about_donate">Support development</string>
+    <string name="close_action">Close</string>
+    <string name="link_unavailable">No application can open this link.</string>
+    <string name="import_limit">The batch can contain up to 100 images. This selection was not added; choose fewer images.</string>
+    <string name="import_waiting">Images waiting to be imported: %1$d</string>
 </resources>
+

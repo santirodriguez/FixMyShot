@@ -133,3 +133,6 @@ Keep diagnostic sync errors separate from production success; never suppress sav
 Collect optional synthetic failure JSON/provider logs before deleting the unique fixture.
 Rebuild and run smoke26/36 plus both saf-provider26/28 phases on this exact source.
 No production code, new permission, dependency, signing, main merge or release change.
+
+Import/settings functional batch: receive single/multiple images and ClipData; preserve imports and draft across recreation; explicit 100-image cap; DataStore theme; AppCompat/platform locales; offline help/privacy/About. Run all current regression suites plus ImportSettingsFlowTest together. Legacy SAF diagnostics remain deferred and recorded.
+profile=current

@@ -1,0 +1,11 @@
+# Compatibility and validation scope — 2026-10-22
+
+Product direction now prioritizes complete useful functionality in coherent implementation batches. Backward compatibility is welcome when it remains straightforward. It must not require disproportionate complexity or repeated narrow debugging at the expense of the current Android experience.
+
+This qualifies the original blueprint's strict legacy requirements (R22; API26 portions of A09, G3/G4 and M03). The existing minSdk26 and permission-free SAF path remain for now. No new legacy storage-write permission or default-Pictures adapter is planned solely to satisfy the original API26–28 requirement. Legacy-only failures are known limitations and may justify raising minSdk in a later focused decision; they are not hidden or silently described as supported. Current-device privacy, source integrity, truthful formats and transactional output requirements remain unchanged.
+
+Ordinary checkpoints run the complete build/host checks plus API36 instrumented regressions. An explicit `profile=extended` as the last line of `.ci/android-validation-request.txt` opts into API26 smoke and API26/28 real-provider diagnostics. `profile=current` is the normal profile. A skipped legacy job is NOT RUN, never PASS. This reduces repeated old-device work while keeping a way to revisit it when useful. Validate once after a substantive block; fix concrete failures together and avoid rerunning an expensive matrix for documentation-only changes.
+
+Known legacy evidence at source553042a / Actions39862769432: build and ordinary API26/API36 smoke passed; API26 real-provider export failed on WEBP_LOSSLESS with both items INVALID_CANDIDATE. The failure-only provider probe completed create/write/flush/sync/readback with matching bytes and deleted its own probe. Therefore the observed failure is candidate validation, not failed SAF writing. No production validation is weakened. API28 failed in its test harness when launching an ActivityResultLauncher belonging to an activity that had become unregistered; the earlier source9aa67f1 real-provider acceptance remains scoped evidence, not a pass for newer source.
+
+Physical-device/manual acceptance remains pending. The change in compatibility priority does not authorize signing, publication or a claim of functional-release readiness.

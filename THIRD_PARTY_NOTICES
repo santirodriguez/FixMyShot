@@ -21,6 +21,9 @@ Actual device capability, color fidelity and transitive inventory remain subject
 AndroidX / Jetpack Compose
 Source: https://android.googlesource.com/platform/frameworks/support/
 Use: Android UI and test dependencies, Apache License 2.0.
+AppCompat 1.7.1 owns the per-app locale bridge and locale persistence.
+Preferences DataStore 1.1.7 persists the theme asynchronously.
+These stable pins fit the existing toolchain; they are not latest-version claims.
 Exact directly selected versions: gradle/libs.versions.toml.
 Resolved transitive inventory/notices remain a G1 review deliverable.
 
@@ -36,3 +39,8 @@ License: Eclipse Public License 1.0.
 This is an initial inventory, not a completed distribution notice bundle.
 Resolve and review all runtime and native transitive notices before a
 functional release. Signing, publication and store submission are separate.
+
+
+Language flag vectors (US, Argentina and traditional Catalan Senyera)
+are original project drawings under GPL-3.0-only, generated from simple
+geometric flag motifs. No third-party flag artwork or emoji is bundled.

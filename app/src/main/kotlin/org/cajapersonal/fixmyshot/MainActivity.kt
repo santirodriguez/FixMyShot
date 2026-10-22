@@ -7,7 +7,24 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import androidx.core.view.WindowCompat
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
+import org.cajapersonal.fixmyshot.importing.IncomingImages
+import org.cajapersonal.fixmyshot.settings.AppPreferences
+import org.cajapersonal.fixmyshot.settings.AppTheme
+import org.cajapersonal.fixmyshot.settings.SettingsDialog
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
@@ -33,7 +50,7 @@ import org.cajapersonal.fixmyshot.review.ReviewViewModel
 import java.io.IOException
 import java.util.concurrent.Executors
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     private val worker = Executors.newSingleThreadExecutor()
     // A separate serial queue allows one main preview and one small thumbnail decode at most.
     private val thumbnailWorker = Executors.newSingleThreadExecutor()
@@ -80,7 +97,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         sources = ReviewSources(applicationContext)
         model = ViewModelProvider(this)[ReviewViewModel::class.java]
-        model.isBusy = false // An old activity can be destroyed before its import callback.
         model.checkPastExports(applicationContext)
         worker.execute {
             // Keep staged bytes needed to inspect an interrupted export until its records
@@ -93,10 +109,45 @@ class MainActivity : ComponentActivity() {
             } catch (_: Exception) { false }
             if (safeToPrune) sources.pruneExpired()
         }
-        if (model.selectedId != null) loadPreview()
-        scheduleThumbnails(model.draft.images.map { it.id })
+        if (savedInstanceState == null) receiveImages(intent)
         setContent {
-            MaterialTheme(colorScheme = if (isSystemInDarkTheme()) darkColorScheme() else lightColorScheme()) {
+            val preferences = remember { AppPreferences(applicationContext) }
+            val theme by preferences.theme.collectAsState(initial = AppTheme.SYSTEM)
+            val scope = rememberCoroutineScope()
+            var settingsOpen by rememberSaveable { mutableStateOf(false) }
+            var settingsError by remember { mutableStateOf(false) }
+            val dark = when (theme) {
+                AppTheme.SYSTEM -> isSystemInDarkTheme()
+                AppTheme.LIGHT -> false
+                AppTheme.DARK -> true
+            }
+            LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked) {
+                model.drainImports(applicationContext)
+            }
+            LaunchedEffect(model.draft.revision, model.selectedId) {
+                loadPreview()
+                scheduleThumbnails(model.draft.images.map { it.id })
+            }
+            SideEffect {
+                WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = !dark
+                WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars = !dark
+            }
+            MaterialTheme(colorScheme = if (dark) darkColorScheme() else lightColorScheme()) {
+                if (settingsOpen) SettingsDialog(
+                    theme = theme,
+                    editable = !model.isBusy && !model.exportState.isLocked,
+                    saveError = settingsError,
+                    version = packageManager.getPackageInfo(packageName, 0).versionName.orEmpty(),
+                    onTheme = { value -> scope.launch {
+                        try { preferences.setTheme(value); settingsError = false }
+                        catch (_: IOException) { settingsError = true }
+                    } },
+                    onLanguage = { tag ->
+                        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
+                    },
+                    onLink = { url -> openLink(url) },
+                    onDismiss = { settingsOpen = false },
+                )
                 Surface(Modifier.fillMaxSize()) {
                     ReviewScreen(
                         draft = model.draft,
@@ -116,6 +167,9 @@ class MainActivity : ComponentActivity() {
                         shareError = model.shareError,
                         onToggleShare = { model.toggleShareItem(it) },
                         onShare = { beginShare() },
+                        importLimitExceeded = model.importLimitExceeded,
+                        pendingImports = model.pendingImportCount,
+                        onSettings = { settingsOpen = true },
                         onChoose = {
                             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         },
@@ -124,7 +178,6 @@ class MainActivity : ComponentActivity() {
                             model.selectedId = id
                             model.selectThumbnail(id)
                             scheduleThumbnails(listOf(id))
-                            loadPreview()
                         },
                         onDestination = { value -> updateDraft(model.draft.setDestination(value)) },
                         onFormat = { value, onlySelected ->
@@ -184,41 +237,27 @@ class MainActivity : ComponentActivity() {
         model.draft = value
         model.onDraftEdited()
         if (model.selectedId !in value.images.map { it.id }) model.selectedId = value.images.firstOrNull()?.id
-        loadPreview()
     }
 
-    private fun addImages(uris: List<Uri>) {
-        if (model.isBusy || model.exportState.isLocked) return
-        val known = model.draft.images.mapTo(mutableSetOf()) { it.sourceToken }
-        val remaining = 100 - model.draft.images.size
-        val wanted = uris.distinctBy { it.toString() }.filter { it.toString() !in known }.take(remaining)
-        if (wanted.isEmpty()) return
-        model.isBusy = true
-        worker.execute {
-            val staged = wanted.map { sources.stage(it) }
-            main.post {
-                if (isDestroyed) {
-                    staged.forEach { if (it is ReviewSources.ImportResult.Added) {
-                        sources.discard(it.image.id)
-                    } }
-                    return@post
-                }
-                val current = model.draft.images.mapTo(mutableSetOf()) { it.sourceToken }
-                val additions = staged.filterIsInstance<ReviewSources.ImportResult.Added>()
-                    .map { it.image }.filter { image ->
-                        if (current.add(image.sourceToken)) true else {
-                            worker.execute { sources.discard(image.id) }
-                            false
-                        }
-                    }
-                model.invalidImports += staged.size - additions.size
-                model.draft = model.draft.addImages(additions)
-                model.onDraftEdited()
-                if (model.selectedId == null) model.selectedId = model.draft.images.firstOrNull()?.id
-                model.isBusy = false
-                loadPreview()
-                scheduleThumbnails(additions.map { it.id })
-            }
+    private fun addImages(uris: List<Uri>) { model.enqueueImports(uris) }
+
+    private fun receiveImages(value: Intent) {
+        val selection = IncomingImages.parse(value)
+        model.invalidImports += selection.rejected
+        if (selection.overLimit) model.importLimitExceeded = true
+        else if (selection.uris.isNotEmpty()) addImages(selection.uris)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        receiveImages(intent)
+    }
+
+    private fun openLink(url: String) {
+        try { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
+        catch (_: android.content.ActivityNotFoundException) {
+            android.widget.Toast.makeText(this, R.string.link_unavailable, android.widget.Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -289,12 +328,12 @@ class MainActivity : ComponentActivity() {
         model.selectedId = model.draft.images.firstOrNull()?.id
         model.removeThumbnail(id)
         worker.execute { sources.discard(id) }
-        loadPreview()
     }
 
     private fun discardDraft() {
         if (model.exportState.isLocked) return
         val ids = model.draft.images.map { it.id }
+        model.clearPendingImports()
         model.draft = DraftSession()
         model.onDraftEdited()
         model.selectedId = null
@@ -319,3 +358,4 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
     }
 }
+

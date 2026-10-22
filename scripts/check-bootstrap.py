@@ -24,6 +24,13 @@ def check() -> None:
             assert signatures == baseline, f"Missing keys or incompatible placeholders: {qualifier}"
     for path in resources.rglob("*.xml"):
         ET.parse(path)
+    locale_config = ET.parse(resources / "xml/supported_languages.xml").getroot()
+    tags = [entry.attrib[ANDROID + "name"] for entry in locale_config]
+    assert tags == ["en", "es", "ca"], "Packaged language catalog mismatch"
+    catalog_source = (ROOT / "app/src/main/kotlin/org/cajapersonal/fixmyshot/settings/SettingsDialog.kt").read_text()
+    for tag, flag in (("en", "us"), ("es", "ar"), ("ca", "ca")):
+        assert f'Language("{tag}",' in catalog_source, tag
+        assert (resources / f"drawable/flag_{flag}.xml").is_file(), tag
     manifest = ET.parse(ROOT / "app/src/main/AndroidManifest.xml").getroot()
     assert not manifest.findall("uses-permission"), "Bootstrap must not request permissions"
     merger = "{http://schemas.android.com/tools}"
@@ -34,6 +41,12 @@ def check() -> None:
         "Application minSdk must remain 26"
     app = manifest.find("application")
     assert app is not None and app.attrib[ANDROID + "allowBackup"] == "false"
+    assert app.attrib[ANDROID + "localeConfig"] == "@xml/supported_languages"
+    activity = app.find("activity")
+    actions = {item.attrib[ANDROID + "name"] for group in activity.findall("intent-filter")
+               for item in group.findall("action")}
+    assert {"android.intent.action.SEND", "android.intent.action.SEND_MULTIPLE"} <= actions
+    assert activity.attrib[ANDROID + "launchMode"] == "singleTop"
     assert app.attrib.get(ANDROID + "largeHeap", "false") == "false"
     with (ROOT / "gradle/libs.versions.toml").open("rb") as stream:
         catalog = tomllib.load(stream)
@@ -42,3 +55,4 @@ def check() -> None:
 
 if __name__ == "__main__":
     check()
+

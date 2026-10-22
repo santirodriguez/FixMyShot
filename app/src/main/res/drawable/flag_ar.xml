@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Original project vector drawing, GPL-3.0-only; no external flag artwork. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="28dp"
+    android:height="20dp" android:viewportWidth="28" android:viewportHeight="20">
+    <path android:fillColor="#74ACDF" android:pathData="M0,0h28v20h-28z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M0,6.666666666666667h28v6.666666666666667h-28z" />
+    <path android:fillColor="#F6B40E" android:pathData="M14,10L16.000,10.000L14.785,10.156z M14,10L15.848,10.765L14.665,10.444z M14,10L15.414,11.414L14.444,10.665z M14,10L14.765,11.848L14.156,10.785z M14,10L14.000,12.000L13.844,10.785z M14,10L13.235,11.848L13.556,10.665z M14,10L12.586,11.414L13.335,10.444z M14,10L12.152,10.765L13.215,10.156z M14,10L12.000,10.000L13.215,9.844z M14,10L12.152,9.235L13.335,9.556z M14,10L12.586,8.586L13.556,9.335z M14,10L13.235,8.152L13.844,9.215z M14,10L14.000,8.000L14.156,9.215z M14,10L14.765,8.152L14.444,9.335z M14,10L15.414,8.586L14.665,9.556z M14,10L15.848,9.235L14.785,9.844z" />
+</vector>

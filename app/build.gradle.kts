@@ -37,8 +37,11 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.activity.compose)
     implementation(libs.exifinterface)
+    implementation(libs.appcompat)
+    implementation(libs.datastore.preferences)
     androidTestImplementation(libs.android.test.runner)
     androidTestImplementation(libs.android.test.junit)
     // The target app already packages HeifWriter via :codec-native; tests only need its types.
     androidTestCompileOnly(libs.heifwriter)
 }
+

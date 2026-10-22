@@ -17,10 +17,23 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
+    outputs:
+      apis: ${{ steps.profile.outputs.apis }}
+      legacy: ${{ steps.profile.outputs.legacy }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
+      - name: Select explicit batch validation profile
+        id: profile
+        run: |
+          if [[ "$(tail -n 1 .ci/android-validation-request.txt)" == profile=extended ]]; then
+            echo 'apis=[26,36]' >> "$GITHUB_OUTPUT"
+            echo 'legacy=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'apis=[36]' >> "$GITHUB_OUTPUT"
+            echo 'legacy=false' >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
         with:
           distribution: temurin
@@ -79,7 +92,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: [26, 36]
+        api: ${{ fromJSON(needs.build.outputs.apis) }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -124,6 +137,7 @@ jobs:
 
   saf-provider:
     needs: build
+    if: needs.build.outputs.legacy == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
@@ -162,3 +176,4 @@ jobs:
           name: saf-api-${{ matrix.api }}-${{ github.sha }}
           retention-days: 7
           path: evidence/
+

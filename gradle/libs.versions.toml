@@ -9,6 +9,9 @@ android-test-junit = "1.2.1"
 heifwriter = "1.2.0-rc01"
 exifinterface = "1.4.2"
 
+appcompat = "1.7.1"
+datastore = "1.1.7"
+
 [libraries]
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
 compose-ui = { module = "androidx.compose.ui:ui" }
@@ -20,9 +23,13 @@ android-test-junit = { module = "androidx.test.ext:junit", version.ref = "androi
 heifwriter = { module = "androidx.heifwriter:heifwriter", version.ref = "heifwriter" }
 exifinterface = { module = "androidx.exifinterface:exifinterface", version.ref = "exifinterface" }
 
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

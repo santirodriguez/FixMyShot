@@ -416,3 +416,17 @@ Environment: Android9 x86_64 emulator, `google/sdk_gphone_x86_64/generic_x86_64:
 The next test-only checkpoint preserves all success assertions and adds failure diagnostics: item phase/reason plus a tiny real-provider probe inside the same explicitly selected synthetic folder, tracing create/open/write/flush/sync/readback and deleting only that probe. Sync errors are recorded separately so subsequent diagnostic readback can be compared, **without changing the production saver or treating that diagnostic as successful export**. The guarded CI runner retains the synthetic diagnostic JSON and bounded provider error logs. Its Bash syntax check passed; new Android execution is pending.
 
 This receipt covers the programmatically staged draft and actual Activity picker callback, not full click-by-click import/review or an external receiving app. API26, refusing/cloud providers, mid-write process death, low-space, 100-image results, physical devices, legacy default Pictures saving and complete G4 remain open.
+
+
+
+## Import, appearance and help block — implementation checkpoint
+
+The next coherent functional block receives ACTION_SEND/ACTION_SEND_MULTIPLE and ClipData through the same bounded private source stager, preserves import work across Activity recreation, defers incoming additions while a frozen export is locked, and explicitly rejects oversized selections without silently dropping images. It adds theme persistence, the AppCompat/platform language bridge, a packaged locale config and original flag vectors, offline localized help/privacy and About/version links. New-session PNG/metadata-removal defaults remain unchanged.
+
+`ImportSettingsFlowTest` covers merged/deduplicated stream and ClipData offers, rejection of file paths/malformed/oversized inputs, theme persistence through a new preferences reader, and a real owned MediaStore PNG received by MainActivity, retained across recreation and Spanish/Catalan/system changes without replacing its draft. The runner requires the whole four-case block, alongside existing regression suites. The synthetic MediaStore fixture and its private staged copy are removed by the test; this is not independent external-sender/receiver acceptance.
+
+Android execution is **PENDING for this new source**. Resource/catalog checks, source review and shell syntax are local checks only. Physical-device behavior, visual large-text/TalkBack review, process restart locale storage, external grant delivery and full G3 remain open.
+
+The previous diagnostic [Actions39862769432](https://github.com/santirodriguez/FixMyShot/actions/runs/39862769432), source553042a, completed: build and ordinary smoke26/36 SUCCESS; real SAF26/28 FAILURE. API26 diagnostics identify WEBP_LOSSLESS, both items FAILED/INVALID_CANDIDATE; its actual provider probe completed CREATE/OPEN_WRITE/WRITE/FLUSH/SYNC/CLOSE/READBACK, bytes matched, probe_deleted=true. API28 failed launching an unregistered ActivityResultLauncher in its test harness. No full SAF acceptance is claimed for553042a. The earlier independently verified API28 receipt remains above.
+
+The [compatibility decision](decisions/compatibility-and-validation.md) qualifies older mandatory API26/legacy-Pictures language in historical plans above. Normal checkpoints now use API36; `profile=extended` explicitly requests the legacy matrix. Legacy skipped means NOT RUN. The known API26 WebP failure is deferred; current-device acceptance and output validation are not weakened.

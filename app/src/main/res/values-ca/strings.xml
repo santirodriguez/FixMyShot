@@ -85,4 +85,28 @@
     <string name="export_share_verifying">Verificant els fitxers seleccionats…</string>
     <string name="export_share_unavailable">No s\'ha pogut preparar la compartició. Revisa els fitxers i l\'accés i torna-ho a provar.</string>
     <string name="export_share_chooser">Comparteix imatges de FixMyShot</string>
+    <string name="settings_title">Configuració i ajuda</string>
+    <string name="settings_theme">Aparença</string>
+    <string name="follow_system">Segueix el sistema</string>
+    <string name="theme_light">Clar</string>
+    <string name="theme_dark">Fosc</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_wait">Pots canviar l’aparença i l’idioma quan acabi l’operació actual.</string>
+    <string name="settings_save_error">No s’ha pogut desar la configuració. Torna-ho a provar.</string>
+    <string name="help_title">Ajuda ràpida</string>
+    <string name="help_body">Tria imatges o comparteix-les amb FixMyShot des d’una altra aplicació. Selecciona una destinació o una proporció, revisa la previsualització i exporta còpies noves. PNG és el format predeterminat. També pots fer servir WebP sense pèrdua. La configuració es pot aplicar a tot el lot o només a la imatge seleccionada. A Android 10 o posterior, les còpies es desen a Pictures/FixMyShot. Les versions anteriors demanen una carpeta. Selecciona les imatges desades als resultats per compartir-les. Si cal revisar una exportació anterior, comprova’n els resultats abans de començar-ne una altra.</string>
+    <string name="privacy_title">Privadesa</string>
+    <string name="privacy_body">Les imatges es processen al teu dispositiu. FixMyShot no té permís de xarxa, comptes ni analítica. Els fitxers originals només es llegeixen. Les còpies noves no conserven metadades identificatives. Les còpies de treball privades poden romandre fins que descartis la sessió, tornis a obrir l’aplicació per a la neteja per antiguitat, n’esborris les dades o la desinstal·lis. Els proveïdors externs d’imatges poden fer servir la xarxa pel seu compte. Els enllaços de sota només obren un navegador extern quan els tries.</string>
+    <string name="about_version">Versió %1$s · compilació de desenvolupament</string>
+    <string name="about_author">Creat per Santiago Rodriguez</string>
+    <string name="about_license">Només GNU GPL versió 3</string>
+    <string name="about_source">Codi font</string>
+    <string name="about_notices">Avisos de tercers</string>
+    <string name="about_website">Lloc web de l’autor</string>
+    <string name="about_donate">Dona suport al desenvolupament</string>
+    <string name="close_action">Tanca</string>
+    <string name="link_unavailable">Cap aplicació no pot obrir aquest enllaç.</string>
+    <string name="import_limit">El lot admet fins a 100 imatges. No s’ha afegit aquesta selecció; tria menys imatges.</string>
+    <string name="import_waiting">Imatges pendents d’importar: %1$d</string>
 </resources>
+

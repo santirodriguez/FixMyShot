@@ -85,11 +85,14 @@ internal fun ReviewScreen(
     onUndo: () -> Unit,
     onRemove: () -> Unit,
     onDiscard: () -> Unit,
+    importLimitExceeded: Boolean = false,
+    pendingImports: Int = 0,
+    onSettings: () -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
-    val editEnabled = !busy && !exportState.isLocked
+    val editEnabled = !busy && pendingImports == 0 && !exportState.isLocked
 
 
     Column(
@@ -99,8 +102,12 @@ internal fun ReviewScreen(
     ) {
         Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
         Text(stringResource(R.string.tagline), style = MaterialTheme.typography.bodyMedium)
+        OutlinedButton(onClick = onSettings) { Text(stringResource(R.string.settings_title)) }
         Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
         if (busy) Text(stringResource(R.string.import_in_progress))
+        if (pendingImports > 0) Text(stringResource(R.string.import_waiting, pendingImports))
+        if (importLimitExceeded) Text(stringResource(R.string.import_limit),
+            color = MaterialTheme.colorScheme.error)
         if (invalidImports > 0) Text(stringResource(R.string.import_skipped, invalidImports),
             color = MaterialTheme.colorScheme.error)
         if (draft.images.isEmpty()) {
@@ -295,3 +302,4 @@ private fun ExportShareControls(
     if (error) Text(stringResource(R.string.export_share_unavailable),
         color = MaterialTheme.colorScheme.error)
 }
+

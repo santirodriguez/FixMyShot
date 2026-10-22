@@ -85,4 +85,28 @@
     <string name="export_share_verifying">Verificando los archivos seleccionados…</string>
     <string name="export_share_unavailable">No se pudo preparar el uso compartido. Revisá los archivos y el acceso, e intentá de nuevo.</string>
     <string name="export_share_chooser">Compartir imágenes de FixMyShot</string>
+    <string name="settings_title">Ajustes y ayuda</string>
+    <string name="settings_theme">Apariencia</string>
+    <string name="follow_system">Seguir al sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_wait">Podés cambiar la apariencia y el idioma cuando termine la operación actual.</string>
+    <string name="settings_save_error">No se pudo guardar el ajuste. Volvé a intentarlo.</string>
+    <string name="help_title">Ayuda rápida</string>
+    <string name="help_body">Elegí imágenes o compartilas con FixMyShot desde otra app. Seleccioná un destino o una proporción, revisá la vista previa y exportá copias nuevas. PNG es el formato predeterminado. También podés usar WebP sin pérdida. Los ajustes pueden aplicarse a todo el lote o solo a la imagen seleccionada. En Android 10 o posterior, las copias se guardan en Pictures/FixMyShot. Las versiones anteriores te piden una carpeta. Seleccioná las imágenes guardadas en los resultados para compartirlas. Si una exportación anterior necesita revisión, comprobá sus resultados antes de iniciar otra.</string>
+    <string name="privacy_title">Privacidad</string>
+    <string name="privacy_body">Las imágenes se procesan en tu dispositivo. FixMyShot no tiene permiso de red, cuentas ni analíticas. Los archivos originales solo se leen. Las copias nuevas no conservan metadatos identificatorios. Las copias de trabajo privadas pueden permanecer hasta que descartes la sesión, vuelvas a abrir la app para la limpieza por antigüedad, borres sus datos o la desinstales. Los proveedores externos de imágenes pueden usar la red por su cuenta. Los enlaces de abajo abren un navegador externo solo cuando los elegís.</string>
+    <string name="about_version">Versión %1$s · compilación de desarrollo</string>
+    <string name="about_author">Creado por Santiago Rodriguez</string>
+    <string name="about_license">GNU GPL versión 3 únicamente</string>
+    <string name="about_source">Código fuente</string>
+    <string name="about_notices">Avisos de terceros</string>
+    <string name="about_website">Sitio del autor</string>
+    <string name="about_donate">Apoyar el desarrollo</string>
+    <string name="close_action">Cerrar</string>
+    <string name="link_unavailable">No hay una aplicación que pueda abrir este enlace.</string>
+    <string name="import_limit">El lote admite hasta 100 imágenes. No se agregó esta selección; elegí menos imágenes.</string>
+    <string name="import_waiting">Imágenes en espera para importar: %1$d</string>
 </resources>
+
