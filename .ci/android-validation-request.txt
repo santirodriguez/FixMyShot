@@ -6,8 +6,9 @@ verified transfer digest, published only after copy, conservative indeterminate
 handling after provider ambiguity, and own-output cleanup before publication.
 API26/28: no direct gallery write or new permission; explicit SAF/legacy UI not yet integrated.
 Test fake provider failure boundaries and one owned temporary API29+ MediaStore
-item, deleted after the test. API26 EXIF fixture uses the platform JPEG writer on
-a temporary .jpg file before renaming to the private .source path. Check both emulators.
+item, deleted after the test. Revalidate EXIF on API26/36 using a real fixed
+36x60 JPEG with orientation 6. The exact binary fixture is AndroidTest-owned;
+no platform EXIF writer or new runtime dependency is needed.
 Do not expose user-facing Export, create/delete credentials, enable native formats,
 change manifest permissions or publish a GitHub release.
 Use commit SHA containing this marker for source-bound build/API26/API36 evidence.

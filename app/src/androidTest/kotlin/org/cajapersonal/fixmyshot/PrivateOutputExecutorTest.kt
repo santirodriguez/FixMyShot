@@ -30,34 +30,29 @@ class PrivateOutputExecutorTest {
         val dir = File(context.cacheDir, "review-sources").apply { mkdirs() }
         val id = UUID.randomUUID().toString().replace("-", "")
         val file = File(dir, "$id.source")
-        val jpegFile = File(dir, "$id.jpg")
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-        try {
-            bitmap.setHasAlpha(alpha)
-            bitmap.eraseColor(if (alpha) Color.TRANSPARENT else Color.BLUE)
-            bitmap.setPixel(width / 2, height / 2, Color.RED)
-            (if (orientation == ExifInterface.ORIENTATION_NORMAL) file else jpegFile).outputStream().use { output ->
-                assertTrue(bitmap.compress(
-                    if (orientation == ExifInterface.ORIENTATION_NORMAL) Bitmap.CompressFormat.PNG
-                    else Bitmap.CompressFormat.JPEG, 100, output))
-            }
-        } finally { bitmap.recycle() }
-        if (orientation != ExifInterface.ORIENTATION_NORMAL) {
+        if (orientation == ExifInterface.ORIENTATION_NORMAL) {
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             try {
-                // Write platform-generated EXIF before staging an extensionless file.
-                ExifInterface(jpegFile.absolutePath).apply {
-                    setAttribute(ExifInterface.TAG_ORIENTATION, orientation.toString())
-                    saveAttributes()
+                bitmap.setHasAlpha(alpha)
+                bitmap.eraseColor(if (alpha) Color.TRANSPARENT else Color.BLUE)
+                bitmap.setPixel(width / 2, height / 2, Color.RED)
+                file.outputStream().use { output ->
+                    assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, output))
                 }
-                assertTrue("Staging the synthetic JPEG failed", jpegFile.renameTo(file))
-                val parsed = FileInputStream(file).use { input ->
-                    ExifInterface(input).getAttributeInt(
-                        ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
+            } finally { bitmap.recycle() }
+        } else {
+            // A deterministic real JPEG with EXIF orientation 6, not an API-dependent writer.
+            require(!alpha && width == 36 && height == 60 &&
+                orientation == ExifInterface.ORIENTATION_ROTATE_90)
+            InstrumentationRegistry.getInstrumentation().context.assets
+                .open("orientation6_solid_36x60.jpg").use { input ->
+                    file.outputStream().use { output -> input.copyTo(output) }
                 }
-                assertEquals(orientation, parsed)
-            } finally {
-                jpegFile.delete()
+            val parsed = FileInputStream(file).use { input ->
+                ExifInterface(input).getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)
             }
+            assertEquals(orientation, parsed)
         }
         val sha = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
             .joinToString("") { "%02x".format(it.toInt() and 255) }
