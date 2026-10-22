@@ -12,3 +12,7 @@ no platform EXIF writer or new runtime dependency is needed.
 Do not expose user-facing Export, create/delete credentials, enable native formats,
 change manifest permissions or publish a GitHub release.
 Use commit SHA containing this marker for source-bound build/API26/API36 evidence.
+
+Fix Android 8 orientation read using stable androidx.exifinterface 1.4.2.
+Require source-bound build, six private output cases and nine output
+transaction tests in both API 26 and 36 smoke jobs; no public Export UI.
