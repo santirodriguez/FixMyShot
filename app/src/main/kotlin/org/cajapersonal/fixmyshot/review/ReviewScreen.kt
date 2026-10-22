@@ -71,11 +71,6 @@ internal fun ReviewScreen(
     onExport: () -> Unit,
     onCancelExport: () -> Unit,
     onReviewedPrevious: () -> Unit,
-    selectedShareIds: Set<String>,
-    shareBusy: Boolean,
-    shareError: Boolean,
-    onToggleShare: (String) -> Unit,
-    onShare: () -> Unit,
     onChoose: () -> Unit,
     onSelect: (String) -> Unit,
     onDestination: (DestinationChoice) -> Unit,
@@ -197,11 +192,6 @@ internal fun ReviewScreen(
             OutlinedButton(onClick = onDiscard, enabled = editEnabled) { Text(stringResource(R.string.discard_session)) }
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
-        if (exportState.published > 0 && exportState.phase in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) {
-            ExportShareControls(exportState, selectedShareIds, shareBusy, shareError,
-                onToggleShare, onShare)
-        }
         if (exportState.previousJobs > 0 || exportState.canAcknowledge) {
             ExportJobNotice(exportState, onReviewedPrevious)
         }
@@ -265,33 +255,4 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
             Text(stringResource(R.string.export_cancel_action))
         }
     }
-}
-
-/** Selection is explicit; only committed outputs may be offered to another application. */
-@Composable
-private fun ExportShareControls(
-    state: ReviewExportState,
-    selected: Set<String>,
-    busy: Boolean,
-    error: Boolean,
-    onToggle: (String) -> Unit,
-    onShare: () -> Unit,
-) {
-    Text(stringResource(R.string.export_share_choose), style = MaterialTheme.typography.titleSmall)
-    state.items.forEachIndexed { index, item ->
-        if (item.phase == BatchItemPhase.PUBLISHED && item.uri != null) {
-            Row(verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Checkbox(checked = item.itemId in selected, enabled = !busy,
-                    onCheckedChange = { onToggle(item.itemId) })
-                Text(stringResource(R.string.export_share_item, index + 1))
-            }
-        }
-    }
-    Button(onClick = onShare, enabled = !busy && selected.isNotEmpty()) {
-        Text(stringResource(R.string.export_share_selected, selected.size))
-    }
-    if (busy) Text(stringResource(R.string.export_share_verifying))
-    if (error) Text(stringResource(R.string.export_share_unavailable),
-        color = MaterialTheme.colorScheme.error)
 }

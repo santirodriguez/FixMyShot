@@ -58,13 +58,6 @@ class MainActivity : ComponentActivity() {
             try {
                 contentResolver.takePersistableUriPermission(uri,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-                val granted = contentResolver.persistedUriPermissions.any { grant ->
-                    grant.uri == uri && grant.isReadPermission && grant.isWritePermission
-                }
-                if (!granted) {
-                    model.destinationUnavailable()
-                    return@registerForActivityResult
-                }
                 model.startPreparedExport(applicationContext,
                     SafTreeOutputPort(contentResolver, uri))
             } catch (_: SecurityException) {
@@ -111,11 +104,6 @@ class MainActivity : ComponentActivity() {
                         onExport = { beginExport() },
                         onCancelExport = { model.cancelExport() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
-                        selectedShareIds = model.selectedShareIds,
-                        shareBusy = model.shareBusy,
-                        shareError = model.shareError,
-                        onToggleShare = { model.toggleShareItem(it) },
-                        onShare = { beginShare() },
                         onChoose = {
                             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         },
@@ -159,23 +147,6 @@ class MainActivity : ComponentActivity() {
             model.startPreparedExport(applicationContext, MediaStore29Port(contentResolver))
         } else {
             folderPicker.launch(null)
-        }
-    }
-
-    /** A user-selected set of successful output copies is passed through Android Sharesheet. */
-    private fun beginShare() {
-        model.shareSelected(applicationContext) { ready ->
-            if (ready == null || isDestroyed) return@shareSelected
-            try {
-                val chooser = Intent.createChooser(ready, getString(R.string.export_share_chooser))
-                chooser.clipData = ready.clipData
-                chooser.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                startActivity(chooser)
-            } catch (_: android.content.ActivityNotFoundException) {
-                model.shareChooserUnavailable()
-            } catch (_: SecurityException) {
-                model.shareChooserUnavailable()
-            }
         }
     }
 
