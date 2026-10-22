@@ -113,3 +113,12 @@ survival and denial after revocation. Require both phase logs and final
 source-bound JSON; seven host checker cases do not imply Android acceptance.
 No production source, new app permission, dependency, main merge, release
 or signing changes. Physical devices and external receiver acceptance remain open.
+
+SAF picker cancellation harness repair after Actions39858979290.
+Parent: bed728d11ef1273945468762e479faf163beec15.
+Both SAF jobs reached DocumentsUI but Instrumentation.sendKeyDownUpSync
+could not cross the application boundary and threw INJECT_EVENTS SecurityException.
+Use UiAutomation GLOBAL_ACTION_BACK for the actual system picker instead,
+assert its dispatch, and preserve all cancellation/export/grant/restart/revocation checks.
+Require build, smoke26/36 and both saf-provider26/28 two-phase jobs on this exact SHA.
+No production app/manifest/permission/dependency change or main merge/release.

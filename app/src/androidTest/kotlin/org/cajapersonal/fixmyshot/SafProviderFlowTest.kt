@@ -1,5 +1,6 @@
 package org.cajapersonal.fixmyshot
 
+import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,7 +11,6 @@ import android.os.Build
 import android.os.Process
 import android.os.SystemClock
 import android.provider.DocumentsContract
-import android.view.KeyEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModelProvider
@@ -176,7 +176,9 @@ class SafProviderFlowTest {
             openActualPicker(activity, model)
             repeat(8) {
                 if (model.exportState.phase == ExportUiPhase.CHOOSING_FOLDER) {
-                    instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK)
+                    assertTrue("UiAutomation must dispatch Back to DocumentsUI",
+                        instrumentation.uiAutomation.performGlobalAction(
+                            AccessibilityService.GLOBAL_ACTION_BACK))
                     Thread.sleep(150)
                 }
             }
