@@ -61,3 +61,11 @@ Run eight batch recovery instrumentation tests (prior four plus three
 reconciliation cases and one API29+ synthetic MediaStore verification case)
 on API26 and API36, plus all earlier export/codec/storage suites.
 This checkpoint does not close G4 or authorize merge, signing, or publication.
+
+Recovery reconciliation regression fix after Actions 39838521430.
+Both API26 and API36 failed the same interrupted-SAVING receipt test:
+the batch URI was still absent while its single-item journal had a known URI.
+Accept journal URI for read-only checking only if batch URI is absent; reject
+conflicting concrete URIs, never promote uncertain commits automatically.
+Repeat the exact eight-case recovery suite plus prior API26/API36 regressions.
+No broader storage permission, signing, main merge, or release.

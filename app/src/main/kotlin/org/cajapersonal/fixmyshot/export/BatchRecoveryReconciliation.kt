@@ -21,7 +21,7 @@ internal object BatchRecoveryReconciliation {
         }
 
         val matchedItem = record == null || record.itemId == item.itemId
-        val matchedUri = record == null || item.uri == record.uri
+        val matchedUri = record == null || item.uri == null || item.uri == record.uri
         val consistent = matchedItem && when (item.phase) {
             BatchItemPhase.PUBLISHED ->
                 record != null && record.stage == OutputStage.PUBLISHED && matchedUri
