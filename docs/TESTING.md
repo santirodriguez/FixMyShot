@@ -347,3 +347,47 @@ The source-bound host/bootstrap check found **75 matching localization keys** in
 The prior source `4f0a0b5626c8c139509d402e31aaf4fa8f2eba44` [Actions 39838521430](https://github.com/santirodriguez/FixMyShot/actions/runs/39838521430) compiled but **FAILED** both emulator jobs: 7/8 recovery tests passed and `uncertainPublicationIsNeverPromotedByMatchingBytes` failed because the batch snapshot lacked the URI that already existed in the per-item journal. The one-line fix in `e794a5e` allows read-only verification through the journal URI when the batch URI is absent, while retaining mismatched-known-URI blocking and never automatically promoting an indeterminate publication to success.
 
 The new bounded read-only `OutputRecoveryVerifier` distinguishes matching content, missing/changed bytes, pending MediaStore entries and unverifiable provider results. API 36's `OutputRecoveryVerifierTest` uses an app-owned synthetic MediaStore image and removes it after testing. API 26 executes its non-MediaStore cases; its MediaStore-specific test exits via API gating. This verifies **no automatic retry/deletion in the recovery path**, not authentic chosen SAF tree selection, gallery listing, receiver acceptance, manual device behavior, complete process-death safety or G4 closure. No independent artifact ZIP byte validation is claimed for this receipt.
+
+## Selected-output sharing — exact-source CI `3df5262`
+
+[GitHub Actions 39853261424](https://github.com/santirodriguez/FixMyShot/actions/runs/39853261424) completed **SUCCESS** at executable source **`3df5262ec8676b42ecf5ec35a39b521bb744bd54`** on `release/0.1.0`: build, API 26 and API 36. The build log records **86 matching resource keys** in en/es/ca, successful core tests/lint, debug/unsigned-release/test APK compilation and native APK inspection. Actual emulator logs contain:
+
+| Suite / evidence | API 26 | API 36 |
+|---|---|---|
+| `ExportShareIntentsTest` | `OK (4 tests)` | `OK (4 tests)` |
+| `ReviewExportFlowTest` | `OK (3 tests)`; real MediaStore case API-gated out | `OK (3 tests)`; includes owned MediaStore output and verified share payload |
+| Combined recovery classes | `OK (8 tests)`; MediaStore-specific body API-gated out | `OK (8 tests)`; includes owned provider verification |
+| Batch coordinator / transaction / private executor | 5 / 9 / 6 pass | 5 / 9 / 6 pass |
+| Renderer / thumbnail cache | 4 / 3 pass | 4 / 3 pass |
+| PNG / lossless WebP matrix | 80 real synthetic encodes pass | 80 real synthetic encodes pass |
+
+The share builder checks single/multiple content-URI payloads, MIME, ClipData and temporary read grants. API 36's export test selects an actually published synthetic MediaStore output, rechecks its journal/provider bytes through the ViewModel and obtains ACTION_SEND, then deletes its own test image. This exercises the fix for per-item transaction tokens being distinct from batch tokens. Neither test launches a receiving application or proves that an external receiver can open the grant. API 26's green suite does **not** prove a genuine selected SAF folder or persisted grant.
+
+Artifact association and provider-reported digests were inspected; these digests were **not independently verified against downloaded ZIP bytes** in this receipt:
+
+| Artifact | GitHub ID | Provider-reported ZIP SHA-256 |
+|---|---:|---|
+| Build | 12458757171 | `b011a6ae8a02386a5d3b280189ada831974f80232a51a45e58e6682d99272b54` |
+| API 26 | 12459122225 | `4f687d55c652020ba125ae36709641b4cc1fd96ee97ce5d852ad66023359e0e1` |
+| API 36 | 12459152743 | `4dcd4df4871838c68041ca20874ded849063ee8dce3e15d24b20092dba8dbc3e` |
+
+Both emulators report 4096-byte pages. The superseded run 39852723231 was cancelled and is not acceptance evidence. Physical devices, external receivers, 16 KiB runtime and G1–G7 remain open. Later source changes require their own relevant validation.
+
+### Next SAF acceptance slice — API 26 and 28
+
+**Status: NOT RUN.** Use disposable authorized emulators and synthetic files; record exact app SHA, OS image, provider identity and resulting receipts. Physical-device review remains separate.
+
+1. On each API, create a uniquely named empty test folder using the system file manager. Import one synthetic PNG and one JPEG orientation fixture; explicitly choose PNG and then lossless WebP for separate exports. From Export, use the actual system folder picker to choose the test folder. Do not inject a URI, bypass grants or substitute an in-memory output port for this acceptance.
+2. Verify that both read and write persistable grants are present, outputs appear only in the chosen folder with truthful MIME/dimensions, source hashes stay unchanged, and results acknowledge that SAF files can be visible during writing. A selected folder is an alternative location, not automatic Pictures/FixMyShot.
+3. Cancel the picker, then test a read-only/refusing provider. No batch output may start, the draft must survive, and the error must be localized. Reject unexpected/out-of-tree provider URIs without reading, writing, publishing or deleting them.
+4. After one successful batch, force-stop and reopen the app. Verify the persisted grant and read-only reconciliation of recorded outputs. Confirm that matching published bytes do not trigger duplicate exports, and uncertain results require explicit review. Revoke access or remove the test folder externally, reopen, and verify a useful unavailable/unverifiable result without automatic retry/deletion.
+5. Select one and multiple successful outputs, open Sharesheet and use an external test receiver to read the actual streams with temporary grants. Check PNG/WebP and mixed MIME, deselection, modified/missing output rejection and cancellation. Intent construction alone does not pass receiver acceptance.
+6. Remove only outputs/folders created by this exercise and release only its grants. Keep the 100-item, low-space, mid-write process-kill and physical-gallery matrix open until separately executed.
+
+The blueprint's API 26–28 permission-mediated default Pictures path remains **unimplemented**; the current alpha uses only explicit SAF selection there. This acceptance plan does not waive that requirement or authorize a new permission. G4 cannot close from the current SAF-only path.
+
+### SAF unexpected-URI regression following `3df5262`
+
+Source review found that `SafTreeOutputPort.create` attempted cleanup even when a provider returned a URI outside the selected tree. The adapter now rejects that URI without attempting cleanup; same-tree name-mismatch cleanup remains bounded to the selected tree. Two constructor callbacks preserve the real DocumentsContract defaults and allow fault injection of create/delete results. A new transaction-suite case checks different-tree, different-authority and non-tree returns, rejects read/write/publication/deletion and asserts zero cleanup calls. It creates no external files and does not simulate a genuine persisted grant.
+
+The transaction suite now has **10** cases; the collector and host mock require that count. **Android execution of this later fix is pending its new source-bound CI; the successful `3df5262` run does not cover it.** Actual API 26/28 picker/provider tests above remain NOT RUN.

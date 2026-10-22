@@ -139,7 +139,7 @@ if 'instrument' in args:
     export_flow = any('ReviewExportFlowTest' in a for a in args)
     share_intents = any('ExportShareIntentsTest' in a for a in args)
     recovery = any('BatchRecoveryScannerTest' in a for a in args)
-    count = 1 if native else 3 if thumbnail else 6 if private_output else 9 if transaction else 5 if batch else 3 if export_flow else 4 if share_intents else 8 if recovery else 4
+    count = 1 if native else 3 if thumbnail else 6 if private_output else 10 if transaction else 5 if batch else 3 if export_flow else 4 if share_intents else 8 if recovery else 4
     print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
           ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:

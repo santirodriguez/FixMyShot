@@ -16,6 +16,12 @@ import java.io.OutputStream
 internal class SafTreeOutputPort(
     private val resolver: ContentResolver,
     private val tree: Uri,
+    private val createDocument: (Uri, String, String) -> Uri? = { parent, mime, name ->
+        DocumentsContract.createDocument(resolver, parent, mime, name)
+    },
+    private val deleteDocument: (Uri) -> Boolean = {
+        DocumentsContract.deleteDocument(resolver, it)
+    },
 ) : OwnedOutputPort {
     override val visibleBeforeCommit: Boolean = true
 
@@ -31,9 +37,12 @@ internal class SafTreeOutputPort(
             (mime == "image/webp" && name.endsWith(".webp")))
         val parent = DocumentsContract.buildDocumentUriUsingTree(
             tree, DocumentsContract.getTreeDocumentId(tree))
-        val created = DocumentsContract.createDocument(resolver, parent, mime, name) ?: return null
-        if (!withinTree(created) || !hasExactName(created, name)) {
-            runCatching { DocumentsContract.deleteDocument(resolver, created) }
+        val created = createDocument(parent, mime, name) ?: return null
+        // An unexpected provider URI is not evidence that we own the returned document.
+        // Never attempt cleanup outside the folder explicitly selected by the user.
+        if (!withinTree(created)) return null
+        if (!hasExactName(created, name)) {
+            runCatching { deleteDocument(created) }
             return null
         }
         return created
@@ -63,5 +72,5 @@ internal class SafTreeOutputPort(
     override fun publish(uri: Uri): Boolean = withinTree(uri)
 
     override fun delete(uri: Uri): Boolean =
-        withinTree(uri) && DocumentsContract.deleteDocument(resolver, uri)
+        withinTree(uri) && deleteDocument(uri)
 }

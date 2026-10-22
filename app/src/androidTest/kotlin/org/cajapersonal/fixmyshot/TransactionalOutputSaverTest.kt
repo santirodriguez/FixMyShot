@@ -140,6 +140,27 @@ class TransactionalOutputSaverTest {
         }
     }
 
+    @Test fun unexpectedSafCreatedUriIsRejectedWithoutTouchingIt() {
+        val chosen = Uri.parse("content://example.invalid/tree/chosen")
+        val unexpected = listOf(
+            Uri.parse("content://example.invalid/tree/other/document/file"),
+            Uri.parse("content://other.invalid/tree/chosen/document/file"),
+            Uri.parse("content://example.invalid/document/file"),
+        )
+        for (uri in unexpected) {
+            var cleanupCalls = 0
+            val port = SafTreeOutputPort(context.contentResolver, chosen,
+                createDocument = { _, _, _ -> uri },
+                deleteDocument = { cleanupCalls++; true })
+            assertNull(port.create("FixMyShot_20261022T120000Z_1234abcd.png", "image/png"))
+            assertNull(port.openRead(uri))
+            assertNull(port.openWrite(uri))
+            assertFalse(port.publish(uri))
+            assertFalse(port.delete(uri))
+            assertEquals("Unexpected provider URI must never be deleted", 0, cleanupCalls)
+        }
+    }
+
     @Test fun invalidCandidateNeverCreatesAnExternalItem() {
         val input = prepared()
         val fake = MemoryPort()

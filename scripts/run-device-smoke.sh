@@ -99,7 +99,7 @@ timeout 4m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/private-output-instrumentation.txt 2>&1
 private_result=$?
 cat evidence/private-output-instrumentation.txt
-# The nine scoped save tests use a fake provider plus one synthetic API29+ MediaStore item.
+# The ten scoped save tests use a fake provider plus one synthetic API29+ MediaStore item.
 # API26 exercises only the permission-free fake transaction and skips the API29 provider branch.
 timeout 4m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.TransactionalOutputSaverTest \
@@ -131,7 +131,7 @@ set -e
 grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (6 tests)' evidence/private-output-instrumentation.txt
-grep -q 'OK (9 tests)' evidence/transaction-instrumentation.txt
+grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
