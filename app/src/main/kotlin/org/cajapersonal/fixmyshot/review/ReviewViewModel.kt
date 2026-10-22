@@ -269,8 +269,7 @@ internal class ReviewViewModel : ViewModel() {
                     val record = OutputJournal(File(app.filesDir,
                         "export-jobs/$token/item-$index.json")).read()
                     val outputUri = record?.uri
-                    if (record == null || outputUri == null || record.token != token ||
-                        record.itemId != item.itemId ||
+                    if (record == null || outputUri == null || record.itemId != item.itemId ||
                         record.stage != OutputStage.PUBLISHED || outputUri != item.uri ||
                         verifier.verify(record) != OutputRecoveryEvidence.MATCHED) {
                         safe = false
