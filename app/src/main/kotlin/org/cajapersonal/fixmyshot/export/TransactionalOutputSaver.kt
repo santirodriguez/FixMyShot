@@ -84,7 +84,10 @@ internal class TransactionalOutputSaver(
         var failure = SaveFailure.PROVIDER_ERROR
         try {
             uri = port.create(name, recipe.request.format.mimeType) ?: throw IOException("Insert failed")
-            journal.write(reservation.copy(stage = OutputStage.PENDING, uri = uri.toString()))
+            journal.write(reservation.copy(
+                stage = if (port.visibleBeforeCommit) OutputStage.VISIBLE_WRITING else OutputStage.PENDING,
+                uri = uri.toString(),
+            ))
             val output = port.openWrite(uri) ?: throw IOException("Output unavailable")
             output.use { to ->
                 FileInputStream(source).use { from ->

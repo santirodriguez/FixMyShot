@@ -13,6 +13,8 @@ import java.io.OutputStream
 
 /** Narrow ownership-only output port. A fake port exercises faults without touching a gallery. */
 internal interface OwnedOutputPort {
+    /** SAF may expose a newly created document before validation completes. */
+    val visibleBeforeCommit: Boolean get() = false
     fun create(name: String, mime: String): Uri?
     fun openWrite(uri: Uri): OutputStream?
     fun openRead(uri: Uri): InputStream?

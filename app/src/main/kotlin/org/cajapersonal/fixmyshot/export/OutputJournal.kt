@@ -8,7 +8,7 @@ import java.io.IOException
 
 /** Versioned, app-private single-output checkpoint; no original URI or source metadata. */
 internal enum class OutputStage {
-    RESERVED, PENDING, VALIDATED, PUBLISHED, FAILED, CANCELLED, INDETERMINATE
+    RESERVED, PENDING, VISIBLE_WRITING, VALIDATED, PUBLISHED, FAILED, CANCELLED, INDETERMINATE
 }
 
 internal data class OutputRecord(

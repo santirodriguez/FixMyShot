@@ -1,0 +1,58 @@
+package org.cajapersonal.fixmyshot.export
+
+import android.content.ContentResolver
+import android.net.Uri
+import android.os.ParcelFileDescriptor
+import android.provider.DocumentsContract
+import android.provider.OpenableColumns
+import java.io.InputStream
+import java.io.OutputStream
+
+/**
+ * Explicit user-selected SAF folder, not an automatic Pictures/FixMyShot save.
+ * A SAF document can be visible immediately after createDocument: there is no
+ * MediaStore IS_PENDING equivalent and callers must explain that limitation.
+ */
+internal class SafTreeOutputPort(
+    private val resolver: ContentResolver,
+    private val tree: Uri,
+) : OwnedOutputPort {
+    override val visibleBeforeCommit: Boolean = true
+
+    init {
+        require(tree.scheme == ContentResolver.SCHEME_CONTENT && DocumentsContract.isTreeUri(tree)) {
+            "Expected a user-selected SAF tree URI"
+        }
+    }
+
+    override fun create(name: String, mime: String): Uri? {
+        require(name.matches(Regex("FixMyShot_[0-9]{8}T[0-9]{6}Z_[0-9a-f]{8}\\.(png|webp)")))
+        require((mime == "image/png" && name.endsWith(".png")) ||
+            (mime == "image/webp" && name.endsWith(".webp")))
+        val parent = DocumentsContract.buildDocumentUriUsingTree(
+            tree, DocumentsContract.getTreeDocumentId(tree))
+        val created = DocumentsContract.createDocument(resolver, parent, mime, name) ?: return null
+        if (created.scheme != ContentResolver.SCHEME_CONTENT ||
+            created.authority != tree.authority || !hasExactName(created, name)) {
+            runCatching { DocumentsContract.deleteDocument(resolver, created) }
+            return null
+        }
+        return created
+    }
+
+    private fun hasExactName(uri: Uri, wanted: String): Boolean = try {
+        resolver.query(uri, arrayOf(OpenableColumns.DISPLAY_NAME), null, null, null)?.use {
+            it.moveToFirst() && it.getString(0) == wanted
+        } == true
+    } catch (_: Exception) { false }
+
+    override fun openWrite(uri: Uri): OutputStream? =
+        resolver.openFileDescriptor(uri, "w")?.let { ParcelFileDescriptor.AutoCloseOutputStream(it) }
+
+    override fun openRead(uri: Uri): InputStream? = resolver.openInputStream(uri)
+
+    /** This acknowledges validated completion, not an atomic publication switch. */
+    override fun publish(uri: Uri): Boolean = true
+
+    override fun delete(uri: Uri): Boolean = DocumentsContract.deleteDocument(resolver, uri)
+}

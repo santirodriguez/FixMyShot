@@ -36,13 +36,15 @@ class TransactionalOutputSaverTest {
         var deleted = false
         var published = false
         var failWrite = false
+        override var visibleBeforeCommit: Boolean = false
+        var onOpenWrite: (() -> Unit)? = null
         var failPublish = false
         var corruptRead = false
         override fun create(name: String, mime: String): Uri {
             created = true
             return uri
         }
-        override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+        override fun openWrite(uri: Uri): OutputStream = (object : ByteArrayOutputStream() {
             override fun write(b: ByteArray, off: Int, len: Int) {
                 if (failWrite) throw IOException("Synthetic provider write failure")
                 super.write(b, off, len)
@@ -51,7 +53,7 @@ class TransactionalOutputSaverTest {
                 bytes = toByteArray()
                 super.close()
             }
-        }
+        }).also { onOpenWrite?.invoke() }
         override fun openRead(uri: Uri): InputStream =
             ByteArrayInputStream(if (corruptRead) bytes + byteArrayOf(9) else bytes)
         override fun publish(uri: Uri): Boolean {
@@ -111,6 +113,31 @@ class TransactionalOutputSaverTest {
                 (TransactionalOutputSaver(context.cacheDir, fake, journal)
                     .save(input.recipe, input.ready) as SaveResult.Failed).reason)
         } finally { journal.clear(); input.cleanup() }
+    }
+
+    @Test fun visibleSafStyleOutputHasExplicitJournalStateBeforeCopy() {
+        val input = prepared()
+        val fake = MemoryPort().apply { visibleBeforeCommit = true }
+        val journal = journal()
+        try {
+            var observed = false
+            fake.onOpenWrite = {
+                observed = true
+                assertEquals(OutputStage.VISIBLE_WRITING, journal.read()?.stage)
+            }
+            val result = TransactionalOutputSaver(context.cacheDir, fake, journal)
+                .save(input.recipe, input.ready)
+            assertTrue(result.toString(), result is SaveResult.Published)
+            assertTrue(observed && fake.created && !fake.deleted)
+            assertEquals(OutputStage.PUBLISHED, journal.read()?.stage)
+        } finally { journal.clear(); input.cleanup() }
+    }
+
+    @Test fun safPortRejectsNonTreeUrisWithoutGrantingFileAccess() {
+        assertThrows(IllegalArgumentException::class.java) {
+            SafTreeOutputPort(context.contentResolver,
+                Uri.parse("content://example.invalid/document/42"))
+        }
     }
 
     @Test fun invalidCandidateNeverCreatesAnExternalItem() {

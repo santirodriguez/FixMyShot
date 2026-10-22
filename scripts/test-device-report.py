@@ -135,7 +135,7 @@ if 'instrument' in args:
     thumbnail = any('ReviewThumbnailCacheTest' in a for a in args)
     private_output = any('PrivateOutputExecutorTest' in a for a in args)
     transaction = any('TransactionalOutputSaverTest' in a for a in args)
-    count = 1 if native else 3 if thumbnail else 6 if private_output else 7 if transaction else 4
+    count = 1 if native else 3 if thumbnail else 6 if private_output else 9 if transaction else 4
     print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
           ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
