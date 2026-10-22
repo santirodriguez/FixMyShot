@@ -53,6 +53,8 @@ import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
+import org.cajapersonal.fixmyshot.core.FitMode
+import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
@@ -88,6 +90,8 @@ internal fun ReviewScreen(
     importLimitExceeded: Boolean = false,
     pendingImports: Int = 0,
     onSettings: () -> Unit = {},
+    onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
+    onCrop: (CropFocus) -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -142,7 +146,8 @@ internal fun ReviewScreen(
                 }
             }
             if (selected != null) {
-                Box(Modifier.fillMaxWidth().height(320.dp).background(MaterialTheme.colorScheme.surfaceVariant),
+                Box(Modifier.fillMaxWidth().height(320.dp).background(MaterialTheme.colorScheme.surfaceVariant)
+                    .cropGestures(selected, plan, editEnabled, onCrop),
                     contentAlignment = Alignment.Center) {
                     if (preview != null) {
                         if (plan?.settings?.background == BackgroundChoice.Transparent) {
@@ -166,8 +171,9 @@ internal fun ReviewScreen(
             }
             ReviewControls(
                 draft = draft, plan = plan, enabled = editEnabled,
-                onDestination = onDestination, onFormat = onFormat, onBackground = onBackground,
+                onDestination = onDestination, onFormat = onFormat, onBackground = onBackground, onFit = onFit,
             )
+            if (selected != null && plan != null) CropControls(selected, plan, editEnabled, onCrop)
             Text(stringResource(R.string.metadata_removed), style = MaterialTheme.typography.bodySmall)
             if (selected != null && plan != null) {
                 val output = when (val geometry = plan.geometry) {

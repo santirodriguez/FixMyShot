@@ -136,3 +136,6 @@ No production code, new permission, dependency, signing, main merge or release c
 
 Import/settings functional batch: receive single/multiple images and ClipData; preserve imports and draft across recreation; explicit 100-image cap; DataStore theme; AppCompat/platform locales; offline help/privacy/About. Run all current regression suites plus ImportSettingsFlowTest together. Legacy SAF diagnostics remain deferred and recorded.
 profile=current
+
+Preserve-pixels crop block: explicit contain/crop, per-image drag/pinch/zoom/pan/reset, shared preview/original-output mapping, frozen source rectangle and native dimensions, destination minimum validation. Require updated core/renderer tests, seven private executor cases and the import/settings block in one current-device regression run.
+profile=current

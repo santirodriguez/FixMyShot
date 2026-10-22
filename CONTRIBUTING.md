@@ -38,7 +38,7 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 ## Translations and reports
 
-Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (109 in the import/settings implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
+Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (119 in the import/settings/crop implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
 Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](docs/TESTING.md) for acceptance boundaries.
 
@@ -46,3 +46,7 @@ Keep implementation and technical documentation in English. Do not include priva
 ## Appearance and language
 
 `settings/AppPreferences.kt` stores only theme in Preferences DataStore (1.1.7). AppCompat (1.7.1) owns language persistence on older Android and synchronizes with platform per-app language settings on API33+. Do not add a second language preference or persist metadata opt-out/output format as a new-session default. These stable versions deliberately fit the existing toolchain; they are not latest-version claims. Language resources remain offline and settings changes retain the ViewModel draft. The original flag vectors have provenance in THIRD_PARTY_NOTICES.
+
+## Crop rendering
+
+Preserve-pixels crop freezes the source rectangle from CropPlanner in PrivateOutputRecipe. ReviewBitmapRenderer.drawContent maps that same rectangle from the sampled preview or full original into its destination. Integer-aligned 1:1 placements are unfiltered; actual fractional/scale changes are filtered once. The original staged image is never cropped in place. Contain stays the new-session default. Crop gestures and directional/zoom/reset controls change only the selected image transform; batch fit changes preserve per-image overrides. Exact-size crop/enlargement remains explicitly blocked by the existing review flag.

@@ -71,13 +71,32 @@ class ExportPreparationTest {
         assertTrue(PrivatePreparationBlock.CODEC_UNAVAILABLE in other.blocks)
     }
 
-    @Test fun cropIsNotRelabeledAsContainOrPreparedForEncoding() {
+    @Test fun cropFreezesTheVisibleSourceWithoutRelabelingItAsContain() {
         val draft = DraftSession(destination = DestinationChoice.Preset(DestinationCatalog.SOCIAL_SQUARE))
             .addImages(listOf(source(size = PixelSize(100, 200))))
-            .setBatch(EditSettings(fit = FitMode.CROP))
-        val item = ExportPreparation.inspect(draft, 26, heap).items.single()
-        assertNull(item.recipe)
-        assertTrue(PrivatePreparationBlock.CONTAIN_RENDER_ONLY in item.blocks)
+            .setBatch(EditSettings(fit = FitMode.CROP, crop = CropFocus(0.5, 0.4, 2.0)))
+        val recipe = ExportPreparation.inspect(draft, 36, heap).candidates.single()
+        assertEquals(PixelSize(50, 50), recipe.canvas)
+        assertEquals(SourceRectangle(25.0, 55.0, 50.0, 50.0), recipe.crop)
+        assertEquals(PixelPlacement(0, 0, 50, 50), recipe.placement)
+        assertEquals(PixelSize(100, 200), recipe.orientedSource)
+    }
+
+    @Test fun undersizedAndRepositionedCropsRequireReviewWithoutChangingTheDraft() {
+        val image = source(size = PixelSize(100, 200))
+        val small = DraftSession(destination = DestinationChoice.Preset(DestinationCatalog.PLAY_PORTRAIT),
+            batch = EditSettings(fit = FitMode.CROP)).addImages(listOf(image))
+        assertTrue(DraftReviewFlag.DIMENSIONS_REQUIRE_REVIEW in small.plans(36).single().reviewFlags)
+        assertEquals(1, ExportPreparation.inspect(small, 36, heap).blockedCount)
+        val moved = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+            batch = EditSettings(fit = FitMode.CROP, crop = CropFocus(0.0, 0.0)))
+            .addImages(listOf(image))
+        assertEquals(1, ExportPreparation.inspect(moved, 36, heap).blockedCount)
+        assertEquals(CropFocus(0.0, 0.0), moved.batch.crop)
+        val accepted = moved.editItem(image.id,
+            ItemOverrides(crop = ItemValue.Custom(CropFocus(0.5, 0.25))))
+        assertEquals(SourceRectangle(0.0, 0.0, 100.0, 100.0),
+            ExportPreparation.inspect(accepted, 36, heap).candidates.single().crop)
     }
 
     @Test fun dynamicWorkingSetCeilingBlocksWithoutAllocatingBitmaps() {
@@ -99,3 +118,4 @@ class ExportPreparationTest {
         assertEquals(hash, second.sourceSha256)
     }
 }
+

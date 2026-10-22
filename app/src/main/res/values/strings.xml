@@ -108,5 +108,15 @@
     <string name="link_unavailable">No application can open this link.</string>
     <string name="import_limit">The batch can contain up to 100 images. This selection was not added; choose fewer images.</string>
     <string name="import_waiting">Images waiting to be imported: %1$d</string>
+    <string name="crop_mode">Crop</string>
+    <string name="crop_notice">Crop removes content. Drag or pinch the preview, or use the controls below. These adjustments affect the selected image.</string>
+    <string name="crop_zoom">Zoom: %1$d%%</string>
+    <string name="crop_left">Move left</string>
+    <string name="crop_right">Move right</string>
+    <string name="crop_up">Move up</string>
+    <string name="crop_down">Move down</string>
+    <string name="crop_reset">Reset crop</string>
+    <string name="crop_accept_position">Use repositioned crop</string>
+    <string name="crop_unavailable">This crop cannot satisfy the selected ratio or size limit. Choose another ratio or keep all content.</string>
 </resources>
 

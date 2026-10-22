@@ -108,5 +108,15 @@
     <string name="link_unavailable">Cap aplicació no pot obrir aquest enllaç.</string>
     <string name="import_limit">El lot admet fins a 100 imatges. No s’ha afegit aquesta selecció; tria menys imatges.</string>
     <string name="import_waiting">Imatges pendents d’importar: %1$d</string>
+    <string name="crop_mode">Retalla</string>
+    <string name="crop_notice">El retall elimina contingut. Arrossega o fes servir dos dits a la previsualització, o els controls de sota. Aquests ajustos afecten la imatge seleccionada.</string>
+    <string name="crop_zoom">Zoom: %1$d%%</string>
+    <string name="crop_left">Mou a l’esquerra</string>
+    <string name="crop_right">Mou a la dreta</string>
+    <string name="crop_up">Mou amunt</string>
+    <string name="crop_down">Mou avall</string>
+    <string name="crop_reset">Restableix el retall</string>
+    <string name="crop_accept_position">Fes servir el retall reposicionat</string>
+    <string name="crop_unavailable">Aquest retall no pot complir la proporció o el límit de mida. Tria una altra proporció o conserva tot el contingut.</string>
 </resources>
 

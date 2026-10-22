@@ -39,6 +39,9 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ItemValue
+import org.cajapersonal.fixmyshot.core.CropFocus
+import org.cajapersonal.fixmyshot.core.CropPlanner
+import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
 import java.io.File
@@ -194,6 +197,13 @@ class MainActivity : AppCompatActivity() {
                                 model.draft.editItem(selected, item.overrides.copy(background = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(background = value)))
                         },
+                        onFit = { value, onlySelected ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            updateDraft(if (onlySelected && item != null) {
+                                model.draft.editItem(item.id, item.overrides.copy(fit = ItemValue.Custom(value)))
+                            } else model.draft.setBatch(model.draft.batch.copy(fit = value)))
+                        },
+                        onCrop = { updateCrop(it) },
                         onResetSelected = {
                             model.selectedId?.let { updateDraft(model.draft.resetItem(it)) }
                         },
@@ -237,6 +247,19 @@ class MainActivity : AppCompatActivity() {
         model.draft = value
         model.onDraftEdited()
         if (model.selectedId !in value.images.map { it.id }) model.selectedId = value.images.firstOrNull()?.id
+    }
+
+    private fun updateCrop(focus: CropFocus) {
+        if (model.isBusy || model.exportState.isLocked) return
+        val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return
+        val ratio = DestinationCatalog.resolve(model.draft.destination).cropRatio(item.orientedSize)
+        try {
+            val geometry = CropPlanner.plan(item.orientedSize, ratio, focus)
+            val clamped = CropFocus(geometry.normalizedCenterX, geometry.normalizedCenterY, focus.zoom)
+            updateDraft(model.draft.editItem(item.id, item.overrides.copy(crop = ItemValue.Custom(clamped))))
+        } catch (_: IllegalArgumentException) {
+            // A too-small crop is not silently enlarged or substituted; keep the last valid transform.
+        }
     }
 
     private fun addImages(uris: List<Uri>) { model.enqueueImports(uris) }

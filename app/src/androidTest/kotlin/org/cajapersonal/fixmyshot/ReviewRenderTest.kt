@@ -69,13 +69,20 @@ class ReviewRenderTest {
         } finally { source.recycle() }
     }
 
-    @Test fun unsupportedCropDoesNotSilentlyBecomeContain() {
+    @Test fun centeredCropUsesOriginalCoordinatesWithoutPadding() {
         val source = Bitmap.createBitmap(40, 80, Bitmap.Config.ARGB_8888)
         try {
             val crop = plan(PixelSize(40, 80), EditSettings(fit = FitMode.CROP), DestinationCatalog.SOCIAL_SQUARE)
             assertTrue(crop.geometry != null)
-            val attempted = runCatching { ReviewBitmapRenderer.preview(source, PixelSize(40, 80), crop) }
-            assertTrue(attempted.exceptionOrNull() is IllegalArgumentException)
+            source.eraseColor(Color.BLUE)
+            source.setPixel(20, 40, Color.RED)
+            val rendered = ReviewBitmapRenderer.preview(source, PixelSize(40, 80), crop)
+            try {
+                assertEquals(PixelSize(40, 40), rendered.plannedOutput)
+                assertEquals(Color.BLUE, rendered.image.getPixel(0, 0))
+                assertEquals(Color.RED, rendered.image.getPixel(20, 20))
+            } finally { rendered.image.recycle() }
         } finally { source.recycle() }
     }
 }
+

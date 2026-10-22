@@ -29,6 +29,7 @@ data class PrivateOutputRecipe(
     val codecRoute: CodecRoute,
     val request: EncodeRequest,
     val estimatedWorkingSetBytes: Long,
+    val crop: SourceRectangle? = null,
 ) {
     val needsBackgroundResolution: Boolean get() = background == BackgroundChoice.Automatic
 }
@@ -61,15 +62,20 @@ object ExportPreparation {
             if (preview.settings.format !in setOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
                 blocks += PrivatePreparationBlock.FORMAT_NOT_READY
             }
-            val geometry = preview.geometry as? PlannedGeometry.Contained
-            if (geometry == null) blocks += PrivatePreparationBlock.CONTAIN_RENDER_ONLY
+            val geometry = preview.geometry
+            val canvas = when (geometry) {
+                is PlannedGeometry.Contained -> geometry.value.canvas
+                is PlannedGeometry.Cropped -> geometry.value.output
+                null -> null
+            }
+            if (canvas == null) blocks += PrivatePreparationBlock.CONTAIN_RENDER_ONLY
 
             var route: CodecRoute? = null
             var request: EncodeRequest? = null
             var estimate = 0L
-            if (geometry != null) {
+            if (canvas != null) {
                 request = EncodeRequest(
-                    size = geometry.value.canvas,
+                    size = canvas,
                     format = preview.settings.format,
                     hasAlpha = preview.settings.background == BackgroundChoice.Transparent,
                     metadataPolicy = preview.settings.metadata,
@@ -86,7 +92,7 @@ object ExportPreparation {
                         CodecMemoryBudget.estimatedBytes(request),
                         Math.addExact(
                             Math.multiplyExact(image.orientedSize.pixels, 4L),
-                            Math.multiplyExact(geometry.value.canvas.pixels, 4L),
+                            Math.multiplyExact(canvas.pixels, 4L),
                         ),
                     )
                     val limit = minOf(256L * MIB, processHeapLimitBytes / 2L)
@@ -101,7 +107,9 @@ object ExportPreparation {
             }
 
             val recipe = if (blocks.isEmpty()) {
-                val container = requireNotNull(geometry).value
+                val output = requireNotNull(canvas)
+                val contained = (geometry as? PlannedGeometry.Contained)?.value
+                val crop = (geometry as? PlannedGeometry.Cropped)?.value
                 PrivateOutputRecipe(
                     sourceId = image.id,
                     sourceSha256 = requireNotNull(hash),
@@ -110,8 +118,9 @@ object ExportPreparation {
                     sessionRevision = draft.revision,
                     catalogVersion = preview.catalogVersion,
                     destinationId = preview.destination.preset.id,
-                    canvas = container.canvas,
-                    placement = container.placement,
+                    canvas = output,
+                    placement = contained?.placement ?: PixelPlacement(0, 0, output.width, output.height),
+                    crop = crop?.visibleSource,
                     background = preview.settings.background,
                     codecRoute = requireNotNull(route),
                     request = requireNotNull(request),
@@ -123,3 +132,4 @@ object ExportPreparation {
         return PrivateBatchPreflight(draft.revision, items)
     }
 }
+

@@ -29,6 +29,7 @@ import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PreviewPlan
+import org.cajapersonal.fixmyshot.core.FitMode
 
 @Composable
 internal fun ReviewControls(
@@ -38,6 +39,7 @@ internal fun ReviewControls(
     onDestination: (DestinationChoice) -> Unit,
     onFormat: (OutputFormat, Boolean) -> Unit,
     onBackground: (BackgroundChoice, Boolean) -> Unit,
+    onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
 ) {
     var chooseDestination by remember { mutableStateOf(false) }
     var chooseFormat by remember { mutableStateOf(false) }
@@ -73,10 +75,18 @@ internal fun ReviewControls(
                 onClick = { onDestination(DestinationChoice.Custom.of(requireNotNull(numerator), requireNotNull(denominator))) }) {
                 Text(stringResource(R.string.apply_custom_ratio))
             }
-            Text(stringResource(R.string.preserve_content), style = MaterialTheme.typography.bodyMedium)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Checkbox(checked = selectedOnly, enabled = enabled, onCheckedChange = { selectedOnly = it })
                 Text(stringResource(R.string.selected_only))
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                val fit = plan?.settings?.fit ?: draft.batch.fit
+                androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CONTAIN,
+                    enabled = enabled, onClick = { onFit(FitMode.CONTAIN, selectedOnly) },
+                    label = { Text(stringResource(R.string.preserve_content)) })
+                androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CROP,
+                    enabled = enabled, onClick = { onFit(FitMode.CROP, selectedOnly) },
+                    label = { Text(stringResource(R.string.crop_mode)) })
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Box {
@@ -136,4 +146,5 @@ private fun backgroundLabel(choice: BackgroundChoice): String = when (choice) {
     BackgroundChoice.Transparent -> stringResource(R.string.background_transparent)
     is BackgroundChoice.CustomRgb -> stringResource(R.string.background_custom)
 }
+
 

@@ -176,6 +176,38 @@ class PrivateOutputExecutorTest {
         } finally { source.file.delete(); directory.deleteRecursively() }
     }
 
+    @Test fun croppedPngMatchesTheSharedPreviewAndOriginalPixels() {
+        val source = fixture(80, 120)
+        val directory = File(context.cacheDir, "private-crop-" + System.nanoTime())
+        try {
+            val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+                batch = EditSettings(fit = FitMode.CROP, crop = CropFocus(0.5, 0.5, 2.0),
+                    background = BackgroundChoice.White)).addImages(listOf(source.image))
+            val frozen = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
+            assertEquals(SourceRectangle(20.0, 40.0, 40.0, 40.0), frozen.crop)
+            val result = executor(directory).execute(draft, frozen)
+            assertTrue(result.toString(), result is PrivateExecutionResult.Ready)
+            result as PrivateExecutionResult.Ready
+            try {
+                val decoded = requireNotNull(BitmapFactory.decodeFile(result.file.absolutePath))
+                val original = ReviewSources(context).decodeOriginal(source.image.id, source.image.orientedSize)
+                try {
+                    val preview = ReviewBitmapRenderer.preview(original, source.image.orientedSize,
+                        draft.plans(Build.VERSION.SDK_INT).single()).image
+                    try {
+                        assertEquals(40, decoded.width)
+                        assertEquals(40, decoded.height)
+                        for (y in 0 until 40) for (x in 0 until 40) {
+                            assertEquals(original.getPixel(x + 20, y + 40), decoded.getPixel(x, y))
+                            assertEquals(preview.getPixel(x, y), decoded.getPixel(x, y))
+                        }
+                    } finally { preview.recycle() }
+                } finally { decoded.recycle(); original.recycle() }
+                assertTrue(ReviewSources(context).matchesFingerprint(source.image.id, result.sourceSha256))
+            } finally { result.file.delete() }
+        } finally { source.file.delete(); directory.deleteRecursively() }
+    }
+
     @Test fun damagedPrivateContainerIsRejected() {
         val source = fixture(40, 80)
         val directory = File(context.cacheDir, "private-damage-" + System.nanoTime())
@@ -192,3 +224,4 @@ class PrivateOutputExecutorTest {
         } finally { source.file.delete(); directory.deleteRecursively() }
     }
 }
+

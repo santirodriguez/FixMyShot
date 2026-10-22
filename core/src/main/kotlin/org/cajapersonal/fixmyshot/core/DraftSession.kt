@@ -275,6 +275,7 @@ data class DraftSession(
     }
 
     private fun matchesDestination(output: PixelSize, spec: ResolvedDestination): Boolean {
+        if (minOf(output.width, output.height) < spec.preset.minimumShortSide) return false
         val maxSide = spec.preset.maximumLongSide
         if (maxSide != null && maxOf(output.width, output.height) > maxSide) return false
         if (spec.preset.id == DestinationCatalog.PLAY_PHONE) {
@@ -286,3 +287,4 @@ data class DraftSession(
         return output.width.toLong() * ratio.q == output.height.toLong() * ratio.p
     }
 }
+

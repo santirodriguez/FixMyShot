@@ -14,7 +14,9 @@ API29+ output uses owned MediaStore publication in Pictures/FixMyShot. API26–2
 
 PNG and identifying-metadata removal remain new-session defaults. Original files are read only; bounded private working copies are removed on discard or age-based cleanup. The app requests no permissions and has no networking, accounts or analytics. External links open only after a user action.
 
-**Still incomplete:** actual crop controls/export integration, full color/HDR/metadata-preservation policy, complete draft/process-death resume and explicit retry, native HEIC/AVIF and the bounded JPEG XL decision, external receiver and physical-device acceptance, accessibility/locale visual review and distribution readiness. The new import/settings block requires its own source-bound Android validation; earlier successful CI does not validate it. The complete implementation contract and recorded amendments are in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Crop zoom reduces native output dimensions; it never silently enlarges them. Destination conflicts remain visible and block export until resolved.
+
+**Still incomplete:** exact-size crop/enlargement policy, full color/HDR/metadata-preservation policy, complete draft/process-death resume and explicit retry, native HEIC/AVIF and the bounded JPEG XL decision, external receiver and physical-device acceptance, accessibility/locale visual review and distribution readiness. The new import/settings and crop blocks require their own source-bound Android validation; earlier successful CI does not validate it. The complete implementation contract and recorded amendments are in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
 
 ## Development
 

@@ -1,11 +1,7 @@
 package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.RectF
 import android.os.Build
 import android.os.Looper
 import org.cajapersonal.fixmyshot.codec.EncodeResult
@@ -93,17 +89,8 @@ internal class PrivateOutputExecutor(
             rendered = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             rendered.setHasAlpha(recipe.request.hasAlpha)
             rendered.eraseColor(background)
-            val canvas = Canvas(rendered)
-            if (placement.width == full.width && placement.height == full.height) {
-                // Identity placement avoids any filtering or unnecessary scaling of source pixels.
-                canvas.drawBitmap(full, placement.left.toFloat(), placement.top.toFloat(), Paint())
-            } else {
-                canvas.drawBitmap(full, Rect(0, 0, full.width, full.height),
-                    RectF(placement.left.toFloat(), placement.top.toFloat(),
-                        (placement.left + placement.width).toFloat(),
-                        (placement.top + placement.height).toFloat()),
-                    Paint(Paint.FILTER_BITMAP_FLAG))
-            }
+            ReviewBitmapRenderer.drawContent(rendered, full, recipe.orientedSource,
+                recipe.canvas, recipe.placement, recipe.crop)
             full.recycle()
             original = null
             if (cancelled.get()) return PrivateExecutionResult.Failed(PrivateExecutionFailure.CANCELLED)
@@ -139,3 +126,4 @@ internal class PrivateOutputExecutor(
         }
     }
 }
+

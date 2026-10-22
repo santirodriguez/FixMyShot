@@ -108,5 +108,15 @@
     <string name="link_unavailable">No hay una aplicación que pueda abrir este enlace.</string>
     <string name="import_limit">El lote admite hasta 100 imágenes. No se agregó esta selección; elegí menos imágenes.</string>
     <string name="import_waiting">Imágenes en espera para importar: %1$d</string>
+    <string name="crop_mode">Recortar</string>
+    <string name="crop_notice">El recorte elimina contenido. Arrastrá o usá dos dedos en la vista previa, o los controles de abajo. Estos ajustes afectan a la imagen seleccionada.</string>
+    <string name="crop_zoom">Zoom: %1$d%%</string>
+    <string name="crop_left">Mover a la izquierda</string>
+    <string name="crop_right">Mover a la derecha</string>
+    <string name="crop_up">Mover hacia arriba</string>
+    <string name="crop_down">Mover hacia abajo</string>
+    <string name="crop_reset">Restablecer recorte</string>
+    <string name="crop_accept_position">Usar recorte reposicionado</string>
+    <string name="crop_unavailable">Este recorte no puede cumplir la proporción o el límite de tamaño. Elegí otra proporción o conservá todo el contenido.</string>
 </resources>
 
