@@ -2,6 +2,7 @@ package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
 import android.content.Context
+import java.io.File
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -9,6 +10,9 @@ import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 import org.cajapersonal.fixmyshot.export.BatchOutputCoordinator
 import org.cajapersonal.fixmyshot.export.BatchRunResult
+import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
+import org.cajapersonal.fixmyshot.export.BatchRecoveryReconciliation
+import org.cajapersonal.fixmyshot.export.RecoveryItem
 import org.cajapersonal.fixmyshot.export.OwnedOutputPort
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -27,7 +31,7 @@ internal class ReviewViewModel : ViewModel() {
     var invalidImports by mutableStateOf(0)
     var previewUnavailable by mutableStateOf(false)
 
-    var exportState by mutableStateOf(ReviewExportState())
+    var exportState by mutableStateOf(ReviewExportState(ExportUiPhase.CHECKING_HISTORY))
         private set
 
     private val exportWorker = Executors.newSingleThreadExecutor()
@@ -36,10 +40,92 @@ internal class ReviewViewModel : ViewModel() {
     private var lastAttemptDraft: DraftSession? = null
     private var cancelJob: AtomicBoolean? = null
     private var activeToken: String? = null
+    private var checkedPreviousJobs = false
+    private var inspectingPreviousJobs = false
+    private var reviewToken: String? = null
+
+    private fun recoveryScanner(context: Context): BatchRecoveryScanner {
+        val prefs = context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
+        return BatchRecoveryScanner(File(context.filesDir, "export-jobs")) { id ->
+            prefs.getBoolean(id, false)
+        }
+    }
+
+    private fun scanHistory(context: Context): RecoveryItem? {
+        val found = recoveryScanner(context).inspect() ?: return null
+        val token = found.token
+        val snapshot = found.snapshot
+        return if (token != null && snapshot != null) {
+            found.copy(snapshot = BatchRecoveryReconciliation.inspect(
+                File(File(context.filesDir, "export-jobs"), token), snapshot))
+        } else found
+    }
+
+    private fun showHistory(item: RecoveryItem?) {
+        reviewToken = item?.token
+        exportState = if (item == null) ReviewExportState() else ReviewExportState(
+            phase = ExportUiPhase.NEEDS_REVIEW,
+            items = item.snapshot?.items.orEmpty(),
+            previousJobs = item.pendingCount,
+            canAcknowledge = item.token != null,
+        )
+    }
+
+    /** A previous process may have published output even if its final callback was lost. */
+    fun checkPastExports(context: Context) {
+        if (checkedPreviousJobs || inspectingPreviousJobs || activeToken != null) return
+        inspectingPreviousJobs = true
+        exportState = ReviewExportState(ExportUiPhase.CHECKING_HISTORY)
+        val app = context.applicationContext
+        exportWorker.execute {
+            val finding = try { scanHistory(app) }
+                catch (_: Exception) { RecoveryItem(null, null, 1) }
+            main.post {
+                inspectedHistoryResult(finding)
+            }
+        }
+    }
+
+    private fun inspectedHistoryResult(finding: RecoveryItem?) {
+        inspectingPreviousJobs = false
+        checkedPreviousJobs = true
+        if (activeToken == null) showHistory(finding)
+    }
+
+    /** Only an explicit UI action records that past outputs were reviewed. */
+    fun acknowledgePreviousExport(context: Context) {
+        val token = reviewToken ?: return
+        if (!exportState.canAcknowledge || activeToken != null ||
+            exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
+        exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
+            canAcknowledge = false)
+        val app = context.applicationContext
+        exportWorker.execute {
+            var saved = false
+            val next = try {
+                val scanner = recoveryScanner(app)
+                if (scanner.inspect()?.token == token) {
+                    saved = app.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
+                        .edit().putBoolean(token, true).commit()
+                }
+                scanHistory(app)
+            } catch (_: Exception) { RecoveryItem(null, null, 1) }
+            main.post {
+                if (activeToken == null && reviewToken == token) {
+                    if (saved || next?.token == token) showHistory(next) else {
+                        exportState = ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
+                            previousJobs = 1)
+                        reviewToken = null
+                    }
+                }
+            }
+        }
+    }
 
     /** Verify the whole batch before requesting a destination or creating output. */
     fun prepareExport(): Boolean {
-        if (exportState.isLocked || isBusy || draft.images.isEmpty() ||
+        if (!checkedPreviousJobs || exportState.phase != ExportUiPhase.IDLE ||
+            reviewToken != null || isBusy || draft.images.isEmpty() ||
             lastAttemptDraft == draft) return false
         val preparation = try {
             ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, Runtime.getRuntime().maxMemory())
@@ -100,20 +186,25 @@ internal class ReviewViewModel : ViewModel() {
                 if (activeToken != token) return@post
                 cancelJob = null
                 activeToken = null
+                reviewToken = if (outcome is BatchRunResult.Blocked) null else token
                 exportState = when (outcome) {
                     is BatchRunResult.Finished -> ReviewExportState.fromCheckpoint(
                         if (outcome.snapshot.items.any { it.phase == BatchItemPhase.CANCELLED })
                             ExportUiPhase.CANCELLED else ExportUiPhase.COMPLETED,
-                        outcome.snapshot)
+                        outcome.snapshot).copy(canAcknowledge = true, previousJobs = 1)
                     is BatchRunResult.NeedsReview ->
                         outcome.snapshot?.let {
                             ReviewExportState.fromCheckpoint(ExportUiPhase.NEEDS_REVIEW, it)
-                        } ?: ReviewExportState(ExportUiPhase.NEEDS_REVIEW)
+                        }?.copy(canAcknowledge = true, previousJobs = 1)
+                            ?: ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
+                                canAcknowledge = true, previousJobs = 1)
                     is BatchRunResult.Existing ->
                         ReviewExportState.fromCheckpoint(ExportUiPhase.NEEDS_REVIEW, outcome.snapshot)
+                            .copy(canAcknowledge = true, previousJobs = 1)
                     is BatchRunResult.Blocked ->
                         ReviewExportState(ExportUiPhase.BLOCKED, blocked = outcome.items)
-                    null -> ReviewExportState(ExportUiPhase.NEEDS_REVIEW)
+                    null -> ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
+                        canAcknowledge = true, previousJobs = 1)
                 }
             }
         }
@@ -126,7 +217,8 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     fun onDraftEdited() {
-        if (exportState.isLocked) return
+        if (exportState.isLocked || reviewToken != null ||
+            exportState.phase == ExportUiPhase.NEEDS_REVIEW) return
         exportState = ReviewExportState()
     }
 

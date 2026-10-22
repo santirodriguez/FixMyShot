@@ -12,7 +12,7 @@
     <string name="preview_description">Vista previa de la imagen seleccionada con los márgenes previstos</string>
     <string name="preview_loading">Preparando vista previa…</string>
     <string name="preview_unavailable">Vista previa no disponible. Elegí una imagen SDR compatible.</string>
-    <string name="preview_only_notice">Solo vista previa. No se exportaron ni compartieron archivos.</string>
+    <string name="preview_only_notice">Solo vista previa. Revisá el estado de las exportaciones anteriores.</string>
     <string name="destination_heading">Destino y proporción</string>
     <string name="destination_play_phone">Google Play · capturas de teléfono</string>
     <string name="destination_play_portrait">Google Play · formato vertical</string>
@@ -71,4 +71,7 @@
     <string name="export_item_needs_review">Verificar salida</string>
     <string name="export_item_status">Imagen %1$d: %2$s</string>
     <string name="export_cancel_action">Detener exportación</string>
+    <string name="export_history_checking">Revisando las exportaciones anteriores…</string>
+    <string name="export_history_pending">Lotes anteriores para revisar: %1$d. Puede haber archivos guardados. Comprobá la carpeta antes de continuar.</string>
+    <string name="export_history_acknowledge">Ya revisé estos resultados de exportación</string>
 </resources>

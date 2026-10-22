@@ -37,3 +37,14 @@ Test build, five batch coordinator, six private output, nine single-output,
 three UI-to-export integration and all prior suites on API26 and API36.
 No broad storage/Internet permissions, native format enablement, signing,
 main merge, release or deployment.
+
+Crash/restart batch receipt recovery checkpoint after Actions 39791773637.
+On fresh Activity process, inspect prior app-owned job folders before accepting
+another Export request; reconcile item journals read-only, and display recorded
+results even when the in-memory draft no longer exists. Require explicit
+review acknowledgement with synchronous app-private persistence before the
+next unrelated export. Do not auto-retry, publish, delete or change existing
+user images. Preserve previous passing UI-to-export and codec suites.
+Run the four recovery instrumentation cases on API26 and API36.
+No new Android permissions, credentials, signing, native codec enablement,
+main merge or release.

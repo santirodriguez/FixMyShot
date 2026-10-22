@@ -6,7 +6,7 @@ import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** User-visible session status. Never embeds original URIs or image bytes. */
 internal enum class ExportUiPhase {
-    IDLE, CHOOSING_FOLDER, RUNNING, COMPLETED, BLOCKED, NEEDS_REVIEW, CANCELLED, ERROR
+    IDLE, CHECKING_HISTORY, CHOOSING_FOLDER, RUNNING, COMPLETED, BLOCKED, NEEDS_REVIEW, CANCELLED, ERROR
 }
 
 internal data class ReviewExportState(
@@ -14,6 +14,8 @@ internal data class ReviewExportState(
     val items: List<BatchItemCheckpoint> = emptyList(),
     val blocked: Int = 0,
     val cancelRequested: Boolean = false,
+    val previousJobs: Int = 0,
+    val canAcknowledge: Boolean = false,
 ) {
     val total: Int get() = items.size
     val published: Int get() = items.count { it.phase == BatchItemPhase.PUBLISHED }
@@ -22,7 +24,8 @@ internal data class ReviewExportState(
     val needsReview: Int get() = items.count { it.phase == BatchItemPhase.NEEDS_REVIEW }
     val processed: Int get() = published + failed + cancelled + needsReview
     val isLocked: Boolean get() =
-        phase == ExportUiPhase.CHOOSING_FOLDER || phase == ExportUiPhase.RUNNING
+        phase == ExportUiPhase.CHECKING_HISTORY || phase == ExportUiPhase.CHOOSING_FOLDER ||
+            phase == ExportUiPhase.RUNNING || canAcknowledge
 
     companion object {
         fun fromCheckpoint(phase: ExportUiPhase, snapshot: BatchCheckpoint): ReviewExportState =

@@ -12,7 +12,7 @@
     <string name="preview_description">Previsualització de la imatge seleccionada amb els marges previstos</string>
     <string name="preview_loading">Preparant la previsualització…</string>
     <string name="preview_unavailable">Previsualització no disponible. Tria una imatge SDR compatible.</string>
-    <string name="preview_only_notice">Només previsualització. No s\'ha exportat ni compartit cap fitxer.</string>
+    <string name="preview_only_notice">Només previsualització. Consulta l\'estat de l\'exportació per revisar fitxers desats o interromputs.</string>
     <string name="destination_heading">Destinació i proporció</string>
     <string name="destination_play_phone">Google Play · captures de telèfon</string>
     <string name="destination_play_portrait">Google Play · format vertical</string>
@@ -71,4 +71,7 @@
     <string name="export_item_needs_review">Comprova la sortida</string>
     <string name="export_item_status">Imatge %1$d: %2$s</string>
     <string name="export_cancel_action">Atura la exportació</string>
+    <string name="export_history_checking">Revisant les exportacions anteriors…</string>
+    <string name="export_history_pending">Lots anteriors per revisar: %1$d. És possible que ja hi hagi fitxers desats. Comprova la carpeta abans de continuar.</string>
+    <string name="export_history_acknowledge">Ja he revisat aquests resultats d’exportació</string>
 </resources>

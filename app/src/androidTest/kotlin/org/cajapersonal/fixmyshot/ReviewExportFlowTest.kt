@@ -94,6 +94,18 @@ class ReviewExportFlowTest {
             batch = EditSettings(background = BackgroundChoice.White))
             .addImages(images.toList())
 
+    private fun checkEmptyExportHistory(model: ReviewViewModel) {
+        instrumentation.runOnMainSync { model.checkPastExports(app) }
+        val deadline = System.currentTimeMillis() + 10_000L
+        while (model.exportState.phase == ExportUiPhase.CHECKING_HISTORY &&
+            System.currentTimeMillis() < deadline) {
+            instrumentation.waitForIdleSync()
+            Thread.sleep(40)
+        }
+        assertEquals("An existing output needs explicit review", ExportUiPhase.IDLE,
+            model.exportState.phase)
+    }
+
     private fun waitForResult(model: ReviewViewModel): ReviewExportState {
         val deadline = System.currentTimeMillis() + 130_000L
         while (System.currentTimeMillis() < deadline) {
@@ -126,6 +138,7 @@ class ReviewExportFlowTest {
         files += af; files += bf
         val port = MemoryPort()
         val model = owner.model
+        checkEmptyExportHistory(model)
         instrumentation.runOnMainSync {
             model.draft = draftOf(a, b)
             assertTrue(model.prepareExport())
@@ -157,6 +170,7 @@ class ReviewExportFlowTest {
         val missing = a.copy(id = UUID.randomUUID().toString().replace("-", ""),
             sourceToken = "test-missing", contentSha256 = null)
         val model = owner.model
+        checkEmptyExportHistory(model)
         instrumentation.runOnMainSync {
             model.draft = draftOf(a, missing)
             assertFalse(model.prepareExport())
@@ -172,6 +186,7 @@ class ReviewExportFlowTest {
         val port = RecordingPort(MediaStore29Port(app.contentResolver))
         try {
             val model = owner.model
+            checkEmptyExportHistory(model)
             instrumentation.runOnMainSync {
                 model.draft = draftOf(image)
                 assertTrue(model.prepareExport())

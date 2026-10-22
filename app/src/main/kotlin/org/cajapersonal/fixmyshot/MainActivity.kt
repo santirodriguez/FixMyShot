@@ -23,6 +23,8 @@ import androidx.lifecycle.ViewModelProvider
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ItemValue
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
+import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
+import java.io.File
 import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
@@ -72,7 +74,18 @@ class MainActivity : ComponentActivity() {
         sources = ReviewSources(applicationContext)
         model = ViewModelProvider(this)[ReviewViewModel::class.java]
         model.isBusy = false // An old activity can be destroyed before its import callback.
-        worker.execute { sources.pruneExpired() }
+        model.checkPastExports(applicationContext)
+        worker.execute {
+            // Keep staged bytes needed to inspect an interrupted export until its records
+            // have been explicitly reviewed; never prune them first.
+            val prefs = getSharedPreferences("export-reviewed", MODE_PRIVATE)
+            val safeToPrune = try {
+                BatchRecoveryScanner(File(filesDir, "export-jobs")) { token ->
+                    prefs.getBoolean(token, false)
+                }.inspect() == null
+            } catch (_: Exception) { false }
+            if (safeToPrune) sources.pruneExpired()
+        }
         if (model.selectedId != null) loadPreview()
         scheduleThumbnails(model.draft.images.map { it.id })
         setContent {
@@ -90,6 +103,7 @@ class MainActivity : ComponentActivity() {
                         exportState = model.exportState,
                         onExport = { beginExport() },
                         onCancelExport = { model.cancelExport() },
+                        onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
                         onChoose = {
                             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         },

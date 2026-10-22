@@ -70,6 +70,7 @@ internal fun ReviewScreen(
     exportState: ReviewExportState,
     onExport: () -> Unit,
     onCancelExport: () -> Unit,
+    onReviewedPrevious: () -> Unit,
     onChoose: () -> Unit,
     onSelect: (String) -> Unit,
     onDestination: (DestinationChoice) -> Unit,
@@ -187,11 +188,12 @@ internal fun ReviewScreen(
                     Text(stringResource(R.string.preview_only_notice),
                         style = MaterialTheme.typography.bodySmall)
                 }
-                if (exportState.phase != ExportUiPhase.IDLE) {
-                    ExportProgress(exportState, onCancelExport)
-                }
             }
             OutlinedButton(onClick = onDiscard, enabled = editEnabled) { Text(stringResource(R.string.discard_session)) }
+        }
+        if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
+        if (exportState.previousJobs > 0 || exportState.canAcknowledge) {
+            ExportJobNotice(exportState, onReviewedPrevious)
         }
     }
 }
@@ -200,6 +202,7 @@ internal fun ReviewScreen(
 private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
     val headline = when (state.phase) {
         ExportUiPhase.IDLE -> null
+        ExportUiPhase.CHECKING_HISTORY -> R.string.export_history_checking
         ExportUiPhase.CHOOSING_FOLDER -> R.string.export_select_folder
         ExportUiPhase.RUNNING -> R.string.export_in_progress
         ExportUiPhase.COMPLETED -> R.string.export_finished
