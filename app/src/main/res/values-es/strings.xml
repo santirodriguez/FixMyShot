@@ -79,4 +79,10 @@
     <string name="export_output_changed">El archivo es distinto del registro guardado. Revisalo antes de volver a exportar.</string>
     <string name="export_output_pending">El archivo todavía está pendiente de publicación. Revisá su estado antes de reintentar.</string>
     <string name="export_output_unverifiable">No se pudo verificar el archivo. Revisá el acceso y la carpeta de destino.</string>
+    <string name="export_share_choose">Elegí las imágenes guardadas que querés compartir.</string>
+    <string name="export_share_item">Incluir la imagen guardada %1$d</string>
+    <string name="export_share_selected">Compartir seleccionadas (%1$d)</string>
+    <string name="export_share_verifying">Verificando los archivos seleccionados…</string>
+    <string name="export_share_unavailable">No se pudo preparar el uso compartido. Revisá los archivos y el acceso, e intentá de nuevo.</string>
+    <string name="export_share_chooser">Compartir imágenes de FixMyShot</string>
 </resources>
