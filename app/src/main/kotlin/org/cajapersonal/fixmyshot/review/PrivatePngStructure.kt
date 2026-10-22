@@ -8,9 +8,10 @@ import java.util.zip.CRC32
 internal object PrivatePngStructure {
     fun accepts(input: RandomAccessFile, request: EncodeRequest): Boolean {
         if (input.length() < 57 || input.readLong() != 0x89504e470d0a1a0aUL.toLong()) return false
-        val allowed = setOf("IHDR", "IDAT", "IEND", "sRGB", "gAMA", "cHRM")
+        val allowed = setOf("IHDR", "IDAT", "IEND", "sRGB", "gAMA", "cHRM", "sBIT")
         var headerSeen = false
         var dataSeen = false
+        var significantBitsSeen = false
         var chunkCount = 0
         val buffer = ByteArray(8192)
         while (input.filePointer < input.length()) {
@@ -37,6 +38,16 @@ internal object PrivatePngStructure {
                     ihdr[9].toInt() != (if (request.hasAlpha) 6 else 2) ||
                     ihdr[10].toInt() != 0 || ihdr[11].toInt() != 0 || ihdr[12].toInt() != 0) return false
                 headerSeen = true
+                remaining = 0L
+            } else if (name == "sBIT") {
+                // Android Bitmap.compress emits 8-bit significant-channel hints.
+                // They are not identifying metadata and do not change decoded pixels.
+                val channels = if (request.hasAlpha) 4 else 3
+                if (significantBitsSeen || size != channels.toLong() || dataSeen) return false
+                val bits = ByteArray(channels).also { input.readFully(it) }
+                if (bits.any { it.toInt() != 8 }) return false
+                crc.update(bits)
+                significantBitsSeen = true
                 remaining = 0L
             } else if (name == "IDAT") {
                 dataSeen = true

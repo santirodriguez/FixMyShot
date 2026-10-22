@@ -1,7 +1,9 @@
-Private full-resolution PNG/lossless WebP candidate execution checkpoint.
-Parent: 925dc8302e466ee203ad6630bf576b76fd61daa6.
-Scope: original-source SHA-256 verification, oriented sRGB full decode,
-contain-plan placement, frozen automatic background, reuse LosslessEncoder,
-strict generated-container inspection and synthetic device fixture tests.
-No MediaStore/SAF/public export/share, no permissions, no native format enablement.
-Use the commit containing this marker as exact build/API26/API36 source.
+Full-resolution private PNG/WebP executor CI repair.
+Parent 60dd578e738818066612ad2822aadae02e587317.
+Inspected exact Actions 39697755309 emulator artifacts:
+PNG sBIT 8-bit channel hints, WebP VP8X + generated ICCP sRGB profile.
+Verifier now permits only validated color-critical generated profile structures;
+EXIF/XMP/animation remain rejected. API26 JPEG EXIF fixture now uses
+a synthetic APP1 tag instead of unsupported ExifInterface.saveAttributes.
+No MediaStore/SAF save, permissions, native format or app UX changes.
+Use exact SHA of commit containing this marker as build/API26/API36 evidence.

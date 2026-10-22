@@ -41,10 +41,23 @@ class PrivateOutputExecutorTest {
             }
         } finally { bitmap.recycle() }
         if (orientation != ExifInterface.ORIENTATION_NORMAL) {
-            ExifInterface(file.absolutePath).apply {
-                setAttribute(ExifInterface.TAG_ORIENTATION, orientation.toString())
-                saveAttributes()
-            }
+            // API 26 ExifInterface.saveAttributes can reject extensionless staged JPEGs.
+            // Insert a minimal synthetic APP1 orientation tag without an OS EXIF writer.
+            val jpeg = file.readBytes()
+            assertTrue(jpeg.size >= 4 && jpeg[0] == 0xff.toByte() && jpeg[1] == 0xd8.toByte())
+            val tiff = byteArrayOf(
+                0x45, 0x78, 0x69, 0x66, 0, 0,
+                0x49, 0x49, 0x2a, 0, 8, 0, 0, 0,
+                1, 0, 0x12, 1, 3, 0, 1, 0, 0, 0,
+                orientation.toByte(), 0, 0, 0,
+                0, 0, 0, 0,
+            )
+            val size = tiff.size + 2
+            val app1 = byteArrayOf(0xff.toByte(), 0xe1.toByte(),
+                (size ushr 8).toByte(), size.toByte()) + tiff
+            file.writeBytes(jpeg.copyOfRange(0, 2) + app1 + jpeg.copyOfRange(2, jpeg.size))
+            assertEquals(orientation, ExifInterface(file.absolutePath).getAttributeInt(
+                ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED))
         }
         val sha = MessageDigest.getInstance("SHA-256").digest(file.readBytes())
             .joinToString("") { "%02x".format(it.toInt() and 255) }

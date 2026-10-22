@@ -2,14 +2,13 @@ package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ColorSpace
 import org.cajapersonal.fixmyshot.core.EncodeRequest
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import java.io.File
 import java.io.IOException
 import java.io.RandomAccessFile
 
-/** Checks a freshly rendered, private output; never accepts arbitrary imported containers. */
+/** Checks the generated container and its *native* decoded color space, without coercing to sRGB. */
 internal object PrivateCandidateVerifier {
     private const val MAX_FILE_BYTES = 128L * 1024L * 1024L
 
@@ -33,7 +32,6 @@ internal object PrivateCandidateVerifier {
             val reopened = BitmapFactory.decodeFile(file.absolutePath, BitmapFactory.Options().apply {
                 inSampleSize = sample
                 inPreferredConfig = Bitmap.Config.ARGB_8888
-                inPreferredColorSpace = ColorSpace.get(ColorSpace.Named.SRGB)
             }) ?: return false
             try {
                 reopened.width > 0 && reopened.height > 0 && reopened.colorSpace?.isSrgb == true &&
