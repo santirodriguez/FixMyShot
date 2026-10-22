@@ -4,6 +4,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.net.Uri
+import android.content.Intent
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicReference
 import android.os.Build
 import android.provider.MediaStore
 import androidx.lifecycle.ViewModelProvider
@@ -204,6 +208,22 @@ class ReviewExportFlowTest {
                 assertEquals(0, row.getInt(0))
                 assertEquals("Pictures/FixMyShot", row.getString(1).trimEnd('/'))
             }
+            val shared = AtomicReference<Intent?>()
+            val signal = CountDownLatch(1)
+            instrumentation.runOnMainSync {
+                model.toggleShareItem(state.items.single().itemId)
+                assertEquals(1, model.selectedShareIds.size)
+                model.shareSelected(app) { intent ->
+                    shared.set(intent)
+                    signal.countDown()
+                }
+            }
+            assertTrue("Verified share intent not ready", signal.await(40, TimeUnit.SECONDS))
+            val send = requireNotNull(shared.get())
+            assertEquals(Intent.ACTION_SEND, send.action)
+            assertEquals("image/png", send.type)
+            assertTrue(send.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION != 0)
+            assertEquals(port.created.single(), send.clipData!!.getItemAt(0).uri)
         } finally { port.deleteOwnOutputs() }
     }
 }

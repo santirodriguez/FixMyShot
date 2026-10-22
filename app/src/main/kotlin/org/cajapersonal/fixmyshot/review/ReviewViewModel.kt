@@ -2,6 +2,8 @@ package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import java.io.File
 import android.os.Build
 import android.os.Handler
@@ -13,6 +15,11 @@ import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
 import org.cajapersonal.fixmyshot.export.BatchRecoveryReconciliation
 import org.cajapersonal.fixmyshot.export.OutputRecoveryVerifier
+import org.cajapersonal.fixmyshot.export.OutputRecoveryEvidence
+import org.cajapersonal.fixmyshot.export.OutputJournal
+import org.cajapersonal.fixmyshot.export.OutputStage
+import org.cajapersonal.fixmyshot.export.ShareImage
+import org.cajapersonal.fixmyshot.export.ExportShareIntents
 import org.cajapersonal.fixmyshot.export.RecoveryItem
 import org.cajapersonal.fixmyshot.export.OwnedOutputPort
 import java.util.concurrent.Executors
@@ -45,6 +52,13 @@ internal class ReviewViewModel : ViewModel() {
     private var inspectingPreviousJobs = false
     private var reviewToken: String? = null
 
+    var selectedShareIds by mutableStateOf<Set<String>>(emptySet())
+        private set
+    var shareBusy by mutableStateOf(false)
+        private set
+    var shareError by mutableStateOf(false)
+        private set
+
     private fun recoveryScanner(context: Context): BatchRecoveryScanner {
         val prefs = context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
         return BatchRecoveryScanner(File(context.filesDir, "export-jobs")) { id ->
@@ -64,6 +78,8 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     private fun showHistory(item: RecoveryItem?) {
+        selectedShareIds = emptySet()
+        shareError = false
         reviewToken = item?.token
         exportState = if (item == null) ReviewExportState() else ReviewExportState(
             phase = ExportUiPhase.NEEDS_REVIEW,
@@ -162,6 +178,8 @@ internal class ReviewViewModel : ViewModel() {
         val frozen = plannedDraft ?: return
         if (exportState.phase != ExportUiPhase.CHOOSING_FOLDER) return
         plannedDraft = null
+        selectedShareIds = emptySet()
+        shareError = false
         lastAttemptDraft = frozen
         val token = BatchOutputCoordinator.newToken()
         activeToken = token
@@ -212,6 +230,70 @@ internal class ReviewViewModel : ViewModel() {
         }
     }
 
+    /** Explicit selection is restricted to already published items in the displayed result. */
+    fun toggleShareItem(id: String) {
+        if (shareBusy || exportState.phase !in setOf(
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
+        if (exportState.items.none { it.itemId == id &&
+                it.phase == BatchItemPhase.PUBLISHED && it.uri != null }) return
+        selectedShareIds = if (id in selectedShareIds) selectedShareIds - id
+            else selectedShareIds + id
+        shareError = false
+    }
+
+    /**
+     * The chooser is prepared only after re-reading each committed item journal and verifying
+     * its provider bytes. Uncertain and failed items are never shared or silently retried.
+     */
+    fun shareSelected(context: Context, onReady: (Intent?) -> Unit) {
+        if (shareBusy || exportState.phase !in setOf(
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
+        val token = reviewToken ?: return
+        val selected = selectedShareIds.toSet()
+        val items = exportState.items.toList()
+        if (selected.isEmpty() || items.count { it.itemId in selected &&
+                it.phase == BatchItemPhase.PUBLISHED && it.uri != null } != selected.size) {
+            shareError = true
+            return
+        }
+        val app = context.applicationContext
+        shareBusy = true
+        shareError = false
+        exportWorker.execute {
+            val prepared = try {
+                val verifier = OutputRecoveryVerifier(app.contentResolver)
+                val outputs = mutableListOf<ShareImage>()
+                var safe = true
+                for ((index, item) in items.withIndex()) {
+                    if (item.itemId !in selected) continue
+                    val record = OutputJournal(File(app.filesDir,
+                        "export-jobs/$token/item-$index.json")).read()
+                    val outputUri = record?.uri
+                    if (record == null || outputUri == null || record.token != token ||
+                        record.itemId != item.itemId ||
+                        record.stage != OutputStage.PUBLISHED || outputUri != item.uri ||
+                        verifier.verify(record) != OutputRecoveryEvidence.MATCHED) {
+                        safe = false
+                        break
+                    }
+                    outputs += ShareImage(Uri.parse(outputUri), record.mime)
+                }
+                if (safe && outputs.size == selected.size) {
+                    ExportShareIntents.build(app.contentResolver, outputs)
+                } else null
+            } catch (_: Exception) { null }
+            main.post {
+                shareBusy = false
+                if (reviewToken == token && selectedShareIds == selected) {
+                    if (prepared == null) shareError = true
+                    onReady(prepared)
+                }
+            }
+        }
+    }
+
+    fun shareChooserUnavailable() { shareError = true }
+
     fun cancelExport() {
         if (exportState.phase != ExportUiPhase.RUNNING) return
         cancelJob?.set(true)
@@ -219,6 +301,8 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     fun onDraftEdited() {
+        selectedShareIds = emptySet()
+        shareError = false
         if (exportState.isLocked || reviewToken != null ||
             exportState.phase == ExportUiPhase.NEEDS_REVIEW) return
         exportState = ReviewExportState()
