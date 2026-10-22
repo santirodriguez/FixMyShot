@@ -1,0 +1,7 @@
+<resources>
+    <string name="export_share_item">Inclou la imatge desada %1$d</string>
+    <string name="export_share_selected">Comparteix les seleccionades (%1$d)</string>
+    <string name="export_share_verifying">Verificant els fitxers seleccionats…</string>
+    <string name="export_share_unavailable">No es pot compartir. Comprova els fitxers i torna-ho a provar.</string>
+    <string name="export_share_chooser">Comparteix imatges de FixMyShot</string>
+</resources>
