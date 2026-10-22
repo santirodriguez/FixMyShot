@@ -100,3 +100,16 @@ recovery cases plus all earlier codec/render/cache regressions.
 The successful sharing baseline is Actions39853261424 at 3df5262.
 Actual API26/28 picker grants and external receiver acceptance remain NOT RUN.
 No new permission, native format enablement, main merge, signing or release.
+
+Real SAF provider checkpoint after accepted Actions39855672761.
+Implementation parent: 2cf81844bb799719267153b7f313d66cfb0ae230.
+Build the existing debug/test artifacts once; retain API26/API36 regressions
+and run the dedicated saf-provider API26/API28 jobs against those exact APKs.
+SafProviderFlowTest uses actual DocumentsUI folder selection and cancellation,
+production Activity persistable read/write grants, PNG plus EXIF6 JPEG sources,
+four actual PNG/WebP documents, and two instrumentation processes separated
+by force-stop. Check unchanged source hashes, no duplicate output, grant
+survival and denial after revocation. Require both phase logs and final
+source-bound JSON; seven host checker cases do not imply Android acceptance.
+No production source, new app permission, dependency, main merge, release
+or signing changes. Physical devices and external receiver acceptance remain open.
