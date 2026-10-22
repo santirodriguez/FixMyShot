@@ -84,3 +84,8 @@ and the enhanced API29+ MediaStore end-to-end share-payload regression,
 plus all previous eight recovery and export/codec regression suites.
 No actual human-selected SAF picker, receiver-app acceptance or 100-item
 manual process-kill test is claimed by this checkpoint.
+
+Share result verification correction: the output journal's transaction token
+is intentionally different from the batch token. Verify PUBLISHED stage, stable
+item id, exact output URI and provider SHA-256 instead of equating tokens.
+Repeat the same share-intent/MediaStore integration and regression matrix.
