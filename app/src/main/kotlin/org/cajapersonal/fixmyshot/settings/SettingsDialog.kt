@@ -44,6 +44,7 @@ internal fun SettingsDialog(
     onTheme: (AppTheme) -> Unit,
     onLanguage: (String) -> Unit,
     onLink: (String) -> Unit,
+    onNativeCheck: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     val locale = AppLanguages.selected(LocalContext.current)
@@ -73,6 +74,9 @@ internal fun SettingsDialog(
                     color = MaterialTheme.colorScheme.error)
                 Text(stringResource(R.string.help_title), style = MaterialTheme.typography.titleSmall)
                 Text(stringResource(R.string.help_body))
+                TextButton(enabled = editable, onClick = onNativeCheck) {
+                    Text(stringResource(R.string.native_check_title))
+                }
                 Text(stringResource(R.string.metadata_preserve_warning))
                 Text(stringResource(R.string.metadata_supported_tags), style = MaterialTheme.typography.bodySmall)
                 Text(stringResource(R.string.privacy_title), style = MaterialTheme.typography.titleSmall)

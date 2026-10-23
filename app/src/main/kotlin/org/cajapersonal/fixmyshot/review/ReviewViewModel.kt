@@ -38,6 +38,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import org.cajapersonal.fixmyshot.core.DraftSession
+import org.cajapersonal.fixmyshot.diagnostics.NativeCodecDiagnostic
+import org.cajapersonal.fixmyshot.diagnostics.NativeCheckReport
+import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
 
 /** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
@@ -200,9 +203,60 @@ internal class ReviewViewModel : ViewModel() {
     private var activeToken: String? = null
     private val foregroundPause = AtomicBoolean(false)
     private var inForeground = true
+    var nativeCheckRunning by mutableStateOf(false)
+        private set
+    var nativeCheckStopping by mutableStateOf(false)
+        private set
+    var nativeCheckSamples by mutableStateOf<List<NativeCheckSample>>(emptyList())
+        private set
+    var nativeCheckReport by mutableStateOf<NativeCheckReport?>(null)
+        private set
+    var nativeCheckShareError by mutableStateOf(false)
+        private set
+    private var nativeCheckCancel: AtomicBoolean? = null
+
+    /** Explicit synthetic check, serialized with private export/session work and never auto-started. */
+    fun startNativeCheck(context: Context) {
+        if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
+        val app = context.applicationContext
+        val cancel = AtomicBoolean(false)
+        nativeCheckCancel = cancel
+        nativeCheckRunning = true
+        nativeCheckStopping = false
+        nativeCheckSamples = emptyList()
+        nativeCheckReport = null
+        nativeCheckShareError = false
+        isBusy = true
+        exportWorker.execute {
+            val report = try {
+                NativeCodecDiagnostic(File(app.cacheDir, "batch-candidates"), Runtime.getRuntime().maxMemory())
+                    .run(cancel) { samples -> main.post {
+                        if (nativeCheckCancel === cancel) nativeCheckSamples = samples
+                    } }.withAppIdentity(app, cancel)
+            } catch (_: Exception) { NativeCheckReport(cancelled = cancel.get(), failed = true) }
+            main.post {
+                if (nativeCheckCancel !== cancel) return@post
+                nativeCheckReport = if (cancel.get()) report.copy(cancelled = true) else report
+                nativeCheckSamples = report.samples
+                nativeCheckCancel = null
+                nativeCheckRunning = false
+                nativeCheckStopping = false
+                isBusy = false
+            }
+        }
+    }
+
+    fun cancelNativeCheck() {
+        if (!nativeCheckRunning) return
+        nativeCheckCancel?.set(true)
+        nativeCheckStopping = true
+    }
+
+    fun nativeCheckShareUnavailable() { nativeCheckShareError = true }
 
     fun foregroundChanged(visible: Boolean) {
         inForeground = visible
+        if (!visible) cancelNativeCheck()
         if (!visible && activeToken != null) {
             foregroundPause.set(true)
             exportState = exportState.copy(pauseRequested = true)
@@ -717,6 +771,7 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     override fun onCleared() {
+        nativeCheckCancel?.set(true)
         cancelJob?.set(true)
         ++importGeneration
         exportWorker.shutdown()

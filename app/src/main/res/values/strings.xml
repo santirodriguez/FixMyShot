@@ -195,4 +195,23 @@
     <string name="result_interrupted">The export was interrupted before a saved copy was confirmed. Use the offered remaining-item retry after checking the results.</string>
     <string name="result_cancelled">This item was cancelled. Saved copies remain intact; retry remaining items only when the action is offered.</string>
     <string name="result_retry_available">Included in Retry remaining. Copies already saved will not be duplicated.</string>
+    <string name="native_check_title">Check HEIC and AVIF</string>
+    <string name="native_check_body">Runs six checks with synthetic images, including odd dimensions and 1344×2992. Selected images are not read and nothing is saved to the gallery. Each attempt requests an eight-second timeout; a device codec may take longer to return. This preliminary check does not enable HEIC/AVIF export.</string>
+    <string name="native_check_start">Run check</string>
+    <string name="native_check_running">Checking native formats · %1$d/%2$d</string>
+    <string name="native_check_stopping">Stopping when the current device codec returns…</string>
+    <string name="native_check_cancel">Stop check</string>
+    <string name="native_check_share">Share report</string>
+    <string name="native_check_share_error">Could not open a sharing app.</string>
+    <string name="native_check_complete">Check complete. Export remains unavailable.</string>
+    <string name="native_check_cancelled">Check stopped. Partial results are available.</string>
+    <string name="native_check_failed">The check could not finish. Export remains unavailable.</string>
+    <string name="native_check_not_run">Not checked.</string>
+    <string name="native_check_unavailable">Unavailable or rejected in this configuration.</string>
+    <string name="native_check_encoded">Encoded and reopened. Appearance still needs review.</string>
+    <string name="native_check_target_met">Numeric targets met for this synthetic case; manual review is still required.</string>
+    <string name="native_check_target_missed">The synthetic appearance targets were missed.</string>
+    <string name="native_check_result">%1$s · %2$d × %3$d</string>
+    <string name="native_check_share_note">The report includes Android version, manufacturer/model, app version, installed APK hash and synthetic results. Choose an app to share it.</string>
+    <string name="native_check_disabled">Wait for the current operation or queued import to finish.</string>
 </resources>

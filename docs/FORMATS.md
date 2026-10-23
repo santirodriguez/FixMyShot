@@ -14,6 +14,8 @@ A bounded Photo Picker import/review path accepts supported static SDR JPEG, PNG
 
 ## Adapter limits
 
+The installed Settings dialog has an optional synthetic [HEIC/AVIF device check](feasibility/native-device-check.md). It attempts the existing native adapter on64×64,65×67 and1344×2992 opaque rasters, independently checks returned containers/dimensions and reports decoded sRGB pixel/patch metrics. This is one preliminary attempt per case, not native export enablement, p95/peak-memory or hardware/appearance approval. No original image or public output is involved; current Android execution remains pending.
+
 Inputs must already be ARGB_8888, SDR sRGB, oriented and within 24 megapixels plus the lower dynamic memory budget. WebP also enforces its 16,383-pixel side limit. These checks do not promise support for every in-range image. Working-set estimates are provisional; Java/native/PSS peak measurements are still required.
 
 The low-level PNG/WebP encoder receives pixels only, not source EXIF/XMP. The source-aware private export pipeline can subsequently write the explicit preservation allowlist described below. Semi-transparent edge/color fidelity, all EXIF orientations, HDR handling and payload-preserving no-op exports remain later acceptance work. The current synthetic alpha fixtures cover transparent/opaque edges, not the full semi-transparent color contract.

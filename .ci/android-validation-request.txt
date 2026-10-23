@@ -188,3 +188,16 @@ cases, import/settings/session14, retry8/recovery16 and all current regressions.
 Preserve strict default/actual-transparent/PNG validation, source hashes and
 uncertain-output barriers; no locale/legacy diagnostic rerun.
 profile=current
+
+Accumulated native-device check and build-input checkpoint.
+Implementation base: 34407bd3664aea151e73dfac99c163c2be318914.
+Validate the committed Gradle wrapper and unchanged resolution locks from34407bd3,
+JXL deferral/menu behavior,9f17 JPEG fixture and two100-item real-codec recovery cases,
+and this explicit synthetic HEIC/AVIF Settings diagnostic/report/cancellation block.
+Require215 locale keys, private20, import/settings/session/native-policy18, batch7,
+retry8/recovery16 and all existing current-device build/lint/codec/storage regressions.
+The new diagnostic tests inject faults; they do not qualify actual native outputs.
+Known strict partial-alpha failure remains unresolved; capture scoped actual outcomes
+without automatic per-case reruns or transferring acceptance from earlier sources.
+No legacy/automatic-locale/JXL experiment, phone acceptance, merge/signing/publication.
+profile=current

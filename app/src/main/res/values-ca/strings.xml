@@ -195,4 +195,23 @@
     <string name="result_interrupted">L’exportació s’ha interromput abans de confirmar una còpia desada. Revisa els resultats i utilitza l’opció de tornar a intentar les pendents si s’ofereix.</string>
     <string name="result_cancelled">Aquesta imatge s’ha cancel·lat. Les còpies desades es conserven intactes; torna a intentar les pendents només si s’ofereix aquesta acció.</string>
     <string name="result_retry_available">Inclosa a Torna a intentar les pendents. No es dupliquen les còpies ja desades.</string>
+    <string name="native_check_title">Comprovar HEIC i AVIF</string>
+    <string name="native_check_body">Fa sis comprovacions amb imatges sintètiques, incloses dimensions senars i 1344×2992. No llegeix les imatges seleccionades ni desa res a la galeria. Cada intent sol·licita un temps límit de vuit segons; el còdec del dispositiu pot trigar més a respondre. Aquesta comprovació preliminar no activa l’exportació HEIC/AVIF.</string>
+    <string name="native_check_start">Inicia la comprovació</string>
+    <string name="native_check_running">Comprovant formats natius · %1$d/%2$d</string>
+    <string name="native_check_stopping">S’aturarà quan respongui el còdec actual…</string>
+    <string name="native_check_cancel">Atura la comprovació</string>
+    <string name="native_check_share">Comparteix l’informe</string>
+    <string name="native_check_share_error">No s’ha pogut obrir cap aplicació per compartir.</string>
+    <string name="native_check_complete">Comprovació completada. L’exportació continua sense estar disponible.</string>
+    <string name="native_check_cancelled">Comprovació aturada. Hi ha resultats parcials.</string>
+    <string name="native_check_failed">La comprovació no s’ha pogut acabar. L’exportació continua sense estar disponible.</string>
+    <string name="native_check_not_run">Sense comprovar.</string>
+    <string name="native_check_unavailable">No disponible o rebutjat amb aquesta configuració.</string>
+    <string name="native_check_encoded">Codificat i reobert. Cal revisar-ne l’aparença.</string>
+    <string name="native_check_target_met">S’han assolit els objectius numèrics d’aquest cas sintètic; encara cal una revisió manual.</string>
+    <string name="native_check_target_missed">No s’han assolit els objectius d’aparença sintètica.</string>
+    <string name="native_check_result">%1$s · %2$d × %3$d</string>
+    <string name="native_check_share_note">L’informe inclou versió d’Android, fabricant/model, versió de l’aplicació, hash de l’APK instal·lat i resultats sintètics. Tria una aplicació per compartir-lo.</string>
+    <string name="native_check_disabled">Espera que acabi l’operació actual o la importació pendent.</string>
 </resources>

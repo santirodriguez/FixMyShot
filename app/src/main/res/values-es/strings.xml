@@ -195,4 +195,23 @@
     <string name="result_interrupted">La exportación se interrumpió antes de confirmar una copia guardada. Revisá los resultados y usá el reintento de pendientes si se ofrece.</string>
     <string name="result_cancelled">Se canceló esta imagen. Las copias guardadas quedan intactas; reintentá las pendientes sólo si se ofrece esa acción.</string>
     <string name="result_retry_available">Incluida en Reintentar pendientes. No se duplican las copias ya guardadas.</string>
+    <string name="native_check_title">Comprobar HEIC y AVIF</string>
+    <string name="native_check_body">Hace seis comprobaciones con imágenes sintéticas, incluidas dimensiones impares y 1344×2992. No lee las imágenes seleccionadas ni guarda nada en la galería. Cada intento solicita un tiempo límite de ocho segundos; el códec del dispositivo puede tardar más en responder. Esta comprobación preliminar no habilita la exportación HEIC/AVIF.</string>
+    <string name="native_check_start">Iniciar comprobación</string>
+    <string name="native_check_running">Comprobando formatos nativos · %1$d/%2$d</string>
+    <string name="native_check_stopping">Deteniendo cuando responda el códec actual…</string>
+    <string name="native_check_cancel">Detener comprobación</string>
+    <string name="native_check_share">Compartir informe</string>
+    <string name="native_check_share_error">No se pudo abrir una aplicación para compartir.</string>
+    <string name="native_check_complete">Comprobación completa. La exportación sigue sin estar disponible.</string>
+    <string name="native_check_cancelled">Comprobación detenida. Hay resultados parciales.</string>
+    <string name="native_check_failed">La comprobación no pudo terminar. La exportación sigue sin estar disponible.</string>
+    <string name="native_check_not_run">Sin comprobar.</string>
+    <string name="native_check_unavailable">No disponible o rechazado con esta configuración.</string>
+    <string name="native_check_encoded">Codificado y reabierto. Falta revisar la apariencia.</string>
+    <string name="native_check_target_met">Se alcanzaron los objetivos numéricos de este caso sintético; todavía hace falta una revisión manual.</string>
+    <string name="native_check_target_missed">No se alcanzaron los objetivos de apariencia sintética.</string>
+    <string name="native_check_result">%1$s · %2$d × %3$d</string>
+    <string name="native_check_share_note">El informe incluye versión de Android, fabricante/modelo, versión de la aplicación, hash del APK instalado y resultados sintéticos. Elegí una aplicación para compartirlo.</string>
+    <string name="native_check_disabled">Esperá a que termine la operación actual o la importación pendiente.</string>
 </resources>

@@ -24,6 +24,7 @@ import org.cajapersonal.fixmyshot.settings.AppPreferences
 import org.cajapersonal.fixmyshot.settings.AppLanguages
 import org.cajapersonal.fixmyshot.settings.AppTheme
 import org.cajapersonal.fixmyshot.settings.SettingsDialog
+import org.cajapersonal.fixmyshot.diagnostics.NativeCheckDialog
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             val theme by preferences.theme.collectAsState(initial = AppTheme.SYSTEM)
             val scope = rememberCoroutineScope()
             var settingsOpen by rememberSaveable { mutableStateOf(false) }
+            var nativeCheckOpen by rememberSaveable { mutableStateOf(false) }
             var settingsError by remember { mutableStateOf(false) }
             val dark = when (theme) {
                 AppTheme.SYSTEM -> isSystemInDarkTheme()
@@ -138,7 +140,29 @@ class MainActivity : AppCompatActivity() {
                         AppLanguages.select(this@MainActivity, tag)
                     },
                     onLink = { url -> openLink(url) },
+                    onNativeCheck = { settingsOpen = false; nativeCheckOpen = true },
                     onDismiss = { settingsOpen = false },
+                )
+                if (nativeCheckOpen) NativeCheckDialog(
+                    running = model.nativeCheckRunning, stopping = model.nativeCheckStopping,
+                    canStart = !model.isBusy && !model.exportState.isLocked && !model.shareBusy && model.pendingImportCount == 0,
+                    samples = model.nativeCheckSamples, report = model.nativeCheckReport,
+                    shareError = model.nativeCheckShareError,
+                    onStart = { model.startNativeCheck(applicationContext) },
+                    onCancel = model::cancelNativeCheck,
+                    onShare = {
+                        val text = model.nativeCheckReport?.toJson()
+                        if (text != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, text)
+                            }, getString(R.string.native_check_share)))
+                        } catch (_: android.content.ActivityNotFoundException) { model.nativeCheckShareUnavailable() }
+                        catch (_: SecurityException) { model.nativeCheckShareUnavailable() }
+                    },
+                    onDismiss = {
+                        if (model.nativeCheckRunning) model.cancelNativeCheck() else nativeCheckOpen = false
+                    },
                 )
                 Surface(Modifier.fillMaxSize()) {
                     ReviewScreen(
