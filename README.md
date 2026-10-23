@@ -51,7 +51,7 @@ This is an incomplete first functional delivery.
 | Area | Remaining boundary |
 |---|---|
 | Image appearance | Broader color/ICC/HDR and partial-alpha acceptance; a strict alpha-edge failure remains unresolved |
-| Reliable output | Accumulated validation of bulk sharing, completed-job retirement and pending-copy removal; broader 100-item, provider, interruption, process-kill and low-space scenarios; remaining unresolved-job cleanup |
+| Reliable output | Broader 100-item real-provider, interruption, process-kill and low-space scenarios; remaining unresolved-job cleanup. Bulk sharing, completed-job retirement and pending-copy removal have scoped API36 coverage |
 | Native formats | HEIC/AVIF hardware, fidelity and fallback qualification; [JPEG XL is deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) |
 | Real-world use | Pixel plus another hardware family, receiving apps/gallery, performance, accessibility and visual language review |
 | Distribution | Dependency authentication, independent reproducible build, signing authorization, install/upgrade and final release evidence |

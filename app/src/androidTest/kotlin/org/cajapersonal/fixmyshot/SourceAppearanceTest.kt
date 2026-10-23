@@ -26,6 +26,8 @@ import org.cajapersonal.fixmyshot.review.*
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
 import java.io.File
@@ -209,6 +211,51 @@ class SourceAppearanceTest {
         }
     }
 
+    /** Synthetic failure evidence only; never connected to imported user images. */
+    private fun captureAlphaFailure(file: File, decoded: Bitmap, image: DraftImage,
+        draft: DraftSession, format: OutputFormat, side: Int, case: String) {
+        var stored: Bitmap? = null
+        var original: Bitmap? = null
+        var reconstructed: Bitmap? = null
+        try {
+            require(side in setOf(64, 96) && format in setOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS))
+            file.copyTo(File(app.filesDir, "g1-alpha-candidate.${format.extension}"), overwrite = true)
+            stored = BitmapFactory.decodeFile(file.path, BitmapFactory.Options().apply {
+                inPreferredConfig = Bitmap.Config.ARGB_8888
+                inPremultiplied = false
+            }) ?: throw IOException("Synthetic reopen unavailable")
+            val source = ReviewSources(app).decodeOriginal(image.id, image.orientedSize)
+            original = source
+            val render = ReviewBitmapRenderer.preview(source, image.orientedSize,
+                draft.plans(Build.VERSION.SDK_INT).single(), maxLongSide = 1600).image
+            reconstructed = render
+            File(app.filesDir, "g1-alpha-rendered.png").outputStream().use {
+                if (!render.compress(Bitmap.CompressFormat.PNG, 100, it)) throw IOException("Synthetic render unavailable")
+            }
+            fun row(bitmap: Bitmap) = JSONArray((0 until side).map {
+                bitmap.getPixel(it, side / 2).toUInt().toString(16).padStart(8, '0')
+            })
+            fun nativeRow(bitmap: Bitmap): JSONArray {
+                require(bitmap.config == Bitmap.Config.ARGB_8888)
+                val bytes = ByteBuffer.allocate(bitmap.byteCount)
+                bitmap.copyPixelsToBuffer(bytes)
+                return JSONArray((0 until side * 4).map {
+                    bytes.get((side / 2) * bitmap.rowBytes + it).toInt() and 255
+                })
+            }
+            val raw = requireNotNull(stored)
+            val evidence = JSONObject().put("schema", 1).put("kind", "SYNTHETIC_ALPHA_FAILURE")
+                .put("status", "CAPTURED").put("case", case).put("side", side).put("row", side / 2)
+                .put("format", format.name).put("native_byte_order", ByteOrder.nativeOrder().toString())
+                .put("reconstructed_argb", row(render)).put("default_decoded_argb", row(decoded))
+                .put("unpremultiplied_decoded_argb", row(raw)).put("stored_is_premultiplied", raw.isPremultiplied)
+                .put("reconstructed_native_bytes", nativeRow(render)).put("default_decoded_native_bytes", nativeRow(decoded))
+            File(app.filesDir, "g1-alpha-edge.json").writeText(evidence.toString())
+            println("ALPHA_FAILURE_EVIDENCE_CAPTURED")
+        } catch (_: Exception) { println("ALPHA_FAILURE_EVIDENCE_UNAVAILABLE") }
+        finally { stored?.recycle(); original?.recycle(); reconstructed?.recycle() }
+    }
+
     @Test fun recognizedWideGamutConvertsPixelsForBothOutputsAndKeepsOriginals() {
         val directory = File(app.cacheDir, "appearance-${UUID.randomUUID()}")
         try {
@@ -320,6 +367,11 @@ class SourceAppearanceTest {
     }
 
     @Test fun partialAlphaSurvivesBothCodecsAndCompositesWithoutDarkOrLightHalos() {
+        for (name in listOf("g1-alpha-edge.json", "g1-alpha-candidate.png",
+                "g1-alpha-candidate.webp", "g1-alpha-rendered.png")) {
+            val old = File(app.filesDir, name)
+            assertTrue("Stale synthetic alpha evidence could not be cleared", !old.exists() || old.delete())
+        }
         val bitmap = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888)
         val directory = File(app.cacheDir, "alpha-${UUID.randomUUID()}")
         val data = try {
@@ -370,6 +422,9 @@ class SourceAppearanceTest {
                                     }
                                     finally { preview.image.recycle() }
                                 } finally { sample.recycle() }
+                            } catch (failure: AssertionError) {
+                                captureAlphaFailure(result.file, decoded, image, draft, format, side, case)
+                                throw failure
                             } finally { decoded.recycle() }
                         } finally { result.file.delete() }
                     }

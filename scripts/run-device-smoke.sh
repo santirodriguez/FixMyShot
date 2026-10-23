@@ -99,6 +99,22 @@ timeout 4m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/private-output-instrumentation.txt 2>&1
 private_result=$?
 cat evidence/private-output-instrumentation.txt
+# Optional bytes from the synthetic alpha assertion only; capture before the strict pass guards.
+alpha_names=(g1-alpha-edge.json g1-alpha-candidate.png g1-alpha-candidate.webp g1-alpha-rendered.png)
+for alpha_name in "${alpha_names[@]}"; do rm -f "evidence/$alpha_name"; done
+if timeout 10s adb exec-out run-as "$package" cat files/g1-alpha-edge.json > evidence/g1-alpha-edge.json 2>/dev/null &&
+    python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); assert d.get("schema")==1 and d.get("kind")=="SYNTHETIC_ALPHA_FAILURE" and d.get("status")=="CAPTURED" and d.get("side") in (64,96)' evidence/g1-alpha-edge.json 2>/dev/null; then
+  for alpha_name in g1-alpha-candidate.png g1-alpha-candidate.webp g1-alpha-rendered.png; do
+    alpha_magic=$'\x89PNG'
+    if [[ "$alpha_name" == *.webp ]]; then alpha_magic=RIFF; fi
+    if ! timeout 10s adb exec-out run-as "$package" cat "files/$alpha_name" > "evidence/$alpha_name" ||
+        [[ "$(dd if="evidence/$alpha_name" bs=1 count=4 2>/dev/null)" != "$alpha_magic" ]]; then
+      rm -f "evidence/$alpha_name"
+    fi
+  done
+else
+  rm -f evidence/g1-alpha-edge.json
+fi
 # The ten scoped save tests use a fake provider plus one synthetic API29+ MediaStore item.
 # API26 exercises only the permission-free fake transaction and skips the API29 provider branch.
 timeout 4m adb shell am instrument -w -r \

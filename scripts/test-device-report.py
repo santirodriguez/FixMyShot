@@ -154,6 +154,16 @@ elif 'cat' in args:
         print(Path('heic-layout-fixture.json').read_text())
     elif name.endswith('g1-smoke.json'):
         print('run-as: unknown package' if os.environ.get('BAD_REPORT') else Path('fixture.json').read_text())
+    elif 'g1-alpha-' in name:
+        if not os.environ.get('ALPHA_EVIDENCE'):
+            print('run-as: missing optional fixture'); sys.exit(0)
+        elif name.endswith('g1-alpha-edge.json'):
+            print('{"schema":1,"kind":"SYNTHETIC_ALPHA_FAILURE","status":"CAPTURED","side":96}')
+        elif name.endswith('g1-alpha-rendered.png'):
+            sys.stdout.buffer.write(b'\\x89PNG\\r\\n\\x1a\\n')
+        elif name.endswith('g1-alpha-candidate.webp'):
+            sys.stdout.buffer.write(b'RIFF')
+        else: sys.exit(1)
     elif name.endswith(('.heic', '.avif')):
         if os.environ.get('ADB_FALSE_SUCCESS'):
             print(f'cat: {name}: No such file or directory')
@@ -164,10 +174,11 @@ elif 'cat' in args:
 ''')
         for p in bin_dir.iterdir(): p.chmod(0o755)
         env = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ['PATH'])
-        for bad, false_success in ((False, True), (True, True)):
+        for bad, false_success, alpha in ((False, True, False), (True, True, False), (False, True, True)):
             current = dict(env)
             if bad: current['BAD_REPORT'] = '1'
             if false_success: current['ADB_FALSE_SUCCESS'] = '1'
+            if alpha: current['ALPHA_EVIDENCE'] = '1'
             # Use a file, not inherited pipes: timeout's adb child may outlive bash briefly.
             with tempfile.TemporaryFile(mode='w+t') as output:
                 result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
@@ -177,6 +188,9 @@ elif 'cat' in args:
             for size in ('64x64', '65x67'):
                 self.assertFalse((self.root / f'evidence/g1-native-{size}.heic').exists())
                 self.assertFalse((self.root / f'evidence/g1-native-{size}.avif').exists())
+            for name in ('g1-alpha-edge.json', 'g1-alpha-candidate.webp', 'g1-alpha-rendered.png'):
+                self.assertEqual(alpha, (self.root / 'evidence' / name).exists(), name)
+            self.assertFalse((self.root / 'evidence/g1-alpha-candidate.png').exists())
             for fmt in ('heic', 'avif'):
                 for variant in ('64x64-off', '65x67-off', '66x68-off', '66x68-on'):
                     self.assertFalse((self.root / f'evidence/g1-grid-{fmt}-{variant}.{fmt}').exists())
