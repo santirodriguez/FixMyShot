@@ -202,6 +202,8 @@ class MainActivity : AppCompatActivity() {
                         shareBusy = model.shareBusy,
                         shareError = model.shareError,
                         onToggleShare = { model.toggleShareItem(it) },
+                        onSelectAllShare = { model.selectAllShareItems() },
+                        onClearShareSelection = { model.clearShareSelection() },
                         onShare = { beginShare() },
                         importLimitExceeded = model.importLimitExceeded,
                         pendingImports = model.pendingImportCount,

@@ -85,6 +85,8 @@ internal fun ReviewScreen(
     shareBusy: Boolean,
     shareError: Boolean,
     onToggleShare: (String) -> Unit,
+    onSelectAllShare: () -> Unit,
+    onClearShareSelection: () -> Unit,
     onShare: () -> Unit,
     onChoose: () -> Unit,
     onSelect: (String) -> Unit,
@@ -334,7 +336,7 @@ internal fun ReviewScreen(
         if (exportState.published > 0 && exportState.phase in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) {
             ExportShareControls(exportState, selectedShareIds, shareBusy || exportState.outputBusy, shareError,
-                onToggleShare, onShare)
+                onToggleShare, onSelectAllShare, onClearShareSelection, onShare)
         }
         if (exportState.canAcknowledge) {
             val actionsEnabled = !busy && !shareBusy && !exportState.outputBusy
@@ -463,9 +465,19 @@ private fun ExportShareControls(
     busy: Boolean,
     error: Boolean,
     onToggle: (String) -> Unit,
+    onSelectAll: () -> Unit,
+    onClear: () -> Unit,
     onShare: () -> Unit,
 ) {
     Text(stringResource(R.string.export_share_choose), style = MaterialTheme.typography.titleSmall)
+    val eligible = state.items.filter { it.phase == BatchItemPhase.PUBLISHED && it.uri != null }
+        .mapTo(linkedSetOf()) { it.itemId }
+    TextButton(onClick = onSelectAll, enabled = !busy && eligible.isNotEmpty() && selected != eligible) {
+        Text(stringResource(R.string.export_share_select_all))
+    }
+    TextButton(onClick = onClear, enabled = !busy && selected.isNotEmpty()) {
+        Text(stringResource(R.string.export_share_clear))
+    }
     state.items.forEachIndexed { index, item ->
         if (item.phase == BatchItemPhase.PUBLISHED && item.uri != null) {
             Row(verticalAlignment = Alignment.CenterVertically,

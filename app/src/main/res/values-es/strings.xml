@@ -82,6 +82,8 @@
     <string name="export_output_pending">El archivo todavía está pendiente de publicación. Revisá su estado antes de reintentar.</string>
     <string name="export_output_unverifiable">No se pudo verificar el archivo. Revisá el acceso y la carpeta de destino.</string>
     <string name="export_share_choose">Elegí las imágenes guardadas que querés compartir.</string>
+    <string name="export_share_select_all">Seleccionar todas las salidas guardadas</string>
+    <string name="export_share_clear">Limpiar selección</string>
     <string name="export_share_item">Incluir la imagen guardada %1$d</string>
     <string name="export_share_selected">Compartir seleccionadas (%1$d)</string>
     <string name="export_share_verifying">Verificando los archivos seleccionados…</string>

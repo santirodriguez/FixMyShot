@@ -209,6 +209,12 @@ class ReviewExportFlowTest {
             assertTrue(before.retryReady)
             val keptUri = before.items.first().uri
             instrumentation.runOnMainSync {
+                first.selectAllShareItems()
+                assertEquals(setOf(a.id), first.selectedShareIds)
+                first.toggleShareItem(b.id)
+                assertEquals(setOf(a.id), first.selectedShareIds)
+                first.clearShareSelection()
+                assertTrue(first.selectedShareIds.isEmpty())
                 assertTrue(first.prepareRetryExport())
                 first.destinationCancelled()
                 assertEquals(before.items, first.exportState.items)
@@ -247,35 +253,43 @@ class ReviewExportFlowTest {
         }
     }
 
-    @Test fun api29WritesOwnOutputToPicturesThenRemovesTestImage() = withCleanup { files, owner ->
+    @Test fun api29WritesAndVerifiesSelectedSingleAndMixedSharesThenRemovesOwnOutputs() = withCleanup { files, owner ->
         if (Build.VERSION.SDK_INT < 29) return@withCleanup
         val (image, file) = stageSynthetic(Color.MAGENTA)
-        files += file
+        val (second, secondFile) = stageSynthetic(Color.CYAN)
+        files += file; files += secondFile
         val port = RecordingPort(MediaStore29Port(app.contentResolver))
         try {
             val model = owner.model
             checkEmptyExportHistory(model)
             instrumentation.runOnMainSync {
-                model.draft = draftOf(image)
+                model.draft = draftOf(image, second.copy(overrides = ItemOverrides(
+                    format = ItemValue.Custom(OutputFormat.WEBP_LOSSLESS))))
                 assertTrue(model.prepareExport())
                 model.startPreparedExport(app, port)
             }
             val state = waitForResult(model)
             assertEquals(ExportUiPhase.COMPLETED, state.phase)
-            assertEquals(1, state.published)
-            assertEquals(1, port.created.size)
-            app.contentResolver.query(port.created.single(),
-                arrayOf(MediaStore.MediaColumns.IS_PENDING,
-                    MediaStore.MediaColumns.RELATIVE_PATH), null, null, null).use { cursor ->
-                val row = requireNotNull(cursor)
-                assertTrue(row.moveToFirst())
-                assertEquals(0, row.getInt(0))
-                assertEquals("Pictures/FixMyShot", row.getString(1).trimEnd('/'))
+            assertEquals(2, state.published)
+            assertEquals(2, port.created.size)
+            port.created.forEach { uri ->
+                app.contentResolver.query(uri,
+                    arrayOf(MediaStore.MediaColumns.IS_PENDING,
+                        MediaStore.MediaColumns.RELATIVE_PATH), null, null, null).use { cursor ->
+                    val row = requireNotNull(cursor)
+                    assertTrue(row.moveToFirst())
+                    assertEquals(0, row.getInt(0))
+                    assertEquals("Pictures/FixMyShot", row.getString(1).trimEnd('/'))
+                }
             }
             val shared = AtomicReference<Intent?>()
             val signal = CountDownLatch(1)
             instrumentation.runOnMainSync {
-                model.toggleShareItem(state.items.single().itemId)
+                model.selectAllShareItems()
+                assertEquals(setOf(image.id, second.id), model.selectedShareIds)
+                model.clearShareSelection()
+                assertTrue(model.selectedShareIds.isEmpty())
+                model.toggleShareItem(image.id)
                 assertEquals(1, model.selectedShareIds.size)
                 model.shareSelected(app) { intent ->
                     shared.set(intent)
@@ -287,7 +301,51 @@ class ReviewExportFlowTest {
             assertEquals(Intent.ACTION_SEND, send.action)
             assertEquals("image/png", send.type)
             assertTrue(send.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION != 0)
-            assertEquals(port.created.single(), send.clipData!!.getItemAt(0).uri)
+            assertEquals(1, send.clipData!!.itemCount)
+            assertEquals(port.created.first(), send.clipData!!.getItemAt(0).uri)
+
+            val mixed = AtomicReference<Intent?>()
+            val mixedSignal = CountDownLatch(1)
+            instrumentation.runOnMainSync {
+                model.selectAllShareItems()
+                model.shareSelected(app) { intent ->
+                    mixed.set(intent)
+                    mixedSignal.countDown()
+                }
+                assertTrue(model.shareBusy)
+                model.clearShareSelection()
+                model.toggleShareItem(image.id)
+                assertEquals(setOf(image.id, second.id), model.selectedShareIds)
+            }
+            assertTrue("Mixed share intent not ready", mixedSignal.await(40, TimeUnit.SECONDS))
+            val sendMixed = requireNotNull(mixed.get())
+            assertEquals(Intent.ACTION_SEND_MULTIPLE, sendMixed.action)
+            assertEquals("image/*", sendMixed.type)
+            assertTrue(sendMixed.flags and Intent.FLAG_GRANT_READ_URI_PERMISSION != 0)
+            val clip = requireNotNull(sendMixed.clipData)
+            assertEquals(2, clip.itemCount)
+            assertEquals(port.created, (0 until clip.itemCount).map { clip.getItemAt(it).uri })
+            assertEquals(2, port.createCalls)
+
+            // Only mutate our own synthetic output. A stale receipt must refuse the entire share.
+            requireNotNull(app.contentResolver.openOutputStream(port.created.last(), "wt")).use {
+                it.write(byteArrayOf(1, 2, 3))
+            }
+            val rejected = AtomicReference<Intent?>(sendMixed)
+            val rejectedSignal = CountDownLatch(1)
+            instrumentation.runOnMainSync {
+                model.shareSelected(app) { intent ->
+                    rejected.set(intent)
+                    rejectedSignal.countDown()
+                }
+            }
+            assertTrue("Changed output not checked", rejectedSignal.await(40, TimeUnit.SECONDS))
+            assertNull(rejected.get())
+            assertTrue(model.shareError)
+            assertEquals(setOf(image.id, second.id), model.selectedShareIds)
+            assertEquals(2, port.createCalls)
+            assertTrue(ReviewSources(app).matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
+            assertTrue(ReviewSources(app).matchesFingerprint(second.id, requireNotNull(second.contentSha256)))
         } finally { port.deleteOwnOutputs() }
     }
 }

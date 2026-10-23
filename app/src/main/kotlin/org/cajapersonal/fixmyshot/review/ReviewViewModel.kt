@@ -692,14 +692,31 @@ internal class ReviewViewModel : ViewModel() {
 
     /** Explicit selection is restricted to already published items in the displayed result. */
     fun toggleShareItem(id: String) {
-        if (shareBusy || exportState.outputBusy || exportState.phase !in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) return
+        if (!canChangeShareSelection()) return
         if (exportState.items.none { it.itemId == id &&
                 it.phase == BatchItemPhase.PUBLISHED && it.uri != null }) return
         selectedShareIds = if (id in selectedShareIds) selectedShareIds - id
             else selectedShareIds + id
         shareError = false
     }
+
+    fun selectAllShareItems() {
+        if (!canChangeShareSelection()) return
+        selectedShareIds = exportState.items.filter {
+            it.phase == BatchItemPhase.PUBLISHED && it.uri != null
+        }.mapTo(linkedSetOf()) { it.itemId }
+        shareError = false
+    }
+
+    fun clearShareSelection() {
+        if (!canChangeShareSelection()) return
+        selectedShareIds = emptySet()
+        shareError = false
+    }
+
+    private fun canChangeShareSelection(): Boolean = !shareBusy && !exportState.outputBusy &&
+        exportState.phase in setOf(ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED,
+            ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)
 
     /**
      * The chooser is prepared only after re-reading each committed item journal and verifying

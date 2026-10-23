@@ -82,6 +82,8 @@
     <string name="export_output_pending">The file is still pending publication. Check its status before retrying.</string>
     <string name="export_output_unverifiable">The file could not be verified. Check access and destination.</string>
     <string name="export_share_choose">Select saved images to share.</string>
+    <string name="export_share_select_all">Select all saved outputs</string>
+    <string name="export_share_clear">Clear selection</string>
     <string name="export_share_item">Include saved image %1$d</string>
     <string name="export_share_selected">Share selected (%1$d)</string>
     <string name="export_share_verifying">Verifying selected output files…</string>
