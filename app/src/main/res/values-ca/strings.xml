@@ -152,6 +152,12 @@
     <string name="batch_move_earlier">Mou abans</string>
     <string name="batch_move_later">Mou després</string>
     <string name="metadata_supported_tags">Camps EXIF compatibles: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
+    <string name="session_restored">S’ha recuperat l’esborrany anterior, inclosos el format i les metadades triats. Revisa’l abans d’exportar; les imatges que afegeixis faran servir els ajustos del lot. Descarta la sessió per començar amb els valors predeterminats.</string>
+    <string name="session_expired">L’esborrany anterior ha caducat després de més de 24 hores sense desar canvis. Si el necessites, torna a triar les imatges.</string>
+    <string name="session_restore_failed">No es pot llegir l’esborrany desat o en falten les imatges de treball. Revisa qualsevol exportació anterior i descarta l’esborrany desat per tornar a començar. Els originals i les imatges exportades continuen sota el teu control.</string>
+    <string name="session_discard_saved">Descarta l’esborrany desat</string>
+    <string name="session_save_failed">No s’han pogut desar els darrers canvis de l’esborrany. Mantén l’aplicació oberta i torna-ho a provar.</string>
+    <string name="session_retry_save">Torna a provar de desar l’esborrany</string>
 </resources>
 
 

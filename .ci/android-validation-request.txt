@@ -161,3 +161,7 @@ profile=current
 
 Undefined-orientation identity correction after failed Actions39898060905, plus explicit selective metadata preservation for PNG/lossless WebP. Require fifteen combined private-output/payload/metadata cases, plain PNG provider import/full decode and all eight explicit orientations, exact allowlisted field preservation and forbidden-field/container rejection, plus all current-device import/settings/retry/recovery/export/codec regressions in one grouped run.
 profile=current
+
+
+Editable-session continuity checkpoint after accepted metadata Actions39905266496. Persist current draft/selection/one-step undo atomically with coalesced edits, restore before source pruning, enforce24h closed-session expiry and visible save/restore/discard failures, and recount incoming offers after restoration. Require nine combined import/settings/session cases, fifteen private/payload/metadata cases and all current-device recovery/retry/export/codec regressions together.
+profile=current

@@ -132,6 +132,8 @@ data class DraftSession(
     /** Includes the one-step undo snapshot so removing an image does not destroy undo bytes. */
     val workingSourceIds: Set<String> get() = (images + previous?.images.orEmpty()).mapTo(mutableSetOf()) { it.id }
     val canUndo: Boolean get() = previous != null
+    /** One immutable undo snapshot; persisted review sessions do not retain an edit history. */
+    val undoSnapshot: PreviousDraft? get() = previous
 
     init {
         require(revision >= 0)

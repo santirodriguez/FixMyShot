@@ -147,6 +147,7 @@ class ImportSettingsFlowTest {
             }
             assertTrue(ReviewSources(app).matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
         } finally {
+            discardOwnedDraft(scenario)
             scenario?.onActivity { activity -> AppLanguages.select(activity, oldLocale) }
             scenario?.close()
             stagedIds.forEach { File(app.cacheDir, "review-sources/$it.source").delete() }
@@ -194,7 +195,20 @@ class ImportSettingsFlowTest {
                 instrumentation.waitForIdleSync(); Thread.sleep(40)
             }
             assertFalse("No longer needed by draft, undo or pending exports", file.exists())
-        } finally { scenario.close(); file.delete() }
+        } finally { discardOwnedDraft(scenario); scenario.close(); file.delete() }
+    }
+
+    /** Remove the synthetic UI session through the actual discard callback before deleting its fixtures. */
+    private fun discardOwnedDraft(scenario: ActivityScenario<MainActivity>?) {
+        scenario?.onActivity { activity ->
+            MainActivity::class.java.getDeclaredMethod("discardDraft").apply { isAccessible = true }.invoke(activity)
+        }
+        val deadline = System.currentTimeMillis() + 10_000L
+        val journal = File(app.filesDir, "review-session.json")
+        while (journal.exists() && System.currentTimeMillis() < deadline) {
+            instrumentation.waitForIdleSync(); Thread.sleep(20)
+        }
+        assertFalse("Owned synthetic draft checkpoint must be discarded", journal.exists())
     }
 }
 

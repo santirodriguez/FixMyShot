@@ -14,6 +14,8 @@ import org.cajapersonal.fixmyshot.export.BatchCheckpoint
 import org.cajapersonal.fixmyshot.export.BatchExportJournal
 import org.cajapersonal.fixmyshot.export.BatchRetryPolicy
 import org.cajapersonal.fixmyshot.export.ExportDraftJournal
+import org.cajapersonal.fixmyshot.export.ReviewSessionJournal
+import org.cajapersonal.fixmyshot.export.ReviewSessionSnapshot
 import org.cajapersonal.fixmyshot.export.BatchOutputCoordinator
 import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
@@ -30,6 +32,7 @@ import org.cajapersonal.fixmyshot.export.RecoveryItem
 import org.cajapersonal.fixmyshot.export.OwnedOutputPort
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicReference
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -51,6 +54,65 @@ internal class ReviewViewModel : ViewModel() {
     private val pendingImports = linkedMapOf<String, Uri>()
     private var importGeneration = 0L
     private var activeImports: Set<String> = emptySet()
+    private var sessionContext: Context? = null
+    private val sessionPending = AtomicReference<ReviewSessionSnapshot?>(null)
+    private val sessionWriterQueued = AtomicBoolean(false)
+    var sessionRestored by mutableStateOf(false)
+        private set
+    var sessionExpired by mutableStateOf(false)
+        private set
+    var sessionSaveError by mutableStateOf(false)
+        private set
+    var sessionRestoreBlocked by mutableStateOf(false)
+        private set
+
+    /** The launcher binds editable-session persistence; isolated export coordinators need not. */
+    fun attachSession(context: Context) { sessionContext = context.applicationContext }
+
+    private fun sessionJournal(context: Context) = ReviewSessionJournal(File(context.filesDir, "review-session.json"))
+
+    /** Coalesce rapid gesture/selection edits; serialize checkpoints before source cleanup/export. */
+    fun checkpointDraft() {
+        val app = sessionContext ?: return
+        if (!checkedPreviousJobs || sessionRestoreBlocked) return
+        sessionPending.set(ReviewSessionSnapshot(draft,
+            selectedId?.takeIf { id -> draft.images.any { it.id == id } } ?: draft.images.firstOrNull()?.id,
+            System.currentTimeMillis()))
+        if (!sessionWriterQueued.compareAndSet(false, true)) return
+        exportWorker.execute {
+            while (true) {
+                val next = sessionPending.getAndSet(null)
+                if (next == null) {
+                    sessionWriterQueued.set(false)
+                    if (sessionPending.get() != null && sessionWriterQueued.compareAndSet(false, true)) continue
+                    break
+                }
+                val failed = try { sessionJournal(app).write(next); false } catch (_: Exception) { true }
+                main.post { sessionSaveError = failed }
+            }
+        }
+    }
+
+    /** Corrupt/missing working bytes require explicit discard; never overwrite their journal on import. */
+    fun discardUnavailableSession() {
+        val app = sessionContext ?: return
+        if (!sessionRestoreBlocked || isBusy || exportState.isLocked) return
+        isBusy = true
+        val current = draft.workingSourceIds
+        exportWorker.execute {
+            val cleared = try {
+                sessionJournal(app).clear()
+                maintenance(app).pruneExpired(current)
+                true
+            } catch (_: Exception) { false }
+            main.post {
+                isBusy = false
+                sessionRestoreBlocked = !cleared
+                sessionSaveError = !cleared
+                if (cleared && draft.workingSourceIds.isNotEmpty()) checkpointDraft()
+            }
+        }
+    }
 
     /** Hold temporary grants in this process and stage as soon as the current operation permits. */
     fun enqueueImports(uris: List<Uri>) {
@@ -69,10 +131,14 @@ internal class ReviewViewModel : ViewModel() {
 
     /** ViewModel ownership keeps imports alive through rotation and locale recreation. */
     fun drainImports(context: Context) {
-        if (isBusy || exportState.isLocked || pendingImports.isEmpty()) return
-        val wanted = pendingImports.values.toList()
+        if (isBusy || sessionRestoreBlocked || exportState.isLocked || pendingImports.isEmpty()) return
+        val known = draft.images.mapTo(mutableSetOf()) { it.sourceToken }
+        val wanted = pendingImports.values.filter { it.toString() !in known }
         pendingImports.clear()
         pendingImportCount = 0
+        // An incoming offer may have arrived before the previous session was restored.
+        if (draft.images.size + wanted.size > 100) { importLimitExceeded = true; return }
+        if (wanted.isEmpty()) return
         activeImports = wanted.mapTo(mutableSetOf(), Uri::toString)
         isBusy = true
         val token = importGeneration
@@ -150,12 +216,20 @@ internal class ReviewViewModel : ViewModel() {
         }
     }
 
+    private fun currentAndSavedSources(context: Context, current: Set<String>): Set<String>? = try {
+        current + if (sessionContext != null) sessionJournal(context).read()?.draft?.workingSourceIds.orEmpty()
+            else emptySet()
+    } catch (_: Exception) { null }
+
     /** Call after an explicit remove/discard action; another unresolved job keeps its sources. */
     fun releasePrivateSources(context: Context, ids: Set<String>) {
         val app = context.applicationContext
         val current = draft.workingSourceIds
         exportWorker.execute {
-            val released = maintenance(app).release(ids, current)
+            val released = try {
+                // A failed newer checkpoint must not strand the last recoverable saved session.
+                currentAndSavedSources(app, current)?.let { maintenance(app).release(ids, it) } ?: false
+            } catch (_: Exception) { false }
             if (!released) main.post { exportState = exportState.copy(outputError = true) }
         }
     }
@@ -196,6 +270,10 @@ internal class ReviewViewModel : ViewModel() {
         shareError = false
         reviewToken = item?.token
         retryDraft = details.draft
+        if (details.draft?.let { ExportDraftJournal.same(draft, it) } == true) {
+            // An automatically restored editable draft still represents this already-attempted job.
+            lastAttemptDraft = details.draft
+        }
         exportState = if (item == null) ReviewExportState() else ReviewExportState(
             phase = ExportUiPhase.NEEDS_REVIEW,
             items = item.snapshot?.items.orEmpty(),
@@ -219,6 +297,7 @@ internal class ReviewViewModel : ViewModel() {
         selectedShareIds = emptySet()
         exportState = exportState.copy(canRestoreDraft = false,
             retryReady = exportState.retryableIds.isNotEmpty())
+        checkpointDraft()
     }
 
     /** A previous process may have published output even if its final callback was lost. */
@@ -228,12 +307,48 @@ internal class ReviewViewModel : ViewModel() {
         exportState = ReviewExportState(ExportUiPhase.CHECKING_HISTORY)
         val app = context.applicationContext
         val current = draft.workingSourceIds
+        val beforeRestore = draft
         exportWorker.execute {
-            maintenance(app).pruneExpired(current)
+            var restored: ReviewSessionSnapshot? = null
+            var blocked = false
+            var expired = false
+            if (sessionContext != null) {
+                try {
+                    val saved = sessionJournal(app).read()
+                    if (saved?.expired(System.currentTimeMillis()) == true) {
+                        sessionJournal(app).clear()
+                        expired = true
+                    } else if (saved != null) {
+                        val root = File(app.cacheDir, "review-sources")
+                        require(root.canonicalFile == File(app.cacheDir.canonicalFile, "review-sources"))
+                        var total = 0L
+                        for (id in saved.draft.workingSourceIds) {
+                            val source = File(root, "$id.source")
+                            require(source.canonicalFile == File(root.canonicalFile, source.name) &&
+                                source.isFile && source.length() in 1L..100L * 1024 * 1024)
+                            total += source.length()
+                            require(total <= 1024L * 1024 * 1024)
+                        }
+                        restored = saved
+                    }
+                } catch (_: Exception) { blocked = true }
+            }
+            if (!blocked) maintenance(app).pruneExpired(current + restored?.draft?.workingSourceIds.orEmpty())
             val finding = try { scanHistory(app) }
                 catch (_: Exception) { RecoveryItem(null, null, 1) }
             val details = retryDetails(app, finding?.token, finding?.snapshot)
-            main.post { inspectedHistoryResult(finding, details) }
+            val savedSession = restored
+            main.post {
+                sessionRestoreBlocked = blocked
+                sessionExpired = expired
+                if (savedSession != null && draft == beforeRestore && draft.workingSourceIds.isEmpty()) {
+                    draft = savedSession.draft
+                    selectedId = savedSession.selectedId ?: draft.images.firstOrNull()?.id
+                    sessionRestored = true
+                }
+                inspectedHistoryResult(finding, details)
+                if (sessionRestored) checkpointDraft()
+            }
         }
     }
 
@@ -260,7 +375,9 @@ internal class ReviewViewModel : ViewModel() {
                 if (scanner.inspect()?.token == token) {
                     saved = app.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
                         .edit().putBoolean(token, true).commit()
-                    if (saved) cleanupFailed = !maintenance(app).releaseReviewedDraft(token, current)
+                    if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
+                        !maintenance(app).releaseReviewedDraft(token, it)
+                    } ?: true
                 }
                 scanHistory(app)
             } catch (_: Exception) { RecoveryItem(null, null, 1) }
@@ -335,7 +452,7 @@ internal class ReviewViewModel : ViewModel() {
     fun prepareExport(): Boolean {
         if (!checkedPreviousJobs || exportState.phase != ExportUiPhase.IDLE ||
             reviewToken != null || isBusy || pendingImportCount > 0 || draft.images.isEmpty() ||
-            lastAttemptDraft == draft) return false
+            sessionRestoreBlocked || lastAttemptDraft == draft) return false
         val preparation = try {
             ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, Runtime.getRuntime().maxMemory())
         } catch (_: Exception) {
@@ -535,6 +652,9 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     fun onDraftEdited() {
+        sessionExpired = false
+        if (draft.workingSourceIds.isEmpty()) { sessionRestored = false; sessionExpired = false }
+        checkpointDraft()
         selectedShareIds = emptySet()
         shareError = false
         if (exportState.isLocked || reviewToken != null ||

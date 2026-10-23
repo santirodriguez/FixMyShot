@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         sources = ReviewSources(applicationContext)
         model = ViewModelProvider(this)[ReviewViewModel::class.java]
+        model.attachSession(applicationContext)
         model.checkPastExports(applicationContext)
         if (savedInstanceState == null) receiveImages(intent)
         setContent {
@@ -150,6 +151,12 @@ class MainActivity : AppCompatActivity() {
                         previewUnavailable = model.previewUnavailable,
                         api = Build.VERSION.SDK_INT,
                         exportState = model.exportState,
+                        sessionRestored = model.sessionRestored,
+                        sessionExpired = model.sessionExpired,
+                        sessionSaveError = model.sessionSaveError,
+                        sessionRestoreBlocked = model.sessionRestoreBlocked,
+                        onRetrySessionSave = { model.checkpointDraft() },
+                        onDiscardUnavailableSession = { model.discardUnavailableSession() },
                         onExport = { beginExport() },
                         onCancelExport = { model.cancelExport() },
                         onRetryExport = { beginRetryExport() },
@@ -178,6 +185,7 @@ class MainActivity : AppCompatActivity() {
                         onSelect = selectImage@{ id ->
                             if (model.exportState.isLocked) return@selectImage
                             model.selectedId = id
+                            model.checkpointDraft()
                             model.selectThumbnail(id)
                             scheduleThumbnails(listOf(id))
                         },
@@ -273,7 +281,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDraft(value: DraftSession) {
-        if (model.exportState.isLocked || value == model.draft) return
+        if (model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
         val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()

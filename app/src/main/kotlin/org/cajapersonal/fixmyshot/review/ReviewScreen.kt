@@ -105,11 +105,17 @@ internal fun ReviewScreen(
     onApplyBatchToAll: () -> Unit = {},
     onMoveSelected: (Int) -> Unit = {},
     onMetadata: (MetadataPolicy, Boolean) -> Unit = { _, _ -> },
+    sessionRestored: Boolean = false,
+    sessionExpired: Boolean = false,
+    sessionSaveError: Boolean = false,
+    sessionRestoreBlocked: Boolean = false,
+    onRetrySessionSave: () -> Unit = {},
+    onDiscardUnavailableSession: () -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
-    val editEnabled = !busy && pendingImports == 0 && !exportState.isLocked
+    val editEnabled = !busy && !sessionRestoreBlocked && pendingImports == 0 && !exportState.isLocked
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember { mutableStateOf(false) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
@@ -147,6 +153,19 @@ internal fun ReviewScreen(
         Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
         Text(stringResource(R.string.tagline), style = MaterialTheme.typography.bodyMedium)
         OutlinedButton(onClick = onSettings) { Text(stringResource(R.string.settings_title)) }
+        if (sessionRestored) Text(stringResource(R.string.session_restored), style = MaterialTheme.typography.bodySmall)
+        if (sessionExpired) Text(stringResource(R.string.session_expired))
+        if (sessionRestoreBlocked) {
+            Text(stringResource(R.string.session_restore_failed), color = MaterialTheme.colorScheme.error)
+            OutlinedButton(onClick = onDiscardUnavailableSession, enabled = !busy && !exportState.isLocked) {
+                Text(stringResource(R.string.session_discard_saved))
+            }
+        } else if (sessionSaveError) {
+            Text(stringResource(R.string.session_save_failed), color = MaterialTheme.colorScheme.error)
+            OutlinedButton(onClick = onRetrySessionSave, enabled = !busy && !exportState.isLocked) {
+                Text(stringResource(R.string.session_retry_save))
+            }
+        }
         Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
         if (busy) Text(stringResource(R.string.import_in_progress))
         if (pendingImports > 0) Text(stringResource(R.string.import_waiting, pendingImports))

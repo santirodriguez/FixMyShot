@@ -56,4 +56,4 @@ DateTime is derived only from retained DateTimeOriginal, never from a source edi
 
 After writing, individual values and technical fields are reopened and compared. Independent PNG/WebP structure verification permits exactly one bounded EXIF area (at most64KiB), the closed TIFF tag sets above plus technical dimensions/orientation and directory pointers, and no next-image/thumbnail/interoperability directory. Unknown fields, duplicate/cyclic directories, invalid offsets, stale dimensions/orientation and unrelated container metadata reject the candidate before publication. Default-removal validation still rejects EXIF altogether. Failed preservation is an item failure, never a silent change to the user's selected privacy policy. Source hashes are rechecked and original files are read only.
 
-This implementation checkpoint requires its own Android CI acceptance; the previous successful executable is not evidence for the new writer/container path. See TESTING.md.
+The bounded synthetic Android36 metadata writer/container path passed at d6b63ae; see TESTING.md for the exact receipt and remaining color/native/hardware limits.

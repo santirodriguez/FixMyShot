@@ -152,6 +152,12 @@
     <string name="batch_move_earlier">Mover antes</string>
     <string name="batch_move_later">Mover después</string>
     <string name="metadata_supported_tags">Campos EXIF compatibles: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
+    <string name="session_restored">Se recuperó el borrador anterior, incluidos el formato y los metadatos elegidos. Revisalo antes de exportar; las imágenes que agregues usarán los ajustes del lote. Descartá la sesión para empezar con los valores predeterminados.</string>
+    <string name="session_expired">El borrador anterior venció tras más de 24 horas sin guardar cambios. Si lo necesitás, elegí las imágenes de nuevo.</string>
+    <string name="session_restore_failed">No se puede leer el borrador guardado o faltan sus imágenes de trabajo. Revisá cualquier exportación anterior y descartá el borrador guardado para empezar de nuevo. Los originales y las imágenes exportadas siguen bajo tu control.</string>
+    <string name="session_discard_saved">Descartar borrador guardado</string>
+    <string name="session_save_failed">No se pudieron guardar los últimos cambios del borrador. Mantené la app abierta y reintentá.</string>
+    <string name="session_retry_save">Reintentar guardar borrador</string>
 </resources>
 
 

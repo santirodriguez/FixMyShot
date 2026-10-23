@@ -4,7 +4,7 @@
 
 Screenshots, ready anywhere.
 
-FixMyShot is an Android application being built to prepare screenshots for publication: import, choose a destination, review and export a new copy. The default will preserve all content with minimal centered margins, use PNG and remove identifying metadata.
+FixMyShot is an Android application being built to prepare screenshots for publication: import, choose a destination, review and export a new copy. The default preserves all content with minimal centered margins, uses PNG and removes identifying metadata.
 
 ## Current state
 
@@ -16,11 +16,25 @@ API29+ output uses owned MediaStore publication in Pictures/FixMyShot. API26–2
 
 PNG and identifying-metadata removal remain new-session defaults. Original files are read only; bounded private working copies are removed on discard or age-based cleanup. The app requests no permissions and has no networking, accounts or analytics. External links open only after a user action.
 
-Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Crop zoom reduces native output dimensions; it never silently enlarges them. Destination conflicts remain visible and block export until resolved.
+Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Preserve-pixels crop zoom reduces native output dimensions. Exact output size, uniform enlargement and custom RGB backgrounds are explicit choices; enlargement requires opt-in. Destination conflicts remain visible and block export until resolved.
 
-**Still incomplete:** exact-size crop/enlargement policy, full color/HDR/metadata-preservation policy, unsaved-draft process-death restoration and complete cleanup/uncertain-output resolution, native HEIC/AVIF and the bounded JPEG XL decision, external receiver and physical-device acceptance, accessibility/locale visual review and distribution readiness. The new import/settings and crop blocks require their own source-bound Android validation; earlier successful CI does not validate it. The complete implementation contract and recorded amendments are in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, foreground/interruption and100-item provider scenarios, native HEIC/AVIF and the bounded JPEG XL decision, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are already implemented. The accepted bounded API36 metadata checkpoint is `d6b63ae`; new editable-session persistence requires its own source-bound validation. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
 
-Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. New exports use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
+Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. Retries use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
+
+
+Editable drafts now checkpoint locally after edits, including selected image, inherited/custom fields and one-step undo. Reopening within24 hours restores that session before age cleanup and shows its retained format/privacy choices; no export starts automatically. Incoming offers are recounted against the restored100-image limit. A corrupt journal or missing staged image blocks silent replacement until explicit discard. Cache eviction can still make a saved draft unavailable. New sessions retain PNG/removal defaults. This new block is pending exact-source Android acceptance.
+
+| Delivery stage | Current boundary |
+|---|---|
+|0 — Research/blueprint | Complete; repository-owned contract and compatibility amendment |
+|1 — Foundation/codecs | PNG/WebP and builds work; native HEIC/AVIF, JXL decision and reproducibility/dependency trust remain open |
+|2 — Image/privacy core | Geometry, crop, sizes and metadata policies implemented; broader color/alpha/ICC/HDR acceptance open |
+|3 — Import/review | Picker/sharing, batches, themes and languages implemented; manual accessibility/locale/visual acceptance open |
+|4 — Reliable output | Save/share/retry/recovery implemented; editable draft validation, final cleanup and extensive lifecycle/provider scenarios open |
+|5 — Integral acceptance | Real Pixel/additional hardware, receivers/gallery, performance and usability still required |
+|6 — Delivery | Version/signing authorization, reproducible artifact, install/upgrade and final release evidence still required |
+|7 — Public1.0 | Later stabilization from actual use; website/store publication is not a prerequisite |
 
 ## Development
 

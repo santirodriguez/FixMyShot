@@ -152,6 +152,12 @@
     <string name="batch_move_earlier">Move earlier</string>
     <string name="batch_move_later">Move later</string>
     <string name="metadata_supported_tags">Supported EXIF fields: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
+    <string name="session_restored">Previous draft restored, including its format and metadata choices. Review it before exporting; additional images use its batch settings. Discard the session to start with the defaults.</string>
+    <string name="session_expired">The previous draft expired after more than 24 hours without a saved update. Choose the images again if needed.</string>
+    <string name="session_restore_failed">The saved draft is unreadable or its working images are missing. Review any previous export, then discard the saved draft to start again. Original and exported images remain under your control.</string>
+    <string name="session_discard_saved">Discard saved draft</string>
+    <string name="session_save_failed">The latest draft changes could not be saved. Keep the app open and retry.</string>
+    <string name="session_retry_save">Retry saving draft</string>
 </resources>
 
 
