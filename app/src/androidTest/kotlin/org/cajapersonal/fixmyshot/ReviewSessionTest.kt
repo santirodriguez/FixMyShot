@@ -256,9 +256,9 @@ class ReviewSessionTest {
             assertFalse(f.file.exists())
             for (image in listOf(a, b)) assertFalse(File(f.context.cacheDir, "review-sources/${image.id}.source").exists())
             assertArrayEquals(published, output); assertEquals(0, deletions)
-            val job = File(f.context.filesDir, "export-jobs").listFiles()!!.single()
-            assertTrue(File(job, "batch.json").exists()); assertTrue(File(job, "item-0.json").exists())
-            assertFalse(File(job, "draft.json").exists())
+            assertTrue(File(f.context.filesDir, "export-jobs").listFiles()!!.isEmpty())
+            assertTrue(File(f.context.filesDir, "export-jobs-retired").listFiles()!!.isEmpty())
+            assertTrue(f.context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE).all.isEmpty())
         } finally { f.cleanup() }
     }
 }

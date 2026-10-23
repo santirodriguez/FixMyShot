@@ -8,9 +8,13 @@ import java.nio.channels.OverlappingFileLockException
 internal class PrivateSessionMaintenance(
     private val cache: File,
     private val jobs: File,
+    forgetAcknowledged: (String) -> Boolean = { true },
     private val acknowledged: (String) -> Boolean,
 ) {
     private val idPattern = Regex("[0-9a-f]{32}")
+    private val retirement = ReviewedJobRetirement(jobs, acknowledged, forgetAcknowledged)
+
+    fun retirePublishedJob(token: String): Boolean = retirement.retire(token)
 
     /** An unreadable unreviewed job conservatively prevents source cleanup. */
     private fun protectedSources(current: Set<String>): Set<String>? {
@@ -67,10 +71,12 @@ internal class PrivateSessionMaintenance(
 
     /** Startup only, before import/export workers begin; active drafts and unresolved jobs win. */
     fun pruneExpired(current: Set<String>, now: Long = System.currentTimeMillis()) {
+        retirement.prune()
         val retained = protectedSources(current) ?: return
         // Finish interrupted private cleanup after a durable acknowledgement.
         jobs.listFiles()?.forEach { folder ->
-            if (idPattern.matches(folder.name) && acknowledged(folder.name)) releaseReviewedDraft(folder.name, current)
+            if (idPattern.matches(folder.name) && acknowledged(folder.name) &&
+                releaseReviewedDraft(folder.name, current)) retirement.retire(folder.name)
         }
         val sources = File(cache, "review-sources")
         sources.listFiles()?.takeIf { it.size <= 4096 }?.forEach { file ->

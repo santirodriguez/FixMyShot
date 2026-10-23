@@ -286,7 +286,8 @@ internal class ReviewViewModel : ViewModel() {
 
     private fun maintenance(context: Context): PrivateSessionMaintenance {
         val prefs = context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
-        return PrivateSessionMaintenance(context.cacheDir, File(context.filesDir, "export-jobs")) {
+        return PrivateSessionMaintenance(context.cacheDir, File(context.filesDir, "export-jobs"),
+            forgetAcknowledged = { prefs.edit().remove(it).commit() }) {
             prefs.getBoolean(it, false)
         }
     }
@@ -462,7 +463,7 @@ internal class ReviewViewModel : ViewModel() {
                             val cleaner = maintenance(app)
                             val releasedDraft = cleaner.releaseReviewedDraft(token, emptySet())
                             val releasedUndo = cleaner.release(current, emptySet())
-                            cleanupFailed = !releasedDraft || !releasedUndo
+                            cleanupFailed = !releasedDraft || !releasedUndo || !cleaner.retirePublishedJob(token)
                         } catch (_: Exception) { cleanupFailed = true }
                     } else if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
                         !maintenance(app).releaseReviewedDraft(token, it)

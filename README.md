@@ -1,62 +1,89 @@
 # FixMyShot
 
-![FixMyShot](assets/branding/header.png)
+<p align="center">
+  <img src="assets/branding/header.png" alt="FixMyShot" width="880" />
+</p>
 
-Screenshots, ready anywhere.
+<p align="center">
+  <strong>Screenshots, ready anywhere.</strong>
+</p>
 
-FixMyShot is an Android application being built to prepare screenshots for publication: import, choose a destination, review and export a new copy. The default preserves all content with minimal centered margins, uses PNG and removes identifying metadata.
+<p align="center">
+  Choose a shape. Keep the content. Save a new copy.
+</p>
 
-## Current state
+<p align="center">
+  <sub>Local processing · no accounts · no ads · no analytics · no Internet permission</sub>
+</p>
 
-**Unreleased development build: `0.1.0-alpha.1`.** This is an incomplete first functional release, with no published APK download. The review flow accepts supported static SDR JPEG/PNG/WebP images through the system picker or Android sharing from another app. It supports destination/ratio choices, batch and per-image settings, bounded previews, explicit PNG/lossless WebP export, results, selected-output sharing and read-only review of previous output records.
+**Unreleased development build: `0.1.0-alpha.1`.** There is no published APK download yet. The features below are implemented development behavior; acceptance limits are recorded in [TESTING](docs/TESTING.md).
 
-Settings now provide light/dark/system appearance, persistent English/Argentine Spanish/Catalan selection, offline help/privacy and About links. Theme uses Preferences DataStore; language uses the standard AppCompat/platform per-app locale bridge. Imports belong to the ViewModel so configuration recreation retains in-flight work and the current draft. Offers beyond the 100-image batch limit are rejected with an explanation instead of being silently truncated. Incoming images arriving during a locked export wait for the current operation; they never change its frozen plan.
+## The idea
 
-Settings also offers an explicit [synthetic HEIC/AVIF device check](docs/feasibility/native-device-check.md), with cancellation and a shareable text report bound to the installed APK hash. It uses no selected images and creates no gallery output. This preliminary diagnostic does not enable HEIC/AVIF export or replace physical appearance review; Android validation is pending.
+Your screenshot already did the hard part. It captured the screen.
 
-API29+ output uses owned MediaStore publication in Pictures/FixMyShot. API26–28 currently require an explicitly selected SAF folder. The scoped real-provider API28 exercise passed at `9aa67f1`; the later API26 exercise identified a WebP candidate-validation failure even though the real provider probe succeeded. Older compatibility is now best effort and has an optional extended validation profile; it will not drive complex changes or block ordinary product development. The declared minSdk remains 26 for now. See [the compatibility decision](docs/decisions/compatibility-and-validation.md).
+FixMyShot prepares it for wherever it is going next: choose a destination or ratio, review the framing and save a separate image. The default keeps all content, adds minimal centered margins, uses PNG and removes identifying metadata. Crop and enlargement are explicit choices.
 
-PNG and identifying-metadata removal remain new-session defaults. Original files are read only; bounded private working copies are removed on discard or age-based cleanup. The app requests no permissions and has no networking, accounts or analytics. External links open only after a user action.
+## Highlights
 
-Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Preserve-pixels crop zoom reduces native output dimensions. Exact output size, uniform enlargement and custom RGB backgrounds are explicit choices; enlargement requires opt-in. Destination conflicts remain visible and block export until resolved.
+- **Start with your images:** import supported static SDR JPEG, PNG or WebP through Android's picker or another app's Share action.
+- **Review a batch:** up to 100 images, batch settings and individual overrides, with clear reasons when an image needs attention.
+- **Choose the framing:** preserve content or crop deliberately; adjust ratios, output dimensions and backgrounds before exporting.
+- **Save separate copies:** PNG or lossless WebP, leaving originals unchanged.
+- **Share deliberately:** choose individual saved outputs or select all successful copies. Each selected file is verified before Android's share chooser is prepared.
+- **Pick up unfinished work:** editable drafts, one-step undo, explicit remaining-item retry and review of previous output records.
+- **Keep control:** leaving the app requests a pause after the current transaction; continuing is your choice.
+- **Make it comfortable:** system/light/dark appearance, English, Argentine Spanish and Catalan, with offline help and privacy information.
 
-**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, full interruption/provider scenarios, native HEIC/AVIF, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. [JPEG XL is deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) after the bounded reference experiment. The standard Gradle wrapper and resolved version locks are committed; dependency authentication and an independent reproducible build remain open. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are implemented. The last accepted bounded API36 aggregate is `d6b63ae`. At `a047cfe6`, compilation, sessions, pause/retry/recovery, opaque-WebP publication and mixed import passed; two appearance cases still failed. A JPEG profile-fixture correction and two real-codec 100-item exercises are prepared for a later grouped checkpoint. See [TESTING](docs/TESTING.md) for precise evidence and limits; the aggregate remains unaccepted. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+Android 10/API 29 and later saves owned copies to **Pictures/FixMyShot**. Android 8–9/API 26–28 uses an explicitly selected folder; older compatibility is [best effort](docs/decisions/compatibility-and-validation.md).
 
-Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. Retries use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
+## Privacy, by design
 
+Images stay local. There is no account to create and no cloud dashboard to admire.
 
-Editable drafts now checkpoint locally after edits, including selected image, inherited/custom fields and one-step undo. Reopening within24 hours restores that session before age cleanup and shows its retained format/privacy choices; no export starts automatically. Incoming offers are recounted against the restored100-image limit. A corrupt journal or missing staged image blocks silent replacement until explicit discard. Cache eviction can still make a saved draft unavailable. New sessions retain PNG/removal defaults. Its four isolated session cases passed at54bf003. The aggregate run failed a recurrent automatic-locale-switch case, now deferred to opt-in diagnostics. Broader manual/lifecycle acceptance remains open.
+Private working copies support review and recovery. Finishing a successful session clears its working data and retires its consistent private receipts; unresolved jobs keep the evidence needed for safe recovery. Cleanup can be delayed and is not secure erasure. Saved output remains under your control. See [PRIVACY](PRIVACY.md) for retention, metadata and external picker/share behavior.
 
-| Delivery stage | Current boundary |
+## What still needs work
+
+This is an incomplete first functional delivery.
+
+| Area | Remaining boundary |
 |---|---|
-|0 — Research/blueprint | Complete; repository-owned contract and compatibility amendment |
-|1 — Foundation/codecs | PNG/WebP and builds work; native HEIC/AVIF, JXL decision and reproducibility/dependency trust remain open |
-|2 — Image/privacy core | Geometry, crop, sizes, metadata and recognized SDR color conversion implemented; broader color/alpha/ICC/HDR acceptance open |
-|3 — Import/review | Picker/sharing, batches, themes, languages and detailed import feedback implemented; manual accessibility/locale/visual acceptance open |
-|4 — Reliable output | Save/share/retry/recovery implemented; editable drafts and pause/finish behavior implemented; accumulated validation, receipt retirement and extensive lifecycle/provider scenarios open |
-|5 — Integral acceptance | Real Pixel/additional hardware, receivers/gallery, performance and usability still required |
-|6 — Delivery | Version/signing authorization, reproducible artifact, install/upgrade and final release evidence still required |
-|7 — Public1.0 | Later stabilization from actual use; website/store publication is not a prerequisite |
+| Image appearance | Broader color/ICC/HDR and partial-alpha acceptance; a strict alpha-edge failure remains unresolved |
+| Reliable output | Accumulated validation of bulk sharing and completed-job retirement; broader 100-item, provider, interruption, process-kill and low-space scenarios; unresolved-job cleanup |
+| Native formats | HEIC/AVIF hardware, fidelity and fallback qualification; [JPEG XL is deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) |
+| Real-world use | Pixel plus another hardware family, receiving apps/gallery, performance, accessibility and visual language review |
+| Distribution | Dependency authentication, independent reproducible build, signing authorization, install/upgrade and final release evidence |
 
+Settings includes a separate [synthetic HEIC/AVIF device check](docs/feasibility/native-device-check.md). It uses no selected images or gallery writes and can share a text report after an explicit tap. It does not enable native exports or establish physical appearance acceptance.
 
-Leaving the app now requests a pause after the current bounded export transaction. Rotation keeps the active job. Returning does not automatically continue remaining items; “Continue remaining” uses the existing verified no-output retry path and preserves saved copies. After a fully successful batch, “Finish session” clears that session’s private working copies/current+undo/frozen settings and resets the new-session defaults, retaining public output and receipts. Partial/uncertain jobs retain their recovery protection. These new lifecycle changes are implemented but pending a later grouped Android checkpoint.
+The exact contract and phases live in [the release blueprint](docs/blueprints/first-functional-release.md). Build and runtime evidence belongs in [TESTING](docs/TESTING.md); a compiled feature is not automatically an accepted release feature.
 
-Recognized 8-bit SDR Display P3 and Adobe RGB sources now have an explicit color-managed path to canonical sRGB for preview and PNG/lossless WebP export. Review shows the original color space, conversion and batch count; out-of-sRGB colors are limited and originals remain unchanged. This is implemented, pending grouped Android execution. Unknown/malformed profiles, unsupported high precision and recognized HDR/gain-map descriptors are rejected where detected. Universal HDR conversion remains out of scope.
+## Help improve FixMyShot
 
-The latest import now summarizes added, rejected and duplicate items, with expandable numbered reasons and next steps. Valid images stay in the draft. Export results explain individual failures and uncertain copies, while a blocked preflight identifies affected images for review. Retry availability still comes from verified no-output recovery state. Feedback uses English, Spanish and Catalan; no technical exception text or private source names/URIs appear in these notices. This new block is implemented and pending grouped Android validation.
+Found a confusing translation, a bug or an idea worth sharing? See [CONTRIBUTING](CONTRIBUTING.md). Use synthetic examples in public reports and keep private screenshots and image references out of them.
 
-## Development
+## Build
 
-See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). At explicit larger validation checkpoints and pull requests to `main`, GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks; ordinary development commits do not launch the costly emulator matrix. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
+Requires **JDK 17** and **Android SDK 36**, plus the pinned native tools listed in [CONTRIBUTING](CONTRIBUTING.md).
 
-The intended first functional distribution is a GitHub prerelease with Obtainium support. There is no published release, production signing identity or deployed project website established by this bootstrap.
+```sh
+bash scripts/bootstrap-gradle.sh
+./gradlew :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease
+```
+
+The Gradle wrapper and resolved version locks are committed. GitHub Actions runs at explicit larger checkpoints; ordinary development commits do not launch the emulator matrix. The intended first distribution is a GitHub prerelease with Obtainium support. No release, store listing or deployed website is claimed ready.
 
 ## Artwork
 
-The shared icon is [the canonical 512px asset](fastlane/metadata/android/en-US/images/icon.png). The Android build packages it as a generated resource; README uses the shared header directly. Source art, supplied size variants and provenance are described in [ARTWORK](docs/ARTWORK.md). These illustrations are branding, not app screenshots. No F-Droid/Play listing is published or claimed ready.
+The app uses [one canonical icon](fastlane/metadata/android/en-US/images/icon.png), and this README uses the shared header. [ARTWORK](docs/ARTWORK.md) records source provenance and reusable locations for future distribution. Branding illustrations are not app screenshots.
 
-## Author and license
+## Author
 
-Created by Santiago Rodriguez. Source is licensed under GNU GPL version 3 only; see [LICENSE](LICENSE). Third-party source/build information is tracked in [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
+Created by [Santiago Rodriguez](https://santiagorodriguez.com).
+
+## License
+
+GNU GPL version 3 only. See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
 
 
