@@ -1,17 +1,16 @@
-Grouped private-storage, review-context and stored-alpha checkpoint.
-Implementation base: 8822a5d0c4e5f76126d85dbb53d92d4cce5e5f0e.
-This commit adds advisory private-import storage headroom and typed LOW_STORAGE,
-plus removes invalid private-setter writes from the pending Activity test.
-Validate accumulated edit scope/pending-input recreation changes and the55a33357
-full-image stored-alpha oracle separately from default decoder quantization.
+Grouped destination-storage and provider-transaction checkpoint.
+Implementation base: a321b82943d62c0160c6bbd2b7179a30ccf1afb9.
+Validate accumulated uncertain create/write/cleanup/publication behavior together
+with opened-descriptor storage advice, bounded candidate copying and file/pipe sync.
 Require core/lint/debug/unsigned-release/test APK build plus API36 regression:
-233 matching locale keys; renderer6/cache3, import/settings/session/native-policy21,
-private20, export-flow5/recovery16, batch7/retry8/share4/transaction10,
-and unchanged codec/native diagnostic classification groups.
-The storage case injects availability but uses real private/provider bytes;
-do not call it actual disk-exhaustion, export-storage or physical acceptance.
-Require final source-bound report guards; preserve exact scoped successes and
-failures without per-case reruns or weakened appearance/ownership assertions.
-Current profile only: no legacy/automatic locale/JXL experiment, hardware/native
-acceptance, native export enablement, production signing, main merge or release.
+235 matching locale keys; transaction12, renderer6/cache3, settings/session/native21,
+private20, export-flow5/recovery16, batch7/retry8/share4,
+and unchanged codec/native diagnostic classifications and final source-bound guards.
+New cases use actual encoded PNGs, real private-file/pipe descriptors and injected
+provider failures/availability. Require intact candidates and previous successes,
+owned-only cleanup, persistent uncertainty and no retry of unlocated output.
+Do not call this actual disk exhaustion/quota, remote-provider, physical process-kill,
+manual UI, hardware/native-format or 16KiB acceptance. Preserve exact scoped results.
+No per-case rerun or weakened assertions; no legacy/automatic locale/JXL experiment,
+native export enablement, production signing, main merge or release.
 profile=current

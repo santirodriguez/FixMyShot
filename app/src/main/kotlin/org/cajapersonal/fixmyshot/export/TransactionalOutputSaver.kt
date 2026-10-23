@@ -8,7 +8,6 @@ import org.cajapersonal.fixmyshot.review.PrivateCandidateVerifier
 import org.cajapersonal.fixmyshot.review.PrivateExecutionResult
 import java.io.File
 import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InterruptedIOException
 import java.security.MessageDigest
@@ -21,7 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 internal enum class SaveFailure {
     UNSUPPORTED_FORMAT, INVALID_CANDIDATE, PREVIOUS_JOB_UNRESOLVED,
-    CANCELLED, PROVIDER_ERROR, JOURNAL_ERROR
+    CANCELLED, LOW_STORAGE, PROVIDER_ERROR, JOURNAL_ERROR
 }
 
 internal sealed interface SaveResult {
@@ -39,7 +38,9 @@ internal class TransactionalOutputSaver(
     private val privateCacheRoot: File,
     private val port: OwnedOutputPort,
     private val journal: OutputJournal,
+    private val hasSpace: (java.io.OutputStream, Long) -> Boolean = OutputStorage::hasHeadroom,
 ) {
+    private class LowStorage : IOException()
     @Synchronized
     fun save(
         recipe: PrivateOutputRecipe,
@@ -94,22 +95,30 @@ internal class TransactionalOutputSaver(
             ))
             val output = port.openWrite(uri) ?: throw IOException("Output unavailable")
             output.use { to ->
+                val expectedBytes = source.length()
+                if (!hasSpace(to, expectedBytes)) throw LowStorage()
                 FileInputStream(source).use { from ->
                     val bytes = ByteArray(16 * 1024)
                     var transferred = 0L
+                    var nextSpaceCheck = 1024L * 1024
                     val deadline = System.nanoTime() + 120_000_000_000L
                     while (true) {
                         if (cancelled.get()) throw InterruptedIOException("Cancelled")
                         if (System.nanoTime() >= deadline) throw IOException("Copy timeout")
                         val count = from.read(bytes)
                         if (count < 0) break
+                        if (count > expectedBytes - transferred) throw IOException("Candidate changed during copy")
+                        if (transferred >= nextSpaceCheck) {
+                            if (!hasSpace(to, expectedBytes - transferred)) throw LowStorage()
+                            nextSpaceCheck = transferred + 1024L * 1024
+                        }
                         to.write(bytes, 0, count)
                         transferred += count
                     }
-                    if (transferred != source.length()) throw IOException("Source changed during copy")
+                    if (transferred != expectedBytes || source.length() != expectedBytes) throw IOException("Source changed during copy")
                 }
                 to.flush()
-                if (to is FileOutputStream) to.fd.sync()
+                OutputStorage.syncIfRegularFile(to)
             }
             if (cancelled.get()) throw InterruptedIOException("Cancelled")
             val reopened = port.openRead(uri) ?: throw IOException("Cannot validate pending output")
@@ -124,6 +133,8 @@ internal class TransactionalOutputSaver(
             return SaveResult.Published(uri, name)
         } catch (_: InterruptedIOException) {
             failure = SaveFailure.CANCELLED
+        } catch (_: LowStorage) {
+            failure = SaveFailure.LOW_STORAGE
         } catch (_: IOException) {
             failure = SaveFailure.PROVIDER_ERROR
         } catch (_: SecurityException) {

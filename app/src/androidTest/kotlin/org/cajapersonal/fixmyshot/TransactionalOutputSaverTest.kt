@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Build
+import android.os.ParcelFileDescriptor
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.cajapersonal.fixmyshot.codec.EncodeResult
@@ -17,6 +18,7 @@ import org.junit.runner.RunWith
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
@@ -75,9 +77,9 @@ class TransactionalOutputSaverTest {
         fun cleanup() { directory.deleteRecursively() }
     }
 
-    private fun prepared(): Input {
+    private fun prepared(dense: Boolean = false): Input {
         val directory = File(context.cacheDir, "save-test-" + UUID.randomUUID()).apply { mkdirs() }
-        val size = PixelSize(64, 64)
+        val size = if (dense) PixelSize(768, 768) else PixelSize(64, 64)
         val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1))
             .addImages(listOf(DraftImage("a", "test", size, false,
                 contentSha256 = "1".repeat(64))))
@@ -85,7 +87,11 @@ class TransactionalOutputSaverTest {
         val bitmap = Bitmap.createBitmap(size.width, size.height, Bitmap.Config.ARGB_8888)
         try {
             bitmap.setHasAlpha(false)
-            bitmap.eraseColor(Color.BLUE)
+            if (dense) {
+                val random = java.util.Random(6812L)
+                val pixels = IntArray(size.width * size.height) { random.nextInt() or 0xFF000000.toInt() }
+                bitmap.setPixels(pixels, 0, size.width, 0, 0, size.width, size.height)
+            } else bitmap.eraseColor(Color.BLUE)
             val encoded = LosslessEncoder(directory, heap).encode(bitmap, recipe.request)
             assertTrue(encoded.toString(), encoded is EncodeResult.Encoded)
             encoded as EncodeResult.Encoded
@@ -287,6 +293,71 @@ class TransactionalOutputSaverTest {
                     OutputJournal(File(input.directory, "refusal.json"))).save(input.recipe, input.ready))
             assertTrue(fake.published && !fake.deleted)
             assertArrayEquals(input.ready.file.readBytes(), fake.bytes)
+        } finally { input.cleanup() }
+    }
+
+    @Test fun lowDestinationSpaceStopsBeforePublicationAndKeepsUncertainCleanupOutOfRetry() {
+        val input = prepared(dense = true)
+        try {
+            val candidate = input.ready.file.readBytes()
+            assertTrue(candidate.size > 1024 * 1024)
+            for (midCopy in listOf(false, true)) for (cleanupFails in listOf(false, true)) {
+                val fake = MemoryPort()
+                val port = object : OwnedOutputPort by fake {
+                    override fun delete(uri: Uri): Boolean = if (cleanupFails) false else fake.delete(uri)
+                }
+                val journal = OutputJournal(File(input.directory, "space-$midCopy-$cleanupFails.json"))
+                val remaining = mutableListOf<Long>()
+                val result = TransactionalOutputSaver(context.cacheDir, port, journal, hasSpace = { _, bytes ->
+                    remaining += bytes
+                    midCopy && remaining.size == 1
+                }).save(input.recipe, input.ready)
+                assertTrue(fake.created)
+                assertFalse(fake.published)
+                assertEquals(candidate.size.toLong(), remaining.first())
+                if (midCopy) {
+                    assertEquals(2, remaining.size)
+                    assertTrue(remaining.last() in 1L until remaining.first())
+                } else assertEquals(1, remaining.size)
+                if (cleanupFails) {
+                    assertTrue(result is SaveResult.Indeterminate)
+                    assertEquals(OutputStage.INDETERMINATE, journal.read()!!.stage)
+                    assertEquals(fake.uri.toString(), journal.read()!!.uri)
+                    assertFalse(fake.deleted)
+                    assertEquals(if (midCopy) 1024 * 1024 else 0, fake.bytes.size)
+                    val item = BatchItemCheckpoint(input.recipe.sourceId, input.recipe.sourceSha256, BatchItemPhase.FAILED)
+                    assertFalse(BatchRetryPolicy.safe(item, journal.read()))
+                } else {
+                    assertEquals(SaveResult.Failed(SaveFailure.LOW_STORAGE), result)
+                    assertEquals(OutputStage.FAILED, journal.read()!!.stage)
+                    assertNull(journal.read()!!.uri)
+                    assertTrue(fake.deleted)
+                }
+                assertArrayEquals(candidate, input.ready.file.readBytes())
+            }
+            val fileStream = FileOutputStream(File(input.directory, "capacity-check"))
+            fileStream.use {
+                assertNotNull(OutputStorage.availableBytes(it))
+                assertFalse(OutputStorage.hasHeadroom(it, Long.MAX_VALUE))
+                it.write(byteArrayOf(3, 7, 11))
+                OutputStorage.syncIfRegularFile(it)
+            }
+            assertArrayEquals(byteArrayOf(3, 7, 11), File(input.directory, "capacity-check").readBytes())
+            assertNull(OutputStorage.availableBytes(fileStream))
+            assertNull(OutputStorage.availableBytes(ByteArrayOutputStream()))
+            assertTrue(OutputStorage.hasHeadroom(ByteArrayOutputStream(), candidate.size.toLong()))
+            val pipe = ParcelFileDescriptor.createPipe()
+            try {
+                ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]).use {
+                    assertNull(OutputStorage.availableBytes(it))
+                    it.write(byteArrayOf(5, 9, 13))
+                    it.flush()
+                    OutputStorage.syncIfRegularFile(it)
+                }
+                ParcelFileDescriptor.AutoCloseInputStream(pipe[0]).use {
+                    assertArrayEquals(byteArrayOf(5, 9, 13), it.readBytes())
+                }
+            } finally { pipe[0].close(); pipe[1].close() }
         } finally { input.cleanup() }
     }
 

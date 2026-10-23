@@ -55,6 +55,7 @@ internal object ResultFeedback {
             "CODEC_UNAVAILABLE", "UNSUPPORTED_FORMAT" -> R.string.result_codec_unavailable
             "ENCODER_TIMEOUT" -> R.string.result_encoder_timeout
             "ENCODER_IO", "PROVIDER_ERROR" -> R.string.result_write_error
+            "LOW_STORAGE" -> R.string.result_storage_shortage
             "METADATA_UNAVAILABLE" -> R.string.result_metadata_error
             "INVALID_CANDIDATE" -> R.string.result_invalid_candidate
             "JOURNAL_ERROR", "PREVIOUS_JOB_UNRESOLVED" -> R.string.result_check_output
