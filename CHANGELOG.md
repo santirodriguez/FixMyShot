@@ -23,6 +23,7 @@ Real changes. No imaginary release history.
 - Check measurable destination space during export, handle provider pipes without file-only sync, report shortages and preserve uncertain cleanup for review.
 - Keep uncertain destination creation out of retry, handle unexpected provider errors and explain when an output location could not be confirmed.
 - Review uncertain outputs, verify selected saved files before sharing, and select all successful copies when useful.
+- Confirm finishing export review before retiring restore/retry settings or clearing a completed session.
 - Retire consistent private receipts after successful session review and explicitly remove verified owned pending MediaStore copies before a separately requested retry.
 - Add localized import/preflight/result feedback, light/dark/system themes and offline English, Español and Català help.
 - Add a separate synthetic HEIC/AVIF device diagnostic without enabling native exports.
@@ -38,4 +39,4 @@ Real changes. No imaginary release history.
 
 ### Still open
 
-This is unfinished development, not a published application release. Scoped API 36 tests passed the main PNG/WebP/session/recovery/sharing paths and two 100-item real-codec cases with simulated provider faults. One strict enlarged transparent-WebP edge still fails. Broader appearance, native HEIC/AVIF hardware/fidelity/fallback, real-provider/process-kill/low-space, physical accessibility/locale, dependency authentication, reproducibility, signing and install/upgrade remain open. JPEG XL is deferred for v0.1.0. See [TESTING](docs/TESTING.md) and [FORMATS](docs/FORMATS.md) for evidence and limits.
+This is unfinished development, not a published application release. Scoped API 36 tests passed the main PNG/WebP/session/recovery/sharing paths and two 100-item real-codec cases with simulated provider faults. The revised stored-alpha/render oracle passed the bounded API 36 matrix; wider color/alpha qualification remains open. Broader appearance, native HEIC/AVIF hardware/fidelity/fallback, real-provider/process-kill/low-space, physical accessibility/locale, dependency authentication, reproducibility, signing and install/upgrade remain open. JPEG XL is deferred for v0.1.0. See [TESTING](docs/TESTING.md) and [FORMATS](docs/FORMATS.md) for evidence and limits.

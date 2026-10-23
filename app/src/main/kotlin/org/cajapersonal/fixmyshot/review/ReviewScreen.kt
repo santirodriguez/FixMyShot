@@ -432,7 +432,8 @@ internal fun ReviewScreen(
             }
         }
         if (exportState.previousJobs > 0 || exportState.canAcknowledge) {
-            ExportJobNotice(exportState, onReviewedPrevious, finishSessionOnReview)
+            ExportJobNotice(exportState, onReviewedPrevious, finishSessionOnReview,
+                enabled = !busy && !shareBusy)
         }
     }
 }

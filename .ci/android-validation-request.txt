@@ -1,16 +1,16 @@
-Grouped destination-storage and provider-transaction checkpoint.
-Implementation base: a321b82943d62c0160c6bbd2b7179a30ccf1afb9.
-Validate accumulated uncertain create/write/cleanup/publication behavior together
-with opened-descriptor storage advice, bounded candidate copying and file/pipe sync.
+Grouped export storage, proven-refusal recovery and deliberate finish checkpoint.
+Implementation base: 48a2c11d4dc51e0de77b83dee0f6ab63b510fd02.
+Validate accumulated private candidate reserve, known BEFORE-delegate refusal fixture
+correction and finish-review confirmation, preserving uncertain-create retry barriers.
 Require core/lint/debug/unsigned-release/test APK build plus API36 regression:
-235 matching locale keys; transaction12, renderer6/cache3, settings/session/native21,
+236 matching locale keys; transaction12, renderer6/cache3, settings/session/native21,
 private20, export-flow5/recovery16, batch7/retry8/share4,
 and unchanged codec/native diagnostic classifications and final source-bound guards.
-New cases use actual encoded PNGs, real private-file/pipe descriptors and injected
-provider failures/availability. Require intact candidates and previous successes,
-owned-only cleanup, persistent uncertainty and no retry of unlocated output.
-Do not call this actual disk exhaustion/quota, remote-provider, physical process-kill,
-manual UI, hardware/native-format or 16KiB acceptance. Preserve exact scoped results.
-No per-case rerun or weakened assertions; no legacy/automatic locale/JXL experiment,
-native export enablement, production signing, main merge or release.
+Require exact retained original/candidate bytes, successful output URI preservation,
+only remaining proven-safe items retried, and two actual outputs in restart recovery.
+The finish dialog needs compilation; its manual interaction/accessibility is NOT RUN.
+No individual-case rerun, weaker uncertainty/alpha assertion, legacy/automatic locale/JXL
+experiment, native export enablement, production signing, main merge or release.
+Real disk exhaustion/quota/concurrency, remote-provider/process-kill, physical UI,
+hardware native-format fidelity/fallback and 16KiB acceptance remain separate gates.
 profile=current
