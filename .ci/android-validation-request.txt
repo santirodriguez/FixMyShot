@@ -179,3 +179,12 @@ Legacy26/SAF diagnostics remain deferred. This checkpoint does not establish
 physical-device/native-format/receiver/reproducible-release acceptance or authorize
 main merge, signing, publication, permissions or deployment.
 profile=current
+
+Correct the grouped00ede761 findings together: full-canvas-proved unused WebP alpha
+elision carried through transactional verification; exact-alpha/premultiplied
+appearance oracle; remove the already-deleted missing-URI fixture from cleanup.
+Require private20 including opacity-proof/refusal/save and existing color/alpha
+cases, import/settings/session14, retry8/recovery16 and all current regressions.
+Preserve strict default/actual-transparent/PNG validation, source hashes and
+uncertain-output barriers; no locale/legacy diagnostic rerun.
+profile=current

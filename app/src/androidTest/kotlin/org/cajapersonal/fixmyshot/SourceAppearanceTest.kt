@@ -15,6 +15,13 @@ import org.cajapersonal.fixmyshot.export.ExportDraftJournal
 import org.cajapersonal.fixmyshot.export.FrozenPlanFingerprint
 import org.cajapersonal.fixmyshot.export.ReviewSessionJournal
 import org.cajapersonal.fixmyshot.export.ReviewSessionSnapshot
+import org.cajapersonal.fixmyshot.export.OwnedOutputPort
+import org.cajapersonal.fixmyshot.export.OutputJournal
+import org.cajapersonal.fixmyshot.export.OutputStage
+import org.cajapersonal.fixmyshot.export.SaveResult
+import org.cajapersonal.fixmyshot.export.SaveFailure
+import org.cajapersonal.fixmyshot.export.TransactionalOutputSaver
+import android.net.Uri
 import org.cajapersonal.fixmyshot.review.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -166,6 +173,17 @@ class SourceAppearanceTest {
         for (shift in listOf(0, 8, 16, 24)) assertTrue("expected=$expected actual=$actual shift=$shift",
             abs(((expected ushr shift) and 255) - ((actual ushr shift) and 255)) <= tolerance)
     }
+    private fun sameAlphaAndCompositedColor(expected: Int, actual: Int) {
+        assertEquals("Alpha must survive exactly", Color.alpha(expected), Color.alpha(actual))
+        // ARGB8888 getPixel returns unpremultiplied channels. At low alpha, one stored
+        // channel level expands into several straight-RGB levels. Compare visible energy.
+        val alpha = Color.alpha(expected)
+        for (shift in listOf(0, 8, 16)) {
+            fun premultiplied(pixel: Int) = (((pixel ushr shift) and 255) * alpha + 127) / 255
+            assertTrue("Premultiplied channel mismatch: expected=$expected actual=$actual shift=$shift",
+                abs(premultiplied(expected) - premultiplied(actual)) <= 1)
+        }
+    }
 
     @Test fun recognizedWideGamutConvertsPixelsForBothOutputsAndKeepsOriginals() {
         val directory = File(app.cacheDir, "appearance-${UUID.randomUUID()}")
@@ -184,11 +202,12 @@ class SourceAppearanceTest {
                         val recipe = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
                         val result = PrivateOutputExecutor(ReviewSources(app), LosslessEncoder(directory, heap), heap, directory)
                             .execute(draft, recipe)
-                        assertTrue(result.toString(), result is PrivateExecutionResult.Ready)
+                        assertTrue("source=$color mime=${BitmapFactory.Options().apply { inJustDecodeBounds = true }.let { options -> BitmapFactory.decodeFile(source.path, options); options.outMimeType }} output=$format result=$result",
+                            result is PrivateExecutionResult.Ready)
                         result as PrivateExecutionResult.Ready
                         try {
                             assertFalse(result.payloadPreserved)
-                            assertTrue(PrivateCandidateVerifier.accepts(result.file, recipe.request))
+                            assertTrue(PrivateCandidateVerifier.accepts(result.file, recipe.request, result.opaqueWebpProven))
                             val decoded = BitmapFactory.decodeFile(result.file.path)!!
                             try { assertTrue(decoded.colorSpace!!.isSrgb); near(expected(color), decoded.getPixel(32, 32)) }
                             finally { decoded.recycle() }
@@ -288,6 +307,7 @@ class SourceAppearanceTest {
             for (format in listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
                 for (side in listOf(64, 96)) {
                     for (background in listOf(BackgroundChoice.Transparent, BackgroundChoice.White, BackgroundChoice.Black)) {
+                        println("ALPHA_CASE format=$format side=$side background=${background.javaClass.simpleName}")
                         val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1), batch = EditSettings(
                             format = format, background = background,
                             size = OutputSizeChoice.Exact(PixelSize(side, side), allowEnlargement = true))).addImages(listOf(image))
@@ -301,18 +321,27 @@ class SourceAppearanceTest {
                                 val alpha = if (background == BackgroundChoice.Transparent) 128 else 255
                                 fun blend(channel: Int) = if (background == BackgroundChoice.Transparent) channel else
                                     (channel * 128 + (if (background == BackgroundChoice.White) 255 else 0) * 127 + 127) / 255
-                                near(Color.argb(alpha, blend(240), blend(24), blend(8)), middle, 2)
+                                val expected = Color.argb(alpha, blend(240), blend(24), blend(8))
+                                if (background == BackgroundChoice.Transparent) {
+                                    sameAlphaAndCompositedColor(expected, middle)
+                                    assertEquals(0, Color.alpha(decoded.getPixel(0, side / 2)))
+                                    assertEquals(255, Color.alpha(decoded.getPixel(side - 1, side / 2)))
+                                    assertFalse(result.opaqueWebpProven)
+                                } else near(expected, middle, 2)
                                 // Transition pixels keep their red hue on a transparent target.
                                 if (background == BackgroundChoice.Transparent) {
                                     for (x in side / 5..side / 3) {
                                         val edge = decoded.getPixel(x, side / 2)
-                                        if (Color.alpha(edge) >= 32) near(Color.argb(Color.alpha(edge), 240, 24, 8), edge, 4)
+                                        if (Color.alpha(edge) >= 32) sameAlphaAndCompositedColor(Color.argb(Color.alpha(edge), 240, 24, 8), edge)
                                     }
                                 }
                                 val sample = ReviewSources(app).decodeOriginal(image.id, image.orientedSize)
                                 try {
                                     val preview = ReviewBitmapRenderer.preview(sample, image.orientedSize, draft.plans(Build.VERSION.SDK_INT).single())
-                                    try { near(preview.image.getPixel(side / 2, side / 2), middle, 2) }
+                                    try {
+                                        if (background == BackgroundChoice.Transparent) sameAlphaAndCompositedColor(preview.image.getPixel(side / 2, side / 2), middle)
+                                        else near(preview.image.getPixel(side / 2, side / 2), middle, 2)
+                                    }
                                     finally { preview.image.recycle() }
                                 } finally { sample.recycle() }
                             } finally { decoded.recycle() }
@@ -321,6 +350,61 @@ class SourceAppearanceTest {
                 }
             }
             assertTrue(ReviewSources(app).matchesFingerprint(image.id, image.contentSha256!!))
+        } finally { source.delete(); directory.deleteRecursively() }
+    }
+
+    @Test fun opaqueWebpElisionNeedsFullCanvasProofAndSurvivesTransactionalSave() {
+        val check = Bitmap.createBitmap(4097, 3, Bitmap.Config.ARGB_8888)
+        try {
+            check.eraseColor(Color.BLUE)
+            check.setHasAlpha(true)
+            assertTrue(PrivateCandidateVerifier.isFullyOpaque(check))
+            check.setPixel(4096, 2, Color.argb(128, 240, 24, 8))
+            assertFalse("Last pixel outside the first tile must prohibit elision", PrivateCandidateVerifier.isFullyOpaque(check))
+            assertThrows(java.io.InterruptedIOException::class.java) {
+                PrivateCandidateVerifier.isFullyOpaque(check, AtomicBoolean(true))
+            }
+        } finally { check.recycle() }
+        val (image, source) = fixture(png())
+        val directory = File(app.cacheDir, "opaque-webp-${UUID.randomUUID()}")
+        try {
+            val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1), batch = EditSettings(
+                format = OutputFormat.WEBP_LOSSLESS, background = BackgroundChoice.Transparent)).addImages(listOf(image))
+            val recipe = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
+            val result = PrivateOutputExecutor(ReviewSources(app), LosslessEncoder(directory, heap), heap, directory)
+                .execute(draft, recipe)
+            assertTrue(result.toString(), result is PrivateExecutionResult.Ready)
+            result as PrivateExecutionResult.Ready
+            try {
+                assertTrue(result.opaqueWebpProven)
+                assertTrue(PrivateCandidateVerifier.accepts(result.file, recipe.request, result.opaqueWebpProven))
+                val decoded = BitmapFactory.decodeFile(result.file.path)!!
+                val elided = try { !decoded.hasAlpha() } finally { decoded.recycle() }
+                var creates = 0
+                var stored: ByteArray? = null
+                val port = object : OwnedOutputPort {
+                    override fun create(name: String, mime: String): Uri { creates++; return Uri.parse("content://synthetic/opaque-webp") }
+                    override fun openWrite(uri: Uri): java.io.OutputStream = object : ByteArrayOutputStream() {
+                        override fun close() { stored = toByteArray(); super.close() }
+                    }
+                    override fun openRead(uri: Uri): java.io.InputStream? = stored?.inputStream()
+                    override fun publish(uri: Uri): Boolean = stored != null
+                    override fun delete(uri: Uri): Boolean { stored = null; return true }
+                }
+                val journal = OutputJournal(File(directory, "published.json"))
+                val saver = TransactionalOutputSaver(app.cacheDir, port, journal)
+                if (elided) {
+                    assertFalse(PrivateCandidateVerifier.accepts(result.file, recipe.request))
+                    assertEquals(SaveResult.Failed(SaveFailure.INVALID_CANDIDATE),
+                        saver.save(recipe, result.copy(opaqueWebpProven = false)))
+                    assertEquals(0, creates); assertNull(journal.read())
+                }
+                assertTrue(saver.save(recipe, result) is SaveResult.Published)
+                assertEquals(1, creates); assertEquals(OutputStage.PUBLISHED, journal.read()!!.stage)
+                assertArrayEquals(result.file.readBytes(), stored)
+                assertTrue(ReviewSources(app).matchesFingerprint(image.id, image.contentSha256!!))
+                assertFalse(PrivateCandidateVerifier.accepts(result.file, recipe.request.copy(hasAlpha = false), true))
+            } finally { result.file.delete() }
         } finally { source.delete(); directory.deleteRecursively() }
     }
 }

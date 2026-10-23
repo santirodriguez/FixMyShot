@@ -58,7 +58,7 @@ internal class TransactionalOutputSaver(
         if (!insideCache || source.length() !in 1L..128L * 1024 * 1024 ||
             ready.sourceSha256 != recipe.sourceSha256 || ready.output != recipe.canvas ||
             ready.codecRoute != recipe.codecRoute ||
-            !PrivateCandidateVerifier.accepts(source, recipe.request)) {
+            !PrivateCandidateVerifier.accepts(source, recipe.request, ready.opaqueWebpProven)) {
             return SaveResult.Failed(SaveFailure.INVALID_CANDIDATE)
         }
         val digest = try { digestOf(FileInputStream(source)) } catch (_: IOException) {

@@ -12,6 +12,7 @@ import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.core.FailureCode
 import org.cajapersonal.fixmyshot.core.MetadataPolicy
+import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
 import java.io.File
@@ -32,6 +33,8 @@ sealed interface PrivateExecutionResult {
         val output: PixelSize,
         val resolvedBackgroundArgb: Int,
         val payloadPreserved: Boolean = false,
+        /** Full rendered-canvas scan proved that WebP may omit entirely unused alpha. */
+        val opaqueWebpProven: Boolean = false,
     ) : PrivateExecutionResult
     data class Failed(
         val reason: PrivateExecutionFailure,
@@ -114,6 +117,8 @@ internal class PrivateOutputExecutor(
             full.recycle()
             original = null
             if (cancelled.get()) return PrivateExecutionResult.Failed(PrivateExecutionFailure.CANCELLED)
+            val opaqueWebpProven = recipe.request.format == OutputFormat.WEBP_LOSSLESS &&
+                recipe.request.hasAlpha && PrivateCandidateVerifier.isFullyOpaque(rendered, cancelled)
             val pixelRequest = recipe.request.copy(metadataPolicy = MetadataPolicy.REMOVE_IDENTIFYING)
             when (val encoded = encoder.encode(rendered, pixelRequest, cancelled, 120_000)) {
                 is EncodeResult.Failed -> return PrivateExecutionResult.Failed(
@@ -122,7 +127,7 @@ internal class PrivateOutputExecutor(
                 is EncodeResult.Encoded -> {
                     candidate = encoded.file
                     if (encoded.route != recipe.codecRoute ||
-                        !PrivateCandidateVerifier.accepts(encoded.file, pixelRequest)) {
+                        !PrivateCandidateVerifier.accepts(encoded.file, pixelRequest, opaqueWebpProven)) {
                         return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
                     }
                     if (recipe.request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST) {
@@ -131,7 +136,7 @@ internal class PrivateOutputExecutor(
                         } catch (_: IOException) {
                             return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
                         }
-                        if (!PrivateCandidateVerifier.accepts(encoded.file, recipe.request)) {
+                        if (!PrivateCandidateVerifier.accepts(encoded.file, recipe.request, opaqueWebpProven)) {
                             return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
                         }
                     }
@@ -143,7 +148,7 @@ internal class PrivateOutputExecutor(
             }
             keepCandidate = true
             return PrivateExecutionResult.Ready(requireNotNull(candidate), recipe.codecRoute,
-                recipe.sourceSha256, recipe.canvas, background)
+                recipe.sourceSha256, recipe.canvas, background, opaqueWebpProven = opaqueWebpProven)
         } catch (_: java.io.InterruptedIOException) {
             return PrivateExecutionResult.Failed(if (cancelled.get()) PrivateExecutionFailure.CANCELLED else PrivateExecutionFailure.ENCODER_FAILED)
         } catch (_: IOException) {

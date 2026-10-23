@@ -142,7 +142,7 @@ cat evidence/batch-recovery-instrumentation.txt
 set -e
 grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
-grep -q 'OK (19 tests)' evidence/private-output-instrumentation.txt
+grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt

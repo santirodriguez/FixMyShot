@@ -114,7 +114,10 @@ class ResultsFeedbackTest {
             val good = f.media(data)
             val animation = f.media(animated(data))
             val corrupt = f.media(byteArrayOf(1, 2, 3))
-            val missing = f.media(data).also { app.contentResolver.delete(it, null, null) }
+            val missing = f.media(data).also {
+                assertEquals(1, app.contentResolver.delete(it, null, null))
+                f.uris.remove(it) // Already removed by this test; do not delete a revoked URI again.
+            }
             instrumentation.runOnMainSync {
                 f.model.enqueueImports(listOf(good, animation, corrupt, missing))
                 f.model.drainImports(f.context)
