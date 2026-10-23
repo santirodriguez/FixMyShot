@@ -165,3 +165,17 @@ profile=current
 
 Editable-session continuity checkpoint after accepted metadata Actions39905266496. Persist current draft/selection/one-step undo atomically with coalesced edits, restore before source pruning, enforce24h closed-session expiry and visible save/restore/discard failures, and recount incoming offers after restoration. Require nine combined import/settings/session cases, fifteen private/payload/metadata cases and all current-device recovery/retry/export/codec regressions together.
 profile=current
+
+Accumulated current-device checkpoint.
+Implementation parent: af7adb208ed0efec3e735badc92d0f2b860eedd7.
+Validate foreground pause/explicit continuation and successful-session cleanup
+from94ce14b; recognized SDR Display P3/Adobe RGB conversion and partial-alpha
+from4c7aad8; actionable import/results and per-image preflight fromaf7adb2.
+Require build/core/lint/APK compilation plus API36 current regressions together:
+private/payload/metadata/color19, import/settings/session/feedback14, retry8,
+recovery16, export-flow4 and all previous renderer/cache/save/share/batch/codec checks.
+Automatic locale switching remains opt-in and NOT RUN unless explicitly requested.
+Legacy26/SAF diagnostics remain deferred. This checkpoint does not establish
+physical-device/native-format/receiver/reproducible-release acceptance or authorize
+main merge, signing, publication, permissions or deployment.
+profile=current
