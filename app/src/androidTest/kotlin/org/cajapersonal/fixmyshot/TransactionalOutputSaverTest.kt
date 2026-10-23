@@ -152,12 +152,26 @@ class TransactionalOutputSaverTest {
             val port = SafTreeOutputPort(context.contentResolver, chosen,
                 createDocument = { _, _, _ -> uri },
                 deleteDocument = { cleanupCalls++; true })
-            assertNull(port.create("FixMyShot_20261022T120000Z_1234abcd.png", "image/png"))
+            assertThrows(IOException::class.java) {
+                port.create("FixMyShot_20261022T120000Z_1234abcd.png", "image/png")
+            }
             assertNull(port.openRead(uri))
             assertNull(port.openWrite(uri))
             assertFalse(port.publish(uri))
             assertFalse(port.delete(uri))
             assertEquals("Unexpected provider URI must never be deleted", 0, cleanupCalls)
+        }
+        for (cleanupSucceeds in listOf(false, true)) {
+            var cleanupCalls = 0
+            val port = SafTreeOutputPort(context.contentResolver, chosen,
+                createDocument = { _, _, _ -> Uri.parse("content://example.invalid/tree/chosen/document/created") },
+                deleteDocument = { cleanupCalls++; cleanupSucceeds })
+            // This synthetic provider cannot confirm the requested name. Null is safe only after cleanup.
+            if (cleanupSucceeds) assertNull(port.create("FixMyShot_20261022T120000Z_1234abcd.png", "image/png"))
+            else assertThrows(IOException::class.java) {
+                port.create("FixMyShot_20261022T120000Z_1234abcd.png", "image/png")
+            }
+            assertEquals(1, cleanupCalls)
         }
     }
 
@@ -198,6 +212,82 @@ class TransactionalOutputSaverTest {
             assertTrue(fake.deleted && !fake.published)
             assertEquals(OutputStage.FAILED, journal.read()?.stage)
         } finally { journal.clear(); input.cleanup() }
+    }
+
+    @Test fun providerExceptionsRespectCreationCleanupAndPublicationBoundaries() {
+        val input = prepared()
+        try {
+            // A create that allocates and then throws must not become a retryable no-output failure.
+            for ((index, failure) in listOf(IOException("Synthetic I/O"), IllegalStateException("Synthetic runtime")).withIndex()) {
+                val fake = MemoryPort()
+                val port = object : OwnedOutputPort by fake {
+                    override fun create(name: String, mime: String): Uri? {
+                        fake.create(name, mime)
+                        throw failure
+                    }
+                }
+                val folder = File(input.directory, "create-$index")
+                val journal = OutputJournal(File(folder, "item-0.json"))
+                val result = TransactionalOutputSaver(context.cacheDir, port, journal).save(input.recipe, input.ready)
+                assertTrue(result is SaveResult.Indeterminate)
+                assertNull((result as SaveResult.Indeterminate).uri)
+                assertTrue(fake.created && !fake.deleted && !fake.published)
+                assertEquals(OutputStage.RESERVED, OutputJournal(File(folder, "item-0.json")).read()!!.stage)
+                val item = BatchItemCheckpoint(input.recipe.sourceId, input.recipe.sourceSha256, BatchItemPhase.SAVING)
+                val batch = BatchCheckpoint("a".repeat(32), input.recipe.sessionRevision, listOf(item))
+                val restored = BatchRecoveryReconciliation.inspect(folder, batch)
+                assertEquals(BatchItemPhase.NEEDS_REVIEW, restored.items.single().phase)
+                assertEquals("OUTPUT_CREATION_UNCERTAIN", restored.items.single().reason)
+                assertTrue(BatchRetryPolicy.eligible(folder, restored).isEmpty())
+                assertFalse(BatchRetryPolicy.safe(item.copy(phase = BatchItemPhase.FAILED), journal.read()))
+            }
+            // With a confirmed URI, an unexpected write failure follows the ordinary owned cleanup.
+            for (cleanupFails in listOf(false, true)) {
+                val fake = MemoryPort().apply { onOpenWrite = { throw IllegalStateException("Synthetic write") } }
+                val port = object : OwnedOutputPort by fake {
+                    override fun delete(uri: Uri): Boolean {
+                        if (cleanupFails) throw IllegalStateException("Synthetic cleanup")
+                        return fake.delete(uri)
+                    }
+                }
+                val journal = OutputJournal(File(input.directory, "write-$cleanupFails.json"))
+                val result = TransactionalOutputSaver(context.cacheDir, port, journal).save(input.recipe, input.ready)
+                assertFalse(fake.published)
+                if (cleanupFails) {
+                    assertTrue(result is SaveResult.Indeterminate)
+                    assertEquals(OutputStage.INDETERMINATE, journal.read()!!.stage)
+                    assertEquals(fake.uri.toString(), journal.read()!!.uri)
+                    assertFalse(fake.deleted)
+                } else {
+                    assertEquals(SaveResult.Failed(SaveFailure.PROVIDER_ERROR), result)
+                    assertEquals(OutputStage.FAILED, journal.read()!!.stage)
+                    assertTrue(fake.deleted)
+                }
+            }
+            val fake = MemoryPort()
+            val port = object : OwnedOutputPort by fake {
+                override fun publish(uri: Uri): Boolean {
+                    fake.publish(uri)
+                    throw IllegalStateException("Synthetic post-publication failure")
+                }
+            }
+            val journal = OutputJournal(File(input.directory, "publish.json"))
+            val result = TransactionalOutputSaver(context.cacheDir, port, journal).save(input.recipe, input.ready)
+            assertTrue(result is SaveResult.Indeterminate)
+            assertTrue(fake.published && !fake.deleted)
+            assertArrayEquals(input.ready.file.readBytes(), fake.bytes)
+            assertEquals(OutputStage.INDETERMINATE, journal.read()!!.stage)
+            assertEquals(fake.uri.toString(), journal.read()!!.uri)
+            // A known refusal still proves no output and may remain an ordinary failure.
+            val refusing = object : OwnedOutputPort by fake {
+                override fun create(name: String, mime: String): Uri? = null
+            }
+            assertEquals(SaveResult.Failed(SaveFailure.PROVIDER_ERROR),
+                TransactionalOutputSaver(context.cacheDir, refusing,
+                    OutputJournal(File(input.directory, "refusal.json"))).save(input.recipe, input.ready))
+            assertTrue(fake.published && !fake.deleted)
+            assertArrayEquals(input.ready.file.readBytes(), fake.bytes)
+        } finally { input.cleanup() }
     }
 
     @Test fun providerReadbackMismatchDeletesOnlyTheUnpublishedOwnedItem() {

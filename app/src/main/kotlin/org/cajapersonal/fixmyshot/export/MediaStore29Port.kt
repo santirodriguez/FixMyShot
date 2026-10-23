@@ -15,6 +15,7 @@ import java.io.OutputStream
 internal interface OwnedOutputPort {
     /** SAF may expose a newly created document before validation completes. */
     val visibleBeforeCommit: Boolean get() = false
+    /** Null means no owned output remains. Throw if creation/cleanup may have left one unlocated. */
     fun create(name: String, mime: String): Uri?
     fun openWrite(uri: Uri): OutputStream?
     fun openRead(uri: Uri): InputStream?

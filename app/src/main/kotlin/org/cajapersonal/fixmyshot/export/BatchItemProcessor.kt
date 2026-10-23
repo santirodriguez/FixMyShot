@@ -58,7 +58,8 @@ internal class BatchItemProcessor(
             return when (val saved = try { save(recipe, ready, outputJournal, cancelled) }
                 catch (_: Exception) { null }) {
                 is SaveResult.Published -> BatchItemOutcome.Published(saved.uri)
-                is SaveResult.Indeterminate -> BatchItemOutcome.Review(saved.uri, "PROVIDER_ERROR")
+                is SaveResult.Indeterminate -> BatchItemOutcome.Review(saved.uri,
+                    if (saved.uri == null) "OUTPUT_CREATION_UNCERTAIN" else "PROVIDER_ERROR")
                 is SaveResult.Failed -> when (saved.reason) {
                     SaveFailure.CANCELLED -> BatchItemOutcome.Cancelled("CANCELLED")
                     SaveFailure.JOURNAL_ERROR, SaveFailure.PREVIOUS_JOB_UNRESOLVED ->

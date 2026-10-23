@@ -31,6 +31,7 @@ internal object ResultFeedback {
         // Publication uncertainty owns the action, even when the underlying code resembles
         // a retryable encoder/provider fault. This is presentation, never retry authority.
         if (item.phase == BatchItemPhase.NEEDS_REVIEW) return when (item.reason) {
+            "OUTPUT_CREATION_UNCERTAIN" -> R.string.result_creation_uncertain
             "OUTPUT_PRESENT_UNCERTAIN" -> R.string.export_output_present_uncertain
             "OUTPUT_MISSING" -> R.string.export_output_missing
             "OUTPUT_CHANGED" -> R.string.export_output_changed

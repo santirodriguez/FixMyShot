@@ -7,6 +7,7 @@ import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import java.io.InputStream
 import java.io.OutputStream
+import java.io.IOException
 
 /**
  * Explicit user-selected SAF folder, not an automatic Pictures/FixMyShot save.
@@ -40,9 +41,10 @@ internal class SafTreeOutputPort(
         val created = createDocument(parent, mime, name) ?: return null
         // An unexpected provider URI is not evidence that we own the returned document.
         // Never attempt cleanup outside the folder explicitly selected by the user.
-        if (!withinTree(created)) return null
+        if (!withinTree(created)) throw IOException("Provider returned an unowned document")
         if (!hasExactName(created, name)) {
-            runCatching { deleteDocument(created) }
+            val removed = try { deleteDocument(created) } catch (_: Exception) { false }
+            if (!removed) throw IOException("Unconfirmed document cleanup")
             return null
         }
         return created

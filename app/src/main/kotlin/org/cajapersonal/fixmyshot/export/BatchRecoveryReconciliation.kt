@@ -58,7 +58,8 @@ internal object BatchRecoveryReconciliation {
             OutputRecoveryEvidence.MODIFIED -> "OUTPUT_CHANGED"
             OutputRecoveryEvidence.PENDING -> "OUTPUT_PENDING"
             OutputRecoveryEvidence.UNVERIFIABLE -> "OUTPUT_UNVERIFIABLE"
-            null -> "CHECK_OUTPUT"
+            null -> if (matchedItem && matchedUri && record?.stage == OutputStage.RESERVED && record.uri == null)
+                "OUTPUT_CREATION_UNCERTAIN" else "CHECK_OUTPUT"
         }
         item.copy(
             phase = BatchItemPhase.NEEDS_REVIEW,

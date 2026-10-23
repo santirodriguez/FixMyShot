@@ -32,8 +32,8 @@ internal sealed interface SaveResult {
 }
 
 /**
- * Single-item prototype of the G4 commit boundary. Runs on a worker and never alters originals.
- * No UI path invokes this yet. Real API29+ operations are supplied by MediaStore29Port.
+ * Single-item G4 commit boundary used by the sequential batch runner.
+ * Runs on a worker and never alters originals; MediaStore29Port supplies API29+ operations.
  */
 internal class TransactionalOutputSaver(
     private val privateCacheRoot: File,
@@ -81,9 +81,13 @@ internal class TransactionalOutputSaver(
         var uri: Uri? = null
         var published = false
         var attemptedPublish = false
+        var creating = false
         var failure = SaveFailure.PROVIDER_ERROR
         try {
-            uri = port.create(name, recipe.request.format.mimeType) ?: throw IOException("Insert failed")
+            creating = true
+            val created = port.create(name, recipe.request.format.mimeType)
+            creating = false
+            uri = created ?: throw IOException("Insert failed")
             journal.write(reservation.copy(
                 stage = if (port.visibleBeforeCommit) OutputStage.VISIBLE_WRITING else OutputStage.PENDING,
                 uri = uri.toString(),
@@ -126,7 +130,13 @@ internal class TransactionalOutputSaver(
             failure = SaveFailure.PROVIDER_ERROR
         } catch (_: IllegalArgumentException) {
             failure = SaveFailure.PROVIDER_ERROR
+        } catch (_: RuntimeException) {
+            failure = SaveFailure.PROVIDER_ERROR
         }
+
+        // A throwing create may already have allocated an output without returning its URI.
+        // Keep RESERVED: it durably blocks retry without inventing ownership or deleting by name.
+        if (creating) return SaveResult.Indeterminate(null, name)
 
         // Once the provider was asked to publish, a missing confirmation is ambiguous.
         // Never automatically delete an output that might already be visible.

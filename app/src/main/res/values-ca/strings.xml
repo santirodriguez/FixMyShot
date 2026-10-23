@@ -232,4 +232,5 @@
     <string name="destination_batch_notice">La destinació i la proporció s’apliquen a tot el lot.</string>
     <string name="edit_pending_notice">Aplica els valors escrits abans de canviar d’imatge o d’abast.</string>
     <string name="import_reason_storage">No hi ha prou espai al dispositiu. Allibera espai i torna a seleccionar la imatge.</string>
+    <string name="result_creation_uncertain">La destinació pot haver creat una còpia sense retornar-ne la ubicació. Revisa-la abans de donar aquest resultat per revisat; encara no es pot tornar a intentar aquesta imatge.</string>
 </resources>

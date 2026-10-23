@@ -232,4 +232,5 @@
     <string name="destination_batch_notice">El destino y la proporción se aplican a todo el lote.</string>
     <string name="edit_pending_notice">Aplicá los valores escritos antes de cambiar de imagen o de alcance.</string>
     <string name="import_reason_storage">No hay suficiente espacio en el dispositivo. Liberá espacio y volvé a elegir la imagen.</string>
+    <string name="result_creation_uncertain">El destino puede haber creado una copia sin devolver su ubicación. Revisá el destino antes de dar por revisado este resultado; todavía no se puede reintentar esta imagen.</string>
 </resources>
