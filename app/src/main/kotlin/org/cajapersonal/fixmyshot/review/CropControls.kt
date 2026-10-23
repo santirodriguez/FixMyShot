@@ -22,6 +22,7 @@ import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.core.PreviewPlan
+import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import kotlin.math.min
 import kotlin.math.roundToInt
 
@@ -33,15 +34,15 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
     val geometry = (plan.geometry as? PlannedGeometry.Cropped)?.value
     val focus = plan.settings.crop
     val base = try {
-        CropPlanner.plan(image.orientedSize, plan.destination.cropRatio(image.orientedSize),
-            maximumOutputPixels = Long.MAX_VALUE)
+        CropPlanner.plan(image.orientedSize, plan.destination.cropRatio(image.orientedSize, plan.settings.size),
+            maximumOutputPixels = Long.MAX_VALUE, exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)
     } catch (_: IllegalArgumentException) {
         Text(stringResource(R.string.crop_unavailable))
         return
     }
-    val ratio = plan.destination.cropRatio(image.orientedSize)
-    val maxZoom = min(64.0, min(base.visibleSource.width / ratio.p,
-        base.visibleSource.height / ratio.q)).coerceAtLeast(1.0)
+    val ratio = plan.destination.cropRatio(image.orientedSize, plan.settings.size)
+    val maxZoom = if (plan.settings.size is OutputSizeChoice.Exact) 64.0 else
+        min(64.0, min(base.visibleSource.width / ratio.p, base.visibleSource.height / ratio.q)).coerceAtLeast(1.0)
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.crop_notice))
         Text(stringResource(R.string.crop_zoom, (focus.zoom * 100).roundToInt()))

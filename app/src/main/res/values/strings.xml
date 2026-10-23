@@ -130,6 +130,25 @@
     <string name="export_checking_output">Checking the saved copy…</string>
     <string name="export_output_action_failed">The action could not be completed. The output may be missing, changed, hidden or inaccessible, no viewer may be available, or private cleanup may be blocked by another pending job. Review the results and try again.</string>
     <string name="export_finish_review_notice">Finish reviewing when you no longer need to restore or retry this export. Its private recovery settings will be removed; saved copies and output receipts remain. Discard the session to remove its remaining working copies.</string>
+    <string name="background_hex">Custom color · RRGGBB</string>
+    <string name="background_apply_custom">Use custom color</string>
+    <string name="size_heading">Output size</string>
+    <string name="size_preserve">Preserve pixels</string>
+    <string name="size_exact_selected">Exact size selected</string>
+    <string name="size_width">Width (px)</string>
+    <string name="size_height">Height (px)</string>
+    <string name="size_allow_enlargement">Allow uniform enlargement</string>
+    <string name="size_exact_notice">Exact size may reduce the image. Enlargement requires your explicit choice and can soften details. Destination limits still apply.</string>
+    <string name="size_invalid">Enter positive dimensions up to 24 megapixels. This device may require a smaller output.</string>
+    <string name="size_apply_exact">Use exact size</string>
+    <string name="size_enlargement_required">This crop requires enlargement. Choose a smaller output, reduce zoom or explicitly allow enlargement.</string>
+    <string name="size_will_enlarge">The source pixels will be enlarged uniformly.</string>
+    <string name="size_will_reduce">The source pixels will be sampled at a smaller size.</string>
+    <string name="batch_custom_count">Images with custom settings: %1$d</string>
+    <string name="batch_apply_all">Apply batch settings to all</string>
+    <string name="batch_apply_explanation">Replace individual framing, crop, background, format, size and metadata settings in %1$d images? All will inherit the batch settings. You can undo this once.</string>
+    <string name="batch_move_earlier">Move earlier</string>
+    <string name="batch_move_later">Move later</string>
 </resources>
 
 

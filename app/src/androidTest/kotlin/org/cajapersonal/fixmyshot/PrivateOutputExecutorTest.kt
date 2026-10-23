@@ -69,7 +69,7 @@ class PrivateOutputExecutorTest {
         val source = fixture(40, 80)
         val directory = File(context.cacheDir, "private-png-" + System.nanoTime())
         try {
-            val draft = DraftSession(batch = EditSettings(background = BackgroundChoice.White))
+            val draft = DraftSession(batch = EditSettings(background = BackgroundChoice.CustomRgb(0x12AB34)))
                 .addImages(listOf(source.image))
             val frozen = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
             assertEquals(PixelSize(320, 320), frozen.canvas)
@@ -82,10 +82,10 @@ class PrivateOutputExecutorTest {
                 try {
                     val x = frozen.placement.left
                     val y = frozen.placement.top
-                    assertEquals(Color.WHITE, decoded.getPixel(0, 0))
+                    assertEquals(Color.rgb(0x12, 0xAB, 0x34), decoded.getPixel(0, 0))
                     assertEquals(Color.BLUE, decoded.getPixel(x + 1, y + 1))
                     assertEquals(Color.RED, decoded.getPixel(x + 20, y + 40))
-                    assertEquals(Color.WHITE, decoded.getPixel(319, 319))
+                    assertEquals(Color.rgb(0x12, 0xAB, 0x34), decoded.getPixel(319, 319))
                 } finally { decoded.recycle() }
                 assertTrue(ReviewSources(context).matchesFingerprint(source.image.id, result.sourceSha256))
             } finally { result.file.delete() }
@@ -221,6 +221,35 @@ class PrivateOutputExecutorTest {
                 result.file.appendBytes(byteArrayOf(1))
                 assertFalse(PrivateCandidateVerifier.accepts(result.file, frozen.request))
             } finally { result.file.delete() }
+        } finally { source.file.delete(); directory.deleteRecursively() }
+    }
+
+    @Test fun exactCropPreviewAndFinalPixelsAgreeForReductionAndOptedInEnlargement() {
+        val source = fixture(80, 120)
+        val directory = File(context.cacheDir, "private-exact-crop-" + System.nanoTime())
+        try {
+            for (size in listOf(20, 100)) {
+                val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+                    batch = EditSettings(fit = FitMode.CROP, crop = CropFocus(0.5, 0.5, 2.0),
+                        size = OutputSizeChoice.Exact(PixelSize(size, size), allowEnlargement = size > 40)))
+                    .addImages(listOf(source.image))
+                val frozen = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
+                assertEquals(SourceRectangle(20.0, 40.0, 40.0, 40.0), frozen.crop)
+                val result = executor(directory).execute(draft, frozen)
+                assertTrue(result.toString(), result is PrivateExecutionResult.Ready)
+                result as PrivateExecutionResult.Ready
+                try {
+                    val decoded = requireNotNull(BitmapFactory.decodeFile(result.file.absolutePath))
+                    val original = ReviewSources(context).decodeOriginal(source.image.id, source.image.orientedSize)
+                    val preview = ReviewBitmapRenderer.preview(original, source.image.orientedSize,
+                        draft.plans(Build.VERSION.SDK_INT).single()).image
+                    try {
+                        assertEquals(size, decoded.width); assertEquals(size, decoded.height)
+                        for (y in 0 until size) for (x in 0 until size) assertEquals(preview.getPixel(x, y), decoded.getPixel(x, y))
+                        assertTrue(ReviewSources(context).matchesFingerprint(source.image.id, result.sourceSha256))
+                    } finally { decoded.recycle(); preview.recycle(); original.recycle() }
+                } finally { result.file.delete() }
+            }
         } finally { source.file.delete(); directory.deleteRecursively() }
     }
 }

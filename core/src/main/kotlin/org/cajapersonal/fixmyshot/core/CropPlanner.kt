@@ -28,6 +28,8 @@ data class CropGeometry(
     val focusWasClamped: Boolean,
 ) {
     val nativePixels: Long get() = output.pixels
+    val enlarged: Boolean get() = output.width > visibleSource.width + 1e-7 || output.height > visibleSource.height + 1e-7
+    val resized: Boolean get() = abs(output.width - visibleSource.width) > 1e-7 || abs(output.height - visibleSource.height) > 1e-7
 }
 
 /** A pure plan; the final renderer samples the original source once, not a cropped preview. */
@@ -37,6 +39,7 @@ object CropPlanner {
         ratio: ExactRatio,
         focus: CropFocus = CropFocus(),
         maximumOutputPixels: Long = GeometryPlanner.DEFAULT_MAX_CANVAS_PIXELS,
+        exactOutput: PixelSize? = null,
     ): CropGeometry {
         require(maximumOutputPixels > 0L)
         val width = source.width.toDouble()
@@ -61,9 +64,10 @@ object CropPlanner {
 
         // Largest integer p:q raster guaranteed to fit within the visible source rectangle.
         val units = floor(min(cropWidth / ratio.p.toDouble(), cropHeight / ratio.q.toDouble())).toLong()
-        require(units >= 1L) { "Crop too small for an integer output at this ratio" }
-        val outWidth = Math.multiplyExact(ratio.p, units)
-        val outHeight = Math.multiplyExact(ratio.q, units)
+        require(exactOutput != null || units >= 1L) { "Crop too small for an integer output at this ratio" }
+        if (exactOutput != null) require(exactOutput.width.toLong() * ratio.q == exactOutput.height.toLong() * ratio.p)
+        val outWidth = exactOutput?.width?.toLong() ?: Math.multiplyExact(ratio.p, units)
+        val outHeight = exactOutput?.height?.toLong() ?: Math.multiplyExact(ratio.q, units)
         require(outWidth in 1..Int.MAX_VALUE.toLong() && outHeight in 1..Int.MAX_VALUE.toLong())
         require(Math.multiplyExact(outWidth, outHeight) <= maximumOutputPixels)
 

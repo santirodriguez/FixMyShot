@@ -106,6 +106,45 @@ class ExportPreparationTest {
         assertTrue(PrivatePreparationBlock.MEMORY_LIMIT in item.blocks)
     }
 
+    @Test fun exactCropSamplesTheSameRectangleAndRequiresExplicitEnlargement() {
+        val original = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+            batch = EditSettings(fit = FitMode.CROP, size = OutputSizeChoice.Exact(PixelSize(40, 40))))
+            .addImages(listOf(source(size = PixelSize(100, 200))))
+        val smaller = ExportPreparation.inspect(original, 36, heap).candidates.single()
+        assertEquals(PixelSize(40, 40), smaller.canvas)
+        assertEquals(SourceRectangle(0.0, 50.0, 100.0, 100.0), smaller.crop)
+        val larger = original.setBatch(original.batch.copy(size = OutputSizeChoice.Exact(PixelSize(200, 200))))
+        assertTrue(DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED in larger.plans(36).single().reviewFlags)
+        assertEquals(1, ExportPreparation.inspect(larger, 36, heap).blockedCount)
+        val accepted = larger.setBatch(larger.batch.copy(size = OutputSizeChoice.Exact(PixelSize(200, 200), true)))
+        val expanded = ExportPreparation.inspect(accepted, 36, heap).candidates.single()
+        assertEquals(PixelSize(200, 200), expanded.canvas)
+        assertEquals(smaller.crop, expanded.crop)
+    }
+
+    @Test fun exactCropUsesTheChosenAspectWithoutStretchingAndKeepsDestinationConflicts() {
+        val draft = DraftSession(destination = DestinationChoice.Preset(DestinationCatalog.PLAY_PHONE),
+            batch = EditSettings(fit = FitMode.CROP, size = OutputSizeChoice.Exact(PixelSize(320, 640))))
+            .addImages(listOf(source(size = PixelSize(400, 800))))
+        val recipe = ExportPreparation.inspect(draft, 36, heap).candidates.single()
+        assertEquals(SourceRectangle(0.0, 0.0, 400.0, 800.0), recipe.crop)
+        val incompatible = draft.setDestination(DestinationChoice.Preset(DestinationCatalog.SOCIAL_SQUARE))
+        assertTrue(DraftReviewFlag.DIMENSIONS_REQUIRE_REVIEW in incompatible.plans(36).single().reviewFlags)
+        assertEquals(1, ExportPreparation.inspect(incompatible, 36, heap).blockedCount)
+    }
+
+    @Test fun undoKeepsRemovedSourceIdsOnlyUntilItsSnapshotIsReplaced() {
+        val original = DraftSession().addImages(listOf(source()))
+        val removed = original.removeItem("a")
+        assertTrue(removed.images.isEmpty())
+        assertTrue(removed.canUndo)
+        assertEquals(setOf("a"), removed.workingSourceIds)
+        assertEquals(original.images.map { it.id }, removed.undo().images.map { it.id })
+        val changed = removed.setBatch(removed.batch.copy(background = BackgroundChoice.Black))
+        assertTrue(changed.workingSourceIds.isEmpty())
+        assertTrue(DraftSession().workingSourceIds.isEmpty())
+    }
+
     @Test fun revisionAndFingerprintAreImmutableAcrossLaterEdits() {
         val original = DraftSession().addImages(listOf(source()))
         val first = ExportPreparation.inspect(original, 36, heap).candidates.single()

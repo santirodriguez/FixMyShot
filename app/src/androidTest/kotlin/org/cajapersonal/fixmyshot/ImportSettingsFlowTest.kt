@@ -22,6 +22,7 @@ import org.cajapersonal.fixmyshot.review.ReviewViewModel
 import org.cajapersonal.fixmyshot.settings.AppPreferences
 import org.cajapersonal.fixmyshot.settings.AppTheme
 import org.cajapersonal.fixmyshot.settings.AppLanguages
+import org.cajapersonal.fixmyshot.core.*
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
 import org.junit.Test
@@ -151,6 +152,49 @@ class ImportSettingsFlowTest {
             stagedIds.forEach { File(app.cacheDir, "review-sources/$it.source").delete() }
             app.contentResolver.delete(uri, null, null)
         }
+    }
+
+    @Test fun removingLastImageKeepsUndoBytesUntilTheNextEditReplacesItsSnapshot() {
+        val id = java.util.UUID.randomUUID().toString().replace("-", "")
+        val file = File(File(app.cacheDir, "review-sources").apply { mkdirs() }, "$id.source")
+        val bitmap = Bitmap.createBitmap(32, 48, Bitmap.Config.ARGB_8888)
+        try {
+            bitmap.eraseColor(Color.BLUE)
+            file.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
+        } finally { bitmap.recycle() }
+        val hash = java.security.MessageDigest.getInstance("SHA-256").digest(file.readBytes())
+            .joinToString("") { "%02x".format(it.toInt() and 255) }
+        val scenario = ActivityScenario.launch(MainActivity::class.java)
+        try {
+            lateinit var model: ReviewViewModel
+            scenario.onActivity { model = ViewModelProvider(it)[ReviewViewModel::class.java] }
+            val readyBy = System.currentTimeMillis() + 10_000L
+            while (model.exportState.isLocked && System.currentTimeMillis() < readyBy) {
+                instrumentation.waitForIdleSync(); Thread.sleep(40)
+            }
+            assertFalse(model.exportState.isLocked)
+            scenario.onActivity { activity ->
+                val update = MainActivity::class.java.getDeclaredMethod("updateDraft", DraftSession::class.java)
+                    .apply { isAccessible = true }
+                update.invoke(activity, DraftSession().addImages(listOf(
+                    DraftImage(id, "synthetic-$id", PixelSize(32, 48), false, contentSha256 = hash))))
+                val remove = MainActivity::class.java.getDeclaredMethod("removeSelected").apply { isAccessible = true }
+                remove.invoke(activity)
+                assertTrue(model.draft.images.isEmpty())
+                assertTrue(model.draft.canUndo)
+                assertTrue(file.exists())
+                update.invoke(activity, model.draft.undo())
+                assertEquals(id, model.draft.images.single().id)
+                assertTrue(ReviewSources(app).matchesFingerprint(id, hash))
+                remove.invoke(activity)
+                update.invoke(activity, model.draft.setBatch(model.draft.batch.copy(background = BackgroundChoice.Black)))
+            }
+            val cleanupBy = System.currentTimeMillis() + 10_000L
+            while (file.exists() && System.currentTimeMillis() < cleanupBy) {
+                instrumentation.waitForIdleSync(); Thread.sleep(40)
+            }
+            assertFalse("No longer needed by draft, undo or pending exports", file.exists())
+        } finally { scenario.close(); file.delete() }
     }
 }
 

@@ -130,6 +130,25 @@
     <string name="export_checking_output">S’està comprovant la còpia desada…</string>
     <string name="export_output_action_failed">No s’ha pogut completar l’acció. La còpia pot faltar, haver canviat, estar oculta o ser inaccessible; pot no haver-hi cap visor disponible o un altre treball pendent pot bloquejar la neteja privada. Revisa els resultats i torna-ho a provar.</string>
     <string name="export_finish_review_notice">Acaba la revisió quan ja no necessitis restaurar ni tornar a intentar aquesta exportació. Se’n suprimirà la configuració privada de recuperació; es conservaran les còpies desades i els seus registres. Descarta la sessió per suprimir les còpies de treball restants.</string>
+    <string name="background_hex">Color personalitzat · RRGGBB</string>
+    <string name="background_apply_custom">Fes servir el color personalitzat</string>
+    <string name="size_heading">Mida de sortida</string>
+    <string name="size_preserve">Conserva els píxels</string>
+    <string name="size_exact_selected">Mida exacta seleccionada</string>
+    <string name="size_width">Amplada (px)</string>
+    <string name="size_height">Alçada (px)</string>
+    <string name="size_allow_enlargement">Permet l’ampliació proporcional</string>
+    <string name="size_exact_notice">La mida exacta pot reduir la imatge. Ampliar-la requereix la teva tria expressa i pot suavitzar els detalls. Es continuen aplicant els límits de la destinació.</string>
+    <string name="size_invalid">Introdueix dimensions positives de fins a 24 megapíxels. Aquest dispositiu pot requerir una mida més petita.</string>
+    <string name="size_apply_exact">Fes servir la mida exacta</string>
+    <string name="size_enlargement_required">Aquest retall requereix ampliació. Tria una sortida més petita, redueix el zoom o permet explícitament l’ampliació.</string>
+    <string name="size_will_enlarge">Els píxels d’origen s’ampliaran proporcionalment.</string>
+    <string name="size_will_reduce">Els píxels d’origen es reduiran a la mida seleccionada.</string>
+    <string name="batch_custom_count">Imatges amb configuració pròpia: %1$d</string>
+    <string name="batch_apply_all">Aplica la configuració del lot a totes</string>
+    <string name="batch_apply_explanation">Vols substituir la configuració individual d’enquadrament, retall, fons, format, mida i metadades de %1$d imatges? Totes heretaran la configuració del lot. Pots desfer aquest canvi una vegada.</string>
+    <string name="batch_move_earlier">Mou abans</string>
+    <string name="batch_move_later">Mou després</string>
 </resources>
 
 

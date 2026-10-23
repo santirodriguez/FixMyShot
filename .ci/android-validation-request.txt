@@ -151,3 +151,6 @@ profile=current
 
 Output review and private cleanup block: explicit verified output acceptance/open/recheck; protect active and unresolved staged sources; remove reviewed private recovery settings. Require sixteen grouped recovery cases plus all current-device regressions.
 profile=current
+
+Complete manual RGB, exact-size contain/crop and opt-in enlargement controls; explicit apply-to-all and stable-ID reordering; keep removed private sources until undo expires. Require eight private-output and five import/settings cases plus all sixteen recovery cases and current-device regressions.
+profile=current

@@ -94,7 +94,10 @@ internal class ReviewViewModel : ViewModel() {
                     discarded.forEach { sources.discard(it.id) }
                 }
                 invalidImports += staged.size - additions.size
-                draft = draft.addImages(additions)
+                val updated = draft.addImages(additions)
+                val released = draft.workingSourceIds - updated.workingSourceIds
+                draft = updated
+                if (released.isNotEmpty()) releasePrivateSources(context.applicationContext, released)
                 onDraftEdited()
                 if (selectedId == null) selectedId = draft.images.firstOrNull()?.id
                 isBusy = false
@@ -150,7 +153,7 @@ internal class ReviewViewModel : ViewModel() {
     /** Call after an explicit remove/discard action; another unresolved job keeps its sources. */
     fun releasePrivateSources(context: Context, ids: Set<String>) {
         val app = context.applicationContext
-        val current = draft.images.mapTo(mutableSetOf()) { it.id }
+        val current = draft.workingSourceIds
         exportWorker.execute {
             val released = maintenance(app).release(ids, current)
             if (!released) main.post { exportState = exportState.copy(outputError = true) }
@@ -224,7 +227,7 @@ internal class ReviewViewModel : ViewModel() {
         inspectingPreviousJobs = true
         exportState = ReviewExportState(ExportUiPhase.CHECKING_HISTORY)
         val app = context.applicationContext
-        val current = draft.images.mapTo(mutableSetOf()) { it.id }
+        val current = draft.workingSourceIds
         exportWorker.execute {
             maintenance(app).pruneExpired(current)
             val finding = try { scanHistory(app) }
@@ -248,7 +251,7 @@ internal class ReviewViewModel : ViewModel() {
         exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
             canAcknowledge = false)
         val app = context.applicationContext
-        val current = draft.images.mapTo(mutableSetOf()) { it.id }
+        val current = draft.workingSourceIds
         exportWorker.execute {
             var saved = false
             var cleanupFailed = false

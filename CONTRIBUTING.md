@@ -38,7 +38,7 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 ## Translations and reports
 
-Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (131 in the output-review/cleanup implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
+Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (150 in the output-controls implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
 Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](docs/TESTING.md) for acceptance boundaries.
 
@@ -49,7 +49,7 @@ Keep implementation and technical documentation in English. Do not include priva
 
 ## Crop rendering
 
-Preserve-pixels crop freezes the source rectangle from CropPlanner in PrivateOutputRecipe. ReviewBitmapRenderer.drawContent maps that same rectangle from the sampled preview or full original into its destination. Integer-aligned 1:1 placements are unfiltered; actual fractional/scale changes are filtered once. The original staged image is never cropped in place. Contain stays the new-session default. Crop gestures and directional/zoom/reset controls change only the selected image transform; batch fit changes preserve per-image overrides. Exact-size crop/enlargement remains explicitly blocked by the existing review flag.
+Preserve-pixels crop freezes the source rectangle from CropPlanner in PrivateOutputRecipe. ReviewBitmapRenderer.drawContent maps that same rectangle from the sampled preview or full original into its destination. Integer-aligned 1:1 placements are unfiltered; actual fractional/scale changes are filtered once. The original staged image is never cropped in place. Contain stays the new-session default. Crop gestures and directional/zoom/reset controls change only the selected image transform; batch fit changes preserve per-image overrides. Exact-size crop now uses the same source rectangle and renderer with an explicit target raster. If it exceeds the visible source resolution, preflight blocks until enlargement is explicitly enabled.
 
 
 ## Export recovery and deliberate retry
@@ -70,3 +70,11 @@ ExportRecoveryActions opens only a matching, visible recorded output through ACT
 PrivateSessionMaintenance protects current draft IDs and every unreviewed job. Corrupt/unknown recovery state blocks source cleanup. Explicit review removes the frozen private settings/URI journal under the job lock, releases unused private sources and retains output receipts plus the stable lock inode. Current draft sources remain until removal/discard; new sessions keep PNG/metadata-removal defaults. Startup retries interrupted reviewed-draft cleanup and removes abandoned sources/candidates older than24h, before imports start. There is no secure-erasure or exact-time background deletion promise. Output receipts currently remain until app data is cleared/uninstalled; full receipt retirement and unresolved provider-output cleanup remain open.
 
 The grouped recovery suite now has16 cases, including four output-action and four private-maintenance cases. Keep the collector and its host mock in sync. These tests do not replace external-viewer delivery, complete process-kill, hardware or low-space acceptance.
+
+## Output controls and undo ownership
+
+Review offers a manual six-digit RGB background, preserve-pixels or explicit output dimensions, and opt-in uniform enlargement. Batch versus selected scope reads the corresponding settings; global changes retain individual overrides. Exact crop derives its frame from the exact target aspect and reuses the same final renderer; incompatible destination dimensions remain conflicts. Target pixels, source bounds and dynamic memory remain checked. The UI discloses reduction/enlargement before Export.
+
+Applying all batch settings requires confirmation of affected custom-image count and all replaced fields, with one-step undo. Reordering uses stable IDs. DraftSession.workingSourceIds includes both current images and the undo snapshot: remove never deletes its source until undo is replaced or the session is explicitly discarded. Undo remains available with an empty current list. Imports, startup pruning and result cleanup protect those working IDs. Unsaved drafts/undo still do not survive process death.
+
+No existing accepted preserve-pixels rendering semantics changed. Old exact-crop jobs were blocked and could not be exported; the new exact output geometry is already covered by frozen-plan fingerprints. The render-policy version is not bumped just for these newly eligible plans. Runtime acceptance of the new block must come from its exact source checkpoint.

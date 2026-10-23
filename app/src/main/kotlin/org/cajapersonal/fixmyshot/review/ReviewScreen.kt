@@ -58,6 +58,7 @@ import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
+import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** Review plus deliberate, foreground-only batch export and bounded progress. */
@@ -99,12 +100,29 @@ internal fun ReviewScreen(
     onRefreshOutputs: () -> Unit = {},
     onOpenOutput: (String) -> Unit = {},
     onConfirmOutput: (String) -> Unit = {},
+    onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
+    onApplyBatchToAll: () -> Unit = {},
+    onMoveSelected: (Int) -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
     val editEnabled = !busy && pendingImports == 0 && !exportState.isLocked
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
+    var confirmingBatchReset by remember { mutableStateOf(false) }
+    val customCount = draft.images.count { it.overrides.hasCustomValues }
+    if (confirmingBatchReset) AlertDialog(
+        onDismissRequest = { confirmingBatchReset = false },
+        title = { Text(stringResource(R.string.batch_apply_all)) },
+        text = { Text(stringResource(R.string.batch_apply_explanation, customCount)) },
+        confirmButton = { TextButton(onClick = {
+            confirmingBatchReset = false
+            onApplyBatchToAll()
+        }) { Text(stringResource(R.string.batch_apply_all)) } },
+        dismissButton = { TextButton(onClick = { confirmingBatchReset = false }) {
+            Text(stringResource(R.string.export_keep_cancel))
+        } },
+    )
     val confirmationId = confirmingOutput
     if (confirmationId != null) AlertDialog(
         onDismissRequest = { confirmingOutput = null },
@@ -134,6 +152,9 @@ internal fun ReviewScreen(
             color = MaterialTheme.colorScheme.error)
         if (invalidImports > 0) Text(stringResource(R.string.import_skipped, invalidImports),
             color = MaterialTheme.colorScheme.error)
+        if (draft.canUndo) OutlinedButton(onClick = onUndo, enabled = editEnabled) {
+            Text(stringResource(R.string.undo_last))
+        }
         if (draft.images.isEmpty()) {
             Text(stringResource(R.string.choose_prompt))
             Text(stringResource(R.string.preview_only_notice), style = MaterialTheme.typography.bodySmall)
@@ -191,8 +212,14 @@ internal fun ReviewScreen(
             }
             ReviewControls(
                 draft = draft, plan = plan, enabled = editEnabled,
-                onDestination = onDestination, onFormat = onFormat, onBackground = onBackground, onFit = onFit,
+                onDestination = onDestination, onFormat = onFormat, onBackground = onBackground, onFit = onFit, onSize = onSize,
             )
+            if (customCount > 0) {
+                Text(stringResource(R.string.batch_custom_count, customCount))
+                OutlinedButton(enabled = editEnabled, onClick = { confirmingBatchReset = true }) {
+                    Text(stringResource(R.string.batch_apply_all))
+                }
+            }
             if (selected != null && plan != null) CropControls(selected, plan, editEnabled, onCrop)
             Text(stringResource(R.string.metadata_removed), style = MaterialTheme.typography.bodySmall)
             if (selected != null && plan != null) {
@@ -203,6 +230,11 @@ internal fun ReviewScreen(
                 }
                 if (output != null) Text(stringResource(R.string.output_dimensions, output.width, output.height))
                 val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
+                val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
+                val resized = contained?.resized == true || cropped?.resized == true
+                val enlarged = contained?.enlarged == true || cropped?.enlarged == true
+                if (resized) Text(stringResource(if (enlarged) R.string.size_will_enlarge else R.string.size_will_reduce),
+                    style = MaterialTheme.typography.bodySmall)
                 if (contained != null) {
                     Text(stringResource(R.string.margin_details, contained.placement.left,
                         contained.rightMargin, contained.placement.top, contained.bottomMargin))
@@ -213,8 +245,18 @@ internal fun ReviewScreen(
                 if (selected.overrides.hasCustomValues) Text(stringResource(R.string.custom_settings_label))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(onClick = onResetSelected, enabled = editEnabled) { Text(stringResource(R.string.reset_image)) }
-                    OutlinedButton(onClick = onUndo, enabled = editEnabled) { Text(stringResource(R.string.undo_last)) }
                     OutlinedButton(onClick = onRemove, enabled = editEnabled) { Text(stringResource(R.string.remove_image)) }
+                }
+                if (draft.images.size > 1) {
+                    val position = draft.images.indexOfFirst { it.id == selectedId }
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(enabled = editEnabled && position > 0, onClick = { onMoveSelected(-1) }) {
+                            Text(stringResource(R.string.batch_move_earlier))
+                        }
+                        OutlinedButton(enabled = editEnabled && position < draft.images.lastIndex, onClick = { onMoveSelected(1) }) {
+                            Text(stringResource(R.string.batch_move_later))
+                        }
+                    }
                 }
                 Button(onClick = onExport, enabled = editEnabled &&
                     exportState.phase == ExportUiPhase.IDLE) {
@@ -227,7 +269,9 @@ internal fun ReviewScreen(
                         style = MaterialTheme.typography.bodySmall)
                 }
             }
-            OutlinedButton(onClick = onDiscard, enabled = editEnabled) { Text(stringResource(R.string.discard_session)) }
+        }
+        if (draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = onDiscard, enabled = editEnabled) {
+            Text(stringResource(R.string.discard_session))
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
         if (exportState.published > 0 && exportState.phase in setOf(

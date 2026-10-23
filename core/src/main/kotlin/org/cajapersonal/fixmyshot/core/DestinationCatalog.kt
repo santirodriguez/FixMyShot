@@ -79,7 +79,8 @@ object DestinationCatalog {
 }
 
 data class ResolvedDestination(val preset: DestinationPreset, val ratio: ExactRatio?) {
-    fun cropRatio(source: PixelSize): ExactRatio = ratio ?: when {
+    fun cropRatio(source: PixelSize, size: OutputSizeChoice = OutputSizeChoice.PreservePixels): ExactRatio =
+        (size as? OutputSizeChoice.Exact)?.let { ExactRatio.of(it.canvas.width.toLong(), it.canvas.height.toLong()) } ?: ratio ?: when {
         source.height.toLong() > 2L * source.width -> ExactRatio.of(1, 2)
         source.width.toLong() > 2L * source.height -> ExactRatio.of(2, 1)
         else -> ExactRatio.of(source.width.toLong(), source.height.toLong())

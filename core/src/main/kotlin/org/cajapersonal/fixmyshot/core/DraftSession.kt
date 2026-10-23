@@ -91,7 +91,7 @@ enum class DraftReviewFlag {
     DIMENSIONS_REQUIRE_REVIEW,
     GEOMETRY_UNAVAILABLE,
     CROP_FOCUS_REPOSITIONED,
-    EXACT_CROP_SAMPLING_NOT_READY,
+    CROP_ENLARGEMENT_REQUIRED,
 }
 
 sealed interface PlannedGeometry {
@@ -129,6 +129,10 @@ data class DraftSession(
     val revision: Long = 0,
     private val previous: PreviousDraft? = null,
 ) {
+    /** Includes the one-step undo snapshot so removing an image does not destroy undo bytes. */
+    val workingSourceIds: Set<String> get() = (images + previous?.images.orEmpty()).mapTo(mutableSetOf()) { it.id }
+    val canUndo: Boolean get() = previous != null
+
     init {
         require(revision >= 0)
         DestinationCatalog.resolve(destination)
@@ -240,9 +244,11 @@ data class DraftSession(
                 if (settings.fit == FitMode.CONTAIN) {
                     PlannedGeometry.Contained(selected.contain(image.orientedSize, settings.size))
                 } else {
-                    val crop = CropPlanner.plan(image.orientedSize, selected.cropRatio(image.orientedSize), settings.crop)
+                    val exact = settings.size as? OutputSizeChoice.Exact
+                    val crop = CropPlanner.plan(image.orientedSize, selected.cropRatio(image.orientedSize, settings.size),
+                        settings.crop, exactOutput = exact?.canvas)
                     if (crop.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
-                    if (settings.size is OutputSizeChoice.Exact) flags += DraftReviewFlag.EXACT_CROP_SAMPLING_NOT_READY
+                    if (crop.enlarged && exact?.allowEnlargement != true) flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
                     PlannedGeometry.Cropped(crop)
                 }
             } catch (_: IllegalArgumentException) {

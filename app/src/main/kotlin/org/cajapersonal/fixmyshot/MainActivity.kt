@@ -41,6 +41,8 @@ import org.cajapersonal.fixmyshot.core.ItemValue
 import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.CropPlanner
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
+import org.cajapersonal.fixmyshot.core.EditableField
+import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
 import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
@@ -194,6 +196,22 @@ class MainActivity : AppCompatActivity() {
                                 model.draft.editItem(selected, item.overrides.copy(background = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(background = value)))
                         },
+                        onSize = { value, onlySelected ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            updateDraft(if (onlySelected && item != null) {
+                                model.draft.editItem(item.id, item.overrides.copy(size = ItemValue.Custom(value)))
+                            } else model.draft.setBatch(model.draft.batch.copy(size = value)))
+                        },
+                        onApplyBatchToAll = { updateDraft(model.draft.applyBatchSettingsToAll(EditableField.entries.toSet()).draft) },
+                        onMoveSelected = { delta ->
+                            val ids = model.draft.images.map { it.id }.toMutableList()
+                            val index = ids.indexOf(model.selectedId)
+                            if (index >= 0 && index + delta in ids.indices) {
+                                val id = ids.removeAt(index)
+                                ids.add(index + delta, id)
+                                updateDraft(model.draft.reorder(ids))
+                            }
+                        },
                         onFit = { value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
                             updateDraft(if (onlySelected && item != null) {
@@ -250,17 +268,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateDraft(value: DraftSession) {
         if (model.exportState.isLocked || value == model.draft) return
+        val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()
         if (model.selectedId !in value.images.map { it.id }) model.selectedId = value.images.firstOrNull()?.id
+        if (released.isNotEmpty()) model.releasePrivateSources(applicationContext, released)
     }
 
     private fun updateCrop(focus: CropFocus) {
         if (model.isBusy || model.exportState.isLocked) return
         val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return
-        val ratio = DestinationCatalog.resolve(model.draft.destination).cropRatio(item.orientedSize)
+        val settings = item.overrides.resolve(model.draft.batch)
+        val ratio = DestinationCatalog.resolve(model.draft.destination).cropRatio(item.orientedSize, settings.size)
         try {
-            val geometry = CropPlanner.plan(item.orientedSize, ratio, focus)
+            val geometry = CropPlanner.plan(item.orientedSize, ratio, focus,
+                exactOutput = (settings.size as? OutputSizeChoice.Exact)?.canvas)
             val clamped = CropFocus(geometry.normalizedCenterX, geometry.normalizedCenterY, focus.zoom)
             updateDraft(model.draft.editItem(item.id, item.overrides.copy(crop = ItemValue.Custom(clamped))))
         } catch (_: IllegalArgumentException) {
@@ -352,16 +374,13 @@ class MainActivity : AppCompatActivity() {
     private fun removeSelected() {
         if (model.exportState.isLocked) return
         val id = model.selectedId ?: return
-        model.draft = model.draft.removeItem(id)
-        model.onDraftEdited()
-        model.selectedId = model.draft.images.firstOrNull()?.id
+        updateDraft(model.draft.removeItem(id))
         model.removeThumbnail(id)
-        model.releasePrivateSources(applicationContext, setOf(id))
     }
 
     private fun discardDraft() {
         if (model.exportState.isLocked) return
-        val ids = model.draft.images.map { it.id }
+        val ids = model.draft.workingSourceIds
         model.clearPendingImports()
         model.draft = DraftSession()
         model.onDraftEdited()

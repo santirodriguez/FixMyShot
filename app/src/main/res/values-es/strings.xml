@@ -130,6 +130,25 @@
     <string name="export_checking_output">Comprobando la copia guardada…</string>
     <string name="export_output_action_failed">No se pudo completar la acción. La copia puede faltar, haber cambiado, estar oculta o ser inaccesible; puede no haber un visor disponible o la limpieza privada puede estar bloqueada por otro trabajo pendiente. Revisá los resultados y volvé a intentar.</string>
     <string name="export_finish_review_notice">Terminá la revisión cuando ya no necesites restaurar ni reintentar esta exportación. Se quitarán sus ajustes privados de recuperación; las copias guardadas y sus registros se conservan. Descartá la sesión para quitar las copias de trabajo restantes.</string>
+    <string name="background_hex">Color personalizado · RRGGBB</string>
+    <string name="background_apply_custom">Usar color personalizado</string>
+    <string name="size_heading">Tamaño de salida</string>
+    <string name="size_preserve">Conservar píxeles</string>
+    <string name="size_exact_selected">Tamaño exacto seleccionado</string>
+    <string name="size_width">Ancho (px)</string>
+    <string name="size_height">Alto (px)</string>
+    <string name="size_allow_enlargement">Permitir ampliación proporcional</string>
+    <string name="size_exact_notice">El tamaño exacto puede reducir la imagen. Ampliarla requiere tu elección expresa y puede suavizar los detalles. Se siguen aplicando los límites del destino.</string>
+    <string name="size_invalid">Ingresá dimensiones positivas de hasta 24 megapíxeles. Este dispositivo puede necesitar un tamaño menor.</string>
+    <string name="size_apply_exact">Usar tamaño exacto</string>
+    <string name="size_enlargement_required">Este recorte requiere ampliación. Elegí una salida más chica, reducí el zoom o permití la ampliación expresamente.</string>
+    <string name="size_will_enlarge">Los píxeles de origen se ampliarán proporcionalmente.</string>
+    <string name="size_will_reduce">Los píxeles de origen se reducirán al tamaño seleccionado.</string>
+    <string name="batch_custom_count">Imágenes con ajustes propios: %1$d</string>
+    <string name="batch_apply_all">Aplicar ajustes del lote a todas</string>
+    <string name="batch_apply_explanation">¿Querés reemplazar los ajustes individuales de encuadre, recorte, fondo, formato, tamaño y metadatos de %1$d imágenes? Todas pasarán a usar los ajustes del lote. Podés deshacer este cambio una vez.</string>
+    <string name="batch_move_earlier">Mover antes</string>
+    <string name="batch_move_later">Mover después</string>
 </resources>
 
 

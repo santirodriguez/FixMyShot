@@ -13,5 +13,6 @@ internal fun reviewFlagLabel(flag: DraftReviewFlag): String = when (flag) {
     DraftReviewFlag.CODEC_UNAVAILABLE, DraftReviewFlag.CODEC_RUNTIME_PROBE_REQUIRED -> stringResource(R.string.review_codec_unavailable)
     DraftReviewFlag.OVERSIZED_SOURCE, DraftReviewFlag.GEOMETRY_UNAVAILABLE -> stringResource(R.string.review_size_unavailable)
     DraftReviewFlag.DIMENSIONS_REQUIRE_REVIEW -> stringResource(R.string.review_dimensions)
-    DraftReviewFlag.CROP_FOCUS_REPOSITIONED, DraftReviewFlag.EXACT_CROP_SAMPLING_NOT_READY -> stringResource(R.string.review_crop_pending)
+    DraftReviewFlag.CROP_FOCUS_REPOSITIONED -> stringResource(R.string.review_crop_pending)
+    DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED -> stringResource(R.string.size_enlargement_required)
 }

@@ -30,6 +30,7 @@ import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PreviewPlan
 import org.cajapersonal.fixmyshot.core.FitMode
+import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 
 @Composable
 internal fun ReviewControls(
@@ -40,6 +41,7 @@ internal fun ReviewControls(
     onFormat: (OutputFormat, Boolean) -> Unit,
     onBackground: (BackgroundChoice, Boolean) -> Unit,
     onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
+    onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
 ) {
     var chooseDestination by remember { mutableStateOf(false) }
     var chooseFormat by remember { mutableStateOf(false) }
@@ -47,6 +49,7 @@ internal fun ReviewControls(
     var selectedOnly by remember { mutableStateOf(false) }
     var ratioW by remember { mutableStateOf("9") }
     var ratioH by remember { mutableStateOf("16") }
+    val effective = if (selectedOnly) plan?.settings ?: draft.batch else draft.batch
     androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(stringResource(R.string.destination_heading), style = MaterialTheme.typography.titleMedium)
             Box {
@@ -80,7 +83,7 @@ internal fun ReviewControls(
                 Text(stringResource(R.string.selected_only))
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                val fit = plan?.settings?.fit ?: draft.batch.fit
+                val fit = effective.fit
                 androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CONTAIN,
                     enabled = enabled, onClick = { onFit(FitMode.CONTAIN, selectedOnly) },
                     label = { Text(stringResource(R.string.preserve_content)) })
@@ -91,7 +94,7 @@ internal fun ReviewControls(
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Box {
                     OutlinedButton(enabled = enabled, onClick = { chooseFormat = true }) {
-                        Text(formatLabel(plan?.settings?.format ?: draft.batch.format))
+                        Text(formatLabel(effective.format))
                     }
                     DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
                         OutputFormat.entries.forEach { format ->
@@ -102,7 +105,7 @@ internal fun ReviewControls(
                 }
                 Box {
                     OutlinedButton(enabled = enabled, onClick = { chooseBackground = true }) {
-                        Text(backgroundLabel(plan?.settings?.background ?: draft.batch.background))
+                        Text(backgroundLabel(effective.background))
                     }
                     DropdownMenu(expanded = chooseBackground, onDismissRequest = { chooseBackground = false }) {
                         listOf(BackgroundChoice.Automatic, BackgroundChoice.White, BackgroundChoice.Black,
@@ -113,6 +116,10 @@ internal fun ReviewControls(
                     }
                 }
             }
+            CustomBackgroundControl(enabled, effective.background) {
+                onBackground(it, selectedOnly)
+            }
+            OutputSizeControls(effective.size, enabled) { onSize(it, selectedOnly) }
     }
 }
 
