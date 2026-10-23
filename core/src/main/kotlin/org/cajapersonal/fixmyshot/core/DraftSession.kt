@@ -64,6 +64,9 @@ data class ItemOverrides(
 
 enum class EditableField { FIT, CROP, BACKGROUND, FORMAT, SIZE, METADATA }
 
+/** Original appearance; recognized wide-gamut SDR is converted, never relabelled as sRGB. */
+enum class SourceColor { SRGB, DISPLAY_P3, ADOBE_RGB }
+
 data class DraftImage(
     val id: String,
     val sourceToken: String,
@@ -73,6 +76,7 @@ data class DraftImage(
     val overrides: ItemOverrides = ItemOverrides(),
     /** SHA-256 of the privately staged original bytes; verified again before any future export. */
     val contentSha256: String? = null,
+    val sourceColor: SourceColor = SourceColor.SRGB,
 ) {
     init {
         require(id.isNotBlank() && sourceToken.isNotBlank() && revision >= 0)

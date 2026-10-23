@@ -60,6 +60,7 @@ import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.core.MetadataPolicy
+import org.cajapersonal.fixmyshot.core.SourceColor
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** Review plus deliberate, foreground-only batch export and bounded progress. */
@@ -120,6 +121,7 @@ internal fun ReviewScreen(
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember { mutableStateOf(false) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
+    val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
     if (confirmingBatchReset) AlertDialog(
         onDismissRequest = { confirmingBatchReset = false },
         title = { Text(stringResource(R.string.batch_apply_all)) },
@@ -251,6 +253,9 @@ internal fun ReviewScreen(
                     null -> null
                 }
                 if (output != null) Text(stringResource(R.string.output_dimensions, output.width, output.height))
+                if (selected.sourceColor != SourceColor.SRGB) Text(stringResource(R.string.color_conversion_details,
+                    if (selected.sourceColor == SourceColor.DISPLAY_P3) "Display P3" else "Adobe RGB"),
+                    style = MaterialTheme.typography.bodySmall)
                 val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
                 val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
                 val resized = contained?.resized == true || cropped?.resized == true
@@ -280,6 +285,8 @@ internal fun ReviewScreen(
                         }
                     }
                 }
+                if (convertedCount > 0) Text(stringResource(R.string.color_conversion_batch, convertedCount),
+                    style = MaterialTheme.typography.bodySmall)
                 Button(onClick = onExport, enabled = editEnabled &&
                     exportState.phase == ExportUiPhase.IDLE) {
                     Text(stringResource(R.string.export_batch, draft.images.size))

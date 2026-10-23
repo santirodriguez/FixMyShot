@@ -10,6 +10,7 @@ import androidx.exifinterface.media.ExifInterface
 import android.net.Uri
 import org.cajapersonal.fixmyshot.core.DraftImage
 import org.cajapersonal.fixmyshot.core.PixelSize
+import org.cajapersonal.fixmyshot.core.SourceColor
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -74,8 +75,8 @@ internal class ReviewSources(private val context: Context) {
                 return ImportResult.Rejected(Failure.UNSUPPORTED)
             }
             if (width.toLong() * height.toLong() > maxSourcePixels) return ImportResult.Rejected(Failure.TOO_LARGE)
-            if (bounds.outColorSpace != null && bounds.outColorSpace?.isSrgb != true) return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED)
-            if (bounds.outConfig == Bitmap.Config.RGBA_F16) return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED)
+            val color = try { SourceAppearance.inspect(target, bounds) }
+                catch (_: IOException) { return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED) }
             if (bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(target)) {
                 return ImportResult.Rejected(Failure.UNSUPPORTED)
             }
@@ -90,7 +91,7 @@ internal class ReviewSources(private val context: Context) {
             val hash = digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
             accepted = true
             return ImportResult.Added(DraftImage(id, uri.toString(), size,
-                sourceHasAlpha = bounds.outMimeType != "image/jpeg", contentSha256 = hash))
+                sourceHasAlpha = bounds.outMimeType != "image/jpeg", contentSha256 = hash, sourceColor = color))
         } catch (_: IOException) {
             return ImportResult.Rejected(Failure.UNREADABLE)
         } catch (_: SecurityException) {
@@ -126,8 +127,8 @@ internal class ReviewSources(private val context: Context) {
     }
 
     /** Full pixels, not a sampled UI preview; callers must preflight memory first. */
-    fun decodeOriginal(id: String, expectedOriented: PixelSize): Bitmap {
-        val original = decodeNormalized(id, null)
+    fun decodeOriginal(id: String, expectedOriented: PixelSize, expectedColor: SourceColor = SourceColor.SRGB): Bitmap {
+        val original = decodeNormalized(id, null, expectedColor)
         if (original.width != expectedOriented.width || original.height != expectedOriented.height) {
             original.recycle()
             throw IOException("Staged source dimensions changed")
@@ -139,7 +140,7 @@ internal class ReviewSources(private val context: Context) {
     fun decodeSample(id: String, maxLongSide: Int = 1500): Bitmap =
         decodeNormalized(id, maxLongSide)
 
-    private fun decodeNormalized(id: String, maxLongSide: Int?): Bitmap {
+    private fun decodeNormalized(id: String, maxLongSide: Int?, expectedColor: SourceColor? = null): Bitmap {
         require(validId.matches(id) && (maxLongSide == null || maxLongSide in 64..1600))
         val file = File(directory, "$id.source")
         if (!file.isFile) throw IOException("Staged image is unavailable")
@@ -147,6 +148,8 @@ internal class ReviewSources(private val context: Context) {
         BitmapFactory.decodeFile(file.absolutePath, bounds)
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0 ||
             bounds.outWidth.toLong() * bounds.outHeight > maxSourcePixels) throw IOException("Invalid source bounds")
+        val color = SourceAppearance.inspect(file, bounds)
+        if (expectedColor != null && color != expectedColor) throw IOException("Staged source appearance changed")
         if ((bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(file)) ||
             (bounds.outMimeType == "image/webp" && isAnimatedWebp(file))) throw IOException("Unsupported static source")
         var sample = 1
@@ -209,7 +212,7 @@ internal class ReviewSources(private val context: Context) {
 
     /** Only unchanged pixels/appearance can bypass the renderer. Candidate validation stays external. */
     fun copyPayload(recipe: PrivateOutputRecipe, target: File, cancelled: AtomicBoolean): Boolean {
-        if (!validId.matches(recipe.sourceId) || recipe.crop != null ||
+        if (!validId.matches(recipe.sourceId) || recipe.crop != null || recipe.sourceColor != SourceColor.SRGB ||
             recipe.request.metadataPolicy != MetadataPolicy.REMOVE_IDENTIFYING ||
             recipe.canvas != recipe.orientedSource || recipe.placement.left != 0 || recipe.placement.top != 0 ||
             recipe.placement.width != recipe.canvas.width || recipe.placement.height != recipe.canvas.height) return false

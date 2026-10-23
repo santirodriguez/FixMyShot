@@ -30,6 +30,7 @@ data class PrivateOutputRecipe(
     val request: EncodeRequest,
     val estimatedWorkingSetBytes: Long,
     val crop: SourceRectangle? = null,
+    val sourceColor: SourceColor = SourceColor.SRGB,
 ) {
     val needsBackgroundResolution: Boolean get() = background == BackgroundChoice.Automatic
 }
@@ -113,6 +114,7 @@ object ExportPreparation {
                 PrivateOutputRecipe(
                     sourceId = image.id,
                     sourceSha256 = requireNotNull(hash),
+                    sourceColor = image.sourceColor,
                     orientedSource = image.orientedSize,
                     itemRevision = image.revision,
                     sessionRevision = draft.revision,

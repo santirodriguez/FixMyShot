@@ -38,7 +38,7 @@ internal class ReviewSessionJournal(private val file: File) {
             require(image.id.matches(Regex("[0-9a-f]{32}")) && image.contentSha256 != null)
         }
         images.groupBy { it.id }.values.forEach { versions ->
-            require(versions.map { listOf(it.sourceToken, it.contentSha256, it.orientedSize, it.sourceHasAlpha) }
+            require(versions.map { listOf(it.sourceToken, it.contentSha256, it.orientedSize, it.sourceHasAlpha, it.sourceColor) }
                 .distinct().size == 1)
         }
     }

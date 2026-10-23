@@ -164,6 +164,6 @@
     <string name="export_resume_remaining">Continuar restantes (%1$d)</string>
     <string name="export_finish_session">Finalizar sesión</string>
     <string name="export_finish_session_notice">Se guardaron todas las imágenes del lote. Finalizá la sesión para limpiar sus copias de trabajo privadas y empezar una nueva con PNG y eliminación de metadatos. Las imágenes guardadas siguen disponibles en el destino elegido.</string>
+    <string name="color_conversion_details">Color: %1$s → sRGB. Se limitan los colores fuera de sRGB; el original queda intacto.</string>
+    <string name="color_conversion_batch">Imágenes que se convierten a SDR sRGB en este lote: %1$d.</string>
 </resources>
-
-

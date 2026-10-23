@@ -25,7 +25,7 @@ internal class ExportDraftJournal(private val file: File) {
                 require(image.id.length <= 128 && image.sourceToken.length <= 16_384)
                 items.put(JSONObject().put("id", image.id).put("source", image.sourceToken)
                     .put("width", image.orientedSize.width).put("height", image.orientedSize.height)
-                    .put("alpha", image.sourceHasAlpha).put("revision", image.revision)
+                    .put("alpha", image.sourceHasAlpha).put("revision", image.revision).put("color", image.sourceColor.name)
                     .put("hash", requireNotNull(image.contentSha256)).put("overrides", overrides(image.overrides)))
             }
             return JSONObject().put("schema", 1).put("catalog", DestinationCatalog.VERSION)
@@ -47,7 +47,8 @@ internal class ExportDraftJournal(private val file: File) {
                 require(id.length <= 128 && source.length <= 16_384)
                 DraftImage(id, source, PixelSize(item.getInt("width"), item.getInt("height")),
                     item.getBoolean("alpha"), item.getLong("revision"),
-                    readOverrides(item.getJSONObject("overrides")), item.getString("hash"))
+                    readOverrides(item.getJSONObject("overrides")), item.getString("hash"),
+                    if (item.has("color")) SourceColor.valueOf(item.getString("color")) else SourceColor.SRGB)
             }
             return DraftSession(destination, readSettings(json.getJSONObject("batch")), images, json.getLong("revision"))
         }

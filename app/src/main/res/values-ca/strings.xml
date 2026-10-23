@@ -164,6 +164,6 @@
     <string name="export_resume_remaining">Continua amb les restants (%1$d)</string>
     <string name="export_finish_session">Finalitza la sessió</string>
     <string name="export_finish_session_notice">S’han desat totes les imatges del lot. Finalitza la sessió per netejar-ne les còpies de treball privades i començar-ne una de nova amb PNG i eliminació de metadades. Les imatges desades continuen disponibles a la destinació triada.</string>
+    <string name="color_conversion_details">Color: %1$s → sRGB. Els colors fora de sRGB es limiten; l’original es conserva intacte.</string>
+    <string name="color_conversion_batch">Imatges que es converteixen a SDR sRGB en aquest lot: %1$d.</string>
 </resources>
-
-

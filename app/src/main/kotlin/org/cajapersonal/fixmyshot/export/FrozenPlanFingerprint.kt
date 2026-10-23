@@ -2,6 +2,7 @@ package org.cajapersonal.fixmyshot.export
 
 import org.cajapersonal.fixmyshot.core.BackgroundChoice
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
+import org.cajapersonal.fixmyshot.core.SourceColor
 import java.io.DataOutputStream
 import java.security.DigestOutputStream
 import java.security.MessageDigest
@@ -40,6 +41,12 @@ internal object FrozenPlanFingerprint {
                     out.writeDouble(crop.left); out.writeDouble(crop.top)
                     out.writeDouble(crop.width); out.writeDouble(crop.height)
                 }
+            }
+            // Existing sRGB plans keep their exact version2 identity. Wide-gamut inputs were
+            // previously rejected and have no prior executable plan; bind their new policy.
+            if (recipes.any { it.sourceColor != SourceColor.SRGB }) {
+                out.writeUTF("source-color-to-srgb-v1")
+                recipes.forEach { out.writeUTF(it.sourceColor.name) }
             }
         }
         return digest.digest().joinToString("") { "%02x".format(it.toInt() and 255) }

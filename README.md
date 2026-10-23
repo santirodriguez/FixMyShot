@@ -18,7 +18,7 @@ PNG and identifying-metadata removal remain new-session defaults. Original files
 
 Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Preserve-pixels crop zoom reduces native output dimensions. Exact output size, uniform enlargement and custom RGB backgrounds are explicit choices; enlargement requires opt-in. Destination conflicts remain visible and block export until resolved.
 
-**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, foreground/interruption and100-item provider scenarios, native HEIC/AVIF and the bounded JPEG XL decision, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are already implemented. The accepted bounded API36 metadata checkpoint is `d6b63ae`; editable-session tests passed at54bf003, while its full run failed the deferred locale diagnostic. New foreground/session-finish changes have not yet run on Android. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, foreground/interruption and100-item provider scenarios, native HEIC/AVIF and the bounded JPEG XL decision, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are already implemented. The accepted bounded API36 metadata checkpoint is `d6b63ae`; editable-session tests passed at54bf003, while its full run failed the deferred locale diagnostic. New foreground/session-finish and recognized SDR color conversion changes have not yet run on Android. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
 
 Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. Retries use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
 
@@ -29,7 +29,7 @@ Editable drafts now checkpoint locally after edits, including selected image, in
 |---|---|
 |0 — Research/blueprint | Complete; repository-owned contract and compatibility amendment |
 |1 — Foundation/codecs | PNG/WebP and builds work; native HEIC/AVIF, JXL decision and reproducibility/dependency trust remain open |
-|2 — Image/privacy core | Geometry, crop, sizes and metadata policies implemented; broader color/alpha/ICC/HDR acceptance open |
+|2 — Image/privacy core | Geometry, crop, sizes, metadata and recognized SDR color conversion implemented; broader color/alpha/ICC/HDR acceptance open |
 |3 — Import/review | Picker/sharing, batches, themes and languages implemented; manual accessibility/locale/visual acceptance open |
 |4 — Reliable output | Save/share/retry/recovery implemented; editable drafts and pause/finish behavior implemented; accumulated validation, receipt retirement and extensive lifecycle/provider scenarios open |
 |5 — Integral acceptance | Real Pixel/additional hardware, receivers/gallery, performance and usability still required |
@@ -38,6 +38,8 @@ Editable drafts now checkpoint locally after edits, including selected image, in
 
 
 Leaving the app now requests a pause after the current bounded export transaction. Rotation keeps the active job. Returning does not automatically continue remaining items; “Continue remaining” uses the existing verified no-output retry path and preserves saved copies. After a fully successful batch, “Finish session” clears that session’s private working copies/current+undo/frozen settings and resets the new-session defaults, retaining public output and receipts. Partial/uncertain jobs retain their recovery protection. These new lifecycle changes are implemented but pending a later grouped Android checkpoint.
+
+Recognized 8-bit SDR Display P3 and Adobe RGB sources now have an explicit color-managed path to canonical sRGB for preview and PNG/lossless WebP export. Review shows the original color space, conversion and batch count; out-of-sRGB colors are limited and originals remain unchanged. This is implemented, pending grouped Android execution. Unknown/malformed profiles, unsupported high precision and recognized HDR/gain-map descriptors are rejected where detected. Universal HDR conversion remains out of scope.
 
 ## Development
 

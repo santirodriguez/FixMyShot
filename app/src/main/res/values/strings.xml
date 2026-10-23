@@ -164,6 +164,6 @@
     <string name="export_resume_remaining">Continue remaining (%1$d)</string>
     <string name="export_finish_session">Finish session</string>
     <string name="export_finish_session_notice">All images in this batch were saved. Finish the session to clear its private working copies and start a new session with PNG and metadata removal. Saved images remain available in your chosen destination.</string>
+    <string name="color_conversion_details">Color: %1$s → sRGB. Colors outside sRGB are limited; the original remains unchanged.</string>
+    <string name="color_conversion_batch">Images converted to SDR sRGB in this batch: %1$d.</string>
 </resources>
-
-

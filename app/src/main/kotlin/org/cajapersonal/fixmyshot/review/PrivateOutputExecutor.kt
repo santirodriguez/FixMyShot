@@ -83,7 +83,7 @@ internal class PrivateOutputExecutor(
                 copied.delete()
                 candidate = null
             }
-            original = sources.decodeOriginal(recipe.sourceId, recipe.orientedSource)
+            original = sources.decodeOriginal(recipe.sourceId, recipe.orientedSource, recipe.sourceColor)
             if (original.config != Bitmap.Config.ARGB_8888 || original.colorSpace?.isSrgb != true) {
                 return PrivateExecutionResult.Failed(PrivateExecutionFailure.UNSUPPORTED_SOURCE)
             }
