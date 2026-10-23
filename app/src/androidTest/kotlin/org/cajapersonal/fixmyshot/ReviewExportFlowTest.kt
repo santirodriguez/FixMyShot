@@ -18,6 +18,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import org.cajapersonal.fixmyshot.core.*
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
 import org.cajapersonal.fixmyshot.export.OwnedOutputPort
+import org.cajapersonal.fixmyshot.export.BatchItemPhase
 import org.cajapersonal.fixmyshot.review.ExportUiPhase
 import org.cajapersonal.fixmyshot.review.ReviewExportState
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
@@ -70,13 +71,17 @@ class ReviewExportFlowTest {
     }
 
     private class RecordingPort(private val delegate: OwnedOutputPort,
-        private val failCreateNumber: Int = 0) : OwnedOutputPort by delegate {
+        private val failCreateNumber: Int = 0,
+        private val leaveFirstPending: Boolean = false) : OwnedOutputPort by delegate {
         val created = mutableListOf<Uri>()
         var createCalls = 0
+        private var publishCalls = 0
         override fun create(name: String, mime: String): Uri? {
             if (++createCalls == failCreateNumber) throw java.io.IOException("Synthetic provider refusal")
             return delegate.create(name, mime)?.also { created += it }
         }
+        override fun publish(uri: Uri): Boolean =
+            if (++publishCalls == 1 && leaveFirstPending) false else delegate.publish(uri)
         fun deleteOwnOutputs() { created.forEach { runCatching { delegate.delete(it) } } }
     }
 
@@ -125,6 +130,15 @@ class ReviewExportFlowTest {
             Thread.sleep(90)
         }
         fail("Export did not finish within the instrumentation limit")
+        return model.exportState
+    }
+
+    private fun waitForOutputCheck(model: ReviewViewModel): ReviewExportState {
+        val deadline = System.currentTimeMillis() + 15_000L
+        while (model.exportState.outputBusy && System.currentTimeMillis() < deadline) {
+            instrumentation.waitForIdleSync(); Thread.sleep(40)
+        }
+        assertFalse("Output action did not finish", model.exportState.outputBusy)
         return model.exportState
     }
 
@@ -251,6 +265,58 @@ class ReviewExportFlowTest {
             instrumentation.runOnMainSync { restoredOwner.viewModelStore.clear() }
             port.deleteOwnOutputs()
         }
+    }
+
+    @Test fun explicitPendingRemovalEnablesOnlyADeliberateRetryAndPreservesTheSource() = withCleanup { files, owner ->
+        if (Build.VERSION.SDK_INT < 29) return@withCleanup
+        val (image, source) = stageSynthetic(Color.YELLOW)
+        files += source
+        val port = RecordingPort(MediaStore29Port(app.contentResolver), leaveFirstPending = true)
+        try {
+            val model = owner.model
+            checkEmptyExportHistory(model)
+            instrumentation.runOnMainSync {
+                model.draft = draftOf(image)
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(app, port)
+            }
+            assertEquals(ExportUiPhase.NEEDS_REVIEW, waitForResult(model).phase)
+            val pending = port.created.single()
+            assertTrue(model.exportState.retryableIds.isEmpty())
+            instrumentation.runOnMainSync {
+                model.removePendingOutput(app, image.id) // no positive read-only pending check yet
+                assertFalse(model.exportState.outputBusy)
+                model.refreshOutputs(app)
+            }
+            val checked = waitForOutputCheck(model)
+            assertEquals("OUTPUT_PENDING", checked.items.single().reason)
+            assertEquals(1, port.createCalls)
+            instrumentation.runOnMainSync { model.removePendingOutput(app, image.id) }
+            val removed = waitForOutputCheck(model)
+            assertEquals(ExportUiPhase.COMPLETED, removed.phase)
+            assertFalse(removed.outputError)
+            assertEquals(BatchItemPhase.FAILED, removed.items.single().phase)
+            assertEquals("UNFINISHED_REMOVED", removed.items.single().reason)
+            assertNull(removed.items.single().uri)
+            assertEquals(setOf(image.id), removed.retryableIds)
+            assertTrue(removed.retryReady)
+            app.contentResolver.query(pending, arrayOf(android.provider.BaseColumns._ID), null, null, null).use {
+                assertNotNull(it); assertFalse(it!!.moveToFirst())
+            }
+            port.created.remove(pending) // the explicit action already deleted this owned fixture
+            assertEquals(1, port.createCalls) // no automatic retry/export
+            instrumentation.runOnMainSync {
+                assertTrue(model.prepareRetryExport())
+                model.startPreparedExport(app, port)
+            }
+            val done = waitForResult(model)
+            assertEquals(1, done.published)
+            assertEquals(0, done.failed + done.needsReview)
+            assertEquals(2, port.createCalls)
+            assertNotEquals(pending.toString(), done.items.single().uri)
+            assertEquals(port.created.single().toString(), done.items.single().uri)
+            assertTrue(ReviewSources(app).matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
+        } finally { port.deleteOwnOutputs() }
     }
 
     @Test fun api29WritesAndVerifiesSelectedSingleAndMixedSharesThenRemovesOwnOutputs() = withCleanup { files, owner ->

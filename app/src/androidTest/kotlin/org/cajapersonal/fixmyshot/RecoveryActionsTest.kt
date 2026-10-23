@@ -63,6 +63,13 @@ class RecoveryActionsTest {
                 assertFalse(actions.confirmPublished(f.token, "item"))
                 assertArrayEquals(before, File(f.folder, "item-0.json").readBytes())
             }
+            var removals = 0
+            for (evidence in OutputRecoveryEvidence.values().filter { it != OutputRecoveryEvidence.PENDING }) {
+                assertFalse(ExportRecoveryActions(f.root) { evidence }.discardPending(f.token, "item") {
+                    removals++; true
+                })
+            }
+            assertEquals(0, removals)
             val old = f.batch.read()!!
             f.batch.write(old.copy(items = listOf(old.items.single().copy(uri = "content://other/changed"))))
             val actions = ExportRecoveryActions(f.root) { OutputRecoveryEvidence.MATCHED }
@@ -70,6 +77,16 @@ class RecoveryActionsTest {
             assertNull(actions.open(f.token, "item"))
             assertFalse(actions.confirmPublished("../escape", "item"))
             assertFalse(actions.confirmPublished(f.token, "another-item"))
+            val pending = ExportRecoveryActions(f.root) { OutputRecoveryEvidence.PENDING }
+            assertFalse(pending.discardPending(f.token, "item") { removals++; true })
+            assertFalse(pending.discardPending("../escape", "item") { removals++; true })
+            assertEquals(0, removals)
+            val journal = File(f.folder, "item-0.json")
+            val outside = File(f.root, "outside.json").apply { writeBytes(journal.readBytes()) }
+            assertTrue(journal.delete())
+            android.system.Os.symlink(outside.path, journal.path)
+            assertFalse(pending.discardPending(f.token, "item") { removals++; true })
+            assertEquals(0, removals); assertArrayEquals(before, outside.readBytes())
         } finally { f.root.deleteRecursively() }
     }
 
@@ -77,12 +94,23 @@ class RecoveryActionsTest {
         val f = Fixture(app.cacheDir)
         try {
             val actions = ExportRecoveryActions(f.root) { OutputRecoveryEvidence.MATCHED }
+            val pending = ExportRecoveryActions(f.root) { OutputRecoveryEvidence.PENDING }
+            var removals = 0
             RandomAccessFile(File(f.folder, ".active"), "rw").channel.use { channel ->
                 val lock = channel.lock()
-                try { assertFalse(actions.confirmPublished(f.token, "item")) }
+                try {
+                    assertFalse(actions.confirmPublished(f.token, "item"))
+                    assertFalse(pending.discardPending(f.token, "item") { removals++; true })
+                    assertEquals(0, removals)
+                }
                 finally { lock.release() }
             }
+            val before = f.item.read()
+            assertFalse(pending.discardPending(f.token, "item") { removals++; false })
+            assertEquals(before, f.item.read()); assertEquals(1, removals)
             assertTrue(actions.confirmPublished(f.token, "item"))
+            assertFalse(pending.discardPending(f.token, "item") { removals++; true })
+            assertEquals(1, removals)
             assertTrue(File(f.folder, ".active").exists())
         } finally { f.root.deleteRecursively() }
     }
@@ -103,9 +131,18 @@ class RecoveryActionsTest {
             val digest = MessageDigest.getInstance("SHA-256").digest(bytes)
                 .joinToString("") { "%02x".format(it.toInt() and 255) }
             f.item.write(f.output.copy(uri = uri.toString(), digest = digest))
+            val removal = PendingMediaStoreRemoval(app.contentResolver, app.packageName)
+            val pending = f.item.read()!!
+            assertFalse(PendingMediaStoreRemoval(app.contentResolver, "another.package").remove(pending))
+            assertFalse(PendingMediaStoreRemoval(app.contentResolver, app.packageName, 28).remove(pending))
+            assertFalse(removal.remove(pending.copy(filename = pending.filename.replace("aaaaaaaa", "bbbbbbbb"))))
+            assertFalse(removal.remove(pending.copy(mime = "image/webp")))
+            assertFalse(removal.remove(pending.copy(stage = OutputStage.PUBLISHED)))
+            assertFalse(removal.remove(pending.copy(uri = "content://documents/tree/other")))
             val actions = ExportRecoveryActions(f.root, OutputRecoveryVerifier(app.contentResolver)::verify)
             assertFalse(actions.confirmPublished(f.token, "item"))
             assertTrue(port.publish(uri))
+            assertFalse(removal.remove(pending)) // visible copies cannot be removed even from an old uncertain receipt
             val before = f.item.read()
             assertNotNull(actions.open(f.token, "item"))
             assertEquals(before, f.item.read())

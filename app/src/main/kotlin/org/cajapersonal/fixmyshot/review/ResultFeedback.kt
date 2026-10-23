@@ -44,6 +44,7 @@ internal object ResultFeedback {
         }
         if (item.phase != BatchItemPhase.FAILED) return null
         return when (item.reason) {
+            "UNFINISHED_REMOVED" -> R.string.export_pending_removed
             "STALE_PLAN" -> R.string.result_review_settings
             "SOURCE_CHANGED" -> R.string.result_source_changed
             "SOURCE_UNREADABLE" -> R.string.result_source_changed

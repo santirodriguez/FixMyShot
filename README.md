@@ -32,6 +32,7 @@ FixMyShot prepares it for wherever it is going next: choose a destination or rat
 - **Save separate copies:** PNG or lossless WebP, leaving originals unchanged.
 - **Share deliberately:** choose individual saved outputs or select all successful copies. Each selected file is verified before Android's share chooser is prepared.
 - **Pick up unfinished work:** editable drafts, one-step undo, explicit remaining-item retry and review of previous output records.
+- **Resolve an interrupted save:** explicitly remove a verified unfinished copy created by FixMyShot, then choose whether to retry. Saved copies stay put.
 - **Keep control:** leaving the app requests a pause after the current transaction; continuing is your choice.
 - **Make it comfortable:** system/light/dark appearance, English, Argentine Spanish and Catalan, with offline help and privacy information.
 
@@ -50,7 +51,7 @@ This is an incomplete first functional delivery.
 | Area | Remaining boundary |
 |---|---|
 | Image appearance | Broader color/ICC/HDR and partial-alpha acceptance; a strict alpha-edge failure remains unresolved |
-| Reliable output | Accumulated validation of bulk sharing and completed-job retirement; broader 100-item, provider, interruption, process-kill and low-space scenarios; unresolved-job cleanup |
+| Reliable output | Accumulated validation of bulk sharing, completed-job retirement and pending-copy removal; broader 100-item, provider, interruption, process-kill and low-space scenarios; remaining unresolved-job cleanup |
 | Native formats | HEIC/AVIF hardware, fidelity and fallback qualification; [JPEG XL is deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) |
 | Real-world use | Pixel plus another hardware family, receiving apps/gallery, performance, accessibility and visual language review |
 | Distribution | Dependency authentication, independent reproducible build, signing authorization, install/upgrade and final release evidence |

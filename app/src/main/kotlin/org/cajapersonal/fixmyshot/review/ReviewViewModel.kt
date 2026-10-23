@@ -21,6 +21,7 @@ import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
 import org.cajapersonal.fixmyshot.export.BatchRecoveryReconciliation
 import org.cajapersonal.fixmyshot.export.ExportRecoveryActions
+import org.cajapersonal.fixmyshot.export.PendingMediaStoreRemoval
 import org.cajapersonal.fixmyshot.export.PrivateSessionMaintenance
 import org.cajapersonal.fixmyshot.export.OutputRecoveryVerifier
 import org.cajapersonal.fixmyshot.export.OutputRecoveryEvidence
@@ -510,7 +511,15 @@ internal class ReviewViewModel : ViewModel() {
     /** Invoked only after the confirmation dialog, never from startup or mere verification. */
     fun confirmOutput(context: Context, id: String) = actOnOutput(context, id, true, null)
 
-    private fun actOnOutput(context: Context, id: String?, confirm: Boolean, onReady: ((Intent?) -> Unit)?) {
+    /** Separate confirmation only, after a read-only check reported a pending image. */
+    fun removePendingOutput(context: Context, id: String) {
+        if (exportState.items.none { it.itemId == id && it.phase == BatchItemPhase.NEEDS_REVIEW &&
+                it.reason == "OUTPUT_PENDING" }) return
+        actOnOutput(context, id, false, null, removePending = true)
+    }
+
+    private fun actOnOutput(context: Context, id: String?, confirm: Boolean, onReady: ((Intent?) -> Unit)?,
+        removePending: Boolean = false) {
         val token = reviewToken ?: return
         if (!exportState.canAcknowledge || exportState.outputBusy || shareBusy || activeToken != null ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
@@ -526,7 +535,9 @@ internal class ReviewViewModel : ViewModel() {
                 val verifier = OutputRecoveryVerifier(app.contentResolver)
                 val actions = ExportRecoveryActions(jobs, verifier::verify)
                 if (id != null) {
-                    if (confirm) failed = !actions.confirmPublished(token, id)
+                    if (removePending) failed = !actions.discardPending(token, id,
+                        PendingMediaStoreRemoval(app.contentResolver, app.packageName)::remove)
+                    else if (confirm) failed = !actions.confirmPublished(token, id)
                     else { intent = actions.open(token, id); failed = intent == null }
                 }
                 val folder = File(jobs, token)
@@ -541,7 +552,8 @@ internal class ReviewViewModel : ViewModel() {
                 retryDraft = details.draft
                 exportState = previous.copy(items = snapshot?.items ?: previous.items,
                     phase = if (snapshot?.items?.any { it.phase == BatchItemPhase.NEEDS_REVIEW } != false)
-                        ExportUiPhase.NEEDS_REVIEW else previous.phase,
+                        ExportUiPhase.NEEDS_REVIEW else if (previous.phase == ExportUiPhase.NEEDS_REVIEW)
+                        ExportUiPhase.COMPLETED else previous.phase,
                     retryableIds = details.ids, retryReady = details.draft?.let {
                         ExportDraftJournal.same(draft, it) } == true && details.ids.isNotEmpty(),
                     outputBusy = false, outputError = failed || snapshot == null)

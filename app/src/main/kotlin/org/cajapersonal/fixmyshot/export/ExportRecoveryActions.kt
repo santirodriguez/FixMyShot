@@ -7,7 +7,7 @@ import java.io.File
 import java.io.RandomAccessFile
 import java.nio.channels.OverlappingFileLockException
 
-/** Deliberate actions on recorded outputs. No provider mutation or automatic promotion. */
+/** Deliberate receipt actions; unfinished-output removal requires its separate guarded callback. */
 internal class ExportRecoveryActions(
     private val jobs: File,
     private val verify: (OutputRecord) -> OutputRecoveryEvidence,
@@ -68,6 +68,43 @@ internal class ExportRecoveryActions(
                     true
                 }
             } finally { lock.release() }
+        }
+    } catch (_: Exception) { false }
+
+    /** Only an explicit confirmation may call this; a successful deletion is not a retry request. */
+    fun discardPending(token: String, id: String, remove: (OutputRecord) -> Boolean): Boolean = try {
+        val folder = folder(token)
+        fun safe(name: String): Boolean = listOf("", ".bak", ".new").all { suffix ->
+            val file = File(folder, name + suffix)
+            file.canonicalFile == File(folder.canonicalFile, file.name) && (!file.exists() || file.isFile)
+        }
+        if (!safe(".active") || !safe("batch.json")) false else {
+            RandomAccessFile(File(folder, ".active"), "rw").channel.use { channel ->
+                val held = try { channel.tryLock() } catch (_: OverlappingFileLockException) { null }
+                if (held == null) false else try {
+                    val journal = BatchExportJournal(File(folder, "batch.json"))
+                    val batch = journal.read()
+                    val index = batch?.items?.indexOfFirst { it.itemId == id } ?: -1
+                    if (batch == null || batch.token != token || index < 0 || !safe("item-$index.json")) false else {
+                        val item = batch.items[index]
+                        val itemJournal = OutputJournal(File(folder, "item-$index.json"))
+                        val output = itemJournal.read()
+                        if (item.phase !in setOf(BatchItemPhase.SAVING, BatchItemPhase.NEEDS_REVIEW) ||
+                            output == null || output.itemId != id || output.uri == null ||
+                            (item.uri != null && item.uri != output.uri) ||
+                            output.stage !in setOf(OutputStage.PENDING, OutputStage.VALIDATED, OutputStage.INDETERMINATE) ||
+                            verify(output) != OutputRecoveryEvidence.PENDING || !remove(output)) false else {
+                            // Persist positive deletion first; missing files alone never authorize retry.
+                            itemJournal.write(output.copy(stage = OutputStage.FAILED, uri = null))
+                            val items = batch.items.toMutableList()
+                            items[index] = item.copy(phase = BatchItemPhase.FAILED, uri = null,
+                                reason = "UNFINISHED_REMOVED")
+                            journal.write(batch.copy(items = items))
+                            true
+                        }
+                    }
+                } finally { held.release() }
+            }
         }
     } catch (_: Exception) { false }
 }

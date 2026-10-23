@@ -1,6 +1,8 @@
 package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
+import android.net.Uri
+import org.cajapersonal.fixmyshot.export.PendingMediaStoreRemoval
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -107,6 +109,7 @@ internal fun ReviewScreen(
     onRefreshOutputs: () -> Unit = {},
     onOpenOutput: (String) -> Unit = {},
     onConfirmOutput: (String) -> Unit = {},
+    onRemovePendingOutput: (String) -> Unit = {},
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
     onApplyBatchToAll: () -> Unit = {},
     onMoveSelected: (Int) -> Unit = {},
@@ -126,6 +129,7 @@ internal fun ReviewScreen(
     val plan = plans.firstOrNull { it.itemId == selectedId }
     val editEnabled = !busy && !sessionRestoreBlocked && pendingImports == 0 && !exportState.isLocked
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
+    var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember { mutableStateOf(false) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
@@ -151,6 +155,22 @@ internal fun ReviewScreen(
             onConfirmOutput(confirmationId)
         }) { Text(stringResource(R.string.export_keep_output)) } },
         dismissButton = { TextButton(onClick = { confirmingOutput = null }) {
+            Text(stringResource(R.string.export_keep_cancel))
+        } },
+    )
+
+    val removalId = removingPending
+    if (removalId != null) AlertDialog(
+        onDismissRequest = { removingPending = null },
+        title = { Text(stringResource(R.string.export_remove_pending)) },
+        text = { Text(stringResource(R.string.export_remove_pending_explanation)) },
+        confirmButton = { TextButton(onClick = {
+            removingPending = null
+            onRemovePendingOutput(removalId)
+        }, enabled = !busy && !shareBusy && !exportState.outputBusy) {
+            Text(stringResource(R.string.export_remove_pending))
+        } },
+        dismissButton = { TextButton(onClick = { removingPending = null }) {
             Text(stringResource(R.string.export_keep_cancel))
         } },
     )
@@ -351,6 +371,12 @@ internal fun ReviewScreen(
                     if (item.phase == BatchItemPhase.NEEDS_REVIEW && item.reason == "OUTPUT_PRESENT_UNCERTAIN") {
                         OutlinedButton(onClick = { confirmingOutput = item.itemId }, enabled = actionsEnabled) {
                             Text(stringResource(R.string.export_keep_item, index + 1))
+                        }
+                    }
+                    if (api >= 29 && item.phase == BatchItemPhase.NEEDS_REVIEW && item.reason == "OUTPUT_PENDING" &&
+                        PendingMediaStoreRemoval.supportedUri(Uri.parse(item.uri))) {
+                        OutlinedButton(onClick = { removingPending = item.itemId }, enabled = actionsEnabled) {
+                            Text(stringResource(R.string.export_remove_pending_item, index + 1))
                         }
                     }
                 }

@@ -198,6 +198,7 @@ class MainActivity : AppCompatActivity() {
                             }
                         } },
                         onConfirmOutput = { model.confirmOutput(applicationContext, it) },
+                        onRemovePendingOutput = { model.removePendingOutput(applicationContext, it) },
                         selectedShareIds = model.selectedShareIds,
                         shareBusy = model.shareBusy,
                         shareError = model.shareError,
