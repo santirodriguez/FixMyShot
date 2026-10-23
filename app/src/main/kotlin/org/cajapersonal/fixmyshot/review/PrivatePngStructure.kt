@@ -1,6 +1,7 @@
 package org.cajapersonal.fixmyshot.review
 
 import org.cajapersonal.fixmyshot.core.EncodeRequest
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import java.io.RandomAccessFile
 import java.util.zip.CRC32
 
@@ -8,10 +9,14 @@ import java.util.zip.CRC32
 internal object PrivatePngStructure {
     fun accepts(input: RandomAccessFile, request: EncodeRequest): Boolean {
         if (input.length() < 57 || input.readLong() != 0x89504e470d0a1a0aUL.toLong()) return false
-        val allowed = setOf("IHDR", "IDAT", "IEND", "sRGB", "gAMA", "cHRM", "sBIT")
+        val preserve = request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST
+        val allowed = setOf("IHDR", "IDAT", "IEND", "sRGB", "gAMA", "cHRM", "sBIT") +
+            if (preserve) setOf("eXIf") else emptySet()
         var headerSeen = false
         var dataSeen = false
         var significantBitsSeen = false
+        var exifSeen = false
+        var dataClosed = false
         var chunkCount = 0
         val buffer = ByteArray(8192)
         while (input.filePointer < input.length()) {
@@ -21,7 +26,7 @@ internal object PrivatePngStructure {
             val tag = ByteArray(4).also { input.readFully(it) }
             val name = tag.toString(Charsets.US_ASCII)
             if (name !in allowed || (!headerSeen && name != "IHDR") ||
-                (dataSeen && name !in setOf("IDAT", "IEND"))) return false
+                (dataSeen && name !in setOf("IDAT", "IEND", "eXIf"))) return false
             val crc = CRC32().apply { update(tag) }
             var remaining = size
             if (name == "IHDR") {
@@ -49,10 +54,19 @@ internal object PrivatePngStructure {
                 crc.update(bits)
                 significantBitsSeen = true
                 remaining = 0L
+            } else if (name == "eXIf") {
+                if (!preserve || exifSeen || size !in 14L..ExifAllowlistStructure.MAX_BYTES.toLong()) return false
+                val exif = ByteArray(size.toInt()).also { input.readFully(it) }
+                if (!ExifAllowlistStructure.accepts(exif, request)) return false
+                crc.update(exif)
+                remaining = 0L
+                exifSeen = true
+                if (dataSeen) dataClosed = true
             } else if (name == "IDAT") {
+                if (dataClosed) return false
                 dataSeen = true
             } else if (name == "IEND") {
-                if (!dataSeen || size != 0L) return false
+                if (!dataSeen || size != 0L || (preserve && !exifSeen)) return false
             }
             while (remaining > 0L) {
                 val read = minOf(remaining, buffer.size.toLong()).toInt()

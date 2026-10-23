@@ -25,6 +25,10 @@ class LosslessEncoder(private val privateDirectory: File, private val processHea
     fun encode(bitmap: Bitmap, request: EncodeRequest, cancelled: AtomicBoolean = AtomicBoolean(false), timeoutMillis: Long = 30_000): EncodeResult {
         check(Looper.myLooper() != Looper.getMainLooper()) { "Encoding must run off the UI thread" }
         require(timeoutMillis in 1..120_000)
+        // This boundary receives pixels only; the source-aware private pipeline owns preservation.
+        if (request.metadataPolicy != MetadataPolicy.REMOVE_IDENTIFYING) {
+            return EncodeResult.Failed(FailureCode.METADATA_POLICY_UNAVAILABLE)
+        }
         val eligibility = CodecCapabilities.assess(Build.VERSION.SDK_INT, request)
         if (eligibility is CodecEligibility.Unavailable) return EncodeResult.Failed(eligibility.reason)
         val route = (eligibility as CodecEligibility.ProbeRequired).route

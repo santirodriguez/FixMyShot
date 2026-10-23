@@ -36,7 +36,9 @@
     <string name="background_black">Fondo negro</string>
     <string name="background_transparent">Fondo transparente</string>
     <string name="background_custom">Fondo personalizado</string>
-    <string name="metadata_removed">Las sesiones nuevas eliminan los metadatos identificativos de forma predeterminada. La exportación con metadatos todavía no está implementada.</string>
+    <string name="metadata_removed">Las sesiones nuevas eliminan los metadatos identificativos de forma predeterminada. También se eliminan GPS, fechas, datos de cámara y autoría; el contenido visible de la imagen no cambia.</string>
+    <string name="metadata_remove_option">Eliminar metadatos identificativos</string>
+    <string name="metadata_preserve_warning">La conservación es parcial para PNG y WebP sin pérdida: fechas de captura y digitalización con desfases horarios, marca y modelo de cámara y lente, autoría y copyright, latitud, longitud y altitud GPS. Solo campos ASCII imprimibles de hasta 512 caracteres. Los valores ausentes, inválidos o no compatibles pueden omitirse. Se regeneran la orientación y las dimensiones. Nunca se copian MakerNote, números de serie, miniaturas, comentarios, XMP/IPTC arbitrarios ni rutas originales. Esto puede revelar tu ubicación o identidad. No se admite conservar metadatos en HEIC/AVIF/JXL.</string>
     <string name="output_dimensions">Salida prevista: %1$d × %2$d px</string>
     <string name="margin_details">Márgenes · izquierda %1$d, derecha %2$d, arriba %3$d, abajo %4$d px</string>
     <string name="review_needs_png">Este destino exige PNG. Se conservó tu elección de formato.</string>
@@ -96,7 +98,7 @@
     <string name="help_title">Ayuda rápida</string>
     <string name="help_body">Elegí imágenes o compartilas con FixMyShot desde otra app. Seleccioná un destino o una proporción, revisá la vista previa y exportá copias nuevas. PNG es el formato predeterminado. También podés usar WebP sin pérdida. Los ajustes pueden aplicarse a todo el lote o solo a la imagen seleccionada. En Android 10 o posterior, las copias se guardan en Pictures/FixMyShot. Las versiones anteriores te piden una carpeta. Seleccioná las imágenes guardadas en los resultados para compartirlas. Si una exportación anterior necesita revisión, comprobá sus resultados antes de iniciar otra.</string>
     <string name="privacy_title">Privacidad</string>
-    <string name="privacy_body">Las imágenes se procesan en tu dispositivo. FixMyShot no tiene permiso de red, cuentas ni analíticas. Los archivos originales solo se leen. Las copias nuevas no conservan metadatos identificatorios. Las copias de trabajo privadas pueden permanecer hasta que descartes la sesión, vuelvas a abrir la app para la limpieza por antigüedad, borres sus datos o la desinstales. Los proveedores externos de imágenes pueden usar la red por su cuenta. Los enlaces de abajo abren un navegador externo solo cuando los elegís.</string>
+    <string name="privacy_body">Las imágenes se procesan en tu dispositivo. FixMyShot no tiene permiso de red, cuentas ni analíticas. Los archivos originales solo se leen. Las copias nuevas eliminan los metadatos identificativos de forma predeterminada. En la revisión podés optar por conservar los campos compatibles, incluidos GPS y autoría. Las copias de trabajo privadas pueden permanecer hasta que descartes la sesión, vuelvas a abrir la app para la limpieza por antigüedad, borres sus datos o la desinstales. Los proveedores externos de imágenes pueden usar la red por su cuenta. Los enlaces de abajo abren un navegador externo solo cuando los elegís.</string>
     <string name="about_version">Versión %1$s · compilación de desarrollo</string>
     <string name="about_author">Creado por Santiago Rodriguez</string>
     <string name="about_license">GNU GPL versión 3 únicamente</string>
@@ -149,6 +151,7 @@
     <string name="batch_apply_explanation">¿Querés reemplazar los ajustes individuales de encuadre, recorte, fondo, formato, tamaño y metadatos de %1$d imágenes? Todas pasarán a usar los ajustes del lote. Podés deshacer este cambio una vez.</string>
     <string name="batch_move_earlier">Mover antes</string>
     <string name="batch_move_later">Mover después</string>
+    <string name="metadata_supported_tags">Campos EXIF compatibles: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
 </resources>
 
 

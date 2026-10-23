@@ -36,7 +36,9 @@
     <string name="background_black">Black background</string>
     <string name="background_transparent">Transparent background</string>
     <string name="background_custom">Custom background</string>
-    <string name="metadata_removed">New sessions default to removing identifying metadata. Metadata-preserving export is not implemented.</string>
+    <string name="metadata_removed">New sessions remove identifying metadata by default. This also removes GPS, dates, camera details and author fields; visible image content is unchanged.</string>
+    <string name="metadata_remove_option">Remove identifying metadata</string>
+    <string name="metadata_preserve_warning">Preservation is best effort for PNG and lossless WebP: capture/digitization dates and time offsets, camera and lens make/model, artist/copyright, GPS latitude/longitude/altitude. Printable ASCII fields up to 512 characters only. Missing, invalid or unsupported values may be omitted. Orientation and dimensions are regenerated. MakerNote, serial numbers, thumbnails, comments, arbitrary XMP/IPTC and source paths are never copied. This can reveal your location or identity. HEIC/AVIF/JXL preservation is unavailable.</string>
     <string name="output_dimensions">Planned output: %1$d × %2$d px</string>
     <string name="margin_details">Margins · left %1$d, right %2$d, top %3$d, bottom %4$d px</string>
     <string name="review_needs_png">This destination requires PNG. Your format choice was kept.</string>
@@ -96,7 +98,7 @@
     <string name="help_title">Quick help</string>
     <string name="help_body">Choose images or share them to FixMyShot from another app. Select a destination or ratio, review the preview and export new copies. PNG is the default. Lossless WebP is also available. Settings can apply to the whole batch or only the selected image. On Android 10 or later, copies are saved in Pictures/FixMyShot. Older versions ask for a folder. Select saved images in the results to share them. If a previous export needs review, check its results before starting another.</string>
     <string name="privacy_title">Privacy</string>
-    <string name="privacy_body">Images are processed on your device. FixMyShot has no network permission, account or analytics. Original files are read only. Identifying metadata is removed from new copies. Private working copies may remain until you discard the session, reopen the app for age-based cleanup, clear app data or uninstall. External image providers may use the network independently. Links below open an external browser only when you choose them.</string>
+    <string name="privacy_body">Images are processed on your device. FixMyShot has no network permission, account or analytics. Original files are read only. Identifying metadata is removed from new copies by default. You can explicitly preserve the supported fields in Review, including GPS and author details. Private working copies may remain until you discard the session, reopen the app for age-based cleanup, clear app data or uninstall. External image providers may use the network independently. Links below open an external browser only when you choose them.</string>
     <string name="about_version">Version %1$s · development build</string>
     <string name="about_author">Created by Santiago Rodriguez</string>
     <string name="about_license">GNU GPL version 3 only</string>
@@ -149,6 +151,7 @@
     <string name="batch_apply_explanation">Replace individual framing, crop, background, format, size and metadata settings in %1$d images? All will inherit the batch settings. You can undo this once.</string>
     <string name="batch_move_earlier">Move earlier</string>
     <string name="batch_move_later">Move later</string>
+    <string name="metadata_supported_tags">Supported EXIF fields: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
 </resources>
 
 

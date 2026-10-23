@@ -1,6 +1,7 @@
 package org.cajapersonal.fixmyshot.review
 
 import org.cajapersonal.fixmyshot.core.EncodeRequest
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import java.io.RandomAccessFile
 
 internal object PrivateWebpStructure {
@@ -12,19 +13,21 @@ internal object PrivateWebpStructure {
         var flags = 0
         var extended = false
         var profileSeen = false
+        var exifSeen = false
+        val preserve = request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST
         var count = 0
         while (input.filePointer < input.length()) {
             if (++count > 16 || input.length() - input.filePointer < 8) return false
             val kind = fourcc(input)
             val bytes = Integer.reverseBytes(input.readInt()).toLong() and 0xffffffffL
             val end = input.filePointer + bytes + (bytes and 1L)
-            if (end > input.length() || kind !in setOf("VP8X", "ICCP", "VP8L")) return false
+            if (end > input.length() || kind !in setOf("VP8X", "ICCP", "VP8L", "EXIF")) return false
             if (kind == "VP8X") {
                 if (count != 1 || bytes != 10L || found) return false
                 flags = input.readUnsignedByte()
-                // Alpha (0x10) and generated color ICC (0x20) are the only accepted features.
-                // Reject animation, EXIF, XMP and reserved flags.
-                if ((flags and 0xcf) != 0) return false
+                // EXIF is permitted only by explicit policy and a closed tag/directory check below.
+                // Animation, XMP and reserved flags remain rejected.
+                if ((flags and (if (preserve) 0xc7 else 0xcf)) != 0) return false
                 extended = true
                 input.skipBytes(3)
                 fun uint24(): Int = input.readUnsignedByte() or
@@ -43,7 +46,14 @@ internal object PrivateWebpStructure {
                     fourAt(16) != "RGB " || fourAt(20) != "XYZ " ||
                     fourAt(36) != "acsp") return false
                 profileSeen = true
+            } else if (kind == "EXIF") {
+                if (!preserve || !extended || !found || exifSeen || (flags and 0x08) == 0 ||
+                    bytes !in 14L..ExifAllowlistStructure.MAX_BYTES.toLong()) return false
+                val exif = ByteArray(bytes.toInt()).also { input.readFully(it) }
+                if (!ExifAllowlistStructure.accepts(exif, request)) return false
+                exifSeen = true
             } else {
+                if (exifSeen) return false
                 if (found || bytes < 5L || input.readUnsignedByte() != 0x2f) return false
                 val a = input.readUnsignedByte()
                 val b = input.readUnsignedByte()
@@ -56,7 +66,9 @@ internal object PrivateWebpStructure {
             }
             input.seek(end)
         }
-        return found && (flags and 0x20 == 0 || profileSeen) && input.filePointer == input.length()
+        return found && (flags and 0x20 == 0 || profileSeen) &&
+            (if (preserve) exifSeen && (flags and 0x08) != 0 else !exifSeen) &&
+            input.filePointer == input.length()
     }
 
     private fun fourcc(input: RandomAccessFile): String =

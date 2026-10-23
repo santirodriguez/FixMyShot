@@ -157,3 +157,7 @@ profile=current
 
 Bounded PNG/WebP metadata-stripping payload copy, PNG/WebP EXIF orientation and explicit animation/HDR-marker rejection. Preserve original IDAT/VP8L bytes only on unchanged compatible plans; retain full candidate/source verification. Require twelve combined private-output/payload cases plus all current-device regressions.
 profile=current
+
+
+Undefined-orientation identity correction after failed Actions39898060905, plus explicit selective metadata preservation for PNG/lossless WebP. Require fifteen combined private-output/payload/metadata cases, plain PNG provider import/full decode and all eight explicit orientations, exact allowlisted field preservation and forbidden-field/container rejection, plus all current-device import/settings/retry/recovery/export/codec regressions in one grouped run.
+profile=current

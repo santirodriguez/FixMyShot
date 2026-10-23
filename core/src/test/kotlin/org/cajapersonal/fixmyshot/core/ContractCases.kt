@@ -46,8 +46,12 @@ fun contractCases(): List<Pair<String, () -> Unit>> {
             unavailable(36, request(OutputFormat.PNG, w = 6000, h = 5000), FailureCode.RESOURCE_LIMIT)
             check(!CodecMemoryBudget.permits(request(OutputFormat.PNG, w = Int.MAX_VALUE, h = Int.MAX_VALUE), Long.MAX_VALUE))
         },
-        "metadata opt out does not promise unimplemented preservation" to {
-            unavailable(36, request(OutputFormat.PNG).copy(metadataPolicy = MetadataPolicy.PRESERVE_ALLOWLIST), FailureCode.METADATA_POLICY_UNAVAILABLE)
+        "metadata preservation is eligible only for supported source-aware routes" to {
+            check(CodecCapabilities.assess(36, request(OutputFormat.PNG).copy(metadataPolicy = MetadataPolicy.PRESERVE_ALLOWLIST)) ==
+                CodecEligibility.ProbeRequired(CodecRoute.ANDROID_PNG))
+            check(CodecCapabilities.assess(36, request(OutputFormat.WEBP_LOSSLESS).copy(metadataPolicy = MetadataPolicy.PRESERVE_ALLOWLIST)) ==
+                CodecEligibility.ProbeRequired(CodecRoute.ANDROID_WEBP_LOSSLESS))
+            unavailable(36, request(OutputFormat.HEIC).copy(metadataPolicy = MetadataPolicy.PRESERVE_ALLOWLIST), FailureCode.METADATA_POLICY_UNAVAILABLE)
         },
         "insufficient heap is explicit" to {
             check(!CodecMemoryBudget.permits(request(OutputFormat.WEBP_LOSSLESS), 64L * 1_048_576))

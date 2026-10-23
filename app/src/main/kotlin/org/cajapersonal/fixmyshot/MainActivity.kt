@@ -202,6 +202,12 @@ class MainActivity : AppCompatActivity() {
                                 model.draft.editItem(item.id, item.overrides.copy(size = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(size = value)))
                         },
+                        onMetadata = { value, onlySelected ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            updateDraft(if (onlySelected && item != null) {
+                                model.draft.editItem(item.id, item.overrides.copy(metadata = ItemValue.Custom(value)))
+                            } else model.draft.setBatch(model.draft.batch.copy(metadata = value)))
+                        },
                         onApplyBatchToAll = { updateDraft(model.draft.applyBatchSettingsToAll(EditableField.entries.toSet()).draft) },
                         onMoveSelected = { delta ->
                             val ids = model.draft.images.map { it.id }.toMutableList()

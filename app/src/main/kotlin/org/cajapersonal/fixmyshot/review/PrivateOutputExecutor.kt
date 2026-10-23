@@ -11,6 +11,7 @@ import org.cajapersonal.fixmyshot.core.CodecRoute
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.core.FailureCode
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
 import java.io.File
@@ -113,15 +114,26 @@ internal class PrivateOutputExecutor(
             full.recycle()
             original = null
             if (cancelled.get()) return PrivateExecutionResult.Failed(PrivateExecutionFailure.CANCELLED)
-            when (val encoded = encoder.encode(rendered, recipe.request, cancelled, 120_000)) {
+            val pixelRequest = recipe.request.copy(metadataPolicy = MetadataPolicy.REMOVE_IDENTIFYING)
+            when (val encoded = encoder.encode(rendered, pixelRequest, cancelled, 120_000)) {
                 is EncodeResult.Failed -> return PrivateExecutionResult.Failed(
                     if (encoded.reason == FailureCode.CANCELLED) PrivateExecutionFailure.CANCELLED
                     else PrivateExecutionFailure.ENCODER_FAILED, encoded.reason)
                 is EncodeResult.Encoded -> {
                     candidate = encoded.file
                     if (encoded.route != recipe.codecRoute ||
-                        !PrivateCandidateVerifier.accepts(encoded.file, recipe.request)) {
+                        !PrivateCandidateVerifier.accepts(encoded.file, pixelRequest)) {
                         return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
+                    }
+                    if (recipe.request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST) {
+                        try {
+                            MetadataAllowlist.apply(sources.sourceForMetadata(recipe.sourceId), encoded.file, recipe.request)
+                        } catch (_: IOException) {
+                            return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
+                        }
+                        if (!PrivateCandidateVerifier.accepts(encoded.file, recipe.request)) {
+                            return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
+                        }
                     }
                 }
             }

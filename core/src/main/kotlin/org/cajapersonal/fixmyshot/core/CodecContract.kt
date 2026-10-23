@@ -41,7 +41,8 @@ object CodecCapabilities {
         if (request.size.pixels > 24_000_000L) {
             return CodecEligibility.Unavailable(FailureCode.RESOURCE_LIMIT)
         }
-        if (request.metadataPolicy != MetadataPolicy.REMOVE_IDENTIFYING) {
+        if (request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST &&
+            request.format !in setOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
             return CodecEligibility.Unavailable(FailureCode.METADATA_POLICY_UNAVAILABLE)
         }
         return when (request.format) {

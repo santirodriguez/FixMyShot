@@ -73,6 +73,8 @@ internal fun SettingsDialog(
                     color = MaterialTheme.colorScheme.error)
                 Text(stringResource(R.string.help_title), style = MaterialTheme.typography.titleSmall)
                 Text(stringResource(R.string.help_body))
+                Text(stringResource(R.string.metadata_preserve_warning))
+                Text(stringResource(R.string.metadata_supported_tags), style = MaterialTheme.typography.bodySmall)
                 Text(stringResource(R.string.privacy_title), style = MaterialTheme.typography.titleSmall)
                 Text(stringResource(R.string.privacy_body))
                 Text(stringResource(R.string.about_version, version))

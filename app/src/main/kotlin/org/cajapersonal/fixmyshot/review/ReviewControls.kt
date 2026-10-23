@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
@@ -20,6 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
@@ -31,6 +34,7 @@ import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PreviewPlan
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
 
 @Composable
 internal fun ReviewControls(
@@ -42,6 +46,7 @@ internal fun ReviewControls(
     onBackground: (BackgroundChoice, Boolean) -> Unit,
     onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
+    onMetadata: (MetadataPolicy, Boolean) -> Unit = { _, _ -> },
 ) {
     var chooseDestination by remember { mutableStateOf(false) }
     var chooseFormat by remember { mutableStateOf(false) }
@@ -120,6 +125,18 @@ internal fun ReviewControls(
                 onBackground(it, selectedOnly)
             }
             OutputSizeControls(effective.size, enabled) { onSize(it, selectedOnly) }
+            Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                value = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
+                enabled = enabled, role = Role.Checkbox, onValueChange = {
+                        onMetadata(if (it) MetadataPolicy.REMOVE_IDENTIFYING else MetadataPolicy.PRESERVE_ALLOWLIST, selectedOnly)
+                    }), verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(checked = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
+                    enabled = enabled, onCheckedChange = null)
+                Text(stringResource(R.string.metadata_remove_option))
+            }
+            Text(stringResource(if (effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
+                R.string.metadata_removed else R.string.metadata_preserve_warning),
+                style = MaterialTheme.typography.bodySmall)
     }
 }
 

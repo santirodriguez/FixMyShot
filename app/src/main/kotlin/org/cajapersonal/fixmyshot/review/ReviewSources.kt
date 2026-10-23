@@ -194,9 +194,17 @@ internal class ReviewSources(private val context: Context) {
     private fun readOrientation(file: File, mime: String?): Int {
         if (mime !in setOf("image/jpeg", "image/png", "image/webp")) return ExifInterface.ORIENTATION_NORMAL
         return FileInputStream(file).use { input ->
-            ExifInterface(input).getAttributeInt(
+            val orientation = ExifInterface(input).getAttributeInt(
                 ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+            // AndroidX can synthesize UNDEFINED for a container with no orientation tag.
+            // Unspecified orientation is identity; other out-of-range values stay invalid.
+            if (orientation == ExifInterface.ORIENTATION_UNDEFINED) ExifInterface.ORIENTATION_NORMAL else orientation
         }
+    }
+
+    fun sourceForMetadata(id: String): File {
+        require(validId.matches(id))
+        return File(directory, "$id.source").also { require(it.isFile) }
     }
 
     /** Only unchanged pixels/appearance can bypass the renderer. Candidate validation stays external. */

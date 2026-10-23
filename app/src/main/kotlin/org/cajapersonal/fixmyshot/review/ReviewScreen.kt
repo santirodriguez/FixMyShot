@@ -59,6 +59,7 @@ import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** Review plus deliberate, foreground-only batch export and bounded progress. */
@@ -103,6 +104,7 @@ internal fun ReviewScreen(
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
     onApplyBatchToAll: () -> Unit = {},
     onMoveSelected: (Int) -> Unit = {},
+    onMetadata: (MetadataPolicy, Boolean) -> Unit = { _, _ -> },
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -213,6 +215,7 @@ internal fun ReviewScreen(
             ReviewControls(
                 draft = draft, plan = plan, enabled = editEnabled,
                 onDestination = onDestination, onFormat = onFormat, onBackground = onBackground, onFit = onFit, onSize = onSize,
+                onMetadata = onMetadata,
             )
             if (customCount > 0) {
                 Text(stringResource(R.string.batch_custom_count, customCount))
@@ -221,7 +224,6 @@ internal fun ReviewScreen(
                 }
             }
             if (selected != null && plan != null) CropControls(selected, plan, editEnabled, onCrop)
-            Text(stringResource(R.string.metadata_removed), style = MaterialTheme.typography.bodySmall)
             if (selected != null && plan != null) {
                 val output = when (val geometry = plan.geometry) {
                     is PlannedGeometry.Contained -> geometry.value.canvas

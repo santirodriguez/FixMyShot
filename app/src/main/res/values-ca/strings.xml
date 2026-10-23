@@ -36,7 +36,9 @@
     <string name="background_black">Fons negre</string>
     <string name="background_transparent">Fons transparent</string>
     <string name="background_custom">Fons personalitzat</string>
-    <string name="metadata_removed">Les sessions noves eliminen les metadades identificatives de manera predeterminada. La conservació de metadades en exportar encara no està implementada.</string>
+    <string name="metadata_removed">Les sessions noves eliminen les metadades identificatives de manera predeterminada. També s’eliminen GPS, dates, dades de càmera i autoria; el contingut visible de la imatge no canvia.</string>
+    <string name="metadata_remove_option">Elimina les metadades identificatives</string>
+    <string name="metadata_preserve_warning">La conservació és parcial per a PNG i WebP sense pèrdua: dates de captura i digitalització amb desfasaments horaris, marca i model de càmera i objectiu, autoria i copyright, latitud, longitud i altitud GPS. Només camps ASCII imprimibles de fins a 512 caràcters. Els valors absents, invàlids o no compatibles es poden ometre. Es regeneren l’orientació i les dimensions. No es copien mai MakerNote, números de sèrie, miniatures, comentaris, XMP/IPTC arbitraris ni rutes originals. Això pot revelar la teva ubicació o identitat. No s’admet conservar metadades en HEIC/AVIF/JXL.</string>
     <string name="output_dimensions">Sortida prevista: %1$d × %2$d px</string>
     <string name="margin_details">Marges · esquerra %1$d, dreta %2$d, dalt %3$d, baix %4$d px</string>
     <string name="review_needs_png">Aquesta destinació requereix PNG. S\'ha conservat el format triat.</string>
@@ -96,7 +98,7 @@
     <string name="help_title">Ajuda ràpida</string>
     <string name="help_body">Tria imatges o comparteix-les amb FixMyShot des d’una altra aplicació. Selecciona una destinació o una proporció, revisa la previsualització i exporta còpies noves. PNG és el format predeterminat. També pots fer servir WebP sense pèrdua. La configuració es pot aplicar a tot el lot o només a la imatge seleccionada. A Android 10 o posterior, les còpies es desen a Pictures/FixMyShot. Les versions anteriors demanen una carpeta. Selecciona les imatges desades als resultats per compartir-les. Si cal revisar una exportació anterior, comprova’n els resultats abans de començar-ne una altra.</string>
     <string name="privacy_title">Privadesa</string>
-    <string name="privacy_body">Les imatges es processen al teu dispositiu. FixMyShot no té permís de xarxa, comptes ni analítica. Els fitxers originals només es llegeixen. Les còpies noves no conserven metadades identificatives. Les còpies de treball privades poden romandre fins que descartis la sessió, tornis a obrir l’aplicació per a la neteja per antiguitat, n’esborris les dades o la desinstal·lis. Els proveïdors externs d’imatges poden fer servir la xarxa pel seu compte. Els enllaços de sota només obren un navegador extern quan els tries.</string>
+    <string name="privacy_body">Les imatges es processen al teu dispositiu. FixMyShot no té permís de xarxa, comptes ni analítica. Els fitxers originals només es llegeixen. Les còpies noves eliminen les metadades identificatives de manera predeterminada. A la revisió pots optar per conservar els camps compatibles, inclosos GPS i autoria. Les còpies de treball privades poden romandre fins que descartis la sessió, tornis a obrir l’aplicació per a la neteja per antiguitat, n’esborris les dades o la desinstal·lis. Els proveïdors externs d’imatges poden fer servir la xarxa pel seu compte. Els enllaços de sota només obren un navegador extern quan els tries.</string>
     <string name="about_version">Versió %1$s · compilació de desenvolupament</string>
     <string name="about_author">Creat per Santiago Rodriguez</string>
     <string name="about_license">Només GNU GPL versió 3</string>
@@ -149,6 +151,7 @@
     <string name="batch_apply_explanation">Vols substituir la configuració individual d’enquadrament, retall, fons, format, mida i metadades de %1$d imatges? Totes heretaran la configuració del lot. Pots desfer aquest canvi una vegada.</string>
     <string name="batch_move_earlier">Mou abans</string>
     <string name="batch_move_later">Mou després</string>
+    <string name="metadata_supported_tags">Camps EXIF compatibles: DateTimeOriginal, DateTimeDigitized, OffsetTimeOriginal, OffsetTimeDigitized, Make, Model, LensMake, LensModel, Artist, Copyright, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude.</string>
 </resources>
 
 

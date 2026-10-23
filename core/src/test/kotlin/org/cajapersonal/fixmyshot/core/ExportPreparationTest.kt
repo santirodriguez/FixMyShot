@@ -58,7 +58,7 @@ class ExportPreparationTest {
         assertFalse(plan.needsBackgroundResolution)
     }
 
-    @Test fun unacceptedNativeFormatAndMetadataOptOutRemainBlocked() {
+    @Test fun unacceptedNativeFormatStaysBlockedAndLosslessMetadataPolicyIsFrozen() {
         val custom = DraftSession(destination = DestinationChoice.Custom.of(1, 1))
             .addImages(listOf(source(size = PixelSize(100, 100))))
         val heic = custom.setBatch(EditSettings(format = OutputFormat.HEIC))
@@ -67,8 +67,9 @@ class ExportPreparationTest {
         assertTrue(PrivatePreparationBlock.FORMAT_NOT_READY in item.blocks)
         val optOut = custom.setBatch(EditSettings(metadata = MetadataPolicy.PRESERVE_ALLOWLIST))
         val other = ExportPreparation.inspect(optOut, 36, heap).items.single()
-        assertNull(other.recipe)
-        assertTrue(PrivatePreparationBlock.CODEC_UNAVAILABLE in other.blocks)
+        assertNotNull(other.recipe)
+        assertTrue(other.blocks.isEmpty())
+        assertEquals(MetadataPolicy.PRESERVE_ALLOWLIST, other.recipe!!.request.metadataPolicy)
     }
 
     @Test fun cropFreezesTheVisibleSourceWithoutRelabelingItAsContain() {

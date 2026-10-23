@@ -64,11 +64,15 @@ fun draftCases(): List<Pair<String, () -> Unit>> {
         },
         "changing global settings leaves each item override intact" to {
             val original = DraftSession().addImages(listOf(item(), item("b", "source-b")))
-                .editItem("a", ItemOverrides(format = ItemValue.Custom(OutputFormat.WEBP_LOSSLESS)))
-            val revised = original.setBatch(original.batch.copy(format = OutputFormat.AVIF))
+                .editItem("a", ItemOverrides(format = ItemValue.Custom(OutputFormat.WEBP_LOSSLESS),
+                    metadata = ItemValue.Custom(MetadataPolicy.REMOVE_IDENTIFYING)))
+            val revised = original.setBatch(original.batch.copy(format = OutputFormat.AVIF,
+                metadata = MetadataPolicy.PRESERVE_ALLOWLIST))
             check(revised.images[0].overrides == original.images[0].overrides)
             check(revised.plans(36).first().settings.format == OutputFormat.WEBP_LOSSLESS)
             check(revised.plans(36).last().settings.format == OutputFormat.AVIF)
+            check(revised.plans(36).first().settings.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
+            check(revised.plans(36).last().settings.metadata == MetadataPolicy.PRESERVE_ALLOWLIST)
             check(revised.revision > original.revision)
         },
         "destination switch preserves crop and per-item choices" to {

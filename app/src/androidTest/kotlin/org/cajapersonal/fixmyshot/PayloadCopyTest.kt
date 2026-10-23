@@ -162,6 +162,13 @@ class PayloadCopyTest {
         val uri=resolver.insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values)!!
         val staged=mutableSetOf<String>()
         try {
+            // Missing orientation can be synthesized as UNDEFINED=0; it must behave as identity.
+            resolver.openOutputStream(uri,"wt")!!.use { it.write(file.readBytes()) }
+            val plain = ReviewSources(app).stage(uri) as ReviewSources.ImportResult.Added
+            staged += plain.image.id
+            val identity = ReviewSources(app).decodeOriginal(plain.image.id, plain.image.orientedSize)
+            try { assertEquals(Color.RED, identity.getPixel(3, 4)); assertEquals(PixelSize(64, 64), plain.image.orientedSize) }
+            finally { identity.recycle() }
             val expected = listOf(3 to 4, 60 to 4, 60 to 59, 3 to 59, 4 to 3, 59 to 3, 59 to 60, 4 to 60)
             for (orientation in 1..8) {
                 ExifInterface(file).apply { setAttribute(ExifInterface.TAG_ORIENTATION,orientation.toString());saveAttributes() }
