@@ -95,7 +95,7 @@ thumbnail_result=$?
 cat evidence/thumbnail-instrumentation.txt
 # The private executor uses synthetic staged bytes; it never publishes outputs.
 timeout 4m adb shell am instrument -w -r \
-  -e class org.cajapersonal.fixmyshot.PrivateOutputExecutorTest \
+  -e class org.cajapersonal.fixmyshot.PrivateOutputExecutorTest,org.cajapersonal.fixmyshot.PayloadCopyTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/private-output-instrumentation.txt 2>&1
 private_result=$?
 cat evidence/private-output-instrumentation.txt
@@ -142,7 +142,7 @@ cat evidence/batch-recovery-instrumentation.txt
 set -e
 grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
-grep -q 'OK (8 tests)' evidence/private-output-instrumentation.txt
+grep -q 'OK (12 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt

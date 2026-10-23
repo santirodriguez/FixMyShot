@@ -16,6 +16,10 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.security.MessageDigest
 import java.util.UUID
+import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
+import org.cajapersonal.fixmyshot.core.MetadataPolicy
+import java.io.RandomAccessFile
+import java.util.concurrent.atomic.AtomicBoolean
 
 /** All provider I/O is performed on a dedicated worker; no user path or URI is logged. */
 internal class ReviewSources(private val context: Context) {
@@ -72,6 +76,9 @@ internal class ReviewSources(private val context: Context) {
             if (width.toLong() * height.toLong() > maxSourcePixels) return ImportResult.Rejected(Failure.TOO_LARGE)
             if (bounds.outColorSpace != null && bounds.outColorSpace?.isSrgb != true) return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED)
             if (bounds.outConfig == Bitmap.Config.RGBA_F16) return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED)
+            if (bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(target)) {
+                return ImportResult.Rejected(Failure.UNSUPPORTED)
+            }
             if (bounds.outMimeType == "image/webp" && isAnimatedWebp(target)) {
                 return ImportResult.Rejected(Failure.UNSUPPORTED)
             }
@@ -140,6 +147,8 @@ internal class ReviewSources(private val context: Context) {
         BitmapFactory.decodeFile(file.absolutePath, bounds)
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0 ||
             bounds.outWidth.toLong() * bounds.outHeight > maxSourcePixels) throw IOException("Invalid source bounds")
+        if ((bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(file)) ||
+            (bounds.outMimeType == "image/webp" && isAnimatedWebp(file))) throw IOException("Unsupported static source")
         var sample = 1
         if (maxLongSide != null) {
             while (maxOf(bounds.outWidth / sample, bounds.outHeight / sample) > maxLongSide) sample *= 2
@@ -183,11 +192,46 @@ internal class ReviewSources(private val context: Context) {
 
     /** The stream constructor avoids API26 filename-based limitations for .source files. */
     private fun readOrientation(file: File, mime: String?): Int {
-        if (mime != "image/jpeg") return ExifInterface.ORIENTATION_NORMAL
+        if (mime !in setOf("image/jpeg", "image/png", "image/webp")) return ExifInterface.ORIENTATION_NORMAL
         return FileInputStream(file).use { input ->
             ExifInterface(input).getAttributeInt(
                 ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         }
+    }
+
+    /** Only unchanged pixels/appearance can bypass the renderer. Candidate validation stays external. */
+    fun copyPayload(recipe: PrivateOutputRecipe, target: File, cancelled: AtomicBoolean): Boolean {
+        if (!validId.matches(recipe.sourceId) || recipe.crop != null ||
+            recipe.request.metadataPolicy != MetadataPolicy.REMOVE_IDENTIFYING ||
+            recipe.canvas != recipe.orientedSource || recipe.placement.left != 0 || recipe.placement.top != 0 ||
+            recipe.placement.width != recipe.canvas.width || recipe.placement.height != recipe.canvas.height) return false
+        val file = File(directory, "${recipe.sourceId}.source")
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(file.absolutePath, bounds)
+        if ((bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(file)) ||
+            (bounds.outMimeType == "image/webp" && isAnimatedWebp(file))) return false
+        if (bounds.outMimeType != recipe.request.format.mimeType ||
+            bounds.outWidth != recipe.canvas.width || bounds.outHeight != recipe.canvas.height ||
+            bounds.outColorSpace?.isSrgb != true || bounds.outConfig == Bitmap.Config.RGBA_F16 ||
+            readOrientation(file, bounds.outMimeType) != ExifInterface.ORIENTATION_NORMAL) return false
+        return PayloadPreservingCopy.write(file, target, recipe.request, cancelled)
+    }
+
+    /** Do not flatten APNG or silently clip explicitly signalled HDR to the static SDR path. */
+    private fun hasUnsupportedPngFeatures(file: File): Boolean = RandomAccessFile(file, "r").use { input ->
+        if (input.length() < 8 || input.readLong() != 0x89504e470d0a1a0aUL.toLong()) return@use true
+        var count = 0
+        while (input.filePointer < input.length()) {
+            if (++count > 4096 || input.length() - input.filePointer < 12) return@use true
+            val length = input.readInt().toLong() and 0xffffffffL
+            val name = ByteArray(4).also { input.readFully(it) }.toString(Charsets.US_ASCII)
+            if (length > input.length() - input.filePointer - 4) return@use true
+            if (name in setOf("acTL", "fcTL", "fdAT", "cICP", "cLLI", "mDCV")) return@use true
+            if ((name == "eXIf" && length > 256 * 1024) || (name == "iCCP" && length > 64 * 1024)) return@use true
+            input.seek(input.filePointer + length + 4)
+            if (name == "IEND") return@use input.filePointer != input.length()
+        }
+        true
     }
 
     fun discard(id: String) {
@@ -197,12 +241,23 @@ internal class ReviewSources(private val context: Context) {
     fun discardAll(ids: List<String>) = ids.forEach(::discard)
 
     private fun isAnimatedWebp(file: File): Boolean {
-        FileInputStream(file).use { input ->
-            val header = ByteArray(21)
-            if (input.read(header) != header.size) return false
-            val webp = String(header, 8, 4, Charsets.US_ASCII) == "WEBP"
-            val vp8x = String(header, 12, 4, Charsets.US_ASCII) == "VP8X"
-            return webp && vp8x && (header[20].toInt() and 0x02) != 0
+        RandomAccessFile(file, "r").use { input ->
+            fun tag() = ByteArray(4).also { input.readFully(it) }.toString(Charsets.US_ASCII)
+            if (input.length() < 12 || tag() != "RIFF") return true
+            val total = Integer.reverseBytes(input.readInt()).toLong() and 0xffffffffL
+            if (total != input.length() - 8 || tag() != "WEBP") return true
+            var count = 0
+            while (input.filePointer < input.length()) {
+                if (++count > 4096 || input.length() - input.filePointer < 8) return true
+                val kind = tag()
+                val length = Integer.reverseBytes(input.readInt()).toLong() and 0xffffffffL
+                val end = input.filePointer + length + (length and 1L)
+                if (end > input.length() || kind in setOf("ANIM", "ANMF")) return true
+                if ((kind == "EXIF" && length > 256 * 1024) || (kind == "ICCP" && length > 64 * 1024)) return true
+                if (kind == "VP8X" && (length != 10L || input.readUnsignedByte() and 2 != 0)) return true
+                input.seek(end)
+            }
+            return false
         }
     }
 }

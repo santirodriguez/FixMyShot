@@ -31,3 +31,9 @@ The separate `NativeGridDiagnosticTest` (source `28aa20b8`) explores grid-disabl
 ## Source
 
 libwebp 1.6.0: `webmproject/libwebp@4fa21912338357f89e4fd51cf2368325b59e9bd9`, built with CMake and bounded JNI output to a duplicated file descriptor. The API 26-29 route deliberately avoids the ambiguous legacy Android WebP compression enum. Runtime codec acceptance and input-decoder support are separate claims.
+
+## Eligible payload-preserving copies
+
+An unchanged normal-orientation8-bit RGB/RGBA PNG or static lossless WebP may use a bounded metadata-stripping container copy, preserving compressed image payload instead of re-encoding it. Full source/candidate verification and transactional publication still apply. Unknown/profile-bearing/noncanonical appearance data, a changed format, crop/padding/size or compositing requirements keep the existing rendered path. PNG EXIF/text/time and WebP EXIF/XMP are removed on eligible copies; unsupported structures are never silently treated as sanitized. Metadata-preservation opt-out remains unavailable.
+
+PNG/WebP EXIF orientation is now normalized using the existing AndroidX reader, and PNG animation/recognized HDR signalling is rejected before static processing. The new source-bound tests must pass before runtime acceptance; this does not claim complete HDR, ICC, all-format orientation or physical-device fidelity.

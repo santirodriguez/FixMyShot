@@ -43,7 +43,7 @@ internal class BatchOutputCoordinator(
             val budget = Runtime.getRuntime().maxMemory()
             val candidateDir = File(app.cacheDir, "batch-candidates")
             val executor = PrivateOutputExecutor(
-                ReviewSources(app), LosslessEncoder(candidateDir, budget), budget)
+                ReviewSources(app), LosslessEncoder(candidateDir, budget), budget, copyDirectory = candidateDir)
             return BatchOutputCoordinator(
                 File(app.filesDir, "export-jobs"),
                 { draft -> ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, budget) },

@@ -154,3 +154,6 @@ profile=current
 
 Complete manual RGB, exact-size contain/crop and opt-in enlargement controls; explicit apply-to-all and stable-ID reordering; keep removed private sources until undo expires. Require eight private-output and five import/settings cases plus all sixteen recovery cases and current-device regressions.
 profile=current
+
+Bounded PNG/WebP metadata-stripping payload copy, PNG/WebP EXIF orientation and explicit animation/HDR-marker rejection. Preserve original IDAT/VP8L bytes only on unchanged compatible plans; retain full candidate/source verification. Require twelve combined private-output/payload cases plus all current-device regressions.
+profile=current

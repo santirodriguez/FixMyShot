@@ -10,7 +10,7 @@ import java.io.OutputStream
 /** Deterministic identity of output semantics, independent of JSON ordering or device heap size. */
 internal object FrozenPlanFingerprint {
     // Bump for semantic geometry/color/metadata renderer changes before allowing old-job retry.
-    private const val RENDER_POLICY_VERSION = 1
+    private const val RENDER_POLICY_VERSION = 2
     fun of(recipes: List<PrivateOutputRecipe>): String {
         val digest = MessageDigest.getInstance("SHA-256")
         val sink = object : OutputStream() { override fun write(value: Int) {} }

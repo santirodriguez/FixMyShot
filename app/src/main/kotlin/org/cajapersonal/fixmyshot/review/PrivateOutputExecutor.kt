@@ -30,6 +30,7 @@ sealed interface PrivateExecutionResult {
         val sourceSha256: String,
         val output: PixelSize,
         val resolvedBackgroundArgb: Int,
+        val payloadPreserved: Boolean = false,
     ) : PrivateExecutionResult
     data class Failed(
         val reason: PrivateExecutionFailure,
@@ -42,6 +43,7 @@ internal class PrivateOutputExecutor(
     private val sources: ReviewSources,
     private val encoder: LosslessEncoder,
     private val processHeapLimitBytes: Long,
+    private val copyDirectory: File? = null,
 ) {
     @Synchronized
     fun execute(
@@ -63,6 +65,23 @@ internal class PrivateOutputExecutor(
         var candidate: File? = null
         var keepCandidate = false
         try {
+            if (copyDirectory != null) {
+                if (!copyDirectory.isDirectory && !copyDirectory.mkdirs()) throw IOException("Private copy directory unavailable")
+                val copied = File.createTempFile("payload-", ".${recipe.request.format.extension}", copyDirectory)
+                candidate = copied
+                if (sources.copyPayload(recipe, copied, cancelled) && PrivateCandidateVerifier.accepts(copied, recipe.request)) {
+                    if (cancelled.get()) return PrivateExecutionResult.Failed(PrivateExecutionFailure.CANCELLED)
+                    if (!sources.matchesFingerprint(recipe.sourceId, recipe.sourceSha256)) {
+                        return PrivateExecutionResult.Failed(PrivateExecutionFailure.SOURCE_CHANGED)
+                    }
+                    keepCandidate = true
+                    // No background is visible in this exact full-source copy.
+                    return PrivateExecutionResult.Ready(copied, recipe.codecRoute, recipe.sourceSha256,
+                        recipe.canvas, Color.TRANSPARENT, payloadPreserved = true)
+                }
+                copied.delete()
+                candidate = null
+            }
             original = sources.decodeOriginal(recipe.sourceId, recipe.orientedSource)
             if (original.config != Bitmap.Config.ARGB_8888 || original.colorSpace?.isSrgb != true) {
                 return PrivateExecutionResult.Failed(PrivateExecutionFailure.UNSUPPORTED_SOURCE)
@@ -113,6 +132,8 @@ internal class PrivateOutputExecutor(
             keepCandidate = true
             return PrivateExecutionResult.Ready(requireNotNull(candidate), recipe.codecRoute,
                 recipe.sourceSha256, recipe.canvas, background)
+        } catch (_: java.io.InterruptedIOException) {
+            return PrivateExecutionResult.Failed(if (cancelled.get()) PrivateExecutionFailure.CANCELLED else PrivateExecutionFailure.ENCODER_FAILED)
         } catch (_: IOException) {
             return PrivateExecutionResult.Failed(PrivateExecutionFailure.SOURCE_UNREADABLE)
         } catch (_: SecurityException) {
