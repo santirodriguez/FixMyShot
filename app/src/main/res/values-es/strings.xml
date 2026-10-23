@@ -25,7 +25,7 @@
     <string name="ratio_height">Proporción de alto</string>
     <string name="apply_custom_ratio">Aplicar proporción</string>
     <string name="preserve_content">Conservar todo el contenido · márgenes centrados</string>
-    <string name="selected_only">Aplicar formato y fondo solo a la imagen elegida</string>
+    <string name="selected_only">Editar solo la imagen seleccionada</string>
     <string name="format_png">PNG · sin pérdida</string>
     <string name="format_webp">WebP · sin pérdida</string>
     <string name="format_heic">HEIC · no disponible hasta verificarlo</string>
@@ -227,4 +227,8 @@
     <string name="native_check_result">%1$s · %2$d × %3$d</string>
     <string name="native_check_share_note">El informe incluye versión de Android, fabricante/modelo, versión de la aplicación, hash del APK instalado y resultados sintéticos. Elegí una aplicación para compartirlo.</string>
     <string name="native_check_disabled">Esperá a que termine la operación actual o la importación pendiente.</string>
+    <string name="edit_scope_batch">Editando los ajustes del lote</string>
+    <string name="edit_scope_image">Editando los ajustes de la imagen seleccionada</string>
+    <string name="destination_batch_notice">El destino y la proporción se aplican a todo el lote.</string>
+    <string name="edit_pending_notice">Aplicá los valores escritos antes de cambiar de imagen o de alcance.</string>
 </resources>

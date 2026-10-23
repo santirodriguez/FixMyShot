@@ -102,6 +102,8 @@ class ReviewSessionTest {
             val first = f.owner()
             instrumentation.runOnMainSync {
                 first.model.draft = draft; first.model.selectedId = b.id
+                first.model.changeEditScope(true)
+                assertTrue(first.model.editSelectedOnly)
                 for (value in 1..40) {
                     draft = draft.setBatch(draft.batch.copy(background = BackgroundChoice.CustomRgb(value)))
                     first.model.draft = draft; first.model.onDraftEdited()
@@ -109,6 +111,7 @@ class ReviewSessionTest {
             }
             await { runCatching { f.journal.read()?.draft == draft }.getOrDefault(false) }
             val saved = f.journal.read()!!
+            val previousEditorKey = first.model.editorSessionKey
             assertEquals(b.id, saved.selectedId)
             assertTrue(saved.draft.canUndo)
             assertFalse(f.journal.clearMatching(draft.setDestination(DestinationChoice.Custom.of(1, 1))))
@@ -117,6 +120,8 @@ class ReviewSessionTest {
             val restored = f.owner().model
             assertEquals(draft, restored.draft)
             assertEquals(b.id, restored.selectedId)
+            assertFalse(restored.editSelectedOnly)
+            assertNotEquals(previousEditorKey, restored.editorSessionKey)
             assertTrue(restored.sessionRestored)
             assertFalse(restored.exportState.isLocked)
             assertFalse(File(f.context.filesDir, "export-jobs").exists())
@@ -241,6 +246,8 @@ class ReviewSessionTest {
                     .addImages(listOf(a, b)).removeItem(b.id)
                 model.selectedId = a.id
                 model.onDraftEdited()
+                model.changeEditScope(true)
+                assertTrue(model.editSelectedOnly)
                 assertTrue(model.prepareExport())
                 model.startPreparedExport(f.context, port)
             }
@@ -248,11 +255,14 @@ class ReviewSessionTest {
             assertEquals(1, model.exportState.published); assertTrue(model.canFinishSession)
             assertTrue(f.file.exists())
             val published = requireNotNull(output).copyOf()
+            val previousEditorKey = model.editorSessionKey
             instrumentation.runOnMainSync { model.acknowledgePreviousExport(f.context) }
             await { model.exportState.phase == ExportUiPhase.IDLE }
             assertTrue(model.draft.workingSourceIds.isEmpty()); assertFalse(model.draft.canUndo)
             assertEquals(OutputFormat.PNG, model.draft.batch.format)
             assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
+            assertFalse(model.editSelectedOnly)
+            assertNotEquals(previousEditorKey, model.editorSessionKey)
             assertFalse(f.file.exists())
             for (image in listOf(a, b)) assertFalse(File(f.context.cacheDir, "review-sources/${image.id}.source").exists())
             assertArrayEquals(published, output); assertEquals(0, deletions)

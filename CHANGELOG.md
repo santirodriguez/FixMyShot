@@ -14,6 +14,7 @@ Real changes. No imaginary release history.
 
 ### Keep the work moving
 
+- Retain the edit scope and pending ratio/color/size fields through screen recreation, isolate pending fields by image/scope and label batch-wide destination changes.
 - Add editable draft recovery, one-step undo, foreground pause/continue and explicit remaining-item retry.
 - Show import progress and allow stopping after the current provider read, retaining completed images and separately counting untouched offers.
 - Keep provider runtime/cache-access failures typed so the import queue can finish without exposing private exception text.

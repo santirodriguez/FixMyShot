@@ -49,6 +49,12 @@ Keep implementation and technical documentation in English. Do not include priva
 
 ## Appearance and language
 
+### Review editing context
+
+The ViewModel retains the batch/selected-image scope and an editor-session token across Activity recreation. Only the small pending ratio, RGB, size and enlargement fields use Compose saved instance state, nested under that token, the active image/scope and the relevant applied value. Do not save sources, grants, plans or bitmaps in this state. Changing image/scope drops unapplied fields; applying a different value reseeds its fields. Custom-ratio fields start from the actual applied ratio. Destination remains batch-wide; per-image overrides remain authoritative.
+
+Discard/finish resets the editor token and scope. A fresh ViewModel also starts a fresh editor context, so journal restoration recovers applied settings without reviving old uncommitted fields. Removing the last image keeps the context while undo still owns sources. Keep scope changes and draft/removal callbacks guarded during import/share or blocked/locked work; selected-only callbacks must refuse a missing selection rather than editing the batch. Confirmation dialogs remain short-lived and are not restored. See [Compose state saving](https://developer.android.com/develop/ui/compose/state-saving) and [rememberSaveable](https://developer.android.com/reference/kotlin/androidx/compose/runtime/saveable/package-summary): restoration does not revalidate remembered inputs, so explicit composition keys define these boundaries.
+
 `settings/AppPreferences.kt` stores only theme in Preferences DataStore (1.1.7). AppCompat (1.7.1) owns language persistence on older Android. API33+ uses LocaleManager from the actual Activity context for selection and platform storage, through settings/AppLanguages.kt; no static delegate is used to find a possibly stale Activity service. Do not add a second language preference or persist metadata opt-out/output format as a new-session default. These stable versions deliberately fit the existing toolchain; they are not latest-version claims. Language resources remain offline and settings changes retain the ViewModel draft. The original flag vectors have provenance in THIRD_PARTY_NOTICES.
 
 ## Crop rendering

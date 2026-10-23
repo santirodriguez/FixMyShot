@@ -76,6 +76,9 @@ import org.cajapersonal.fixmyshot.export.BatchItemPhase
 internal fun ReviewScreen(
     draft: DraftSession,
     selectedId: String?,
+    editorSessionKey: String,
+    editSelectedOnly: Boolean,
+    onEditSelectedOnly: (Boolean) -> Unit,
     preview: Bitmap?,
     thumbnails: Map<String, Bitmap>,
     busy: Boolean,
@@ -132,7 +135,7 @@ internal fun ReviewScreen(
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
-    val editEnabled = !busy && !sessionRestoreBlocked && pendingImports == 0 && !exportState.isLocked
+    val editEnabled = !busy && !shareBusy && !sessionRestoreBlocked && pendingImports == 0 && !exportState.isLocked
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
     var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
@@ -293,11 +296,14 @@ internal fun ReviewScreen(
                     }
                 }
             }
-            ReviewControls(
-                draft = draft, plan = plan, enabled = editEnabled,
-                onDestination = onDestination, onFormat = onFormat, onBackground = onBackground, onFit = onFit, onSize = onSize,
-                onMetadata = onMetadata,
-            )
+            androidx.compose.runtime.key(editorSessionKey) {
+                ReviewControls(
+                    draft = draft, plan = plan, enabled = editEnabled,
+                    selectedOnly = editSelectedOnly, onSelectedOnly = onEditSelectedOnly,
+                    onDestination = onDestination, onFormat = onFormat, onBackground = onBackground,
+                    onFit = onFit, onSize = onSize, onMetadata = onMetadata,
+                )
+            }
             if (customCount > 0) {
                 Text(stringResource(R.string.batch_custom_count, customCount))
                 OutlinedButton(enabled = editEnabled, onClick = { confirmingBatchReset = draft }) {

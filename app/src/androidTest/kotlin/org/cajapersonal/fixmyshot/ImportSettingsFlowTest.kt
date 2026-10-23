@@ -121,6 +121,17 @@ class ImportSettingsFlowTest {
             assertEquals(32, image.orientedSize.width)
             assertEquals(48, image.orientedSize.height)
             val originalDraft = retained.draft
+            val editorKey = retained.editorSessionKey
+            scenario.onActivity { retained.changeEditScope(true) }
+            assertTrue(retained.editSelectedOnly)
+            // Exercise scope retention after import has settled, independently of opt-in locale work.
+            scenario.recreate()
+            scenario.onActivity { activity ->
+                assertSame(retained, ViewModelProvider(activity)[ReviewViewModel::class.java])
+                assertTrue(retained.editSelectedOnly)
+                assertEquals(editorKey, retained.editorSessionKey)
+                assertEquals(originalDraft, retained.draft)
+            }
             val localeDiagnostic = InstrumentationRegistry.getArguments().getString("localeDiagnostics") == "true"
             if (!localeDiagnostic) println("LOCALE_SWITCH_DIAGNOSTIC=NOT_RUN; deferred, enable localeDiagnostics=true explicitly")
             // Recurrent automatic locale switching is an opt-in diagnostic, not a passing claim.
@@ -188,10 +199,34 @@ class ImportSettingsFlowTest {
                     .apply { isAccessible = true }
                 update.invoke(activity, DraftSession().addImages(listOf(
                     DraftImage(id, "synthetic-$id", PixelSize(32, 48), false, contentSha256 = hash))))
+                model.changeEditScope(true)
+                assertTrue(model.editSelectedOnly)
+                val editorKey = model.editorSessionKey
+                val original = model.draft
+                val changed = original.setBatch(original.batch.copy(background = BackgroundChoice.Black))
+                model.isBusy = true
+                try {
+                    update.invoke(activity, changed)
+                    model.changeEditScope(false)
+                    assertEquals(original, model.draft)
+                    assertTrue(model.editSelectedOnly)
+                } finally { model.isBusy = false }
+                model.shareBusy = true
+                try {
+                    update.invoke(activity, changed)
+                    assertEquals(original, model.draft)
+                } finally { model.shareBusy = false }
+                model.enqueueImports(listOf(Uri.parse("content://synthetic/queued-edit-guard")))
+                try {
+                    update.invoke(activity, changed)
+                    assertEquals(original, model.draft)
+                } finally { model.clearPendingImports() }
                 val remove = MainActivity::class.java.getDeclaredMethod("removeSelected").apply { isAccessible = true }
                 remove.invoke(activity)
                 assertTrue(model.draft.images.isEmpty())
                 assertTrue(model.draft.canUndo)
+                assertTrue(model.editSelectedOnly)
+                assertEquals(editorKey, model.editorSessionKey)
                 assertTrue(file.exists())
                 update.invoke(activity, model.draft.undo())
                 assertEquals(id, model.draft.images.single().id)
@@ -211,8 +246,11 @@ class ImportSettingsFlowTest {
     private fun discardOwnedDraft(scenario: ActivityScenario<MainActivity>?) {
         scenario?.onActivity { activity ->
             val model = ViewModelProvider(activity)[ReviewViewModel::class.java]
+            val editorKey = model.editorSessionKey
             MainActivity::class.java.getDeclaredMethod("discardDraft", DraftSession::class.java)
                 .apply { isAccessible = true }.invoke(activity, model.draft)
+            assertFalse(model.editSelectedOnly)
+            assertNotEquals(editorKey, model.editorSessionKey)
         }
         val deadline = System.currentTimeMillis() + 10_000L
         val journal = File(app.filesDir, "review-session.json")

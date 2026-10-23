@@ -47,6 +47,22 @@ import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
 internal class ReviewViewModel : ViewModel() {
     var draft by mutableStateOf(DraftSession())
     var selectedId by mutableStateOf<String?>(null)
+    // Retained only with this ViewModel. Applied settings remain owned by the draft journal.
+    var editorSessionKey by mutableStateOf(java.util.UUID.randomUUID().toString())
+        private set
+    var editSelectedOnly by mutableStateOf(false)
+        private set
+
+    fun changeEditScope(value: Boolean) {
+        if (isBusy || shareBusy || sessionRestoreBlocked || pendingImportCount != 0 || exportState.isLocked) return
+        if (value && draft.images.none { it.id == selectedId }) return
+        editSelectedOnly = value
+    }
+
+    private fun resetEditorContext() {
+        editSelectedOnly = false
+        editorSessionKey = java.util.UUID.randomUUID().toString()
+    }
     var preview by mutableStateOf<Bitmap?>(null)
     var isBusy by mutableStateOf(false)
     var invalidImports by mutableStateOf(0)
@@ -509,6 +525,7 @@ internal class ReviewViewModel : ViewModel() {
                     if (saved || next?.token == token) {
                         if (finishedSession) {
                             draft = DraftSession()
+                            resetEditorContext()
                             selectedId = null
                             preview = null
                             clearThumbnails()
@@ -822,7 +839,11 @@ internal class ReviewViewModel : ViewModel() {
 
     fun onDraftEdited() {
         sessionExpired = false
-        if (draft.workingSourceIds.isEmpty()) { sessionRestored = false; sessionExpired = false }
+        if (draft.workingSourceIds.isEmpty()) {
+            sessionRestored = false
+            sessionExpired = false
+            resetEditorContext()
+        }
         checkpointDraft()
         selectedShareIds = emptySet()
         shareError = false

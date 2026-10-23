@@ -15,6 +15,8 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.key
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +43,8 @@ internal fun ReviewControls(
     draft: DraftSession,
     plan: PreviewPlan?,
     enabled: Boolean,
+    selectedOnly: Boolean,
+    onSelectedOnly: (Boolean) -> Unit,
     onDestination: (DestinationChoice) -> Unit,
     onFormat: (OutputFormat, Boolean) -> Unit,
     onBackground: (BackgroundChoice, Boolean) -> Unit,
@@ -49,11 +53,6 @@ internal fun ReviewControls(
     onMetadata: (MetadataPolicy, Boolean) -> Unit = { _, _ -> },
 ) {
     var chooseDestination by remember { mutableStateOf(false) }
-    var chooseFormat by remember { mutableStateOf(false) }
-    var chooseBackground by remember { mutableStateOf(false) }
-    var selectedOnly by remember { mutableStateOf(false) }
-    var ratioW by remember { mutableStateOf("9") }
-    var ratioH by remember { mutableStateOf("16") }
     val effective = if (selectedOnly) plan?.settings ?: draft.batch else draft.batch
     androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(stringResource(R.string.destination_heading), style = MaterialTheme.typography.titleMedium)
@@ -68,77 +67,99 @@ internal fun ReviewControls(
                     }
                 }
             }
-            Text(stringResource(R.string.custom_ratio_label), style = MaterialTheme.typography.bodyMedium)
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(ratioW, enabled = enabled, onValueChange = { ratioW = it.take(5).filter(Char::isDigit) },
-                    label = { Text(stringResource(R.string.ratio_width)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true, modifier = Modifier.weight(1f))
-                OutlinedTextField(ratioH, enabled = enabled, onValueChange = { ratioH = it.take(5).filter(Char::isDigit) },
-                    label = { Text(stringResource(R.string.ratio_height)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    singleLine = true, modifier = Modifier.weight(1f))
+            key(draft.destination) {
+                CustomRatioControl(draft.destination, enabled, onDestination)
             }
-            val numerator = ratioW.toIntOrNull()
-            val denominator = ratioH.toIntOrNull()
-            OutlinedButton(enabled = enabled && numerator != null && denominator != null && numerator in 1..10000 && denominator in 1..10000,
-                onClick = { onDestination(DestinationChoice.Custom.of(requireNotNull(numerator), requireNotNull(denominator))) }) {
-                Text(stringResource(R.string.apply_custom_ratio))
-            }
+            Text(stringResource(R.string.destination_batch_notice), style = MaterialTheme.typography.bodySmall)
             Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
                 value = selectedOnly, enabled = enabled, role = Role.Checkbox,
-                onValueChange = { selectedOnly = it }), verticalAlignment = Alignment.CenterVertically) {
+                onValueChange = onSelectedOnly), verticalAlignment = Alignment.CenterVertically) {
                 Checkbox(checked = selectedOnly, enabled = enabled, onCheckedChange = null)
                 Text(stringResource(R.string.selected_only))
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                val fit = effective.fit
-                androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CONTAIN,
-                    enabled = enabled, onClick = { onFit(FitMode.CONTAIN, selectedOnly) },
-                    label = { Text(stringResource(R.string.preserve_content)) })
-                androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CROP,
-                    enabled = enabled, onClick = { onFit(FitMode.CROP, selectedOnly) },
-                    label = { Text(stringResource(R.string.crop_mode)) })
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box {
-                    OutlinedButton(enabled = enabled, onClick = { chooseFormat = true }) {
-                        Text(formatLabel(effective.format))
+            Text(stringResource(if (selectedOnly) R.string.edit_scope_image else R.string.edit_scope_batch),
+                style = MaterialTheme.typography.titleSmall)
+            Text(stringResource(R.string.edit_pending_notice), style = MaterialTheme.typography.bodySmall)
+            // A new image/scope drops unapplied fields; recreation of the same scope restores them.
+            key(selectedOnly, if (selectedOnly) plan?.itemId else null) {
+                var chooseFormat by remember { mutableStateOf(false) }
+                var chooseBackground by remember { mutableStateOf(false) }
+                val settingsEnabled = enabled && (!selectedOnly || plan != null)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    val fit = effective.fit
+                    androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CONTAIN,
+                        enabled = settingsEnabled, onClick = { onFit(FitMode.CONTAIN, selectedOnly) },
+                        label = { Text(stringResource(R.string.preserve_content)) })
+                    androidx.compose.material3.FilterChip(modifier = Modifier.weight(1f), selected = fit == FitMode.CROP,
+                        enabled = settingsEnabled, onClick = { onFit(FitMode.CROP, selectedOnly) },
+                        label = { Text(stringResource(R.string.crop_mode)) })
+                }
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Box {
+                        OutlinedButton(enabled = settingsEnabled, onClick = { chooseFormat = true }) {
+                            Text(formatLabel(effective.format))
+                        }
+                        DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
+                            OutputFormat.entries.filter { it != OutputFormat.JXL }.forEach { format ->
+                                DropdownMenuItem(enabled = settingsEnabled, text = { Text(formatLabel(format)) },
+                                    onClick = { chooseFormat = false; onFormat(format, selectedOnly) })
+                            }
+                        }
                     }
-                    DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
-                        OutputFormat.entries.filter { it != OutputFormat.JXL }.forEach { format ->
-                            DropdownMenuItem(enabled = enabled, text = { Text(formatLabel(format)) },
-                                onClick = { chooseFormat = false; onFormat(format, selectedOnly) })
+                    Box {
+                        OutlinedButton(enabled = settingsEnabled, onClick = { chooseBackground = true }) {
+                            Text(backgroundLabel(effective.background))
+                        }
+                        DropdownMenu(expanded = chooseBackground, onDismissRequest = { chooseBackground = false }) {
+                            listOf(BackgroundChoice.Automatic, BackgroundChoice.White, BackgroundChoice.Black,
+                                BackgroundChoice.Transparent).forEach { choice ->
+                                DropdownMenuItem(enabled = settingsEnabled, text = { Text(backgroundLabel(choice)) },
+                                    onClick = { chooseBackground = false; onBackground(choice, selectedOnly) })
+                            }
                         }
                     }
                 }
-                Box {
-                    OutlinedButton(enabled = enabled, onClick = { chooseBackground = true }) {
-                        Text(backgroundLabel(effective.background))
-                    }
-                    DropdownMenu(expanded = chooseBackground, onDismissRequest = { chooseBackground = false }) {
-                        listOf(BackgroundChoice.Automatic, BackgroundChoice.White, BackgroundChoice.Black,
-                            BackgroundChoice.Transparent).forEach { choice ->
-                            DropdownMenuItem(enabled = enabled, text = { Text(backgroundLabel(choice)) },
-                                onClick = { chooseBackground = false; onBackground(choice, selectedOnly) })
-                        }
-                    }
+                CustomBackgroundControl(settingsEnabled, effective.background) {
+                    onBackground(it, selectedOnly)
                 }
+                OutputSizeControls(effective.size, settingsEnabled) { onSize(it, selectedOnly) }
+                Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                    value = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
+                    enabled = settingsEnabled, role = Role.Checkbox, onValueChange = {
+                            onMetadata(if (it) MetadataPolicy.REMOVE_IDENTIFYING else MetadataPolicy.PRESERVE_ALLOWLIST, selectedOnly)
+                        }), verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
+                        enabled = settingsEnabled, onCheckedChange = null)
+                    Text(stringResource(R.string.metadata_remove_option))
+                }
+                Text(stringResource(if (effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
+                    R.string.metadata_removed else R.string.metadata_preserve_warning),
+                    style = MaterialTheme.typography.bodySmall)
             }
-            CustomBackgroundControl(enabled, effective.background) {
-                onBackground(it, selectedOnly)
-            }
-            OutputSizeControls(effective.size, enabled) { onSize(it, selectedOnly) }
-            Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
-                value = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
-                enabled = enabled, role = Role.Checkbox, onValueChange = {
-                        onMetadata(if (it) MetadataPolicy.REMOVE_IDENTIFYING else MetadataPolicy.PRESERVE_ALLOWLIST, selectedOnly)
-                    }), verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(checked = effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING,
-                    enabled = enabled, onCheckedChange = null)
-                Text(stringResource(R.string.metadata_remove_option))
-            }
-            Text(stringResource(if (effective.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
-                R.string.metadata_removed else R.string.metadata_preserve_warning),
-                style = MaterialTheme.typography.bodySmall)
+    }
+}
+
+
+@Composable
+private fun CustomRatioControl(destination: DestinationChoice, enabled: Boolean,
+    onDestination: (DestinationChoice) -> Unit) {
+    val ratio = (destination as? DestinationChoice.Custom)?.ratio
+    var ratioW by rememberSaveable { mutableStateOf(ratio?.p?.toString() ?: "9") }
+    var ratioH by rememberSaveable { mutableStateOf(ratio?.q?.toString() ?: "16") }
+    Text(stringResource(R.string.custom_ratio_label), style = MaterialTheme.typography.bodyMedium)
+    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        OutlinedTextField(ratioW, enabled = enabled, onValueChange = { ratioW = it.take(5).filter(Char::isDigit) },
+            label = { Text(stringResource(R.string.ratio_width)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true, modifier = Modifier.weight(1f))
+        OutlinedTextField(ratioH, enabled = enabled, onValueChange = { ratioH = it.take(5).filter(Char::isDigit) },
+            label = { Text(stringResource(R.string.ratio_height)) }, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            singleLine = true, modifier = Modifier.weight(1f))
+    }
+    val numerator = ratioW.toIntOrNull()
+    val denominator = ratioH.toIntOrNull()
+    OutlinedButton(enabled = enabled && numerator != null && denominator != null && numerator in 1..10000 && denominator in 1..10000,
+        onClick = { onDestination(DestinationChoice.Custom.of(requireNotNull(numerator), requireNotNull(denominator))) }) {
+        Text(stringResource(R.string.apply_custom_ratio))
     }
 }
 

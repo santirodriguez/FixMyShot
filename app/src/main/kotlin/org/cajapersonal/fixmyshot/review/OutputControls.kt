@@ -18,7 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.key
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,9 +36,9 @@ import java.util.Locale
 
 @Composable
 internal fun CustomBackgroundControl(enabled: Boolean, background: BackgroundChoice,
-    onApply: (BackgroundChoice) -> Unit) {
+    onApply: (BackgroundChoice) -> Unit) = key(background) {
     val rgb = (background as? BackgroundChoice.CustomRgb)?.rgb
-    var hex by remember(rgb) { mutableStateOf(String.format(Locale.ROOT, "%06X", rgb ?: 0xFFFFFF)) }
+    var hex by rememberSaveable { mutableStateOf(String.format(Locale.ROOT, "%06X", rgb ?: 0xFFFFFF)) }
     val color = hex.takeIf { it.length == 6 }?.toIntOrNull(16)
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
         OutlinedTextField(value = hex, onValueChange = { value ->
@@ -55,11 +56,11 @@ internal fun CustomBackgroundControl(enabled: Boolean, background: BackgroundCho
 /** Editing these fields never changes the effective plan until the explicit Apply action. */
 @Composable
 internal fun OutputSizeControls(size: OutputSizeChoice, enabled: Boolean,
-    onApply: (OutputSizeChoice) -> Unit) {
+    onApply: (OutputSizeChoice) -> Unit) = key(size) {
     val exact = size as? OutputSizeChoice.Exact
-    var width by remember(exact?.canvas) { mutableStateOf(exact?.canvas?.width?.toString() ?: "1080") }
-    var height by remember(exact?.canvas) { mutableStateOf(exact?.canvas?.height?.toString() ?: "1920") }
-    var allowEnlargement by remember(exact?.allowEnlargement) { mutableStateOf(exact?.allowEnlargement ?: false) }
+    var width by rememberSaveable { mutableStateOf(exact?.canvas?.width?.toString() ?: "1080") }
+    var height by rememberSaveable { mutableStateOf(exact?.canvas?.height?.toString() ?: "1920") }
+    var allowEnlargement by rememberSaveable { mutableStateOf(exact?.allowEnlargement ?: false) }
     val w = width.toIntOrNull()
     val h = height.toIntOrNull()
     val valid = w != null && h != null && w > 0 && h > 0 && w.toLong() * h <= 24_000_000L

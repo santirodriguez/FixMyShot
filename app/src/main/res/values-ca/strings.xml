@@ -25,7 +25,7 @@
     <string name="ratio_height">Proporció d\'alçada</string>
     <string name="apply_custom_ratio">Aplica la proporció</string>
     <string name="preserve_content">Conserva tot el contingut · marges centrats</string>
-    <string name="selected_only">Aplica el format i el fons només a la imatge triada</string>
+    <string name="selected_only">Edita només la imatge seleccionada</string>
     <string name="format_png">PNG · sense pèrdua</string>
     <string name="format_webp">WebP · sense pèrdua</string>
     <string name="format_heic">HEIC · no disponible fins a la verificació</string>
@@ -227,4 +227,8 @@
     <string name="native_check_result">%1$s · %2$d × %3$d</string>
     <string name="native_check_share_note">L’informe inclou versió d’Android, fabricant/model, versió de l’aplicació, hash de l’APK instal·lat i resultats sintètics. Tria una aplicació per compartir-lo.</string>
     <string name="native_check_disabled">Espera que acabi l’operació actual o la importació pendent.</string>
+    <string name="edit_scope_batch">Editant els ajustos del lot</string>
+    <string name="edit_scope_image">Editant els ajustos de la imatge seleccionada</string>
+    <string name="destination_batch_notice">La destinació i la proporció s’apliquen a tot el lot.</string>
+    <string name="edit_pending_notice">Aplica els valors escrits abans de canviar d’imatge o d’abast.</string>
 </resources>

@@ -25,7 +25,7 @@
     <string name="ratio_height">Height ratio</string>
     <string name="apply_custom_ratio">Apply custom ratio</string>
     <string name="preserve_content">Keep all content · centered margins</string>
-    <string name="selected_only">Apply format and background only to selected image</string>
+    <string name="selected_only">Edit only the selected image</string>
     <string name="format_png">PNG · lossless</string>
     <string name="format_webp">WebP · lossless</string>
     <string name="format_heic">HEIC · unavailable until verified</string>
@@ -227,4 +227,8 @@
     <string name="native_check_result">%1$s · %2$d × %3$d</string>
     <string name="native_check_share_note">The report includes Android version, manufacturer/model, app version, installed APK hash and synthetic results. Choose an app to share it.</string>
     <string name="native_check_disabled">Wait for the current operation or queued import to finish.</string>
+    <string name="edit_scope_batch">Editing batch settings</string>
+    <string name="edit_scope_image">Editing selected image settings</string>
+    <string name="destination_batch_notice">Destination and aspect ratio apply to the whole batch.</string>
+    <string name="edit_pending_notice">Apply typed values before changing image or edit scope.</string>
 </resources>

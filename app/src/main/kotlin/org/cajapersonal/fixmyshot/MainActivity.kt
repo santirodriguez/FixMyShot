@@ -169,6 +169,9 @@ class MainActivity : AppCompatActivity() {
                     ReviewScreen(
                         draft = model.draft,
                         selectedId = model.selectedId,
+                        editorSessionKey = model.editorSessionKey,
+                        editSelectedOnly = model.editSelectedOnly,
+                        onEditSelectedOnly = model::changeEditScope,
                         preview = model.preview,
                         thumbnails = model.thumbnails,
                         busy = model.isBusy,
@@ -223,28 +226,30 @@ class MainActivity : AppCompatActivity() {
                             scheduleThumbnails(listOf(id))
                         },
                         onDestination = { value -> updateDraft(model.draft.setDestination(value)) },
-                        onFormat = { value, onlySelected ->
-                            val selected = model.selectedId
-                            updateDraft(if (onlySelected && selected != null) {
-                                val item = model.draft.images.first { it.id == selected }
-                                model.draft.editItem(selected, item.overrides.copy(format = ItemValue.Custom(value)))
+                        onFormat = format@{ value, onlySelected ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            if (onlySelected && item == null) return@format
+                            updateDraft(if (onlySelected && item != null) {
+                                model.draft.editItem(item.id, item.overrides.copy(format = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(format = value)))
                         },
-                        onBackground = { value, onlySelected ->
-                            val selected = model.selectedId
-                            updateDraft(if (onlySelected && selected != null) {
-                                val item = model.draft.images.first { it.id == selected }
-                                model.draft.editItem(selected, item.overrides.copy(background = ItemValue.Custom(value)))
+                        onBackground = background@{ value, onlySelected ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            if (onlySelected && item == null) return@background
+                            updateDraft(if (onlySelected && item != null) {
+                                model.draft.editItem(item.id, item.overrides.copy(background = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(background = value)))
                         },
-                        onSize = { value, onlySelected ->
+                        onSize = size@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            if (onlySelected && item == null) return@size
                             updateDraft(if (onlySelected && item != null) {
                                 model.draft.editItem(item.id, item.overrides.copy(size = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(size = value)))
                         },
-                        onMetadata = { value, onlySelected ->
+                        onMetadata = metadata@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            if (onlySelected && item == null) return@metadata
                             updateDraft(if (onlySelected && item != null) {
                                 model.draft.editItem(item.id, item.overrides.copy(metadata = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(metadata = value)))
@@ -263,8 +268,9 @@ class MainActivity : AppCompatActivity() {
                                 updateDraft(model.draft.reorder(ids))
                             }
                         },
-                        onFit = { value, onlySelected ->
+                        onFit = fit@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
+                            if (onlySelected && item == null) return@fit
                             updateDraft(if (onlySelected && item != null) {
                                 model.draft.editItem(item.id, item.overrides.copy(fit = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(fit = value)))
@@ -318,7 +324,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateDraft(value: DraftSession) {
-        if (model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
+        if (model.isBusy || model.shareBusy || model.pendingImportCount != 0 ||
+            model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
         val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()
@@ -430,7 +437,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun removeSelected() {
-        if (model.exportState.isLocked) return
+        if (model.isBusy || model.shareBusy || model.sessionRestoreBlocked ||
+            model.pendingImportCount != 0 || model.exportState.isLocked) return
         val id = model.selectedId ?: return
         updateDraft(model.draft.removeItem(id))
         model.removeThumbnail(id)
