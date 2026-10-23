@@ -127,6 +127,12 @@ timeout 4m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/batch-instrumentation.txt 2>&1
 batch_result=$?
 cat evidence/batch-instrumentation.txt
+# Retry/restart policy covers no-duplicate successes, uncertainty, OS locks and bounded journals.
+timeout 3m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.BatchRetryFlowTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/batch-retry-instrumentation.txt 2>&1
+batch_retry_result=$?
+cat evidence/batch-retry-instrumentation.txt
 # Prior-job discovery and item-journal reconciliation use synthetic app-owned files only.
 timeout 3m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.BatchRecoveryScannerTest,org.cajapersonal.fixmyshot.BatchRecoveryReconciliationTest,org.cajapersonal.fixmyshot.ReviewRecoveryUiTest,org.cajapersonal.fixmyshot.OutputRecoveryVerifierTest \
@@ -138,10 +144,11 @@ grep -q 'OK (4 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (7 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
-grep -q 'OK (3 tests)' evidence/export-flow-instrumentation.txt
+grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
+grep -q 'OK (6 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-recovery-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence
@@ -153,5 +160,6 @@ python3 scripts/check-heic-layout.py evidence
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
    "$review_result" -eq 0 && "$thumbnail_result" -eq 0 &&
    "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 &&
-   "$export_flow_result" -eq 0 && "$share_result" -eq 0 && "$import_settings_result" -eq 0 && "$batch_recovery_result" -eq 0 ]]
+   "$export_flow_result" -eq 0 && "$share_result" -eq 0 && "$import_settings_result" -eq 0 && "$batch_recovery_result" -eq 0 && "$batch_retry_result" -eq 0 ]]
+
 

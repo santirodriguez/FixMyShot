@@ -21,6 +21,7 @@ import org.cajapersonal.fixmyshot.export.OwnedOutputPort
 import org.cajapersonal.fixmyshot.review.ExportUiPhase
 import org.cajapersonal.fixmyshot.review.ReviewExportState
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
+import org.cajapersonal.fixmyshot.review.ReviewSources
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -68,10 +69,14 @@ class ReviewExportFlowTest {
         override fun delete(uri: Uri): Boolean = data.remove(uri.toString()) != null
     }
 
-    private class RecordingPort(private val delegate: OwnedOutputPort) : OwnedOutputPort by delegate {
+    private class RecordingPort(private val delegate: OwnedOutputPort,
+        private val failCreateNumber: Int = 0) : OwnedOutputPort by delegate {
         val created = mutableListOf<Uri>()
-        override fun create(name: String, mime: String): Uri? =
-            delegate.create(name, mime)?.also { created += it }
+        var createCalls = 0
+        override fun create(name: String, mime: String): Uri? {
+            if (++createCalls == failCreateNumber) throw java.io.IOException("Synthetic provider refusal")
+            return delegate.create(name, mime)?.also { created += it }
+        }
         fun deleteOwnOutputs() { created.forEach { runCatching { delegate.delete(it) } } }
     }
 
@@ -183,6 +188,65 @@ class ReviewExportFlowTest {
         }
     }
 
+    @Test fun restartedViewModelRestoresAndRetriesOnlyTheFailedMediaStoreItem() = withCleanup { files, owner ->
+        if (Build.VERSION.SDK_INT < 29) return@withCleanup
+        val (a, af) = stageSynthetic(Color.BLUE)
+        val (b, bf) = stageSynthetic(Color.GREEN)
+        files += af; files += bf
+        val port = RecordingPort(MediaStore29Port(app.contentResolver), failCreateNumber = 2)
+        val restoredOwner = Owner()
+        try {
+            val first = owner.model
+            checkEmptyExportHistory(first)
+            instrumentation.runOnMainSync {
+                first.draft = draftOf(a, b)
+                assertTrue(first.prepareExport())
+                first.startPreparedExport(app, port)
+            }
+            val before = waitForResult(first)
+            assertEquals(1, before.published)
+            assertEquals(1, before.failed)
+            assertTrue(before.retryReady)
+            val keptUri = before.items.first().uri
+            instrumentation.runOnMainSync {
+                assertTrue(first.prepareRetryExport())
+                first.destinationCancelled()
+                assertEquals(before.items, first.exportState.items)
+                assertTrue(first.exportState.retryReady)
+                owner.viewModelStore.clear()
+            }
+            val restored = restoredOwner.model
+            instrumentation.runOnMainSync { restored.checkPastExports(app) }
+            val deadline = System.currentTimeMillis() + 15_000L
+            while (restored.exportState.phase == ExportUiPhase.CHECKING_HISTORY && System.currentTimeMillis() < deadline) {
+                instrumentation.waitForIdleSync(); Thread.sleep(50)
+            }
+            assertEquals(ExportUiPhase.NEEDS_REVIEW, restored.exportState.phase)
+            assertTrue(restored.draft.images.isEmpty())
+            assertTrue(restored.exportState.canRestoreDraft)
+            assertEquals(1, restored.exportState.retryableIds.size)
+            instrumentation.runOnMainSync {
+                restored.restorePreviousDraft()
+                assertEquals(listOf(a.id, b.id), restored.draft.images.map { it.id })
+                assertEquals(DestinationChoice.Custom.of(1, 1), restored.draft.destination)
+                assertTrue(restored.prepareRetryExport())
+                restored.startPreparedExport(app, port)
+            }
+            val done = waitForResult(restored)
+            assertEquals(2, done.published)
+            assertEquals(0, done.failed + done.needsReview)
+            assertEquals(keptUri, done.items.first().uri)
+            assertEquals(3, port.createCalls) // one refusal, two successful creations in total
+            assertEquals(2, port.created.size)
+            assertTrue(done.retryableIds.isEmpty())
+            assertTrue(ReviewSources(app).matchesFingerprint(a.id, requireNotNull(a.contentSha256)))
+            assertTrue(ReviewSources(app).matchesFingerprint(b.id, requireNotNull(b.contentSha256)))
+        } finally {
+            instrumentation.runOnMainSync { restoredOwner.viewModelStore.clear() }
+            port.deleteOwnOutputs()
+        }
+    }
+
     @Test fun api29WritesOwnOutputToPicturesThenRemovesTestImage() = withCleanup { files, owner ->
         if (Build.VERSION.SDK_INT < 29) return@withCleanup
         val (image, file) = stageSynthetic(Color.MAGENTA)
@@ -227,3 +291,4 @@ class ReviewExportFlowTest {
         } finally { port.deleteOwnOutputs() }
     }
 }
+

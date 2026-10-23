@@ -16,6 +16,9 @@ internal data class ReviewExportState(
     val cancelRequested: Boolean = false,
     val previousJobs: Int = 0,
     val canAcknowledge: Boolean = false,
+    val retryableIds: Set<String> = emptySet(),
+    val retryReady: Boolean = false,
+    val canRestoreDraft: Boolean = false,
 ) {
     val total: Int get() = items.size
     val published: Int get() = items.count { it.phase == BatchItemPhase.PUBLISHED }
@@ -32,3 +35,4 @@ internal data class ReviewExportState(
             ReviewExportState(phase, snapshot.items.toList())
     }
 }
+

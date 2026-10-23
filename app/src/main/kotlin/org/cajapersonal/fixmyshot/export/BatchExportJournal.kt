@@ -55,7 +55,7 @@ internal class BatchExportJournal(private val file: File) {
         if (!file.exists() && !File(file.path + ".bak").exists()) return null
         try {
             val bytes = atomic.openRead().use { input ->
-                val content = input.readBytes()
+                val content = readJournalBytes(input, 65_536)
                 if (content.size > 65_536) throw IOException("Batch snapshot exceeds limit")
                 content
             }
@@ -114,3 +114,4 @@ internal class BatchExportJournal(private val file: File) {
         }
     }
 }
+

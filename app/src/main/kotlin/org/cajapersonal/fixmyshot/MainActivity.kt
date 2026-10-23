@@ -8,8 +8,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import androidx.core.view.WindowCompat
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
@@ -23,6 +21,7 @@ import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 import org.cajapersonal.fixmyshot.importing.IncomingImages
 import org.cajapersonal.fixmyshot.settings.AppPreferences
+import org.cajapersonal.fixmyshot.settings.AppLanguages
 import org.cajapersonal.fixmyshot.settings.AppTheme
 import org.cajapersonal.fixmyshot.settings.SettingsDialog
 import androidx.activity.compose.setContent
@@ -146,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                         catch (_: IOException) { settingsError = true }
                     } },
                     onLanguage = { tag ->
-                        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
+                        AppLanguages.select(this@MainActivity, tag)
                     },
                     onLink = { url -> openLink(url) },
                     onDismiss = { settingsOpen = false },
@@ -164,6 +163,8 @@ class MainActivity : AppCompatActivity() {
                         exportState = model.exportState,
                         onExport = { beginExport() },
                         onCancelExport = { model.cancelExport() },
+                        onRetryExport = { beginRetryExport() },
+                        onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
                         selectedShareIds = model.selectedShareIds,
                         shareBusy = model.shareBusy,
@@ -218,6 +219,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun beginExport() {
         if (!model.prepareExport()) return
+        chooseExportDestination()
+    }
+
+    private fun beginRetryExport() {
+        if (!model.prepareRetryExport()) return
+        chooseExportDestination()
+    }
+
+    private fun chooseExportDestination() {
         if (Build.VERSION.SDK_INT >= 29) {
             model.startPreparedExport(applicationContext, MediaStore29Port(contentResolver))
         } else {
@@ -381,4 +391,5 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 }
+
 

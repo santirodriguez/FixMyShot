@@ -10,6 +10,9 @@ import android.os.Handler
 import android.os.Looper
 import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
+import org.cajapersonal.fixmyshot.export.BatchCheckpoint
+import org.cajapersonal.fixmyshot.export.BatchRetryPolicy
+import org.cajapersonal.fixmyshot.export.ExportDraftJournal
 import org.cajapersonal.fixmyshot.export.BatchOutputCoordinator
 import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
@@ -109,6 +112,10 @@ internal class ReviewViewModel : ViewModel() {
     private val exportWorker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private var plannedDraft: DraftSession? = null
+    private var retryDraft: DraftSession? = null
+    private var plannedRetryToken: String? = null
+    private var plannedRetryIds: Set<String> = emptySet()
+    private var beforeDestination: ReviewExportState? = null
     private var lastAttemptDraft: DraftSession? = null
     private var cancelJob: AtomicBoolean? = null
     private var activeToken: String? = null
@@ -141,16 +148,50 @@ internal class ReviewViewModel : ViewModel() {
         } else found
     }
 
-    private fun showHistory(item: RecoveryItem?) {
+    private data class RetryDetails(val draft: DraftSession?, val ids: Set<String>)
+
+    /** Private bytes are read on the existing worker, never during composition. */
+    private fun retryDetails(context: Context, token: String?, snapshot: BatchCheckpoint?): RetryDetails {
+        if (token == null || snapshot == null) return RetryDetails(null, emptySet())
+        return try {
+            val folder = File(context.filesDir, "export-jobs/$token")
+            val frozen = ExportDraftJournal(File(folder, "draft.json")).read()?.takeIf { candidate ->
+                candidate.revision == snapshot.sessionRevision &&
+                    candidate.images.map { it.id to it.contentSha256 } ==
+                        snapshot.items.map { it.itemId to it.sourceSha256 }
+            }
+            RetryDetails(frozen, if (frozen == null) emptySet() else BatchRetryPolicy.eligible(folder, snapshot))
+        } catch (_: Exception) { RetryDetails(null, emptySet()) }
+    }
+
+    private fun showHistory(item: RecoveryItem?, details: RetryDetails) {
         selectedShareIds = emptySet()
         shareError = false
         reviewToken = item?.token
+        retryDraft = details.draft
         exportState = if (item == null) ReviewExportState() else ReviewExportState(
             phase = ExportUiPhase.NEEDS_REVIEW,
             items = item.snapshot?.items.orEmpty(),
             previousJobs = item.pendingCount,
             canAcknowledge = item.token != null,
+            retryableIds = details.ids,
+            canRestoreDraft = details.draft != null && draft.images.isEmpty(),
+            retryReady = details.draft?.let { ExportDraftJournal.same(draft, it) } == true && details.ids.isNotEmpty(),
         )
+    }
+
+    /** Deliberate restoration never replaces a non-empty newer draft or writes public output. */
+    fun restorePreviousDraft() {
+        val frozen = retryDraft ?: return
+        if (!exportState.canRestoreDraft || draft.images.isNotEmpty() || isBusy || shareBusy) return
+        draft = frozen
+        lastAttemptDraft = frozen
+        selectedId = frozen.images.firstOrNull()?.id
+        preview = null
+        clearThumbnails()
+        selectedShareIds = emptySet()
+        exportState = exportState.copy(canRestoreDraft = false,
+            retryReady = exportState.retryableIds.isNotEmpty())
     }
 
     /** A previous process may have published output even if its final callback was lost. */
@@ -162,16 +203,15 @@ internal class ReviewViewModel : ViewModel() {
         exportWorker.execute {
             val finding = try { scanHistory(app) }
                 catch (_: Exception) { RecoveryItem(null, null, 1) }
-            main.post {
-                inspectedHistoryResult(finding)
-            }
+            val details = retryDetails(app, finding?.token, finding?.snapshot)
+            main.post { inspectedHistoryResult(finding, details) }
         }
     }
 
-    private fun inspectedHistoryResult(finding: RecoveryItem?) {
+    private fun inspectedHistoryResult(finding: RecoveryItem?, details: RetryDetails) {
         inspectingPreviousJobs = false
         checkedPreviousJobs = true
-        if (activeToken == null) showHistory(finding)
+        if (activeToken == null) showHistory(finding, details)
     }
 
     /** Only an explicit UI action records that past outputs were reviewed. */
@@ -192,9 +232,10 @@ internal class ReviewViewModel : ViewModel() {
                 }
                 scanHistory(app)
             } catch (_: Exception) { RecoveryItem(null, null, 1) }
+            val details = retryDetails(app, next?.token, next?.snapshot)
             main.post {
                 if (activeToken == null && reviewToken == token) {
-                    if (saved || next?.token == token) showHistory(next) else {
+                    if (saved || next?.token == token) showHistory(next, details) else {
                         exportState = ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
                             previousJobs = 1)
                         reviewToken = null
@@ -221,31 +262,60 @@ internal class ReviewViewModel : ViewModel() {
             return false
         }
         plannedDraft = draft
+        plannedRetryToken = null
+        plannedRetryIds = emptySet()
+        beforeDestination = null
         exportState = ReviewExportState(ExportUiPhase.CHOOSING_FOLDER)
+        return true
+    }
+
+    fun prepareRetryExport(): Boolean {
+        val frozen = retryDraft ?: return false
+        val token = reviewToken ?: return false
+        if (!exportState.retryReady || exportState.retryableIds.isEmpty() || isBusy || shareBusy ||
+            activeToken != null || !ExportDraftJournal.same(draft, frozen) || exportState.phase !in setOf(
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.ERROR)) return false
+        plannedDraft = frozen
+        plannedRetryToken = token
+        plannedRetryIds = exportState.retryableIds.toSet()
+        beforeDestination = exportState
+        exportState = exportState.copy(phase = ExportUiPhase.CHOOSING_FOLDER, canAcknowledge = false)
         return true
     }
 
     fun destinationCancelled() {
         if (exportState.phase != ExportUiPhase.CHOOSING_FOLDER) return
         plannedDraft = null
-        exportState = ReviewExportState()
+        plannedRetryToken = null
+        plannedRetryIds = emptySet()
+        exportState = beforeDestination ?: ReviewExportState()
+        beforeDestination = null
     }
 
     fun destinationUnavailable() {
         if (exportState.phase != ExportUiPhase.CHOOSING_FOLDER) return
         plannedDraft = null
-        exportState = ReviewExportState(ExportUiPhase.ERROR)
+        plannedRetryToken = null
+        plannedRetryIds = emptySet()
+        exportState = beforeDestination?.copy(phase = ExportUiPhase.ERROR) ?: ReviewExportState(ExportUiPhase.ERROR)
+        beforeDestination = null
     }
 
     /** Called only from a real, explicit export click after destination authorization. */
     fun startPreparedExport(context: Context, port: OwnedOutputPort) {
         val frozen = plannedDraft ?: return
         if (exportState.phase != ExportUiPhase.CHOOSING_FOLDER) return
+        val retryToken = plannedRetryToken
+        val retryIds = plannedRetryIds
+        val priorResults = beforeDestination
         plannedDraft = null
+        plannedRetryToken = null
+        plannedRetryIds = emptySet()
+        beforeDestination = null
         selectedShareIds = emptySet()
         shareError = false
         lastAttemptDraft = frozen
-        val token = BatchOutputCoordinator.newToken()
+        val token = retryToken ?: BatchOutputCoordinator.newToken()
         activeToken = token
         val cancelled = AtomicBoolean(false)
         cancelJob = cancelled
@@ -254,7 +324,7 @@ internal class ReviewViewModel : ViewModel() {
         exportWorker.execute {
             val outcome = try {
                 val coordinator = BatchOutputCoordinator.forPort(app, port)
-                coordinator.start(frozen, token, cancelled) { checkpoint ->
+                val progress: (BatchCheckpoint) -> Unit = { checkpoint ->
                     main.post {
                         if (activeToken == token) {
                             exportState = ReviewExportState.fromCheckpoint(
@@ -263,14 +333,23 @@ internal class ReviewViewModel : ViewModel() {
                         }
                     }
                 }
+                if (retryToken == null) coordinator.start(frozen, token, cancelled, progress)
+                else coordinator.retry(token, retryIds, cancelled, progress)
             } catch (_: Exception) {
                 null
             }
+            val snapshot = when (outcome) {
+                is BatchRunResult.Finished -> outcome.snapshot
+                is BatchRunResult.Existing -> outcome.snapshot
+                is BatchRunResult.NeedsReview -> outcome.snapshot
+                else -> null
+            }
+            val details = retryDetails(app, token, snapshot)
             main.post {
                 if (activeToken != token) return@post
                 cancelJob = null
                 activeToken = null
-                reviewToken = if (outcome is BatchRunResult.Blocked) null else token
+                reviewToken = if (outcome is BatchRunResult.Blocked && retryToken == null) null else token
                 exportState = when (outcome) {
                     is BatchRunResult.Finished -> ReviewExportState.fromCheckpoint(
                         if (outcome.snapshot.items.any { it.phase == BatchItemPhase.CANCELLED })
@@ -285,11 +364,17 @@ internal class ReviewViewModel : ViewModel() {
                     is BatchRunResult.Existing ->
                         ReviewExportState.fromCheckpoint(ExportUiPhase.NEEDS_REVIEW, outcome.snapshot)
                             .copy(canAcknowledge = true, previousJobs = 1)
-                    is BatchRunResult.Blocked ->
-                        ReviewExportState(ExportUiPhase.BLOCKED, blocked = outcome.items)
-                    null -> ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
-                        canAcknowledge = true, previousJobs = 1)
+                    is BatchRunResult.Blocked -> priorResults?.copy(
+                        phase = ExportUiPhase.BLOCKED, blocked = outcome.items, retryReady = false)
+                        ?: ReviewExportState(ExportUiPhase.BLOCKED, blocked = outcome.items)
+                    null -> priorResults?.copy(phase = ExportUiPhase.NEEDS_REVIEW, retryReady = false)
+                        ?: ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
+                            canAcknowledge = true, previousJobs = 1)
                 }
+                retryDraft = details.draft
+                exportState = exportState.copy(retryableIds = details.ids,
+                    canRestoreDraft = details.draft != null && draft.images.isEmpty(),
+                    retryReady = details.draft?.let { ExportDraftJournal.same(draft, it) } == true && details.ids.isNotEmpty())
             }
         }
     }
@@ -401,4 +486,5 @@ internal class ReviewViewModel : ViewModel() {
         thumbnails = emptyMap()
     }
 }
+
 

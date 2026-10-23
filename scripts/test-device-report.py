@@ -138,8 +138,9 @@ if 'instrument' in args:
     batch = any('BatchOutputCoordinatorTest' in a for a in args)
     export_flow = any('ReviewExportFlowTest' in a for a in args)
     share_intents = any('ExportShareIntentsTest' in a for a in args)
+    batch_retry = any('BatchRetryFlowTest' in a for a in args)
     recovery = any('BatchRecoveryScannerTest' in a for a in args)
-    count = 1 if native else 3 if thumbnail else 7 if private_output else 10 if transaction else 5 if batch else 3 if export_flow else 4 if share_intents else 8 if recovery else 4
+    count = 1 if native else 3 if thumbnail else 7 if private_output else 10 if transaction else 5 if batch else 4 if export_flow else 6 if batch_retry else 4 if share_intents else 8 if recovery else 4
     print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
           ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:
@@ -183,4 +184,5 @@ elif 'cat' in args:
 
 if __name__ == '__main__':
     unittest.main()
+
 

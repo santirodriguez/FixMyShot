@@ -1,6 +1,5 @@
 package org.cajapersonal.fixmyshot.settings
 
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.layout.heightIn
@@ -21,6 +20,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -46,7 +46,7 @@ internal fun SettingsDialog(
     onLink: (String) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    val locale = AppCompatDelegate.getApplicationLocales().get(0)?.language.orEmpty()
+    val locale = AppLanguages.selected(LocalContext.current)
     AlertDialog(onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.settings_title)) },
         text = {
@@ -111,4 +111,5 @@ private fun Choice(label: String, selected: Boolean, enabled: Boolean,
         Text(label)
     }
 }
+
 

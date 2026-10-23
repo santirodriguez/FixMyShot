@@ -118,5 +118,9 @@
     <string name="crop_reset">Reset crop</string>
     <string name="crop_accept_position">Use repositioned crop</string>
     <string name="crop_unavailable">This crop cannot satisfy the selected ratio or size limit. Choose another ratio or keep all content.</string>
+    <string name="export_restore_draft">Restore previous export session</string>
+    <string name="export_retry_remaining">Retry remaining (%1$d)</string>
+    <string name="export_retry_notice">Only failed, cancelled or unstarted images are retried. Already saved images and outputs requiring review are kept.</string>
 </resources>
+
 

@@ -9,8 +9,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -23,6 +21,7 @@ import org.cajapersonal.fixmyshot.review.ReviewSources
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
 import org.cajapersonal.fixmyshot.settings.AppPreferences
 import org.cajapersonal.fixmyshot.settings.AppTheme
+import org.cajapersonal.fixmyshot.settings.AppLanguages
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
 import org.junit.Test
@@ -84,7 +83,7 @@ class ImportSettingsFlowTest {
             put(MediaStore.MediaColumns.IS_PENDING, 1)
         }
         val uri = requireNotNull(app.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values))
-        val oldLocales = AppCompatDelegate.getApplicationLocales()
+        val oldLocale = AppLanguages.selected(app)
         val stagedIds = mutableSetOf<String>()
         var scenario: ActivityScenario<MainActivity>? = null
         try {
@@ -120,9 +119,7 @@ class ImportSettingsFlowTest {
             assertEquals(48, image.orientedSize.height)
             val originalDraft = retained.draft
             for (tag in listOf("es", "ca", "")) {
-                instrumentation.runOnMainSync {
-                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
-                }
+                scenario.onActivity { activity -> AppLanguages.select(activity, tag) }
                 // LocaleManager schedules a configuration change asynchronously; idle on one
                 // looper turn does not prove that ActivityScenario has the updated Activity yet.
                 val systemLocales = Resources.getSystem().configuration.locales
@@ -136,7 +133,7 @@ class ImportSettingsFlowTest {
                     scenario.onActivity { applied = it.resources.configuration.locales[0].language == expected }
                     if (!applied) Thread.sleep(50)
                 }
-                assertTrue("Requested locale was not applied before the deadline: $expected", applied)
+                assertTrue("Requested locale not applied: expected=$expected, selected=${AppLanguages.selected(app)}", applied)
                 scenario.onActivity { activity ->
                     assertSame(retained, ViewModelProvider(activity)[ReviewViewModel::class.java])
                     assertEquals(originalDraft, retained.draft)
@@ -149,10 +146,11 @@ class ImportSettingsFlowTest {
             }
             assertTrue(ReviewSources(app).matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
         } finally {
-            instrumentation.runOnMainSync { AppCompatDelegate.setApplicationLocales(oldLocales) }
+            scenario?.onActivity { activity -> AppLanguages.select(activity, oldLocale) }
             scenario?.close()
             stagedIds.forEach { File(app.cacheDir, "review-sources/$it.source").delete() }
             app.contentResolver.delete(uri, null, null)
         }
     }
 }
+

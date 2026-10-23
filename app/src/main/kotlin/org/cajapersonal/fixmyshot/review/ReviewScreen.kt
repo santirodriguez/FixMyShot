@@ -92,6 +92,8 @@ internal fun ReviewScreen(
     onSettings: () -> Unit = {},
     onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
     onCrop: (CropFocus) -> Unit = {},
+    onRetryExport: () -> Unit = {},
+    onRestoreDraft: () -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -215,6 +217,17 @@ internal fun ReviewScreen(
             ExportShareControls(exportState, selectedShareIds, shareBusy, shareError,
                 onToggleShare, onShare)
         }
+        if (exportState.canRestoreDraft) {
+            OutlinedButton(onClick = onRestoreDraft, enabled = !busy && !shareBusy) {
+                Text(stringResource(R.string.export_restore_draft))
+            }
+        }
+        if (exportState.retryableIds.isNotEmpty() && exportState.canAcknowledge) {
+            Text(stringResource(R.string.export_retry_notice))
+            Button(onClick = onRetryExport, enabled = exportState.retryReady && !busy && !shareBusy) {
+                Text(stringResource(R.string.export_retry_remaining, exportState.retryableIds.size))
+            }
+        }
         if (exportState.previousJobs > 0 || exportState.canAcknowledge) {
             ExportJobNotice(exportState, onReviewedPrevious)
         }
@@ -308,4 +321,5 @@ private fun ExportShareControls(
     if (error) Text(stringResource(R.string.export_share_unavailable),
         color = MaterialTheme.colorScheme.error)
 }
+
 

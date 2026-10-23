@@ -118,5 +118,9 @@
     <string name="crop_reset">Restableix el retall</string>
     <string name="crop_accept_position">Fes servir el retall reposicionat</string>
     <string name="crop_unavailable">Aquest retall no pot complir la proporció o el límit de mida. Tria una altra proporció o conserva tot el contingut.</string>
+    <string name="export_restore_draft">Restaura la sessió d’exportació anterior</string>
+    <string name="export_retry_remaining">Torna a provar les pendents (%1$d)</string>
+    <string name="export_retry_notice">Només es tornen a provar les imatges fallides, cancel·lades o sense iniciar. Es conserven les ja desades i les sortides que cal revisar.</string>
 </resources>
+
 

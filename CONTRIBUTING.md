@@ -38,15 +38,24 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 ## Translations and reports
 
-Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (119 in the import/settings/crop implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
+Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (122 in the retry/recovery implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
 Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](docs/TESTING.md) for acceptance boundaries.
 
 
 ## Appearance and language
 
-`settings/AppPreferences.kt` stores only theme in Preferences DataStore (1.1.7). AppCompat (1.7.1) owns language persistence on older Android and synchronizes with platform per-app language settings on API33+. Do not add a second language preference or persist metadata opt-out/output format as a new-session default. These stable versions deliberately fit the existing toolchain; they are not latest-version claims. Language resources remain offline and settings changes retain the ViewModel draft. The original flag vectors have provenance in THIRD_PARTY_NOTICES.
+`settings/AppPreferences.kt` stores only theme in Preferences DataStore (1.1.7). AppCompat (1.7.1) owns language persistence on older Android. API33+ uses LocaleManager from the actual Activity context for selection and platform storage, through settings/AppLanguages.kt; no static delegate is used to find a possibly stale Activity service. Do not add a second language preference or persist metadata opt-out/output format as a new-session default. These stable versions deliberately fit the existing toolchain; they are not latest-version claims. Language resources remain offline and settings changes retain the ViewModel draft. The original flag vectors have provenance in THIRD_PARTY_NOTICES.
 
 ## Crop rendering
 
 Preserve-pixels crop freezes the source rectangle from CropPlanner in PrivateOutputRecipe. ReviewBitmapRenderer.drawContent maps that same rectangle from the sampled preview or full original into its destination. Integer-aligned 1:1 placements are unfiltered; actual fractional/scale changes are filtered once. The original staged image is never cropped in place. Contain stays the new-session default. Crop gestures and directional/zoom/reset controls change only the selected image transform; batch fit changes preserve per-image overrides. Exact-size crop/enlargement remains explicitly blocked by the existing review flag.
+
+
+## Export recovery and deliberate retry
+
+New jobs atomically persist ExportDraftJournal before batch publication can begin. It stores bounded, versioned private staged references and the exact destination/batch/per-item fields, including inheritance and crop/size/metadata policy. It excludes undo snapshots and image bytes. Restoration verifies catalog/revision/item/hash identity and never silently replaces a non-empty draft. Old jobs without this journal cannot be reconstructed from the current draft.
+
+BatchRetryPolicy permits only no-output states: a failed/cancelled/unstarted item with no URI and either no transaction receipt or a terminal failed/cancelled receipt with no remaining URI. Reserved, visible, published, indeterminate, corrupt or mismatched transactions are not retryable. Only a user-requested target set is reconsidered under the job's OS file lock. Published item positions/receipts remain; eligible terminal receipts are cleared only after durable explicit retry intent. New attempts get new output transaction names. OS locks release on process death; keep the lock-file inode after release so two writers cannot lock different inodes. No startup action creates, publishes or deletes external output.
+
+The grouped Android block includes the six-case BatchRetryFlowTest plus a real owned MediaStore/ViewModel restart/restore/retry case in ReviewExportFlowTest (now four). Keep collector and mock counts aligned. Journal readers now bound bytes before full allocation. Full mid-write crash/device/low-space/manual receiver and cleanup acceptance remain open.

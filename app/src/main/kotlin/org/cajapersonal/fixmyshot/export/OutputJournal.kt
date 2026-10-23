@@ -36,7 +36,7 @@ internal class OutputJournal(private val file: File) {
     @Synchronized fun read(): OutputRecord? {
         if (!file.exists() && !File(file.path + ".bak").exists()) return null
         try {
-            val data = atomic.openRead().use { it.readBytes() }
+            val data = atomic.openRead().use { readJournalBytes(it, 16_384) }
             if (data.size > 16_384) throw IOException("Journal too large")
             val json = JSONObject(data.toString(Charsets.UTF_8))
             if (json.getInt("schema") != 1) throw IOException("Unknown journal schema")
@@ -79,3 +79,4 @@ internal class OutputJournal(private val file: File) {
         atomic.delete()
     }
 }
+

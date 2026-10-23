@@ -142,3 +142,6 @@ profile=current
 
 Shared branding integration and bounded asynchronous-locale observation: one canonical icon for generated Android packaging and future store metadata; original supplied images moved without pixel changes; current full regression block includes crop/import/settings. Verify clean generated-resource build and the actual requested locale before its assertions.
 profile=current
+
+Functional retry/recovery batch: frozen export-session journal, explicit restore and safe remaining-item retry in place, preserved published outputs, OS locks and bounded journal reads; actual Activity LocaleManager on API33+. Require six retry policy cases and four export-flow cases including real owned MediaStore restart/restore/retry, together with all existing current-device regressions.
+profile=current

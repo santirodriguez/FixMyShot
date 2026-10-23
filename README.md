@@ -18,7 +18,9 @@ PNG and identifying-metadata removal remain new-session defaults. Original files
 
 Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Crop zoom reduces native output dimensions; it never silently enlarges them. Destination conflicts remain visible and block export until resolved.
 
-**Still incomplete:** exact-size crop/enlargement policy, full color/HDR/metadata-preservation policy, complete draft/process-death resume and explicit retry, native HEIC/AVIF and the bounded JPEG XL decision, external receiver and physical-device acceptance, accessibility/locale visual review and distribution readiness. The new import/settings and crop blocks require their own source-bound Android validation; earlier successful CI does not validate it. The complete implementation contract and recorded amendments are in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+**Still incomplete:** exact-size crop/enlargement policy, full color/HDR/metadata-preservation policy, unsaved-draft process-death restoration and complete cleanup/uncertain-output resolution, native HEIC/AVIF and the bounded JPEG XL decision, external receiver and physical-device acceptance, accessibility/locale visual review and distribution readiness. The new import/settings and crop blocks require their own source-bound Android validation; earlier successful CI does not validate it. The complete implementation contract and recorded amendments are in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+
+Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. New exports use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
 
 ## Development
 
@@ -33,4 +35,5 @@ The shared icon is [the canonical 512px asset](fastlane/metadata/android/en-US/i
 ## Author and license
 
 Created by Santiago Rodriguez. Source is licensed under GNU GPL version 3 only; see [LICENSE](LICENSE). Third-party source/build information is tracked in [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES).
+
 

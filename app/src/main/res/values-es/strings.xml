@@ -118,5 +118,9 @@
     <string name="crop_reset">Restablecer recorte</string>
     <string name="crop_accept_position">Usar recorte reposicionado</string>
     <string name="crop_unavailable">Este recorte no puede cumplir la proporción o el límite de tamaño. Elegí otra proporción o conservá todo el contenido.</string>
+    <string name="export_restore_draft">Restaurar la sesión de exportación anterior</string>
+    <string name="export_retry_remaining">Reintentar pendientes (%1$d)</string>
+    <string name="export_retry_notice">Solo se reintentan las imágenes fallidas, canceladas o sin iniciar. Se conservan las ya guardadas y las salidas que requieren revisión.</string>
 </resources>
+
 

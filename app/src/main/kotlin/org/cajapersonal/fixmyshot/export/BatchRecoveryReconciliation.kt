@@ -20,6 +20,11 @@ internal object BatchRecoveryReconciliation {
                 phase = BatchItemPhase.NEEDS_REVIEW, reason = "CHECK_OUTPUT")
         }
 
+        if (item.phase in setOf(BatchItemPhase.QUEUED, BatchItemPhase.ENCODING, BatchItemPhase.SAVING) &&
+            BatchRetryPolicy.safe(item, record)) {
+            return@mapIndexed item.copy(phase = BatchItemPhase.CANCELLED, reason = "INTERRUPTED")
+        }
+
         val matchedItem = record == null || record.itemId == item.itemId
         val matchedUri = record == null || item.uri == null || item.uri == record.uri
         val consistent = matchedItem && when (item.phase) {
@@ -61,3 +66,4 @@ internal object BatchRecoveryReconciliation {
             reason = reason)
     })
 }
+
