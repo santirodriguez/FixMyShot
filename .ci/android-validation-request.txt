@@ -139,3 +139,6 @@ profile=current
 
 Preserve-pixels crop block: explicit contain/crop, per-image drag/pinch/zoom/pan/reset, shared preview/original-output mapping, frozen source rectangle and native dimensions, destination minimum validation. Require updated core/renderer tests, seven private executor cases and the import/settings block in one current-device regression run.
 profile=current
+
+Shared branding integration and bounded asynchronous-locale observation: one canonical icon for generated Android packaging and future store metadata; original supplied images moved without pixel changes; current full regression block includes crop/import/settings. Verify clean generated-resource build and the actual requested locale before its assertions.
+profile=current

@@ -45,3 +45,13 @@ dependencies {
     androidTestCompileOnly(libs.heifwriter)
 }
 
+
+// One checked-in icon serves store metadata, documentation and Android resources.
+// Generated packaging copies stay under build/, never as a second committed PNG.
+val prepareBrandingResources by tasks.registering(Sync::class) {
+    from(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
+    into(layout.buildDirectory.dir("generated/branding/res/drawable-nodpi"))
+    rename { "brand_icon.png" }
+}
+android.sourceSets.getByName("main").res.srcDir(layout.buildDirectory.dir("generated/branding/res"))
+tasks.named("preBuild").configure { dependsOn(prepareBrandingResources) }

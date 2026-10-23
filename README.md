@@ -1,5 +1,7 @@
 # FixMyShot
 
+![FixMyShot](assets/branding/header.png)
+
 Screenshots, ready anywhere.
 
 FixMyShot is an Android application being built to prepare screenshots for publication: import, choose a destination, review and export a new copy. The default will preserve all content with minimal centered margins, use PNG and remove identifying metadata.
@@ -23,6 +25,10 @@ Explicit crop is now wired through drag/pinch plus zoom/directional/reset contro
 See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). At explicit batch validation checkpoints and pull requests to `main`, GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks; ordinary development commits do not launch the costly emulator matrix. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
 
 The intended first functional distribution is a GitHub prerelease with Obtainium support. There is no published release, production signing identity or deployed project website established by this bootstrap.
+
+## Artwork
+
+The shared icon is [the canonical 512px asset](fastlane/metadata/android/en-US/images/icon.png). The Android build packages it as a generated resource; README uses the shared header directly. Source art, supplied size variants and provenance are described in [ARTWORK](docs/ARTWORK.md). These illustrations are branding, not app screenshots. No F-Droid/Play listing is published or claimed ready.
 
 ## Author and license
 

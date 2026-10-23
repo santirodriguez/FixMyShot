@@ -44,3 +44,10 @@ functional release. Signing, publication and store submission are separate.
 Language flag vectors (US, Argentina and traditional Catalan Senyera)
 are original project drawings under GPL-3.0-only, generated from simple
 geometric flag motifs. No third-party flag artwork or emoji is bundled.
+
+FixMyShot branding supplied by the repository owner
+Imported from release/0.1.0 upload commit8f52caac29f450db3858c602e2011b5e0e3f8e47.
+All five PNGs are preserved byte-for-byte under canonical branding/store paths.
+The Android build creates a packaging copy from the single shared512px icon.
+See docs/ARTWORK.md for original names, hashes and intended uses.
+The retained monochrome capture-frame vector is original project artwork.

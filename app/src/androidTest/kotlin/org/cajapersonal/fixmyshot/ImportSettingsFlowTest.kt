@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot
 import android.content.ClipData
 import android.content.ContentValues
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
@@ -122,7 +123,20 @@ class ImportSettingsFlowTest {
                 instrumentation.runOnMainSync {
                     AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag))
                 }
-                instrumentation.waitForIdleSync()
+                // LocaleManager schedules a configuration change asynchronously; idle on one
+                // looper turn does not prove that ActivityScenario has the updated Activity yet.
+                val systemLocales = Resources.getSystem().configuration.locales
+                val expected = if (tag.isNotEmpty()) tag else
+                    (0 until systemLocales.size()).map { systemLocales[it].language }
+                        .firstOrNull { it in setOf("en", "es", "ca") } ?: "en"
+                var applied = false
+                val localeDeadline = System.currentTimeMillis() + 10_000L
+                while (!applied && System.currentTimeMillis() < localeDeadline) {
+                    instrumentation.waitForIdleSync()
+                    scenario.onActivity { applied = it.resources.configuration.locales[0].language == expected }
+                    if (!applied) Thread.sleep(50)
+                }
+                assertTrue("Requested locale was not applied before the deadline: $expected", applied)
                 scenario.onActivity { activity ->
                     assertSame(retained, ViewModelProvider(activity)[ReviewViewModel::class.java])
                     assertEquals(originalDraft, retained.draft)
