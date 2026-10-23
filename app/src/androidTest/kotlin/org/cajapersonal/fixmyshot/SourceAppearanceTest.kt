@@ -95,8 +95,10 @@ class SourceAppearanceTest {
         writeLong(0x89504e470d0a1a0aUL.toLong())
         chunk("IHDR", bytes { writeInt(64); writeInt(64); writeByte(depth); writeByte(2); write(byteArrayOf(0, 0, 0)) })
         profile?.let { chunk("iCCP", "Synthetic\u0000\u0000".toByteArray() + deflate(it)) }
-        extra?.let { chunk(it, byteArrayOf(0, 0, 0, 0)) }
-        chunk("IDAT", deflate(bytes { repeat(64) { writeByte(0); repeat(64) { pixel.forEach { channel -> writeByte(channel) } } } }))
+        extra?.let { chunk(it, if (it == "cICP") byteArrayOf(9, 16, 0, 1) else byteArrayOf(0, 0, 0, 0)) }
+        chunk("IDAT", deflate(bytes { repeat(64) { writeByte(0); repeat(64) {
+            pixel.forEach { channel -> if (depth == 16) writeShort(channel * 257) else writeByte(channel) }
+        } } }))
         chunk("IEND", byteArrayOf())
     }
     private fun fixture(data: ByteArray): Pair<DraftImage, File> {
@@ -228,12 +230,19 @@ class SourceAppearanceTest {
             val gainMap = jpeg.copyOfRange(0, 2) + bytes { writeShort(0xffe2); writeShort(6); writeBytes("MPF\u0000") } + jpeg.copyOfRange(2, jpeg.size)
             val sequence = jpeg.copyOf().apply { this[18] = 2 }
             val missingFlag = variants[2].copyOf().apply { this[20] = 0 }
-            for (data in listOf(png(badOffset), png(oversized), png(profile(SourceColor.DISPLAY_P3, 1.0)),
-                png(extra = "cICP"), png(depth = 16), gainMap, sequence, missingFlag)) {
+            for ((data, reason) in listOf(png(badOffset) to ReviewSources.Failure.MALFORMED,
+                png(oversized) to ReviewSources.Failure.MALFORMED,
+                png(profile(SourceColor.DISPLAY_P3, 1.0)) to ReviewSources.Failure.COLOR_UNSUPPORTED,
+                png(extra = "cICP") to ReviewSources.Failure.HDR_UNSUPPORTED,
+                png(depth = 16) to ReviewSources.Failure.HIGH_PRECISION,
+                gainMap to ReviewSources.Failure.HDR_UNSUPPORTED,
+                sequence to ReviewSources.Failure.MALFORMED, missingFlag to ReviewSources.Failure.MALFORMED)) {
                 file.writeBytes(data)
                 val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
                 BitmapFactory.decodeFile(file.path, bounds)
-                assertThrows(IOException::class.java) { SourceAppearance.inspect(file, bounds) }
+                assertEquals(reason, assertThrows(SourceAppearance.Rejected::class.java) {
+                    SourceAppearance.inspect(file, bounds)
+                }.reason)
             }
             assertThrows(IOException::class.java) { SourceAppearance.validateProfile(valid.copyOf(131)) }
         } finally { file.delete(); directory.deleteRecursively() }

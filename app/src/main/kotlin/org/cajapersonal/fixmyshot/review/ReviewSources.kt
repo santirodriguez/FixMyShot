@@ -26,7 +26,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 internal class ReviewSources(private val context: Context) {
     private val directory: File get() = File(context.cacheDir, "review-sources")
 
-    enum class Failure { UNREADABLE, UNSUPPORTED, TOO_LARGE, COLOR_UNSUPPORTED }
+    enum class Failure { UNREADABLE, UNSUPPORTED, TOO_LARGE, COLOR_UNSUPPORTED, MALFORMED, ANIMATED, HIGH_PRECISION, HDR_UNSUPPORTED }
     sealed interface ImportResult {
         data class Added(val image: DraftImage) : ImportResult
         data class Rejected(val reason: Failure) : ImportResult
@@ -76,7 +76,8 @@ internal class ReviewSources(private val context: Context) {
             }
             if (width.toLong() * height.toLong() > maxSourcePixels) return ImportResult.Rejected(Failure.TOO_LARGE)
             val color = try { SourceAppearance.inspect(target, bounds) }
-                catch (_: IOException) { return ImportResult.Rejected(Failure.COLOR_UNSUPPORTED) }
+                catch (error: SourceAppearance.Rejected) { return ImportResult.Rejected(error.reason) }
+                catch (_: IOException) { return ImportResult.Rejected(Failure.MALFORMED) }
             if (bounds.outMimeType == "image/png" && hasUnsupportedPngFeatures(target)) {
                 return ImportResult.Rejected(Failure.UNSUPPORTED)
             }

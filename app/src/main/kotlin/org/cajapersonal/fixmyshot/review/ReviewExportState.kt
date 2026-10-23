@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot.review
 import org.cajapersonal.fixmyshot.export.BatchCheckpoint
 import org.cajapersonal.fixmyshot.export.BatchItemCheckpoint
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
+import org.cajapersonal.fixmyshot.core.PrivateItemPreflight
 
 /** User-visible session status. Never embeds original URIs or image bytes. */
 internal enum class ExportUiPhase {
@@ -22,6 +23,7 @@ internal data class ReviewExportState(
     val outputBusy: Boolean = false,
     val outputError: Boolean = false,
     val pauseRequested: Boolean = false,
+    val blockedItems: List<PrivateItemPreflight> = emptyList(),
 ) {
     val total: Int get() = items.size
     val published: Int get() = items.count { it.phase == BatchItemPhase.PUBLISHED }

@@ -148,6 +148,8 @@ class MainActivity : AppCompatActivity() {
                         thumbnails = model.thumbnails,
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
+                        importReport = model.latestImport,
+                        onClearImportFeedback = model::clearImportFeedback,
                         previewUnavailable = model.previewUnavailable,
                         api = Build.VERSION.SDK_INT,
                         exportState = model.exportState,
@@ -402,7 +404,7 @@ class MainActivity : AppCompatActivity() {
         model.selectedId = null
         model.preview = null
         model.clearThumbnails()
-        model.invalidImports = 0
+        model.clearImportFeedback()
         ++generation
         model.releasePrivateSources(applicationContext, ids.toSet())
     }

@@ -46,6 +46,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
@@ -61,6 +63,7 @@ import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import org.cajapersonal.fixmyshot.core.SourceColor
+import org.cajapersonal.fixmyshot.core.PrivatePreparationBlock
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** Review plus deliberate, foreground-only batch export and bounded progress. */
@@ -113,6 +116,8 @@ internal fun ReviewScreen(
     onRetrySessionSave: () -> Unit = {},
     onDiscardUnavailableSession: () -> Unit = {},
     finishSessionOnReview: Boolean = false,
+    importReport: ImportReport? = null,
+    onClearImportFeedback: () -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -174,8 +179,13 @@ internal fun ReviewScreen(
         if (pendingImports > 0) Text(stringResource(R.string.import_waiting, pendingImports))
         if (importLimitExceeded) Text(stringResource(R.string.import_limit),
             color = MaterialTheme.colorScheme.error)
-        if (invalidImports > 0) Text(stringResource(R.string.import_skipped, invalidImports),
+        val otherImportFailures = (invalidImports - (importReport?.problems?.size ?: 0)).coerceAtLeast(0)
+        if (otherImportFailures > 0) Text(stringResource(R.string.import_skipped, otherImportFailures),
             color = MaterialTheme.colorScheme.error)
+        if (importReport != null) ImportFeedback(importReport, !busy, onClearImportFeedback)
+        else if (invalidImports > 0) TextButton(onClick = onClearImportFeedback, enabled = !busy) {
+            Text(stringResource(R.string.import_feedback_dismiss))
+        }
         if (draft.canUndo) OutlinedButton(onClick = onUndo, enabled = editEnabled) {
             Text(stringResource(R.string.undo_last))
         }
@@ -303,6 +313,24 @@ internal fun ReviewScreen(
             Text(stringResource(R.string.discard_session))
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
+        if (exportState.phase == ExportUiPhase.BLOCKED) {
+            exportState.blockedItems.forEach { blocked ->
+                val index = draft.images.indexOfFirst { it.id == blocked.itemId }
+                if (index >= 0) {
+                    OutlinedButton(onClick = { onSelect(blocked.itemId) }, enabled = editEnabled) {
+                        Text(stringResource(R.string.result_review_image, index + 1))
+                    }
+                    val flags = plans.firstOrNull { it.itemId == blocked.itemId }?.reviewFlags.orEmpty()
+                    if (PrivatePreparationBlock.REVIEW_CONFLICT in blocked.blocks && flags.isNotEmpty()) {
+                        flags.forEach { Text(reviewFlagLabel(it), color = MaterialTheme.colorScheme.error) }
+                    }
+                    blocked.blocks.filterNot { it == PrivatePreparationBlock.REVIEW_CONFLICT && flags.isNotEmpty() }
+                        .map(ResultFeedback::preflightReason).distinct().forEach { label ->
+                            Text(stringResource(label), color = MaterialTheme.colorScheme.error)
+                    }
+                }
+            }
+        }
         if (exportState.published > 0 && exportState.phase in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) {
             ExportShareControls(exportState, selectedShareIds, shareBusy || exportState.outputBusy, shareError,
@@ -367,7 +395,8 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
             ExportUiPhase.BLOCKED -> stringResource(headline, state.blocked)
             else -> stringResource(headline)
         }
-        Text(message, style = MaterialTheme.typography.titleSmall)
+        Text(message, style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
     }
     if (state.total > 0) {
         Text(stringResource(R.string.export_progress, state.processed, state.total),
@@ -384,19 +413,15 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
             }
             Text(stringResource(R.string.export_item_status, index + 1, stringResource(label)),
                 style = MaterialTheme.typography.bodySmall)
-            if (item.phase == BatchItemPhase.NEEDS_REVIEW) {
-                val reason = when (item.reason) {
-                    "OUTPUT_PRESENT_UNCERTAIN" -> R.string.export_output_present_uncertain
-                    "OUTPUT_MISSING" -> R.string.export_output_missing
-                    "OUTPUT_CHANGED" -> R.string.export_output_changed
-                    "OUTPUT_PENDING" -> R.string.export_output_pending
-                    "OUTPUT_UNVERIFIABLE" -> R.string.export_output_unverifiable
-                    else -> null
-                }
-                if (reason != null) {
-                    Text(stringResource(reason), style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.error)
-                }
+            val reason = ResultFeedback.exportReason(item)
+            if (reason != null) {
+                Text(stringResource(reason), style = MaterialTheme.typography.bodySmall,
+                    color = if (item.phase in setOf(BatchItemPhase.FAILED, BatchItemPhase.NEEDS_REVIEW))
+                        MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface)
+            }
+            if (state.canAcknowledge && state.retryReady && item.itemId in state.retryableIds &&
+                item.phase in setOf(BatchItemPhase.FAILED, BatchItemPhase.CANCELLED)) {
+                Text(stringResource(R.string.result_retry_available), style = MaterialTheme.typography.bodySmall)
             }
         }
     }
@@ -405,6 +430,29 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
             Text(stringResource(R.string.export_cancel_action))
         }
     }
+}
+
+@Composable
+private fun ImportFeedback(report: ImportReport, enabled: Boolean, onClear: () -> Unit) {
+    var expanded by remember(report) { mutableStateOf(false) }
+    Text(stringResource(R.string.import_feedback_summary, report.added, report.problems.size, report.ignored),
+        modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+        style = MaterialTheme.typography.bodySmall)
+    if (report.problems.isNotEmpty()) {
+        OutlinedButton(onClick = { expanded = !expanded }) {
+            Text(stringResource(if (expanded) R.string.import_feedback_hide else R.string.import_feedback_show))
+        }
+        if (expanded) {
+            Text(stringResource(R.string.import_feedback_order), style = MaterialTheme.typography.bodySmall)
+            report.problems.forEach { problem ->
+                Text(stringResource(R.string.import_feedback_item, problem.position),
+                    style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(ResultFeedback.importReason(problem.reason)),
+                    color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+    TextButton(onClick = onClear, enabled = enabled) { Text(stringResource(R.string.import_feedback_dismiss)) }
 }
 
 /** Selection is explicit; only committed outputs may be offered to another application. */

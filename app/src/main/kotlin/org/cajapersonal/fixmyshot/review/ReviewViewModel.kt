@@ -46,6 +46,8 @@ internal class ReviewViewModel : ViewModel() {
     var preview by mutableStateOf<Bitmap?>(null)
     var isBusy by mutableStateOf(false)
     var invalidImports by mutableStateOf(0)
+    var latestImport by mutableStateOf<ImportReport?>(null)
+        private set
     var previewUnavailable by mutableStateOf(false)
     var importLimitExceeded by mutableStateOf(false)
     var pendingImportCount by mutableStateOf(0)
@@ -159,7 +161,9 @@ internal class ReviewViewModel : ViewModel() {
                 if (discarded.isNotEmpty()) importWorker.execute {
                     discarded.forEach { sources.discard(it.id) }
                 }
-                invalidImports += staged.size - additions.size
+                val report = ImportReport.from(staged, additions.mapTo(mutableSetOf()) { it.id })
+                invalidImports += report.problems.size
+                latestImport = report
                 val updated = draft.addImages(additions)
                 val released = draft.workingSourceIds - updated.workingSourceIds
                 draft = updated
@@ -177,6 +181,9 @@ internal class ReviewViewModel : ViewModel() {
         pendingImportCount = 0
         importLimitExceeded = false
     }
+
+    /** Dismiss feedback only; this never discards a draft, pending import or source grant. */
+    fun clearImportFeedback() { latestImport = null; invalidImports = 0 }
 
     var exportState by mutableStateOf(ReviewExportState(ExportUiPhase.CHECKING_HISTORY))
         private set
@@ -422,7 +429,7 @@ internal class ReviewViewModel : ViewModel() {
                             sessionExpired = false
                             sessionSaveError = false
                             sessionRestoreBlocked = false
-                            invalidImports = 0
+                            clearImportFeedback()
                             importLimitExceeded = false
                             previewUnavailable = false
                             lastAttemptDraft = null
@@ -503,7 +510,8 @@ internal class ReviewViewModel : ViewModel() {
         }
         if (preparation.blockedCount > 0 || preparation.candidates.size != draft.images.size) {
             exportState = ReviewExportState(ExportUiPhase.BLOCKED,
-                blocked = maxOf(1, preparation.blockedCount))
+                blocked = maxOf(1, preparation.blockedCount),
+                blockedItems = preparation.items.filter { it.blocks.isNotEmpty() })
             return false
         }
         plannedDraft = draft
@@ -614,8 +622,8 @@ internal class ReviewViewModel : ViewModel() {
                         ReviewExportState.fromCheckpoint(ExportUiPhase.NEEDS_REVIEW, outcome.snapshot)
                             .copy(canAcknowledge = true, previousJobs = 1)
                     is BatchRunResult.Blocked -> priorResults?.copy(
-                        phase = ExportUiPhase.BLOCKED, blocked = outcome.items, retryReady = false)
-                        ?: ReviewExportState(ExportUiPhase.BLOCKED, blocked = outcome.items)
+                        phase = ExportUiPhase.BLOCKED, blocked = outcome.items, blockedItems = outcome.details, retryReady = false)
+                        ?: ReviewExportState(ExportUiPhase.BLOCKED, blocked = outcome.items, blockedItems = outcome.details)
                     null -> priorResults?.copy(phase = ExportUiPhase.NEEDS_REVIEW, retryReady = false)
                         ?: ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
                             canAcknowledge = true, previousJobs = 1)

@@ -114,6 +114,8 @@ class ImportSettingsFlowTest {
                 Thread.sleep(50)
             }
             assertEquals(1, retained.draft.images.size)
+            assertEquals(1, retained.latestImport!!.added)
+            assertTrue(retained.latestImport!!.problems.isEmpty())
             val image = retained.draft.images.single()
             stagedIds += image.id
             assertEquals(32, image.orientedSize.width)

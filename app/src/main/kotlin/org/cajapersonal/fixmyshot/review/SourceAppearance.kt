@@ -15,7 +15,8 @@ import kotlin.math.abs
 /** Bounded appearance descriptors, before the decoder can discard an invalid/unknown profile. */
 internal object SourceAppearance {
     private const val LIMIT = 64 * 1024
-    private fun invalid(): Nothing = throw IOException("Unsupported source appearance")
+    class Rejected(val reason: ReviewSources.Failure) : IOException("Unsupported source appearance")
+    private fun invalid(reason: ReviewSources.Failure = ReviewSources.Failure.MALFORMED): Nothing = throw Rejected(reason)
     private fun tag(bytes: ByteArray, offset: Int = 0, size: Int = 4) =
         bytes.copyOfRange(offset, offset + size).toString(Charsets.US_ASCII)
     private fun uint(bytes: ByteArray, offset: Int): Long =
@@ -37,13 +38,13 @@ internal object SourceAppearance {
         if (space == null) {
             // Untagged inputs keep the ordinary decoder's sRGB convention. A supplied profile
             // must actually be recognized; ignoring an unreadable profile is not conversion.
-            if (profile != null) invalid()
+            if (profile != null) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
             return SourceColor.SRGB
         }
         if (profile != null) validateDecodedProfile(profile, space)
         if (space.isSrgb) return SourceColor.SRGB
         if (profile == null || space !is ColorSpace.Rgb || space.transferParameters == null ||
-            (0..2).any { space.getMinValue(it) != 0f || space.getMaxValue(it) != 1f }) invalid()
+            (0..2).any { space.getMinValue(it) != 0f || space.getMaxValue(it) != 1f }) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
         val adapted = ColorSpace.adapt(space, ColorSpace.ILLUMINANT_D50) as ColorSpace.Rgb
         for ((name, result) in listOf(ColorSpace.Named.DISPLAY_P3 to SourceColor.DISPLAY_P3,
             ColorSpace.Named.ADOBE_RGB to SourceColor.ADOBE_RGB)) {
@@ -55,14 +56,14 @@ internal object SourceAppearance {
                 return result
             }
         }
-        invalid()
+        invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
     }
 
     /** Structural bounds are independent of the platform's profile parser. No profile text copies. */
     internal fun validateProfile(bytes: ByteArray) {
-        if (bytes.size !in 132..LIMIT || uint(bytes, 0) != bytes.size.toLong() || tag(bytes, 36) != "acsp" ||
-            tag(bytes, 16) != "RGB " || tag(bytes, 20) != "XYZ " ||
-            tag(bytes, 12) !in setOf("mntr", "scnr", "spac")) invalid()
+        if (bytes.size !in 132..LIMIT || uint(bytes, 0) != bytes.size.toLong() || tag(bytes, 36) != "acsp") invalid()
+        if (tag(bytes, 16) != "RGB " || tag(bytes, 20) != "XYZ " ||
+            tag(bytes, 12) !in setOf("mntr", "scnr", "spac")) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
         val count = uint(bytes, 128)
         if (count !in 1L..128L || 132L + count * 12 > bytes.size) invalid()
         val tags = mutableSetOf<String>()
@@ -78,12 +79,12 @@ internal object SourceAppearance {
             ranges += start to end
         }
         if (!tags.containsAll(setOf("rXYZ", "gXYZ", "bXYZ", "rTRC", "gTRC", "bTRC")) ||
-            tags.any { it.startsWith("A2B") || it.startsWith("B2A") }) invalid()
+            tags.any { it.startsWith("A2B") || it.startsWith("B2A") }) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
     }
 
     /** Reject platform fallback that silently ignores a supplied matrix/TRC profile. */
     private fun validateDecodedProfile(bytes: ByteArray, space: ColorSpace) {
-        if (space !is ColorSpace.Rgb || space.transferParameters == null) invalid()
+        if (space !is ColorSpace.Rgb || space.transferParameters == null) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
         val entries = (0 until uint(bytes, 128).toInt()).associate { index ->
             val row = 132 + index * 12
             tag(bytes, row) to bytes.copyOfRange(uint(bytes, row + 4).toInt(),
@@ -94,7 +95,7 @@ internal object SourceAppearance {
         for ((column, channel) in listOf("r", "g", "b").withIndex()) {
             val xyz = entries.getValue(channel + "XYZ")
             if (xyz.size != 20 || tag(xyz) != "XYZ ") invalid()
-            for (row in 0..2) if (abs(fixed(xyz, 8 + row * 4) - matrix[column * 3 + row]) >= 0.002) invalid()
+            for (row in 0..2) if (abs(fixed(xyz, 8 + row * 4) - matrix[column * 3 + row]) >= 0.002) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
             val curve = entries.getValue(channel + "TRC")
             fun decode(x: Double): Double = when (tag(curve)) {
                 "curv" -> {
@@ -127,11 +128,12 @@ internal object SourceAppearance {
                         else -> if (x >= p[4]) Math.pow(p[1] * x + p[2], g) + p[5] else p[3] * x + p[6]
                     }
                 }
-                else -> invalid()
+                else -> invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
             }
             for (step in 0..32) {
                 val expected = decode(step / 32.0)
-                if (!expected.isFinite() || abs(expected - space.eotf.applyAsDouble(step / 32.0)) >= 0.002) invalid()
+                if (!expected.isFinite()) invalid()
+                if (abs(expected - space.eotf.applyAsDouble(step / 32.0)) >= 0.002) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
             }
         }
     }
@@ -152,9 +154,12 @@ internal object SourceAppearance {
             if (chunks == 1) {
                 if (name != "IHDR" || length != 13L) invalid()
                 val header = ByteArray(13).also { input.readFully(it) }
-                if ((header[8].toInt() and 255) !in setOf(1, 2, 4, 8)) invalid()
+                val depth = header[8].toInt() and 255
+                if (depth == 16) invalid(ReviewSources.Failure.HIGH_PRECISION)
+                if (depth !in setOf(1, 2, 4, 8)) invalid()
             }
-            if (name in setOf("acTL", "fcTL", "fdAT", "cICP", "cLLI", "mDCV")) invalid()
+            if (name in setOf("acTL", "fcTL", "fdAT")) invalid(ReviewSources.Failure.ANIMATED)
+            if (name in setOf("cICP", "cLLI", "mDCV")) invalid(ReviewSources.Failure.HDR_UNSUPPORTED)
             if (name == "sRGB") { if (srgb || profile != null || pixels) invalid(); srgb = true }
             if (name == "iCCP") {
                 if (profile != null || srgb || pixels || length !in 4L..LIMIT.toLong()) invalid()
@@ -207,15 +212,16 @@ internal object SourceAppearance {
             if (length < 0 || length > input.length() - input.filePointer) invalid()
             val start = input.filePointer
             if (marker in setOf(0xc0, 0xc1, 0xc2)) {
-                if (length < 6 || input.readUnsignedByte() != 8) invalid()
+                if (length < 6) invalid()
+                if (input.readUnsignedByte() != 8) invalid(ReviewSources.Failure.HIGH_PRECISION)
                 input.skipBytes(4)
-                if (input.readUnsignedByte() !in setOf(1, 3)) invalid()
+                if (input.readUnsignedByte() !in setOf(1, 3)) invalid(ReviewSources.Failure.COLOR_UNSUPPORTED)
                 sof = true
             } else if (marker in 0xc0..0xcf && marker !in setOf(0xc4, 0xc8, 0xcc)) invalid()
             if (marker == 0xe2) {
                 val payload = ByteArray(length).also { input.readFully(it) }
                 // Multi-picture JPEG can carry an HDR gain map; do not flatten it.
-                if (length >= 4 && tag(payload) == "MPF\u0000") invalid()
+                if (length >= 4 && tag(payload) == "MPF\u0000") invalid(ReviewSources.Failure.HDR_UNSUPPORTED)
                 if (length >= 12 && tag(payload, 0, 12) == "ICC_PROFILE\u0000") {
                     if (length < 15) invalid()
                     val sequence = payload[12].toInt() and 255; val total = payload[13].toInt() and 255
@@ -229,7 +235,7 @@ internal object SourceAppearance {
                 val text = ByteArray(length).also { input.readFully(it) }.toString(Charsets.ISO_8859_1)
                 if (text.contains("http://ns.adobe.com/hdr-gain-map/") ||
                     text.contains("urn:iso:std:iso:ts:21496:") ||
-                    text.contains("http://ns.google.com/photos/1.0/container/")) invalid()
+                    text.contains("http://ns.google.com/photos/1.0/container/")) invalid(ReviewSources.Failure.HDR_UNSUPPORTED)
             }
             input.seek(start + length)
         }
@@ -248,11 +254,12 @@ internal object SourceAppearance {
             if (++chunks > 4096 || input.length() - input.filePointer < 8) invalid()
             val kind = readTag(); val length = Integer.reverseBytes(input.readInt()).toLong() and 0xffffffffL
             val end = input.filePointer + length + (length and 1L)
-            if (end > input.length() || kind in setOf("ANIM", "ANMF")) invalid()
+            if (end > input.length()) invalid()
+            if (kind in setOf("ANIM", "ANMF")) invalid(ReviewSources.Failure.ANIMATED)
             if (kind == "VP8X") {
                 if (chunks != 1 || length != 10L) invalid()
                 val flags = input.readUnsignedByte()
-                if (flags and 2 != 0) invalid()
+                if (flags and 2 != 0) invalid(ReviewSources.Failure.ANIMATED)
                 hasFlag = flags and 32 != 0
             }
             if (kind == "ICCP") {

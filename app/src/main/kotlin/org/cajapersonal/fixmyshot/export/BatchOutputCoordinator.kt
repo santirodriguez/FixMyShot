@@ -8,6 +8,7 @@ import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.core.PrivateBatchPreflight
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
+import org.cajapersonal.fixmyshot.core.PrivateItemPreflight
 import org.cajapersonal.fixmyshot.review.PrivateOutputExecutor
 import org.cajapersonal.fixmyshot.review.PrivateExecutionResult
 import org.cajapersonal.fixmyshot.review.ReviewSources
@@ -19,7 +20,7 @@ import java.util.UUID
 import java.util.concurrent.atomic.AtomicBoolean
 
 internal sealed interface BatchRunResult {
-    data class Blocked(val items: Int) : BatchRunResult
+    data class Blocked(val items: Int, val details: List<PrivateItemPreflight> = emptyList()) : BatchRunResult
     data class Existing(val snapshot: BatchCheckpoint) : BatchRunResult
     data class Finished(val snapshot: BatchCheckpoint) : BatchRunResult
     data class NeedsReview(val snapshot: BatchCheckpoint?) : BatchRunResult
@@ -129,7 +130,7 @@ internal class BatchOutputCoordinator(
         if (plan.blockedCount != 0 || plan.candidates.size != draft.images.size ||
             plan.revision != draft.revision ||
             plan.candidates.map { it.sourceId } != draft.images.map { it.id }) {
-            return BatchRunResult.Blocked(maxOf(plan.blockedCount, 1))
+            return BatchRunResult.Blocked(maxOf(plan.blockedCount, 1), plan.items.filter { it.blocks.isNotEmpty() })
         }
         if (!folder.isDirectory && !folder.mkdirs()) return BatchRunResult.NeedsReview(null)
         // OS locks expire on process death. A stale file alone must not permanently block recovery.

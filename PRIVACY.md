@@ -21,3 +21,6 @@ The current editable draft checkpoints private source references and settings lo
 
 
 Leaving the app requests a pause before the next export image, allowing the current bounded transaction to finish while the process lives. Continuing remaining images is explicit. After all images in a matching session are saved, Finish session removes that session’s private working copies and current/undo/recovery settings and starts with PNG/removal defaults. Public output remains in its selected destination. Other unresolved jobs retain their source protection; cleanup failures are visible. Output receipts and lock files currently remain for later retirement.
+
+
+The latest import notice keeps only received-order positions, counts and generic failure categories in memory. It contains no source names, URIs, image bytes or metadata, survives Activity recreation with the current ViewModel, and is replaced by the next completed import or dismissed/discarded/finished session. It is not saved as diagnostic history. Dismissing it removes feedback only; it does not delete sources or published copies. Export messages use a closed localized vocabulary rather than raw journal codes or exception text.

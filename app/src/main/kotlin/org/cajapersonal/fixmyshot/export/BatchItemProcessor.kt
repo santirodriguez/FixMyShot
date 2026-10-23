@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot.export
 import android.net.Uri
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
+import org.cajapersonal.fixmyshot.core.FailureCode
 import org.cajapersonal.fixmyshot.review.PrivateExecutionFailure
 import org.cajapersonal.fixmyshot.review.PrivateExecutionResult
 import java.io.File
@@ -33,9 +34,19 @@ internal class BatchItemProcessor(
             return BatchItemOutcome.Failed("ENCODER_FAILED")
         }
         if (result is PrivateExecutionResult.Failed) {
-            return if (cancelled.get() || result.reason == PrivateExecutionFailure.CANCELLED)
+            return if (cancelled.get() || result.reason == PrivateExecutionFailure.CANCELLED || result.codecFailure == FailureCode.CANCELLED)
                 BatchItemOutcome.Cancelled("CANCELLED")
-            else BatchItemOutcome.Failed(result.reason.name)
+            else BatchItemOutcome.Failed(if (result.reason != PrivateExecutionFailure.ENCODER_FAILED) result.reason.name
+                else when (result.codecFailure) {
+                    FailureCode.TIMEOUT -> "ENCODER_TIMEOUT"
+                    FailureCode.RESOURCE_LIMIT -> "RESOURCE_LIMIT"
+                    FailureCode.UNSUPPORTED_API, FailureCode.NOT_INTEGRATED, FailureCode.NATIVE_UNAVAILABLE -> "CODEC_UNAVAILABLE"
+                    FailureCode.INVALID_INPUT, FailureCode.UNSUPPORTED_ALPHA, FailureCode.COLOR_CONVERSION_REQUIRED -> "UNSUPPORTED_SOURCE"
+                    FailureCode.METADATA_POLICY_UNAVAILABLE -> "METADATA_UNAVAILABLE"
+                    FailureCode.INVALID_OUTPUT -> "INVALID_CANDIDATE"
+                    FailureCode.IO_ERROR -> "ENCODER_IO"
+                    else -> "ENCODER_FAILED"
+                })
         }
         val ready = result as PrivateExecutionResult.Ready
         val owned = try {
