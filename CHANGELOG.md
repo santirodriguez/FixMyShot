@@ -25,6 +25,9 @@ Real changes. No imaginary release history.
 - Integrate shared icon/header artwork, a redesigned product README and reusable release-note/build-receipt templates.
 - Commit the standard Gradle wrapper and resolved version locks; add a checked release ledger and offline source-metadata validation.
 - Make the selected-image scope and enlargement option full-row, labelled checkbox targets.
+- Keep only the latest queued preview during rapid edits, discard obsolete preview work and guard result delivery by image/revision.
+- Confirm session discard and bind discard/apply-to-all confirmations to the exact reviewed draft; changed batches require a fresh confirmation.
+- Make saved-output share choices full-row checkbox targets and announce the actual crop zoom to accessibility services.
 
 ### Still open
 

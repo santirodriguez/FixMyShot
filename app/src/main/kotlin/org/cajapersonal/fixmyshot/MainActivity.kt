@@ -50,17 +50,18 @@ import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
 import org.cajapersonal.fixmyshot.review.ReviewSources
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
+import org.cajapersonal.fixmyshot.review.LatestPreviewWorker
 import java.io.IOException
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
-    private val worker = Executors.newSingleThreadExecutor()
+    private val worker = LatestPreviewWorker()
     // A separate serial queue allows one main preview and one small thumbnail decode at most.
     private val thumbnailWorker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private lateinit var model: ReviewViewModel
     private lateinit var sources: ReviewSources
-    private var generation = 0L
+    @Volatile private var generation = 0L
     private val pendingThumbnails = mutableSetOf<String>()
 
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
@@ -246,7 +247,11 @@ class MainActivity : AppCompatActivity() {
                                 model.draft.editItem(item.id, item.overrides.copy(metadata = ItemValue.Custom(value)))
                             } else model.draft.setBatch(model.draft.batch.copy(metadata = value)))
                         },
-                        onApplyBatchToAll = { updateDraft(model.draft.applyBatchSettingsToAll(EditableField.entries.toSet()).draft) },
+                        onApplyBatchToAll = { expected ->
+                            if (!model.isBusy && model.pendingImportCount == 0 && model.draft == expected) {
+                                updateDraft(expected.applyBatchSettingsToAll(EditableField.entries.toSet()).draft)
+                            }
+                        },
                         onMoveSelected = { delta ->
                             val ids = model.draft.images.map { it.id }.toMutableList()
                             val index = ids.indexOf(model.selectedId)
@@ -268,7 +273,7 @@ class MainActivity : AppCompatActivity() {
                         },
                         onUndo = { updateDraft(model.draft.undo()) },
                         onRemove = { removeSelected() },
-                        onDiscard = { discardDraft() },
+                        onDiscard = { expected -> discardDraft(expected) },
                     )
                 }
             }
@@ -384,6 +389,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadPreview() {
         val token = ++generation
+        worker.cancelPending()
         val id = model.selectedId
         val image = model.draft.images.firstOrNull { it.id == id }
         val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
@@ -391,10 +397,12 @@ class MainActivity : AppCompatActivity() {
         model.previewUnavailable = false
         if (image == null || plan == null || plan.geometry == null) return
         worker.execute {
+            if (token != generation) return@execute
             var rendered: android.graphics.Bitmap? = null
             try {
                 val source = sources.decodeSample(image.id)
                 try {
+                    if (token != generation) return@execute
                     rendered = ReviewBitmapRenderer.preview(source, image.orientedSize, plan).image
                 } finally { source.recycle() }
             } catch (_: IOException) {
@@ -405,6 +413,10 @@ class MainActivity : AppCompatActivity() {
                 // A revoked provider grant cannot be assumed valid.
             }
             val candidate = rendered
+            if (token != generation) {
+                candidate?.recycle()
+                return@execute
+            }
             main.post {
                 if (!isDestroyed && token == generation && model.selectedId == id &&
                     model.draft.revision == plan.sessionRevision) {
@@ -422,8 +434,9 @@ class MainActivity : AppCompatActivity() {
         model.removeThumbnail(id)
     }
 
-    private fun discardDraft() {
-        if (model.exportState.isLocked) return
+    private fun discardDraft(expected: DraftSession) {
+        if (model.exportState.isLocked || model.isBusy || model.shareBusy || model.sessionRestoreBlocked ||
+            model.pendingImportCount > 0 || model.draft != expected) return
         val ids = model.draft.workingSourceIds
         model.clearPendingImports()
         model.draft = DraftSession()
@@ -433,6 +446,7 @@ class MainActivity : AppCompatActivity() {
         model.clearThumbnails()
         model.clearImportFeedback()
         ++generation
+        worker.cancelPending()
         model.releasePrivateSources(applicationContext, ids.toSet())
     }
 
@@ -455,7 +469,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         generation++
-        worker.shutdownNow()
+        worker.close()
         thumbnailWorker.shutdownNow()
         super.onDestroy()
     }

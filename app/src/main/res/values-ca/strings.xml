@@ -52,6 +52,8 @@
     <string name="undo_last">Desfés</string>
     <string name="remove_image">Elimina</string>
     <string name="discard_session">Descarta la sessió</string>
+    <string name="discard_session_confirmation">Vols descartar aquesta sessió i el seu historial de desfer? S’alliberaran les còpies privades que ja no calguin per recuperar treballs. Els originals i les còpies exportades no canvien.</string>
+    <string name="crop_zoom_control">Zoom del retall</string>
     <string name="export_not_ready">Exporta · properament</string>
     <string name="export_batch">Exporta %1$d imatges</string>
     <string name="export_destination_pictures">Destinació: Pictures/FixMyShot. Les imatges originals no es modifiquen.</string>

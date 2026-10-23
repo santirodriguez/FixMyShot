@@ -52,6 +52,8 @@
     <string name="undo_last">Undo</string>
     <string name="remove_image">Remove</string>
     <string name="discard_session">Discard session</string>
+    <string name="discard_session_confirmation">Discard this session and its undo history? Private working copies no longer needed for recovery will be released. Originals and exported copies stay unchanged.</string>
+    <string name="crop_zoom_control">Crop zoom</string>
     <string name="export_not_ready">Export · coming later</string>
     <string name="export_batch">Export %1$d images</string>
     <string name="export_destination_pictures">Save location: Pictures/FixMyShot. Originals are not changed.</string>

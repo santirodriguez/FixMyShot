@@ -52,6 +52,8 @@
     <string name="undo_last">Deshacer</string>
     <string name="remove_image">Quitar</string>
     <string name="discard_session">Descartar sesión</string>
+    <string name="discard_session_confirmation">¿Querés descartar esta sesión y su historial de deshacer? Se liberarán las copias privadas que ya no se necesiten para recuperar trabajos. Los originales y las copias exportadas no cambian.</string>
+    <string name="crop_zoom_control">Zoom del recorte</string>
     <string name="export_not_ready">Exportar · próximamente</string>
     <string name="export_batch">Exportar %1$d imágenes</string>
     <string name="export_destination_pictures">Destino: Pictures/FixMyShot. Los originales no se modifican.</string>

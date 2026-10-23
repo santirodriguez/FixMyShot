@@ -13,6 +13,9 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
 import org.cajapersonal.fixmyshot.core.CropFocus
@@ -45,9 +48,15 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
         min(64.0, min(base.visibleSource.width / ratio.p, base.visibleSource.height / ratio.q)).coerceAtLeast(1.0)
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(stringResource(R.string.crop_notice))
-        Text(stringResource(R.string.crop_zoom, (focus.zoom * 100).roundToInt()))
+        val zoomDescription = stringResource(R.string.crop_zoom, (focus.zoom * 100).roundToInt())
+        val zoomLabel = stringResource(R.string.crop_zoom_control)
+        Text(zoomDescription)
         if (maxZoom > 1.0) Slider(value = focus.zoom.toFloat().coerceIn(1f, maxZoom.toFloat()),
             onValueChange = { onCrop(focus.copy(zoom = it.toDouble())) },
+            modifier = Modifier.semantics {
+                contentDescription = zoomLabel
+                stateDescription = zoomDescription
+            },
             valueRange = 1f..maxZoom.toFloat(), enabled = enabled)
         val dx = (geometry?.visibleSource?.width ?: base.visibleSource.width) / image.orientedSize.width * 0.1
         val dy = (geometry?.visibleSource?.height ?: base.visibleSource.height) / image.orientedSize.height * 0.1

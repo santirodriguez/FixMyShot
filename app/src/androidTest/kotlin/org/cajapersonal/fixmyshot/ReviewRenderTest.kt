@@ -12,15 +12,65 @@ import org.cajapersonal.fixmyshot.core.EditSettings
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
+import org.cajapersonal.fixmyshot.review.LatestPreviewWorker
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.Collections
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicBoolean
 
 /** No external images, gallery, export or physical-device acceptance implied. */
 @RunWith(AndroidJUnit4::class)
 class ReviewRenderTest {
+    @Test fun previewBurstKeepsOnlyTheLatestPendingTask() {
+        val worker = LatestPreviewWorker()
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val finished = CountDownLatch(1)
+        val seen = Collections.synchronizedList(mutableListOf<Int>())
+        try {
+            worker.execute {
+                started.countDown()
+                try { release.await(); seen.add(0) }
+                catch (_: InterruptedException) { Thread.currentThread().interrupt() }
+            }
+            assertTrue(started.await(5, TimeUnit.SECONDS))
+            for (value in 1..1000) worker.execute {
+                seen.add(value)
+                if (value == 1000) finished.countDown()
+            }
+            release.countDown()
+            assertTrue(finished.await(5, TimeUnit.SECONDS))
+            assertEquals(listOf(0, 1000), synchronized(seen) { seen.toList() })
+        } finally { release.countDown(); worker.close() }
+    }
+
+    @Test fun closingPreviewWorkInterruptsRunningAndDropsPendingAndNewTasks() {
+        val worker = LatestPreviewWorker()
+        val started = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val stopped = CountDownLatch(1)
+        val discardedRan = AtomicBoolean(false)
+        try {
+            worker.execute {
+                started.countDown()
+                try { release.await() }
+                catch (_: InterruptedException) { Thread.currentThread().interrupt() }
+                finally { stopped.countDown() }
+            }
+            assertTrue(started.await(5, TimeUnit.SECONDS))
+            worker.execute { discardedRan.set(true) }
+            worker.close()
+            assertTrue(stopped.await(5, TimeUnit.SECONDS))
+            worker.execute { discardedRan.set(true) }
+            assertFalse(discardedRan.get())
+        } finally { release.countDown(); worker.close() }
+    }
+
     private fun plan(source: PixelSize, settings: EditSettings, destination: String): org.cajapersonal.fixmyshot.core.PreviewPlan =
         DraftSession(destination = DestinationChoice.Preset(destination), batch = settings)
             .addImages(listOf(DraftImage("synthetic", "synthetic-only", source, false))).plans(26).single()

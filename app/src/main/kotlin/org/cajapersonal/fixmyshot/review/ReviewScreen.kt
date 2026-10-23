@@ -16,11 +16,13 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -50,6 +52,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
@@ -98,7 +101,7 @@ internal fun ReviewScreen(
     onResetSelected: () -> Unit,
     onUndo: () -> Unit,
     onRemove: () -> Unit,
-    onDiscard: () -> Unit,
+    onDiscard: (DraftSession) -> Unit,
     importLimitExceeded: Boolean = false,
     pendingImports: Int = 0,
     onSettings: () -> Unit = {},
@@ -111,7 +114,7 @@ internal fun ReviewScreen(
     onConfirmOutput: (String) -> Unit = {},
     onRemovePendingOutput: (String) -> Unit = {},
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
-    onApplyBatchToAll: () -> Unit = {},
+    onApplyBatchToAll: (DraftSession) -> Unit = {},
     onMoveSelected: (Int) -> Unit = {},
     onMetadata: (MetadataPolicy, Boolean) -> Unit = { _, _ -> },
     sessionRestored: Boolean = false,
@@ -130,18 +133,33 @@ internal fun ReviewScreen(
     val editEnabled = !busy && !sessionRestoreBlocked && pendingImports == 0 && !exportState.isLocked
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
     var removingPending by remember { mutableStateOf<String?>(null) }
-    var confirmingBatchReset by remember { mutableStateOf(false) }
+    var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
+    var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
-    if (confirmingBatchReset) AlertDialog(
-        onDismissRequest = { confirmingBatchReset = false },
+    val batchResetDraft = confirmingBatchReset
+    if (batchResetDraft != null && batchResetDraft == draft && editEnabled) AlertDialog(
+        onDismissRequest = { confirmingBatchReset = null },
         title = { Text(stringResource(R.string.batch_apply_all)) },
         text = { Text(stringResource(R.string.batch_apply_explanation, customCount)) },
         confirmButton = { TextButton(onClick = {
-            confirmingBatchReset = false
-            onApplyBatchToAll()
+            confirmingBatchReset = null
+            onApplyBatchToAll(batchResetDraft)
         }) { Text(stringResource(R.string.batch_apply_all)) } },
-        dismissButton = { TextButton(onClick = { confirmingBatchReset = false }) {
+        dismissButton = { TextButton(onClick = { confirmingBatchReset = null }) {
+            Text(stringResource(R.string.export_keep_cancel))
+        } },
+    )
+    val discardedDraft = confirmingDiscard
+    if (discardedDraft != null && discardedDraft == draft && editEnabled && !shareBusy) AlertDialog(
+        onDismissRequest = { confirmingDiscard = null },
+        title = { Text(stringResource(R.string.discard_session)) },
+        text = { Text(stringResource(R.string.discard_session_confirmation)) },
+        confirmButton = { TextButton(onClick = {
+            confirmingDiscard = null
+            onDiscard(discardedDraft)
+        }) { Text(stringResource(R.string.discard_session)) } },
+        dismissButton = { TextButton(onClick = { confirmingDiscard = null }) {
             Text(stringResource(R.string.export_keep_cancel))
         } },
     )
@@ -273,7 +291,7 @@ internal fun ReviewScreen(
             )
             if (customCount > 0) {
                 Text(stringResource(R.string.batch_custom_count, customCount))
-                OutlinedButton(enabled = editEnabled, onClick = { confirmingBatchReset = true }) {
+                OutlinedButton(enabled = editEnabled, onClick = { confirmingBatchReset = draft }) {
                     Text(stringResource(R.string.batch_apply_all))
                 }
             }
@@ -331,7 +349,8 @@ internal fun ReviewScreen(
                 }
             }
         }
-        if (draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = onDiscard, enabled = editEnabled) {
+        if (draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = { confirmingDiscard = draft },
+            enabled = editEnabled && !shareBusy) {
             Text(stringResource(R.string.discard_session))
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
@@ -506,10 +525,12 @@ private fun ExportShareControls(
     }
     state.items.forEachIndexed { index, item ->
         if (item.phase == BatchItemPhase.PUBLISHED && item.uri != null) {
-            Row(verticalAlignment = Alignment.CenterVertically,
+            Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                    value = item.itemId in selected, enabled = !busy, role = Role.Checkbox,
+                    onValueChange = { onToggle(item.itemId) }), verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Checkbox(checked = item.itemId in selected, enabled = !busy,
-                    onCheckedChange = { onToggle(item.itemId) })
+                    onCheckedChange = null)
                 Text(stringResource(R.string.export_share_item, index + 1))
             }
         }
