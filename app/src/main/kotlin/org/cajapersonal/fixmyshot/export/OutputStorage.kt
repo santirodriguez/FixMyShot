@@ -3,6 +3,8 @@ package org.cajapersonal.fixmyshot.export
 import android.system.Os
 import android.system.OsConstants
 import android.system.ErrnoException
+import android.os.StatFs
+import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
@@ -10,6 +12,13 @@ import java.io.OutputStream
 /** Advisory only; pipes, virtual/closed descriptors and unavailable statistics stay unknown. */
 internal object OutputStorage {
     private const val HEADROOM = 16L * 1024 * 1024
+
+    /** Minimum private working reserve only, not an estimate/reservation of the encoded file size. */
+    fun hasDirectoryHeadroom(directory: File): Boolean {
+        val available = try { StatFs(directory.absolutePath).availableBytes }
+            catch (_: Exception) { return true }
+        return available < 0 || available >= HEADROOM
+    }
 
     fun availableBytes(stream: OutputStream): Long? {
         if (stream !is FileOutputStream) return null

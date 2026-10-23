@@ -15,13 +15,14 @@ import org.cajapersonal.fixmyshot.core.MetadataPolicy
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.core.PrivateOutputRecipe
+import org.cajapersonal.fixmyshot.export.OutputStorage
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicBoolean
 
 enum class PrivateExecutionFailure {
     STALE_PLAN, SOURCE_CHANGED, SOURCE_UNREADABLE, UNSUPPORTED_SOURCE,
-    RESOURCE_LIMIT, CANCELLED, ENCODER_FAILED, INVALID_CANDIDATE
+    RESOURCE_LIMIT, PRIVATE_STORAGE_LOW, CANCELLED, ENCODER_FAILED, INVALID_CANDIDATE
 }
 
 sealed interface PrivateExecutionResult {
@@ -48,6 +49,7 @@ internal class PrivateOutputExecutor(
     private val encoder: LosslessEncoder,
     private val processHeapLimitBytes: Long,
     private val copyDirectory: File? = null,
+    private val hasWorkingSpace: (File) -> Boolean = OutputStorage::hasDirectoryHeadroom,
 ) {
     @Synchronized
     fun execute(
@@ -71,6 +73,9 @@ internal class PrivateOutputExecutor(
         try {
             if (copyDirectory != null) {
                 if (!copyDirectory.isDirectory && !copyDirectory.mkdirs()) throw IOException("Private copy directory unavailable")
+                if (!hasWorkingSpace(copyDirectory)) {
+                    return PrivateExecutionResult.Failed(PrivateExecutionFailure.PRIVATE_STORAGE_LOW)
+                }
                 val copied = File.createTempFile("payload-", ".${recipe.request.format.extension}", copyDirectory)
                 candidate = copied
                 if (sources.copyPayload(recipe, copied, cancelled) && PrivateCandidateVerifier.accepts(copied, recipe.request)) {
@@ -123,6 +128,8 @@ internal class PrivateOutputExecutor(
             when (val encoded = encoder.encode(rendered, pixelRequest, cancelled, 120_000)) {
                 is EncodeResult.Failed -> return PrivateExecutionResult.Failed(
                     if (encoded.reason == FailureCode.CANCELLED) PrivateExecutionFailure.CANCELLED
+                    else if (encoded.reason == FailureCode.IO_ERROR && copyDirectory != null && !hasWorkingSpace(copyDirectory))
+                        PrivateExecutionFailure.PRIVATE_STORAGE_LOW
                     else PrivateExecutionFailure.ENCODER_FAILED, encoded.reason)
                 is EncodeResult.Encoded -> {
                     candidate = encoded.file
@@ -131,6 +138,9 @@ internal class PrivateOutputExecutor(
                         return PrivateExecutionResult.Failed(PrivateExecutionFailure.INVALID_CANDIDATE)
                     }
                     if (recipe.request.metadataPolicy == MetadataPolicy.PRESERVE_ALLOWLIST) {
+                        if (copyDirectory != null && !hasWorkingSpace(copyDirectory)) {
+                            return PrivateExecutionResult.Failed(PrivateExecutionFailure.PRIVATE_STORAGE_LOW)
+                        }
                         try {
                             MetadataAllowlist.apply(sources.sourceForMetadata(recipe.sourceId), encoded.file, recipe.request)
                         } catch (_: IOException) {

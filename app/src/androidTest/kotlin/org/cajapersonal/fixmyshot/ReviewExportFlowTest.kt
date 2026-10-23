@@ -77,7 +77,8 @@ class ReviewExportFlowTest {
         var createCalls = 0
         private var publishCalls = 0
         override fun create(name: String, mime: String): Uri? {
-            if (++createCalls == failCreateNumber) throw java.io.IOException("Synthetic provider refusal")
+            // This injected refusal occurs before calling the real provider: no output can remain.
+            if (++createCalls == failCreateNumber) return null
             return delegate.create(name, mime)?.also { created += it }
         }
         override fun publish(uri: Uri): Boolean =

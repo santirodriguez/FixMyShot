@@ -234,4 +234,5 @@
     <string name="import_reason_storage">Not enough device storage. Free some space and select the image again.</string>
     <string name="result_creation_uncertain">The destination may have created a copy without returning its location. Check the destination before acknowledging this result; this item cannot be retried yet.</string>
     <string name="result_storage_shortage">The destination does not have enough free space for this copy. Free space or choose another destination, then retry the failed image.</string>
+    <string name="result_private_storage_shortage">Not enough device storage to prepare the export. Free some space, then retry the failed image.</string>
 </resources>

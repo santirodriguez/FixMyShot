@@ -234,4 +234,5 @@
     <string name="import_reason_storage">No hi ha prou espai al dispositiu. Allibera espai i torna a seleccionar la imatge.</string>
     <string name="result_creation_uncertain">La destinació pot haver creat una còpia sense retornar-ne la ubicació. Revisa-la abans de donar aquest resultat per revisat; encara no es pot tornar a intentar aquesta imatge.</string>
     <string name="result_storage_shortage">La destinació no té prou espai per a aquesta còpia. Allibera espai o tria una altra destinació i torna a intentar la imatge que ha fallat.</string>
+    <string name="result_private_storage_shortage">No hi ha prou espai al dispositiu per preparar l’exportació. Allibera espai i torna a intentar la imatge que ha fallat.</string>
 </resources>

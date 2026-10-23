@@ -73,6 +73,18 @@ class PrivateOutputExecutorTest {
                 .addImages(listOf(source.image))
             val frozen = ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, heap).candidates.single()
             assertEquals(PixelSize(320, 320), frozen.canvas)
+            val sourceBytes = source.file.readBytes()
+            val retained = File(context.cacheDir, "private-retained-" + System.nanoTime()).apply { mkdirs() }
+            try {
+                val sentinel = File(retained, "previous-candidate.png").apply { writeBytes(byteArrayOf(2, 4, 6)) }
+                val blocked = PrivateOutputExecutor(ReviewSources(context), LosslessEncoder(retained, heap), heap,
+                    copyDirectory = retained, hasWorkingSpace = { false }).execute(draft, frozen)
+                assertEquals(PrivateExecutionResult.Failed(PrivateExecutionFailure.PRIVATE_STORAGE_LOW), blocked)
+                assertEquals(listOf(sentinel.name), retained.listFiles()!!.map { it.name })
+                assertArrayEquals(byteArrayOf(2, 4, 6), sentinel.readBytes())
+                assertArrayEquals(sourceBytes, source.file.readBytes())
+                assertTrue(ReviewSources(context).matchesFingerprint(source.image.id, frozen.sourceSha256))
+            } finally { retained.deleteRecursively() }
             val result = executor(directory).execute(draft, frozen)
             assertTrue(result.toString(), result is PrivateExecutionResult.Ready)
             result as PrivateExecutionResult.Ready
