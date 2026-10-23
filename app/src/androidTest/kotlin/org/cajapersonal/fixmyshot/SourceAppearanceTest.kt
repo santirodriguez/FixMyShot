@@ -394,7 +394,16 @@ class SourceAppearanceTest {
                             .execute(draft, recipe) as PrivateExecutionResult.Ready
                         try {
                             val decoded = BitmapFactory.decodeFile(result.file.path)!!
+                            var stored: Bitmap? = null
                             try {
+                                // Inspect stored straight channels independently of Android's
+                                // default re-premultiplication; never draw this bitmap on Canvas.
+                                val encoded = BitmapFactory.decodeFile(result.file.path, BitmapFactory.Options().apply {
+                                    inPreferredConfig = Bitmap.Config.ARGB_8888
+                                    inPremultiplied = false
+                                }) ?: throw AssertionError("$case Stored pixels unavailable")
+                                stored = encoded
+                                assertFalse("$case Requires straight-channel decode", encoded.isPremultiplied)
                                 val middle = decoded.getPixel(side / 2, side / 2)
                                 val alpha = if (background == BackgroundChoice.Transparent) 128 else 255
                                 fun blend(channel: Int) = if (background == BackgroundChoice.Transparent) channel else
@@ -406,10 +415,11 @@ class SourceAppearanceTest {
                                     assertEquals(255, Color.alpha(decoded.getPixel(side - 1, side / 2)))
                                     assertFalse(result.opaqueWebpProven)
                                 } else near(expected, middle, 2)
-                                // Transition pixels keep their red hue on a transparent target.
+                                // Stored transition pixels retain hue without a second decoder
+                                // premultiplication being charged to the renderer's hue budget.
                                 if (background == BackgroundChoice.Transparent) {
                                     for (x in side / 5..side / 3) {
-                                        val edge = decoded.getPixel(x, side / 2)
+                                        val edge = encoded.getPixel(x, side / 2)
                                         if (Color.alpha(edge) >= 32) sameAlphaAndCompositedColor(Color.argb(Color.alpha(edge), 240, 24, 8), edge, "$case edge=$x")
                                     }
                                 }
@@ -417,6 +427,18 @@ class SourceAppearanceTest {
                                 try {
                                     val preview = ReviewBitmapRenderer.preview(sample, image.orientedSize, draft.plans(Build.VERSION.SDK_INT).single())
                                     try {
+                                        assertEquals("$case Stored width", preview.image.width, encoded.width)
+                                        assertEquals("$case Stored height", preview.image.height, encoded.height)
+                                        for (y in 0 until encoded.height) for (x in 0 until encoded.width) {
+                                            val reference = preview.image.getPixel(x, y)
+                                            val pixel = encoded.getPixel(x, y)
+                                            assertEquals("$case alpha at$x,$y", Color.alpha(reference), Color.alpha(pixel))
+                                            // Fully transparent hidden RGB is outside the output contract.
+                                            if (Color.alpha(reference) != 0) assertEquals(
+                                                "$case Lossless stored RGBA at$x,$y", reference, pixel)
+                                            sameAlphaAndCompositedColor(reference, decoded.getPixel(x, y),
+                                                "$case Default decode at$x,$y")
+                                        }
                                         if (background == BackgroundChoice.Transparent) sameAlphaAndCompositedColor(preview.image.getPixel(side / 2, side / 2), middle, "$case preview")
                                         else near(preview.image.getPixel(side / 2, side / 2), middle, 2)
                                     }
@@ -425,7 +447,7 @@ class SourceAppearanceTest {
                             } catch (failure: AssertionError) {
                                 captureAlphaFailure(result.file, decoded, image, draft, format, side, case)
                                 throw failure
-                            } finally { decoded.recycle() }
+                            } finally { stored?.recycle(); decoded.recycle() }
                         } finally { result.file.delete() }
                     }
                 }
