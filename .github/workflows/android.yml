@@ -41,6 +41,8 @@ jobs:
       - name: Validate bootstrap resources and report checker
         run: |
           python3 scripts/check-bootstrap.py
+          python3 scripts/check-release.py
+          python3 scripts/test-release.py
           python3 scripts/test-gradle-wrapper.py
           python3 scripts/test-device-report.py
           python3 scripts/test-emulator-heap.py

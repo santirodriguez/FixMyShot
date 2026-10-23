@@ -15,6 +15,8 @@ Real changes. No imaginary release history.
 ### Keep the work moving
 
 - Add editable draft recovery, one-step undo, foreground pause/continue and explicit remaining-item retry.
+- Show import progress and allow stopping after the current provider read, retaining completed images and separately counting untouched offers.
+- Keep provider runtime/cache-access failures typed so the import queue can finish without exposing private exception text.
 - Review uncertain outputs, verify selected saved files before sharing, and select all successful copies when useful.
 - Retire consistent private receipts after successful session review and explicitly remove verified owned pending MediaStore copies before a separately requested retry.
 - Add localized import/preflight/result feedback, light/dark/system themes and offline English, Español and Català help.

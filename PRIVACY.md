@@ -26,3 +26,5 @@ Leaving the app requests a pause before the next export image, allowing the curr
 
 
 The latest import notice keeps only received-order positions, counts and generic failure categories in memory. It contains no source names, URIs, image bytes or metadata, survives Activity recreation with the current ViewModel, and is replaced by the next completed import or dismissed/discarded/finished session. It is not saved as diagnostic history. Dismissing it removes feedback only; it does not delete sources or published copies. Export messages use a closed localized vocabulary rather than raw journal codes or exception text.
+
+Import progress is memory-only. Stopping finishes the current provider operation, keeps completed private additions and skips untouched offers, including those already queued when Stop is tapped. Their count is separate from failed images. A blocked provider read cannot be forcibly interrupted by this action. A later explicit picker/share offer is a new import; stopped offers do not restart automatically. No original or exported image is deleted by stopping.

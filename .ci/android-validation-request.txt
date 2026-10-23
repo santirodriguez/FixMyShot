@@ -1,18 +1,18 @@
-Accumulated G4 sharing, successful-session retirement and pending-copy recovery checkpoint.
-Implementation parent: b26f137e3cf6595d1bf0b6c566603f1f75dc1f35.
-Validate9c51dc1 explicit select-all/clear and mixed verified sharing,
-baa3458 reviewed fully published receipt retirement/interrupted private cleanup,
-and b26f137 confirmed owned pending MediaStore removal with explicit retry.
-Require core tests, lint, debug/unsigned release/test APK compilation and API36
-current regression suites together:221 locale keys, export-flow5, recovery16,
-import/settings/session/native-policy18, private20, batch7, retry8, share4,
-transaction10, renderer4/cache3 and existing codec/native diagnostic groups.
-The new provider action must preserve originals and published copies, refuse
-unverified/foreign/changed/nonpending states and never export automatically.
-Capture actual scoped outcomes if the known strict partial-alpha gate fails;
-do not weaken assertions, transfer old passes or launch per-case reruns.
-7a runtime evidence became unavailable through API404; this fresh combined
-checkpoint validates the accumulated exact source, not an assumed prior pass.
-No legacy/automatic-locale/JXL reference experiment, native export enablement,
-physical-device approval, new permission, main merge, signing or publication.
+Accumulated import control, preview responsiveness and release-source checkpoint.
+Implementation base: c671126a69d967aed5093563421c0920264e72fb.
+This commit includes import progress/stop-after-current and typed provider-runtime
+failures, plus the current draft-bound discard test cleanup signature.
+Validate all accumulated post639c changes together: synthetic alpha evidence,
+release ledger/notes/source checks, full-row controls and zoom accessibility,
+latest-only pending preview work, and exact-draft discard/apply-all confirmations.
+Require core/lint/debug/unsigned-release/test APK build plus API36 regression:
+228 matching locale keys; renderer6/cache3, import/settings/session/native-policy20,
+private20, export-flow5/recovery16, batch7/retry8/share4/transaction10,
+and unchanged codec/native classification groups. New import tests preserve
+completed pixels/originals and distinguish untouched offers from failed inputs.
+If the strict enlarged transparent-WebP edge fails, retain its synthetic bytes
+and reconstructed/default/unpremultiplied rows; do not weaken assertions or
+rerun individual cases. Report source-bound scoped successes and remaining gates.
+Current profile only: no legacy/automatic locale/JXL experiment, hardware/native
+acceptance, native export enablement, production signing, main merge or release.
 profile=current

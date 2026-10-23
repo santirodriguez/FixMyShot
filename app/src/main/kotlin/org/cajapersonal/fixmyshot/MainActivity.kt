@@ -173,6 +173,8 @@ class MainActivity : AppCompatActivity() {
                         thumbnails = model.thumbnails,
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
+                        importProgress = model.importProgress,
+                        onStopImport = model::stopImport,
                         importReport = model.latestImport,
                         onClearImportFeedback = model::clearImportFeedback,
                         previewUnavailable = model.previewUnavailable,

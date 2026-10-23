@@ -102,6 +102,8 @@ internal fun ReviewScreen(
     onUndo: () -> Unit,
     onRemove: () -> Unit,
     onDiscard: (DraftSession) -> Unit,
+    importProgress: ImportProgress? = null,
+    onStopImport: () -> Unit = {},
     importLimitExceeded: Boolean = false,
     pendingImports: Int = 0,
     onSettings: () -> Unit = {},
@@ -215,7 +217,14 @@ internal fun ReviewScreen(
             }
         }
         Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
-        if (busy) Text(stringResource(R.string.import_in_progress))
+        if (importProgress != null) {
+            Text(stringResource(R.string.import_progress, importProgress.processed, importProgress.total),
+                modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+            Text(stringResource(R.string.import_stop_notice), style = MaterialTheme.typography.bodySmall)
+            OutlinedButton(onClick = onStopImport, enabled = !importProgress.stopping) {
+                Text(stringResource(if (importProgress.stopping) R.string.import_stopping else R.string.import_stop))
+            }
+        } else if (busy) Text(stringResource(R.string.import_in_progress))
         if (pendingImports > 0) Text(stringResource(R.string.import_waiting, pendingImports))
         if (importLimitExceeded) Text(stringResource(R.string.import_limit),
             color = MaterialTheme.colorScheme.error)
@@ -484,6 +493,8 @@ private fun ImportFeedback(report: ImportReport, enabled: Boolean, onClear: () -
     var expanded by remember(report) { mutableStateOf(false) }
     Text(stringResource(R.string.import_feedback_summary, report.added, report.problems.size, report.ignored),
         modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
+        style = MaterialTheme.typography.bodySmall)
+    if (report.notAttempted > 0) Text(stringResource(R.string.import_not_attempted, report.notAttempted),
         style = MaterialTheme.typography.bodySmall)
     if (report.problems.isNotEmpty()) {
         OutlinedButton(onClick = { expanded = !expanded }) {

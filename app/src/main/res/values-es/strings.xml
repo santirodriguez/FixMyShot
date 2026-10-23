@@ -54,6 +54,11 @@
     <string name="discard_session">Descartar sesión</string>
     <string name="discard_session_confirmation">¿Querés descartar esta sesión y su historial de deshacer? Se liberarán las copias privadas que ya no se necesiten para recuperar trabajos. Los originales y las copias exportadas no cambian.</string>
     <string name="crop_zoom_control">Zoom del recorte</string>
+    <string name="import_progress">Imágenes revisadas: %1$d / %2$d</string>
+    <string name="import_stop">Dejar de agregar imágenes</string>
+    <string name="import_stopping">Se detendrá al terminar la imagen actual…</string>
+    <string name="import_stop_notice">Se conservan las imágenes ya agregadas. La lectura en curso debe terminar antes de detenerse.</string>
+    <string name="import_not_attempted">Sin revisar tras detener la importación: %1$d</string>
     <string name="export_not_ready">Exportar · próximamente</string>
     <string name="export_batch">Exportar %1$d imágenes</string>
     <string name="export_destination_pictures">Destino: Pictures/FixMyShot. Los originales no se modifican.</string>

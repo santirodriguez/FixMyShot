@@ -27,6 +27,7 @@ import java.io.File
 import java.util.Locale
 import java.util.UUID
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.zip.CRC32
@@ -104,6 +105,95 @@ class ResultsFeedbackTest {
             it.writeInt(CRC32().apply { update(tag); update(payload) }.value.toInt())
         } }.toByteArray()
         return data.copyOfRange(0, 33) + chunk + data.copyOfRange(33, data.size)
+    }
+
+    @Test fun stoppingAnImportKeepsTheCurrentImageAndReportsUntouchedQueuedOffers() {
+        if (Build.VERSION.SDK_INT < 29) return
+        val f = Fixture()
+        val entered = CountDownLatch(1)
+        val release = CountDownLatch(1)
+        val once = AtomicBoolean(false)
+        val blocked = object : ContextWrapper(f.context) {
+            override fun getApplicationContext(): Context = this
+            override fun getCacheDir(): File {
+                if (once.compareAndSet(false, true)) {
+                    entered.countDown()
+                    release.await()
+                }
+                return f.context.cacheDir
+            }
+        }
+        try {
+            val data = png()
+            val uris = (1..4).map { f.media(data) }
+            instrumentation.runOnMainSync {
+                f.model.enqueueImports(uris.take(3))
+                f.model.drainImports(blocked)
+            }
+            assertTrue(entered.await(5, TimeUnit.SECONDS))
+            instrumentation.runOnMainSync {
+                assertEquals(ImportProgress(0, 3), f.model.importProgress)
+                f.model.enqueueImports(listOf(uris.last()))
+                assertEquals(1, f.model.pendingImportCount)
+                f.model.stopImport()
+                assertTrue(f.model.importProgress!!.stopping)
+                assertEquals(0, f.model.pendingImportCount)
+            }
+            release.countDown()
+            await { !f.model.isBusy && f.model.latestImport != null }
+            assertNull(f.model.importProgress)
+            val report = f.model.latestImport!!
+            assertEquals(4, report.total)
+            assertEquals(1, report.added)
+            assertEquals(3, report.notAttempted)
+            assertEquals(0, report.ignored)
+            assertTrue(report.problems.isEmpty())
+            assertEquals(0, f.model.invalidImports)
+            val image = f.model.draft.images.single()
+            assertTrue(ReviewSources(f.context).matchesFingerprint(image.id, image.contentSha256!!))
+            assertEquals(1, File(f.context.cacheDir, "review-sources").listFiles().orEmpty().size)
+            assertFalse(report.toString().contains("content://"))
+            // A later explicit offer is a fresh import; stopped offers never restart themselves.
+            instrumentation.runOnMainSync {
+                f.model.enqueueImports(listOf(uris[1]))
+                f.model.drainImports(f.context)
+            }
+            await { !f.model.isBusy && f.model.draft.images.size == 2 }
+            assertEquals(0, f.model.latestImport!!.notAttempted)
+            for (uri in uris) assertEquals(data.toList(), app.contentResolver.openInputStream(uri)!!.use { it.readBytes() }.toList())
+        } finally { release.countDown(); f.close() }
+    }
+
+    @Test fun providerRuntimeAndCachePermissionFailuresStayTypedAndReleaseTheImportState() {
+        val f = Fixture()
+        try {
+            val denied = object : ContextWrapper(f.context) {
+                override fun getCacheDir(): File = throw SecurityException("SYNTHETIC_PRIVATE_DETAILS")
+            }
+            assertEquals(ReviewSources.ImportResult.Rejected(ReviewSources.Failure.UNREADABLE),
+                ReviewSources(denied).stage(Uri.parse("content://synthetic/unopened")))
+            val broken = object : ContextWrapper(f.context) {
+                override fun getApplicationContext(): Context = this
+                override fun getContentResolver(): android.content.ContentResolver =
+                    throw IllegalStateException("SYNTHETIC_PRIVATE_DETAILS")
+            }
+            instrumentation.runOnMainSync {
+                f.model.enqueueImports((1..3).map { Uri.parse("content://synthetic/runtime-$it") })
+                f.model.drainImports(broken)
+            }
+            await { !f.model.isBusy && f.model.latestImport != null }
+            assertNull(f.model.importProgress)
+            assertTrue(f.model.draft.images.isEmpty())
+            val report = f.model.latestImport!!
+            assertEquals(3, report.total)
+            assertEquals(0, report.added)
+            assertEquals(0, report.notAttempted)
+            assertEquals(listOf(1, 2, 3), report.problems.map { it.position })
+            assertTrue(report.problems.all { it.reason == ReviewSources.Failure.UNREADABLE })
+            assertFalse(report.toString().contains("SYNTHETIC_PRIVATE_DETAILS"))
+            assertFalse(report.toString().contains("content://"))
+            assertTrue(File(f.context.cacheDir, "review-sources").listFiles().orEmpty().isEmpty())
+        } finally { f.close() }
     }
 
     @Test fun mixedRealImportKeepsGoodPixelsAndReportsReceivedPositionsWithoutPrivateNames() {

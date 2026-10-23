@@ -61,6 +61,7 @@ FixMyShot prepares screenshots for publication: choose a destination or ratio, r
 ### A little less starting over
 
 - **Editable drafts and one-step undo:** keep working without rebuilding the batch after every interruption.
+- **A manageable import:** watch batch progress and stop after the current image, keeping completed additions. Untouched images are reported separately from failures.
 - **Deliberate recovery:** review uncertain saves, explicitly retry remaining items and avoid quietly creating duplicate outputs.
 - **A pause that means pause:** leaving the app requests a stop after the current bounded transaction; continuing is your choice.
 - **Tidy working data:** finish a successful session to release private working copies and consistent receipts. Unresolved work retains what recovery needs.

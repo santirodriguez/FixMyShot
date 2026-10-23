@@ -210,7 +210,9 @@ class ImportSettingsFlowTest {
     /** Remove the synthetic UI session through the actual discard callback before deleting its fixtures. */
     private fun discardOwnedDraft(scenario: ActivityScenario<MainActivity>?) {
         scenario?.onActivity { activity ->
-            MainActivity::class.java.getDeclaredMethod("discardDraft").apply { isAccessible = true }.invoke(activity)
+            val model = ViewModelProvider(activity)[ReviewViewModel::class.java]
+            MainActivity::class.java.getDeclaredMethod("discardDraft", DraftSession::class.java)
+                .apply { isAccessible = true }.invoke(activity, model.draft)
         }
         val deadline = System.currentTimeMillis() + 10_000L
         val journal = File(app.filesDir, "review-session.json")

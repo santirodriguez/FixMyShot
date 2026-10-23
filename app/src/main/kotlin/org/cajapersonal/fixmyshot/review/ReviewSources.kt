@@ -40,15 +40,17 @@ internal class ReviewSources(private val context: Context) {
     /** Reject untrusted external paths, oversized providers and unsupported decoded formats. */
     fun stage(uri: Uri): ImportResult {
         if (uri.scheme != "content") return ImportResult.Rejected(Failure.UNSUPPORTED)
-        if (!directory.isDirectory && !directory.mkdirs()) return ImportResult.Rejected(Failure.UNREADABLE)
-        val total = directory.listFiles()?.filter { it.isFile && it.name.endsWith(".source") }
-            ?.sumOf { it.length() } ?: 0L
-        if (total >= maxStagingBytes) return ImportResult.Rejected(Failure.TOO_LARGE)
-        val id = UUID.randomUUID().toString().replace("-", "")
-        val target = File(directory, "$id.source")
+        var privateCopy: File? = null
         var accepted = false
-        val digest = MessageDigest.getInstance("SHA-256")
         try {
+            if (!directory.isDirectory && !directory.mkdirs()) return ImportResult.Rejected(Failure.UNREADABLE)
+            val total = directory.listFiles()?.filter { it.isFile && it.name.endsWith(".source") }
+                ?.sumOf { it.length() } ?: 0L
+            if (total >= maxStagingBytes) return ImportResult.Rejected(Failure.TOO_LARGE)
+            val id = UUID.randomUUID().toString().replace("-", "")
+            val target = File(directory, "$id.source")
+            privateCopy = target
+            val digest = MessageDigest.getInstance("SHA-256")
             val input = context.contentResolver.openInputStream(uri) ?: return ImportResult.Rejected(Failure.UNREADABLE)
             var count = 0L
             input.use { from ->
@@ -90,17 +92,21 @@ internal class ReviewSources(private val context: Context) {
             val rotated = orientation in setOf(5, 6, 7, 8)
             val size = if (rotated) PixelSize(height, width) else PixelSize(width, height)
             val hash = digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
-            accepted = true
-            return ImportResult.Added(DraftImage(id, uri.toString(), size,
+            val result = ImportResult.Added(DraftImage(id, uri.toString(), size,
                 sourceHasAlpha = bounds.outMimeType != "image/jpeg", contentSha256 = hash, sourceColor = color))
+            accepted = true
+            return result
         } catch (_: IOException) {
             return ImportResult.Rejected(Failure.UNREADABLE)
         } catch (_: SecurityException) {
             return ImportResult.Rejected(Failure.UNREADABLE)
         } catch (_: IllegalArgumentException) {
             return ImportResult.Rejected(Failure.UNSUPPORTED)
+        } catch (_: RuntimeException) {
+            // Provider/runtime failures remain typed; never leak exception text or strand the queue.
+            return ImportResult.Rejected(Failure.UNREADABLE)
         } finally {
-            if (!accepted) target.delete()
+            if (!accepted) try { privateCopy?.delete() } catch (_: SecurityException) { /* Keep failure typed. */ }
         }
     }
 

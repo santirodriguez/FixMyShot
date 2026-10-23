@@ -60,6 +60,10 @@ internal class ReviewViewModel : ViewModel() {
     private val pendingImports = linkedMapOf<String, Uri>()
     private var importGeneration = 0L
     private var activeImports: Set<String> = emptySet()
+    private var importStop: AtomicBoolean? = null
+    private var stoppedQueuedImports = 0
+    var importProgress by mutableStateOf<ImportProgress?>(null)
+        private set
     private var sessionContext: Context? = null
     private val sessionPending = AtomicReference<ReviewSessionSnapshot?>(null)
     private val sessionWriterQueued = AtomicBoolean(false)
@@ -146,13 +150,27 @@ internal class ReviewViewModel : ViewModel() {
         if (draft.images.size + wanted.size > 100) { importLimitExceeded = true; return }
         if (wanted.isEmpty()) return
         activeImports = wanted.mapTo(mutableSetOf(), Uri::toString)
+        val stop = AtomicBoolean(false)
+        importStop = stop
+        stoppedQueuedImports = 0
+        importProgress = ImportProgress(0, wanted.size)
         isBusy = true
         val token = importGeneration
         val sources = ReviewSources(context.applicationContext)
         importWorker.execute {
-            val staged = wanted.map { sources.stage(it) }
+            val staged = mutableListOf<ReviewSources.ImportResult>()
+            for (uri in wanted) {
+                if (stop.get()) break
+                staged += sources.stage(uri)
+                val processed = staged.size
+                main.post {
+                    if (importStop === stop) importProgress = ImportProgress(processed, wanted.size, stop.get())
+                }
+            }
             main.post {
                 activeImports = emptySet()
+                importStop = null
+                importProgress = null
                 val added = staged.filterIsInstance<ReviewSources.ImportResult.Added>().map { it.image }
                 if (token != importGeneration) {
                     added.forEach { sources.discard(it.id) }
@@ -165,7 +183,8 @@ internal class ReviewViewModel : ViewModel() {
                 if (discarded.isNotEmpty()) importWorker.execute {
                     discarded.forEach { sources.discard(it.id) }
                 }
-                val report = ImportReport.from(staged, additions.mapTo(mutableSetOf()) { it.id })
+                val report = ImportReport.from(staged, additions.mapTo(mutableSetOf()) { it.id },
+                    offered = wanted.size + stoppedQueuedImports)
                 invalidImports += report.problems.size
                 latestImport = report
                 val updated = draft.addImages(additions)
@@ -179,8 +198,20 @@ internal class ReviewViewModel : ViewModel() {
         }
     }
 
+    /** Finish the in-flight provider operation; preserve completed imports and skip untouched offers. */
+    fun stopImport() {
+        val stop = importStop ?: return
+        if (stop.getAndSet(true)) return
+        stoppedQueuedImports += pendingImports.size
+        pendingImports.clear()
+        pendingImportCount = 0
+        importLimitExceeded = false
+        importProgress = importProgress?.copy(stopping = true)
+    }
+
     fun clearPendingImports() {
         ++importGeneration
+        importStop?.set(true)
         pendingImports.clear()
         pendingImportCount = 0
         importLimitExceeded = false
@@ -803,6 +834,7 @@ internal class ReviewViewModel : ViewModel() {
     override fun onCleared() {
         nativeCheckCancel?.set(true)
         cancelJob?.set(true)
+        importStop?.set(true)
         ++importGeneration
         exportWorker.shutdown()
         importWorker.shutdown()

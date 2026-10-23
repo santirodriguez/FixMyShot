@@ -54,6 +54,11 @@
     <string name="discard_session">Descarta la sessió</string>
     <string name="discard_session_confirmation">Vols descartar aquesta sessió i el seu historial de desfer? S’alliberaran les còpies privades que ja no calguin per recuperar treballs. Els originals i les còpies exportades no canvien.</string>
     <string name="crop_zoom_control">Zoom del retall</string>
+    <string name="import_progress">Imatges comprovades: %1$d / %2$d</string>
+    <string name="import_stop">Deixa d’afegir imatges</string>
+    <string name="import_stopping">S’aturarà en acabar la imatge actual…</string>
+    <string name="import_stop_notice">Es conserven les imatges ja afegides. La lectura en curs ha d’acabar abans d’aturar-se.</string>
+    <string name="import_not_attempted">Sense comprovar després d’aturar la importació: %1$d</string>
     <string name="export_not_ready">Exporta · properament</string>
     <string name="export_batch">Exporta %1$d imatges</string>
     <string name="export_destination_pictures">Destinació: Pictures/FixMyShot. Les imatges originals no es modifiquen.</string>
