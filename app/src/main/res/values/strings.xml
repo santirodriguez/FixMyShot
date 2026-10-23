@@ -231,4 +231,5 @@
     <string name="edit_scope_image">Editing selected image settings</string>
     <string name="destination_batch_notice">Destination and aspect ratio apply to the whole batch.</string>
     <string name="edit_pending_notice">Apply typed values before changing image or edit scope.</string>
+    <string name="import_reason_storage">Not enough device storage. Free some space and select the image again.</string>
 </resources>

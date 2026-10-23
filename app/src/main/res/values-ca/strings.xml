@@ -231,4 +231,5 @@
     <string name="edit_scope_image">Editant els ajustos de la imatge seleccionada</string>
     <string name="destination_batch_notice">La destinació i la proporció s’apliquen a tot el lot.</string>
     <string name="edit_pending_notice">Aplica els valors escrits abans de canviar d’imatge o d’abast.</string>
+    <string name="import_reason_storage">No hi ha prou espai al dispositiu. Allibera espai i torna a seleccionar la imatge.</string>
 </resources>

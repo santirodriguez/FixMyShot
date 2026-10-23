@@ -1,18 +1,17 @@
-Accumulated import control, preview responsiveness and release-source checkpoint.
-Implementation base: c671126a69d967aed5093563421c0920264e72fb.
-This commit includes import progress/stop-after-current and typed provider-runtime
-failures, plus the current draft-bound discard test cleanup signature.
-Validate all accumulated post639c changes together: synthetic alpha evidence,
-release ledger/notes/source checks, full-row controls and zoom accessibility,
-latest-only pending preview work, and exact-draft discard/apply-all confirmations.
+Grouped private-storage, review-context and stored-alpha checkpoint.
+Implementation base: 8822a5d0c4e5f76126d85dbb53d92d4cce5e5f0e.
+This commit adds advisory private-import storage headroom and typed LOW_STORAGE,
+plus removes invalid private-setter writes from the pending Activity test.
+Validate accumulated edit scope/pending-input recreation changes and the55a33357
+full-image stored-alpha oracle separately from default decoder quantization.
 Require core/lint/debug/unsigned-release/test APK build plus API36 regression:
-228 matching locale keys; renderer6/cache3, import/settings/session/native-policy20,
+233 matching locale keys; renderer6/cache3, import/settings/session/native-policy21,
 private20, export-flow5/recovery16, batch7/retry8/share4/transaction10,
-and unchanged codec/native classification groups. New import tests preserve
-completed pixels/originals and distinguish untouched offers from failed inputs.
-If the strict enlarged transparent-WebP edge fails, retain its synthetic bytes
-and reconstructed/default/unpremultiplied rows; do not weaken assertions or
-rerun individual cases. Report source-bound scoped successes and remaining gates.
+and unchanged codec/native diagnostic classification groups.
+The storage case injects availability but uses real private/provider bytes;
+do not call it actual disk-exhaustion, export-storage or physical acceptance.
+Require final source-bound report guards; preserve exact scoped successes and
+failures without per-case reruns or weakened appearance/ownership assertions.
 Current profile only: no legacy/automatic locale/JXL experiment, hardware/native
 acceptance, native export enablement, production signing, main merge or release.
 profile=current

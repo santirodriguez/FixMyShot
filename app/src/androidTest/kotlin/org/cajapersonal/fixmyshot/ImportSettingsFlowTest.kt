@@ -211,11 +211,6 @@ class ImportSettingsFlowTest {
                     assertEquals(original, model.draft)
                     assertTrue(model.editSelectedOnly)
                 } finally { model.isBusy = false }
-                model.shareBusy = true
-                try {
-                    update.invoke(activity, changed)
-                    assertEquals(original, model.draft)
-                } finally { model.shareBusy = false }
                 model.enqueueImports(listOf(Uri.parse("content://synthetic/queued-edit-guard")))
                 try {
                     update.invoke(activity, changed)

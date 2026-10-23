@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.StatFs
 import android.graphics.ColorSpace
 import android.graphics.Matrix
 import androidx.exifinterface.media.ExifInterface
@@ -23,10 +24,13 @@ import java.io.RandomAccessFile
 import java.util.concurrent.atomic.AtomicBoolean
 
 /** All provider I/O is performed on a dedicated worker; no user path or URI is logged. */
-internal class ReviewSources(private val context: Context) {
+internal class ReviewSources(private val context: Context,
+    private val availableBytes: (File) -> Long? = { directory ->
+        try { StatFs(directory.absolutePath).availableBytes } catch (_: RuntimeException) { null }
+    }) {
     private val directory: File get() = File(context.cacheDir, "review-sources")
 
-    enum class Failure { UNREADABLE, UNSUPPORTED, TOO_LARGE, COLOR_UNSUPPORTED, MALFORMED, ANIMATED, HIGH_PRECISION, HDR_UNSUPPORTED }
+    enum class Failure { UNREADABLE, UNSUPPORTED, TOO_LARGE, LOW_STORAGE, COLOR_UNSUPPORTED, MALFORMED, ANIMATED, HIGH_PRECISION, HDR_UNSUPPORTED }
     sealed interface ImportResult {
         data class Added(val image: DraftImage) : ImportResult
         data class Rejected(val reason: Failure) : ImportResult
@@ -35,7 +39,15 @@ internal class ReviewSources(private val context: Context) {
     private val maxInputBytes = 100L * 1024 * 1024
     private val maxStagingBytes = 1024L * 1024 * 1024
     private val maxSourcePixels = 64_000_000L
+    private val storageHeadroom = 16L * 1024 * 1024
+    private val storageCheckInterval = 1024L * 1024
     private val validId = Regex("[0-9a-f]{32}")
+
+    /** Advisory only: another writer can consume space after any check; actual writes still fail typed. */
+    private fun hasStagingSpace(): Boolean {
+        val available = availableBytes(directory) ?: return true
+        return available < 0 || available >= storageHeadroom + storageCheckInterval
+    }
 
     /** Reject untrusted external paths, oversized providers and unsupported decoded formats. */
     fun stage(uri: Uri): ImportResult {
@@ -47,12 +59,14 @@ internal class ReviewSources(private val context: Context) {
             val total = directory.listFiles()?.filter { it.isFile && it.name.endsWith(".source") }
                 ?.sumOf { it.length() } ?: 0L
             if (total >= maxStagingBytes) return ImportResult.Rejected(Failure.TOO_LARGE)
+            if (!hasStagingSpace()) return ImportResult.Rejected(Failure.LOW_STORAGE)
             val id = UUID.randomUUID().toString().replace("-", "")
             val target = File(directory, "$id.source")
             privateCopy = target
             val digest = MessageDigest.getInstance("SHA-256")
             val input = context.contentResolver.openInputStream(uri) ?: return ImportResult.Rejected(Failure.UNREADABLE)
             var count = 0L
+            var nextStorageCheck = storageCheckInterval
             input.use { from ->
                 FileOutputStream(target).use { to ->
                     val block = ByteArray(16 * 1024)
@@ -62,6 +76,10 @@ internal class ReviewSources(private val context: Context) {
                         count += size.toLong()
                         if (count > maxInputBytes || total + count > maxStagingBytes) {
                             return ImportResult.Rejected(Failure.TOO_LARGE)
+                        }
+                        if (count >= nextStorageCheck) {
+                            if (!hasStagingSpace()) return ImportResult.Rejected(Failure.LOW_STORAGE)
+                            nextStorageCheck = count + storageCheckInterval
                         }
                         digest.update(block, 0, size)
                         to.write(block, 0, size)

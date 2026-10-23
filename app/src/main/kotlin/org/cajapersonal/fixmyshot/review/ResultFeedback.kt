@@ -11,6 +11,7 @@ internal object ResultFeedback {
         ReviewSources.Failure.UNREADABLE -> R.string.import_reason_unreadable
         ReviewSources.Failure.UNSUPPORTED -> R.string.import_reason_unsupported
         ReviewSources.Failure.TOO_LARGE -> R.string.import_reason_large
+        ReviewSources.Failure.LOW_STORAGE -> R.string.import_reason_storage
         ReviewSources.Failure.COLOR_UNSUPPORTED -> R.string.import_reason_color
         ReviewSources.Failure.MALFORMED -> R.string.import_reason_malformed
         ReviewSources.Failure.ANIMATED -> R.string.import_reason_animated

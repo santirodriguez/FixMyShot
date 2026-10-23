@@ -164,6 +164,44 @@ class ResultsFeedbackTest {
         } finally { release.countDown(); f.close() }
     }
 
+    @Test fun lowStorageStopsPrivateStagingWithoutTouchingCompletedImagesOrOriginals() {
+        if (Build.VERSION.SDK_INT < 29) return
+        val f = Fixture()
+        try {
+            val data = png()
+            val good = f.media(data)
+            val saved = ReviewSources(f.context) { Long.MAX_VALUE }.stage(good) as ReviewSources.ImportResult.Added
+            val source = File(f.context.cacheDir, "review-sources/${saved.image.id}.source")
+            val savedBytes = source.readBytes()
+            val low = ReviewSources(f.context) { 0L }
+                .stage(Uri.parse("content://synthetic/must-not-be-opened"))
+            assertEquals(ReviewSources.ImportResult.Rejected(ReviewSources.Failure.LOW_STORAGE), low)
+            // This larger offer must stop during copying, before its intentionally invalid pixels are parsed.
+            val largeBytes = ByteArray(2 * 1024 * 1024) { 42 }
+            val large = f.media(largeBytes)
+            var checks = 0
+            val interrupted = ReviewSources(f.context) {
+                if (++checks == 1) Long.MAX_VALUE else 0L
+            }.stage(large)
+            assertEquals(ReviewSources.ImportResult.Rejected(ReviewSources.Failure.LOW_STORAGE), interrupted)
+            assertTrue(checks >= 2)
+            assertEquals(listOf(source.name), File(f.context.cacheDir, "review-sources").listFiles()!!.map { it.name })
+            assertArrayEquals(savedBytes, source.readBytes())
+            assertTrue(ReviewSources(f.context).matchesFingerprint(saved.image.id, saved.image.contentSha256!!))
+            assertArrayEquals(data, app.contentResolver.openInputStream(good)!!.use { it.readBytes() })
+            assertArrayEquals(largeBytes, app.contentResolver.openInputStream(large)!!.use { it.readBytes() })
+            // An unavailable advisory must not invent a storage failure; real I/O still decides.
+            val unknown = ReviewSources(f.context) { null }.stage(good)
+            assertTrue(unknown is ReviewSources.ImportResult.Added)
+            val report = ImportReport.from(listOf(saved, low, interrupted), setOf(saved.image.id))
+            assertEquals(1, report.added)
+            assertEquals(listOf(2, 3), report.problems.map { it.position })
+            assertTrue(report.problems.all { it.reason == ReviewSources.Failure.LOW_STORAGE })
+            assertFalse(report.toString().contains("content://"))
+            assertEquals(R.string.import_reason_storage, ResultFeedback.importReason(ReviewSources.Failure.LOW_STORAGE))
+        } finally { f.close() }
+    }
+
     @Test fun providerRuntimeAndCachePermissionFailuresStayTypedAndReleaseTheImportState() {
         val f = Fixture()
         try {
