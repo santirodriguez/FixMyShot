@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "application_id": "org.cajapersonal.fixmyshot",
+  "releases": [
+    {
+      "version_name": "0.1.0-alpha.1",
+      "version_code": 1,
+      "status": "planned"
+    }
+  ]
+}

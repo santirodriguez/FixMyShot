@@ -83,8 +83,10 @@ internal fun ReviewControls(
                 onClick = { onDestination(DestinationChoice.Custom.of(requireNotNull(numerator), requireNotNull(denominator))) }) {
                 Text(stringResource(R.string.apply_custom_ratio))
             }
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Checkbox(checked = selectedOnly, enabled = enabled, onCheckedChange = { selectedOnly = it })
+            Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                value = selectedOnly, enabled = enabled, role = Role.Checkbox,
+                onValueChange = { selectedOnly = it }), verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(checked = selectedOnly, enabled = enabled, onCheckedChange = null)
                 Text(stringResource(R.string.selected_only))
             }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

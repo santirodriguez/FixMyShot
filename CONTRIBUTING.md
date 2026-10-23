@@ -1,5 +1,9 @@
 # Contributing
 
+## Release preparation
+
+Run `python3 scripts/check-release.py` for the checked version ledger, source identity and release-note fields. `python3 scripts/test-release.py` exercises its offline refusal boundaries. See [RELEASING](docs/RELEASING.md) for the notes/build-receipt templates, exact artifact naming, reproducibility, signature and Obtainium checks. These source checks do not inspect or approve a signed APK and do not publish anything.
+
 ## Bootstrap build
 
 Use JDK 17 and Android SDK platform 36, build tools 35.0.0, NDK 28.2.13676358 and CMake 3.22.1. The initial candidate pins AGP 8.13.2, Gradle 8.13, Kotlin 2.2.21 and Compose BOM 2025.12.00. These are starting pins, not claims of current security approval or independently reproducible output. Review the actual resolved dependency/security inventory before freezing G1.
