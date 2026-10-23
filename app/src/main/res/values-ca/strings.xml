@@ -121,6 +121,15 @@
     <string name="export_restore_draft">Restaura la sessió d’exportació anterior</string>
     <string name="export_retry_remaining">Torna a provar les pendents (%1$d)</string>
     <string name="export_retry_notice">Només es tornen a provar les imatges fallides, cancel·lades o sense iniciar. Es conserven les ja desades i les sortides que cal revisar.</string>
+    <string name="export_recheck_outputs">Torna a comprovar les còpies</string>
+    <string name="export_open_output">Obre la còpia %1$d</string>
+    <string name="export_keep_output">Conserva la còpia verificada</string>
+    <string name="export_keep_item">Conserva la còpia verificada %1$d</string>
+    <string name="export_keep_explanation">Vols conservar aquesta còpia existent com a resultat desat? FixMyShot en tornarà a comprovar els bytes i registrarà la teva confirmació. No en crearà una altra còpia. No es pot acceptar una còpia oculta, modificada, inexistent o il·legible.</string>
+    <string name="export_keep_cancel">Cancel·la</string>
+    <string name="export_checking_output">S’està comprovant la còpia desada…</string>
+    <string name="export_output_action_failed">No s’ha pogut completar l’acció. La còpia pot faltar, haver canviat, estar oculta o ser inaccessible; pot no haver-hi cap visor disponible o un altre treball pendent pot bloquejar la neteja privada. Revisa els resultats i torna-ho a provar.</string>
+    <string name="export_finish_review_notice">Acaba la revisió quan ja no necessitis restaurar ni tornar a intentar aquesta exportació. Se’n suprimirà la configuració privada de recuperació; es conservaran les còpies desades i els seus registres. Descarta la sessió per suprimir les còpies de treball restants.</string>
 </resources>
 
 

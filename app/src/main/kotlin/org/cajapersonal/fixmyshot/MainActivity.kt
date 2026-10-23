@@ -42,8 +42,6 @@ import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.CropPlanner
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
-import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
-import java.io.File
 import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
@@ -100,17 +98,6 @@ class MainActivity : AppCompatActivity() {
         sources = ReviewSources(applicationContext)
         model = ViewModelProvider(this)[ReviewViewModel::class.java]
         model.checkPastExports(applicationContext)
-        worker.execute {
-            // Keep staged bytes needed to inspect an interrupted export until its records
-            // have been explicitly reviewed; never prune them first.
-            val prefs = getSharedPreferences("export-reviewed", MODE_PRIVATE)
-            val safeToPrune = try {
-                BatchRecoveryScanner(File(filesDir, "export-jobs")) { token ->
-                    prefs.getBoolean(token, false)
-                }.inspect() == null
-            } catch (_: Exception) { false }
-            if (safeToPrune) sources.pruneExpired()
-        }
         if (savedInstanceState == null) receiveImages(intent)
         setContent {
             val preferences = remember { AppPreferences(applicationContext) }
@@ -166,6 +153,15 @@ class MainActivity : AppCompatActivity() {
                         onRetryExport = { beginRetryExport() },
                         onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
+                        onRefreshOutputs = { model.refreshOutputs(applicationContext) },
+                        onOpenOutput = { id -> model.openOutput(applicationContext, id) { ready ->
+                            if (ready != null && !isDestroyed) {
+                                try { startActivity(ready) }
+                                catch (_: android.content.ActivityNotFoundException) { model.outputViewerUnavailable() }
+                                catch (_: SecurityException) { model.outputViewerUnavailable() }
+                            }
+                        } },
+                        onConfirmOutput = { model.confirmOutput(applicationContext, it) },
                         selectedShareIds = model.selectedShareIds,
                         shareBusy = model.shareBusy,
                         shareError = model.shareError,
@@ -360,7 +356,7 @@ class MainActivity : AppCompatActivity() {
         model.onDraftEdited()
         model.selectedId = model.draft.images.firstOrNull()?.id
         model.removeThumbnail(id)
-        worker.execute { sources.discard(id) }
+        model.releasePrivateSources(applicationContext, setOf(id))
     }
 
     private fun discardDraft() {
@@ -374,7 +370,7 @@ class MainActivity : AppCompatActivity() {
         model.clearThumbnails()
         model.invalidImports = 0
         ++generation
-        worker.execute { sources.discardAll(ids) }
+        model.releasePrivateSources(applicationContext, ids.toSet())
     }
 
     override fun onTrimMemory(level: Int) {

@@ -19,6 +19,8 @@ internal data class ReviewExportState(
     val retryableIds: Set<String> = emptySet(),
     val retryReady: Boolean = false,
     val canRestoreDraft: Boolean = false,
+    val outputBusy: Boolean = false,
+    val outputError: Boolean = false,
 ) {
     val total: Int get() = items.size
     val published: Int get() = items.count { it.phase == BatchItemPhase.PUBLISHED }
@@ -28,7 +30,7 @@ internal data class ReviewExportState(
     val processed: Int get() = published + failed + cancelled + needsReview
     val isLocked: Boolean get() =
         phase == ExportUiPhase.CHECKING_HISTORY || phase == ExportUiPhase.CHOOSING_FOLDER ||
-            phase == ExportUiPhase.RUNNING || canAcknowledge
+            phase == ExportUiPhase.RUNNING || canAcknowledge || outputBusy
 
     companion object {
         fun fromCheckpoint(phase: ExportUiPhase, snapshot: BatchCheckpoint): ReviewExportState =

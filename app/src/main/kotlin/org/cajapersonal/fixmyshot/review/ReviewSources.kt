@@ -196,15 +196,6 @@ internal class ReviewSources(private val context: Context) {
 
     fun discardAll(ids: List<String>) = ids.forEach(::discard)
 
-    fun pruneExpired() {
-        val now = System.currentTimeMillis()
-        directory.listFiles()?.forEach { file ->
-            if (file.isFile && file.name.endsWith(".source") && now - file.lastModified() > 24L * 60 * 60 * 1000) {
-                file.delete()
-            }
-        }
-    }
-
     private fun isAnimatedWebp(file: File): Boolean {
         FileInputStream(file).use { input ->
             val header = ByteArray(21)
@@ -215,3 +206,4 @@ internal class ReviewSources(private val context: Context) {
         }
     }
 }
+

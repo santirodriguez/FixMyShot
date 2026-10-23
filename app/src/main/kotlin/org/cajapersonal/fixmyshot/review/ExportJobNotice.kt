@@ -12,8 +12,10 @@ internal fun ExportJobNotice(state: ReviewExportState, onReviewed: () -> Unit) {
         Text(stringResource(R.string.export_history_pending, state.previousJobs))
     }
     if (state.canAcknowledge) {
-        OutlinedButton(onClick = onReviewed) {
+        Text(stringResource(R.string.export_finish_review_notice))
+        OutlinedButton(onClick = onReviewed, enabled = !state.outputBusy) {
             Text(stringResource(R.string.export_history_acknowledge))
         }
     }
 }
+

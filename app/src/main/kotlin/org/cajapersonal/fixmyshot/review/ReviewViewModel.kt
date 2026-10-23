@@ -11,12 +11,15 @@ import android.os.Looper
 import org.cajapersonal.fixmyshot.core.ExportPreparation
 import org.cajapersonal.fixmyshot.export.BatchItemPhase
 import org.cajapersonal.fixmyshot.export.BatchCheckpoint
+import org.cajapersonal.fixmyshot.export.BatchExportJournal
 import org.cajapersonal.fixmyshot.export.BatchRetryPolicy
 import org.cajapersonal.fixmyshot.export.ExportDraftJournal
 import org.cajapersonal.fixmyshot.export.BatchOutputCoordinator
 import org.cajapersonal.fixmyshot.export.BatchRunResult
 import org.cajapersonal.fixmyshot.export.BatchRecoveryScanner
 import org.cajapersonal.fixmyshot.export.BatchRecoveryReconciliation
+import org.cajapersonal.fixmyshot.export.ExportRecoveryActions
+import org.cajapersonal.fixmyshot.export.PrivateSessionMaintenance
 import org.cajapersonal.fixmyshot.export.OutputRecoveryVerifier
 import org.cajapersonal.fixmyshot.export.OutputRecoveryEvidence
 import org.cajapersonal.fixmyshot.export.OutputJournal
@@ -33,7 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import org.cajapersonal.fixmyshot.core.DraftSession
 
-/** Survives rotation, but process-death journal recovery is a separate export-phase task. */
+/** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
     var draft by mutableStateOf(DraftSession())
     var selectedId by mutableStateOf<String?>(null)
@@ -137,6 +140,23 @@ internal class ReviewViewModel : ViewModel() {
         }
     }
 
+    private fun maintenance(context: Context): PrivateSessionMaintenance {
+        val prefs = context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
+        return PrivateSessionMaintenance(context.cacheDir, File(context.filesDir, "export-jobs")) {
+            prefs.getBoolean(it, false)
+        }
+    }
+
+    /** Call after an explicit remove/discard action; another unresolved job keeps its sources. */
+    fun releasePrivateSources(context: Context, ids: Set<String>) {
+        val app = context.applicationContext
+        val current = draft.images.mapTo(mutableSetOf()) { it.id }
+        exportWorker.execute {
+            val released = maintenance(app).release(ids, current)
+            if (!released) main.post { exportState = exportState.copy(outputError = true) }
+        }
+    }
+
     private fun scanHistory(context: Context): RecoveryItem? {
         val found = recoveryScanner(context).inspect() ?: return null
         val token = found.token
@@ -187,7 +207,7 @@ internal class ReviewViewModel : ViewModel() {
     /** Deliberate restoration never replaces a non-empty newer draft or writes public output. */
     fun restorePreviousDraft() {
         val frozen = retryDraft ?: return
-        if (!exportState.canRestoreDraft || draft.images.isNotEmpty() || isBusy || shareBusy) return
+        if (!exportState.canRestoreDraft || draft.images.isNotEmpty() || isBusy || shareBusy || exportState.outputBusy) return
         draft = frozen
         lastAttemptDraft = frozen
         selectedId = frozen.images.firstOrNull()?.id
@@ -204,7 +224,9 @@ internal class ReviewViewModel : ViewModel() {
         inspectingPreviousJobs = true
         exportState = ReviewExportState(ExportUiPhase.CHECKING_HISTORY)
         val app = context.applicationContext
+        val current = draft.images.mapTo(mutableSetOf()) { it.id }
         exportWorker.execute {
+            maintenance(app).pruneExpired(current)
             val finding = try { scanHistory(app) }
                 catch (_: Exception) { RecoveryItem(null, null, 1) }
             val details = retryDetails(app, finding?.token, finding?.snapshot)
@@ -221,25 +243,31 @@ internal class ReviewViewModel : ViewModel() {
     /** Only an explicit UI action records that past outputs were reviewed. */
     fun acknowledgePreviousExport(context: Context) {
         val token = reviewToken ?: return
-        if (!exportState.canAcknowledge || activeToken != null ||
+        if (!exportState.canAcknowledge || activeToken != null || shareBusy || exportState.outputBusy ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
         exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
             canAcknowledge = false)
         val app = context.applicationContext
+        val current = draft.images.mapTo(mutableSetOf()) { it.id }
         exportWorker.execute {
             var saved = false
+            var cleanupFailed = false
             val next = try {
                 val scanner = recoveryScanner(app)
                 if (scanner.inspect()?.token == token) {
                     saved = app.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
                         .edit().putBoolean(token, true).commit()
+                    if (saved) cleanupFailed = !maintenance(app).releaseReviewedDraft(token, current)
                 }
                 scanHistory(app)
             } catch (_: Exception) { RecoveryItem(null, null, 1) }
             val details = retryDetails(app, next?.token, next?.snapshot)
             main.post {
                 if (activeToken == null && reviewToken == token) {
-                    if (saved || next?.token == token) showHistory(next, details) else {
+                    if (saved || next?.token == token) {
+                        showHistory(next, details)
+                        if (cleanupFailed) exportState = exportState.copy(outputError = true)
+                    } else {
                         exportState = ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
                             previousJobs = 1)
                         reviewToken = null
@@ -248,6 +276,57 @@ internal class ReviewViewModel : ViewModel() {
             }
         }
     }
+
+    /** Recheck the displayed job; never write provider bytes or silently resume it. */
+    fun refreshOutputs(context: Context) = actOnOutput(context, null, false, null)
+
+    fun openOutput(context: Context, id: String, onReady: (Intent?) -> Unit) =
+        actOnOutput(context, id, false, onReady)
+
+    /** Invoked only after the confirmation dialog, never from startup or mere verification. */
+    fun confirmOutput(context: Context, id: String) = actOnOutput(context, id, true, null)
+
+    private fun actOnOutput(context: Context, id: String?, confirm: Boolean, onReady: ((Intent?) -> Unit)?) {
+        val token = reviewToken ?: return
+        if (!exportState.canAcknowledge || exportState.outputBusy || shareBusy || activeToken != null ||
+            exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
+        if (id != null && exportState.items.none { it.itemId == id && it.uri != null }) return
+        val previous = exportState
+        val app = context.applicationContext
+        exportState = exportState.copy(outputBusy = true, outputError = false)
+        exportWorker.execute {
+            var intent: Intent? = null
+            var failed = false
+            val snapshot = try {
+                val jobs = File(app.filesDir, "export-jobs")
+                val verifier = OutputRecoveryVerifier(app.contentResolver)
+                val actions = ExportRecoveryActions(jobs, verifier::verify)
+                if (id != null) {
+                    if (confirm) failed = !actions.confirmPublished(token, id)
+                    else { intent = actions.open(token, id); failed = intent == null }
+                }
+                val folder = File(jobs, token)
+                val batch = BatchExportJournal(File(folder, "batch.json")).read()
+                if (batch?.token != token) null else BatchRecoveryReconciliation.inspect(
+                    folder, batch, OutputRecoveryVerifier(app.contentResolver)::verify)
+            } catch (_: Exception) { null }
+            val details = retryDetails(app, token, snapshot)
+            main.post {
+                if (reviewToken != token) return@post
+                selectedShareIds = emptySet()
+                retryDraft = details.draft
+                exportState = previous.copy(items = snapshot?.items ?: previous.items,
+                    phase = if (snapshot?.items?.any { it.phase == BatchItemPhase.NEEDS_REVIEW } != false)
+                        ExportUiPhase.NEEDS_REVIEW else previous.phase,
+                    retryableIds = details.ids, retryReady = details.draft?.let {
+                        ExportDraftJournal.same(draft, it) } == true && details.ids.isNotEmpty(),
+                    outputBusy = false, outputError = failed || snapshot == null)
+                onReady?.invoke(intent)
+            }
+        }
+    }
+
+    fun outputViewerUnavailable() { exportState = exportState.copy(outputError = true) }
 
     /** Verify the whole batch before requesting a destination or creating output. */
     fun prepareExport(): Boolean {
@@ -276,7 +355,7 @@ internal class ReviewViewModel : ViewModel() {
     fun prepareRetryExport(): Boolean {
         val frozen = retryDraft ?: return false
         val token = reviewToken ?: return false
-        if (!exportState.retryReady || exportState.retryableIds.isEmpty() || isBusy || shareBusy ||
+        if (!exportState.retryReady || exportState.retryableIds.isEmpty() || isBusy || shareBusy || exportState.outputBusy ||
             activeToken != null || !ExportDraftJournal.same(draft, frozen) || exportState.phase !in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.ERROR)) return false
         plannedDraft = frozen
@@ -385,7 +464,7 @@ internal class ReviewViewModel : ViewModel() {
 
     /** Explicit selection is restricted to already published items in the displayed result. */
     fun toggleShareItem(id: String) {
-        if (shareBusy || exportState.phase !in setOf(
+        if (shareBusy || exportState.outputBusy || exportState.phase !in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
         if (exportState.items.none { it.itemId == id &&
                 it.phase == BatchItemPhase.PUBLISHED && it.uri != null }) return
@@ -399,7 +478,7 @@ internal class ReviewViewModel : ViewModel() {
      * its provider bytes. Uncertain and failed items are never shared or silently retried.
      */
     fun shareSelected(context: Context, onReady: (Intent?) -> Unit) {
-        if (shareBusy || exportState.phase !in setOf(
+        if (shareBusy || exportState.outputBusy || exportState.phase !in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
         val token = reviewToken ?: return
         val selected = selectedShareIds.toSet()

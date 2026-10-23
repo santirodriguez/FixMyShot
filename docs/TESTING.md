@@ -469,3 +469,19 @@ The current block routes API33+ language selection and reads through the actual 
 
 
 The final batch also persists a deterministic frozen-plan fingerprint. Retry compares current preflight against the original source/revision, placement/crop/output geometry, background, codec/format/alpha/metadata and render-policy version before clearing any receipt. Missing or changed identity is review-only. The added changed-plan case edits the stored background while keeping its old fingerprint and requires zero saves. This guards original-plan semantics across later engine changes; heap limits are rechecked without becoming part of the fingerprint.
+
+
+
+## Accepted retry/locale block — source f8cca4b
+
+[Actions39883541691](https://github.com/santirodriguez/FixMyShot/actions/runs/39883541691), exact source **f8cca4b44dacda437f0d2a91d1e57749b2c0a476**, completed SUCCESS for build and API36. Optional legacy SAF was SKIPPED/NOT RUN. The actual source-bound smoke log was read: renderer4, cache3, private7, transaction10, export-flow4, share4, import/settings4, batch5, retry7, recovery8, plus80 synthetic PNG/lossless WebP encodes and the source-bound checker PASS. This includes the actual Spanish/Catalan/system resources and new owned MediaStore restore/retry path. Generated branding packaging and APK compilation succeeded. No independent downloaded ZIP-byte verification is claimed for this receipt. Page size4096 is not16KiB runtime or physical-device acceptance. Native formats remain diagnostic.
+
+This supersedes the PENDING execution status of the preceding retry/locale implementation checkpoint, without changing its manual/hardware limitations.
+
+## Output review and private cleanup — implementation checkpoint
+
+Results now offer recheck, verified ACTION_VIEW with ClipData/read grant, and a separate explicit confirmation to keep an existing matching output as successful. Confirmation rechecks under the same job OS lock; read-only discovery never promotes uncertainty. Missing/changed/pending/unverifiable/conflicting records cannot be accepted or opened by this route. No provider output is rewritten, deleted or recreated. A crash between receipt updates remains reviewable.
+
+Private cleanup runs after durable explicit review, removes the frozen settings/source-URI journal and unused staged bytes, preserves sources referenced by the active draft or unreviewed jobs, and fails closed on malformed recovery state. Startup pruning now shares that protection with in-process drafts, runs before import work, retries interrupted private cleanup and removes old abandoned candidates. Only direct regular private files are deleted, without following file symlinks. Output receipts and lock inodes remain; complete receipt retirement is still open.
+
+RecoveryActionsTest adds4 cases: explicit acceptance/read-only opening/grants; missing/changed/pending/conflicting rejection; live lock exclusion; and real API29+ owned MediaStore pending refusal followed by visible matching-byte acceptance without changing output bytes. PrivateSessionMaintenanceTest adds4 cases for draft/unresolved protection, reviewed release with unchanged receipts, corrupt-state/symlink refusal and age cleanup. Combined recovery count is16. Host locale/collector checks are not Android execution. Exact-source Android validation of this new block is PENDING; external-viewer grant delivery, mid-write process-kill, low-space, full private lifecycle and physical-device acceptance remain open.

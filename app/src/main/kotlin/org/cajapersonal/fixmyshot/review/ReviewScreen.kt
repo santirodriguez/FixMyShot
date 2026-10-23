@@ -22,6 +22,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -94,12 +96,28 @@ internal fun ReviewScreen(
     onCrop: (CropFocus) -> Unit = {},
     onRetryExport: () -> Unit = {},
     onRestoreDraft: () -> Unit = {},
+    onRefreshOutputs: () -> Unit = {},
+    onOpenOutput: (String) -> Unit = {},
+    onConfirmOutput: (String) -> Unit = {},
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
     val plan = plans.firstOrNull { it.itemId == selectedId }
     val editEnabled = !busy && pendingImports == 0 && !exportState.isLocked
-
+    var confirmingOutput by remember { mutableStateOf<String?>(null) }
+    val confirmationId = confirmingOutput
+    if (confirmationId != null) AlertDialog(
+        onDismissRequest = { confirmingOutput = null },
+        title = { Text(stringResource(R.string.export_keep_output)) },
+        text = { Text(stringResource(R.string.export_keep_explanation)) },
+        confirmButton = { TextButton(onClick = {
+            confirmingOutput = null
+            onConfirmOutput(confirmationId)
+        }) { Text(stringResource(R.string.export_keep_output)) } },
+        dismissButton = { TextButton(onClick = { confirmingOutput = null }) {
+            Text(stringResource(R.string.export_keep_cancel))
+        } },
+    )
 
     Column(
         modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)
@@ -214,17 +232,38 @@ internal fun ReviewScreen(
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
         if (exportState.published > 0 && exportState.phase in setOf(
                 ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) {
-            ExportShareControls(exportState, selectedShareIds, shareBusy, shareError,
+            ExportShareControls(exportState, selectedShareIds, shareBusy || exportState.outputBusy, shareError,
                 onToggleShare, onShare)
         }
+        if (exportState.canAcknowledge) {
+            val actionsEnabled = !busy && !shareBusy && !exportState.outputBusy
+            OutlinedButton(onClick = onRefreshOutputs, enabled = actionsEnabled) {
+                Text(stringResource(R.string.export_recheck_outputs))
+            }
+            exportState.items.forEachIndexed { index, item ->
+                if (item.uri != null) {
+                    OutlinedButton(onClick = { onOpenOutput(item.itemId) }, enabled = actionsEnabled) {
+                        Text(stringResource(R.string.export_open_output, index + 1))
+                    }
+                    if (item.phase == BatchItemPhase.NEEDS_REVIEW && item.reason == "OUTPUT_PRESENT_UNCERTAIN") {
+                        OutlinedButton(onClick = { confirmingOutput = item.itemId }, enabled = actionsEnabled) {
+                            Text(stringResource(R.string.export_keep_item, index + 1))
+                        }
+                    }
+                }
+            }
+            if (exportState.outputBusy) Text(stringResource(R.string.export_checking_output))
+        }
+        if (exportState.outputError) Text(stringResource(R.string.export_output_action_failed),
+            color = MaterialTheme.colorScheme.error)
         if (exportState.canRestoreDraft) {
-            OutlinedButton(onClick = onRestoreDraft, enabled = !busy && !shareBusy) {
+            OutlinedButton(onClick = onRestoreDraft, enabled = !busy && !shareBusy && !exportState.outputBusy) {
                 Text(stringResource(R.string.export_restore_draft))
             }
         }
         if (exportState.retryableIds.isNotEmpty() && exportState.canAcknowledge) {
             Text(stringResource(R.string.export_retry_notice))
-            Button(onClick = onRetryExport, enabled = exportState.retryReady && !busy && !shareBusy) {
+            Button(onClick = onRetryExport, enabled = exportState.retryReady && !busy && !shareBusy && !exportState.outputBusy) {
                 Text(stringResource(R.string.export_retry_remaining, exportState.retryableIds.size))
             }
         }

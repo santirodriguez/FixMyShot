@@ -121,6 +121,15 @@
     <string name="export_restore_draft">Restaurar la sesión de exportación anterior</string>
     <string name="export_retry_remaining">Reintentar pendientes (%1$d)</string>
     <string name="export_retry_notice">Solo se reintentan las imágenes fallidas, canceladas o sin iniciar. Se conservan las ya guardadas y las salidas que requieren revisión.</string>
+    <string name="export_recheck_outputs">Volver a comprobar las copias</string>
+    <string name="export_open_output">Abrir copia %1$d</string>
+    <string name="export_keep_output">Conservar copia verificada</string>
+    <string name="export_keep_item">Conservar copia verificada %1$d</string>
+    <string name="export_keep_explanation">¿Querés conservar esta copia existente como un resultado guardado? FixMyShot volverá a comprobar sus bytes y registrará tu confirmación. No creará otra copia. No se puede aceptar una copia oculta, modificada, inexistente o ilegible.</string>
+    <string name="export_keep_cancel">Cancelar</string>
+    <string name="export_checking_output">Comprobando la copia guardada…</string>
+    <string name="export_output_action_failed">No se pudo completar la acción. La copia puede faltar, haber cambiado, estar oculta o ser inaccesible; puede no haber un visor disponible o la limpieza privada puede estar bloqueada por otro trabajo pendiente. Revisá los resultados y volvé a intentar.</string>
+    <string name="export_finish_review_notice">Terminá la revisión cuando ya no necesites restaurar ni reintentar esta exportación. Se quitarán sus ajustes privados de recuperación; las copias guardadas y sus registros se conservan. Descartá la sesión para quitar las copias de trabajo restantes.</string>
 </resources>
 
 

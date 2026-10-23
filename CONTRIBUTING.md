@@ -38,7 +38,7 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 ## Translations and reports
 
-Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (122 in the retry/recovery implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
+Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (131 in the output-review/cleanup implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
 Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](docs/TESTING.md) for acceptance boundaries.
 
@@ -61,3 +61,12 @@ BatchRetryPolicy permits only no-output states: a failed/cancelled/unstarted ite
 The grouped Android block includes the seven-case BatchRetryFlowTest plus a real owned MediaStore/ViewModel restart/restore/retry case in ReviewExportFlowTest (now four). Keep collector and mock counts aligned. Journal readers now bound bytes before full allocation. Full mid-write crash/device/low-space/manual receiver and cleanup acceptance remain open.
 
 FrozenPlanFingerprint binds geometry, background choice, crop rectangle, output dimensions, codec/format/alpha/metadata and source/revision identity to the frozen journal. Render-policy semantic changes must bump its policy version. Dynamic heap estimates are deliberately excluded and rechecked separately. Missing/mismatched plan identity permits review/restoration but forbids retry; never silently recompute an old export under changed output semantics.
+
+
+## Output review and private cleanup
+
+ExportRecoveryActions opens only a matching, visible recorded output through ACTION_VIEW and a temporary read grant. Merely reopening or rechecking never changes publication state. After a separate explicit confirmation, the same job OS lock and a fresh digest/provider check permit recording that existing output as PUBLISHED. Missing, changed, pending, conflicting or inaccessible outputs remain unresolved; no provider write, delete or duplicate export occurs.
+
+PrivateSessionMaintenance protects current draft IDs and every unreviewed job. Corrupt/unknown recovery state blocks source cleanup. Explicit review removes the frozen private settings/URI journal under the job lock, releases unused private sources and retains output receipts plus the stable lock inode. Current draft sources remain until removal/discard; new sessions keep PNG/metadata-removal defaults. Startup retries interrupted reviewed-draft cleanup and removes abandoned sources/candidates older than24h, before imports start. There is no secure-erasure or exact-time background deletion promise. Output receipts currently remain until app data is cleared/uninstalled; full receipt retirement and unresolved provider-output cleanup remain open.
+
+The grouped recovery suite now has16 cases, including four output-action and four private-maintenance cases. Keep the collector and its host mock in sync. These tests do not replace external-viewer delivery, complete process-kill, hardware or low-space acceptance.
