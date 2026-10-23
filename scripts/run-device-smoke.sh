@@ -121,9 +121,9 @@ timeout 3m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/import-settings-instrumentation.txt 2>&1
 import_settings_result=$?
 cat evidence/import-settings-instrumentation.txt
-# A separate fault-injected batch suite checks sequential output state and restart barriers.
+# Batch orchestration plus 100-item real PNG/WebP encoding with bounded provider faults.
 timeout 4m adb shell am instrument -w -r \
-  -e class org.cajapersonal.fixmyshot.BatchOutputCoordinatorTest \
+  -e class org.cajapersonal.fixmyshot.BatchOutputCoordinatorTest,org.cajapersonal.fixmyshot.HundredItemBatchTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/batch-instrumentation.txt 2>&1
 batch_result=$?
 cat evidence/batch-instrumentation.txt
@@ -147,7 +147,7 @@ grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
 grep -q 'OK (14 tests)' evidence/import-settings-instrumentation.txt
-grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
+grep -q 'OK (7 tests)' evidence/batch-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.

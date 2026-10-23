@@ -122,7 +122,9 @@ class SourceAppearanceTest {
         val bitmap = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888)
         try {
             bitmap.setHasAlpha(false); bitmap.eraseColor(Color.rgb(pixel[0], pixel[1], pixel[2]))
-            val jpeg = ByteArrayOutputStream().also { assertTrue(bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)) }.toByteArray()
+            val jpeg = withoutJpegIcc(ByteArrayOutputStream().also {
+                assertTrue(bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it))
+            }.toByteArray())
             val icc = "ICC_PROFILE\u0000".toByteArray() + byteArrayOf(1, 1) + profile
             val taggedJpeg = jpeg.copyOfRange(0, 2) + bytes {
                 writeShort(0xffe2); writeShort(icc.size + 2); write(icc)
@@ -154,6 +156,28 @@ class SourceAppearanceTest {
             return listOf(png(profile), taggedJpeg, taggedWebp)
         } finally { bitmap.recycle() }
     }
+    /** Replace the encoder's profile rather than creating conflicting ICC sequence numbers. */
+    private fun withoutJpegIcc(jpeg: ByteArray): ByteArray = bytes {
+        require(jpeg.size >= 4 && jpeg[0] == 0xff.toByte() && jpeg[1] == 0xd8.toByte())
+        write(jpeg, 0, 2)
+        var offset = 2
+        while (offset < jpeg.size) {
+            val start = offset
+            require(jpeg[offset++].toInt() and 255 == 255)
+            while (offset < jpeg.size && jpeg[offset].toInt() and 255 == 255) offset++
+            require(offset < jpeg.size)
+            val marker = jpeg[offset++].toInt() and 255
+            if (marker == 0xda) { write(jpeg, start, jpeg.size - start); return@bytes }
+            require(marker !in setOf(0, 1, 0xd8, 0xd9) && marker !in 0xd0..0xd7 && offset + 2 <= jpeg.size)
+            val length = ((jpeg[offset].toInt() and 255) shl 8) or (jpeg[offset + 1].toInt() and 255)
+            require(length >= 2 && length <= jpeg.size - offset)
+            val isIcc = marker == 0xe2 && length >= 14 &&
+                String(jpeg, offset + 2, 12, Charsets.ISO_8859_1) == "ICC_PROFILE\u0000"
+            offset += length
+            if (!isIcc) write(jpeg, start, offset - start)
+        }
+        error("Generated JPEG has no scan")
+    }
     private fun expected(color: SourceColor): Int {
         val linear = pixel.map { value ->
             val x = value / 255.0
@@ -173,14 +197,14 @@ class SourceAppearanceTest {
         for (shift in listOf(0, 8, 16, 24)) assertTrue("expected=$expected actual=$actual shift=$shift",
             abs(((expected ushr shift) and 255) - ((actual ushr shift) and 255)) <= tolerance)
     }
-    private fun sameAlphaAndCompositedColor(expected: Int, actual: Int) {
-        assertEquals("Alpha must survive exactly", Color.alpha(expected), Color.alpha(actual))
+    private fun sameAlphaAndCompositedColor(expected: Int, actual: Int, context: String = "") {
+        assertEquals("$context Alpha must survive exactly", Color.alpha(expected), Color.alpha(actual))
         // ARGB8888 getPixel returns unpremultiplied channels. At low alpha, one stored
         // channel level expands into several straight-RGB levels. Compare visible energy.
         val alpha = Color.alpha(expected)
         for (shift in listOf(0, 8, 16)) {
             fun premultiplied(pixel: Int) = (((pixel ushr shift) and 255) * alpha + 127) / 255
-            assertTrue("Premultiplied channel mismatch: expected=$expected actual=$actual shift=$shift",
+            assertTrue("$context Premultiplied channel mismatch: expected=$expected actual=$actual shift=$shift",
                 abs(premultiplied(expected) - premultiplied(actual)) <= 1)
         }
     }
@@ -246,6 +270,7 @@ class SourceAppearanceTest {
         try {
             val variants = containerVariants(valid, directory)
             val jpeg = variants[1]
+            val duplicateIcc = jpeg.copyOfRange(0, 2) + jpeg.copyOfRange(2, 6 + 14 + valid.size) + jpeg.copyOfRange(2, jpeg.size)
             val gainMap = jpeg.copyOfRange(0, 2) + bytes { writeShort(0xffe2); writeShort(6); writeBytes("MPF\u0000") } + jpeg.copyOfRange(2, jpeg.size)
             val sequence = jpeg.copyOf().apply { this[18] = 2 }
             val missingFlag = variants[2].copyOf().apply { this[20] = 0 }
@@ -254,7 +279,7 @@ class SourceAppearanceTest {
                 png(profile(SourceColor.DISPLAY_P3, 1.0)) to ReviewSources.Failure.COLOR_UNSUPPORTED,
                 png(extra = "cICP") to ReviewSources.Failure.HDR_UNSUPPORTED,
                 png(depth = 16) to ReviewSources.Failure.HIGH_PRECISION,
-                gainMap to ReviewSources.Failure.HDR_UNSUPPORTED,
+                gainMap to ReviewSources.Failure.HDR_UNSUPPORTED, duplicateIcc to ReviewSources.Failure.MALFORMED,
                 sequence to ReviewSources.Failure.MALFORMED, missingFlag to ReviewSources.Failure.MALFORMED)) {
                 file.writeBytes(data)
                 val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
@@ -307,7 +332,8 @@ class SourceAppearanceTest {
             for (format in listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
                 for (side in listOf(64, 96)) {
                     for (background in listOf(BackgroundChoice.Transparent, BackgroundChoice.White, BackgroundChoice.Black)) {
-                        println("ALPHA_CASE format=$format side=$side background=${background.javaClass.simpleName}")
+                        val case = "format=$format side=$side background=${background.javaClass.simpleName}"
+                        println("ALPHA_CASE $case")
                         val draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1), batch = EditSettings(
                             format = format, background = background,
                             size = OutputSizeChoice.Exact(PixelSize(side, side), allowEnlargement = true))).addImages(listOf(image))
@@ -323,7 +349,7 @@ class SourceAppearanceTest {
                                     (channel * 128 + (if (background == BackgroundChoice.White) 255 else 0) * 127 + 127) / 255
                                 val expected = Color.argb(alpha, blend(240), blend(24), blend(8))
                                 if (background == BackgroundChoice.Transparent) {
-                                    sameAlphaAndCompositedColor(expected, middle)
+                                    sameAlphaAndCompositedColor(expected, middle, case)
                                     assertEquals(0, Color.alpha(decoded.getPixel(0, side / 2)))
                                     assertEquals(255, Color.alpha(decoded.getPixel(side - 1, side / 2)))
                                     assertFalse(result.opaqueWebpProven)
@@ -332,14 +358,14 @@ class SourceAppearanceTest {
                                 if (background == BackgroundChoice.Transparent) {
                                     for (x in side / 5..side / 3) {
                                         val edge = decoded.getPixel(x, side / 2)
-                                        if (Color.alpha(edge) >= 32) sameAlphaAndCompositedColor(Color.argb(Color.alpha(edge), 240, 24, 8), edge)
+                                        if (Color.alpha(edge) >= 32) sameAlphaAndCompositedColor(Color.argb(Color.alpha(edge), 240, 24, 8), edge, "$case edge=$x")
                                     }
                                 }
                                 val sample = ReviewSources(app).decodeOriginal(image.id, image.orientedSize)
                                 try {
                                     val preview = ReviewBitmapRenderer.preview(sample, image.orientedSize, draft.plans(Build.VERSION.SDK_INT).single())
                                     try {
-                                        if (background == BackgroundChoice.Transparent) sameAlphaAndCompositedColor(preview.image.getPixel(side / 2, side / 2), middle)
+                                        if (background == BackgroundChoice.Transparent) sameAlphaAndCompositedColor(preview.image.getPixel(side / 2, side / 2), middle, "$case preview")
                                         else near(preview.image.getPixel(side / 2, side / 2), middle, 2)
                                     }
                                     finally { preview.image.recycle() }
