@@ -31,6 +31,10 @@ Kotlin and Gradle
 Sources: https://github.com/JetBrains/kotlin and https://github.com/gradle/gradle
 Build tooling / Kotlin runtime: Apache License 2.0.
 Bootstrap pins: Kotlin 2.2.21, Gradle 8.13.
+The committed standard Gradle8.13 wrapper/launchers retain their upstream notices.
+Apache License2.0 text: LICENSES/Apache-2.0.txt and the wrapper JAR META-INF/LICENSE.
+The wrapper was generated from the checksum-verified Gradle distribution; exact
+provenance and hashes are in docs/feasibility/committed-gradle-inputs.md.
 
 JUnit 4.13.2 (test only)
 Source: https://github.com/junit-team/junit4

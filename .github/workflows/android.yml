@@ -41,6 +41,7 @@ jobs:
       - name: Validate bootstrap resources and report checker
         run: |
           python3 scripts/check-bootstrap.py
+          python3 scripts/test-gradle-wrapper.py
           python3 scripts/test-device-report.py
           python3 scripts/test-emulator-heap.py
           python3 scripts/test-native-probe.py
@@ -49,7 +50,7 @@ jobs:
           python3 scripts/test-saf-provider.py
       - name: Install pinned Android build packages
         run: bash scripts/setup-android.sh
-      - name: Generate verified standard wrapper
+      - name: Validate committed standard wrapper without regeneration
         run: bash scripts/bootstrap-gradle.sh
       - name: Resolve and build the initial candidate
         run: |
@@ -58,9 +59,10 @@ jobs:
           git archive --format=tar HEAD -o evidence/source.tar
           java -version 2> evidence/java-version.txt
           ./gradlew --version > evidence/gradle-version.txt
-          # Bootstrap-only trust capture. Review/commit these candidates before G1 closes.
-          ./gradlew --no-daemon --write-locks --write-verification-metadata sha256 \
+          # Version locks are committed. Artifact authenticity is still a separate open gate.
+          ./gradlew --no-daemon --write-verification-metadata sha256 \
             :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease :app:assembleDebugAndroidTest
+          git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
           sha256sum app/build/outputs/apk/debug/app-debug.apk \
             app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
             app/build/outputs/apk/release/app-release-unsigned.apk > evidence/apk-sha256.txt

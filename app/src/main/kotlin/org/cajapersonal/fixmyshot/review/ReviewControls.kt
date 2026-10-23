@@ -102,7 +102,7 @@ internal fun ReviewControls(
                         Text(formatLabel(effective.format))
                     }
                     DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
-                        OutputFormat.entries.forEach { format ->
+                        OutputFormat.entries.filter { it != OutputFormat.JXL }.forEach { format ->
                             DropdownMenuItem(enabled = enabled, text = { Text(formatLabel(format)) },
                                 onClick = { chooseFormat = false; onFormat(format, selectedOnly) })
                         }

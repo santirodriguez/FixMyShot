@@ -30,7 +30,7 @@
     <string name="format_webp">WebP · sin pérdida</string>
     <string name="format_heic">HEIC · no disponible hasta verificarlo</string>
     <string name="format_avif">AVIF · no disponible hasta verificarlo</string>
-    <string name="format_jxl">JPEG XL · todavía no integrado</string>
+    <string name="format_jxl">JPEG XL · postergado para esta versión</string>
     <string name="background_auto">Fondo automático</string>
     <string name="background_white">Fondo blanco</string>
     <string name="background_black">Fondo negro</string>

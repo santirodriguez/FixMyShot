@@ -2,6 +2,8 @@
 
 Status: **PARTIAL, NOT G1 ACCEPTANCE** (2026-10-21). This record accompanies a coherent development batch, not a format-support announcement or completed Android device benchmark.
 
+Current disposition (2026-10-23): [JXL is deferred for v0.1.0](../decisions/jxl-first-delivery.md) using the completed bounded experiment below; it is not offered in the app format menu. [The verified standard wrapper and three version lockfiles are now committed](committed-gradle-inputs.md). The current capture is551 components/958 artifacts, not the historical502/874 below; artifact authentication/strict verification remain open. Historical results are preserved with their exact source boundaries. Legacy CI is best effort under [the compatibility/validation amendment](../decisions/compatibility-and-validation.md).
+
 ## Source and acceptance boundaries
 
 - Last complete Android bootstrap/emulator matrix: GitHub Actions [39631701532](https://github.com/santirodriguez/FixMyShot/actions/runs/39631701532) on `fa6dd24f00c2b053c0dcbce16f41c7659d9f5590`; build, API 26 and API 36 passed. The present pure-core geometry and feasibility-script changes have **not** been compiled by that run.
@@ -105,6 +107,7 @@ Each job built and measured the following six shared objects: `libjxl.so`, `libj
 
 ## Integration checkpoint and next blockers
 
-Do **not** infer new Android acceptance from the local work above. Continue safely batching independent work. At a genuine integration checkpoint, trigger exactly one source-bound full build + API26/API36 matrix by updating `.ci/android-validation-request.txt` in the release branch and examine the resulting APK/test evidence. The JXL reference Android ABI source-build helper is a separate costly one-off trial; execute it deliberately on an authorized disposable build runner, capture failures and full source provenance, and do not hide a failed/absent benchmark behind a green unrelated build.
+Do **not** infer new Android acceptance from local work. Continue batching independent work. At a genuine integration checkpoint, update `.ci/android-validation-request.txt` for one source-bound build+API36 run; optional profile=extended adds legacy diagnostics under the current compatibility amendment. Inspect that run's exact evidence. JXL is deferred; retain the source-build receipts without repeating the experiment as ordinary CI. Future reconsideration needs a separate scoped measurement, not an unrelated green build.
 
 Actual Pixel9ProXL and another physical manufacturer, 1344×2992 real screenshot/color/metadata/alpha/fidelity, native HEIC/AVIF actual encode/reopen/display, libjxl release/JNI/16KiB cost and independent artifact authenticity gates remain open. No signing, merging, publishing or deployment is implied by this preflight.
+
