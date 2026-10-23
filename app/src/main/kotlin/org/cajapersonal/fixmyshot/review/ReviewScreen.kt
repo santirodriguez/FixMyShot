@@ -111,6 +111,7 @@ internal fun ReviewScreen(
     sessionRestoreBlocked: Boolean = false,
     onRetrySessionSave: () -> Unit = {},
     onDiscardUnavailableSession: () -> Unit = {},
+    finishSessionOnReview: Boolean = false,
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -296,7 +297,7 @@ internal fun ReviewScreen(
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
         if (exportState.published > 0 && exportState.phase in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) {
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) {
             ExportShareControls(exportState, selectedShareIds, shareBusy || exportState.outputBusy, shareError,
                 onToggleShare, onShare)
         }
@@ -329,11 +330,12 @@ internal fun ReviewScreen(
         if (exportState.retryableIds.isNotEmpty() && exportState.canAcknowledge) {
             Text(stringResource(R.string.export_retry_notice))
             Button(onClick = onRetryExport, enabled = exportState.retryReady && !busy && !shareBusy && !exportState.outputBusy) {
-                Text(stringResource(R.string.export_retry_remaining, exportState.retryableIds.size))
+                Text(stringResource(if (exportState.phase == ExportUiPhase.PAUSED) R.string.export_resume_remaining
+                    else R.string.export_retry_remaining, exportState.retryableIds.size))
             }
         }
         if (exportState.previousJobs > 0 || exportState.canAcknowledge) {
-            ExportJobNotice(exportState, onReviewedPrevious)
+            ExportJobNotice(exportState, onReviewedPrevious, finishSessionOnReview)
         }
     }
 }
@@ -344,11 +346,12 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
         ExportUiPhase.IDLE -> null
         ExportUiPhase.CHECKING_HISTORY -> R.string.export_history_checking
         ExportUiPhase.CHOOSING_FOLDER -> R.string.export_select_folder
-        ExportUiPhase.RUNNING -> R.string.export_in_progress
+        ExportUiPhase.RUNNING -> if (state.pauseRequested) R.string.export_pausing else R.string.export_in_progress
         ExportUiPhase.COMPLETED -> R.string.export_finished
         ExportUiPhase.BLOCKED -> R.string.export_blocked
         ExportUiPhase.NEEDS_REVIEW -> R.string.export_requires_review
         ExportUiPhase.CANCELLED -> R.string.export_cancelled
+        ExportUiPhase.PAUSED -> R.string.export_paused
         ExportUiPhase.ERROR -> R.string.export_destination_error
     }
     if (headline != null) {
@@ -369,7 +372,7 @@ private fun ExportProgress(state: ReviewExportState, onCancel: () -> Unit) {
                 BatchItemPhase.SAVING -> R.string.export_item_saving
                 BatchItemPhase.PUBLISHED -> R.string.export_item_published
                 BatchItemPhase.FAILED -> R.string.export_item_failed
-                BatchItemPhase.CANCELLED -> R.string.export_item_cancelled
+                BatchItemPhase.CANCELLED -> if (item.reason == "PAUSED") R.string.export_item_paused else R.string.export_item_cancelled
                 BatchItemPhase.NEEDS_REVIEW -> R.string.export_item_needs_review
             }
             Text(stringResource(R.string.export_item_status, index + 1, stringResource(label)),

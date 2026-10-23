@@ -158,6 +158,12 @@
     <string name="session_discard_saved">Descarta l’esborrany desat</string>
     <string name="session_save_failed">No s’han pogut desar els darrers canvis de l’esborrany. Mantén l’aplicació oberta i torna-ho a provar.</string>
     <string name="session_retry_save">Torna a provar de desar l’esborrany</string>
+    <string name="export_pausing">S’està acabant la imatge actual; després es posarà el lot en pausa.</string>
+    <string name="export_paused">L’exportació s’ha posat en pausa en sortir de l’aplicació. Continua amb les imatges restants quan vulguis.</string>
+    <string name="export_item_paused">En pausa</string>
+    <string name="export_resume_remaining">Continua amb les restants (%1$d)</string>
+    <string name="export_finish_session">Finalitza la sessió</string>
+    <string name="export_finish_session_notice">S’han desat totes les imatges del lot. Finalitza la sessió per netejar-ne les còpies de treball privades i començar-ne una de nova amb PNG i eliminació de metadades. Les imatges desades continuen disponibles a la destinació triada.</string>
 </resources>
 
 

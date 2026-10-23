@@ -6,7 +6,7 @@ import org.cajapersonal.fixmyshot.export.BatchItemPhase
 
 /** User-visible session status. Never embeds original URIs or image bytes. */
 internal enum class ExportUiPhase {
-    IDLE, CHECKING_HISTORY, CHOOSING_FOLDER, RUNNING, COMPLETED, BLOCKED, NEEDS_REVIEW, CANCELLED, ERROR
+    IDLE, CHECKING_HISTORY, CHOOSING_FOLDER, RUNNING, COMPLETED, BLOCKED, NEEDS_REVIEW, CANCELLED, PAUSED, ERROR
 }
 
 internal data class ReviewExportState(
@@ -21,6 +21,7 @@ internal data class ReviewExportState(
     val canRestoreDraft: Boolean = false,
     val outputBusy: Boolean = false,
     val outputError: Boolean = false,
+    val pauseRequested: Boolean = false,
 ) {
     val total: Int get() = items.size
     val published: Int get() = items.count { it.phase == BatchItemPhase.PUBLISHED }

@@ -82,6 +82,12 @@ internal class ReviewSessionJournal(private val file: File) {
 
     fun clear() = synchronized(lock) { clearLocked() }
 
+    /** Finishing one export must not clear a different, newer saved working session. */
+    fun clearMatching(draft: DraftSession): Boolean = synchronized(lock) {
+        val saved = readLocked()
+        if (saved != null && saved.draft != draft) false else { clearLocked(); true }
+    }
+
     private fun clearLocked() {
         safeFiles()
         atomic.delete()

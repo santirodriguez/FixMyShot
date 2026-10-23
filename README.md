@@ -18,12 +18,12 @@ PNG and identifying-metadata removal remain new-session defaults. Original files
 
 Explicit crop is now wired through drag/pinch plus zoom/directional/reset controls, normalized source coordinates and a shared preview/final renderer. Preserve-content mode remains the default. Preserve-pixels crop zoom reduces native output dimensions. Exact output size, uniform enlargement and custom RGB backgrounds are explicit choices; enlargement requires opt-in. Destination conflicts remain visible and block export until resolved.
 
-**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, foreground/interruption and100-item provider scenarios, native HEIC/AVIF and the bounded JPEG XL decision, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are already implemented. The accepted bounded API36 metadata checkpoint is `d6b63ae`; new editable-session persistence requires its own source-bound validation. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
+**Still incomplete:** broader color/ICC/HDR/partial-alpha acceptance, complete private receipt retirement and uncertain-output cleanup, foreground/interruption and100-item provider scenarios, native HEIC/AVIF and the bounded JPEG XL decision, real external receivers/physical devices, accessibility/locale visual review and distribution readiness. Exact size/crop controls, selective metadata preservation and safe remaining-item retry are already implemented. The accepted bounded API36 metadata checkpoint is `d6b63ae`; editable-session tests passed at54bf003, while its full run failed the deferred locale diagnostic. New foreground/session-finish changes have not yet run on Android. The complete contract and amendments remain in [the release blueprint](docs/blueprints/first-functional-release.md) and linked decisions.
 
 Export jobs now persist their original batch/per-image settings and staged-source references. After restart, explicitly restore that export session and retry only failed, cancelled or unstarted items with proof of no remaining output. Already saved and uncertain outputs are never re-exported by this action. Retries use the recorded plan; older jobs without a frozen draft remain review-only. Successful output records and share selection retain their original item positions.
 
 
-Editable drafts now checkpoint locally after edits, including selected image, inherited/custom fields and one-step undo. Reopening within24 hours restores that session before age cleanup and shows its retained format/privacy choices; no export starts automatically. Incoming offers are recounted against the restored100-image limit. A corrupt journal or missing staged image blocks silent replacement until explicit discard. Cache eviction can still make a saved draft unavailable. New sessions retain PNG/removal defaults. This new block is pending exact-source Android acceptance.
+Editable drafts now checkpoint locally after edits, including selected image, inherited/custom fields and one-step undo. Reopening within24 hours restores that session before age cleanup and shows its retained format/privacy choices; no export starts automatically. Incoming offers are recounted against the restored100-image limit. A corrupt journal or missing staged image blocks silent replacement until explicit discard. Cache eviction can still make a saved draft unavailable. New sessions retain PNG/removal defaults. Its four isolated session cases passed at54bf003. The aggregate run failed a recurrent automatic-locale-switch case, now deferred to opt-in diagnostics. Broader manual/lifecycle acceptance remains open.
 
 | Delivery stage | Current boundary |
 |---|---|
@@ -31,14 +31,17 @@ Editable drafts now checkpoint locally after edits, including selected image, in
 |1 — Foundation/codecs | PNG/WebP and builds work; native HEIC/AVIF, JXL decision and reproducibility/dependency trust remain open |
 |2 — Image/privacy core | Geometry, crop, sizes and metadata policies implemented; broader color/alpha/ICC/HDR acceptance open |
 |3 — Import/review | Picker/sharing, batches, themes and languages implemented; manual accessibility/locale/visual acceptance open |
-|4 — Reliable output | Save/share/retry/recovery implemented; editable draft validation, final cleanup and extensive lifecycle/provider scenarios open |
+|4 — Reliable output | Save/share/retry/recovery implemented; editable drafts and pause/finish behavior implemented; accumulated validation, receipt retirement and extensive lifecycle/provider scenarios open |
 |5 — Integral acceptance | Real Pixel/additional hardware, receivers/gallery, performance and usability still required |
 |6 — Delivery | Version/signing authorization, reproducible artifact, install/upgrade and final release evidence still required |
 |7 — Public1.0 | Later stabilization from actual use; website/store publication is not a prerequisite |
 
+
+Leaving the app now requests a pause after the current bounded export transaction. Rotation keeps the active job. Returning does not automatically continue remaining items; “Continue remaining” uses the existing verified no-output retry path and preserves saved copies. After a fully successful batch, “Finish session” clears that session’s private working copies/current+undo/frozen settings and resets the new-session defaults, retaining public output and receipts. Partial/uncertain jobs retain their recovery protection. These new lifecycle changes are implemented but pending a later grouped Android checkpoint.
+
 ## Development
 
-See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). At explicit batch validation checkpoints and pull requests to `main`, GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks; ordinary development commits do not launch the costly emulator matrix. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
+See [CONTRIBUTING](CONTRIBUTING.md), [test scope](docs/TESTING.md) and [codec status](docs/FORMATS.md). At explicit larger validation checkpoints and pull requests to `main`, GitHub Actions builds debug/unsigned candidates and runs synthetic emulator checks; ordinary development commits do not launch the costly emulator matrix. A green bootstrap run does not establish physical-device codec acceptance, final translation quality or reproducible release readiness.
 
 The intended first functional distribution is a GitHub prerelease with Obtainium support. There is no published release, production signing identity or deployed project website established by this bootstrap.
 

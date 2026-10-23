@@ -191,6 +191,20 @@ internal class ReviewViewModel : ViewModel() {
     private var lastAttemptDraft: DraftSession? = null
     private var cancelJob: AtomicBoolean? = null
     private var activeToken: String? = null
+    private val foregroundPause = AtomicBoolean(false)
+    private var inForeground = true
+
+    fun foregroundChanged(visible: Boolean) {
+        inForeground = visible
+        if (!visible && activeToken != null) {
+            foregroundPause.set(true)
+            exportState = exportState.copy(pauseRequested = true)
+        } else if (visible && activeToken == null) foregroundPause.set(false)
+    }
+
+    val canFinishSession: Boolean get() = exportState.canAcknowledge && exportState.items.isNotEmpty() &&
+        exportState.items.all { it.phase == BatchItemPhase.PUBLISHED } &&
+        lastAttemptDraft?.let { ExportDraftJournal.same(draft, it) } == true
     private var checkedPreviousJobs = false
     private var inspectingPreviousJobs = false
     private var reviewToken: String? = null
@@ -363,6 +377,8 @@ internal class ReviewViewModel : ViewModel() {
         val token = reviewToken ?: return
         if (!exportState.canAcknowledge || activeToken != null || shareBusy || exportState.outputBusy ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
+        val finishSession = canFinishSession
+        val finishingDraft = draft
         exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
             canAcknowledge = false)
         val app = context.applicationContext
@@ -370,12 +386,24 @@ internal class ReviewViewModel : ViewModel() {
         exportWorker.execute {
             var saved = false
             var cleanupFailed = false
+            var finishedSession = false
             val next = try {
                 val scanner = recoveryScanner(app)
                 if (scanner.inspect()?.token == token) {
                     saved = app.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE)
                         .edit().putBoolean(token, true).commit()
-                    if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
+                    if (saved && finishSession) {
+                        try {
+                            if (sessionContext != null && !sessionJournal(app).clearMatching(finishingDraft)) {
+                                throw java.io.IOException("A different saved session must be preserved")
+                            }
+                            finishedSession = true
+                            val cleaner = maintenance(app)
+                            val releasedDraft = cleaner.releaseReviewedDraft(token, emptySet())
+                            val releasedUndo = cleaner.release(current, emptySet())
+                            cleanupFailed = !releasedDraft || !releasedUndo
+                        } catch (_: Exception) { cleanupFailed = true }
+                    } else if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
                         !maintenance(app).releaseReviewedDraft(token, it)
                     } ?: true
                 }
@@ -385,6 +413,20 @@ internal class ReviewViewModel : ViewModel() {
             main.post {
                 if (activeToken == null && reviewToken == token) {
                     if (saved || next?.token == token) {
+                        if (finishedSession) {
+                            draft = DraftSession()
+                            selectedId = null
+                            preview = null
+                            clearThumbnails()
+                            sessionRestored = false
+                            sessionExpired = false
+                            sessionSaveError = false
+                            sessionRestoreBlocked = false
+                            invalidImports = 0
+                            importLimitExceeded = false
+                            previewUnavailable = false
+                            lastAttemptDraft = null
+                        }
                         showHistory(next, details)
                         if (cleanupFailed) exportState = exportState.copy(outputError = true)
                     } else {
@@ -477,7 +519,7 @@ internal class ReviewViewModel : ViewModel() {
         val token = reviewToken ?: return false
         if (!exportState.retryReady || exportState.retryableIds.isEmpty() || isBusy || shareBusy || exportState.outputBusy ||
             activeToken != null || !ExportDraftJournal.same(draft, frozen) || exportState.phase !in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.ERROR)) return false
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.ERROR)) return false
         plannedDraft = frozen
         plannedRetryToken = token
         plannedRetryIds = exportState.retryableIds.toSet()
@@ -520,19 +562,20 @@ internal class ReviewViewModel : ViewModel() {
         lastAttemptDraft = frozen
         val token = retryToken ?: BatchOutputCoordinator.newToken()
         activeToken = token
+        foregroundPause.set(!inForeground)
         val cancelled = AtomicBoolean(false)
         cancelJob = cancelled
         exportState = ReviewExportState(ExportUiPhase.RUNNING)
         val app = context.applicationContext
         exportWorker.execute {
             val outcome = try {
-                val coordinator = BatchOutputCoordinator.forPort(app, port)
+                val coordinator = BatchOutputCoordinator.forPort(app, port, foregroundPause)
                 val progress: (BatchCheckpoint) -> Unit = { checkpoint ->
                     main.post {
                         if (activeToken == token) {
                             exportState = ReviewExportState.fromCheckpoint(
                                 ExportUiPhase.RUNNING, checkpoint).copy(
-                                cancelRequested = cancelled.get())
+                                cancelRequested = cancelled.get(), pauseRequested = foregroundPause.get())
                         }
                     }
                 }
@@ -555,8 +598,11 @@ internal class ReviewViewModel : ViewModel() {
                 reviewToken = if (outcome is BatchRunResult.Blocked && retryToken == null) null else token
                 exportState = when (outcome) {
                     is BatchRunResult.Finished -> ReviewExportState.fromCheckpoint(
-                        if (outcome.snapshot.items.any { it.phase == BatchItemPhase.CANCELLED })
-                            ExportUiPhase.CANCELLED else ExportUiPhase.COMPLETED,
+                        when {
+                            outcome.snapshot.items.any { it.phase == BatchItemPhase.CANCELLED && it.reason == "PAUSED" } -> ExportUiPhase.PAUSED
+                            outcome.snapshot.items.any { it.phase == BatchItemPhase.CANCELLED } -> ExportUiPhase.CANCELLED
+                            else -> ExportUiPhase.COMPLETED
+                        },
                         outcome.snapshot).copy(canAcknowledge = true, previousJobs = 1)
                     is BatchRunResult.NeedsReview ->
                         outcome.snapshot?.let {
@@ -585,7 +631,7 @@ internal class ReviewViewModel : ViewModel() {
     /** Explicit selection is restricted to already published items in the displayed result. */
     fun toggleShareItem(id: String) {
         if (shareBusy || exportState.outputBusy || exportState.phase !in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) return
         if (exportState.items.none { it.itemId == id &&
                 it.phase == BatchItemPhase.PUBLISHED && it.uri != null }) return
         selectedShareIds = if (id in selectedShareIds) selectedShareIds - id
@@ -599,7 +645,7 @@ internal class ReviewViewModel : ViewModel() {
      */
     fun shareSelected(context: Context, onReady: (Intent?) -> Unit) {
         if (shareBusy || exportState.outputBusy || exportState.phase !in setOf(
-                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.NEEDS_REVIEW)) return
+                ExportUiPhase.COMPLETED, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.NEEDS_REVIEW)) return
         val token = reviewToken ?: return
         val selected = selectedShareIds.toSet()
         val items = exportState.items.toList()

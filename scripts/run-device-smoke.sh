@@ -115,7 +115,7 @@ cat evidence/export-flow-instrumentation.txt
 timeout 2m adb shell am instrument -w -r -e class org.cajapersonal.fixmyshot.ExportShareIntentsTest "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/share-intents-instrumentation.txt 2>&1
 share_result=$?
 cat evidence/share-intents-instrumentation.txt
-# Validate share entry, bounded imports, theme storage and draft-safe locale recreation together.
+# Validate import/recreation, theme and saved sessions. Locale switching is explicitly opt-in.
 timeout 3m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.ImportSettingsFlowTest,org.cajapersonal.fixmyshot.ReviewSessionTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/import-settings-instrumentation.txt 2>&1
@@ -146,9 +146,9 @@ grep -q 'OK (15 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (10 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
-grep -q 'OK (9 tests)' evidence/import-settings-instrumentation.txt
+grep -q 'OK (10 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
-grep -q 'OK (7 tests)' evidence/batch-retry-instrumentation.txt
+grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence

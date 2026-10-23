@@ -158,6 +158,12 @@
     <string name="session_discard_saved">Descartar borrador guardado</string>
     <string name="session_save_failed">No se pudieron guardar los últimos cambios del borrador. Mantené la app abierta y reintentá.</string>
     <string name="session_retry_save">Reintentar guardar borrador</string>
+    <string name="export_pausing">Se está terminando la imagen actual; después se pausará el lote.</string>
+    <string name="export_paused">La exportación se pausó al salir de la app. Continuá con las imágenes restantes cuando quieras.</string>
+    <string name="export_item_paused">En pausa</string>
+    <string name="export_resume_remaining">Continuar restantes (%1$d)</string>
+    <string name="export_finish_session">Finalizar sesión</string>
+    <string name="export_finish_session_notice">Se guardaron todas las imágenes del lote. Finalizá la sesión para limpiar sus copias de trabajo privadas y empezar una nueva con PNG y eliminación de metadatos. Las imágenes guardadas siguen disponibles en el destino elegido.</string>
 </resources>
 
 

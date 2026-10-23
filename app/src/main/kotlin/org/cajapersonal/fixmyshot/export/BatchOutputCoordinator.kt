@@ -38,7 +38,8 @@ internal class BatchOutputCoordinator(
     companion object {
         fun newToken(): String = UUID.randomUUID().toString().replace("-", "")
 
-        fun forPort(context: Context, port: OwnedOutputPort): BatchOutputCoordinator {
+        fun forPort(context: Context, port: OwnedOutputPort,
+            pauseBeforeNext: AtomicBoolean = AtomicBoolean(false)): BatchOutputCoordinator {
             val app = context.applicationContext
             val budget = Runtime.getRuntime().maxMemory()
             val candidateDir = File(app.cacheDir, "batch-candidates")
@@ -54,9 +55,14 @@ internal class BatchOutputCoordinator(
                             .save(recipe, ready, cancelled)
                     }),
                 OutputRecoveryVerifier(app.contentResolver)::verify,
-            )
+            ).also { it.pauseBeforeNext = pauseBeforeNext }
         }
     }
+
+    private var pauseBeforeNext = AtomicBoolean(false)
+
+    /** Latches a foreground pause; the current bounded transaction finishes normally. */
+    fun pauseAfterCurrent() { pauseBeforeNext.set(true) }
 
     private fun jobFolder(token: String): File {
         require(token.matches(Regex("[0-9a-f]{32}")))
@@ -185,10 +191,10 @@ internal class BatchOutputCoordinator(
                 journal.clear()
                 if (journal.read() != null) return BatchRunResult.NeedsReview(snapshot)
             }
-            fun cancelRest(startIndex: Int): Boolean {
+            fun cancelRest(startIndex: Int, reason: String = "CANCELLED"): Boolean {
                 for (index in targets.filter { it >= startIndex }) {
                     if (snapshot.items[index].phase == BatchItemPhase.QUEUED &&
-                        !change(index, BatchItemPhase.CANCELLED, reason = "CANCELLED")) return false
+                        !change(index, BatchItemPhase.CANCELLED, reason = reason)) return false
                 }
                 return true
             }
@@ -196,6 +202,10 @@ internal class BatchOutputCoordinator(
                 if (index !in targets) continue
                 if (cancelled.get()) {
                     if (!cancelRest(index)) return BatchRunResult.NeedsReview(snapshot)
+                    break
+                }
+                if (pauseBeforeNext.get()) {
+                    if (!cancelRest(index, "PAUSED")) return BatchRunResult.NeedsReview(snapshot)
                     break
                 }
                 if (!change(index, BatchItemPhase.ENCODING)) return BatchRunResult.NeedsReview(snapshot)

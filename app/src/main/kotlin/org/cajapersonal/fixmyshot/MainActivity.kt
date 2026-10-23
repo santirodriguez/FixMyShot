@@ -162,6 +162,7 @@ class MainActivity : AppCompatActivity() {
                         onRetryExport = { beginRetryExport() },
                         onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
+                        finishSessionOnReview = model.canFinishSession,
                         onRefreshOutputs = { model.refreshOutputs(applicationContext) },
                         onOpenOutput = { id -> model.openOutput(applicationContext, id) { ready ->
                             if (ready != null && !isDestroyed) {
@@ -404,6 +405,16 @@ class MainActivity : AppCompatActivity() {
         model.invalidImports = 0
         ++generation
         model.releasePrivateSources(applicationContext, ids.toSet())
+    }
+
+    override fun onStart() {
+        if (::model.isInitialized) model.foregroundChanged(true)
+        super.onStart()
+    }
+
+    override fun onStop() {
+        if (::model.isInitialized && !isChangingConfigurations) model.foregroundChanged(false)
+        super.onStop()
     }
 
     override fun onTrimMemory(level: Int) {

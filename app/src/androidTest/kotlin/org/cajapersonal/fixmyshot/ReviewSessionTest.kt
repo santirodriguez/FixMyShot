@@ -19,6 +19,10 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.security.MessageDigest
 import java.util.UUID
 import java.util.concurrent.ExecutorService
@@ -107,6 +111,8 @@ class ReviewSessionTest {
             val saved = f.journal.read()!!
             assertEquals(b.id, saved.selectedId)
             assertTrue(saved.draft.canUndo)
+            assertFalse(f.journal.clearMatching(draft.setDestination(DestinationChoice.Custom.of(1, 1))))
+            assertEquals(draft, f.journal.read()!!.draft)
             f.close(first)
             val restored = f.owner().model
             assertEquals(draft, restored.draft)
@@ -210,6 +216,49 @@ class ReviewSessionTest {
             assertEquals(0, owner.model.pendingImportCount)
             assertFalse(owner.model.isBusy)
             assertFalse(File(f.context.filesDir, "export-jobs").exists())
+        } finally { f.cleanup() }
+    }
+
+    @Test fun finishingSuccessfulSessionClearsCurrentUndoAndJournalButKeepsPublishedBytes() {
+        val f = Fixture()
+        try {
+            val a = f.image(); val b = f.image()
+            val owner = f.owner(); val model = owner.model
+            var output: ByteArray? = null
+            var deletions = 0
+            val port = object : OwnedOutputPort {
+                override fun create(name: String, mime: String): Uri = Uri.parse("content://synthetic/finished-output")
+                override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+                    override fun close() { output = toByteArray(); super.close() }
+                }
+                override fun openRead(uri: Uri): InputStream? = output?.let(::ByteArrayInputStream)
+                override fun publish(uri: Uri): Boolean = output != null
+                override fun delete(uri: Uri): Boolean { deletions++; return false }
+            }
+            instrumentation.runOnMainSync {
+                model.draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+                    batch = EditSettings(format = OutputFormat.WEBP_LOSSLESS, metadata = MetadataPolicy.PRESERVE_ALLOWLIST))
+                    .addImages(listOf(a, b)).removeItem(b.id)
+                model.selectedId = a.id
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(f.context, port)
+            }
+            await { model.exportState.phase == ExportUiPhase.COMPLETED }
+            assertEquals(1, model.exportState.published); assertTrue(model.canFinishSession)
+            assertTrue(f.file.exists())
+            val published = requireNotNull(output).copyOf()
+            instrumentation.runOnMainSync { model.acknowledgePreviousExport(f.context) }
+            await { model.exportState.phase == ExportUiPhase.IDLE }
+            assertTrue(model.draft.workingSourceIds.isEmpty()); assertFalse(model.draft.canUndo)
+            assertEquals(OutputFormat.PNG, model.draft.batch.format)
+            assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
+            assertFalse(f.file.exists())
+            for (image in listOf(a, b)) assertFalse(File(f.context.cacheDir, "review-sources/${image.id}.source").exists())
+            assertArrayEquals(published, output); assertEquals(0, deletions)
+            val job = File(f.context.filesDir, "export-jobs").listFiles()!!.single()
+            assertTrue(File(job, "batch.json").exists()); assertTrue(File(job, "item-0.json").exists())
+            assertFalse(File(job, "draft.json").exists())
         } finally { f.cleanup() }
     }
 }

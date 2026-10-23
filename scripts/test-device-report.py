@@ -141,7 +141,7 @@ if 'instrument' in args:
     batch_retry = any('BatchRetryFlowTest' in a for a in args)
     import_settings = any('ImportSettingsFlowTest' in a for a in args)
     recovery = any('BatchRecoveryScannerTest' in a for a in args)
-    count = 1 if native else 3 if thumbnail else 15 if private_output else 10 if transaction else 5 if batch else 4 if export_flow else 7 if batch_retry else 4 if share_intents else 16 if recovery else 9 if import_settings else 4
+    count = 1 if native else 3 if thumbnail else 15 if private_output else 10 if transaction else 5 if batch else 4 if export_flow else 8 if batch_retry else 4 if share_intents else 16 if recovery else 10 if import_settings else 4
     print(f'INSTRUMENTATION_RESULT: stream=\\n\\nOK ({count} test' +
           ('s' if count != 1 else '') + ')\\n\\nINSTRUMENTATION_CODE: -1')
 elif 'cat' in args:

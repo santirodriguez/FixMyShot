@@ -158,6 +158,12 @@
     <string name="session_discard_saved">Discard saved draft</string>
     <string name="session_save_failed">The latest draft changes could not be saved. Keep the app open and retry.</string>
     <string name="session_retry_save">Retry saving draft</string>
+    <string name="export_pausing">Finishing the current image, then pausing the batch.</string>
+    <string name="export_paused">Export paused after leaving the app. Continue the remaining images when ready.</string>
+    <string name="export_item_paused">Paused</string>
+    <string name="export_resume_remaining">Continue remaining (%1$d)</string>
+    <string name="export_finish_session">Finish session</string>
+    <string name="export_finish_session_notice">All images in this batch were saved. Finish the session to clear its private working copies and start a new session with PNG and metadata removal. Saved images remain available in your chosen destination.</string>
 </resources>
 
 

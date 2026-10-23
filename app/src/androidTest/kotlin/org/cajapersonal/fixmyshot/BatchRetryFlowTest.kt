@@ -74,6 +74,29 @@ class BatchRetryFlowTest {
         } finally { f.root.deleteRecursively() }
     }
 
+    @Test fun foregroundPauseFinishesCurrentImageAndExplicitContinuationPreservesItsReceipt() {
+        val f = Fixture()
+        try {
+            val writes = mutableListOf<String>()
+            lateinit var runner: BatchOutputCoordinator
+            runner = coordinator(f) { recipe, journal ->
+                writes += recipe.sourceId
+                if (recipe.sourceId == "item-1") runner.pauseAfterCurrent()
+                published(recipe, journal)
+            }
+            val paused = runner.start(draft(), f.token) as BatchRunResult.Finished
+            assertEquals(BatchItemPhase.PUBLISHED, paused.snapshot.items.first().phase)
+            assertTrue(paused.snapshot.items.drop(1).all { it.phase == BatchItemPhase.CANCELLED && it.reason == "PAUSED" })
+            assertEquals(listOf("item-1"), writes)
+            val committed = File(f.folder, "item-0.json").readBytes()
+            val resumed = coordinator(f) { recipe, journal -> writes += recipe.sourceId; published(recipe, journal) }
+            val done = resumed.retry(f.token, resumed.retryableIds(f.token)) as BatchRunResult.Finished
+            assertTrue(done.snapshot.items.all { it.phase == BatchItemPhase.PUBLISHED })
+            assertEquals(listOf("item-1", "item-2", "item-3"), writes)
+            assertArrayEquals(committed, File(f.folder, "item-0.json").readBytes())
+        } finally { f.root.deleteRecursively() }
+    }
+
     @Test fun restartResumesOnlyProvenUnstartedOrCancelledItems() {
         val f = Fixture()
         try {
