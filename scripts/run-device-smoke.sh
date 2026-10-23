@@ -148,7 +148,7 @@ grep -q 'OK (4 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/batch-instrumentation.txt
-grep -q 'OK (6 tests)' evidence/batch-retry-instrumentation.txt
+grep -q 'OK (7 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-recovery-instrumentation.txt
 # Successful adb exits alone do not certify files, instrumentation or coverage.
 python3 scripts/check-device-report.py evidence

@@ -141,13 +141,14 @@ internal class BatchOutputCoordinator(
             if (retryIds == null && settled != null) return BatchRunResult.Existing(settled)
             val draftStore = ExportDraftJournal(File(folder, "draft.json"))
             var snapshot = if (retryIds == null) {
-                try { draftStore.write(draft) } catch (_: Exception) { return BatchRunResult.NeedsReview(null) }
+                try { draftStore.write(draft, FrozenPlanFingerprint.of(plan.candidates)) } catch (_: Exception) { return BatchRunResult.NeedsReview(null) }
                 BatchCheckpoint(token, draft.revision, plan.candidates.map {
                     BatchItemCheckpoint(it.sourceId, it.sourceSha256, BatchItemPhase.QUEUED)
                 })
             } else {
                 val frozen = try { restoreDraft(token) } catch (_: Exception) { null }
-                if (settled == null || frozen == null || !ExportDraftJournal.same(draft, frozen)) {
+                if (settled == null || frozen == null || !ExportDraftJournal.same(draft, frozen) ||
+                    !draftStore.matchesPlan(plan.candidates)) {
                     return BatchRunResult.NeedsReview(settled)
                 }
                 val checked = BatchRecoveryReconciliation.inspect(folder, settled, verifyOutput)

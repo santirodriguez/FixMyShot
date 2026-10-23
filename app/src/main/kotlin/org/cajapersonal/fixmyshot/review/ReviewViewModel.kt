@@ -160,7 +160,11 @@ internal class ReviewViewModel : ViewModel() {
                     candidate.images.map { it.id to it.contentSha256 } ==
                         snapshot.items.map { it.itemId to it.sourceSha256 }
             }
-            RetryDetails(frozen, if (frozen == null) emptySet() else BatchRetryPolicy.eligible(folder, snapshot))
+            val compatible = frozen?.let {
+                val current = ExportPreparation.inspect(it, Build.VERSION.SDK_INT, Runtime.getRuntime().maxMemory())
+                current.blockedCount == 0 && ExportDraftJournal(File(folder, "draft.json")).matchesPlan(current.candidates)
+            } == true
+            RetryDetails(frozen, if (!compatible) emptySet() else BatchRetryPolicy.eligible(folder, snapshot))
         } catch (_: Exception) { RetryDetails(null, emptySet()) }
     }
 

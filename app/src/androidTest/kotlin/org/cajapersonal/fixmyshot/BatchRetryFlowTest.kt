@@ -153,6 +153,22 @@ class BatchRetryFlowTest {
         } finally { f.root.deleteRecursively() }
     }
 
+    @Test fun changedPlanCannotReuseTheOriginalRetryPermission() {
+        val f = Fixture()
+        try {
+            var saves = 0
+            val runner = coordinator(f) { recipe, journal -> saves++; published(recipe, journal) }
+            runner.start(draft(), f.token, AtomicBoolean(true))
+            val file = File(f.folder, "draft.json")
+            val json = org.json.JSONObject(file.readText())
+            json.getJSONObject("batch").put("background", org.json.JSONObject().put("kind", "white"))
+            file.writeText(json.toString())
+            val result = runner.retry(f.token, runner.retryableIds(f.token))
+            assertTrue(result is BatchRunResult.NeedsReview)
+            assertEquals(0, saves)
+        } finally { f.root.deleteRecursively() }
+    }
+
     @Test fun oversizedOrUnknownRecoveryJsonFailsClosed() {
         val f = Fixture()
         try {

@@ -16,7 +16,7 @@ internal class ExportDraftJournal(private val file: File) {
     }
     private val atomic get() = AtomicFile(file)
 
-    @Synchronized fun write(draft: DraftSession) {
+    @Synchronized fun write(draft: DraftSession, planFingerprint: String? = null) {
         require(draft.images.size in 1..100)
         val destination = when (val value = draft.destination) {
             is DestinationChoice.Preset -> JSONObject().put("preset", value.id)
@@ -30,10 +30,14 @@ internal class ExportDraftJournal(private val file: File) {
                 .put("alpha", image.sourceHasAlpha).put("revision", image.revision)
                 .put("hash", requireNotNull(image.contentSha256)).put("overrides", overrides(image.overrides)))
         }
-        val bytes = JSONObject().put("schema", 1).put("catalog", DestinationCatalog.VERSION)
+        val document = JSONObject().put("schema", 1).put("catalog", DestinationCatalog.VERSION)
             .put("revision", draft.revision).put("destination", destination)
             .put("batch", settings(draft.batch)).put("images", items)
-            .toString().toByteArray(Charsets.UTF_8)
+        if (planFingerprint != null) {
+            require(planFingerprint.matches(Regex("[0-9a-f]{64}")))
+            document.put("plan", planFingerprint)
+        }
+        val bytes = document.toString().toByteArray(Charsets.UTF_8)
         if (bytes.size > LIMIT) throw IOException("Frozen draft exceeds limit")
         if (!file.parentFile.isDirectory && !file.parentFile.mkdirs()) throw IOException("Draft directory unavailable")
         val output = atomic.startWrite()
@@ -62,6 +66,15 @@ internal class ExportDraftJournal(private val file: File) {
             }
             return DraftSession(destination, readSettings(json.getJSONObject("batch")), images, json.getLong("revision"))
         } catch (error: Exception) { throw IOException("Frozen draft unavailable; review before exporting", error) }
+    }
+
+    @Synchronized fun matchesPlan(recipes: List<PrivateOutputRecipe>): Boolean {
+        if (recipes.isEmpty()) return false
+        return try {
+            val json = JSONObject(atomic.openRead().use { readJournalBytes(it, LIMIT) }.toString(Charsets.UTF_8))
+            json.getInt("schema") == 1 && json.getInt("catalog") == DestinationCatalog.VERSION &&
+                json.optString("plan") == FrozenPlanFingerprint.of(recipes)
+        } catch (_: Exception) { false }
     }
 
     private fun crop(value: CropFocus) = JSONObject().put("x", value.x).put("y", value.y).put("zoom", value.zoom)

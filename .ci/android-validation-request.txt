@@ -145,3 +145,6 @@ profile=current
 
 Functional retry/recovery batch: frozen export-session journal, explicit restore and safe remaining-item retry in place, preserved published outputs, OS locks and bounded journal reads; actual Activity LocaleManager on API33+. Require six retry policy cases and four export-flow cases including real owned MediaStore restart/restore/retry, together with all existing current-device regressions.
 profile=current
+
+Final grouped retry checkpoint additionally binds the original output-plan semantics before any receipt can be cleared. Require seven retry/recovery cases, including changed-plan rejection, plus four real export-flow cases and all current-device locale/import/crop regressions.
+profile=current
