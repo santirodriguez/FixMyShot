@@ -6,8 +6,8 @@
   "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
   "review_script_sha256": "54f8fb73e0744a5f87bb21f2eb98fc5d559a38ceba7cd0a6ef14baafebd23330",
   "captured_artifact_count": 921,
-  "reviewed_artifact_count": 273,
-  "remaining_unreviewed_artifact_count": 648,
+  "reviewed_artifact_count": 368,
+  "remaining_unreviewed_artifact_count": 553,
   "complete_for_baseline": false,
   "active_gradle_policy_changed": false,
   "kotlin_manifest_sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
@@ -2224,6 +2224,766 @@
       "version": "31.13.2",
       "file": "utp-common-31.13.2.pom",
       "sha256": "b2ef289b20cbdc75307e741cf115da155459e1a58b5d0c2e0a1fda3cad13b671",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.exifinterface",
+      "name": "exifinterface",
+      "version": "1.4.2",
+      "file": "exifinterface-1.4.2.module",
+      "sha256": "6365165eb5aacc700a34b1650a2910ea01ebd819821b89af7689fa41274fb00b",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.heifwriter",
+      "name": "heifwriter",
+      "version": "1.2.0-rc01",
+      "file": "heifwriter-1.2.0-rc01.module",
+      "sha256": "1ab25b802cef746359456a5e6a4b86f8fbb18ef5777b2760a7b5172d89689d01",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-common",
+      "version": "2.9.2",
+      "file": "lifecycle-common-2.9.2.module",
+      "sha256": "4833f88e39a1bd264ed5ea18722023ebe51e74b19a0411246aa3d740e16e9081",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-common",
+      "version": "2.9.4",
+      "file": "lifecycle-common-2.9.4.module",
+      "sha256": "c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-common-java8",
+      "version": "2.9.4",
+      "file": "lifecycle-common-java8-2.9.4.module",
+      "sha256": "07bab59d012bc806f03debd192f93e312d72bca56b25178234a21a6812daf041",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-common-jvm",
+      "version": "2.9.4",
+      "file": "lifecycle-common-jvm-2.9.4.module",
+      "sha256": "1d1837f3942b33ea30aa2301fdcea2639408a0fd6fd4368c22478fa8153aebbf",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata",
+      "version": "2.9.2",
+      "file": "lifecycle-livedata-2.9.2.module",
+      "sha256": "2975f3a75db5a555fed0abb7a3c6606e30be059784a870b254b32a62abd9be98",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata",
+      "version": "2.9.4",
+      "file": "lifecycle-livedata-2.9.4.module",
+      "sha256": "9a8153a07ae2edd8b7919a34ad9195847005eaed69fa3e5060636208a728c312",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata-core",
+      "version": "2.9.2",
+      "file": "lifecycle-livedata-core-2.9.2.module",
+      "sha256": "d945acad1c04d31a8461b20f8a9ba04a1ad4607c3414d3af2ab477a9d481dd00",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata-core",
+      "version": "2.9.4",
+      "file": "lifecycle-livedata-core-2.9.4.module",
+      "sha256": "dee60656abb194da028d93b9bd652b4b164cdab35a000b475d63303c5d00994b",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata-core-ktx",
+      "version": "2.9.2",
+      "file": "lifecycle-livedata-core-ktx-2.9.2.module",
+      "sha256": "640a62efb9df85f2de02d747f3a5ddfd00143b768bb01a6ccacb64695ff8f9fd",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-livedata-core-ktx",
+      "version": "2.9.4",
+      "file": "lifecycle-livedata-core-ktx-2.9.4.module",
+      "sha256": "0a940e79e256cc7fbec69d8eb35362ac79599ab4b21ab4846aba64ba4960a192",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-process",
+      "version": "2.9.4",
+      "file": "lifecycle-process-2.9.4.module",
+      "sha256": "f7cd5051bacb3f4b8ec7dc40ac6342a61eea1147592dda9f364a24cf882c7ddb",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime",
+      "version": "2.9.2",
+      "file": "lifecycle-runtime-2.9.2.module",
+      "sha256": "4edd85fb1a176ca7e83b15b4765b5cee1a934aa317e41710fa0ac13341d7383a",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-2.9.4.module",
+      "sha256": "dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-android",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-android-2.9.4.module",
+      "sha256": "c7888e850c40fd059fb2c1ec5bf46e88313e9b5d5152133c385a1aafb8433f47",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-compose",
+      "version": "2.9.2",
+      "file": "lifecycle-runtime-compose-2.9.2.module",
+      "sha256": "d1972085e294acc109c2fc34bfbd94407fee76a848a1a8f7fe29b8d3efd5131f",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-compose",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-compose-2.9.4.module",
+      "sha256": "27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-compose-android",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-compose-android-2.9.4.module",
+      "sha256": "e087a2c2bdfe360497339335ba51dbcdd1503c0a7c9f4f8285db7023e0429439",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-ktx",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-ktx-2.9.4.module",
+      "sha256": "05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-runtime-ktx-android",
+      "version": "2.9.4",
+      "file": "lifecycle-runtime-ktx-android-2.9.4.module",
+      "sha256": "6a2070e9d9243bd3b5d5a108b9db5583bcc4c742b32efb45fe33f49429eb7193",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel",
+      "version": "2.9.2",
+      "file": "lifecycle-viewmodel-2.9.2.module",
+      "sha256": "b814fc0293df1ea37e19f206ad183703ff9bb254dd6daaef5e5e7d1f857fe18c",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel",
+      "version": "2.9.4",
+      "file": "lifecycle-viewmodel-2.9.4.module",
+      "sha256": "964d69d6b877296e8b79a77bb826ef5fb186aecaa7a1a7ff776fb2250c993006",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel-android",
+      "version": "2.9.4",
+      "file": "lifecycle-viewmodel-android-2.9.4.module",
+      "sha256": "b637acdd8aab5348974661830874a7456bac341f43a0b281827cc6b0fcfc73c1",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel-ktx",
+      "version": "2.9.4",
+      "file": "lifecycle-viewmodel-ktx-2.9.4.module",
+      "sha256": "5631efeab797f79a1adba5df64b2f0cca54e08b428756df7630cb23b90098a67",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel-savedstate",
+      "version": "2.9.2",
+      "file": "lifecycle-viewmodel-savedstate-2.9.2.module",
+      "sha256": "c1785d7133fcfe1169cf4b4f6f1804477c1da6ffd79ad560f4cedbadf16c1e8e",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel-savedstate",
+      "version": "2.9.4",
+      "file": "lifecycle-viewmodel-savedstate-2.9.4.module",
+      "sha256": "4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.lifecycle",
+      "name": "lifecycle-viewmodel-savedstate-android",
+      "version": "2.9.4",
+      "file": "lifecycle-viewmodel-savedstate-android-2.9.4.module",
+      "sha256": "bf64c4c3cf5ad5fe5d6fd0e07787ec68054cc226f9f670e05af5ef9da67c2593",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate",
+      "version": "1.3.2",
+      "file": "savedstate-1.3.2.module",
+      "sha256": "320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate-android",
+      "version": "1.3.2",
+      "file": "savedstate-android-1.3.2.module",
+      "sha256": "5d962b8d6a4bc5284492a40003c9867fd392ac6979ab440bdecdd427899741bb",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate-compose",
+      "version": "1.3.0",
+      "file": "savedstate-compose-1.3.0.module",
+      "sha256": "15a07a0fdb8ed58a48ca21e981d38ab72b2bbfd96463c33a7050df1c27699a75",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate-compose",
+      "version": "1.3.2",
+      "file": "savedstate-compose-1.3.2.module",
+      "sha256": "3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate-compose-android",
+      "version": "1.3.2",
+      "file": "savedstate-compose-android-1.3.2.module",
+      "sha256": "8376ee32d654f97712f817275e785880daef1e44448f38272a7734ec091ce401",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.savedstate",
+      "name": "savedstate-ktx",
+      "version": "1.3.2",
+      "file": "savedstate-ktx-1.3.2.module",
+      "sha256": "f7fc8a13f9fbe5cf092128299aff529392f3eee54e6d3fe5f0a2f82fc6c5f3db",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.transition",
+      "name": "transition",
+      "version": "1.6.0",
+      "file": "transition-1.6.0.module",
+      "sha256": "c763c376fd6d39e51477c902b315e58ca2a1f47d4b099cb99f49a148bd61c560",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.window",
+      "name": "window",
+      "version": "1.5.0",
+      "file": "window-1.5.0.module",
+      "sha256": "8ac5d2772e97c957dddcbcb1c1198229d4afe57cdf5ecd5eb3cd436a05190743",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.window",
+      "name": "window-core",
+      "version": "1.5.0",
+      "file": "window-core-1.5.0.module",
+      "sha256": "595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.window",
+      "name": "window-core-android",
+      "version": "1.5.0",
+      "file": "window-core-android-1.5.0.module",
+      "sha256": "5bd818686803bf3c037f61a0e96af4441e884aa8a4d91062d2ad57876f917b50",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "aapt2-proto",
+      "version": "8.13.2-14304508",
+      "file": "aapt2-proto-8.13.2-14304508.jar",
+      "sha256": "a6cda82d508ec3b325a9e37f78f9fa84556ff340cf43bb23c627b0f39e746f0e",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "aapt2-proto",
+      "version": "8.13.2-14304508",
+      "file": "aapt2-proto-8.13.2-14304508.module",
+      "sha256": "7d5b7285f476c82008f0d39f506b0b8c53f1b026bd624d7adc688216be8ea5be",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "aaptcompiler",
+      "version": "8.13.2",
+      "file": "aaptcompiler-8.13.2.jar",
+      "sha256": "f6f6706d3b7a261e242820da5c855123d3c23738159ca3726e0c34e482b80770",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "aaptcompiler",
+      "version": "8.13.2",
+      "file": "aaptcompiler-8.13.2.module",
+      "sha256": "0e3ba6b43ad98fa69131de1d8b6c6a7541b3af71443dcb5d52a2cffc2558ee6b",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "apksig",
+      "version": "8.13.2",
+      "file": "apksig-8.13.2.jar",
+      "sha256": "c070ed1394629d74641aa0906f60b2ffa1ee77e6366a1f93437f59717b1aeb89",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "apkzlib",
+      "version": "8.13.2",
+      "file": "apkzlib-8.13.2.jar",
+      "sha256": "29091c9457252f997ddfeafb33dd65a373ad45840128f945832d8eafd9118561",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "builder",
+      "version": "8.13.2",
+      "file": "builder-8.13.2.module",
+      "sha256": "4a8a108de5f04142a6757861a0a57a298b936b7b7f7f9c5b91e5caa9a7efda90",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "builder-model",
+      "version": "8.13.2",
+      "file": "builder-model-8.13.2.jar",
+      "sha256": "ae5e95515ab348d34a35be83ed315c5fb7e8c0667e186f4e156c65dfaa2615fe",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "builder-model",
+      "version": "8.13.2",
+      "file": "builder-model-8.13.2.module",
+      "sha256": "5ae11d7a40857e1a4b0bc6a7f4218255c96169b7011535f9a30b77b5f6e327a1",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "builder-test-api",
+      "version": "8.13.2",
+      "file": "builder-test-api-8.13.2.jar",
+      "sha256": "3cfed0baec2e7d0e64566f6808a00ef5e051ad76fc4fba9d464d11a3c2f986a9",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "builder-test-api",
+      "version": "8.13.2",
+      "file": "builder-test-api-8.13.2.module",
+      "sha256": "4f72f3a9fd3e9f516c36cefac6978dcc040496210b8cfad7d2954c83bba0e990",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle",
+      "version": "8.13.2",
+      "file": "gradle-8.13.2.module",
+      "sha256": "0aac0bee1a4fc65cd69a6788548a7e21d246250c858017e11e3bf23163cb75a7",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-api",
+      "version": "8.13.2",
+      "file": "gradle-api-8.13.2.jar",
+      "sha256": "a8dcdc6f1338f7055f6b1bc265317e14d65833e6c7f72b2102c5568e1df4d792",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-api",
+      "version": "8.13.2",
+      "file": "gradle-api-8.13.2.module",
+      "sha256": "1be00181670666873cd0128e9dec6ee99cd2ae207bab909ecc11ff0cf729bc5d",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-common-api",
+      "version": "8.13.2",
+      "file": "gradle-common-api-8.13.2.jar",
+      "sha256": "fcde805fcd5739aed607a9cdc325316f422fa05a46e140a291d2f24eca3a59fe",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-common-api",
+      "version": "8.13.2",
+      "file": "gradle-common-api-8.13.2.module",
+      "sha256": "9e6edcd959f6ed87a2273b85de0f4efac26e7cdcbf4bd6a4a3f4e05c8e7e7c1c",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-settings-api",
+      "version": "8.13.2",
+      "file": "gradle-settings-api-8.13.2.jar",
+      "sha256": "370438bcf7782d8c5b407370365b047bf063f99a7745e1f5f1853183398d07a6",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle-settings-api",
+      "version": "8.13.2",
+      "file": "gradle-settings-api-8.13.2.module",
+      "sha256": "e5cac798c13234eea43adb084c5c81c20ad1c36cc4b5b57f3922d91f4ec024d6",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "manifest-merger",
+      "version": "31.13.2",
+      "file": "manifest-merger-31.13.2.jar",
+      "sha256": "40d25f5940c2e50bf7e18e325f7fbb9c86cf45db5a85d1cef8ef985404227a1f",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "manifest-merger",
+      "version": "31.13.2",
+      "file": "manifest-merger-31.13.2.module",
+      "sha256": "4bd9d47df07b78174a72faa92423935af29d17c9896a84b658b921f6f1a92348",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.ddms",
+      "name": "ddmlib",
+      "version": "31.13.2",
+      "file": "ddmlib-31.13.2.jar",
+      "sha256": "839957f961100713ea0eed628a8684cc39aa479631c36249793e6df7e0cd63d8",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.emulator",
+      "name": "proto",
+      "version": "31.13.2",
+      "file": "proto-31.13.2.jar",
+      "sha256": "b77f81cc0751d79393ec4b2eb046f910d21abcd7608b5b0f5a1efea1b3243b48",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.external.org-jetbrains",
+      "name": "uast",
+      "version": "31.13.2",
+      "file": "uast-31.13.2.jar",
+      "sha256": "78f18ac2b2509fb6cb19058e8fc9585c361b97990dd7d5db0c2a94744dfb0a96",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.layoutlib",
+      "name": "layoutlib-api",
+      "version": "31.13.2",
+      "file": "layoutlib-api-31.13.2.jar",
+      "sha256": "d06bc650247632a4a4e6596b87312019f45e900267c5476c47a5bfa6e3fd3132",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.lint",
+      "name": "lint",
+      "version": "31.13.2",
+      "file": "lint-31.13.2.jar",
+      "sha256": "7f875a980ee23916439d368d073cfbc2ee4e4d99ffe1b3e13da794fef347f29a",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.lint",
+      "name": "lint-api",
+      "version": "31.13.2",
+      "file": "lint-api-31.13.2.jar",
+      "sha256": "8f770657dba33f305e583c62953a4f174c75a7b1cd2da7d31134be36a96ae2ac",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.lint",
+      "name": "lint-gradle",
+      "version": "31.13.2",
+      "file": "lint-gradle-31.13.2.jar",
+      "sha256": "a42b6a41c436d90ca31a13d67afba1157b157efc892a7496f67432bf8a831cbd",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.lint",
+      "name": "lint-model",
+      "version": "31.13.2",
+      "file": "lint-model-31.13.2.jar",
+      "sha256": "9ee55d8fd002736ed95ee97fb05f4df7ae01f4f976f738fbf37ecab795e59319",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.lint",
+      "name": "lint-typedef-remover",
+      "version": "31.13.2",
+      "file": "lint-typedef-remover-31.13.2.jar",
+      "sha256": "4a3ba3babfd79e6fc67bcef647fb4ecfeaf59b481b108f7c2eba4d1c5c6dea8e",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-ddmlib",
+      "version": "31.13.2",
+      "file": "android-device-provider-ddmlib-31.13.2.jar",
+      "sha256": "b16ebfef5b63b03b803ead0a5e194ee34e0dd361c1e191557d998f01534744ff",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-ddmlib",
+      "version": "31.13.2",
+      "file": "android-device-provider-ddmlib-31.13.2.module",
+      "sha256": "15745704fb951a3629b1a2635ac6e21085b0f6e6325966d47725e50c3a5fac5b",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-ddmlib-proto",
+      "version": "31.13.2",
+      "file": "android-device-provider-ddmlib-proto-31.13.2.jar",
+      "sha256": "047aecdd66e106137f77a52c442f1b83db7d6e8496899800251f206c7f39de65",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-profile",
+      "version": "31.13.2",
+      "file": "android-device-provider-profile-31.13.2.jar",
+      "sha256": "9560c25859c9c15c77144cbb58370bad394882ecc3169fd5e589b7d4e52e866f",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-profile",
+      "version": "31.13.2",
+      "file": "android-device-provider-profile-31.13.2.module",
+      "sha256": "7cce606becb5853221ca900b7540d0e6cbb8c1ed4c2adf0b06ee39c36d0e4de9",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-device-provider-profile-proto",
+      "version": "31.13.2",
+      "file": "android-device-provider-profile-proto-31.13.2.jar",
+      "sha256": "3e7b098f6e3ecae31b6f7909c343b4ec09aa18d8a89f41bf92077ba4b056f453",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-additional-test-output",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-additional-test-output-31.13.2.jar",
+      "sha256": "faae42a16cf76d7529b59b1b9a4dbf9cb1bedca58118eba824fddb8312dc7655",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-additional-test-output",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-additional-test-output-31.13.2.module",
+      "sha256": "b0a3c5b358d6b6267448eb6abfeaf6ad025ab1f07cb3b650af52fd702badfc05",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-additional-test-output-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-additional-test-output-proto-31.13.2.jar",
+      "sha256": "6ba7e6ac2208d74c1bb5f1d1464abafc6a45d8710b20455a2dc02adf8726bc83",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-apk-installer",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-apk-installer-31.13.2.jar",
+      "sha256": "949c6f65122129d3ecd59b0899860e8e24e9682cec1c008d1f11a5cc93366f64",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-apk-installer",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-apk-installer-31.13.2.module",
+      "sha256": "ae4945c1102dc8f53075f61eba8a0f666c7437ffebe2b9fb1671968cc4547313",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-apk-installer-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-apk-installer-proto-31.13.2.jar",
+      "sha256": "4f2b610542e91a35a396b04368a784036e42b8787021460550b9a3495bb8245b",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-coverage",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-coverage-31.13.2.jar",
+      "sha256": "4993a95049e52c4d3147e9c4dfc696cc5a76af8303a4206bb60c2bfabc563ae9",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-coverage",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-coverage-31.13.2.module",
+      "sha256": "daf1f2792529dc44cec6897f97fc845dbaa63fec2d6939c97e27c2feea4db3f6",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-coverage-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-coverage-proto-31.13.2.jar",
+      "sha256": "fa86719a3dc5de465f7e0c023184414c27f8fd53a34fd557289c0bf6df340244",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-device-info",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-device-info-31.13.2.jar",
+      "sha256": "a53b9f764d80bed29e0f2e0ee62576dc09b87386608bb62ef1453d032f976968",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-device-info",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-device-info-31.13.2.module",
+      "sha256": "6c1222b83fe4d4cc584f6f4419f6a4e95723dcaa453c7a32469ff24c0809e2a0",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-device-info-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-device-info-proto-31.13.2.jar",
+      "sha256": "9683ac7648a7a41be9a1349f6981592944f627164898c3c8925a0beede8bb8bb",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-emulator-control",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-emulator-control-31.13.2.jar",
+      "sha256": "73022c2a2779eeacfbfce67dda7cfbb21e3b3cf5610a54e35fc30d8fcc860930",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-emulator-control",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-emulator-control-31.13.2.module",
+      "sha256": "01961125568e18cb312446f0e1c4edfd3669fc8a90c459ff505729efe2e073ce",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-emulator-control-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-emulator-control-proto-31.13.2.jar",
+      "sha256": "a4f34aae0f9ffa026dbf7151436dd7ae53becb72622b40f2c479cac8943d9319",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-logcat",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-logcat-31.13.2.jar",
+      "sha256": "f559b7c544e29ac3547339805c5e98d938e2a2764691d74ebabeb36e1fca0fba",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-logcat",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-logcat-31.13.2.module",
+      "sha256": "df3d289ffba6ff28fa8875462477d911f009cc094c7ca55973b96b31da0269e9",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-host-logcat-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-host-logcat-proto-31.13.2.jar",
+      "sha256": "c1f6ebbacdad559b6efe4eaa29561552b33156395f069cd9703fda09c462dea6",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-result-listener-gradle",
+      "version": "31.13.2",
+      "file": "android-test-plugin-result-listener-gradle-31.13.2.jar",
+      "sha256": "f5ed39ecda77684730b2616d112d69f92f509e3d6c38828abc6a863ef77fe0e5",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-result-listener-gradle",
+      "version": "31.13.2",
+      "file": "android-test-plugin-result-listener-gradle-31.13.2.module",
+      "sha256": "689acf1e56994bfe74015218bd89595d57fec14157c5ce66a1c75c7e011f889f",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "android-test-plugin-result-listener-gradle-proto",
+      "version": "31.13.2",
+      "file": "android-test-plugin-result-listener-gradle-proto-31.13.2.jar",
+      "sha256": "d429b9312dffa0503381d1ee1b18a999bd901e7456612b2fb48c6a5d5a2caf88",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "com.android.tools.utp",
+      "name": "utp-common",
+      "version": "31.13.2",
+      "file": "utp-common-31.13.2.jar",
+      "sha256": "cde678a64b13041cdd2cc9dad1685990a1d090fb04ff5da2261ff75a83598106",
       "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
     }
   ],
@@ -5811,6 +6571,1642 @@
           "status": "VERIFIED",
           "signature_sha256": "5b787b111a73c9022608728c2e5c3ffbead003a78ac99fd6a9d9ae5b4b12e892",
           "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394901 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        }
+      ]
+    },
+    {
+      "control_commit": "45b620e855ea1324cf07d1c03e443e30b3dc9269",
+      "request_sha256": "40f06ba4d2dac6f860aa72c3f368760a75ab5ee100ccb10a8e44cee82c394865",
+      "report_sha256": "2ab088c3fbd8f3689b4a90556c331d03befc1f7e5059acb3cad0c176f2f82240",
+      "prior_review_sha256": "4c2f67aba06d5e4a266fa25923d819665c539d7821ea2c8b00eee8ad1e460da0",
+      "publisher_key_sha256": "54dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c",
+      "verified_file_count": 95,
+      "outcomes": [
+        {
+          "identity": [
+            "androidx.exifinterface",
+            "exifinterface",
+            "1.4.2",
+            "exifinterface-1.4.2.module"
+          ],
+          "sha256": "6365165eb5aacc700a34b1650a2910ea01ebd819821b89af7689fa41274fb00b",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "b0b1483523be615bf805a937aeb14ef725002a358413db3e30a1bddc832ed05d",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-11-27 1764277955 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.fragment",
+            "fragment",
+            "1.5.4",
+            "fragment-1.5.4.module"
+          ],
+          "sha256": "af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.graphics",
+            "graphics-path",
+            "1.0.1",
+            "graphics-path-1.0.1.module"
+          ],
+          "sha256": "3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "c08903375b12c22aa63b72604774310477ae8f8c0c0b0e50eb2dda4e66627171"
+        },
+        {
+          "identity": [
+            "androidx.heifwriter",
+            "heifwriter",
+            "1.2.0-rc01",
+            "heifwriter-1.2.0-rc01.module"
+          ],
+          "sha256": "1ab25b802cef746359456a5e6a4b86f8fbb18ef5777b2760a7b5172d89689d01",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "14c73be14b7d6048921b3add0639f018ae5e34e3f08d68a46e97c67613323ed7",
+          "validsig_status": "[GNUPG:] VALIDSIG 0E225917414670F4442C250DFD533C07C264648F 2026-10-01 1790848473 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.3.1",
+            "lifecycle-common-2.3.1.module"
+          ],
+          "sha256": "5fb7c8514d8c56cada5e29ef89dc0289e71942ab4cb0b2e6dca137b9dcb8fdd4",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.6.1",
+            "lifecycle-common-2.6.1.module"
+          ],
+          "sha256": "93747a9145cb36bc71005f598ede32e2b1149ade5a16e62b0e4969345bc62d85",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.8.7",
+            "lifecycle-common-2.8.7.module"
+          ],
+          "sha256": "0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "b06528166479344eee568a0d5f807c3826aeeb5f7c5a6894fc0db59d8e4ae264"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.9.2",
+            "lifecycle-common-2.9.2.module"
+          ],
+          "sha256": "4833f88e39a1bd264ed5ea18722023ebe51e74b19a0411246aa3d740e16e9081",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "4043526f9f056ccdadc8b8a932943480abf03601cd4e00153ed879b473f0b8df",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752209853 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.9.4",
+            "lifecycle-common-2.9.4.module"
+          ],
+          "sha256": "c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "c6c7edee472b765a204f932693e45f6720669e7e89e918e793a7b681bc0870c8",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757954354 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-java8",
+            "2.9.4",
+            "lifecycle-common-java8-2.9.4.module"
+          ],
+          "sha256": "07bab59d012bc806f03debd192f93e312d72bca56b25178234a21a6812daf041",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "f730d24f2421369a2af04c7b9bb7ea32313cb78426ba4a5c015fdd3d4b236259",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757954650 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-jvm",
+            "2.9.4",
+            "lifecycle-common-jvm-2.9.4.module"
+          ],
+          "sha256": "1d1837f3942b33ea30aa2301fdcea2639408a0fd6fd4368c22478fa8153aebbf",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "1ecce099c323ed33ebb22474c9118dd61b3405f3e3f8cd4f8a5da1045aa219ee",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757954368 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.8.7",
+            "lifecycle-livedata-2.8.7.module"
+          ],
+          "sha256": "d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "66be77d4120d9fe776639da181335a2a9d8278790ec586cee5ef278acfefe6fe"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.9.2",
+            "lifecycle-livedata-2.9.2.module"
+          ],
+          "sha256": "2975f3a75db5a555fed0abb7a3c6606e30be059784a870b254b32a62abd9be98",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "9a15efc466e69fe88c25097922a9ed0a642315f12f44f00761357cac4597c70f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752212333 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.9.4",
+            "lifecycle-livedata-2.9.4.module"
+          ],
+          "sha256": "9a8153a07ae2edd8b7919a34ad9195847005eaed69fa3e5060636208a728c312",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "eeeeaee9b67ffa0fcc00dd1256752f13d34d2fdc9ebcacb49b551df31dfceda8",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757956835 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.6.1",
+            "lifecycle-livedata-core-2.6.1.module"
+          ],
+          "sha256": "e9c0dc3f0ac54419c0cfed8ff5cecb82943a7c58f7a54169f0d849b2c60a3552",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.8.7",
+            "lifecycle-livedata-core-2.8.7.module"
+          ],
+          "sha256": "b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "2c5f3c864d7c12ba7ea7448297950c2b2770a53097e832c15502e4be59af8654"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.9.2",
+            "lifecycle-livedata-core-2.9.2.module"
+          ],
+          "sha256": "d945acad1c04d31a8461b20f8a9ba04a1ad4607c3414d3af2ab477a9d481dd00",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "907ee8e463ff3183083c94be2e1b3fc47303028e899a47833ffeec9e03442d71",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752212340 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.9.4",
+            "lifecycle-livedata-core-2.9.4.module"
+          ],
+          "sha256": "dee60656abb194da028d93b9bd652b4b164cdab35a000b475d63303c5d00994b",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "19d552c9fc1415134f026db81e093979a84c5f988794cd42f1432045e9c53f25",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757956833 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.8.7",
+            "lifecycle-livedata-core-ktx-2.8.7.module"
+          ],
+          "sha256": "3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "730eb8595a5dbbc478f3c3b861ce1916b3187b433438350820552126117b196d"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.9.2",
+            "lifecycle-livedata-core-ktx-2.9.2.module"
+          ],
+          "sha256": "640a62efb9df85f2de02d747f3a5ddfd00143b768bb01a6ccacb64695ff8f9fd",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "1abe6d3409273313a6f41c4b05116506ec6603caffe2ea5a4c673b70e4621464",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752212686 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.9.4",
+            "lifecycle-livedata-core-ktx-2.9.4.module"
+          ],
+          "sha256": "0a940e79e256cc7fbec69d8eb35362ac79599ab4b21ab4846aba64ba4960a192",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "b502bef37537fdd6f331989fc59731566f9c76dd77f95fcf075e1a1226d43780",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957178 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-process",
+            "2.9.4",
+            "lifecycle-process-2.9.4.module"
+          ],
+          "sha256": "f7cd5051bacb3f4b8ec7dc40ac6342a61eea1147592dda9f364a24cf882c7ddb",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bd2e77a07a1166b0e82929ca286f8075178fe899ef2bd200705d658d086caffa",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957189 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.6.1",
+            "lifecycle-runtime-2.6.1.module"
+          ],
+          "sha256": "a4cbb01a42d07047bd8d870017c96a1b0b7b4673320e86b66317a13be2ec10c7",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.6.2",
+            "lifecycle-runtime-2.6.2.module"
+          ],
+          "sha256": "ea0131846abe1fe9dea59ac6dfe1f0fb9d8b6d600c9eff9a1fd4ad5ee5e7cbc7",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "5de03d0d3fdc4c5de0a41c545be3909e12360b0b5cfbd1db7e74e5b58bdeddbe"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.8.7",
+            "lifecycle-runtime-2.8.7.module"
+          ],
+          "sha256": "cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "2c014e16bd4fbcffcfad71644e5e44c12fb3914965d8c224dc5943b28aafbd4b"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.9.2",
+            "lifecycle-runtime-2.9.2.module"
+          ],
+          "sha256": "4edd85fb1a176ca7e83b15b4765b5cee1a934aa317e41710fa0ac13341d7383a",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d8d466b651342e75f561ad687959c1001d547b2f144122eef72b17c75efda5f0",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752213115 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.9.4",
+            "lifecycle-runtime-2.9.4.module"
+          ],
+          "sha256": "dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "096a0c5b92168047b9bbf507f6eecab52bb28cbf7534ec8a404b83fd0dd5e72d",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957622 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-android",
+            "2.9.4",
+            "lifecycle-runtime-android-2.9.4.module"
+          ],
+          "sha256": "c7888e850c40fd059fb2c1ec5bf46e88313e9b5d5152133c385a1aafb8433f47",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "ded93d137fe104528ba841732c2b27b25e36d927f510a122c7cc7b28c5242e71",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957625 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose",
+            "2.8.7",
+            "lifecycle-runtime-compose-2.8.7.module"
+          ],
+          "sha256": "cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "82a9f6a8a3801f885d1f593fcec32115f10aaf69a744de3af06cb80d58a29372"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose",
+            "2.9.2",
+            "lifecycle-runtime-compose-2.9.2.module"
+          ],
+          "sha256": "d1972085e294acc109c2fc34bfbd94407fee76a848a1a8f7fe29b8d3efd5131f",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "cd2163a5d744b633bd7e090afcaf760b2fe909c4e7d447d60d09ad56da2ae36c",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752213430 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose",
+            "2.9.4",
+            "lifecycle-runtime-compose-2.9.4.module"
+          ],
+          "sha256": "27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bb75856f92ca8b8d5c5ec377886e9cf617cd5c10c56f9b3d425db8c5e21f3bf4",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957971 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose-android",
+            "2.9.4",
+            "lifecycle-runtime-compose-android-2.9.4.module"
+          ],
+          "sha256": "e087a2c2bdfe360497339335ba51dbcdd1503c0a7c9f4f8285db7023e0429439",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "8bedc07069fb4f69628a829b6212cb743ac1cc07e45b07bc1218109d5fb3e0a3",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757957974 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-ktx",
+            "2.9.4",
+            "lifecycle-runtime-ktx-2.9.4.module"
+          ],
+          "sha256": "05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "56f9ef78378866f179ae841d81650f6252654ec8683c5d7d8434b1a305ae74bc",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757961167 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-ktx-android",
+            "2.9.4",
+            "lifecycle-runtime-ktx-android-2.9.4.module"
+          ],
+          "sha256": "6a2070e9d9243bd3b5d5a108b9db5583bcc4c742b32efb45fe33f49429eb7193",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "95a4affe5c2e90c2c57478247c4f9809b9913d6389220dca88f7717b650811db",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757961170 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.6.1",
+            "lifecycle-viewmodel-2.6.1.module"
+          ],
+          "sha256": "2b406faea5c12f2b8df4b7a60931f846648f2e1f4d78361e198d1184f19a4797",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.8.7",
+            "lifecycle-viewmodel-2.8.7.module"
+          ],
+          "sha256": "f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "c050b75f8585116ebf0f44650320e000df41fa81ee8ae8ffa80536d249849624"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.9.2",
+            "lifecycle-viewmodel-2.9.2.module"
+          ],
+          "sha256": "b814fc0293df1ea37e19f206ad183703ff9bb254dd6daaef5e5e7d1f857fe18c",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "8a9f5117a46dea3dab2690504eec4443586e35c79c1db68e6e3742e338880892",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752219260 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.9.4",
+            "lifecycle-viewmodel-2.9.4.module"
+          ],
+          "sha256": "964d69d6b877296e8b79a77bb826ef5fb186aecaa7a1a7ff776fb2250c993006",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d8c2e22da7005ed7bf343dfc775aabbc94ad2ef852e517aafcf5137d6b86d531",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757965580 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-android",
+            "2.9.4",
+            "lifecycle-viewmodel-android-2.9.4.module"
+          ],
+          "sha256": "b637acdd8aab5348974661830874a7456bac341f43a0b281827cc6b0fcfc73c1",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "cf689115a05be9971bc97d78248fad27ed162c0db6611660713ecf9ce558dfb6",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757965582 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-ktx",
+            "2.9.4",
+            "lifecycle-viewmodel-ktx-2.9.4.module"
+          ],
+          "sha256": "5631efeab797f79a1adba5df64b2f0cca54e08b428756df7630cb23b90098a67",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "382c3f08186aa19d25181cc40e52a4678b543db06dffede8b9ed86a9df4287a5",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757966950 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.6.1",
+            "lifecycle-viewmodel-savedstate-2.6.1.module"
+          ],
+          "sha256": "dafb8649763d29c29cda27bc22fcdab9a9efc53c0fff9ae3de90882eabaa8944",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.8.7",
+            "lifecycle-viewmodel-savedstate-2.8.7.module"
+          ],
+          "sha256": "bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "e0212f0364ac0998ddd8f90158030a615f49859b98ab9bfa62b917a6694125d7"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.9.2",
+            "lifecycle-viewmodel-savedstate-2.9.2.module"
+          ],
+          "sha256": "c1785d7133fcfe1169cf4b4f6f1804477c1da6ffd79ad560f4cedbadf16c1e8e",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "025f9d0e949633c4ca60c16fbef1ced25ee4697cf637d7c7c1eec08f163c1d44",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-07-11 1752221074 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.9.4",
+            "lifecycle-viewmodel-savedstate-2.9.4.module"
+          ],
+          "sha256": "4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "c83452f302e852531151c821073d1a706d7b4d2a5fc25df94c53bf3bb016559f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757967755 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate-android",
+            "2.9.4",
+            "lifecycle-viewmodel-savedstate-android-2.9.4.module"
+          ],
+          "sha256": "bf64c4c3cf5ad5fe5d6fd0e07787ec68054cc226f9f670e05af5ef9da67c2593",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bedb958b42fdc4d79e67ded9527527e15e6a974b9aa8a99c72378413f65a585c",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-15 1757967758 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.profileinstaller",
+            "profileinstaller",
+            "1.4.0",
+            "profileinstaller-1.4.0.module"
+          ],
+          "sha256": "39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "894504e3850f00f05b5fe81dba990b4542ab21c3515f277f8701c7f04ba981cb"
+        },
+        {
+          "identity": [
+            "androidx.resourceinspection",
+            "resourceinspection-annotation",
+            "1.0.1",
+            "resourceinspection-annotation-1.0.1.module"
+          ],
+          "sha256": "352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate",
+            "1.2.1",
+            "savedstate-1.2.1.module"
+          ],
+          "sha256": "5bb656fc760d9e3996b535160cbb4106033c9f736e9089e6ef4eb0c669785066",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate",
+            "1.3.2",
+            "savedstate-1.3.2.module"
+          ],
+          "sha256": "320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "4fb657eab028cfaee6f95bbc42a384d51c094033589eddfef7db5e12270a1eaa",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-08-22 1755870249 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-android",
+            "1.3.2",
+            "savedstate-android-1.3.2.module"
+          ],
+          "sha256": "5d962b8d6a4bc5284492a40003c9867fd392ac6979ab440bdecdd427899741bb",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "42063b3cd75fcfbfcfef21fc0c7bee201906668d7938c38de29bb2b440610391",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-08-22 1755870252 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose",
+            "1.3.0",
+            "savedstate-compose-1.3.0.module"
+          ],
+          "sha256": "15a07a0fdb8ed58a48ca21e981d38ab72b2bbfd96463c33a7050df1c27699a75",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "0dabd0948aee54f7942edb0efc79910bcadd89df2416a72b67bbb09b9a1aacda",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-05-02 1746151329 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose",
+            "1.3.2",
+            "savedstate-compose-1.3.2.module"
+          ],
+          "sha256": "3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "14396a54b278c2eae17ee34cdd548c9d382ce9261b09a5df6017516e394e8f6f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-08-22 1755870631 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose-android",
+            "1.3.2",
+            "savedstate-compose-android-1.3.2.module"
+          ],
+          "sha256": "8376ee32d654f97712f817275e785880daef1e44448f38272a7734ec091ce401",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d621030f78dfc42398ccc4d4dd6e894da5d73ccca3712784d43f6726bbbc4271",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-08-22 1755870634 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-ktx",
+            "1.3.2",
+            "savedstate-ktx-1.3.2.module"
+          ],
+          "sha256": "f7fc8a13f9fbe5cf092128299aff529392f3eee54e6d3fe5f0a2f82fc6c5f3db",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "2eb6cf33f1451bd84c419f7cf6ed5bc39c693599d41624667433a1bd92759957",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-08-22 1755877048 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.startup",
+            "startup-runtime",
+            "1.1.1",
+            "startup-runtime-1.1.1.module"
+          ],
+          "sha256": "cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.1.0",
+            "tracing-1.1.0.module"
+          ],
+          "sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.2.0",
+            "tracing-1.2.0.module"
+          ],
+          "sha256": "d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_UNVERIFIED",
+          "signature_sha256": "ed5f8bc43494c7924d236bbba6a9fa4370a9ad22a457ca7aeffb2e39a90f8ebf"
+        },
+        {
+          "identity": [
+            "androidx.transition",
+            "transition",
+            "1.6.0",
+            "transition-1.6.0.module"
+          ],
+          "sha256": "c763c376fd6d39e51477c902b315e58ca2a1f47d4b099cb99f49a148bd61c560",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "61b28ba1df35858fa6ce2080ace118004d9cbe43a4af52027d42252fe18df297",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-04-09 1744235568 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window",
+            "1.5.0",
+            "window-1.5.0.module"
+          ],
+          "sha256": "8ac5d2772e97c957dddcbcb1c1198229d4afe57cdf5ecd5eb3cd436a05190743",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "b58a9c28905c34f1a1e4f13543ef4d708f58102f8cc7ef675918bad3ed177051",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-19 1758303724 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window-core",
+            "1.5.0",
+            "window-core-1.5.0.module"
+          ],
+          "sha256": "595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "38ef51f1354577d6f30165d54781ffbf100c349b4fa71c192dbaa1af275e9051",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-19 1758304086 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window-core-android",
+            "1.5.0",
+            "window-core-android-1.5.0.module"
+          ],
+          "sha256": "5bd818686803bf3c037f61a0e96af4441e884aa8a4d91062d2ad57876f917b50",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "69aaee46714f584c37684352ee719aae8afe09ef15585d0fe398eac40765b765",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-19 1758304089 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "aapt2-proto",
+            "8.13.2-14304508",
+            "aapt2-proto-8.13.2-14304508.jar"
+          ],
+          "sha256": "a6cda82d508ec3b325a9e37f78f9fa84556ff340cf43bb23c627b0f39e746f0e",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "11e5a1b181e262857d9106d0d45092f1fbb772cdeb08b4bf13cb240f54794f2b",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394886 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "aapt2-proto",
+            "8.13.2-14304508",
+            "aapt2-proto-8.13.2-14304508.module"
+          ],
+          "sha256": "7d5b7285f476c82008f0d39f506b0b8c53f1b026bd624d7adc688216be8ea5be",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "dc2d37f3f3b2794975fd8a167c6856ee7f0e4ce9b302de59f42f600f72b61ec9",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394853 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "aaptcompiler",
+            "8.13.2",
+            "aaptcompiler-8.13.2.jar"
+          ],
+          "sha256": "f6f6706d3b7a261e242820da5c855123d3c23738159ca3726e0c34e482b80770",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "4955163b12bb0408b623a0a8eb30ddb31ddf59eee74431364b1bae2b224b98ee",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394949 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "aaptcompiler",
+            "8.13.2",
+            "aaptcompiler-8.13.2.module"
+          ],
+          "sha256": "0e3ba6b43ad98fa69131de1d8b6c6a7541b3af71443dcb5d52a2cffc2558ee6b",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "0bd2e07c3e05462ea1916bda807c4c8f26dd13d01c3219d92e7dbde35b885273",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394760 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "apksig",
+            "8.13.2",
+            "apksig-8.13.2.jar"
+          ],
+          "sha256": "c070ed1394629d74641aa0906f60b2ffa1ee77e6366a1f93437f59717b1aeb89",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "9e8d4aaee6b89cbab547eb3221b268c42b60f6ed4eee5cec6efb66ec985f9e81",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394909 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "apkzlib",
+            "8.13.2",
+            "apkzlib-8.13.2.jar"
+          ],
+          "sha256": "29091c9457252f997ddfeafb33dd65a373ad45840128f945832d8eafd9118561",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "f81c5499b768eac302a3a4581f452c2a6ce1890d4072fa2c56ddbba1c586796f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394785 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder",
+            "8.13.2",
+            "builder-8.13.2.jar"
+          ],
+          "sha256": "7d393f8553120c7d7a869cb33c4279aad9485986773f63af97af08ea2e1ff37a",
+          "capture_status": "FETCH_OR_VALIDATION_ERROR",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder",
+            "8.13.2",
+            "builder-8.13.2.module"
+          ],
+          "sha256": "4a8a108de5f04142a6757861a0a57a298b936b7b7f7f9c5b91e5caa9a7efda90",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "fa2d8a2259cf049fb2859ae40b32c96f9324be12773b5b72c4d64d14dac80dea",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394815 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder-model",
+            "8.13.2",
+            "builder-model-8.13.2.jar"
+          ],
+          "sha256": "ae5e95515ab348d34a35be83ed315c5fb7e8c0667e186f4e156c65dfaa2615fe",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "ccd8abbfc721f8cdb9b256c29861b46805953368ff504e54aebc07a66130fd6c",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394894 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder-model",
+            "8.13.2",
+            "builder-model-8.13.2.module"
+          ],
+          "sha256": "5ae11d7a40857e1a4b0bc6a7f4218255c96169b7011535f9a30b77b5f6e327a1",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "dd47c313116b8fe43b14f3c5cb1c3579bf9984a4e05de112db781ef015f0fed2",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394827 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder-test-api",
+            "8.13.2",
+            "builder-test-api-8.13.2.jar"
+          ],
+          "sha256": "3cfed0baec2e7d0e64566f6808a00ef5e051ad76fc4fba9d464d11a3c2f986a9",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "06fb9b0b13bf949c941f84510209cdfb5f8f2e6b28c6e7a7d17259c1bf1d6769",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394803 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "builder-test-api",
+            "8.13.2",
+            "builder-test-api-8.13.2.module"
+          ],
+          "sha256": "4f72f3a9fd3e9f516c36cefac6978dcc040496210b8cfad7d2954c83bba0e990",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "c3213c1adf33dc93f37fcd8d8060b6a8bf44c84f43c0b34b91537df590de75d8",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394823 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "bundletool",
+            "1.18.1",
+            "bundletool-1.18.1.jar"
+          ],
+          "sha256": "a73341a7945abcb0e6b8971c7b1b2801bd765006447ca0d2437a4260d572ceac",
+          "capture_status": "FETCH_OR_VALIDATION_ERROR",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle",
+            "8.13.2",
+            "gradle-8.13.2.module"
+          ],
+          "sha256": "0aac0bee1a4fc65cd69a6788548a7e21d246250c858017e11e3bf23163cb75a7",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "3a2dd193135e43e9c5182303f111ccdbbc2a6dba6330bbbe54682f7543410ec6",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394755 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-api",
+            "8.13.2",
+            "gradle-api-8.13.2.jar"
+          ],
+          "sha256": "a8dcdc6f1338f7055f6b1bc265317e14d65833e6c7f72b2102c5568e1df4d792",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "8e486798811b7ac8e6ff679aad71ff82b8ac22c241c6b25496c4b89b4eb499bd",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394890 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-api",
+            "8.13.2",
+            "gradle-api-8.13.2.module"
+          ],
+          "sha256": "1be00181670666873cd0128e9dec6ee99cd2ae207bab909ecc11ff0cf729bc5d",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "a938c757e0d0cce2e09c712c3e08fbe2794c25deb808febf5f1217d8c169ce1e",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394771 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-common-api",
+            "8.13.2",
+            "gradle-common-api-8.13.2.jar"
+          ],
+          "sha256": "fcde805fcd5739aed607a9cdc325316f422fa05a46e140a291d2f24eca3a59fe",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bae8895c8085e9e955598c524c18f477b8e61d2e85110a181e6f1af68cbcf921",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394956 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-common-api",
+            "8.13.2",
+            "gradle-common-api-8.13.2.module"
+          ],
+          "sha256": "9e6edcd959f6ed87a2273b85de0f4efac26e7cdcbf4bd6a4a3f4e05c8e7e7c1c",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "133c01b4b216b8ebc42560add64c73e3e910766554853a09c493f44fbe8a006b",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394880 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-settings-api",
+            "8.13.2",
+            "gradle-settings-api-8.13.2.jar"
+          ],
+          "sha256": "370438bcf7782d8c5b407370365b047bf063f99a7745e1f5f1853183398d07a6",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "ac178bd60958ff35db12d889f3d1b769206b97d314c4db69b21550e517fd6e28",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394794 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "gradle-settings-api",
+            "8.13.2",
+            "gradle-settings-api-8.13.2.module"
+          ],
+          "sha256": "e5cac798c13234eea43adb084c5c81c20ad1c36cc4b5b57f3922d91f4ec024d6",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d2a7a64c74c3b0d6ebaf789ab2ebf11c29cc59c7712a1613fec3be1cd60807bc",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394934 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "manifest-merger",
+            "31.13.2",
+            "manifest-merger-31.13.2.jar"
+          ],
+          "sha256": "40d25f5940c2e50bf7e18e325f7fbb9c86cf45db5a85d1cef8ef985404227a1f",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "6b8d6299ddb5faec442ac0782de236fe96f3af1d005d5b9a2e79df7214ffcd5b",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394807 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "manifest-merger",
+            "31.13.2",
+            "manifest-merger-31.13.2.module"
+          ],
+          "sha256": "4bd9d47df07b78174a72faa92423935af29d17c9896a84b658b921f6f1a92348",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "97eb531c9c2a4678ca8e7bfd11703ea2075c3216696a9b8ae5548a60307658e5",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394817 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.build",
+            "transform-api",
+            "2.0.0-deprecated-use-gradle-api",
+            "transform-api-2.0.0-deprecated-use-gradle-api.jar"
+          ],
+          "sha256": "4de4a3d05e1c534c2db9e4588bf34082bb2bd232d8abb9727c430290ce225740",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-core",
+            "1.0.0-beta10",
+            "jetifier-core-1.0.0-beta10.jar"
+          ],
+          "sha256": "26abb4a13927d9062169c504c9e94fe80e9ae3a4f7b5ab8875ab007536a91f5e",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-core",
+            "1.0.0-beta10",
+            "jetifier-core-1.0.0-beta10.module"
+          ],
+          "sha256": "f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-processor",
+            "1.0.0-beta10",
+            "jetifier-processor-1.0.0-beta10.jar"
+          ],
+          "sha256": "c5067a7b928237a1271a5e9cb5710e9f80b4973293945bc51e3a4c864ea4bfed",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-processor",
+            "1.0.0-beta10",
+            "jetifier-processor-1.0.0-beta10.module"
+          ],
+          "sha256": "36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13",
+          "capture_status": "MATCHED_PIN",
+          "status": "SIGNATURE_ABSENT",
+          "signature_capture_status": "HTTP_404"
+        },
+        {
+          "identity": [
+            "com.android.tools.ddms",
+            "ddmlib",
+            "31.13.2",
+            "ddmlib-31.13.2.jar"
+          ],
+          "sha256": "839957f961100713ea0eed628a8684cc39aa479631c36249793e6df7e0cd63d8",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "b6004ef79cd4beb3cf2c2c9eeab2d522f50d82fe4eabbc83f6657b9d6304789f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394861 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.emulator",
+            "proto",
+            "31.13.2",
+            "proto-31.13.2.jar"
+          ],
+          "sha256": "b77f81cc0751d79393ec4b2eb046f910d21abcd7608b5b0f5a1efea1b3243b48",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "6a0b6a3eacf8627559a5a54c15a47fd29dbe4ae48e6c85b1e36ee298f7427656",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394905 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.external.com-intellij",
+            "intellij-core",
+            "31.13.2",
+            "intellij-core-31.13.2.jar"
+          ],
+          "sha256": "9a6faa6061d0f3d54a64decb61944c1b2c6927f8d325cd298c82c2a8d867ee68",
+          "capture_status": "FETCH_OR_VALIDATION_ERROR",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.android.tools.external.com-intellij",
+            "kotlin-compiler",
+            "31.13.2",
+            "kotlin-compiler-31.13.2.jar"
+          ],
+          "sha256": "552dfaffe295d08504870816c27fc09007e1231fb9b14c1ff9bbf861f9b35990",
+          "capture_status": "FETCH_OR_VALIDATION_ERROR",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.android.tools.external.org-jetbrains",
+            "uast",
+            "31.13.2",
+            "uast-31.13.2.jar"
+          ],
+          "sha256": "78f18ac2b2509fb6cb19058e8fc9585c361b97990dd7d5db0c2a94744dfb0a96",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "659d60155cc916f6afaa4ec6cba2994426dbaacb2d8cf1d385918a730d6cea29",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394850 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.layoutlib",
+            "layoutlib-api",
+            "31.13.2",
+            "layoutlib-api-31.13.2.jar"
+          ],
+          "sha256": "d06bc650247632a4a4e6596b87312019f45e900267c5476c47a5bfa6e3fd3132",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d54abf57e759071e1ff5347508472f19a9b7f19cc5f3b88865c3e2a51f0e79d9",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394918 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint",
+            "31.13.2",
+            "lint-31.13.2.jar"
+          ],
+          "sha256": "7f875a980ee23916439d368d073cfbc2ee4e4d99ffe1b3e13da794fef347f29a",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "7ccfcffd7292fc29514af13d6b564d04a32d443c9a0934b50473d195a1a18432",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394857 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint-api",
+            "31.13.2",
+            "lint-api-31.13.2.jar"
+          ],
+          "sha256": "8f770657dba33f305e583c62953a4f174c75a7b1cd2da7d31134be36a96ae2ac",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "c91ca85009cc7398138dbfa416831eb9ba68127e51330c6e942704c36788dda8",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394871 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint-checks",
+            "31.13.2",
+            "lint-checks-31.13.2.jar"
+          ],
+          "sha256": "3b64f395ae17fcea104882b00a4acdc7dc691f5daca5dff2bdde89fa052bb199",
+          "capture_status": "FETCH_OR_VALIDATION_ERROR",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint-gradle",
+            "31.13.2",
+            "lint-gradle-31.13.2.jar"
+          ],
+          "sha256": "a42b6a41c436d90ca31a13d67afba1157b157efc892a7496f67432bf8a831cbd",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "47f43728b3f1551e7767d24bed9f7bcc2df28e7227b1bcb1413086f052169e9f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394884 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint-model",
+            "31.13.2",
+            "lint-model-31.13.2.jar"
+          ],
+          "sha256": "9ee55d8fd002736ed95ee97fb05f4df7ae01f4f976f738fbf37ecab795e59319",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "06b1ef38f400a95caf35d3bb855a44bf8b16ead027a798bb586553d74d9af027",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394881 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.lint",
+            "lint-typedef-remover",
+            "31.13.2",
+            "lint-typedef-remover-31.13.2.jar"
+          ],
+          "sha256": "4a3ba3babfd79e6fc67bcef647fb4ecfeaf59b481b108f7c2eba4d1c5c6dea8e",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "363e8bed07229c4be5a92cd68fd25c95175e81c8ae63c987e30fc394f042879a",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394814 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-ddmlib",
+            "31.13.2",
+            "android-device-provider-ddmlib-31.13.2.jar"
+          ],
+          "sha256": "b16ebfef5b63b03b803ead0a5e194ee34e0dd361c1e191557d998f01534744ff",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "741ecc9965afa23ffcc1ec8e06b9f1b2b2b84bd076b08b42f3f430e0bfa9a5b8",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394898 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-ddmlib",
+            "31.13.2",
+            "android-device-provider-ddmlib-31.13.2.module"
+          ],
+          "sha256": "15745704fb951a3629b1a2635ac6e21085b0f6e6325966d47725e50c3a5fac5b",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bd6731b180d8586bb0d1bd0a72986e0c163d38d327db6d3a81c61c62580f7842",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394764 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-ddmlib-proto",
+            "31.13.2",
+            "android-device-provider-ddmlib-proto-31.13.2.jar"
+          ],
+          "sha256": "047aecdd66e106137f77a52c442f1b83db7d6e8496899800251f206c7f39de65",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "b4568294d8020b8945cd0657c1b45ef1bb689248daee788dcbe17be0accb7488",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394747 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-profile",
+            "31.13.2",
+            "android-device-provider-profile-31.13.2.jar"
+          ],
+          "sha256": "9560c25859c9c15c77144cbb58370bad394882ecc3169fd5e589b7d4e52e866f",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "43cd6d95396b3c402b2f61a06a869896d39778dadbb848073e69f546b99f5cd0",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394875 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-profile",
+            "31.13.2",
+            "android-device-provider-profile-31.13.2.module"
+          ],
+          "sha256": "7cce606becb5853221ca900b7540d0e6cbb8c1ed4c2adf0b06ee39c36d0e4de9",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "71f78a743c1b3fed71df90dcb64577bc8a217470e8164309c7ce8ce7705d4206",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394852 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-device-provider-profile-proto",
+            "31.13.2",
+            "android-device-provider-profile-proto-31.13.2.jar"
+          ],
+          "sha256": "3e7b098f6e3ecae31b6f7909c343b4ec09aa18d8a89f41bf92077ba4b056f453",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "eba9f3a48e6317ea5a4fe601f11f9be8b9aa0f287f9219e8eec58175547e1e2f",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394804 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-additional-test-output",
+            "31.13.2",
+            "android-test-plugin-host-additional-test-output-31.13.2.jar"
+          ],
+          "sha256": "faae42a16cf76d7529b59b1b9a4dbf9cb1bedca58118eba824fddb8312dc7655",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "5eba43b46323b9ccf26b964dd458c43728b6e124376d892a4b3e95a60870c03c",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394953 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-additional-test-output",
+            "31.13.2",
+            "android-test-plugin-host-additional-test-output-31.13.2.module"
+          ],
+          "sha256": "b0a3c5b358d6b6267448eb6abfeaf6ad025ab1f07cb3b650af52fd702badfc05",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "fa28866e7ac2f3db45fad4469f7e15a83d6663fccdaf19015b4a47cdbd3b6236",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394897 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-additional-test-output-proto",
+            "31.13.2",
+            "android-test-plugin-host-additional-test-output-proto-31.13.2.jar"
+          ],
+          "sha256": "6ba7e6ac2208d74c1bb5f1d1464abafc6a45d8710b20455a2dc02adf8726bc83",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "cf7ad33fbdeff869ee25a68ce2c3222e3d1ce342a1122c7fe139bec25e1593be",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394840 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-apk-installer",
+            "31.13.2",
+            "android-test-plugin-host-apk-installer-31.13.2.jar"
+          ],
+          "sha256": "949c6f65122129d3ecd59b0899860e8e24e9682cec1c008d1f11a5cc93366f64",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "3abb798c5451cb09fc9de914cb3046d1779f8b3001f72a83abb89960f38551ca",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394874 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-apk-installer",
+            "31.13.2",
+            "android-test-plugin-host-apk-installer-31.13.2.module"
+          ],
+          "sha256": "ae4945c1102dc8f53075f61eba8a0f666c7437ffebe2b9fb1671968cc4547313",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "ead1265984cb6d2e992563e628df445b1ca0e5fc2b1fc63f2b98323486f0677d",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394894 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-apk-installer-proto",
+            "31.13.2",
+            "android-test-plugin-host-apk-installer-proto-31.13.2.jar"
+          ],
+          "sha256": "4f2b610542e91a35a396b04368a784036e42b8787021460550b9a3495bb8245b",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "577a0bc494836fd6fc292813721495a588886af4bfc3984517be6bf0b98fd0f3",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394822 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-coverage",
+            "31.13.2",
+            "android-test-plugin-host-coverage-31.13.2.jar"
+          ],
+          "sha256": "4993a95049e52c4d3147e9c4dfc696cc5a76af8303a4206bb60c2bfabc563ae9",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "61d42c1685cedbcd7e1be70d03a74201f0410bf2b0c0e64af6b0de6fea655e91",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394814 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-coverage",
+            "31.13.2",
+            "android-test-plugin-host-coverage-31.13.2.module"
+          ],
+          "sha256": "daf1f2792529dc44cec6897f97fc845dbaa63fec2d6939c97e27c2feea4db3f6",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "4b73e2b9417f9e1ead0996a614d74a9787a155886da8b0dd3217fe9f3b1969ee",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394925 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-coverage-proto",
+            "31.13.2",
+            "android-test-plugin-host-coverage-proto-31.13.2.jar"
+          ],
+          "sha256": "fa86719a3dc5de465f7e0c023184414c27f8fd53a34fd557289c0bf6df340244",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "5c5e16aee445a3b821247fe12906e66e7d5223248bca6097a89bc265454680da",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394953 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-device-info",
+            "31.13.2",
+            "android-test-plugin-host-device-info-31.13.2.jar"
+          ],
+          "sha256": "a53b9f764d80bed29e0f2e0ee62576dc09b87386608bb62ef1453d032f976968",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "5eb3005b1c8599fff0b8c1bf475b48ef9c184a49a27838a584a50943080a455a",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394885 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-device-info",
+            "31.13.2",
+            "android-test-plugin-host-device-info-31.13.2.module"
+          ],
+          "sha256": "6c1222b83fe4d4cc584f6f4419f6a4e95723dcaa453c7a32469ff24c0809e2a0",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "a4f33064792e0eb3d590181129fa006b1e6f5d0e203ce0bf031bca9e2334f99b",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394841 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-device-info-proto",
+            "31.13.2",
+            "android-test-plugin-host-device-info-proto-31.13.2.jar"
+          ],
+          "sha256": "9683ac7648a7a41be9a1349f6981592944f627164898c3c8925a0beede8bb8bb",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "409baf619492a41a17a6c491a7536afaf8812c4b4eb856f072a606296a448d40",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394875 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-emulator-control",
+            "31.13.2",
+            "android-test-plugin-host-emulator-control-31.13.2.jar"
+          ],
+          "sha256": "73022c2a2779eeacfbfce67dda7cfbb21e3b3cf5610a54e35fc30d8fcc860930",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "333482d2d1900d17bb325592d0bfeb4525436b9c0d0e4c5993ed894439bdf16e",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394846 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-emulator-control",
+            "31.13.2",
+            "android-test-plugin-host-emulator-control-31.13.2.module"
+          ],
+          "sha256": "01961125568e18cb312446f0e1c4edfd3669fc8a90c459ff505729efe2e073ce",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "e4ff329c438690f300b35ffd919444edde6310a7e0288075b043d566622967ac",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394745 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-emulator-control-proto",
+            "31.13.2",
+            "android-test-plugin-host-emulator-control-proto-31.13.2.jar"
+          ],
+          "sha256": "a4f34aae0f9ffa026dbf7151436dd7ae53becb72622b40f2c479cac8943d9319",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "bb162210cda0efab1223607c828ac761075a86155a3ce14f85c994848a66278a",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394884 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-logcat",
+            "31.13.2",
+            "android-test-plugin-host-logcat-31.13.2.jar"
+          ],
+          "sha256": "f559b7c544e29ac3547339805c5e98d938e2a2764691d74ebabeb36e1fca0fba",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "786434d1e7b3a6f55bfe5210c675c61ef46caa7a28a3ac35725a04b2185c7a81",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394946 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-logcat",
+            "31.13.2",
+            "android-test-plugin-host-logcat-31.13.2.module"
+          ],
+          "sha256": "df3d289ffba6ff28fa8875462477d911f009cc094c7ca55973b96b31da0269e9",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "54a853617cabeff8f7275c9ba4b76bdee29bbf6f418d14d919283063bf9e0695",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394927 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-host-logcat-proto",
+            "31.13.2",
+            "android-test-plugin-host-logcat-proto-31.13.2.jar"
+          ],
+          "sha256": "c1f6ebbacdad559b6efe4eaa29561552b33156395f069cd9703fda09c462dea6",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "3860c522631ad7fee94ac9f3aacbd975c3ae24c3664a066e572b7b37176be2ac",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394911 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-result-listener-gradle",
+            "31.13.2",
+            "android-test-plugin-result-listener-gradle-31.13.2.jar"
+          ],
+          "sha256": "f5ed39ecda77684730b2616d112d69f92f509e3d6c38828abc6a863ef77fe0e5",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "122f7a0aff1530a7ba513f999c37fb3417eb0b17e5abd3597c508611db705f94",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394948 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-result-listener-gradle",
+            "31.13.2",
+            "android-test-plugin-result-listener-gradle-31.13.2.module"
+          ],
+          "sha256": "689acf1e56994bfe74015218bd89595d57fec14157c5ce66a1c75c7e011f889f",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "8a0fb312adca6849f282d0d3cadb547701bf6cd12a3a528b75fa55a10df617e5",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394836 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "android-test-plugin-result-listener-gradle-proto",
+            "31.13.2",
+            "android-test-plugin-result-listener-gradle-proto-31.13.2.jar"
+          ],
+          "sha256": "d429b9312dffa0503381d1ee1b18a999bd901e7456612b2fb48c6a5d5a2caf88",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "d6a84f39e989ed610b9a8e4355a08c974a475044c8d0bf5662a63e04d66b2628",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394921 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        },
+        {
+          "identity": [
+            "com.android.tools.utp",
+            "utp-common",
+            "31.13.2",
+            "utp-common-31.13.2.jar"
+          ],
+          "sha256": "cde678a64b13041cdd2cc9dad1685990a1d090fb04ff5da2261ff75a83598106",
+          "capture_status": "MATCHED_PIN",
+          "status": "VERIFIED",
+          "signature_sha256": "ec1b833fc30e9a8b5699c4aacf77933f42b94d2bcd0123149e277a039f0e10ff",
+          "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394917 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
         }
       ]
     }

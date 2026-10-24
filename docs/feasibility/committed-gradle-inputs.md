@@ -167,4 +167,25 @@ Request SHA256 e60ec6979cbd0fb7e9dd6585d9c67611e53c9d4d6e5bbceb290f23b1e94ad2ff;
 
 All 210 earlier artifact/proof identities are preserved. After this batch: 273/921 reviewed, 648 pending (34 AAR, 232 JAR, 134 module, 248 POM), including 85 deferred outcomes across 280 attempts. No automatically retried failures, broad issuer trust, active strict policy, Android rebuild, current vulnerability/license verdict or release acceptance.
 
-The staged [.ci/google-maven-next-request.json](../../.ci/google-maven-next-request.json) combines all 128 remaining unattempted files on the Google Maven route: 46 JAR and 82 module files. Its 58,505-byte request declares 252,706,816 bytes including signatures (241 MiB), within the existing 64 KiB / 128-entry / 256 MiB / 120-second bounds. Exact baseline identities, hashes, canonical routes and omission of all 280 attempts/all 273 approved files were checked. This separately staged request does not trigger the collection, Android or rebuild workflows; the ordinary planner is unchanged. It must be deliberately activated as a future step. Current counters and exact outcomes remain owned by the review JSON.
+The then-staged [128-file request](https://github.com/santirodriguez/FixMyShot/blob/2852666a38cf8c5e0f43653e1658bc97557c3504/.ci/google-maven-next-request.json) combined all 128 remaining unattempted files on the Google Maven route: 46 JAR and 82 module files. Its 58,505-byte request declares 252,706,816 bytes including signatures (241 MiB), within the existing 64 KiB / 128-entry / 256 MiB / 120-second bounds. Exact baseline identities, hashes, canonical routes and omission of all 280 attempts/all 273 approved files were checked. That separately staged filename did not trigger workflows; it was deliberately activated for the fourth batch below and its duplicate was retired. The ordinary planner is unchanged. Current counters and exact outcomes remain owned by the review JSON.
+
+
+## Combined Google-route batch — 95 additional exact files verified
+
+[Actions 40098770322](https://github.com/santirodriguez/FixMyShot/actions/runs/40098770322), control 45b620e855ea1324cf07d1c03e443e30b3dc9269 / job 120886424226, finished FAILURE in 39 seconds; collection took 32 seconds. The exact staged 128-file request was promoted and its duplicate retired. Artifact 12561454540 / 9,986,707 B / ZIP SHA256 4e387bbcd4b6ff703c35557d992d7179f37a3936bdfa3df113a700b696864863 passed size, CRC, source/request checks and all 123 matched-file pins. No SHA256_MISMATCH was reported.
+
+Five JAR captures returned FETCH_OR_VALIDATION_ERROR under their existing 4 MiB limits: builder 8.13.2, bundletool 1.18.1, intellij-core 31.13.2, kotlin-compiler 31.13.2 and lint-checks 31.13.2. Their precise failure causes were not separately established. They remain deferred without retries or raised limits. Request SHA256 40f06ba4d2dac6f860aa72c3f368760a75ab5ee100ccb10a8e44cee82c394865; prior accepted 273-file receipt SHA256 4c2f67aba06d5e4a266fa25923d819665c539d7821ea2c8b00eee8ad1e460da0.
+
+| Files attempted | Verified | Signature absent | Signature unverified | Capture unavailable |
+| --- | ---: | ---: | ---: | ---: |
+| 46 JAR | 38 | 3 | 0 | 5 |
+| 82 module | 57 | 13 | 12 | 0 |
+| **128 total** | **95** | **16** | **12** | **5** |
+
+Each new approved file independently passed exact baseline bytes, actual detached signature, strong digest, Google primary binding and explicit signing-key validity checks. All 273 earlier artifact/proof identities are preserved. After this batch: 368/921 reviewed, 553 pending (34 AAR, 194 JAR, 77 module, 248 POM). All 408 planned Google-route attempts are recorded; the three earlier critical files bring that route to 293 verified / 118 deferred, with no unattempted files left. The remaining backlog is 118 deferred Google-route files plus 435 files from other publishers. No broad issuer trust, current security/license verdict, active strict policy, Android rebuild or release acceptance.
+
+## Next publisher evidence — pinned Kotlin release manifests
+
+The official JetBrains/kotlin release API exposes independently published SHA256 pins for two checksum manifests. [Source anchors](evidence/kotlin-publisher-manifests.json) retain release/asset identities, sizes and URLs: v2.2.0 asset 266482769 (150,918 B, SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363) and v2.2.20 asset 291372484 (158,512 B, SHA256 12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8).
+
+The staged [.ci/kotlin-publisher-next-request.json](../../.ci/kotlin-publisher-next-request.json) requests only these two manifests, at most 512 KiB total. It is not a workflow trigger and does not approve any artifact. Their actual bytes and full coordinate/file matches remain unreviewed. Four older matching Maven-manifest assets were found without a published API digest; the expected filename was not found on three other queried releases. No substitute hash or authentication was invented. This prepares a separate publisher step while keeping the 118 deferred Google-route cases out of automatic retries.

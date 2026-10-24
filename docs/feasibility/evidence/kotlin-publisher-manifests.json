@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "publisher_repository": "JetBrains/kotlin",
+  "purpose": "Independent release checksum source anchors; file matching and review required before trust",
+  "sources": [
+    {
+      "version": "2.2.0",
+      "release_id": 227055632,
+      "asset_id": 266482769,
+      "size": 150918,
+      "sha256": "abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363",
+      "asset_url": "https://github.com/JetBrains/kotlin/releases/download/v2.2.0/maven-2.2.0-sha256.txt",
+      "release_url": "https://github.com/JetBrains/kotlin/releases/tag/v2.2.0"
+    },
+    {
+      "version": "2.2.20",
+      "release_id": 245851945,
+      "asset_id": 291372484,
+      "size": 158512,
+      "sha256": "12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8",
+      "asset_url": "https://github.com/JetBrains/kotlin/releases/download/v2.2.20/maven-2.2.20-sha256.txt",
+      "release_url": "https://github.com/JetBrains/kotlin/releases/tag/v2.2.20"
+    }
+  ]
+}

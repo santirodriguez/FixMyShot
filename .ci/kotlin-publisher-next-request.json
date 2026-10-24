@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+  "entries": [
+    {
+      "id": "kotlin-manifest-2-2-0",
+      "kind": "publisher",
+      "url": "https://github.com/JetBrains/kotlin/releases/download/v2.2.0/maven-2.2.0-sha256.txt",
+      "sha256": "abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363",
+      "max_bytes": 262144
+    },
+    {
+      "id": "kotlin-manifest-2-2-20",
+      "kind": "publisher",
+      "url": "https://github.com/JetBrains/kotlin/releases/download/v2.2.20/maven-2.2.20-sha256.txt",
+      "sha256": "12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8",
+      "max_bytes": 262144
+    }
+  ]
+}
