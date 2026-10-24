@@ -821,7 +821,7 @@ internal class ReviewViewModel : ViewModel() {
                     outputs += ShareImage(Uri.parse(outputUri), record.mime)
                 }
                 if (safe && outputs.size == selected.size) {
-                    ExportShareIntents.build(app.contentResolver, outputs)
+                    ExportShareIntents.build(outputs)
                 } else null
             } catch (_: Exception) { null }
             main.post {

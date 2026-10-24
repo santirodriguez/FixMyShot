@@ -9,7 +9,7 @@ import android.net.Uri
 internal data class ShareImage(val uri: Uri, val mime: String)
 
 internal object ExportShareIntents {
-    fun build(resolver: ContentResolver, items: List<ShareImage>): Intent? {
+    fun build(items: List<ShareImage>): Intent? {
         if (items.isEmpty() || items.size > 100) return null
         if (items.any { it.uri.scheme != ContentResolver.SCHEME_CONTENT ||
                 it.uri.authority.isNullOrBlank() ||
@@ -17,11 +17,13 @@ internal object ExportShareIntents {
         if (items.map { it.uri.toString() }.toSet().size != items.size) return null
 
         val uris = ArrayList(items.map { it.uri })
+        val mimeTypes = items.map { it.mime }.distinct()
         val kind = if (items.size == 1) Intent.ACTION_SEND else Intent.ACTION_SEND_MULTIPLE
         return Intent(kind).apply {
-            type = if (items.map { it.mime }.distinct().size == 1) items.first().mime else "image/*"
+            type = if (mimeTypes.size == 1) mimeTypes.first() else "image/*"
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            clipData = ClipData.newUri(resolver, "FixMyShot output", uris.first()).apply {
+            // Use already verified MIME types: constructing the chooser must not query a provider again.
+            clipData = ClipData("FixMyShot output", mimeTypes.toTypedArray(), ClipData.Item(uris.first())).apply {
                 uris.drop(1).forEach { addItem(ClipData.Item(it)) }
             }
             if (items.size == 1) putExtra(Intent.EXTRA_STREAM, uris.first())

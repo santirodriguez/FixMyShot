@@ -24,6 +24,7 @@ Real changes. No imaginary release history.
 - Check measurable destination space during export, handle provider pipes without file-only sync, report shortages and preserve uncertain cleanup for review.
 - Keep uncertain destination creation out of retry, handle unexpected provider errors and explain when an output location could not be confirmed.
 - Review uncertain outputs, verify selected saved files before sharing, and select all successful copies when useful.
+- Build share payloads from verified image types without another provider metadata lookup; describe every selected PNG/WebP type.
 - Confirm finishing export review before retiring restore/retry settings or clearing a completed session.
 - Retire consistent private receipts after successful session review and explicitly remove verified owned pending MediaStore copies before a separately requested retry.
 - Add localized import/preflight/result feedback, light/dark/system themes and offline English, Español and Català help.
