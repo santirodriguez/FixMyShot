@@ -194,4 +194,63 @@ Artifact `12563041227`, 218,443 B, SHA256 `7b6326aa2630771de0a8b8f4819e2c576e843
 
 The separate multi-manifest reviewer checked 952 paths from v2.2.0 and 982 from v2.2.20. It accepted 11 exact baseline files: 9 from v2.2.0 and 2 from v2.2.20, comprising 5 JAR, 3 module and 3 POM files. All 368 previous artifact/proof identities are unchanged. Request SHA256 `eda0cfc56b209076d45a1a2c1d3349c88b78c738e24ed71dfefd1d98faf33099`; prior receipt `49f7a64bf093b7a4b699014a7ab9bf7614f7917529af096ed9575f63968d63dc`; registry `cb3fc072e6e97e7dd692e649cbc974e01f4c7bae4b9ac5d638753ec1e2ecccbe`. The resulting JSON SHA256 is `3fa1fd05c8261169a3d8c625c8419410f9306c740b6870945d4728db5a67a207`; candidate XML `140d7e2d3e35a0f440e6fd3ccf1b0d30d55fcc295e07805e542be2c50fbb2949`.
 
-Current inactive candidate: **379/921 reviewed; 542 pending** (34 AAR, 189 JAR, 74 module, 245 POM), including the same 118 deferred Google-route files plus 424 files from other publishers. Four older matching Kotlin assets lacked an independently published API digest and three queried releases lacked the expected filename; they remain pending without invented substitute hashes. The Google route has no unattempted files. Strict verification, issuer/native trust, complete security/license review and physical/release gates remain open. No app/build input, dependency pin, lockfile, normal validation marker, signing identity or distribution state changed.
+After the manifest review, the inactive candidate contained **379/921 reviewed; 542 pending** (34 AAR, 189 JAR, 74 module, 245 POM), including the same 118 deferred Google-route files plus 424 files from other publishers. Four older matching Kotlin assets lacked an independently published API digest and three queried releases lacked the expected filename; they remain pending without invented substitute hashes. The Google route has no unattempted files. Strict verification, issuer/native trust, complete security/license review and physical/release gates remain open. No app/build input, dependency pin, lockfile, normal validation marker, signing identity or distribution state changed.
+
+
+## Runtime-priority publisher review — interrupted checkpoint recovered
+
+[Actions 40118368540](https://github.com/santirodriguez/FixMyShot/actions/runs/40118368540),
+control `04a8aa0252d69b68bec6bbb1197f075b1f7beb2a`, job `120944365665`,
+finished FAILURE after partial data collection. Of 30 requested exact artifacts,
+27 matched their baseline hashes and three metadata-alias URLs returned HTTP404
+(Okio, coroutines-core and serialization-core). Both requested public primary
+fingerprints matched. The security request was deliberately unpaired and skipped
+without network; the earlier 515-query snapshot is unchanged. No Android build,
+SDK, emulator, signing or downloaded-code execution occurred.
+
+Artifact `12570037960`, 2,152,718 bytes, ZIP SHA256
+`019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3`,
+is retained as [the original runtime capture](evidence/runtime-publishers-04a8aa02.zip).
+All 59 members are unique safe regular files; size, ZIP CRC, exact request,
+control, baseline and captured hashes passed. Request SHA256
+`5c965e9a09b70683bc70529c2bb2cceafca890a3d48fa517821f83dd0786066b`;
+report `46b9dc5e3e23dfdbfce7231d7af042184b3eb8f0df4d12c449fb65779d327f70`.
+
+The separate offline reviewer accepted eight exact Kotlin files: JAR and POM for
+android-extensions-runtime/parcelize-runtime 1.9.22 and stdlib-jdk7/stdlib-jdk8
+1.8.0. Each passed actual detached PGP, the independently anchored Kotlin primary,
+strong signature digest and primary/signing-key validity checks. All 379 earlier
+artifact/proof records remain byte-for-byte equivalent as structured records.
+
+| Review outcome | Files |
+| --- | ---: |
+| Verified | 8 |
+| Issuer anchor unavailable | 16 |
+| Signature unverified | 3 |
+| Capture unavailable | 3 |
+
+The Square key-service response identifies the anchored historical primary but
+lacks usable certifications for this verification; its three exact files stay
+unverified. This is not proof their signatures are invalid. Module descriptors
+identify the three metadata-alias download URLs and matching hashes, but an
+unauthenticated descriptor cannot establish issuer approval. No retry, alias
+substitution, invented hash or group-wide trust was applied.
+
+Current inactive candidate: **387/921 reviewed; 534 pending** (34 AAR, 185 JAR,
+74 module, 241 POM). The backlog includes 118 deferred Google-route files and
+416 files from other publishers. All 30 files selected for this runtime-priority
+batch were attempted; 22 remain deferred. Other captured files still require
+review before a strict freeze. Prior JSON SHA256
+`3fa1fd05c8261169a3d8c625c8419410f9306c740b6870945d4728db5a67a207`;
+publisher registry `b3d34114ca6b80308aa74520aa6f4268ea5054dfa72adc1286abc6e5592ea9e8`;
+app lock `97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b`.
+Result JSON `9c40b9db7aea62179c8351b1354827e38f8ef33b277d4fb5b47cbdddf9db0b26`;
+inactive XML `86026d319ab236ea5b733844a99478b08867ab6fa891f3da5f7de5e9461f3aa3`.
+
+Eight new offline reviewer cases, 30 existing collector/verifier/planner/batch
+cases and 10 release-source cases passed during recovery. Actual altered-JAR
+and wrong-primary checks were refused. Fresh replay exactly reproduces both
+outputs. Application/build inputs, dependency pins, lockfiles and normal Android
+validation request are unchanged; the exact773 Android and independent unsigned
+rebuild evidence retain their original scope. Strict verification, publisher/native
+trust, full security/license review and physical/distribution gates remain open.

@@ -972,3 +972,32 @@ The new manifest reviewer accepted **11 exact files** (9 Kotlin 2.2.0, 2 Kotlin 
 Offline security replay validated all 68 raw request/response receipts and exact component order/scope/results. It found **25 matching Maven components / 54 advisory IDs**: 18 components selected in tooling/other configurations and 7 without project-lockfile selection. The 132 app release-runtime components and native commit had no database match at the recorded time. Lockfile absence does not prove a buildscript/plugin dependency unselected: source review explicitly confirms the Kotlin plugin selected. Its referenced fix changes KAPT cache deserialization; inspected Gradle/catalog files apply no KAPT or annotation processors. This is a limited applicability inference, not closure of the tooling/security gate.
 
 Five inventory and four replay boundary cases cover source pins, native identity, scope, unpaired no-network skips, deadlines, incomplete/paginated results, false-clean conclusions and withdrawn advisories. Full triage, source references, raw/derived hashes, grouped remediation actions and reproduction commands are in [dependency security review](feasibility/dependency-security-review.md). No application/dependency/lock/build-input or ordinary validation marker changed. Android773 and the independent identical unsigned rebuild retain their exact original scope; security, strict verification, native trust, complete licensing and physical/release gates remain open.
+
+
+## Runtime publisher evidence — recovered and reproduced offline
+
+The data-only Actions40118368540 at exact control04a8aa0252d69b68bec6bbb1197f075b1f7beb2a
+finished FAILURE/partial capture, not an Android regression failure. Artifact12570037960
+(2,152,718 bytes; ZIP SHA256019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3)
+is now retained as `feasibility/evidence/runtime-publishers-04a8aa02.zip`.
+All59 unique safe regular members/CRC and exact control/request/baseline pins pass.
+27of30 artifact captures match; three metadata aliases returned404. Both public
+primary captures match. The unpaired security request skipped without network.
+
+Recovery replays real detached signatures and keeps all379 earlier artifact/proof
+records unchanged. Eight Kotlin JAR/POM files pass;16 files have no independent
+issuer anchor, three signatures are unverified and three captures unavailable.
+The Square primary-only response is insufficient; it receives no approval.
+The inactive JSON/XML now contain387of921 exact files,534 pending. Full identities,
+hashes and limits are in [committed inputs](feasibility/committed-gradle-inputs.md);
+[retained evidence](feasibility/evidence/README.md) owns reproduction commands.
+
+Executed recovery checks:8 runtime-review,12 collector,9 original-verifier,
+4 planner,5 batch-review and10 release-source cases PASS. Actual altered Kotlin
+JAR and wrong-primary cryptographic refusals PASS. Replaying the exact capture
+reproduces JSON SHA2569c40b9db7aea62179c8351b1354827e38f8ef33b277d4fb5b47cbdddf9db0b26
+and XML86026d319ab236ea5b733844a99478b08867ab6fa891f3da5f7de5e9461f3aa3.
+This closes the interrupted persistence work; no active trust policy is introduced.
+No app/build/lock/dependency/Android marker changed, so Android was not rerun.
+Exact773 acceptance and its independent identical unsigned rebuild keep their
+original limits. No physical/manual/signing/distribution gate is newly accepted.

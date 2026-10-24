@@ -1228,6 +1228,14 @@
         <sha256 value="495659b39e305541ecb712e69b622e13e38ad9240f9a827ca058434bd99f211d" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
       </artifact>
     </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-android-extensions-runtime" version="1.9.22">
+      <artifact name="kotlin-android-extensions-runtime-1.9.22.jar">
+        <sha256 value="f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-android-extensions-runtime-1.9.22.pom">
+        <sha256 value="73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
     <component group="org.jetbrains.kotlin" name="kotlin-build-statistics" version="2.2.21">
       <artifact name="kotlin-build-statistics-2.2.21.jar">
         <sha256 value="8dfdfb2b8f67fcdcc4cee3ef90a25af467ca295853b0ea019d0010acebd6f18a" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
@@ -1383,6 +1391,14 @@
         <sha256 value="d5226a7c86069fa9a721abc97ae4da15a40ed1689c8ab5505e1a1ad2db20dc5f" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
       </artifact>
     </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-parcelize-runtime" version="1.9.22">
+      <artifact name="kotlin-parcelize-runtime-1.9.22.jar">
+        <sha256 value="f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-parcelize-runtime-1.9.22.pom">
+        <sha256 value="ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
     <component group="org.jetbrains.kotlin" name="kotlin-reflect" version="2.2.0">
       <artifact name="kotlin-reflect-2.2.0.jar">
         <sha256 value="230d91c2e410e3cfca3a4dc73d255455f62ff52aac091a33397a6e30bde91bf7" origin="Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363" />
@@ -1468,12 +1484,28 @@
         <sha256 value="3ffdb451aa2d314fe7263782d37eabddcf8b941bcb940fe3192ac01a62b57f7b" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
       </artifact>
     </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk7" version="1.8.0">
+      <artifact name="kotlin-stdlib-jdk7-1.8.0.jar">
+        <sha256 value="4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-stdlib-jdk7-1.8.0.pom">
+        <sha256 value="dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
     <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk7" version="2.2.0">
       <artifact name="kotlin-stdlib-jdk7-2.2.0.jar">
         <sha256 value="0d10bc0d42b8605f23629a3f31ea27c19cdbca9dcdf4f53f6d22cd6366836d18" origin="Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363" />
       </artifact>
       <artifact name="kotlin-stdlib-jdk7-2.2.0.pom">
         <sha256 value="95c2189c35ef7bfc48951c32ad70847b21f3809d26f5d0a76e23570879988c30" origin="Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk8" version="1.8.0">
+      <artifact name="kotlin-stdlib-jdk8-1.8.0.jar">
+        <sha256 value="05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-stdlib-jdk8-1.8.0.pom">
+        <sha256 value="2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
       </artifact>
     </component>
     <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk8" version="2.2.0">

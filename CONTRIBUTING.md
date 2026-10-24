@@ -232,3 +232,21 @@ Use `scripts/review-kotlin-manifests.py` with explicit control, request, prior-r
 An explicitly paired `.ci/dependency-security-request.json` adds an OSV inventory to the same data-only job. It pins the baseline, three lockfiles and native source commit, and becomes a no-network skip when the provenance request changes. Collection uses only the fixed official OSV API, batches of 100, no retries, a 180-second deadline, response/total limits and at most 100 advisory-detail fetches. Pagination or incomplete details cannot pass as a complete inventory.
 
 Run `python3 scripts/test-dependency-security.py` (5 cases), then replay retained evidence with `scripts/review-dependency-security.py`; its 4 offline tests cover scope changes, missing/paginated results, false clean claims and withdrawn advisories. Release-runtime selection comes from the app lockfile. Absence from these project lockfiles does **not** prove a plugin/buildscript dependency is unselected. Database matches require applicability/remediation review; no match means only no database match at the recorded time. [Current triage and reproduction](docs/feasibility/dependency-security-review.md) own the findings and open actions.
+
+
+### Review the runtime publisher capture
+
+Use `scripts/review-runtime-publishers.py` with independently inspected control,
+request, prior-receipt, publisher-registry and app-lock SHA pins. It limits review
+to the exact previously unreviewed non-Google-route files selected in the app's
+release runtime configuration. A configuration selection does not prove APK
+packaging. Every accepted file needs matching baseline bytes and a real detached
+signature bound to the separately anchored primary, with a strong digest and
+usable signing key. A key-service fingerprint match alone grants no approval.
+
+Run `python3 scripts/test-runtime-publishers.py` (8 offline refusal cases).
+[The retained capture and replay commands](docs/feasibility/evidence/README.md)
+recover the actual public evidence without networking or another Android build.
+Missing issuer anchors, unverifiable signatures and unavailable captures stay
+pending; do not automatically retry them or broaden trust to a publisher group.
+The candidate stays inactive and current security/license gates remain open.

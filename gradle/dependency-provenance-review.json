@@ -6,8 +6,8 @@
   "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
   "review_script_sha256": "54f8fb73e0744a5f87bb21f2eb98fc5d559a38ceba7cd0a6ef14baafebd23330",
   "captured_artifact_count": 921,
-  "reviewed_artifact_count": 379,
-  "remaining_unreviewed_artifact_count": 542,
+  "reviewed_artifact_count": 387,
+  "remaining_unreviewed_artifact_count": 534,
   "complete_for_baseline": false,
   "active_gradle_policy_changed": false,
   "kotlin_manifest_sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
@@ -3073,6 +3073,70 @@
       "file": "kotlin-stdlib-2.2.20.module",
       "sha256": "c918f5214d021a72e3767f2756e97d103a526e04f1423da3663efdfb5847db95",
       "proof": "Kotlin official v2.2.20 release checksum manifest SHA256 12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-android-extensions-runtime",
+      "version": "1.9.22",
+      "file": "kotlin-android-extensions-runtime-1.9.22.jar",
+      "sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-android-extensions-runtime",
+      "version": "1.9.22",
+      "file": "kotlin-android-extensions-runtime-1.9.22.pom",
+      "sha256": "73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-parcelize-runtime",
+      "version": "1.9.22",
+      "file": "kotlin-parcelize-runtime-1.9.22.jar",
+      "sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-parcelize-runtime",
+      "version": "1.9.22",
+      "file": "kotlin-parcelize-runtime-1.9.22.pom",
+      "sha256": "ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk7",
+      "version": "1.8.0",
+      "file": "kotlin-stdlib-jdk7-1.8.0.jar",
+      "sha256": "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk7",
+      "version": "1.8.0",
+      "file": "kotlin-stdlib-jdk7-1.8.0.pom",
+      "sha256": "dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk8",
+      "version": "1.8.0",
+      "file": "kotlin-stdlib-jdk8-1.8.0.jar",
+      "sha256": "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk8",
+      "version": "1.8.0",
+      "file": "kotlin-stdlib-jdk8-1.8.0.pom",
+      "sha256": "2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26",
+      "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
     }
   ],
   "batch_review_script_sha256": "64253472edae462fab2164543e9828cbe3bf6b1e10765bd2d19ea839a1407584",
@@ -8390,6 +8454,408 @@
             ]
           ],
           "manifest_path_count": 982
+        }
+      ]
+    }
+  ],
+  "runtime_publisher_batches": [
+    {
+      "control_commit": "04a8aa0252d69b68bec6bbb1197f075b1f7beb2a",
+      "request_sha256": "5c965e9a09b70683bc70529c2bb2cceafca890a3d48fa517821f83dd0786066b",
+      "report_sha256": "46b9dc5e3e23dfdbfce7231d7af042184b3eb8f0df4d12c449fb65779d327f70",
+      "prior_review_sha256": "3fa1fd05c8261169a3d8c625c8419410f9306c740b6870945d4728db5a67a207",
+      "registry_sha256": "b3d34114ca6b80308aa74520aa6f4268ea5054dfa72adc1286abc6e5592ea9e8",
+      "app_lock_sha256": "97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b",
+      "review_script_sha256": "e1f809c2e14f1521387c1c225d7dce24cace8b1f384c0dc029c30367ab3dfe8d",
+      "verifier_script_sha256": "dafaf9f96bfdbbf6e315ea2385933d38597de62603a7f72a8bdcf26aa804c250",
+      "verified_file_count": 8,
+      "keys": [
+        {
+          "publisher": "kotlin",
+          "primary_fingerprint": "2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "capture_status": "MATCHED_PRIMARY_FINGERPRINT",
+          "sha256": "dd4e4696a9cea1c666733a72d9a136b2375980bfcb4167d90634e82ba7719e50"
+        },
+        {
+          "publisher": "square",
+          "primary_fingerprint": "DBD744ACE7ADE6AA50DD591F66B50994442D2D40",
+          "capture_status": "MATCHED_PRIMARY_FINGERPRINT",
+          "sha256": "b018f4ab825c9bde234acbaef66c3c1821b18c55b0436268abb2f7677b8bb470"
+        }
+      ],
+      "outcomes": [
+        {
+          "identity": [
+            "com.google.guava",
+            "listenablefuture",
+            "1.0",
+            "listenablefuture-1.0.jar"
+          ],
+          "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "ab911f9876b9f554f88ad58a41403462ad4c3c7647758ffb76035bf2aac5be1d",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.google.guava",
+            "listenablefuture",
+            "1.0",
+            "listenablefuture-1.0.pom"
+          ],
+          "sha256": "53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "3df4f8b578517988876c69afa8728ff43c7dde78e298879b64b0f35cdd5bf04c",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio",
+            "3.4.0",
+            "okio-3.4.0.module"
+          ],
+          "sha256": "69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "0a331b5a6711c5bd63fa5d72bf17594debdcccefb6a6816535e5f3b9ab9f35da",
+          "status": "SIGNATURE_UNVERIFIED"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio",
+            "3.4.0",
+            "okio-metadata-3.4.0-all.jar"
+          ],
+          "sha256": "73570416f75fd20e1269c17c588884c3d1d1098a5cf4a15ccae3f4e1ab08329e",
+          "capture_status": "HTTP_404",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio-jvm",
+            "3.4.0",
+            "okio-jvm-3.4.0.jar"
+          ],
+          "sha256": "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "fd7f55d49e8bc7df170e8fa43b96a6abb85b810f27ba5fc9104a845e7da19989",
+          "status": "SIGNATURE_UNVERIFIED"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio-jvm",
+            "3.4.0",
+            "okio-jvm-3.4.0.module"
+          ],
+          "sha256": "6fec13cf3361600364bfcc68004af7c760ceaf1fc1bbcc958742ae4d61db1512",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "5525d5555bfa254b7d137aec2ab8c80652fb6f4b1b4268e17214b4ebe26860d1",
+          "status": "SIGNATURE_UNVERIFIED"
+        },
+        {
+          "identity": [
+            "org.jetbrains",
+            "annotations",
+            "23.0.0",
+            "annotations-23.0.0.jar"
+          ],
+          "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "7a081d2aa41fe1e351e472847bf74a72cc0abb5be88789d2ccc9d0704a43be6b",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains",
+            "annotations",
+            "23.0.0",
+            "annotations-23.0.0.pom"
+          ],
+          "sha256": "c9490f655132328df2cfbcfdf743f53fc3916d6c1d10437175a6ca6e3a67771c",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "1a161e2c5236bb12e5cb0f237b76b5608fece777cdfae38ed37ed4fe2a75362a",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-android-extensions-runtime",
+            "1.9.22",
+            "kotlin-android-extensions-runtime-1.9.22.jar"
+          ],
+          "sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "e7fd3ed67f804e85d99e83a433f2eda31f311fbacdcb8106096c219ec684e60d",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2023-12-21 1703161673 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-android-extensions-runtime",
+            "1.9.22",
+            "kotlin-android-extensions-runtime-1.9.22.pom"
+          ],
+          "sha256": "73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "cb9bdb9a4bdd4a87f58f5a55bc5db8e008ed99f6defd78cac46589abb3166bfc",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2023-12-21 1703161675 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-parcelize-runtime",
+            "1.9.22",
+            "kotlin-parcelize-runtime-1.9.22.jar"
+          ],
+          "sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "9dec2e674794d9580f5f1d9e0bd2bf40ab90ec8a4d94330d61a980abd2818662",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2023-12-21 1703162549 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-parcelize-runtime",
+            "1.9.22",
+            "kotlin-parcelize-runtime-1.9.22.pom"
+          ],
+          "sha256": "ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "b9ca2594eba01650c1ae27df4260f2e1135e55000ea8b4f0a191bc56b7803d67",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2023-12-21 1703162550 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk7",
+            "1.8.0",
+            "kotlin-stdlib-jdk7-1.8.0.jar"
+          ],
+          "sha256": "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "5c14702333a009e11f7b438c6116b4d858cb837b4d2a207f05458e1cb20fb59c",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2022-12-27 1672172127 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk7",
+            "1.8.0",
+            "kotlin-stdlib-jdk7-1.8.0.pom"
+          ],
+          "sha256": "dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "c176639b52190ff1242b314459bb139911babcde002624af0e3d388b262644cf",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2022-12-27 1672172126 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk8",
+            "1.8.0",
+            "kotlin-stdlib-jdk8-1.8.0.jar"
+          ],
+          "sha256": "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "93398eeae08e3f145ae4a4dc97c4d277439440bd869c2740a816925a6693613b",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2022-12-27 1672172128 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk8",
+            "1.8.0",
+            "kotlin-stdlib-jdk8-1.8.0.pom"
+          ],
+          "sha256": "2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "a07c70cc21478ae71a789fdc03ec535f17792e04a5b53f8c56902885e811bdb2",
+          "status": "VERIFIED",
+          "validsig_status": "[GNUPG:] VALIDSIG 6F538074CCEBF35F28AF9B066A0975F8B1127B83 2022-12-27 1672172128 0 4 0 1 10 00 2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+          "publisher": "kotlin"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-android",
+            "1.9.0",
+            "kotlinx-coroutines-android-1.9.0.jar"
+          ],
+          "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "9379f13faf96552778942e78bd5e1525da03d28c1d6a3a0bb288ad5384106fe0",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-android",
+            "1.9.0",
+            "kotlinx-coroutines-android-1.9.0.module"
+          ],
+          "sha256": "7df1e04d77f0cc411890d999a9449b0e3bcd4f159a46c3060b110204ca607d43",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "3d7ffcc35ebb334e112d58482ffbc46e974ea2264883b1239fd14fdc5e9d7202",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-bom",
+            "1.9.0",
+            "kotlinx-coroutines-bom-1.9.0.pom"
+          ],
+          "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "e539f0ada251c86a983b9727b9fa9301d3024f711c63a4e3300b2c60bf22cde4",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core",
+            "1.9.0",
+            "kotlinx-coroutines-core-1.9.0.module"
+          ],
+          "sha256": "ad534034a953b4e12cbeeb874c66adf8b1ca14df15fe0d2e6547aa34e86dfeca",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "326588c269bd2df0a849a9ab689473937d72402dee336b9cab4773c6380fb8da",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core",
+            "1.9.0",
+            "kotlinx-coroutines-core-metadata-1.9.0.jar"
+          ],
+          "sha256": "7089c33c145865020760d3dbca5e4634133cc3dd7feb926e830f6de6ede28ac6",
+          "capture_status": "HTTP_404",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core-jvm",
+            "1.9.0",
+            "kotlinx-coroutines-core-jvm-1.9.0.jar"
+          ],
+          "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "cb7f6e9ba3a7c0df6bb747a00abee1ae132ba61fd329c1b93e3c01d2e4b14cda",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core-jvm",
+            "1.9.0",
+            "kotlinx-coroutines-core-jvm-1.9.0.module"
+          ],
+          "sha256": "b321a899e40d3ce345707aa2cfda9983ad0dcc69fea74a9b8bf906a16c1cf8a9",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "e8e4e08f00f15ec36fca8714978c1887f99338b7465715a387c7b1f2cf7a4810",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-bom",
+            "1.7.3",
+            "kotlinx-serialization-bom-1.7.3.pom"
+          ],
+          "sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "481e48bc5d73febca53fbcca53e84c342a4b0784cac39577adfc0c2c6ec2135c",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core",
+            "1.7.3",
+            "kotlinx-serialization-core-1.7.3.module"
+          ],
+          "sha256": "39d09a6e02df2b32558440a64c628f9c605fae8c4f6090321798334c82177e64",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "a09de8af6a51fe79d5f684c8d56bbf5d2dd0742b6d05800c279d94de4c1abacd",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core",
+            "1.7.3",
+            "kotlinx-serialization-core-metadata-1.7.3.jar"
+          ],
+          "sha256": "4850682e0e5976862695330d84eb8699f1dc5d50849f625263995cc88bc6f37b",
+          "capture_status": "HTTP_404",
+          "status": "CAPTURE_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core-jvm",
+            "1.7.3",
+            "kotlinx-serialization-core-jvm-1.7.3.jar"
+          ],
+          "sha256": "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "f3fce5cbd3cb6b01c1ca571cc85847a42475b9d68b63f8452eb8e582dac91d45",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core-jvm",
+            "1.7.3",
+            "kotlinx-serialization-core-jvm-1.7.3.module"
+          ],
+          "sha256": "73bb4c02793f87c29ef64bea4ba0258076f4d4c963fcda633d1248ef24b4b4ef",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "58bee0dfa4d13de95b503c45ec33fe2984080684044273f9bf01d53ff627cd35",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jspecify",
+            "jspecify",
+            "1.0.0",
+            "jspecify-1.0.0.jar"
+          ],
+          "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "011dfd62c480b76f779b07eac991e56217c52a3554912a22df6722633853e2d2",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
+        },
+        {
+          "identity": [
+            "org.jspecify",
+            "jspecify",
+            "1.0.0",
+            "jspecify-1.0.0.module"
+          ],
+          "sha256": "d307ca77a54e18ac1ef1aaed4e5bbe014bd2f49f29e1d2f813e47c278283195b",
+          "capture_status": "MATCHED_PIN",
+          "signature_sha256": "6115edfc9c1167fcb91e713635761706100192701c1710befe7edcbb33233cf7",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE"
         }
       ]
     }

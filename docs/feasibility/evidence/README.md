@@ -33,10 +33,54 @@ python3 scripts/review-kotlin-manifests.py \
   --expected-request eda0cfc56b209076d45a1a2c1d3349c88b78c738e24ed71dfefd1d98faf33099 \
   --expected-prior 49f7a64bf093b7a4b699014a7ab9bf7614f7917529af096ed9575f63968d63dc \
   --expected-registry cb3fc072e6e97e7dd692e649cbc974e01f4c7bae4b9ac5d638753ec1e2ecccbe
+git show 8a6ba7828488a02382a0ba64b368f030b57c3959:gradle/dependency-provenance-review.json \
+  > /tmp/fixmyshot-after-kotlin-379.json
 cmp /tmp/fixmyshot-kotlin-replayed/dependency-provenance-review.json \
-  gradle/dependency-provenance-review.json
+  /tmp/fixmyshot-after-kotlin-379.json
+git show 8a6ba7828488a02382a0ba64b368f030b57c3959:gradle/reviewed-verification-candidate.xml \
+  > /tmp/fixmyshot-after-kotlin-379.xml
 cmp /tmp/fixmyshot-kotlin-replayed/reviewed-verification-candidate.xml \
-  gradle/reviewed-verification-candidate.xml
+  /tmp/fixmyshot-after-kotlin-379.xml
 ```
 
 Review performs no network request, build or trust activation. Previously attempted unsigned/unverified files remain deferred until explicitly reconsidered. Current acceptance gates and signing/publication boundaries still apply.
+
+
+## Runtime publisher capture
+
+`runtime-publishers-04a8aa02.zip` preserves the original 59-file public-only
+Actions artifact12570037960. Expected size2,152,718 bytes and SHA256
+`019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3`.
+Before extraction, check the hash, ZIP CRC, unique relative regular-file names,
+no links/special files/traversal, and member sizes within4MiB. Extract into a
+new empty temporary directory. Never execute downloaded artifact contents.
+The original job finished FAILURE/partial capture; retaining it does not change
+that result. Detailed outcomes and source pins are in
+[committed inputs](../committed-gradle-inputs.md).
+
+After verifying/extracting to `/tmp/fixmyshot-runtime-evidence-04a8aa02`, replay
+from the repository root into a fresh output directory:
+
+```bash
+git show 04a8aa0252d69b68bec6bbb1197f075b1f7beb2a:gradle/dependency-provenance-review.json \
+  > /tmp/fixmyshot-prior-379.json
+python3 scripts/review-runtime-publishers.py \
+  /tmp/fixmyshot-runtime-evidence-04a8aa02 \
+  docs/feasibility/evidence/gradle-baseline-773b34f0.xml \
+  /tmp/fixmyshot-prior-379.json \
+  docs/feasibility/evidence/runtime-publisher-anchors.json \
+  app/gradle.lockfile /tmp/fixmyshot-runtime-replayed \
+  --expected-control 04a8aa0252d69b68bec6bbb1197f075b1f7beb2a \
+  --expected-request 5c965e9a09b70683bc70529c2bb2cceafca890a3d48fa517821f83dd0786066b \
+  --expected-prior 3fa1fd05c8261169a3d8c625c8419410f9306c740b6870945d4728db5a67a207 \
+  --expected-registry b3d34114ca6b80308aa74520aa6f4268ea5054dfa72adc1286abc6e5592ea9e8 \
+  --expected-lock 97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b
+cmp /tmp/fixmyshot-runtime-replayed/dependency-provenance-review.json \
+  gradle/dependency-provenance-review.json
+cmp /tmp/fixmyshot-runtime-replayed/reviewed-verification-candidate.xml \
+  gradle/reviewed-verification-candidate.xml
+```
+
+Expected result:387 reviewed/534 pending, with8 newly verified exact files and
+all379 previous proofs retained. Review is offline and uses disposable public
+keyrings; it changes neither active Gradle trust nor the prior security snapshot.
