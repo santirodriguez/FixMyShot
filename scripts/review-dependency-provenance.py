@@ -13,6 +13,13 @@ NS = 'https://schema.gradle.org/dependency-verification'
 KOTLIN_MANIFEST_SHA256 = '791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8'
 JUNIT_KEYS_SHA256 = 'fcb938a928b643fb76985f9ce3634d9dad170dfe6c1b276e920844822538d5f7'
 JUNIT_FINGERPRINT = 'FF6E2C001948C5F2F38B0CC385911F425EC61B51'
+GOOGLE_PRIMARY = 'EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796'
+GOOGLE_KEYS_SHA256 = '54dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c'
+GOOGLE_COORDINATES = {
+    'com.android.tools.build:gradle:8.13.2': 'gradle-8.13.2.jar',
+    'androidx.heifwriter:heifwriter:1.2.0-rc01': 'heifwriter-1.2.0-rc01.aar',
+    'androidx.activity:activity-compose:1.11.0': 'activity-compose-1.11.0.aar',
+}
 
 
 def sha256(data):
@@ -62,6 +69,83 @@ def verify_junit(key_data, signature, jar):
         return valid_signer(checked.returncode, checked.stdout)
 
 
+def bounded_bytes(path, limit):
+    if path.is_symlink() or not path.is_file() or path.stat().st_size > limit:
+        raise ValueError('Missing, linked or oversized review evidence')
+    data = path.read_bytes()
+    if len(data) > limit:
+        raise ValueError('Oversized review evidence')
+    return data
+
+
+def valid_google_signer(returncode, status):
+    # KEYEXPIRED alone may describe unused historical subkeys in the same publisher bundle.
+    # A bad/expired/revoked actual signer or signature remains a refusal.
+    if returncode != 0 or any(word in status for word in
+            ('BADSIG', 'ERRSIG', 'EXPKEYSIG', 'REVKEYSIG', 'EXPSIG', 'NO_PUBKEY', 'NODATA', 'FAILURE')):
+        raise ValueError('Google signature verification failed')
+    valid = [line.split() for line in status.splitlines() if line.startswith('[GNUPG:] VALIDSIG ')]
+    if (len(valid) != 1 or len(valid[0]) != 12 or valid[0][11] != GOOGLE_PRIMARY or
+            re.fullmatch('[0-9A-F]{40}', valid[0][2]) is None or valid[0][9] not in ('8', '9', '10')):
+        raise ValueError('Google signer is not bound to the inspected primary key or strong digest')
+    return ' '.join(valid[0])
+
+
+def verify_google(key_data, signature, binary):
+    if sha256(key_data) != GOOGLE_KEYS_SHA256:
+        raise ValueError('Google key bytes differ from the inspected publisher capture')
+    with tempfile.TemporaryDirectory(prefix='fixmyshot-google-public-review-') as directory:
+        root = Path(directory)
+        root.chmod(0o700)
+        key, ring, sig, artifact = (root/x for x in ('publisher.asc', 'publisher.gpg', 'artifact.asc', 'artifact.bin'))
+        key.write_bytes(key_data)
+        sig.write_bytes(signature)
+        artifact.write_bytes(binary)
+        subprocess.run(['gpg', '--no-options', '--homedir', directory, '--batch', '--dearmor',
+                        '--output', str(ring), str(key)], capture_output=True, check=True, timeout=10)
+        checked = subprocess.run(['gpgv', '--homedir', directory, '--keyring', str(ring),
+                                  '--status-fd', '1', str(sig), str(artifact)],
+                                 capture_output=True, text=True, timeout=10)
+        return valid_google_signer(checked.returncode, checked.stdout)
+
+
+def google_review(key_evidence, evidence, request, rows, blobs, expected_control):
+    if re.fullmatch('[0-9a-f]{40}', expected_control or '') is None:
+        raise ValueError('Missing exact Google collection control identity')
+    policy = json.loads(bounded_bytes(key_evidence/'request.json', 16384))
+    report = json.loads(bounded_bytes(key_evidence/'report.json', 65536))
+    entry = {'id': 'google-publisher-key', 'kind': 'publisher-key',
+             'url': 'https://dl.google.com/linux/linux_signing_key.pub',
+             'primary_fingerprint': GOOGLE_PRIMARY, 'max_bytes': 131072}
+    if (policy.get('schema') != 1 or policy.get('entries') != [entry] or
+            report.get('control_commit') != expected_control or report.get('all_required_pins_matched') is not True or
+            any(policy.get(k) != request[k] or report.get(k) != request[k]
+                for k in ('baseline_source_commit', 'baseline_metadata_sha256'))):
+        raise ValueError('Google key capture identity or baseline mismatch')
+    key = bounded_bytes(key_evidence/'google-publisher-key.bin', 131072)
+    if sha256(key) != GOOGLE_KEYS_SHA256:
+        raise ValueError('Google key capture bytes mismatch')
+    approved, signatures = [], []
+    for coordinate, filename in GOOGLE_COORDINATES.items():
+        entries = [x for x in request['entries'] if x.get('coordinate') == coordinate]
+        if len(entries) != 1:
+            raise ValueError('Missing exact Google artifact capture')
+        item = entries[0]
+        group, name, version = coordinate.split(':')
+        matched = [x for x in rows if (x['group'], x['name'], x['version'], x['file'], x['sha256']) ==
+                   (group, name, version, filename, item['sha256'])]
+        if len(matched) != 1:
+            raise ValueError('Google baseline artifact identity mismatch')
+        signature = bounded_bytes(evidence/(item['id']+'.asc'), 131072)
+        status = verify_google(key, signature, blobs[item['id']])
+        signer = status.split()[2]
+        approved.append({**matched[0], 'proof': 'Google detached PGP; primary '+GOOGLE_PRIMARY+'; signer '+signer})
+        signatures.append({'coordinate': coordinate, 'file': filename, 'signature_sha256': sha256(signature),
+                           'validsig_status': status})
+    return approved, {'key_evidence_control_commit': expected_control, 'key_sha256': GOOGLE_KEYS_SHA256,
+                      'primary_fingerprint': GOOGLE_PRIMARY, 'signatures': signatures}
+
+
 def captured_rows(data):
     if len(data) > 3_000_000:
         raise ValueError('Oversized baseline metadata')
@@ -97,7 +181,7 @@ def candidate_xml(rows):
     return ET.tostring(root, encoding='utf-8', xml_declaration=True) + b'\n'
 
 
-def review(evidence, metadata, expected_control):
+def review(evidence, metadata, expected_control, google_key_evidence=None, expected_key_control=None):
     request = json.loads((evidence/'request.json').read_text())
     report = json.loads((evidence/'report.json').read_text())
     if re.fullmatch('[0-9a-f]{40}', expected_control or '') is None or report['control_commit'] != expected_control or report['all_required_pins_matched'] is not True:
@@ -134,9 +218,15 @@ def review(evidence, metadata, expected_control):
                ('junit', 'junit', '4.13.2', 'junit-4.13.2.jar', item['sha256'])]
     if len(matched) != 1:
         raise ValueError('JUnit baseline artifact identity mismatch')
-    signature = (evidence/(item['id']+'.asc')).read_bytes()
+    signature = bounded_bytes(evidence/(item['id']+'.asc'), 131072)
     status = verify_junit(blobs['junit-publisher-keys'], signature, blobs[item['id']])
     approved.append({**matched[0], 'proof': 'JUnit detached PGP; publisher KEYS fingerprint '+JUNIT_FINGERPRINT})
+    google = None
+    if (google_key_evidence is None) != (expected_key_control is None):
+        raise ValueError('Google evidence and exact key control must be supplied together')
+    if google_key_evidence is not None:
+        google_rows, google = google_review(google_key_evidence, evidence, request, rows, blobs, expected_key_control)
+        approved.extend(google_rows)
     result = {'schema': 1, 'status': 'PARTIAL_PUBLISHER_REVIEW__NOT_ACTIVE',
               'evidence_control_commit': expected_control, 'baseline_source_commit': request['baseline_source_commit'],
               'baseline_metadata_sha256': request['baseline_metadata_sha256'],
@@ -147,6 +237,7 @@ def review(evidence, metadata, expected_control):
               'kotlin_manifest_sha256': KOTLIN_MANIFEST_SHA256,
               'junit_keys_sha256': JUNIT_KEYS_SHA256, 'junit_signing_fingerprint': JUNIT_FINGERPRINT,
               'junit_signature_sha256': sha256(signature), 'junit_validsig_status': status,
+              'google_publisher_review': google,
               'current_vulnerability_review': 'OPEN', 'reviewed_artifacts': approved}
     return result, candidate_xml(approved)
 
@@ -157,8 +248,11 @@ def main():
     parser.add_argument('metadata', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--expected-control', required=True)
+    parser.add_argument('--google-key-evidence', type=Path)
+    parser.add_argument('--expected-key-control')
     args = parser.parse_args()
-    result, xml = review(args.evidence, args.metadata.read_bytes(), args.expected_control)
+    result, xml = review(args.evidence, args.metadata.read_bytes(), args.expected_control,
+                         args.google_key_evidence, args.expected_key_control)
     args.output.mkdir(parents=True, exist_ok=False)
     (args.output/'dependency-provenance-review.json').write_text(json.dumps(result, indent=2)+'\n')
     (args.output/'reviewed-verification-candidate.xml').write_bytes(xml)

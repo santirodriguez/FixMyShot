@@ -6,6 +6,21 @@
     <verify-signatures>false</verify-signatures>
   </configuration>
   <components>
+    <component group="androidx.activity" name="activity-compose" version="1.11.0">
+      <artifact name="activity-compose-1.11.0.aar">
+        <sha256 value="03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.heifwriter" name="heifwriter" version="1.2.0-rc01">
+      <artifact name="heifwriter-1.2.0-rc01.aar">
+        <sha256 value="2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="gradle" version="8.13.2">
+      <artifact name="gradle-8.13.2.jar">
+        <sha256 value="e494f7ce75ca6c1abff301d4a70b18fdd3d6af855875f4f85082bb7608f041de" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="junit" name="junit" version="4.13.2">
       <artifact name="junit-4.13.2.jar">
         <sha256 value="8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3" origin="JUnit detached PGP; publisher KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51" />

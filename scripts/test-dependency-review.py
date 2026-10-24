@@ -53,5 +53,31 @@ class PublisherReviewTests(unittest.TestCase):
         self.assertIn(b'PARTIAL REVIEWED CANDIDATE', xml)
 
 
+    def test_google_requires_successful_primary_binding_and_strong_digest(self):
+        status = '[GNUPG:] VALIDSIG '+'A'*40+' 2026-10-01 1790848472 0 4 0 1 8 00 '+review.GOOGLE_PRIMARY
+        self.assertEqual(status, review.valid_google_signer(0, status))
+        self.assertEqual(status, review.valid_google_signer(0, '[GNUPG:] KEYEXPIRED 1555048520\n'+status))
+        for code, text in [(1, status), (0, status.replace(review.GOOGLE_PRIMARY, 'B'*40)),
+                           (0, status.replace(' 1 8 00 ', ' 1 2 00 ')), (0, status+'\n'+status),
+                           (0, '[GNUPG:] GOODSIG friendly-name'), (0, status+'\n[GNUPG:] EXPKEYSIG expired'),
+                           (0, status+'\n[GNUPG:] REVKEYSIG revoked'), (0, status+'\n[GNUPG:] BADSIG invalid')]:
+            with self.subTest(code=code, text=text), self.assertRaises(ValueError):
+                review.valid_google_signer(code, text)
+
+    def test_google_wrong_key_is_refused_before_any_process(self):
+        with mock.patch.object(review.subprocess, 'run') as called, self.assertRaises(ValueError):
+            review.verify_google(b'untrusted-key', b'signature', b'artifact')
+        called.assert_not_called()
+
+    def test_linked_or_oversized_signatures_cannot_be_reviewed(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); source = root/'source'; source.write_bytes(b'1234')
+            linked = root/'linked'; linked.symlink_to(source)
+            for path, limit in [(linked, 5), (source, 3), (root/'missing', 5)]:
+                with self.subTest(path=path), self.assertRaises(ValueError):
+                    review.bounded_bytes(path, limit)
+
+
 if __name__ == '__main__':
     unittest.main()

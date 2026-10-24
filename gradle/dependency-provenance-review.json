@@ -4,10 +4,10 @@
   "evidence_control_commit": "fa1cc608ac2d07a22525c7170eb7683d1eda7880",
   "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
   "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
-  "review_script_sha256": "47beb74b3093027627bab3a83bcc8e94a0f50930fbb6eff87bbf97d56b825623",
+  "review_script_sha256": "54f8fb73e0744a5f87bb21f2eb98fc5d559a38ceba7cd0a6ef14baafebd23330",
   "captured_artifact_count": 921,
-  "reviewed_artifact_count": 75,
-  "remaining_unreviewed_artifact_count": 846,
+  "reviewed_artifact_count": 78,
+  "remaining_unreviewed_artifact_count": 843,
   "complete_for_baseline": false,
   "active_gradle_policy_changed": false,
   "kotlin_manifest_sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
@@ -15,6 +15,31 @@
   "junit_signing_fingerprint": "FF6E2C001948C5F2F38B0CC385911F425EC61B51",
   "junit_signature_sha256": "a8538f87f58b6f54b7a6ceffd01262b082c389622b0886c520878de1efb9eab9",
   "junit_validsig_status": "[GNUPG:] VALIDSIG FF6E2C001948C5F2F38B0CC385911F425EC61B51 2021-02-13 1613233899 0 4 0 1 8 00 FF6E2C001948C5F2F38B0CC385911F425EC61B51",
+  "google_publisher_review": {
+    "key_evidence_control_commit": "c2a930310c3aebc2f2a748f1a7863ce49a009a4f",
+    "key_sha256": "54dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c",
+    "primary_fingerprint": "EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796",
+    "signatures": [
+      {
+        "coordinate": "com.android.tools.build:gradle:8.13.2",
+        "file": "gradle-8.13.2.jar",
+        "signature_sha256": "b1318990560e1af23b1c2cd57bf438d9b6369e1ddf28ac2a088043916f278e38",
+        "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394931 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+      },
+      {
+        "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+        "file": "heifwriter-1.2.0-rc01.aar",
+        "signature_sha256": "289abc408912fbcb76a119424c866593903639a104242d51a79c7097d4365353",
+        "validsig_status": "[GNUPG:] VALIDSIG 0E225917414670F4442C250DFD533C07C264648F 2026-10-01 1790848472 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+      },
+      {
+        "coordinate": "androidx.activity:activity-compose:1.11.0",
+        "file": "activity-compose-1.11.0.aar",
+        "signature_sha256": "11c68421fa80eadd4b4eb7e27950ac8ac58a40442e5a2f1c109ca2491eba8b7b",
+        "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-09-04 1756971075 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+      }
+    ]
+  },
   "current_vulnerability_review": "OPEN",
   "reviewed_artifacts": [
     {
@@ -616,6 +641,30 @@
       "file": "junit-4.13.2.jar",
       "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3",
       "proof": "JUnit detached PGP; publisher KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51"
+    },
+    {
+      "group": "com.android.tools.build",
+      "name": "gradle",
+      "version": "8.13.2",
+      "file": "gradle-8.13.2.jar",
+      "sha256": "e494f7ce75ca6c1abff301d4a70b18fdd3d6af855875f4f85082bb7608f041de",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "androidx.heifwriter",
+      "name": "heifwriter",
+      "version": "1.2.0-rc01",
+      "file": "heifwriter-1.2.0-rc01.aar",
+      "sha256": "2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F"
+    },
+    {
+      "group": "androidx.activity",
+      "name": "activity-compose",
+      "version": "1.11.0",
+      "file": "activity-compose-1.11.0.aar",
+      "sha256": "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a",
+      "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
     }
   ]
 }
