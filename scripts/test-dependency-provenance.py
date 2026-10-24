@@ -137,5 +137,29 @@ class CollectorTests(unittest.TestCase):
         self.assertTrue((self.root/'failed-key/report.json').exists())
 
 
+    def test_signature_batch_avoids_checksum_roundtrips_without_approving_capture(self):
+        item = self.policy['entries'][0]; item.update(kind='signed-artifact', file='item-1.jar')
+        calls = []
+        def getter(url, limit, deadline):
+            calls.append(url)
+            return self.getter(url, limit, deadline)
+        report = collector.collect(self.load(self.policy), self.root/'signed', 'c'*40, getter)
+        self.assertEqual([self.url, self.url+'.asc'], calls)
+        self.assertTrue(report['all_required_pins_matched'])
+        self.assertFalse(report['results'][0]['signature']['cryptographically_verified'])
+        self.assertFalse(report['results'][0]['authenticated'])
+
+    def test_large_batch_budget_counts_signature_bytes_and_refuses_unsafe_aliases(self):
+        item = self.policy['entries'][0]; item.update(kind='signed-artifact', file='item-1.jar')
+        for alias in ['../outside.jar', '..', 'file?query.jar']:
+            item['file'] = alias
+            with self.assertRaises(ValueError): self.load(self.policy)
+        item['file'] = 'item-1.jar'
+        self.policy['entries'] = [{**item, 'id': 'item-'+str(i), 'max_bytes': 32*1024*1024} for i in range(8)]
+        with self.assertRaises(ValueError): self.load(self.policy)
+        self.policy['entries'] = [{**item, 'id': 'item-'+str(i)} for i in range(129)]
+        with self.assertRaises(ValueError): self.load(self.policy)
+
+
 if __name__ == '__main__':
     unittest.main()

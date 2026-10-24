@@ -189,7 +189,7 @@ The hosted job uses pinned actions, source-pinned SDK/wrapper/locks, a fresh Gra
 
 ### Publisher evidence without another Android build
 
-The dependency-provenance request/workflow is an explicit data-only collection, separate from Android validation and independent rebuilding. The original fa1cc608 request downloaded six pinned critical files, optional publisher checksum/signature files and independently pinned Kotlin release-manifest/JUnit KEYS evidence; the current bounded request captures only Google’s public key. Fixed HTTPS hosts, redirect/size/count/deadline limits and fresh output prevent unrelated fetches or mixed captures. Downloaded JAR/AAR data is never executed. Run python3 scripts/test-dependency-provenance.py (9 offline cases) when changing this boundary.
+The dependency-provenance request/workflow is an explicit data-only collection, separate from Android validation and independent rebuilding. The original fa1cc608 request downloaded six pinned critical files, optional publisher checksum/signature files and independently pinned Kotlin release-manifest/JUnit KEYS evidence; the current bounded request collects a larger signed-artifact batch. Fixed HTTPS hosts, redirect/size/count/deadline limits and fresh output prevent unrelated fetches or mixed captures. Downloaded JAR/AAR data is never executed. Run python3 scripts/test-dependency-provenance.py (11 offline cases) when changing this boundary.
 
 A matched build-capture hash is not an authentication decision. The collector always leaves authenticated=false; absent signatures and partial failures remain explicit, and mismatches retain the report and fail the job. Review the exact Kotlin publisher manifest and verify JUnit's detached signature against its publisher-maintained release key in an isolated public-key context before preparing any reviewed verification subset. Do not import arbitrary keys into the user keyring, approve generated hashes or activate incomplete Gradle verification metadata.
 
@@ -202,7 +202,7 @@ The committed gradle/dependency-provenance-review.json and reviewed-verification
 
 ## Inspect a publisher key without importing user trust
 
-The data-only collector also accepts a publisher-key entry with an independently inspected full primary fingerprint and a maximum of 128 KiB. It inspects public identities in a disposable GnuPG context; a subkey ID cannot satisfy the primary pin. The computed file hash and primary match are collection evidence only: authenticated and cryptographically_verified remain false. Separate detached-signature verification and primary/subkey binding review are required. The current request fetched only Google’s public key; it did not repeat Android validation or execute downloaded code. The completed review below uses the captured primary-key bundle to verify three exact Maven artifacts.
+The data-only collector also accepts a publisher-key entry with an independently inspected full primary fingerprint and a maximum of 128 KiB. It inspects public identities in a disposable GnuPG context; a subkey ID cannot satisfy the primary pin. The computed file hash and primary match are collection evidence only: authenticated and cryptographically_verified remain false. Separate detached-signature verification and primary/subkey binding review are required. The prior c2a93031 request fetched only Google’s public key; it did not repeat Android validation or execute downloaded code. The completed review below uses the captured primary-key bundle to verify three exact Maven artifacts.
 
 
 ### Reproduce the Google signature subset
@@ -210,3 +210,8 @@ The data-only collector also accepts a publisher-key entry with an independently
 Supply both --google-key-evidence and --expected-key-control to the offline reviewer, alongside the original captured artifacts/baseline/control. The inspected Google key bundle is pinned by SHA256 and the publisher’s full primary fingerprint. Each exact file must pass gpgv with a VALIDSIG bound to that primary and a SHA256-or-stronger digest. Good signature text or a short key ID is insufficient. Expired unused historical subkeys in the same bundle do not invalidate a different valid signing subkey; an expired/revoked actual signer, weak signature digest or wrong primary fails review.
 
 The current 78-file candidate remains incomplete and inactive. This verifies the three captured files, not all Google coordinates, an entire group or current vulnerability/license status. Eight offline reviewer tests and the actual altered-AAR refusal guard the boundary; no additional Android CI is needed for this evidence-only update.
+
+
+### Collect the next bounded publisher batch
+
+Use scripts/plan-google-batch.py with the exact baseline metadata and reviewed record. It separates up to 48 JAR/AAR, 24 module and 24 POM files, retains Gradle aliases, and omits already reviewed or previously attempted files. Canonical Maven URLs are only retrieval routes; exact capture hashes and detached signatures decide subsequent file review. The current 96-file request declares 244 MiB including signature allowances, below the 256 MiB cap. Collection uses one 120-second deadline, no retries and no build. Missing signatures and partial failures remain pending. Run scripts/test-google-batch.py (4 cases) plus the collector tests before changing this boundary.

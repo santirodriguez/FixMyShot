@@ -32,7 +32,7 @@ class PublisherRedirect(HTTPRedirectHandler):
 
 
 def read_policy(path):
-    if path.stat().st_size > 16384:
+    if path.stat().st_size > 65536:
         raise ValueError('Oversized evidence request')
     def unique(pairs):
         result = {}
@@ -47,25 +47,28 @@ def read_policy(path):
     for key, length in (('baseline_source_commit', 40), ('baseline_metadata_sha256', 64)):
         if not isinstance(policy[key], str) or re.fullmatch('[0-9a-f]{'+str(length)+'}', policy[key]) is None:
             raise ValueError('Invalid baseline pin')
-    if not isinstance(policy['entries'], list) or not 1 <= len(policy['entries']) <= 12:
+    if not isinstance(policy['entries'], list) or not 1 <= len(policy['entries']) <= 128:
         raise ValueError('Invalid evidence count')
     seen = set()
     total = 0
     for item in policy['entries']:
         key_entry = item.get('kind') == 'publisher-key'
-        fields = {'id', 'kind', 'url', 'max_bytes', 'primary_fingerprint' if key_entry else 'sha256'} | ({'coordinate'} if item.get('kind') == 'artifact' else set())
-        if set(item) != fields or item['kind'] not in {'artifact', 'publisher', 'publisher-key'}:
+        artifact_entry = item.get('kind') in ('artifact', 'signed-artifact')
+        fields = {'id', 'kind', 'url', 'max_bytes', 'primary_fingerprint' if key_entry else 'sha256'} | ({'coordinate'} if artifact_entry else set()) | ({'file'} if item.get('kind') == 'signed-artifact' else set())
+        if set(item) != fields or item['kind'] not in {'artifact', 'signed-artifact', 'publisher', 'publisher-key'}:
             raise ValueError('Invalid evidence entry')
         if re.fullmatch('[a-z0-9-]{1,64}', item['id']) is None or item['id'] in seen:
             raise ValueError('Unsafe or duplicate evidence ID')
         seen.add(item['id'])
+        if item['kind'] == 'signed-artifact' and (not isinstance(item['file'], str) or re.fullmatch('[A-Za-z0-9_+.-]{1,200}', item['file']) is None or item['file'] in ('.', '..')):
+            raise ValueError('Invalid baseline artifact filename')
         valid_url(item['url'])
         pin = item['primary_fingerprint'] if key_entry else item['sha256']
         pattern = '[0-9A-F]{40}' if key_entry else '[0-9a-f]{64}'
         limit = 128 * 1024 if key_entry else MAX_ITEM
         if not isinstance(pin, str) or re.fullmatch(pattern, pin) is None or type(item['max_bytes']) is not int or not 0 < item['max_bytes'] <= limit:
             raise ValueError('Invalid evidence digest or size')
-        total += item['max_bytes']
+        total += item['max_bytes'] + (128 * 1024 if item['kind'] == 'signed-artifact' else 0)
     if total > MAX_TOTAL:
         raise ValueError('Oversized evidence batch')
     return policy
@@ -160,9 +163,9 @@ def collect(policy, output, control_commit, getter=fetch):
             if sha != item['sha256']:
                 passed = False
                 continue
-            if item['kind'] != 'artifact':
+            if item['kind'] not in ('artifact', 'signed-artifact'):
                 continue
-            for algorithm in ('sha256', 'sha512', 'sha1'):
+            for algorithm in (() if item['kind'] == 'signed-artifact' else ('sha256', 'sha512', 'sha1')):
                 raw, state = optional(item['url'] + '.' + algorithm, 4096, deadline, getter)
                 result['published_checksum'] = {'algorithm': algorithm, 'status': state}
                 if raw is None:

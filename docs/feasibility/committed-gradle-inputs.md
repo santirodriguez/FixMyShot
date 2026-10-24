@@ -114,3 +114,10 @@ The [7-second data-only run](https://github.com/santirodriguez/FixMyShot/actions
 Exact detached-signature hashes and VALIDSIG statuses are retained in the current review JSON. Temporary public-only keyrings verified the actual captured bytes. Unused expired historical subkeys do not override the valid signer result; expired/revoked actual signers, wrong primary binding or weak digest are refused. The real altered-AAR check failed as required. Nine collector / eight reviewer cases passed.
 
 The current candidate contains 78/921 exact artifact checksums and remains inactive; 843 files, other publisher/native identities, unsigned metadata and current security/license review remain open. No group-wide Google trust, build-time signature policy or final release acceptance is inferred. No application, dependency version, normal validation request, signing identity or Android build input changed.
+
+
+## Larger Google Maven batch — requested
+
+The next data-only request selects 48 remaining JAR/AAR files, 24 Gradle module files and 24 POM files from exact baseline773 identities. Its 96 entries declare 255,852,544 bytes including detached-signature allowances; the collector caps requests at 128 entries / 64 KiB / 256 MiB / 120 seconds. Signature-only collection avoids redundant published-checksum requests while keeping SHA256 capture pins and unauthenticated report defaults.
+
+Gradle aliases such as ui.aar and annotation-metadata-*.jar are retained separately from canonical Maven filenames. A guessed retrieval route cannot approve bytes: both the exact captured checksum and a separately verified signature bound to the inspected primary key are required. Four offline planning cases cover aliases, baseline identity, namespace isolation, size/count budgets and skipping already attempted unsigned/failed files; eleven collector cases cover capture refusal and truthful reports. Actual batch collection and signature review remain pending. The existing 78/921 reviewed subset stays inactive; no Android build inputs or normal validation request changed.

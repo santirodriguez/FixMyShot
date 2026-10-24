@@ -4,11 +4,868 @@
   "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
   "entries": [
     {
-      "id": "google-publisher-key",
-      "kind": "publisher-key",
-      "url": "https://dl.google.com/linux/linux_signing_key.pub",
-      "primary_fingerprint": "EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796",
-      "max_bytes": 131072
+      "id": "batch-000",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.activity:activity:1.11.0",
+      "file": "activity-1.11.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0.aar",
+      "sha256": "26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-001",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "file": "activity-ktx-1.11.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-ktx/1.11.0/activity-ktx-1.11.0.aar",
+      "sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-002",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.7.0-beta01",
+      "file": "annotation-metadata-1.7.0-beta01.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.7.0-beta01/annotation-1.7.0-beta01.jar",
+      "sha256": "b11676837cad011a5285d6074418649107ef25eba17131517e9557ef8c9984ed",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-003",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.8.1",
+      "file": "annotation-metadata-1.8.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.8.1/annotation-1.8.1.jar",
+      "sha256": "fa5e67ffcc52a0413f4b39c2737b43c1ba6c6975b4bd4a4ea8627549e766285b",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-004",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "file": "annotation-metadata-1.9.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.9.1/annotation-1.9.1.jar",
+      "sha256": "38322afa7345c37e29c65ec8852178ae1c26e23096a0634d07a4a3893931f58c",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-005",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.0",
+      "file": "annotation-experimental-1.4.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.0/annotation-experimental-1.4.0.aar",
+      "sha256": "c6eb7e676011ec65b32428373d450debdfc45179c4f8b3a752174fb87c17b08a",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-006",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
+      "file": "annotation-experimental-1.4.1.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar",
+      "sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-007",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-jvm:1.8.1",
+      "file": "annotation-jvm-1.8.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1.jar",
+      "sha256": "9aab326d9492800991854360ac248f493ce7f7c3183519309b78ace9e240f6f6",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-008",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "file": "annotation-jvm-1.9.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar",
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-009",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.appcompat:appcompat:1.7.1",
+      "file": "appcompat-1.7.1.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat/1.7.1/appcompat-1.7.1.aar",
+      "sha256": "2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-010",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "file": "appcompat-resources-1.7.1.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1.aar",
+      "sha256": "8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-011",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "file": "core-common-2.2.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar",
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-012",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.arch.core:core-runtime:2.2.0",
+      "file": "core-runtime-2.2.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.aar",
+      "sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-013",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.autofill:autofill:1.0.0",
+      "file": "autofill-1.0.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/autofill/autofill/1.0.0/autofill-1.0.0.aar",
+      "sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-014",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection:1.5.0",
+      "file": "collection-metadata-1.5.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection/1.5.0/collection-1.5.0.jar",
+      "sha256": "f5ffb8f461c4b5d6f2883a2c7047977773b31d5b23ef030c057514c0c9eceb47",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-015",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection-jvm:1.5.0",
+      "file": "collection-jvm-1.5.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.jar",
+      "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-016",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection-ktx:1.5.0",
+      "file": "collection-ktx-1.5.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.jar",
+      "sha256": "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-017",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation:1.10.0",
+      "file": "animation-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation/1.10.0/animation-1.10.0.jar",
+      "sha256": "e98112512a87229f9cfdd46295cde38594533659a6d4980f7d4039b653f94be2",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-018",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "file": "animation.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.aar",
+      "sha256": "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-019",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-core:1.10.0",
+      "file": "animation-core-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core/1.10.0/animation-core-1.10.0.jar",
+      "sha256": "51f0d393ccadef06b82c486958cdd1d7668376ffe0aa8e6acfd5a72fa1046683",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-020",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-core-android:1.10.0",
+      "file": "animation-core.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core-android/1.10.0/animation-core-android-1.10.0.aar",
+      "sha256": "55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-021",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation:1.10.0",
+      "file": "foundation-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation/1.10.0/foundation-1.10.0.jar",
+      "sha256": "7fef47f4260d3adff9a3ab4d0730be2a31f4dc92628e30ae586e1666ea3630a7",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-022",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation-android:1.10.0",
+      "file": "foundation.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-android/1.10.0/foundation-android-1.10.0.aar",
+      "sha256": "c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3",
+      "max_bytes": 8388608
+    },
+    {
+      "id": "batch-023",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation-layout:1.10.0",
+      "file": "foundation-layout-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout/1.10.0/foundation-layout-1.10.0.jar",
+      "sha256": "cde6b408694825f7ab9a91c91e88c1e3ae0bff42acf994d23f0e1e8b1e582723",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-024",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+      "file": "foundation-layout.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout-android/1.10.0/foundation-layout-android-1.10.0.aar",
+      "sha256": "85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-025",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.material:material-ripple:1.10.0",
+      "file": "material-ripple-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple/1.10.0/material-ripple-1.10.0.jar",
+      "sha256": "43daf1945465ac4e2df58a5aa56d324cce7a3de44c74baff81ba94a60169c05d",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-026",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.material:material-ripple-android:1.10.0",
+      "file": "material-ripple.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple-android/1.10.0/material-ripple-android-1.10.0.aar",
+      "sha256": "ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-027",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.material3:material3:1.4.0",
+      "file": "material3-metadata-1.4.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3/1.4.0/material3-1.4.0.jar",
+      "sha256": "99f229e3030f7d11504177f1c15f9dbebc15b413fd910c6f18bfc12824600167",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-028",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.material3:material3-android:1.4.0",
+      "file": "material3.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3-android/1.4.0/material3-android-1.4.0.aar",
+      "sha256": "3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e",
+      "max_bytes": 8388608
+    },
+    {
+      "id": "batch-029",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime:1.10.0",
+      "file": "runtime-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime/1.10.0/runtime-1.10.0.jar",
+      "sha256": "393451f535d2194da58ea4b3bbda0da09bbc0de1d0415176abe01d56764a0ce3",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-030",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-android:1.10.0",
+      "file": "runtime.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.10.0/runtime-android-1.10.0.aar",
+      "sha256": "612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-031",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-annotation:1.10.0",
+      "file": "runtime-annotation-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation/1.10.0/runtime-annotation-1.10.0.jar",
+      "sha256": "5d4ce82699f501a0c8e1e672658f1f8089534e06989bf253bdfab11e2c730595",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-032",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+      "file": "runtime-annotation.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation-android/1.10.0/runtime-annotation-android-1.10.0.aar",
+      "sha256": "8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-033",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-retain:1.10.0",
+      "file": "runtime-retain-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain/1.10.0/runtime-retain-1.10.0.jar",
+      "sha256": "af1635d56e849fcaee002d9da9e1de66ccb71542cba1d196764441194dc15443",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-034",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+      "file": "runtime-retain.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain-android/1.10.0/runtime-retain-android-1.10.0.aar",
+      "sha256": "fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-035",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-saveable:1.10.0",
+      "file": "runtime-saveable-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable/1.10.0/runtime-saveable-1.10.0.jar",
+      "sha256": "fa2be3ec83c4b129bcb7a9b15ce1fcb0d1d76334e7eddb7b8f35ce9adf7b0811",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-036",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+      "file": "runtime-saveable.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-android/1.10.0/runtime-saveable-android-1.10.0.aar",
+      "sha256": "f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-037",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui:1.10.0",
+      "file": "ui-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui/1.10.0/ui-1.10.0.jar",
+      "sha256": "1d3de76ca7982665e31055561d3c723c32f5110175b60c426f0dbff2a4cf91e1",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-038",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-android:1.10.0",
+      "file": "ui.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-android/1.10.0/ui-android-1.10.0.aar",
+      "sha256": "d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8",
+      "max_bytes": 8388608
+    },
+    {
+      "id": "batch-039",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-geometry:1.10.0",
+      "file": "ui-geometry-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry/1.10.0/ui-geometry-1.10.0.jar",
+      "sha256": "e29f3c194db2dd9fffa0b6dd304f7f7df7ba17b341b08e8f1655a889f624e58e",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-040",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-geometry-android:1.10.0",
+      "file": "ui-geometry.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry-android/1.10.0/ui-geometry-android-1.10.0.aar",
+      "sha256": "40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-041",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-graphics:1.10.0",
+      "file": "ui-graphics-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics/1.10.0/ui-graphics-1.10.0.jar",
+      "sha256": "0cae0912c5d4d2009dd59d4064ae8786b34b5724be433d5d5138d6ec8aa12609",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-042",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-graphics-android:1.10.0",
+      "file": "ui-graphics.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics-android/1.10.0/ui-graphics-android-1.10.0.aar",
+      "sha256": "b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-043",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-text:1.10.0",
+      "file": "ui-text-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text/1.10.0/ui-text-1.10.0.jar",
+      "sha256": "383c7e6aeee37b896071e7c22f3f54db49332d43cd44b4f8e19576c3143c74dd",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-044",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-text-android:1.10.0",
+      "file": "ui-text.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text-android/1.10.0/ui-text-android-1.10.0.aar",
+      "sha256": "626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70",
+      "max_bytes": 8388608
+    },
+    {
+      "id": "batch-045",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-unit:1.10.0",
+      "file": "ui-unit-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit/1.10.0/ui-unit-1.10.0.jar",
+      "sha256": "54e052bdd08ce99266917ef427070221ff067c2b10b2299518ed337185f36da8",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-046",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-unit-android:1.10.0",
+      "file": "ui-unit.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit-android/1.10.0/ui-unit-android-1.10.0.aar",
+      "sha256": "b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-047",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.ui:ui-util:1.10.0",
+      "file": "ui-util-metadata-1.10.0.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util/1.10.0/ui-util-1.10.0.jar",
+      "sha256": "f9672bfc0ebcbc8d2a613dd1b2363acf48ef50ad02ae321f8d96a76158a0bc19",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "batch-048",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.activity:activity:1.11.0",
+      "file": "activity-1.11.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0.module",
+      "sha256": "c19b71592d90a24b6f6996d2c1b78a24ff05cb382250bb1c670617fd605caa27",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-049",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "file": "activity-compose-1.11.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.module",
+      "sha256": "e1bf1fe873ee1921b1757b9947ba64dfe4bb6de85daf311ada07927a75754855",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-050",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "file": "activity-ktx-1.11.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-ktx/1.11.0/activity-ktx-1.11.0.module",
+      "sha256": "4ec5ffc2997cd3c0f3117391668c44dd9133af0a80ee67cbc7511c7cbd0d37d7",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-051",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.3.0",
+      "file": "annotation-1.3.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.3.0/annotation-1.3.0.module",
+      "sha256": "9516c2ae44284ea0bd3d0eade0ee638879b708cbe31e3af92ba96c300604ebc3",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-052",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.7.0-beta01",
+      "file": "annotation-1.7.0-beta01.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.7.0-beta01/annotation-1.7.0-beta01.module",
+      "sha256": "2a1e9e0bec82b27c6315a2a501a9bb71659b2f0245cdefd21f15b437f22555f9",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-053",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.8.1",
+      "file": "annotation-1.8.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.8.1/annotation-1.8.1.module",
+      "sha256": "e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-054",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "file": "annotation-1.9.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.9.1/annotation-1.9.1.module",
+      "sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-055",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.0",
+      "file": "annotation-experimental-1.4.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.0/annotation-experimental-1.4.0.module",
+      "sha256": "5930ea7f21fcb6d0deb2ba32748a0ef7c8fd2c42384860582ba7cd20deb90379",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-056",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
+      "file": "annotation-experimental-1.4.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.module",
+      "sha256": "2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-057",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-jvm:1.8.1",
+      "file": "annotation-jvm-1.8.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1.module",
+      "sha256": "c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-058",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "file": "annotation-jvm-1.9.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.module",
+      "sha256": "03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-059",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.appcompat:appcompat:1.7.1",
+      "file": "appcompat-1.7.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat/1.7.1/appcompat-1.7.1.module",
+      "sha256": "8bbf16792c81cc2dd083681783a5382f573007eee8157182932f1b454e2b7f04",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-060",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "file": "appcompat-resources-1.7.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1.module",
+      "sha256": "163cc5e0f249433ddb0016fbd011ab8de07cf23e07e618c74644688e26cd18e8",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-061",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "file": "core-common-2.2.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.module",
+      "sha256": "edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-062",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.arch.core:core-runtime:2.2.0",
+      "file": "core-runtime-2.2.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.module",
+      "sha256": "a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-063",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection:1.5.0",
+      "file": "collection-1.5.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection/1.5.0/collection-1.5.0.module",
+      "sha256": "bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-064",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection-jvm:1.5.0",
+      "file": "collection-jvm-1.5.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.module",
+      "sha256": "dde85e292509231b5471bb091b575099d4f43161eb281e87385038a0161072e6",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-065",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.collection:collection-ktx:1.5.0",
+      "file": "collection-ktx-1.5.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.module",
+      "sha256": "4228894e25eec7e17329b206ba72e8aad255bc535018dc62acc5eff3b5c7aaa5",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-066",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation:1.10.0",
+      "file": "animation-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation/1.10.0/animation-1.10.0.module",
+      "sha256": "2158c1b57ce292ac2fd0d1541ece2cd08bbfbbd80aa6417a0668076693855458",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-067",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "file": "animation-android-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.module",
+      "sha256": "048631961b8d45793f92705d8775d19e02824b120d1547b92852889678f5834b",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-068",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-core:1.10.0",
+      "file": "animation-core-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core/1.10.0/animation-core-1.10.0.module",
+      "sha256": "2560e6513e16978300d7f1cb2593e9cdc0f57dbb37b788efd2ee6769c12d7921",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-069",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.animation:animation-core-android:1.10.0",
+      "file": "animation-core-android-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core-android/1.10.0/animation-core-android-1.10.0.module",
+      "sha256": "c756a26751aa2dd8950ee29fea39ca81e419e4cd7d07a23b04c7158da9db33a2",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-070",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation:1.10.0",
+      "file": "foundation-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation/1.10.0/foundation-1.10.0.module",
+      "sha256": "b9f547775ab6920e06afeb371322840ab72d738b5a694a6f733ad7049675c452",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-071",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose.foundation:foundation-android:1.10.0",
+      "file": "foundation-android-1.10.0.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-android/1.10.0/foundation-android-1.10.0.module",
+      "sha256": "d4d4ad1b52952463b0b1a5099f6591a8da70105249643ffe3b1fe59e311c3766",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-072",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.autofill:autofill:1.0.0",
+      "file": "autofill-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom",
+      "sha256": "3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-073",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "file": "compose-bom-2025.12.00.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+      "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-074",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.cursoradapter:cursoradapter:1.0.0",
+      "file": "cursoradapter-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom",
+      "sha256": "62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-075",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.customview:customview:1.0.0",
+      "file": "customview-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview/1.0.0/customview-1.0.0.pom",
+      "sha256": "ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-076",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-common:8.13.2",
+      "file": "databinding-common-8.13.2.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-common/8.13.2/databinding-common-8.13.2.pom",
+      "sha256": "1d1b2c91e89310786dee770e9126f2fa20ed12e3e617e439ca289ff5df3913b1",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-077",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-compiler-common:8.13.2",
+      "file": "databinding-compiler-common-8.13.2.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-compiler-common/8.13.2/databinding-compiler-common-8.13.2.pom",
+      "sha256": "6fe77285fff9caa61626a3fc6ff6352548f8190a2c7434be921ecfef46bea3eb",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-078",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.documentfile:documentfile:1.0.0",
+      "file": "documentfile-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom",
+      "sha256": "013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-079",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.drawerlayout:drawerlayout:1.0.0",
+      "file": "drawerlayout-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom",
+      "sha256": "da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-080",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.dynamicanimation:dynamicanimation:1.0.0",
+      "file": "dynamicanimation-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom",
+      "sha256": "44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-081",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.interpolator:interpolator:1.0.0",
+      "file": "interpolator-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom",
+      "sha256": "0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-082",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.legacy:legacy-support-core-utils:1.0.0",
+      "file": "legacy-support-core-utils-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom",
+      "sha256": "8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-083",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.loader:loader:1.0.0",
+      "file": "loader-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/loader/loader/1.0.0/loader-1.0.0.pom",
+      "sha256": "c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-084",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0",
+      "file": "localbroadcastmanager-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom",
+      "sha256": "a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-085",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.print:print:1.0.0",
+      "file": "print-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/print/print/1.0.0/print-1.0.0.pom",
+      "sha256": "62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-086",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.test:core:1.6.1",
+      "file": "core-1.6.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/core/1.6.1/core-1.6.1.pom",
+      "sha256": "44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-087",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.test:monitor:1.7.2",
+      "file": "monitor-1.7.2.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/monitor/1.7.2/monitor-1.7.2.pom",
+      "sha256": "388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-088",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.test:runner:1.6.2",
+      "file": "runner-1.6.2.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/runner/1.6.2/runner-1.6.2.pom",
+      "sha256": "e6abf0cb643a79f3e120b3d6a03dd8906f8d6a9edb73cfbb7a64048d073a4f16",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-089",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.test.ext:junit:1.2.1",
+      "file": "junit-1.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom",
+      "sha256": "983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-090",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.test.services:storage:1.5.0",
+      "file": "storage-1.5.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/test/services/storage/1.5.0/storage-1.5.0.pom",
+      "sha256": "81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-091",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.vectordrawable:vectordrawable:1.1.0",
+      "file": "vectordrawable-1.1.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom",
+      "sha256": "5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-092",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.vectordrawable:vectordrawable-animated:1.1.0",
+      "file": "vectordrawable-animated-1.1.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.pom",
+      "sha256": "276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-093",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "file": "versionedparcelable-1.1.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom",
+      "sha256": "5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-094",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.viewpager:viewpager:1.0.0",
+      "file": "viewpager-1.0.0.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.pom",
+      "sha256": "1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128",
+      "max_bytes": 524288
+    },
+    {
+      "id": "batch-095",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.application:com.android.application.gradle.plugin:8.13.2",
+      "file": "com.android.application.gradle.plugin-8.13.2.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/application/com.android.application.gradle.plugin/8.13.2/com.android.application.gradle.plugin-8.13.2.pom",
+      "sha256": "d4590cc0488efba782fb37d13e52812932f7efff10222ed2a96b7520bfdaa2af",
+      "max_bytes": 524288
     }
   ]
 }
