@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 from urllib.error import HTTPError
 
 spec = importlib.util.spec_from_file_location('collector', Path(__file__).with_name('collect-dependency-provenance.py'))
@@ -95,6 +96,45 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual('FETCH_OR_VALIDATION_ERROR', report['results'][0]['status'])
         with self.assertRaises(FileExistsError):
             collector.collect(self.policy, self.root/'out', 'c'*40, self.getter)
+
+
+    def test_primary_key_pin_cannot_be_satisfied_by_a_subkey_or_secret_key(self):
+        listing = 'pub:::::::::\nfpr:::::::::'+'A'*40+':\nsub:::::::::\nfpr:::::::::'+'B'*40+':\n'
+        self.assertEqual(['A'*40], collector.primary_fingerprints(listing))
+        for text in ['sec:::::::::\nfpr:::::::::'+'A'*40+':\n', listing+listing, 'pub:::::::::\nfpr:::::::::bad:\n']:
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                collector.primary_fingerprints(text)
+
+    def test_fingerprint_capture_is_explicitly_unauthenticated_and_mismatches_fail(self):
+        policy = json.loads(json.dumps(self.policy))
+        entry = policy['entries'][0]
+        entry.pop('coordinate'); entry.pop('sha256')
+        entry.update(kind='publisher-key', primary_fingerprint='A'*40)
+        for number, fingerprints, passed in [(0, ['A'*40], True), (1, ['B'*40], False)]:
+            with mock.patch.object(collector, 'public_key_identity', return_value=fingerprints):
+                report = collector.collect(self.load(policy), self.root/str(number), 'c'*40, self.getter)
+            self.assertEqual(passed, report['all_required_pins_matched'])
+            self.assertFalse(report['automatically_authenticated'])
+            self.assertFalse(report['results'][0]['authenticated'])
+            self.assertFalse(report['results'][0]['cryptographically_verified'])
+            self.assertEqual(hashlib.sha256(self.data).hexdigest(), report['results'][0]['sha256'])
+        for value in ['short', 'a'*40, None]:
+            entry['primary_fingerprint'] = value
+            with self.assertRaises(ValueError):
+                self.load(policy)
+        entry['primary_fingerprint'] = 'A'*40; entry['max_bytes'] = 128*1024+1
+        with self.assertRaises(ValueError):
+            self.load(policy)
+
+    def test_failed_public_key_parser_retains_partial_report_and_never_approves(self):
+        policy = json.loads(json.dumps(self.policy))
+        entry = policy['entries'][0]; entry.pop('coordinate'); entry.pop('sha256')
+        entry.update(kind='publisher-key', primary_fingerprint='A'*40)
+        with mock.patch.object(collector, 'public_key_identity', side_effect=ValueError('invalid key')):
+            report = collector.collect(self.load(policy), self.root/'failed-key', 'c'*40, self.getter)
+        self.assertFalse(report['all_required_pins_matched'])
+        self.assertEqual('FETCH_OR_VALIDATION_ERROR', report['results'][0]['status'])
+        self.assertTrue((self.root/'failed-key/report.json').exists())
 
 
 if __name__ == '__main__':

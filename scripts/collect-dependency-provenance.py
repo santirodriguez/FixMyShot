@@ -5,6 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
+import tempfile
 import time
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
@@ -50,14 +52,18 @@ def read_policy(path):
     seen = set()
     total = 0
     for item in policy['entries']:
-        fields = {'id', 'kind', 'url', 'sha256', 'max_bytes'} | ({'coordinate'} if item.get('kind') == 'artifact' else set())
-        if set(item) != fields or item['kind'] not in {'artifact', 'publisher'}:
+        key_entry = item.get('kind') == 'publisher-key'
+        fields = {'id', 'kind', 'url', 'max_bytes', 'primary_fingerprint' if key_entry else 'sha256'} | ({'coordinate'} if item.get('kind') == 'artifact' else set())
+        if set(item) != fields or item['kind'] not in {'artifact', 'publisher', 'publisher-key'}:
             raise ValueError('Invalid evidence entry')
         if re.fullmatch('[a-z0-9-]{1,64}', item['id']) is None or item['id'] in seen:
             raise ValueError('Unsafe or duplicate evidence ID')
         seen.add(item['id'])
         valid_url(item['url'])
-        if re.fullmatch('[0-9a-f]{64}', item['sha256']) is None or type(item['max_bytes']) is not int or not 0 < item['max_bytes'] <= MAX_ITEM:
+        pin = item['primary_fingerprint'] if key_entry else item['sha256']
+        pattern = '[0-9A-F]{40}' if key_entry else '[0-9a-f]{64}'
+        limit = 128 * 1024 if key_entry else MAX_ITEM
+        if not isinstance(pin, str) or re.fullmatch(pattern, pin) is None or type(item['max_bytes']) is not int or not 0 < item['max_bytes'] <= limit:
             raise ValueError('Invalid evidence digest or size')
         total += item['max_bytes']
     if total > MAX_TOTAL:
@@ -94,6 +100,35 @@ def optional(url, limit, deadline, getter):
         return None, 'UNAVAILABLE'
 
 
+def primary_fingerprints(listing):
+    result, primary = [], False
+    for line in listing.splitlines():
+        fields = line.split(':')
+        if fields[0] in ('pub', 'sub'):
+            primary = fields[0] == 'pub'
+        elif fields[0] == 'fpr' and primary:
+            if len(fields) < 10 or re.fullmatch('[0-9A-F]{40}', fields[9]) is None or fields[9] in result:
+                raise ValueError('Invalid or duplicate primary key identity')
+            result.append(fields[9])
+            primary = False
+    if not result:
+        raise ValueError('No public primary key identity')
+    return result
+
+
+def public_key_identity(data):
+    # Public-only inspection in a disposable context, never a user keyring or keyserver.
+    with tempfile.TemporaryDirectory(prefix='fixmyshot-public-identity-') as directory:
+        root = Path(directory)
+        root.chmod(0o700)
+        key = root/'publisher.asc'
+        key.write_bytes(data)
+        checked = subprocess.run(['gpg', '--no-options', '--homedir', directory, '--batch',
+                                  '--with-colons', '--show-keys', str(key)],
+                                 capture_output=True, text=True, timeout=10, check=True)
+        return primary_fingerprints(checked.stdout)
+
+
 def collect(policy, output, control_commit, getter=fetch):
     if re.fullmatch('[0-9a-f]{40}', control_commit or '') is None:
         raise ValueError('Invalid controller commit')
@@ -113,6 +148,14 @@ def collect(policy, output, control_commit, getter=fetch):
                 raise ValueError('Oversized response')
             sha = hashlib.sha256(data).hexdigest()
             (output / (item['id'] + '.bin')).write_bytes(data)
+            if item['kind'] == 'publisher-key':
+                fingerprints = public_key_identity(data)
+                matched = item['primary_fingerprint'] in fingerprints
+                result.update(sha256=sha, bytes=len(data), primary_fingerprints=fingerprints,
+                              status='MATCHED_PRIMARY_FINGERPRINT' if matched else 'PRIMARY_FINGERPRINT_MISMATCH',
+                              cryptographically_verified=False)
+                passed = passed and matched
+                continue
             result.update(sha256=sha, bytes=len(data), status='MATCHED_PIN' if sha == item['sha256'] else 'SHA256_MISMATCH')
             if sha != item['sha256']:
                 passed = False
@@ -140,7 +183,7 @@ def collect(policy, output, control_commit, getter=fetch):
         except HTTPError as error:
             result['status'] = 'HTTP_' + str(error.code)
             passed = False
-        except (OSError, ValueError, IndexError):
+        except (OSError, ValueError, IndexError, subprocess.SubprocessError):
             result['status'] = 'FETCH_OR_VALIDATION_ERROR'
             passed = False
     report['all_required_pins_matched'] = passed
