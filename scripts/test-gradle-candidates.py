@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """No-network regressions for critical GAV coverage and generated-hash trust boundaries."""
 import importlib.util
+import io
+import tarfile
+import tempfile
+import warnings
+from unittest import mock
+from zipfile import ZipFile
 from pathlib import Path
 import unittest
 import xml.etree.ElementTree as ET
@@ -69,6 +75,139 @@ class TrustCaptureTests(unittest.TestCase):
         parent.append(ET.fromstring(ET.tostring(artifact)))
         with self.assertRaises(ValueError):
             audit.audit_metadata(ET.tostring(root))
+
+
+# Independent git write-tree reference; these tests require only Python.
+REFERENCE_TREE = 'bf9baffb269d57d8d1bf9af798c8e588c506f3f8'
+SOURCE_FILES = {
+    'settings.gradle.kts': (b'rootProject.name = "fixture"\n', 0o644),
+    'gradle/libs.versions.toml': (b'[versions]\njava = "17"\n', 0o644),
+    'scripts/bootstrap-gradle.sh': (b'#!/bin/sh\nexit 0\n', 0o755),
+    'a.txt': (b'one\n', 0o644),
+    'a/child': (b'two\n', 0o644),
+    'gradle/wrapper/gradle-wrapper.jar': (b'test-only-wrapper', 0o644),
+    'gradle/wrapper/gradle-wrapper.properties': (b'distributionUrl=https\\://services.gradle.org/distributions/gradle-8.13-bin.zip\ndistributionSha256Sum=20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78\n', 0o644),
+    'app/gradle.lockfile': (b'example:module:1.0=fixture\nempty=\n', 0o644),
+    'core/gradle.lockfile': (b'example:module:1.0=fixture\nempty=\n', 0o644),
+    'codec-native/gradle.lockfile': (b'example:module:1.0=fixture\nempty=\n', 0o644),
+}
+
+
+def source_tar(records=None):
+    payload = io.BytesIO()
+    with tarfile.open(fileobj=payload, mode='w:') as archive:
+        for name, (data, mode) in (SOURCE_FILES.items() if records is None else records):
+            member = tarfile.TarInfo(name)
+            member.size = len(data)
+            member.mode = mode
+            archive.addfile(member, io.BytesIO(data))
+    return payload.getvalue()
+
+
+def write_candidate(path, overrides=None):
+    files = {name: SOURCE_FILES[name][0] for name in (*audit.LOCK_PATHS,
+             'gradle/wrapper/gradle-wrapper.jar', 'gradle/wrapper/gradle-wrapper.properties')}
+    files.update({'gradle/verification-metadata.xml': ET.tostring(fake_metadata()),
+                  'evidence/source-sha.txt': b'a' * 40 + b'\n',
+                  'evidence/source.tar': source_tar()})
+    files.update(overrides or {})
+    with ZipFile(path, 'w') as archive:
+        for name, content in files.items():
+            archive.writestr(name, content)
+
+
+class SourceArchiveTests(unittest.TestCase):
+    def checked(self, *, overrides=None, expected_source=None, expected_tree=None, duplicate=False):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'synthetic.zip'
+            write_candidate(path, overrides)
+            if duplicate:
+                with warnings.catch_warnings():
+                    warnings.simplefilter('ignore', UserWarning)
+                    with ZipFile(path, 'a') as archive:
+                        archive.writestr('evidence/source-sha.txt', b'a' * 40)
+            with mock.patch.object(audit, 'GRADLE_JAR_SHA',
+                                   audit.digest(SOURCE_FILES['gradle/wrapper/gradle-wrapper.jar'][0])):
+                return audit.audit_archive(path, expected_source=expected_source, expected_tree=expected_tree)
+
+    def test_git_reference_includes_file_bytes_exec_mode_and_git_directory_order(self):
+        report = audit.inspect_source_tar(source_tar())
+        self.assertEqual(REFERENCE_TREE, report['tree_sha1'])
+        self.assertEqual(10, report['file_count'])
+        self.assertEqual(REFERENCE_TREE,
+                         audit.inspect_source_tar(source_tar(list(reversed(list(SOURCE_FILES.items())))))['tree_sha1'])
+        changed = dict(SOURCE_FILES)
+        data, _ = changed['scripts/bootstrap-gradle.sh']
+        changed['scripts/bootstrap-gradle.sh'] = (data, 0o644)
+        self.assertNotEqual(REFERENCE_TREE, audit.inspect_source_tar(source_tar(changed.items()))['tree_sha1'])
+
+    def test_unsafe_repeated_conflicting_and_linked_members_are_rejected_without_extraction(self):
+        for name in ('../escape', '/absolute', '././relative', 'double//slash', 'scripts', '/'.join(['deep'] * 65)):
+            with self.subTest(path=name), self.assertRaises(ValueError):
+                audit.inspect_source_tar(source_tar([*SOURCE_FILES.items(), (name, (b'x', 0o644))]))
+        with self.assertRaises(ValueError):
+            audit.inspect_source_tar(source_tar([*SOURCE_FILES.items(), next(iter(SOURCE_FILES.items()))]))
+        for kind in (tarfile.SYMTYPE, tarfile.LNKTYPE, tarfile.FIFOTYPE):
+            member = tarfile.TarInfo('link')
+            member.type = kind
+            member.linkname = '../outside'
+            with self.subTest(kind=kind), self.assertRaises(ValueError):
+                audit.inspect_source_tar(member.tobuf() + b'\0' * 1024)
+
+    def test_missing_manifest_and_size_or_entry_limits_fail_before_acceptance(self):
+        with self.assertRaises(ValueError):
+            audit.inspect_source_tar(source_tar([]))
+        member = tarfile.TarInfo('huge')
+        member.size = audit.MAX_SOURCE_FILE_BYTES + 1
+        with self.assertRaises(ValueError):
+            audit.inspect_source_tar(member.tobuf() + b'\0' * 1024)
+        with mock.patch.object(audit, 'MAX_SOURCE_BYTES', 100), self.assertRaises(ValueError):
+            audit.inspect_source_tar(source_tar())
+        with mock.patch.object(audit, 'MAX_ARCHIVE_ENTRIES', 9), self.assertRaises(ValueError):
+            audit.inspect_source_tar(source_tar())
+        with mock.patch.object(audit, 'MAX_SOURCE_BYTES', 100), self.assertRaises(ValueError):
+            self.checked()
+
+    def test_paired_repository_pins_establish_source_identity_but_never_dependency_authenticity(self):
+        observed = self.checked()
+        self.assertFalse(observed['source_identity_verified'])
+        self.assertTrue(observed['source_build_inputs_verified'])
+        checked = self.checked(expected_source='a' * 40, expected_tree=REFERENCE_TREE)
+        self.assertTrue(checked['source_identity_verified'])
+        self.assertEqual(REFERENCE_TREE, checked['source_tree_sha1'])
+        self.assertEqual(10, checked['source_file_count'])
+        legacy_files = {name: item for name, item in SOURCE_FILES.items() if name not in
+                        (*audit.LOCK_PATHS, 'gradle/wrapper/gradle-wrapper.jar',
+                         'gradle/wrapper/gradle-wrapper.properties')}
+        legacy_tar = source_tar(legacy_files.items())
+        legacy = self.checked(overrides={'evidence/source.tar': legacy_tar})
+        self.assertFalse(legacy['source_build_inputs_verified'])
+        self.assertEqual(5, len(legacy['source_untracked_build_inputs']))
+        with self.assertRaisesRegex(ValueError, 'not tracked'):
+            self.checked(overrides={'evidence/source.tar': legacy_tar}, expected_source='a' * 40,
+                         expected_tree=legacy['source_tree_sha1'])
+        self.assertEqual('GENERATED_ONLY__NOT_APPROVED_FOR_STRICT_FREEZE', checked['trust_status'])
+        self.assertFalse(any(c['publisher_sha_independently_verified']
+                             for c in checked['generated_metadata']['critical_candidates']))
+
+    def test_missing_wrong_malformed_or_changed_source_pins_fail_closed(self):
+        for commit, tree in (('a' * 40, None), (None, REFERENCE_TREE), ('bad', REFERENCE_TREE),
+                             ('b' * 40, REFERENCE_TREE), ('a' * 40, '0' * 40)):
+            with self.subTest(commit=commit, tree=tree), self.assertRaises(ValueError):
+                self.checked(expected_source=commit, expected_tree=tree)
+        changed = dict(SOURCE_FILES)
+        changed['a.txt'] = (b'changed\n', 0o644)
+        with self.assertRaises(ValueError):
+            self.checked(overrides={'evidence/source.tar': source_tar(changed.items())},
+                         expected_source='a' * 40, expected_tree=REFERENCE_TREE)
+
+    def test_separate_build_inputs_and_duplicate_zip_records_cannot_disagree_with_source(self):
+        for name in audit.LOCK_PATHS:
+            with self.subTest(input=name), self.assertRaises(ValueError):
+                self.checked(overrides={name: b'other:module:2.0=fixture\nempty=\n'},
+                             expected_source='a' * 40, expected_tree=REFERENCE_TREE)
+        with self.assertRaises(ValueError):
+            self.checked(duplicate=True)
 
 
 if __name__ == '__main__':

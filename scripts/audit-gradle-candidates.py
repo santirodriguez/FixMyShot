@@ -29,6 +29,67 @@ CRITICAL = (
 )
 LOCK_PATHS = ('app/gradle.lockfile', 'core/gradle.lockfile', 'codec-native/gradle.lockfile')
 HASH_RE = re.compile(r'[0-9a-f]{64}\Z')
+GIT_SHA_RE = re.compile(r'[0-9a-f]{40}\Z')
+MAX_SOURCE_BYTES = 64 * 1024 * 1024
+MAX_SOURCE_FILE_BYTES = 16 * 1024 * 1024
+MAX_ARCHIVE_ENTRIES = 4096
+
+
+def inspect_source_tar(payload: bytes) -> dict:
+    """Reconstruct tracked Git files/modes without extracting or executing archive content."""
+    if len(payload) > MAX_SOURCE_BYTES:
+        raise ValueError('Oversized source archive')
+    root = {}
+    seen = set()
+    hashes = {}
+    with tarfile.open(fileobj=io.BytesIO(payload), mode='r:') as source:
+        for member in source:
+            name = member.name.removeprefix('./')
+            if member.isdir():
+                name = name.removesuffix('/')
+            parts = name.split('/')
+            if (not name or name.startswith('/') or len(parts) > 64 or
+                    len(name.encode('utf-8')) > 4096 or any(p in ('', '.', '..') for p in parts)):
+                raise ValueError('Invalid source path')
+            if name in seen or len(seen) >= MAX_ARCHIVE_ENTRIES:
+                raise ValueError('Repeated or excessive source entries')
+            seen.add(name)
+            if member.isdir():
+                continue
+            if not member.isfile() or not 0 <= member.size <= MAX_SOURCE_FILE_BYTES:
+                raise ValueError('Unsupported or oversized source member')
+            stream = source.extractfile(member)
+            if stream is None:
+                raise ValueError('Unreadable source member')
+            with stream:
+                data = stream.read(member.size + 1)
+            if len(data) != member.size:
+                raise ValueError('Incomplete source member')
+            node = root
+            for part in parts[:-1]:
+                node = node.setdefault(part, {})
+                if not isinstance(node, dict):
+                    raise ValueError('Source file/directory conflict')
+            if parts[-1] in node:
+                raise ValueError('Source file/directory conflict')
+            mode = b'100755' if member.mode & 0o111 else b'100644'
+            blob = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).digest()
+            node[parts[-1]] = (mode, blob)
+            hashes[name] = digest(data)
+    required = {'settings.gradle.kts', 'gradle/libs.versions.toml', 'scripts/bootstrap-gradle.sh'}
+    if not required.issubset(hashes):
+        raise ValueError('Source manifest incomplete')
+
+    def git_tree(node: dict) -> bytes:
+        content = bytearray()
+        ordered = sorted(node.items(), key=lambda pair:
+                         (pair[0] + ('/' if isinstance(pair[1], dict) else '')).encode('utf-8'))
+        for name, value in ordered:
+            mode, sha = (b'40000', git_tree(value)) if isinstance(value, dict) else value
+            content.extend(mode + b' ' + name.encode('utf-8') + b'\0' + sha)
+        return hashlib.sha1(b'tree ' + str(len(content)).encode() + b'\0' + content).digest()
+
+    return {'tree_sha1': git_tree(root).hex(), 'file_count': len(hashes), 'file_sha256': hashes}
 
 
 def digest(payload: bytes) -> str:
@@ -82,11 +143,25 @@ def audit_metadata(xml: bytes) -> dict:
             'critical_candidates': checks}
 
 
-def audit_archive(path: Path) -> dict:
+def audit_archive(path: Path, *, expected_source: str | None = None,
+                  expected_tree: str | None = None) -> dict:
+    if (expected_source is None) != (expected_tree is None):
+        raise ValueError('Expected source commit and tree must be supplied together')
+    if expected_source is not None and (not GIT_SHA_RE.fullmatch(expected_source) or
+                                        not GIT_SHA_RE.fullmatch(expected_tree)):
+        raise ValueError('Invalid expected Git identity')
     with ZipFile(path) as archive:
+        entries = archive.infolist()
+        names = {entry.filename for entry in entries}
+        if len(entries) != len(names) or len(entries) > MAX_ARCHIVE_ENTRIES:
+            raise ValueError('Repeated or excessive ZIP entries')
+        if sum(entry.file_size for entry in entries) > 512 * 1024 * 1024 or any(
+                entry.file_size > 128 * 1024 * 1024 or
+                (entry.filename == 'evidence/source.tar' and entry.file_size > MAX_SOURCE_BYTES)
+                for entry in entries):
+            raise ValueError('Oversized candidate ZIP entries')
         if archive.testzip() is not None:
             raise ValueError('ZIP CRC failed')
-        names = set(archive.namelist())
         required = {'gradle/verification-metadata.xml', 'gradle/wrapper/gradle-wrapper.jar',
                     'gradle/wrapper/gradle-wrapper.properties', 'evidence/source-sha.txt',
                     'evidence/source.tar', *LOCK_PATHS}
@@ -94,22 +169,28 @@ def audit_archive(path: Path) -> dict:
             raise ValueError(f'Missing source-bound candidate entries: {sorted(required - names)}')
         files = {n: archive.read(n) for n in required}
     source_sha = files['evidence/source-sha.txt'].decode('ascii').strip()
-    if not re.fullmatch('[0-9a-f]{40}', source_sha):
+    if not GIT_SHA_RE.fullmatch(source_sha):
         raise ValueError('Invalid build source SHA')
     properties = files['gradle/wrapper/gradle-wrapper.properties'].decode()
     if f'distributionSha256Sum={GRADLE_DIST_SHA}' not in properties or 'gradle-8.13-bin.zip' not in properties:
         raise ValueError('Unrecognized Gradle distribution pin')
     if digest(files['gradle/wrapper/gradle-wrapper.jar']) != GRADLE_JAR_SHA:
         raise ValueError('Wrong official Gradle 8.13 wrapper JAR')
-    # Inspect source tar safely in-memory without running repository scripts.
-    with tarfile.open(fileobj=io.BytesIO(files['evidence/source.tar']), mode='r:') as source:
-        records = source.getmembers()
-        for member in records:
-            if member.issym() or member.islnk():
-                raise ValueError('Refusing source archive symlinks')
-        names = {m.name.lstrip('./') for m in records}
-        if not {'settings.gradle.kts', 'gradle/libs.versions.toml', 'scripts/bootstrap-gradle.sh'}.issubset(names):
-            raise ValueError('Source manifest incomplete')
+    source_info = inspect_source_tar(files['evidence/source.tar'])
+    identity_verified = expected_source is not None
+    if identity_verified and (source_sha != expected_source or source_info['tree_sha1'] != expected_tree):
+        raise ValueError('Archived source does not match the expected commit/tree')
+    # Independently archived build inputs must be the same bytes as the tracked source.
+    untracked_inputs = []
+    for name in (*LOCK_PATHS, 'gradle/wrapper/gradle-wrapper.jar',
+                 'gradle/wrapper/gradle-wrapper.properties'):
+        tracked = source_info['file_sha256'].get(name)
+        if tracked is None:
+            untracked_inputs.append(name)
+        elif tracked != digest(files[name]):
+            raise ValueError(f'Build input differs from archived source: {name}')
+    if identity_verified and untracked_inputs:
+        raise ValueError('Build inputs are not tracked in the pinned source')
     locks = {}
     for key in LOCK_PATHS:
         rows = [line for line in files[key].decode().splitlines()
@@ -119,6 +200,11 @@ def audit_archive(path: Path) -> dict:
         locks[key] = {'entry_count': len(rows), 'sha256': digest(files[key])}
     return {
         'source_commit': source_sha,
+        'source_tree_sha1': source_info['tree_sha1'],
+        'source_file_count': source_info['file_count'],
+        'source_identity_verified': identity_verified,
+        'source_build_inputs_verified': not untracked_inputs,
+        'source_untracked_build_inputs': untracked_inputs,
         'candidate_archive_sha256': digest(path.read_bytes()),
         'gradle_distribution_sha256': GRADLE_DIST_SHA,
         'official_gradle_wrapper_jar_verified': True,
@@ -135,13 +221,18 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('archive', type=Path)
     parser.add_argument('--baseline', type=Path)
+    parser.add_argument('--expected-source', help='Commit SHA inspected from the trusted repository')
+    parser.add_argument('--expected-tree', help='Tree SHA independently obtained for that commit')
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
-    current = audit_archive(args.archive)
+    current = audit_archive(args.archive, expected_source=args.expected_source,
+                            expected_tree=args.expected_tree)
     if args.baseline:
         before = audit_archive(args.baseline)
         current['baseline_comparison'] = {
             'source_commit': before['source_commit'],
+            'source_tree_sha1': before['source_tree_sha1'],
+            'source_identity_verified': before['source_identity_verified'],
             'lockfile_sha_match': {name: current['lockfiles'][name]['sha256'] == before['lockfiles'][name]['sha256']
                                    for name in LOCK_PATHS},
             'metadata_sha_match': current['observed_candidate_sha256'] == before['observed_candidate_sha256'],

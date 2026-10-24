@@ -36,3 +36,21 @@ The build artifact12539628706 from [Actions40042133996](https://github.com/santi
 The existing read-only audit passed on that exact ZIP; its7 refusal-boundary cases and4 wrapper boundary cases also passed. The generated XML SHA256 is e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67, with514 components/921 artifacts,921 generated SHA256 claims,0 PGP signatures and signature verification false. This is a later observed capture rather than a replacement for the earlier551/958 source-bound receipt. All308 distinct locked coordinates occur in this capture; the three lockfiles have the hashes above and match the current branch. The old local a047 ZIP copy was unreadable, so a byte-for-byte baseline archive comparison was NOT RUN; no comparison or authenticity claim is inferred from that failed input.
 
 Every critical artifact remains publisher_sha_independently_verified=false and the result remains GENERATED_ONLY__NOT_APPROVED_FOR_STRICT_FREEZE. Generated inventory coverage and matching versions do not authenticate dependency bytes or establish current security status. No captured XML was promoted or committed as trust, no verification policy/dependency/lock was changed and no rebuild/signing operation ran. Actual publisher/artifact authentication, reviewed strict verification and an independent clean rebuild remain open.
+
+
+## Offline source-identity gate
+
+The auditor now reconstructs the source tar's Git blob/mode/tree identity and checks independently archived wrapper/lock bytes against the tracked source. Obtain both expected hashes from an independently inspected repository commit; copying hashes out of the artifact would not establish this boundary. For the already inspected7c archive:
+
+```sh
+python3 scripts/test-gradle-candidates.py
+python3 scripts/audit-gradle-candidates.py bootstrap-7c832427.zip \
+  --expected-source 7c832427b47cfa7006aeb99993b381f27df2a6b5 \
+  --expected-tree caae554261b98bdf658a5f2d7bbfba312977e1d2
+```
+
+The actual downloaded7c ZIP passed with source_identity_verified=true, source_build_inputs_verified=true,193 regular files and the exact tree above. Without both pins the identity flag remains false; supplying only one or a mismatched pin fails. Legacy captures lacking committed wrapper/lock files remain observational with explicit untracked inputs and cannot pass the pinned-source gate. Changed tracked input bytes always fail. The baseline archive identity remains unverified unless separately checked against trusted repository references.
+
+Limits are64MiB source tar/16MiB source file/4096 members,64 path components/4096 UTF-8 path bytes, and512MiB expanded ZIP total/128MiB per ZIP entry. Duplicate ZIP/tar names, unsafe paths, file/directory conflicts, links and special files fail without extraction or execution. Directories are implicit in Git's tracked-file tree. The13 offline cases include an independent git write-tree fixture reference, executable-bit/Git directory sorting, unsafe/duplicate/conflicting/linked input, limits, paired/wrong/changed identity, legacy untracked captures and mismatched build inputs.
+
+These are source-archive integrity checks. They do not authenticate publisher artifacts, prove compile provenance, inspect a production signature or replace an independent clean rebuild. The generated dependency inventory remains GENERATED_ONLY__NOT_APPROVED_FOR_STRICT_FREEZE; no verification XML, version lock or trust policy was promoted. No Android run is needed for this host-only script change.
