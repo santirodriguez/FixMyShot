@@ -111,3 +111,12 @@ Do **not** infer new Android acceptance from local work. Continue batching indep
 
 Actual Pixel9ProXL and another physical manufacturer, 1344×2992 real screenshot/color/metadata/alpha/fidelity, native HEIC/AVIF actual encode/reopen/display, libjxl release/JNI/16KiB cost and independent artifact authenticity gates remain open. No signing, merging, publishing or deployment is implied by this preflight.
 
+
+
+## Pinned native-source and packaged notices — provenance crosscheck
+
+The CMake-pinned libwebp commit4fa21912338357f89e4fd51cf2368325b59e9bd9 was independently found at the [official Gitiles repository](https://chromium.googlesource.com/webm/libwebp/+/4fa21912338357f89e4fd51cf2368325b59e9bd9) and the [GitHub mirror commit](https://github.com/webmproject/libwebp/commit/4fa21912338357f89e4fd51cf2368325b59e9bd9). Both identify tree3a7830b9713d9187cf1211862d4571ff58b0d507. The mirror's annotated v1.6.0 tag objectb7e29b9d75bd31422b00c2a446d49d7af06c328d targets that exact commit. GitHub reports the commit unsigned and the tag signature unknown_key: matching source/tag provenance is not authenticated signing-key identity or current security approval. No key was imported or approved.
+
+Exact immutable upstream [COPYING](https://github.com/webmproject/libwebp/blob/4fa21912338357f89e4fd51cf2368325b59e9bd9/COPYING) and [PATENTS](https://github.com/webmproject/libwebp/blob/4fa21912338357f89e4fd51cf2368325b59e9bd9/PATENTS) bytes match the committed source assets and the actual unsigned773b34f0 APK entries assets/licenses/libwebp/COPYING and PATENTS. COPYING1496B/SHA2565aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf; PATENTS1436B/SHA256cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c. The baseline APK was independently downloaded, its exact SHA256 verified and its source tree pinned; these are actual packaged-byte checks, not an assumption that source assets were bundled.
+
+This closes this scoped source/tag/notice-preservation observation only. Full runtime/transitive licensing/security review, native signing-key authentication, independent Maven artifact authenticity and reviewed strict verification remain open. No dependency revision, library, codec, notice asset or application permission changed. The single independently controlled unsigned773 rebuild passed Actions40054940065 with identical APK bytes; it does not replace these provenance gates.
