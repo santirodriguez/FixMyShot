@@ -89,6 +89,15 @@ class CollectorTests(unittest.TestCase):
                 collector.valid_url(url, redirect=True)
         collector.valid_url('https://release-assets.githubusercontent.com/file?temporary=1', redirect=True)
 
+    def test_public_key_service_only_accepts_inspected_fingerprint_paths(self):
+        for path in collector.PUBLIC_KEY_PATHS:
+            collector.valid_url('https://keys.openpgp.org'+path)
+        for url in ('https://keys.openpgp.org/',
+                    'https://keys.openpgp.org/vks/v1/by-fingerprint/'+'A'*40,
+                    'https://keys.openpgp.org'+next(iter(collector.PUBLIC_KEY_PATHS))+'?extra=1'):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                collector.valid_url(url, redirect=True)
+
     def test_oversized_response_and_existing_output_cannot_produce_acceptance(self):
         report = collector.collect(self.load(self.policy), self.root/'out', 'c'*40,
                                    lambda *args: b'x'*1025)

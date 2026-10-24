@@ -13,7 +13,10 @@ from urllib.parse import urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 
 HOSTS = {'dl.google.com', 'repo.maven.apache.org', 'github.com',
-         'raw.githubusercontent.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
+         'raw.githubusercontent.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com', 'keys.openpgp.org'}
+PUBLIC_KEY_PATHS = {'/vks/v1/by-fingerprint/'+fingerprint for fingerprint in (
+    '2FBA29D08D2E25EE84C132C30729A0AFF8999A87', 'DBD744ACE7ADE6AA50DD591F66B50994442D2D40')}
+
 MAX_ITEM = 32 * 1024 * 1024
 MAX_TOTAL = 256 * 1024 * 1024
 
@@ -22,6 +25,8 @@ def valid_url(url, *, redirect=False):
     parsed = urlsplit(url)
     if parsed.scheme != 'https' or parsed.hostname not in HOSTS or parsed.port not in (None, 443) or parsed.username or parsed.password or parsed.fragment or (parsed.query and not redirect):
         raise ValueError('Unapproved publisher URL')
+    if parsed.hostname == 'keys.openpgp.org' and (parsed.path not in PUBLIC_KEY_PATHS or parsed.query):
+        raise ValueError('Uninspected public-key lookup')
     return url
 
 
