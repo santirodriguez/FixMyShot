@@ -79,5 +79,18 @@ class PublisherReviewTests(unittest.TestCase):
                     review.bounded_bytes(path, limit)
 
 
+    def test_actual_signer_validity_is_checked_separately_from_gpgv_success(self):
+        primary, signer = review.GOOGLE_PRIMARY, 'A'*40
+        status = '[GNUPG:] VALIDSIG '+signer+' 2026-10-01 100 0 4 0 1 8 00 '+primary
+        def listing(validity='-', expires='300', parent=primary):
+            return ('pub:-:4096:1:ID:1:0:::::scSC:\nfpr:::::::::'+parent+':\n'+
+                    'sub:'+validity+':4096:1:ID:10:'+expires+':::::s:\nfpr:::::::::'+signer+':\n')
+        self.assertTrue(review.validate_signing_key(listing(), status, primary, now=200))
+        for text in [listing('r'), listing('e'), listing(expires='199'), listing(parent='B'*40), '']:
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                review.validate_signing_key(text, status, primary, now=200)
+        with self.assertRaises(ValueError):review.validate_signing_key(listing(),status,primary,now=99)
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -7,6 +7,7 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
+import time
 import xml.etree.ElementTree as ET
 
 NS = 'https://schema.gradle.org/dependency-verification'
@@ -66,7 +67,12 @@ def verify_junit(key_data, signature, jar):
         binary.write_bytes(jar)
         checked = subprocess.run(['gpgv', '--homedir', directory, '--keyring', str(ring),
                                   '--status-fd', '1', str(sig), str(binary)], capture_output=True, text=True)
-        return valid_signer(checked.returncode, checked.stdout)
+        status = valid_signer(checked.returncode, checked.stdout)
+        listing = subprocess.run(['gpg', '--no-options', '--homedir', directory, '--batch',
+                                  '--with-colons', '--show-keys', str(public)],
+                                 capture_output=True, text=True, check=True, timeout=10)
+        validate_signing_key(listing.stdout, status, JUNIT_FINGERPRINT)
+        return status
 
 
 def bounded_bytes(path, limit):
@@ -91,6 +97,44 @@ def valid_google_signer(returncode, status):
     return ' '.join(valid[0])
 
 
+def validate_signing_key(listing, status, primary_fingerprint, now=None):
+    # gpgv checks signatures but deliberately does not enforce key expiry/revocation.
+    # Inspect the pinned bundle separately; absent/new revocations are not a freshness verdict.
+    now = int(time.time()) if now is None else now
+    tokens = status.split()
+    if len(tokens) != 12 or tokens[11] != primary_fingerprint:
+        raise ValueError('Missing full signing-primary identity')
+    keys, pending, primary = {}, None, None
+    for line in listing.splitlines():
+        fields = line.split(':')
+        if fields[0] in ('pub', 'sub'):
+            if len(fields) < 12:
+                raise ValueError('Incomplete public-key validity record')
+            pending = fields
+        elif fields[0] == 'fpr' and pending is not None:
+            fingerprint = fields[9] if len(fields) > 9 else ''
+            if re.fullmatch('[0-9A-F]{40}', fingerprint) is None or fingerprint in keys:
+                raise ValueError('Ambiguous public-key validity identity')
+            if pending[0] == 'pub':
+                primary = fingerprint
+            keys[fingerprint] = (pending, primary)
+            pending = None
+    signed_at = int(tokens[4])
+    signature_expiry = int(tokens[5])
+    if signed_at > now or (signature_expiry and signature_expiry <= now):
+        raise ValueError('Signature is future-dated or expired')
+    for fingerprint in {tokens[2], primary_fingerprint}:
+        if fingerprint not in keys:
+            raise ValueError('Signing key validity is unavailable')
+        fields, parent = keys[fingerprint]
+        created, expires = int(fields[5]), int(fields[6] or 0)
+        if (parent != primary_fingerprint or fields[1] in ('e', 'r', 'd', 'i') or
+                created > signed_at or (expires and expires <= now) or
+                's' not in fields[11].lower() or 'D' in fields[11]):
+            raise ValueError('Actual signing key is expired, revoked, invalid or not bound')
+    return True
+
+
 def verify_google(key_data, signature, binary):
     if sha256(key_data) != GOOGLE_KEYS_SHA256:
         raise ValueError('Google key bytes differ from the inspected publisher capture')
@@ -106,7 +150,12 @@ def verify_google(key_data, signature, binary):
         checked = subprocess.run(['gpgv', '--homedir', directory, '--keyring', str(ring),
                                   '--status-fd', '1', str(sig), str(artifact)],
                                  capture_output=True, text=True, timeout=10)
-        return valid_google_signer(checked.returncode, checked.stdout)
+        status = valid_google_signer(checked.returncode, checked.stdout)
+        listing = subprocess.run(['gpg', '--no-options', '--homedir', directory, '--batch',
+                                  '--with-colons', '--show-keys', str(key)],
+                                 capture_output=True, text=True, check=True, timeout=10)
+        validate_signing_key(listing.stdout, status, GOOGLE_PRIMARY)
+        return status
 
 
 def google_review(key_evidence, evidence, request, rows, blobs, expected_control):
