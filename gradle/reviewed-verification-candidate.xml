@@ -119,121 +119,193 @@
       </artifact>
     </component>
     <component group="androidx.compose.foundation" name="foundation-layout" version="1.10.0">
+      <artifact name="foundation-layout-1.10.0.module">
+        <sha256 value="421dccb4cf516955c206ca1cad456983934a9909b44b0e9a14f735a779a563d1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="foundation-layout-metadata-1.10.0.jar">
         <sha256 value="cde6b408694825f7ab9a91c91e88c1e3ae0bff42acf994d23f0e1e8b1e582723" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.foundation" name="foundation-layout-android" version="1.10.0">
+      <artifact name="foundation-layout-android-1.10.0.module">
+        <sha256 value="a6979914bfa087650ece415d36b0b0d74669f86c3f453a2f9c05fcf47aeef61a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="foundation-layout.aar">
         <sha256 value="85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.material" name="material-ripple" version="1.10.0">
+      <artifact name="material-ripple-1.10.0.module">
+        <sha256 value="31c55e4c7264b06da320bef7086a6bd4265a40422d36e5eb770798b33f9742c2" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="material-ripple-metadata-1.10.0.jar">
         <sha256 value="43daf1945465ac4e2df58a5aa56d324cce7a3de44c74baff81ba94a60169c05d" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.material" name="material-ripple-android" version="1.10.0">
+      <artifact name="material-ripple-android-1.10.0.module">
+        <sha256 value="6985cda3f981e229076a21b6e322bc03ec22342c869c083227a6a65b273c4138" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="material-ripple.aar">
         <sha256 value="ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.material3" name="material3" version="1.4.0">
+      <artifact name="material3-1.4.0.module">
+        <sha256 value="757081d128daf8801c1dd9acc431fa5269e656b28a0a490ae98ccee68e9c3452" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="material3-metadata-1.4.0.jar">
         <sha256 value="99f229e3030f7d11504177f1c15f9dbebc15b413fd910c6f18bfc12824600167" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.material3" name="material3-android" version="1.4.0">
+      <artifact name="material3-android-1.4.0.module">
+        <sha256 value="fccd6a8d0d33fcf7c3277bc43eb452c73803ec620597c81dbc4a79e290a71a97" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="material3.aar">
         <sha256 value="3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime" version="1.10.0">
+      <artifact name="runtime-1.10.0.module">
+        <sha256 value="c1be9e41b03bc50e3850e86e5827fdf3eca11707989d93affb38e1bc8b53d675" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-metadata-1.10.0.jar">
         <sha256 value="393451f535d2194da58ea4b3bbda0da09bbc0de1d0415176abe01d56764a0ce3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-android" version="1.10.0">
+      <artifact name="runtime-android-1.10.0.module">
+        <sha256 value="aafadad4ff1e6132fcf440f7f7e8c17cefa294e1de87db12e2c434569ab339ce" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime.aar">
         <sha256 value="612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-annotation" version="1.10.0">
+      <artifact name="runtime-annotation-1.10.0.module">
+        <sha256 value="029616c9ddf00b22bf629e151fca5ce73a96f094c4b5d96dc813dd3faa585f02" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-annotation-metadata-1.10.0.jar">
         <sha256 value="5d4ce82699f501a0c8e1e672658f1f8089534e06989bf253bdfab11e2c730595" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-annotation-android" version="1.10.0">
+      <artifact name="runtime-annotation-android-1.10.0.module">
+        <sha256 value="7e99adea1a682fce56106f0bca2c53a1f58c130f0f31de9849760f7a5de212ce" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-annotation.aar">
         <sha256 value="8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-retain" version="1.10.0">
+      <artifact name="runtime-retain-1.10.0.module">
+        <sha256 value="8254e7bfa01e5471e6917a3730ad0af5265f9d52e7ddb3c3aa7a5befdf75f91f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-retain-metadata-1.10.0.jar">
         <sha256 value="af1635d56e849fcaee002d9da9e1de66ccb71542cba1d196764441194dc15443" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-retain-android" version="1.10.0">
+      <artifact name="runtime-retain-android-1.10.0.module">
+        <sha256 value="7dcfa819b62306bf1658a3c84beeb799f6078200804db343a9559aa5d89498aa" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-retain.aar">
         <sha256 value="fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-saveable" version="1.10.0">
+      <artifact name="runtime-saveable-1.10.0.module">
+        <sha256 value="835897174ebee1ebcf01000661f6cfcc8aedca1dbf4d17cb76245a5347b8f028" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-saveable-metadata-1.10.0.jar">
         <sha256 value="fa2be3ec83c4b129bcb7a9b15ce1fcb0d1d76334e7eddb7b8f35ce9adf7b0811" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.runtime" name="runtime-saveable-android" version="1.10.0">
+      <artifact name="runtime-saveable-android-1.10.0.module">
+        <sha256 value="be1559a7468b8a82bdb71fbe953bb2b2f1f5ea9dfb6e25e3e3fe22454a5e27ea" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="runtime-saveable.aar">
         <sha256 value="f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui" version="1.10.0">
+      <artifact name="ui-1.10.0.module">
+        <sha256 value="48600c0d2ff9eaaf6d7888124496fa2dd4830a1cc328591054cafed5f6a657e3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-metadata-1.10.0.jar">
         <sha256 value="1d3de76ca7982665e31055561d3c723c32f5110175b60c426f0dbff2a4cf91e1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-android" version="1.10.0">
+      <artifact name="ui-android-1.10.0.module">
+        <sha256 value="2e867f73ae9d2a78e6a78355d7c1f3d1da29edbc3f64cd78f77a889dab66895a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui.aar">
         <sha256 value="d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-geometry" version="1.10.0">
+      <artifact name="ui-geometry-1.10.0.module">
+        <sha256 value="ed47254977efa73d57b1528d1d142cd1e662fb408321cb182affa3f82a2ab569" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-geometry-metadata-1.10.0.jar">
         <sha256 value="e29f3c194db2dd9fffa0b6dd304f7f7df7ba17b341b08e8f1655a889f624e58e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-geometry-android" version="1.10.0">
+      <artifact name="ui-geometry-android-1.10.0.module">
+        <sha256 value="22950743dd658d1f250a3d0a27dce49d03074928e116725e4e23e0d4b990365a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-geometry.aar">
         <sha256 value="40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-graphics" version="1.10.0">
+      <artifact name="ui-graphics-1.10.0.module">
+        <sha256 value="b29b99982c91b69dbd50ff989f6e33ed4d31548b3609492189dba634d0c589d9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-graphics-metadata-1.10.0.jar">
         <sha256 value="0cae0912c5d4d2009dd59d4064ae8786b34b5724be433d5d5138d6ec8aa12609" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-graphics-android" version="1.10.0">
+      <artifact name="ui-graphics-android-1.10.0.module">
+        <sha256 value="95b58307cbc92c52d3d1a22bb93586117f91957ca29ed3a572104e37100fe1e9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-graphics.aar">
         <sha256 value="b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-text" version="1.10.0">
+      <artifact name="ui-text-1.10.0.module">
+        <sha256 value="9109b898376ca1af4e8748ac437beba461f0e9f806eddfe8384f81561e5733c8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-text-metadata-1.10.0.jar">
         <sha256 value="383c7e6aeee37b896071e7c22f3f54db49332d43cd44b4f8e19576c3143c74dd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-text-android" version="1.10.0">
+      <artifact name="ui-text-android-1.10.0.module">
+        <sha256 value="c6fd2b4f48b754c8dfd0b9427a6ee97c4f8018d9a6221b1498202ae1acabb4d3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-text.aar">
         <sha256 value="626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-unit" version="1.10.0">
+      <artifact name="ui-unit-1.10.0.module">
+        <sha256 value="c10ac08770b2a090703664d21030e316cfddc4407c1b014b8ad3250f8bed51d5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-unit-metadata-1.10.0.jar">
         <sha256 value="54e052bdd08ce99266917ef427070221ff067c2b10b2299518ed337185f36da8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.compose.ui" name="ui-unit-android" version="1.10.0">
+      <artifact name="ui-unit-android-1.10.0.module">
+        <sha256 value="bbcadbde83e5f849c8ae272dfa37b934922ac645feb71b67e16137c6da43c6ef" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="ui-unit.aar">
         <sha256 value="b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
@@ -243,14 +315,105 @@
         <sha256 value="f9672bfc0ebcbc8d2a613dd1b2363acf48ef50ad02ae321f8d96a76158a0bc19" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.compose.ui" name="ui-util-android" version="1.10.0">
+      <artifact name="ui-util.aar">
+        <sha256 value="75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core" version="1.16.0">
+      <artifact name="core-1.16.0.aar">
+        <sha256 value="6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core-ktx" version="1.16.0">
+      <artifact name="core-ktx-1.16.0.aar">
+        <sha256 value="1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core-viewtree" version="1.0.0">
+      <artifact name="core-viewtree-1.0.0.aar">
+        <sha256 value="dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="androidx.databinding" name="databinding-common" version="8.13.2">
+      <artifact name="databinding-common-8.13.2.jar">
+        <sha256 value="66cab82639dac0f6c2433464c093b074d608c4bb887ec38a9b8bc4ac98126732" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="databinding-common-8.13.2.pom">
         <sha256 value="1d1b2c91e89310786dee770e9126f2fa20ed12e3e617e439ca289ff5df3913b1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.databinding" name="databinding-compiler-common" version="8.13.2">
+      <artifact name="databinding-compiler-common-8.13.2.jar">
+        <sha256 value="a2c3fff0c39ac72c4c21c415017066c263efe170d8aeb9d339a3eca7c0d79f1e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
       <artifact name="databinding-compiler-common-8.13.2.pom">
         <sha256 value="6fe77285fff9caa61626a3fc6ff6352548f8190a2c7434be921ecfef46bea3eb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore" version="1.1.7">
+      <artifact name="datastore-metadata-1.1.7.jar">
+        <sha256 value="4ab4086b6359ea81eb359451f0f005c78bc508d75c070555154cdf6313b0e1cb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-android" version="1.1.7">
+      <artifact name="datastore-release.aar">
+        <sha256 value="26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core" version="1.1.7">
+      <artifact name="datastore-core-metadata-1.1.7.jar">
+        <sha256 value="749fa5e6aa1999c4210d9b33ed2a09fc8fab48ab4c4fb9549720e052526b6e85" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-android" version="1.1.7">
+      <artifact name="datastore-core-release.aar">
+        <sha256 value="adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-okio" version="1.1.7">
+      <artifact name="datastore-core-okio-metadata-1.1.7.jar">
+        <sha256 value="117beb462cad6a885864fe0296ed8cfee509da08d064c44d226efbd60538599b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-okio-jvm" version="1.1.7">
+      <artifact name="datastore-core-okio-jvm-1.1.7.jar">
+        <sha256 value="291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences" version="1.1.7">
+      <artifact name="datastore-preferences-metadata-1.1.7.jar">
+        <sha256 value="7daf288a2f1efe727eac9fb75d9c8a773512c654740eb8381d443439c3d0c3a1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-android" version="1.1.7">
+      <artifact name="datastore-preferences-release.aar">
+        <sha256 value="1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-core" version="1.1.7">
+      <artifact name="datastore-preferences-core-metadata-1.1.7.jar">
+        <sha256 value="808e118cd85af51e52d9dbf771fa80e0187ffed15168fcb26db73c75e7dbc103" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-core-android" version="1.1.7">
+      <artifact name="datastore-preferences-core-release.aar">
+        <sha256 value="31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-external-protobuf" version="1.1.7">
+      <artifact name="datastore-preferences-external-protobuf-1.1.7.jar">
+        <sha256 value="fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-proto" version="1.1.7">
+      <artifact name="datastore-preferences-proto-1.1.7.jar">
+        <sha256 value="63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.exifinterface" name="exifinterface" version="1.4.2">
+      <artifact name="exifinterface-1.4.2.aar">
+        <sha256 value="6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.heifwriter" name="heifwriter" version="1.2.0-rc01">
@@ -258,14 +421,184 @@
         <sha256 value="2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F" />
       </artifact>
     </component>
+    <component group="androidx.lifecycle" name="lifecycle-common" version="2.9.2">
+      <artifact name="lifecycle-common-metadata-2.9.2.jar">
+        <sha256 value="c7a6e835da0712d15efeae0d72df91e6631042df4fcf0f9c20ceca740638c685" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common-java8" version="2.9.4">
+      <artifact name="lifecycle-common-java8-2.9.4.jar">
+        <sha256 value="497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common-jvm" version="2.9.4">
+      <artifact name="lifecycle-common-jvm-2.9.4.jar">
+        <sha256 value="37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata" version="2.9.2">
+      <artifact name="lifecycle-livedata-2.9.2.aar">
+        <sha256 value="b6a96fe46acaf86a29560f2d96f2a330418eecef38658e5429b82d96d07a49a6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata" version="2.9.4">
+      <artifact name="lifecycle-livedata-2.9.4.aar">
+        <sha256 value="f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core" version="2.9.2">
+      <artifact name="lifecycle-livedata-core-2.9.2.aar">
+        <sha256 value="0dbd1c903f4c31b816ed0f4962d09f259be12fe2c2a2bd2b311d8a4c5b5ef75b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core" version="2.9.4">
+      <artifact name="lifecycle-livedata-core-2.9.4.aar">
+        <sha256 value="ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core-ktx" version="2.9.2">
+      <artifact name="lifecycle-livedata-core-ktx-2.9.2.aar">
+        <sha256 value="0b8d5eb2667e470b69656aab287b07439f0423da4d429ac533c8740fac0aa1e3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core-ktx" version="2.9.4">
+      <artifact name="lifecycle-livedata-core-ktx-2.9.4.aar">
+        <sha256 value="f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-process" version="2.9.4">
+      <artifact name="lifecycle-process-2.9.4.aar">
+        <sha256 value="4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime" version="2.9.2">
+      <artifact name="lifecycle-runtime-metadata-2.9.2.jar">
+        <sha256 value="ba566d0f46dc01c2169778d27238789ecebaa00655642e02c24e4e83e7dc5905" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-android" version="2.9.4">
+      <artifact name="lifecycle-runtime-release.aar">
+        <sha256 value="86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="com.android.application" name="com.android.application.gradle.plugin" version="8.13.2">
       <artifact name="com.android.application.gradle.plugin-8.13.2.pom">
         <sha256 value="d4590cc0488efba782fb37d13e52812932f7efff10222ed2a96b7520bfdaa2af" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="com.android.databinding" name="baseLibrary" version="8.13.2">
+      <artifact name="baseLibrary-8.13.2.pom">
+        <sha256 value="dff7770f15cce85e1baa862e0947a1f6e6eec4d64970bbb3ecc7af0dc14a6d1c" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.library" name="com.android.library.gradle.plugin" version="8.13.2">
+      <artifact name="com.android.library.gradle.plugin-8.13.2.pom">
+        <sha256 value="c58553fcc90ee3579ceeffcae961f4ac4722b24854921afaac9b7a668986ebbd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="annotations" version="31.13.2">
+      <artifact name="annotations-31.13.2.pom">
+        <sha256 value="eb73f215814a97af217ba71a6c6859fb1c7e57b13c5d6ccd9959de2c97424755" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="common" version="31.13.2">
+      <artifact name="common-31.13.2.pom">
+        <sha256 value="2613d76694fd4a45bbc68b165c14537d5b5469dbea6daa77d9c32e8f85421473" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="dvlib" version="31.13.2">
+      <artifact name="dvlib-31.13.2.pom">
+        <sha256 value="1caaab9022160322cb3107f3fe9e15b815ebd37f7568bc64952b590a2ddce706" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="play-sdk-proto" version="31.13.2">
+      <artifact name="play-sdk-proto-31.13.2.pom">
+        <sha256 value="6e345e9ecc22ad3ff37ec679dd0a2f45cdcb7d6fe6aec3247b002c89b36a5461" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="repository" version="31.13.2">
+      <artifact name="repository-31.13.2.pom">
+        <sha256 value="efee8a580eac7478c8aef9d30bce5a432753d26d940a5d953ff482ce413c663a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="sdk-common" version="31.13.2">
+      <artifact name="sdk-common-31.13.2.pom">
+        <sha256 value="7b33d73dd42847b04f59a51eaab71b3452c0d699f7c69659152b83863cc90cc4" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools" name="sdklib" version="31.13.2">
+      <artifact name="sdklib-31.13.2.pom">
+        <sha256 value="fec69846b670ab3dbaef2067ba5f9829aefb80477c9f7680f90f4a6be3695a58" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.analytics-library" name="crash" version="31.13.2">
+      <artifact name="crash-31.13.2.pom">
+        <sha256 value="f91761f271199b088e85b6232e059833e114f56a13f11a55795c76feb9636693" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.analytics-library" name="protos" version="31.13.2">
+      <artifact name="protos-31.13.2.pom">
+        <sha256 value="87e56dc6bc1e8b78760020508aa327d784ae6ce9aade6c1e9c7a4f3f26525ce0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.analytics-library" name="shared" version="31.13.2">
+      <artifact name="shared-31.13.2.pom">
+        <sha256 value="8a8b198d97d2ea7a01a6ae53c724707d66ba37a0404cb982349cece45f550c78" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.analytics-library" name="tracker" version="31.13.2">
+      <artifact name="tracker-31.13.2.pom">
+        <sha256 value="7f27c95dcaaefd92dceecb37e61b1a9b70141ecee86a210d9c57f46cae4f91c9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="aapt2" version="8.13.2-14304508">
+      <artifact name="aapt2-8.13.2-14304508.pom">
+        <sha256 value="7e085634f503d42a4f3ea14488c25d4a573914db23c64a5a05a0c5c186c93112" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="apksig" version="8.13.2">
+      <artifact name="apksig-8.13.2.pom">
+        <sha256 value="223ded8268e7f0ee9df0109d8049ced61474b5ebd848c2d3a088932a2c5cc823" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="apkzlib" version="8.13.2">
+      <artifact name="apkzlib-8.13.2.pom">
+        <sha256 value="b3348da025b08b533f2e6e39138692ea0b1a89955ddc3e1b8db1796a553146d4" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="com.android.tools.build" name="gradle" version="8.13.2">
       <artifact name="gradle-8.13.2.jar">
         <sha256 value="e494f7ce75ca6c1abff301d4a70b18fdd3d6af855875f4f85082bb7608f041de" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.ddms" name="ddmlib" version="31.13.2">
+      <artifact name="ddmlib-31.13.2.pom">
+        <sha256 value="9a884b3a0ced5f197ed35d5ff28dd440824aeb6a8c421fc68276eb81922ad0c0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.emulator" name="proto" version="31.13.2">
+      <artifact name="proto-31.13.2.pom">
+        <sha256 value="34f059227ad538ebc8ed19234490ced58a6e294845a72cbab114eb57a311356a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.external.com-intellij" name="intellij-core" version="31.13.2">
+      <artifact name="intellij-core-31.13.2.pom">
+        <sha256 value="21f7df870290113ee81b1c5a373c9cc99a3c252a3fbc76737c08532e5e910e51" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.external.com-intellij" name="kotlin-compiler" version="31.13.2">
+      <artifact name="kotlin-compiler-31.13.2.pom">
+        <sha256 value="2b2294ed4c07646b7ca29a362e04e5fbe489c5b3cf1d2bc4620a5c317666435f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.external.org-jetbrains" name="uast" version="31.13.2">
+      <artifact name="uast-31.13.2.pom">
+        <sha256 value="5b5c6c6b71f9815ee531560946bf579b7b9fa806aa9dfbf1b567ed6aa598ee18" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.layoutlib" name="layoutlib-api" version="31.13.2">
+      <artifact name="layoutlib-api-31.13.2.pom">
+        <sha256 value="b6d13597b292e5235c11ede0047fdce708ed9f0ade6b039c5f02770ba8d61053" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="junit" name="junit" version="4.13.2">

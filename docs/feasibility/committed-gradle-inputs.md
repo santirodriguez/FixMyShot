@@ -91,7 +91,7 @@ The official Kotlin release manifest has 982 path/checksum rows. Matching full M
 
 The actual 384,581-byte JUnit 4.13.2 JAR/SHA256 8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3 passed detached PGP verification with the exact publisher-maintained KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51. gpgv returned0/VALIDSIG for that fingerprint, with no bad/expired/revoked status. Signature SHA256 a8538f87f58b6f54b7a6ceffd01262b082c389622b0886c520878de1efb9eab9. Verification used a temporary public-only keyring created by dearmoring the pinned public key; no agent, user keyring, secret key, keyserver or owner-trust setting was involved. The inspected current publisher KEYS matched the release-commit file.
 
-The initial review established 75 exact artifacts/proof kinds. The [current review record](../../gradle/dependency-provenance-review.json) and [partial checksum candidate](../../gradle/reviewed-verification-candidate.xml) now include the separately reviewed Google subsets below: 133 exact files, 788 unreviewed and complete_for_baseline=false. The candidate is not named verification-metadata.xml and is not loaded by Gradle. No active trust policy changed. The default generated-capture auditor still reports unapproved provenance unless the separate reviewed evidence is considered; generated counts are not blanket issuer approval.
+The initial review established 75 exact artifacts/proof kinds. The [current review record](../../gradle/dependency-provenance-review.json) and [partial checksum candidate](../../gradle/reviewed-verification-candidate.xml) retain exact per-file evidence and authoritative current counters. The dated results below are scoped snapshots; the candidate remains incomplete. The candidate is not named verification-metadata.xml and is not loaded by Gradle. No active trust policy changed. The default generated-capture auditor still reports unapproved provenance unless the separate reviewed evidence is considered; generated counts are not blanket issuer approval.
 
 The offline reviewer reproduces the result from the exact evidence and baseline XML; 5 refusal tests plus real positive signature/manifest checks and altered-JAR/altered-manifest rejection passed. Further Google artifacts, the native issuer key, unsigned metadata, other versions/publishers and current vulnerability/security/license review remain open. A publisher digest/signature check is not a current safety verdict, independent build or release acceptance. No application/dependency version, Android permission, signing identity or ordinary validation request changed.
 
@@ -113,7 +113,7 @@ The [7-second data-only run](https://github.com/santirodriguez/FixMyShot/actions
 
 Exact detached-signature hashes and VALIDSIG statuses are retained in the current review JSON. Temporary public-only keyrings verified the actual captured bytes. Unused expired historical subkeys do not override the valid signer result; expired/revoked actual signers, wrong primary binding or weak digest are refused. The real altered-AAR check failed as required. Nine collector / eight reviewer cases passed.
 
-That review initially brought the candidate to 78/921; the later batch below brings the current inactive candidate to 133/921. The remaining 788 files, other publisher/native identities, unsigned metadata and current security/license review remain open. No group-wide Google trust, build-time signature policy or final release acceptance is inferred. No application, dependency version, normal validation request, signing identity or Android build input changed.
+That review initially brought the candidate to 78/921; later batches extend that snapshot. The current reviewed record owns the remaining-file count. Other publisher/native identities, unsigned metadata and current security/license review remain open. No group-wide Google trust, build-time signature policy or final release acceptance is inferred. No application, dependency version, normal validation request, signing identity or Android build input changed.
 
 
 ## Larger Google Maven batch — requested
@@ -135,4 +135,19 @@ Gradle aliases such as ui.aar and annotation-metadata-*.jar are retained separat
 
 Each new accepted file passed exact baseline SHA256, detached signature, strong digest, Google primary binding and a separate signing-key validity check. [GNU documents](https://www.gnupg.org/documentation/manuals/gnupg/gpgv.html) that gpgv itself does not check expired/revoked keys; the helper now inspects primary/actual-signer state and times in the pinned public bundle independently. The original 78 proofs were rechecked with that guard and retain the same exact artifact/proof identities. A real changed batch artifact and the actual Google signer after its advertised expiry were rejected. This does not establish fresh online revocation/security status.
 
-The current inactive XML/JSON subset contains 133/921 exact files, 788 pending: 64 AAR, 263 JAR, 175 module and 286 POM files. The 41 unsigned/unverified attempts are explicit deferred outcomes; the planner skips them automatically. No broad namespace trust, weak-signature allowance, active strict policy, Android rebuild or release acceptance follows. Canonical source hashes and per-file results are in the review JSON; raw capture/proof receipts remain source-bound in TESTING.
+After the first larger batch, the inactive XML/JSON subset contained 133/921 exact files, 788 pending: 64 AAR, 263 JAR, 175 module and 286 POM files. The 41 unsigned/unverified attempts are explicit deferred outcomes; the planner skips them automatically. No broad namespace trust, weak-signature allowance, active strict policy, Android rebuild or release acceptance follows. Canonical source hashes and per-file results are in the review JSON; raw capture/proof receipts remain source-bound in TESTING.
+
+
+## Second larger batch — 77 additional exact files verified
+
+[Actions 40062206602](https://github.com/santirodriguez/FixMyShot/actions/runs/40062206602), control 81af60aa7ddee8d71dedb217d178f1c6599022de / job 120777943158, SUCCESS in 30 seconds; collection took 25 seconds. Actual artifact 12547517709 / 6,319,600 B / ZIP SHA256 a8b77a2438fcda6e2c2c6f413e9ae5fdac8620860b5c0d40b6ae48354289d221 passed size, CRC, source/request and all 96 captured-file pins. Request SHA256 89c768f9f5ba2fceee1f995c43200df5aa914315896b8e0cff4e474d8deb675d; prior accepted 133-file receipt SHA256 288ea7b181f487857833e8f8b10fbdffeedc6207a523057d36f86dde4c5e1e50.
+
+| Files attempted | Verified | Signature absent | Signature unverified with inspected key |
+| --- | ---: | ---: | ---: |
+| 48 JAR/AAR | 31 | 12 | 5 |
+| 48 module/POM | 46 | 2 | 0 |
+| **96 total** | **77** | **14** | **5** |
+
+Each new accepted file passed exact baseline SHA256, actual detached signature, strong digest, inspected Google primary binding and explicit signing-key validity checks. All 133 previous reviewed identities/proofs remain unchanged. Source collector tests passed; actual changed batch bytes and a wrong control pin were refused. The new request was independently checked against the stable repository baseline and omitted all previous attempts before execution.
+
+After this batch, the inactive candidate contains 210/921 exact files, 711 pending: 47 AAR, 249 JAR, 151 module and 264 POM. Sixty deferred unsigned/unverified attempts across both batches remain within that backlog and are excluded from automatic replanning. No group-wide trust, current vulnerability/license verdict, active strict policy, signing, Android rebuild or release acceptance. Current counts and per-file outcomes are owned by the review JSON; snapshots here describe their specific source-bound runs.
