@@ -1028,3 +1028,16 @@ the grouped Android regression checkpoint are NOT RUN for this change. Earlier
 transfer to these changed build inputs. The next grouped checkpoint must inspect
 the new APK bytes and refresh the independent rebuild before delivery. Full
 transitive notices/licenses and physical/signing/distribution gates remain open.
+
+
+## Grouped legal/tooling checkpoint — requested
+
+The explicit current-profile request groups the canonical legal packaging at
+3cd2e909 with source-bound buildscript ownership reports for root/app/core/native.
+The build runs the existing core/lint/three-APK work and API36 regressions; no
+dependency versions, locks, legacy profile or native availability are changed.
+Build evidence must contain debug-legal.json, release-legal.json and the plain
+buildscript-dependencies.txt report with its SHA256, in addition to the existing
+source, APK and native receipts. A requested run is not acceptance. Inspect actual
+reports and terminal jobs; buildscript selection is not executed-code or app
+reachability evidence. Security remediation and independent rebuild remain open.

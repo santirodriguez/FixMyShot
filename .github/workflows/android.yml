@@ -69,7 +69,14 @@ jobs:
           sha256sum app/build/outputs/apk/debug/app-debug.apk \
             app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
             app/build/outputs/apk/release/app-release-unsigned.apk > evidence/apk-sha256.txt
-      - name: Inspect actual APK libraries
+      - name: Capture selected buildscript dependency ownership
+        run: |
+          ./gradlew --no-daemon --console=plain \
+            buildEnvironment :app:buildEnvironment :core:buildEnvironment :codec-native:buildEnvironment \
+            > evidence/buildscript-dependencies.txt
+          sha256sum evidence/buildscript-dependencies.txt > evidence/buildscript-dependencies.sha256
+          git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
+      - name: Inspect actual APK libraries and canonical legal assets
         run: |
           python3 scripts/check-apk.py app/build/outputs/apk/debug/app-debug.apk > evidence/debug-native.json
           python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json

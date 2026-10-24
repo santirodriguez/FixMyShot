@@ -42,6 +42,18 @@ This is component-selection evidence, not proof that every listed file is packag
 
 Handle tooling remediation in one deliberate checkpoint: first recover buildscript/plugin configuration ownership for the unresolved captures, then choose a compatible AGP/UTP and Kotlin set, refresh the complete owned graphs and rerun the bounded inventory and Android validation once. Avoid forced individual Netty/Protobuf/Bouncy Castle overrides that leave their owning stack untested. Until then, keep the security gate open and retain the precise KAPT applicability limitation above.
 
+The next ordinary Android checkpoint captures Gradle's `buildEnvironment` reports
+for the root, app, core and codec-native projects in
+`evidence/buildscript-dependencies.txt`, with a SHA256 receipt, alongside the
+existing exact source and build evidence. Read the selected versions and parent
+paths (including conflict-resolution arrows), not just matching coordinate text.
+These reports describe the selected buildscript classpaths; they do not prove
+that every tooling operation ran, establish APK inclusion or cover every detached
+configuration. A missing path remains unresolved. No dependency overrides or
+toolchain upgrades are introduced merely to collect this evidence. Review the
+actual report before choosing a compatible upgrade; collection alone does not
+close the security gate.
+
 ## Evidence that survives the hosted artifact
 
 | Receipt | Value |

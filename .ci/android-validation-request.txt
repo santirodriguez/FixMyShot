@@ -1,18 +1,16 @@
-Grouped preparation recheck and verified sharing checkpoint.
-Implementation base: 99db9cffb05e92b1bd40d5fe51eb39e6fa92f73a.
-Validate bfdb823f preparation recheck together with99db9cff resolver-free share payload.
-Require core/lint/debug/unsigned-release/test APK build plus full API36 regression:
-236 matching locale keys; renderer6/cache3/private20/transaction12/export-flow5,
-share4/settings-session-native21/batch7/retry8/recovery16,
-80 actual PNG/WebP encodes and unchanged final source-bound smoke/native/grid/layout guards.
-Preparation assertions must preserve draft/zero allocation on refused destination,
-allow deliberate full recheck/cancellation, repeat blocked rejection and refuse fresh
-preparation for already published/uncertain results. No duplicated successful output.
-Share assertions must preserve all selected URI order/extras, exact single/mixed MIME
-metadata, only temporary read permission, complete100-item payload and101 refusal.
-The actual provider digest/receipt checks remain mandatory before payload construction.
-No isolated rerun, weaker alpha/uncertainty assertion, legacy/automatic-locale/JXL run,
-native export enablement, production signing, main merge or release.
-Receiver/grant-revocation/physical UI, real-provider/process-kill/disk-pressure,
-hardware HEIC/AVIF fidelity/fallback and16KiB acceptance remain separate gates.
+Grouped canonical legal packaging and tooling ownership checkpoint.
+Implementation base: 3cd2e9095c24f4a19912fb87f46aed07459f85c0.
+Run the existing core/lint/debug/unsigned-release/test APK build and full API36
+regression suite, with unchanged source-bound smoke/native/grid/layout guards.
+Require the actual debug and release APKs to contain byte-exact canonical GPL,
+THIRD_PARTY_NOTICES, Apache text and existing WebP COPYING/PATENTS, verified by
+scripts/check-apk-legal.py; preserve both legal JSON receipts in build evidence.
+Capture root/app/core/codec-native buildEnvironment reports and their SHA256
+without upgrading versions, forcing transitive overrides or changing lockfiles.
+Reports establish selected buildscript paths only, not code execution or APK
+reachability. Keep unresolved security/issuer/license findings open.
+No isolated case, legacy/automatic-locale/JXL run, native export enablement,
+production signing, main merge, tag or release. Physical/manual gates remain open.
+Prior773 Android/rebuild evidence is historical; these changed build inputs need
+fresh artifact inspection and, before delivery, a new independent unsigned rebuild.
 profile=current
