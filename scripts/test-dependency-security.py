@@ -28,7 +28,7 @@ class SecurityInventory(unittest.TestCase):
         rows = audit.inventory(Path('.'), policy)
         self.assertEqual(len(rows), 515)
         self.assertEqual(len({x['coordinate'] for x in rows}), len(rows))
-        self.assertTrue(any(x['scope'] == 'capture_only_unselected' for x in rows))
+        self.assertTrue(any(x['scope'] == 'capture_without_lockfile_selection' for x in rows))
         runtime = [x for x in rows if x['scope'] == 'app_release_runtime']
         self.assertTrue(runtime)
         self.assertTrue(all(any(a['lockfile'] == 'app/gradle.lockfile' and

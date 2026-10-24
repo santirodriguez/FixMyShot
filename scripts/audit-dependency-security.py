@@ -61,7 +61,7 @@ def inventory(root, policy):
         group, name, version = coordinate.split(':')
         associations = selected.get(coordinate, [])
         release = any(x['lockfile'] == LOCKS[0] and 'releaseRuntimeClasspath' in x['configurations'] for x in associations)
-        scope = 'app_release_runtime' if release else ('selected_other_configuration' if associations else 'capture_only_unselected')
+        scope = 'app_release_runtime' if release else ('selected_other_configuration' if associations else 'capture_without_lockfile_selection')
         rows.append({'coordinate': coordinate, 'scope': scope, 'lock_associations': associations,
                      'query': {'package': {'name': group+':'+name, 'ecosystem': 'Maven'}, 'version': version}})
     rows.append({'coordinate': 'webmproject/libwebp@'+policy['native_commit'], 'scope': 'native_runtime_source',

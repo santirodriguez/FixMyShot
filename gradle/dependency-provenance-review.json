@@ -6,8 +6,8 @@
   "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
   "review_script_sha256": "54f8fb73e0744a5f87bb21f2eb98fc5d559a38ceba7cd0a6ef14baafebd23330",
   "captured_artifact_count": 921,
-  "reviewed_artifact_count": 368,
-  "remaining_unreviewed_artifact_count": 553,
+  "reviewed_artifact_count": 379,
+  "remaining_unreviewed_artifact_count": 542,
   "complete_for_baseline": false,
   "active_gradle_policy_changed": false,
   "kotlin_manifest_sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
@@ -2985,6 +2985,94 @@
       "file": "utp-common-31.13.2.jar",
       "sha256": "cde678a64b13041cdd2cc9dad1685990a1d090fb04ff5da2261ff75a83598106",
       "proof": "Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-reflect",
+      "version": "2.2.0",
+      "file": "kotlin-reflect-2.2.0.jar",
+      "sha256": "230d91c2e410e3cfca3a4dc73d255455f62ff52aac091a33397a6e30bde91bf7",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-reflect",
+      "version": "2.2.0",
+      "file": "kotlin-reflect-2.2.0.pom",
+      "sha256": "deed831efcb663e4cf3d5121e5ae796f201e37b813d2c7d607b5f1f8a86fe52e",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-2.2.0.jar",
+      "sha256": "65d12d85a3b865c160db9147851712a64b10dadd68b22eea22a95bf8a8670dca",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-2.2.0.module",
+      "sha256": "a5b98fdcd9db017d542e197225dcee18d658a56de1db2cc41e13196d6b1769a4",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-common",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-common-2.2.0.module",
+      "sha256": "58fc0d664fc3a67e7e6be9fdbeaedbd212dfa3e527f744f861e792cda72c0e47",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk7",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-jdk7-2.2.0.jar",
+      "sha256": "0d10bc0d42b8605f23629a3f31ea27c19cdbca9dcdf4f53f6d22cd6366836d18",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk7",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-jdk7-2.2.0.pom",
+      "sha256": "95c2189c35ef7bfc48951c32ad70847b21f3809d26f5d0a76e23570879988c30",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk8",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-jdk8-2.2.0.jar",
+      "sha256": "adc16648dbbcf35b0d10e7ec301c35d746d1c2fe460c606aba59f12b117cf9b0",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-jdk8",
+      "version": "2.2.0",
+      "file": "kotlin-stdlib-jdk8-2.2.0.pom",
+      "sha256": "234d06fdbdc29dcbc07447e28c4a26abab9599d5c3daa3d92a34e6aedea236a6",
+      "proof": "Kotlin official v2.2.0 release checksum manifest SHA256 abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.20",
+      "file": "kotlin-stdlib-2.2.20-all.jar",
+      "sha256": "555cdb4c884a584c1b5d59f696fb76cd660917fab36b8ae8032bcd62c750efe5",
+      "proof": "Kotlin official v2.2.20 release checksum manifest SHA256 12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.20",
+      "file": "kotlin-stdlib-2.2.20.module",
+      "sha256": "c918f5214d021a72e3767f2756e97d103a526e04f1423da3663efdfb5847db95",
+      "proof": "Kotlin official v2.2.20 release checksum manifest SHA256 12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8"
     }
   ],
   "batch_review_script_sha256": "64253472edae462fab2164543e9828cbe3bf6b1e10765bd2d19ea839a1407584",
@@ -8207,6 +8295,101 @@
           "status": "VERIFIED",
           "signature_sha256": "ec1b833fc30e9a8b5699c4aacf77933f42b94d2bcd0123149e277a039f0e10ff",
           "validsig_status": "[GNUPG:] VALIDSIG 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42 2025-12-10 1765394917 0 4 0 1 8 00 EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+        }
+      ]
+    }
+  ],
+  "publisher_manifest_batches": [
+    {
+      "control_commit": "64745e1f88df2ecf488f1fc650854f186f6abe7a",
+      "request_sha256": "eda0cfc56b209076d45a1a2c1d3349c88b78c738e24ed71dfefd1d98faf33099",
+      "report_sha256": "08b5c165d905e2e8aefc9b96f578e0c5df068e26de8b00735ac8d15a3c23203e",
+      "prior_review_sha256": "49f7a64bf093b7a4b699014a7ab9bf7614f7917529af096ed9575f63968d63dc",
+      "registry_sha256": "cb3fc072e6e97e7dd692e649cbc974e01f4c7bae4b9ac5d638753ec1e2ecccbe",
+      "review_script_sha256": "c39ef77e9a1137de9b0194f8f2faa3e78346671c142a32a3316588f62bb21ac7",
+      "verified_file_count": 11,
+      "outcomes": [
+        {
+          "version": "2.2.0",
+          "asset_sha256": "abde7191f66e42bc01f38cb7190ecc4c142ef3303ce9dc0573c18a34519ab363",
+          "status": "MATCHED_PIN",
+          "verified_files": [
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-reflect",
+              "2.2.0",
+              "kotlin-reflect-2.2.0.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-reflect",
+              "2.2.0",
+              "kotlin-reflect-2.2.0.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.2.0",
+              "kotlin-stdlib-2.2.0.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.2.0",
+              "kotlin-stdlib-2.2.0.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-common",
+              "2.2.0",
+              "kotlin-stdlib-common-2.2.0.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-jdk7",
+              "2.2.0",
+              "kotlin-stdlib-jdk7-2.2.0.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-jdk7",
+              "2.2.0",
+              "kotlin-stdlib-jdk7-2.2.0.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-jdk8",
+              "2.2.0",
+              "kotlin-stdlib-jdk8-2.2.0.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-jdk8",
+              "2.2.0",
+              "kotlin-stdlib-jdk8-2.2.0.pom"
+            ]
+          ],
+          "manifest_path_count": 952
+        },
+        {
+          "version": "2.2.20",
+          "asset_sha256": "12df17501d75511d19cd5a34120f44afa48b501b7ac6950930e9be673987b5f8",
+          "status": "MATCHED_PIN",
+          "verified_files": [
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.2.20",
+              "kotlin-stdlib-2.2.20-all.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.2.20",
+              "kotlin-stdlib-2.2.20.module"
+            ]
+          ],
+          "manifest_path_count": 982
         }
       ]
     }
