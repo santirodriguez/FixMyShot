@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+  "entries": [
+    {
+      "id": "artifact-0",
+      "kind": "artifact",
+      "coordinate": "com.android.tools.build:gradle:8.13.2",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/8.13.2/gradle-8.13.2.jar",
+      "sha256": "e494f7ce75ca6c1abff301d4a70b18fdd3d6af855875f4f85082bb7608f041de",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "artifact-1",
+      "kind": "artifact",
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.21",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-gradle-plugin/2.2.21/kotlin-gradle-plugin-2.2.21-gradle813.jar",
+      "sha256": "b7a52865c6a5e160d2cf61e4d423ce44a6a20de0a6b23d03404b6d01a2811737",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "artifact-2",
+      "kind": "artifact",
+      "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/heifwriter/heifwriter/1.2.0-rc01/heifwriter-1.2.0-rc01.aar",
+      "sha256": "2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "artifact-3",
+      "kind": "artifact",
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.aar",
+      "sha256": "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "artifact-4",
+      "kind": "artifact",
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+      "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "artifact-5",
+      "kind": "artifact",
+      "coordinate": "junit:junit:4.13.2",
+      "url": "https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar",
+      "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "kotlin-publisher-checksums",
+      "kind": "publisher",
+      "url": "https://github.com/JetBrains/kotlin/releases/download/v2.2.21/maven-2.2.21-sha256.txt",
+      "sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
+      "max_bytes": 262144
+    },
+    {
+      "id": "junit-publisher-keys",
+      "kind": "publisher",
+      "url": "https://raw.githubusercontent.com/junit-team/junit4/05fe2a64f59127c02135be22f416e91260d6ede6/KEYS",
+      "sha256": "fcb938a928b643fb76985f9ce3634d9dad170dfe6c1b276e920844822538d5f7",
+      "max_bytes": 8192
+    }
+  ]
+}

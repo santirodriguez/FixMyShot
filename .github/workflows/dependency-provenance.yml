@@ -1,0 +1,33 @@
+name: Dependency publisher evidence
+# One explicit data-only collection; no SDK, Gradle, emulator, signing or trust activation.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/dependency-provenance-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: dependency-provenance-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    env:
+      CONTROL_COMMIT: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check collector refusal boundaries
+        run: python3 scripts/test-dependency-provenance.py
+      - name: Collect pinned public artifacts and publisher evidence without executing them
+        run: python3 scripts/collect-dependency-provenance.py .ci/dependency-provenance-request.json evidence/dependency-provenance --control-commit "$CONTROL_COMMIT"
+      - name: Preserve captured bytes and truthful partial reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: dependency-provenance-${{ github.sha }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/dependency-provenance/
