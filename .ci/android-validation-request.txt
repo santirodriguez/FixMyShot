@@ -1,16 +1,18 @@
-Grouped export storage, proven-refusal recovery and deliberate finish checkpoint.
-Implementation base: 48a2c11d4dc51e0de77b83dee0f6ab63b510fd02.
-Validate accumulated private candidate reserve, known BEFORE-delegate refusal fixture
-correction and finish-review confirmation, preserving uncertain-create retry barriers.
-Require core/lint/debug/unsigned-release/test APK build plus API36 regression:
-236 matching locale keys; transaction12, renderer6/cache3, settings/session/native21,
-private20, export-flow5/recovery16, batch7/retry8/share4,
-and unchanged codec/native diagnostic classifications and final source-bound guards.
-Require exact retained original/candidate bytes, successful output URI preservation,
-only remaining proven-safe items retried, and two actual outputs in restart recovery.
-The finish dialog needs compilation; its manual interaction/accessibility is NOT RUN.
-No individual-case rerun, weaker uncertainty/alpha assertion, legacy/automatic locale/JXL
-experiment, native export enablement, production signing, main merge or release.
-Real disk exhaustion/quota/concurrency, remote-provider/process-kill, physical UI,
-hardware native-format fidelity/fallback and 16KiB acceptance remain separate gates.
+Grouped preparation recheck and verified sharing checkpoint.
+Implementation base: 99db9cffb05e92b1bd40d5fe51eb39e6fa92f73a.
+Validate bfdb823f preparation recheck together with99db9cff resolver-free share payload.
+Require core/lint/debug/unsigned-release/test APK build plus full API36 regression:
+236 matching locale keys; renderer6/cache3/private20/transaction12/export-flow5,
+share4/settings-session-native21/batch7/retry8/recovery16,
+80 actual PNG/WebP encodes and unchanged final source-bound smoke/native/grid/layout guards.
+Preparation assertions must preserve draft/zero allocation on refused destination,
+allow deliberate full recheck/cancellation, repeat blocked rejection and refuse fresh
+preparation for already published/uncertain results. No duplicated successful output.
+Share assertions must preserve all selected URI order/extras, exact single/mixed MIME
+metadata, only temporary read permission, complete100-item payload and101 refusal.
+The actual provider digest/receipt checks remain mandatory before payload construction.
+No isolated rerun, weaker alpha/uncertainty assertion, legacy/automatic-locale/JXL run,
+native export enablement, production signing, main merge or release.
+Receiver/grant-revocation/physical UI, real-provider/process-kill/disk-pressure,
+hardware HEIC/AVIF fidelity/fallback and16KiB acceptance remain separate gates.
 profile=current
