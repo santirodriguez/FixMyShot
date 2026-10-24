@@ -1,0 +1,76 @@
+name: Independent unsigned rebuild
+# Explicit release-readiness probe; no emulator or ordinary integration run.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/independent-rebuild-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: independent-rebuild-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  rebuild:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      WORKFLOW_CONTROL_COMMIT: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Validate explicit source and baseline request
+        id: request
+        run: |
+          printf 'GRADLE_USER_HOME=%s/fixmyshot-independent-gradle\n' "$RUNNER_TEMP" >> "$GITHUB_ENV"
+          python3 scripts/test-independent-rebuild.py
+          python3 scripts/check-independent-rebuild.py request .ci/independent-rebuild-request.json --github-output "$GITHUB_OUTPUT"
+          cp scripts/check-independent-rebuild.py "$RUNNER_TEMP/fixmyshot-rebuild-controller.py"
+          cp .ci/independent-rebuild-request.json "$RUNNER_TEMP/fixmyshot-rebuild-request.json"
+      - name: Check out the exact previously built source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ steps.request.outputs.source_commit }}
+          persist-credentials: false
+          clean: true
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Require pinned source and a fresh build start
+        run: |
+          python3 "$RUNNER_TEMP/fixmyshot-rebuild-controller.py" verify "$RUNNER_TEMP/fixmyshot-rebuild-request.json" --workspace "$GITHUB_WORKSPACE" --cache "$GRADLE_USER_HOME"
+          mkdir -p evidence
+          cp "$RUNNER_TEMP/fixmyshot-rebuild-request.json" evidence/rebuild-request.json
+          cp "$RUNNER_TEMP/fixmyshot-rebuild-controller.py" evidence/rebuild-controller.py
+          git rev-parse HEAD > evidence/source-sha.txt
+          git rev-parse 'HEAD^{tree}' > evidence/source-tree.txt
+          git archive --format=tar HEAD -o evidence/source.tar
+      - name: Install the source-pinned Android packages and validate wrapper
+        run: |
+          bash scripts/setup-android.sh
+          bash scripts/bootstrap-gradle.sh
+          ./gradlew --version > evidence/gradle-version.txt
+      - name: Rebuild core tests and unsigned release without build-cache reuse
+        run: |
+          ./gradlew --no-daemon --no-build-cache --rerun-tasks --write-verification-metadata sha256 :core:test :app:assembleRelease
+          git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
+          python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json
+      - name: Compare exact unsigned bytes and preserve a mismatch report
+        run: |
+          python3 "$RUNNER_TEMP/fixmyshot-rebuild-controller.py" compare "$RUNNER_TEMP/fixmyshot-rebuild-request.json" --workspace "$GITHUB_WORKSPACE" --apk app/build/outputs/apk/release/app-release-unsigned.apk --control-commit "$WORKFLOW_CONTROL_COMMIT" --report evidence/independent-rebuild.json
+      - name: Preserve source, comparison and actual unsigned candidate
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: independent-rebuild-${{ github.sha }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: |
+            evidence/
+            gradle/verification-metadata.xml
+            app/gradle.lockfile
+            core/gradle.lockfile
+            codec-native/gradle.lockfile
+            core/build/test-results/
+            app/build/outputs/apk/release/app-release-unsigned.apk

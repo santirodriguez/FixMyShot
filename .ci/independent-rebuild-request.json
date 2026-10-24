@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "source_tree": "3574454a5e70607765a648eb33880777de1fb3ed",
+  "baseline_run_id": 40047858334,
+  "baseline_artifact_id": 12542905033,
+  "baseline_archive_sha256": "9fdd171c785a2e766b492403b57a4d087a8487b08b3ed9967087553f30224134",
+  "expected_unsigned_apk_sha256": "66ae94204ff3de3f76936dbf7f3f96245783e15dfbb89a995297b0ff4e6b4738",
+  "expected_unsigned_apk_bytes": 23495607
+}
