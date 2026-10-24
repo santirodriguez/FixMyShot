@@ -151,3 +151,20 @@ After the first larger batch, the inactive XML/JSON subset contained 133/921 exa
 Each new accepted file passed exact baseline SHA256, actual detached signature, strong digest, inspected Google primary binding and explicit signing-key validity checks. All 133 previous reviewed identities/proofs remain unchanged. Source collector tests passed; actual changed batch bytes and a wrong control pin were refused. The new request was independently checked against the stable repository baseline and omitted all previous attempts before execution.
 
 After this batch, the inactive candidate contains 210/921 exact files, 711 pending: 47 AAR, 249 JAR, 151 module and 264 POM. Sixty deferred unsigned/unverified attempts across both batches remain within that backlog and are excluded from automatic replanning. No group-wide trust, current vulnerability/license verdict, active strict policy, signing, Android rebuild or release acceptance. Current counts and per-file outcomes are owned by the review JSON; snapshots here describe their specific source-bound runs.
+
+
+## Third larger batch — partial capture, 63 additional exact files verified
+
+[Actions 40097278077](https://github.com/santirodriguez/FixMyShot/actions/runs/40097278077), control f60178606ad269097ecbf9740361bbc5f7fd95d9 / job 120882057272, finished FAILURE in 27 seconds; collection took 19 seconds. This is an incomplete data capture, not a failed Android build. Actual artifact 12561213357 / 9,231,510 B / ZIP SHA256 ae1876cecab60a3349aa2662bec817664f1945f3fda3af234324bfc14b04f07d passed size, CRC, source/request checks and all 87 matched capture pins. The remaining capture, com.android.tools.analytics-library:protos:31.13.2 JAR, returned FETCH_OR_VALIDATION_ERROR under its 4 MiB limit; its precise cause was not separately established. It remains deferred, with no retry or increased limit.
+
+Request SHA256 e60ec6979cbd0fb7e9dd6585d9c67611e53c9d4d6e5bbceb290f23b1e94ad2ff; prior accepted 210-file receipt SHA256 8f6810b272af7f5b69309ea59ad0dd9a62b8edd131199eea6f37b3dc6906b858. A successful hash match is still not publisher approval: each new accepted file separately passed its actual detached signature, strong digest, inspected primary binding and signing-key validity checks.
+
+| Files attempted | Verified | Signature absent | Signature unverified | Capture unavailable |
+| --- | ---: | ---: | ---: | ---: |
+| 48 JAR/AAR | 30 | 10 | 7 | 1 |
+| 40 module/POM | 33 | 3 | 4 | 0 |
+| **88 total** | **63** | **13** | **11** | **1** |
+
+All 210 earlier artifact/proof identities are preserved. After this batch: 273/921 reviewed, 648 pending (34 AAR, 232 JAR, 134 module, 248 POM), including 85 deferred outcomes across 280 attempts. No automatically retried failures, broad issuer trust, active strict policy, Android rebuild, current vulnerability/license verdict or release acceptance.
+
+The staged [.ci/google-maven-next-request.json](../../.ci/google-maven-next-request.json) combines all 128 remaining unattempted files on the Google Maven route: 46 JAR and 82 module files. Its 58,505-byte request declares 252,706,816 bytes including signatures (241 MiB), within the existing 64 KiB / 128-entry / 256 MiB / 120-second bounds. Exact baseline identities, hashes, canonical routes and omission of all 280 attempts/all 273 approved files were checked. This separately staged request does not trigger the collection, Android or rebuild workflows; the ordinary planner is unchanged. It must be deliberately activated as a future step. Current counters and exact outcomes remain owned by the review JSON.
