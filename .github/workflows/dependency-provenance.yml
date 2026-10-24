@@ -23,6 +23,11 @@ jobs:
         run: python3 scripts/test-dependency-provenance.py
       - name: Collect pinned public artifacts and publisher evidence without executing them
         run: python3 scripts/collect-dependency-provenance.py .ci/dependency-provenance-request.json evidence/dependency-provenance --control-commit "$CONTROL_COMMIT"
+      - name: Inventory database matches for the explicitly paired dependency snapshot
+        if: ${{ !cancelled() && hashFiles('.ci/dependency-security-request.json') != '' }}
+        run: |
+          python3 scripts/test-dependency-security.py
+          python3 scripts/audit-dependency-security.py .ci/dependency-security-request.json evidence/dependency-provenance/security --control-commit "$CONTROL_COMMIT"
       - name: Preserve captured bytes and truthful partial reports
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
