@@ -1,0 +1,621 @@
+{
+  "schema": 1,
+  "status": "PARTIAL_PUBLISHER_REVIEW__NOT_ACTIVE",
+  "evidence_control_commit": "fa1cc608ac2d07a22525c7170eb7683d1eda7880",
+  "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+  "review_script_sha256": "47beb74b3093027627bab3a83bcc8e94a0f50930fbb6eff87bbf97d56b825623",
+  "captured_artifact_count": 921,
+  "reviewed_artifact_count": 75,
+  "remaining_unreviewed_artifact_count": 846,
+  "complete_for_baseline": false,
+  "active_gradle_policy_changed": false,
+  "kotlin_manifest_sha256": "791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8",
+  "junit_keys_sha256": "fcb938a928b643fb76985f9ce3634d9dad170dfe6c1b276e920844822538d5f7",
+  "junit_signing_fingerprint": "FF6E2C001948C5F2F38B0CC385911F425EC61B51",
+  "junit_signature_sha256": "a8538f87f58b6f54b7a6ceffd01262b082c389622b0886c520878de1efb9eab9",
+  "junit_validsig_status": "[GNUPG:] VALIDSIG FF6E2C001948C5F2F38B0CC385911F425EC61B51 2021-02-13 1613233899 0 4 0 1 8 00 FF6E2C001948C5F2F38B0CC385911F425EC61B51",
+  "current_vulnerability_review": "OPEN",
+  "reviewed_artifacts": [
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "abi-tools",
+      "version": "2.2.21",
+      "file": "abi-tools-2.2.21.jar",
+      "sha256": "24bacf795029d2831608d9b31fa8d0d29fe1c3fba7a9b2c7630d1593f2389884",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "abi-tools",
+      "version": "2.2.21",
+      "file": "abi-tools-2.2.21.pom",
+      "sha256": "953d6734472b99889402704567145f6cd9d0141e12724435c902c34569682cdc",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "abi-tools-api",
+      "version": "2.2.21",
+      "file": "abi-tools-api-2.2.21.jar",
+      "sha256": "239901f317c189b4b4cc8bc5e966943dc19e39259539e668baa5d7ef18eb916a",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "abi-tools-api",
+      "version": "2.2.21",
+      "file": "abi-tools-api-2.2.21.pom",
+      "sha256": "92490acca0f450581d56ce057961d8ffa9835587e69f66e96d0a7175bacecd85",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-compiler-gradle-plugin",
+      "version": "2.2.21",
+      "file": "compose-compiler-gradle-plugin-2.2.21-gradle813.jar",
+      "sha256": "2dc6478dc179f8596c1faec059b1f06fea785f3c05241663690a6f7a160618c2",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-compiler-gradle-plugin",
+      "version": "2.2.21",
+      "file": "compose-compiler-gradle-plugin-2.2.21.module",
+      "sha256": "915bffefe0095e822466743495347bcd94eff8415a5cf1f0aa956d8c1861df6d",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "fus-statistics-gradle-plugin",
+      "version": "2.2.21",
+      "file": "fus-statistics-gradle-plugin-2.2.21-gradle813.jar",
+      "sha256": "27dcf4aeaa5bbb64d861bd29ed60d482f0ffd96244c81e2426b9dac5e7fdc63f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "fus-statistics-gradle-plugin",
+      "version": "2.2.21",
+      "file": "fus-statistics-gradle-plugin-2.2.21.module",
+      "sha256": "495659b39e305541ecb712e69b622e13e38ad9240f9a827ca058434bd99f211d",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-statistics",
+      "version": "2.2.21",
+      "file": "kotlin-build-statistics-2.2.21.jar",
+      "sha256": "8dfdfb2b8f67fcdcc4cee3ef90a25af467ca295853b0ea019d0010acebd6f18a",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-statistics",
+      "version": "2.2.21",
+      "file": "kotlin-build-statistics-2.2.21.pom",
+      "sha256": "c8bf62f6dca6d79f436c40b1af09db42f46ebf4bcd72b3079df8c725b5c06358",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-api",
+      "version": "2.2.21",
+      "file": "kotlin-build-tools-api-2.2.21.jar",
+      "sha256": "31645ca52239b221ebd060a00fff8d8516ffdc88bbd9f4e4cd7ddb41a7068c70",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-api",
+      "version": "2.2.21",
+      "file": "kotlin-build-tools-api-2.2.21.pom",
+      "sha256": "63fdcf1ded2ab45ad77c049979faa44f190f7bb8eeac4f81f9877e9dfa9fd9f9",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-impl",
+      "version": "2.2.21",
+      "file": "kotlin-build-tools-impl-2.2.21.jar",
+      "sha256": "458b63ef8fc50a0a3180fe688ec1b995745992a05c495dac61e58d1088927a80",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-impl",
+      "version": "2.2.21",
+      "file": "kotlin-build-tools-impl-2.2.21.pom",
+      "sha256": "2e7fdca20165cf10e73b62f835f67eecf427c823ed60f19d5f006eb674345afe",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-compiler-embeddable-2.2.21.jar",
+      "sha256": "9588fa696ac5507af764fd5660df6894185e12704ec1bc3f5cb772af4987f295",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-compiler-embeddable-2.2.21.pom",
+      "sha256": "0b33c64f2622ba3bc8283378bdb7505f2be330a2275807038ad54359b33ddf9b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-runner",
+      "version": "2.2.21",
+      "file": "kotlin-compiler-runner-2.2.21.jar",
+      "sha256": "a3a422e06bcd35a32a798d191ef6ebb35ea6b39c3553e941d39c01e631fc5c77",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-runner",
+      "version": "2.2.21",
+      "file": "kotlin-compiler-runner-2.2.21.pom",
+      "sha256": "1f103d8bde08ddd614bd983abdfcb7949139c606ac60cd8a68941fd0fb1ee124",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compose-compiler-plugin-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-compose-compiler-plugin-embeddable-2.2.21.jar",
+      "sha256": "bd6b2db8bbf5ef1c12888ae885b72054e70cea7ef4d6e8bb5eca4faa0539393f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compose-compiler-plugin-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-compose-compiler-plugin-embeddable-2.2.21.pom",
+      "sha256": "6ac3887fb687b7bddc943b505c63ee9830e7a8f4a1edb1d5cc3c3c9f2cfca3dd",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-client",
+      "version": "2.2.21",
+      "file": "kotlin-daemon-client-2.2.21.jar",
+      "sha256": "3ce2ca3c5d7bc7c87c4149ac2c593d21a791d6776229ae123db645a3017de814",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-client",
+      "version": "2.2.21",
+      "file": "kotlin-daemon-client-2.2.21.pom",
+      "sha256": "4f6fddbc10d9b2167899e34fa113fc9ad75cc4d6ce58ab84f9614b63c05f8da3",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-daemon-embeddable-2.2.21.jar",
+      "sha256": "91c0673c22e44b054ae0314d323860ebe1f3aff3f0ebc74fff82c4733dde09be",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-daemon-embeddable-2.2.21.pom",
+      "sha256": "170bdbecba57ff00a2b8d17ef2c79e08b85f67df69d853ba0a259a4183bfb923",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-2.2.21-gradle813.jar",
+      "sha256": "b7a52865c6a5e160d2cf61e4d423ce44a6a20de0a6b23d03404b6d01a2811737",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-2.2.21.module",
+      "sha256": "4e23802a3d530024ac465acd26487d6a3a702ee804cd613349c5108deabf4ba2",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-annotations",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-annotations-2.2.21.jar",
+      "sha256": "3594c40c7005d044952f80f704172bb6fd1844241025194fb16bee6d45da2e5b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-annotations",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-annotations-2.2.21.pom",
+      "sha256": "544ae92ab377408fc1ed304ec41a2eec4293e0f2e139b3d2f6fd27205f14637f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-api",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-api-2.2.21-gradle813.jar",
+      "sha256": "b7bfd07f5f1e0a44af612eb48474df6328ee0f6f3a6a73642ce473f30645e1a5",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-api",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-api-2.2.21.jar",
+      "sha256": "b7bfd07f5f1e0a44af612eb48474df6328ee0f6f3a6a73642ce473f30645e1a5",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-api",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-api-2.2.21.module",
+      "sha256": "1e74b486f944ab9e116f9a4aae20c52fc2f9ac523a552db97dd6581480fe940b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-idea-2.2.21.jar",
+      "sha256": "ec969c5f0b099f823846232238f9bd64f3d3741e62ea9050ad2e432fad79d0a0",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-idea-2.2.21.module",
+      "sha256": "9151ae223787f1c20b70b24a117789b4d14d0cc484e462732cb230a797f75bcf",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea-proto",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-idea-proto-2.2.21.jar",
+      "sha256": "4b4be774efb9585af0fda180d33903d8272e497df7b81bb091fa9339ecda45bd",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea-proto",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-idea-proto-2.2.21.pom",
+      "sha256": "ba1bce248e47458eed46685eba212b793ffb7d37e429dff670a213ddd102d0c0",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-model",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-model-2.2.21.jar",
+      "sha256": "908e6e5c890bb49dbc9266dccf28bdb0c258c48647039aed702fe9d586640186",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-model",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugin-model-2.2.21.module",
+      "sha256": "fe446e71d58b9f5bdead8ef05b68b498617317e1b92d47b9ab3b674d64f27664",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugins-bom",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugins-bom-2.2.21.module",
+      "sha256": "dc4fc0f35a5532a53a432ee4fe2243132548555f275f63ee6990d50333f8ce2a",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugins-bom",
+      "version": "2.2.21",
+      "file": "kotlin-gradle-plugins-bom-2.2.21.pom",
+      "sha256": "25f44666339deee0106a76ea5efccfab34afcfdb960a7672fb887f71ba0da8bd",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-api",
+      "version": "2.2.21",
+      "file": "kotlin-klib-commonizer-api-2.2.21.jar",
+      "sha256": "58bc451ce62ed6befd077ac107ea5f133443e74dd78cf3a4a48f868e61837e8b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-api",
+      "version": "2.2.21",
+      "file": "kotlin-klib-commonizer-api-2.2.21.pom",
+      "sha256": "c8992a77a96d2b9f8d81374c40bd71d32e21d9ff1cdb799d15d49718b12a12e1",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-klib-commonizer-embeddable-2.2.21.jar",
+      "sha256": "fff95b9b5995798116407a7c0ca2da28f7d3304eee65191c7fe79b404f5f7308",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-klib-commonizer-embeddable-2.2.21.pom",
+      "sha256": "bebc0d696c91dc15d1e7f937f10a2074df97a76c25671a1a7aa4534a9c398365",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-metadata-jvm",
+      "version": "2.2.21",
+      "file": "kotlin-metadata-jvm-2.2.21.jar",
+      "sha256": "e181f32a21a3cdf195f974004a42f0067c2bd9deaa2a883636748d83fdefd99d",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-metadata-jvm",
+      "version": "2.2.21",
+      "file": "kotlin-metadata-jvm-2.2.21.pom",
+      "sha256": "4cb6bd5de8aed7293a8befae7a900c3c36ac927c4094cc7027f4ab58cd6b3c9d",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-native-utils",
+      "version": "2.2.21",
+      "file": "kotlin-native-utils-2.2.21.jar",
+      "sha256": "e74b14406dae0a02388187c62c1731183ba7d0d8e60675682de511a90afa6c56",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-native-utils",
+      "version": "2.2.21",
+      "file": "kotlin-native-utils-2.2.21.pom",
+      "sha256": "d5226a7c86069fa9a721abc97ae4da15a40ed1689c8ab5505e1a1ad2db20dc5f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-script-runtime",
+      "version": "2.2.21",
+      "file": "kotlin-script-runtime-2.2.21.jar",
+      "sha256": "2b1519b427b514d1536c1b425674b03fe914af637924028e9959c6625442df51",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-script-runtime",
+      "version": "2.2.21",
+      "file": "kotlin-script-runtime-2.2.21.pom",
+      "sha256": "8767a540fc5dbe20b7e1283a95f510297e6c0c98b2eac2edc4d0612a2d0f2eaf",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-common",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-common-2.2.21.jar",
+      "sha256": "414ed91c3f5e4492b23cb9537842b4651038e25dad84107939f434c2203f2a92",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-common",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-common-2.2.21.pom",
+      "sha256": "ec25a979945175bad216546a484b0b8f44a8670559195e240b347f1fda1770df",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-compiler-embeddable-2.2.21.jar",
+      "sha256": "d934b9d0c246bc09624b7068af58ad57cef11dbe2addbc7b19d250cce42de1c9",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-compiler-embeddable-2.2.21.pom",
+      "sha256": "1148662c95f36e00981178fb2d895d06b2ece7d057ed84532dd353bbd6c35650",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-impl-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-compiler-impl-embeddable-2.2.21.jar",
+      "sha256": "788a3060c8e7997f8ae16ba5c0280d05005af0a42029f18cb10c5625b979fac3",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-impl-embeddable",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-compiler-impl-embeddable-2.2.21.pom",
+      "sha256": "0ca4f95c32d4ae954e174ea41e5bad62c78dbc93a64c45076fde9ccc84ab3609",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-jvm",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-jvm-2.2.21.jar",
+      "sha256": "83820c5fcc5d28f045f914ecd5900bbbcf8115b0d7007334de069fe6c70669e6",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-jvm",
+      "version": "2.2.21",
+      "file": "kotlin-scripting-jvm-2.2.21.pom",
+      "sha256": "9d1d43b22dbb8ab9a9df227a6d5458341daffec150ef7595d765cc5ecbf17908",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.21",
+      "file": "kotlin-stdlib-2.2.21-all.jar",
+      "sha256": "555cdb4c884a584c1b5d59f696fb76cd660917fab36b8ae8032bcd62c750efe5",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.21",
+      "file": "kotlin-stdlib-2.2.21.jar",
+      "sha256": "6558a3d233da56a20934b32159f9db5f86ed5816ef098f78a2c223dc6abb79dd",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.2.21",
+      "file": "kotlin-stdlib-2.2.21.module",
+      "sha256": "bfbc657ddd3a8e37e4c8ad417968d5eb0b0b171c9fce48f962c2ad32ee434c21",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-common",
+      "version": "2.2.21",
+      "file": "kotlin-stdlib-common-2.2.21.module",
+      "sha256": "3ffdb451aa2d314fe7263782d37eabddcf8b941bcb940fe3192ac01a62b57f7b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-tooling-core",
+      "version": "2.2.21",
+      "file": "kotlin-tooling-core-2.2.21.jar",
+      "sha256": "74014ec4f3ef78ce7da7e3e6964f2c526a3121d5c58fef8ca2979e5f344582f4",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-tooling-core",
+      "version": "2.2.21",
+      "file": "kotlin-tooling-core-2.2.21.pom",
+      "sha256": "dd33e61932c1badf3dde85f204f634c8004be96427c3a1ca8866cc011d711dfa",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-io",
+      "version": "2.2.21",
+      "file": "kotlin-util-io-2.2.21.jar",
+      "sha256": "266aa4026a106f59fcefc3f151768870af91cef15e4011fac0aa1f1f567d49f4",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-io",
+      "version": "2.2.21",
+      "file": "kotlin-util-io-2.2.21.pom",
+      "sha256": "ebb50cf41c7444976f02c2f915b41732572c5f3994a6581c88e64de0b998f7bd",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib",
+      "version": "2.2.21",
+      "file": "kotlin-util-klib-2.2.21.jar",
+      "sha256": "55400a917e6b984a6197eae78b5b52edbdf2cd6e0a7c3843f7954481bafb243f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib",
+      "version": "2.2.21",
+      "file": "kotlin-util-klib-2.2.21.pom",
+      "sha256": "a352dfd36527b3aef0f7c0ec6490dec9d5fc9bec4f334d844cae94f81743df30",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib-metadata",
+      "version": "2.2.21",
+      "file": "kotlin-util-klib-metadata-2.2.21.jar",
+      "sha256": "022b95a3dfed949d7c2e47820bcd9836ee057b721513f773361e4333f6c76f8c",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib-metadata",
+      "version": "2.2.21",
+      "file": "kotlin-util-klib-metadata-2.2.21.pom",
+      "sha256": "f3b323d1fe9e33dc7e9c5ed77f305283ffd637815d88c507945411bd7aa2a30f",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "swift-export-embeddable",
+      "version": "2.2.21",
+      "file": "swift-export-embeddable-2.2.21.jar",
+      "sha256": "c7a17644e99fa8ab07393e896bb49aa3013b968b139e8107ac950cb04b2eb701",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "swift-export-embeddable",
+      "version": "2.2.21",
+      "file": "swift-export-embeddable-2.2.21.pom",
+      "sha256": "aee9b4c63454f0cb1415d965b776c17476567832b24320f4ce3c5fa78f6bd9ae",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin.android",
+      "name": "org.jetbrains.kotlin.android.gradle.plugin",
+      "version": "2.2.21",
+      "file": "org.jetbrains.kotlin.android.gradle.plugin-2.2.21.pom",
+      "sha256": "8b4103cc1412eb838a33c36b0e5c6e63bd0cace4c30ab9658f3861e41fc08389",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin.jvm",
+      "name": "org.jetbrains.kotlin.jvm.gradle.plugin",
+      "version": "2.2.21",
+      "file": "org.jetbrains.kotlin.jvm.gradle.plugin-2.2.21.pom",
+      "sha256": "8d3b2cba90c8457c00e3669eb34edf8db2086f83490804513569c6ecc7b8548b",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "org.jetbrains.kotlin.plugin.compose",
+      "name": "org.jetbrains.kotlin.plugin.compose.gradle.plugin",
+      "version": "2.2.21",
+      "file": "org.jetbrains.kotlin.plugin.compose.gradle.plugin-2.2.21.pom",
+      "sha256": "d1fc0de09442650d83317f02c8435a31267515a5720d65a9fa1c6f83ae78a006",
+      "proof": "Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8"
+    },
+    {
+      "group": "junit",
+      "name": "junit",
+      "version": "4.13.2",
+      "file": "junit-4.13.2.jar",
+      "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3",
+      "proof": "JUnit detached PGP; publisher KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51"
+    }
+  ]
+}
