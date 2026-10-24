@@ -164,3 +164,7 @@ The alpha oracle separates stored pixels from default decoder premultiplication.
 ### Finishing export review
 
 The Results finish action opens a confirmation before acknowledging a job or clearing a successfully completed session. Reuse the localized explanation of the private recovery data being retired; saved public copies remain. Cancellation/dismissal does not acknowledge or clean anything. The dialog is deliberately not saved across recreation and resets when result state, finish mode or busy eligibility changes. Disable it during import/native work, output verification or sharing, and preserve the ViewModel guards. This does not authorize retry, output deletion or a background job.
+
+### Rechecking export preparation
+
+Use ReviewViewModel.canPrepareExport for both the Export button and the preparation guard. IDLE, BLOCKED or ERROR may be checked again only before a batch attempt, with no active/review token, acknowledgment, output action, busy operation, share verification, queued import or blocked session restore. Keep the same-draft attempted-job barrier. A refused destination or preflight does not require a cosmetic edit; pressing Export explicitly repeats the full preflight and then requests a destination. It does not retry an existing batch, skip blockers, reset settings, remove outputs or export automatically.

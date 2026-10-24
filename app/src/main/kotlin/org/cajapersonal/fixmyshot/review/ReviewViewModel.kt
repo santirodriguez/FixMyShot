@@ -612,11 +612,16 @@ internal class ReviewViewModel : ViewModel() {
 
     fun outputViewerUnavailable() { exportState = exportState.copy(outputError = true) }
 
+    /** A refused preflight/destination is retryable; an attempted or unresolved job is not a new export. */
+    val canPrepareExport: Boolean get() = checkedPreviousJobs &&
+        exportState.phase in setOf(ExportUiPhase.IDLE, ExportUiPhase.BLOCKED, ExportUiPhase.ERROR) &&
+        reviewToken == null && activeToken == null && !exportState.canAcknowledge &&
+        !exportState.outputBusy && !isBusy && !shareBusy && pendingImportCount == 0 &&
+        draft.images.isNotEmpty() && !sessionRestoreBlocked && lastAttemptDraft != draft
+
     /** Verify the whole batch before requesting a destination or creating output. */
     fun prepareExport(): Boolean {
-        if (!checkedPreviousJobs || exportState.phase != ExportUiPhase.IDLE ||
-            reviewToken != null || isBusy || pendingImportCount > 0 || draft.images.isEmpty() ||
-            sessionRestoreBlocked || lastAttemptDraft == draft) return false
+        if (!canPrepareExport) return false
         val preparation = try {
             ExportPreparation.inspect(draft, Build.VERSION.SDK_INT, Runtime.getRuntime().maxMemory())
         } catch (_: Exception) {

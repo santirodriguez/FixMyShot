@@ -86,6 +86,7 @@ internal fun ReviewScreen(
     previewUnavailable: Boolean,
     api: Int,
     exportState: ReviewExportState,
+    canPrepareExport: Boolean,
     onExport: () -> Unit,
     onCancelExport: () -> Unit,
     onReviewedPrevious: () -> Unit,
@@ -352,8 +353,7 @@ internal fun ReviewScreen(
                 }
                 if (convertedCount > 0) Text(stringResource(R.string.color_conversion_batch, convertedCount),
                     style = MaterialTheme.typography.bodySmall)
-                Button(onClick = onExport, enabled = editEnabled &&
-                    exportState.phase == ExportUiPhase.IDLE) {
+                Button(onClick = onExport, enabled = editEnabled && canPrepareExport) {
                     Text(stringResource(R.string.export_batch, draft.images.size))
                 }
                 Text(stringResource(if (api >= 29) R.string.export_destination_pictures

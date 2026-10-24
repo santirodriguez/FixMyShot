@@ -165,8 +165,23 @@ class ReviewExportFlowTest {
         checkEmptyExportHistory(model)
         instrumentation.runOnMainSync {
             model.draft = draftOf(a, b)
+            val original = model.draft
+            assertTrue(model.canPrepareExport)
+            assertTrue(model.prepareExport())
+            assertFalse(model.canPrepareExport)
+            model.destinationUnavailable()
+            assertEquals(ExportUiPhase.ERROR, model.exportState.phase)
+            assertEquals(original, model.draft)
+            assertTrue("A refused destination must not require editing the source", model.canPrepareExport)
+            assertEquals(0, port.inserted)
+            assertEquals(0, port.published)
+            assertTrue(model.prepareExport())
+            model.destinationCancelled()
+            assertEquals(ExportUiPhase.IDLE, model.exportState.phase)
+            assertTrue(model.canPrepareExport)
             assertTrue(model.prepareExport())
             model.startPreparedExport(app, port)
+            assertFalse(model.canPrepareExport)
         }
         val done = waitForResult(model)
         assertEquals(ExportUiPhase.COMPLETED, done.phase)
@@ -183,6 +198,7 @@ class ReviewExportFlowTest {
             } finally { bitmap.recycle() }
         }
         instrumentation.runOnMainSync {
+            assertFalse(model.canPrepareExport)
             assertFalse("Same revision must require explicit reset before retry", model.prepareExport())
         }
         assertEquals(2, port.published)
@@ -198,6 +214,12 @@ class ReviewExportFlowTest {
         instrumentation.runOnMainSync {
             model.draft = draftOf(a, missing)
             assertFalse(model.prepareExport())
+            assertEquals(ExportUiPhase.BLOCKED, model.exportState.phase)
+            assertEquals(1, model.exportState.blocked)
+            val blockedDraft = model.draft
+            assertTrue("Blocked preflight may be checked again without mutating the draft", model.canPrepareExport)
+            assertFalse(model.prepareExport())
+            assertEquals(blockedDraft, model.draft)
             assertEquals(ExportUiPhase.BLOCKED, model.exportState.phase)
             assertEquals(1, model.exportState.blocked)
         }
@@ -282,6 +304,10 @@ class ReviewExportFlowTest {
                 model.startPreparedExport(app, port)
             }
             assertEquals(ExportUiPhase.NEEDS_REVIEW, waitForResult(model).phase)
+            instrumentation.runOnMainSync {
+                assertFalse(model.canPrepareExport)
+                assertFalse("Uncertain output is never a fresh preparation retry", model.prepareExport())
+            }
             val pending = port.created.single()
             assertTrue(model.exportState.retryableIds.isEmpty())
             instrumentation.runOnMainSync {

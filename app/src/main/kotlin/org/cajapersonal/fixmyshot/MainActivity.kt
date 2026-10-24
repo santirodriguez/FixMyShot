@@ -183,6 +183,7 @@ class MainActivity : AppCompatActivity() {
                         previewUnavailable = model.previewUnavailable,
                         api = Build.VERSION.SDK_INT,
                         exportState = model.exportState,
+                        canPrepareExport = model.canPrepareExport,
                         sessionRestored = model.sessionRestored,
                         sessionExpired = model.sessionExpired,
                         sessionSaveError = model.sessionSaveError,
