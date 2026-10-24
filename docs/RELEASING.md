@@ -98,3 +98,20 @@ For **Obtainium**, add `https://github.com/santirodriguez/FixMyShot`, enable pre
 Before requesting separately authorized merge/tag/publication, reconcile exact source and signed bytes, applicable gates, independent rebuild, ledger, APK manifest, tag, GitHub prerelease flag and final assets/hashes. Scan README, changelog, About/version, authentic screenshots and notes for stale claims. Branding artwork is not an app screenshot. Do not claim the planned website or stores are live.
 
 Initial functional 0.1.0 is a GitHub prerelease; public 1.0 remains the later stable milestone. F-Droid/Google Play submissions, website deployment and key operations have separate authority. This preparation does not publish, merge or sign anything.
+
+
+## Canonical legal assets
+
+The app's prepareLegalAssets task packages the root GPL LICENSE,
+THIRD_PARTY_NOTICES and LICENSES/ from their canonical files. WebP's exact
+COPYING/PATENTS remain in the native module assets. Do not maintain another
+manually edited copy of these texts under app/src/main/assets.
+
+Run `python3 scripts/check-apk-legal.py <actual-candidate.apk>` against a clean
+checkout of the exact candidate source. It requires one copy of each mandatory
+asset, matching the canonical bytes, and refuses missing, duplicate or altered
+entries. The ordinary Android workflow checks both debug and unsigned release
+packages and preserves the JSON reports. The four offline checker cases run
+with `python3 scripts/test-apk-legal.py`. A pass establishes those five files
+only: it does not approve transitive copyright/NOTICE completeness, dependency
+licenses, corresponding source, publisher trust or distribution.

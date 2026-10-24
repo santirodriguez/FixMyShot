@@ -31,14 +31,14 @@ No dependency version, lockfile, application behavior or build-cache setting was
 
 ## Prioritize the next checkpoint
 
-The 379-file reviewed subset leaves 542 exact baseline files pending. Cross-checking the captured inventory with the pinned app `releaseRuntimeClasspath` and the reviewed identities gives the following order:
+The 387-file reviewed subset at c667c23 leaves 534 exact baseline files pending. Cross-checking the captured inventory with the pinned app `releaseRuntimeClasspath` and the reviewed identities gives the following order:
 
 | Pending scope | Files | Breakdown |
 | --- | ---: | --- |
-| Components selected in the app release runtime | 91 | 25 AAR, 19 JAR, 23 module and 24 POM files |
+| Components selected in the app release runtime | 83 | 25 AAR, 15 JAR, 23 module and 20 POM files |
 | Remaining captured tooling, tests and metadata | 451 | Not selected in that app runtime configuration; buildscript/plugin use may still apply |
 
-This is component-selection evidence, not proof that every listed file is packaged in the APK. Of the 91 priority files, 61 use the already attempted Android/Google Maven route and remain deferred; the other 30 span Kotlin, kotlinx, Okio, annotations, JSpecify and Guava's listenablefuture. Prioritize those remaining publishers as a group, with independently anchored issuer evidence. Do not automatically retry the 61 deferred files, trust a signature key obtained only from the artifact's signature, or activate an incomplete verification policy. The other 451 files still matter to a strict build freeze.
+This is component-selection evidence, not proof that every listed file is packaged in the APK. Of the original 91 priority files, 61 use the already attempted Android/Google Maven route and remain deferred. The other 30 were attempted in the runtime publisher capture: eight exact Kotlin files passed, while 22 remain deferred (16 lack an issuer anchor, three signatures are unverified and three captures unavailable). The current 83-file runtime backlog is those 61 plus 22. See [the retained capture](evidence/README.md#runtime-publisher-capture) for reproduction and limits. Do not automatically retry the 61 deferred files, trust a signature key obtained only from the artifact's signature, or activate an incomplete verification policy. The other 451 files still matter to a strict build freeze.
 
 Handle tooling remediation in one deliberate checkpoint: first recover buildscript/plugin configuration ownership for the unresolved captures, then choose a compatible AGP/UTP and Kotlin set, refresh the complete owned graphs and rerun the bounded inventory and Android validation once. Avoid forced individual Netty/Protobuf/Bouncy Castle overrides that leave their owning stack untested. Until then, keep the security gate open and retain the precise KAPT applicability limitation above.
 
@@ -77,4 +77,4 @@ cmp /tmp/fixmyshot-security-replayed.json \
   docs/feasibility/evidence/dependency-security-review-64745e1f.json
 ```
 
-For the Kotlin extension, recover the previous receipt with `git show cbb9414a58be1efc77c501e70d7fcb8026fbfb19:gradle/dependency-provenance-review.json` into a temporary file, then run `scripts/review-kotlin-manifests.py` with the baseline XML, that prior receipt, `evidence/kotlin-publisher-manifests.json` and the pins in [committed inputs](committed-gradle-inputs.md). Its JSON/XML outputs reproduce the current **379-file inactive candidate**. This does not run Gradle or activate `gradle/verification-metadata.xml`.
+For the Kotlin extension, recover the previous receipt with `git show cbb9414a58be1efc77c501e70d7fcb8026fbfb19:gradle/dependency-provenance-review.json` into a temporary file, then run `scripts/review-kotlin-manifests.py` with the baseline XML, that prior receipt, `evidence/kotlin-publisher-manifests.json` and the pins in [committed inputs](committed-gradle-inputs.md). Its JSON/XML outputs reproduce the historical **379-file inactive candidate** at 8a6ba782, not the current 387-file receipt. Compare with that immutable historical receipt; then replay the runtime extension using the separate commands in [the evidence owner](evidence/README.md). This does not run Gradle or activate `gradle/verification-metadata.xml`.

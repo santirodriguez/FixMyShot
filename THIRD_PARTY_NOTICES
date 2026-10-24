@@ -55,3 +55,10 @@ All five PNGs are preserved byte-for-byte under canonical branding/store paths.
 The Android build creates a packaging copy from the single shared512px icon.
 See docs/ARTWORK.md for original names, hashes and intended uses.
 The retained monochrome capture-frame vector is original project artwork.
+
+Canonical legal texts in Android packages
+The build copies LICENSE to assets/legal/project/LICENSE, this inventory to
+assets/legal/THIRD_PARTY_NOTICES, and LICENSES/ to assets/legal/licenses/.
+Apache-2.0.txt is the canonical Apache license text. WebP COPYING/PATENTS keep
+their existing assets/licenses/libwebp/ paths. These are build-generated copies.
+This explicit text bundle does not complete the transitive attribution review.

@@ -55,3 +55,13 @@ val prepareBrandingResources by tasks.registering(Sync::class) {
 }
 android.sourceSets.getByName("main").res.srcDir(layout.buildDirectory.dir("generated/branding/res"))
 tasks.named("preBuild").configure { dependsOn(prepareBrandingResources) }
+
+// Package canonical legal texts without maintaining separate Android copies.
+val prepareLegalAssets by tasks.registering(Sync::class) {
+    from(rootProject.layout.projectDirectory.file("LICENSE")) { into("project") }
+    from(rootProject.layout.projectDirectory.file("THIRD_PARTY_NOTICES"))
+    from(rootProject.layout.projectDirectory.dir("LICENSES")) { into("licenses") }
+    into(layout.buildDirectory.dir("generated/legal/assets/legal"))
+}
+android.sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/legal/assets"))
+tasks.named("preBuild").configure { dependsOn(prepareLegalAssets) }

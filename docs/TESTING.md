@@ -1001,3 +1001,30 @@ This closes the interrupted persistence work; no active trust policy is introduc
 No app/build/lock/dependency/Android marker changed, so Android was not rerun.
 Exact773 acceptance and its independent identical unsigned rebuild keep their
 original limits. No physical/manual/signing/distribution gate is newly accepted.
+
+
+## Canonical legal packaging — implementation awaiting grouped build
+
+Inspection of the exact773 unsigned APK from artifact12542905033 confirmed
+WebP COPYING/PATENTS and five AndroidX LICENSE.txt entries, but no explicit
+project GPL LICENSE, THIRD_PARTY_NOTICES inventory or canonical Apache text.
+The original build ZIP SHA256 is
+9fdd171c785a2e766b492403b57a4d087a8487b08b3ed9967087553f30224134;
+unsigned APK SHA25666ae94204ff3de3f76936dbf7f3f96245783e15dfbb89a995297b0ff4e6b4738.
+This is a package-content finding, not a conclusion about all third-party
+license obligations. The old APK correctly fails the new legal-assets checker.
+
+prepareLegalAssets now generates assets/legal/ from the canonical root LICENSE,
+THIRD_PARTY_NOTICES and LICENSES directory. Existing WebP assets remain.
+The Android workflow checks actual debug/release package bytes against the
+exact checkout, with separate JSON receipts. Four synthetic offline cases pass:
+complete exact bytes without full-review approval; missing/duplicate entries;
+same-size changed bytes; canonical-source changes invalidating an older package.
+No downloaded code or license fixture is executed.
+
+Gradle compilation, generated-task execution, actual updated APK packaging and
+the grouped Android regression checkpoint are NOT RUN for this change. Earlier
+773 unsigned byte-identical rebuild acceptance remains historical and does not
+transfer to these changed build inputs. The next grouped checkpoint must inspect
+the new APK bytes and refresh the independent rebuild before delivery. Full
+transitive notices/licenses and physical/signing/distribution gates remain open.
