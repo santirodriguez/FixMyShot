@@ -20,8 +20,8 @@
   "datastore_1_1_7_source_commit": "420da5f291449f11801e378c6789a328a06ec6cb",
   "androidx_captured_cpp_blob_membership": "PASS",
   "androidx_captured_cpp_headers": "Apache-2.0",
-  "actual_NDK_installation_check": "PENDING_GROUPED_ANDROID_CI",
-  "new_eight_asset_APK_check": "PENDING_GROUPED_ANDROID_CI",
+  "actual_NDK_installation_check": "PASS_ACTUAL_ARTIFACT_12600262339",
+  "new_eight_asset_APK_check": "PASS_ACTUAL_DEBUG_RELEASE_EXACT_ARCHIVED_SOURCE",
   "old_e8_APK_does_not_qualify_new_notices": true,
   "all_native_source_license_security_or_patent_clearance": false,
   "tag_signature_verification": false,
@@ -159,5 +159,6 @@
       "bytes": 24811,
       "sha256": "2b062f4d1e548c906bd73ab4bb4fb768a4e08d54537bdfa712a77bc9eb3a6e57"
     }
-  }
+  },
+  "package_acceptance_receipt": "android-5d568a7e.json"
 }

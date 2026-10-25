@@ -34,9 +34,11 @@ now requires eight exact canonical assets. This changes notice bytes only.
 C/header/NOTICE to these pinned release hashes, verifies package revision, and
 checks the combined canonical attribution before recording the raw actual
 inputs. The grouped Android build executes that check. Offline source replay
-and canonical omission/same-size mutation refusals passed. Actual SDK and
-eight-asset debug/release package acceptance remain pending CI; the accepted
-e8 seven-asset package is not promoted to this new source.
+and canonical omission/same-size mutation refusals passed. Normal build40196478234 now passes the actual installed SDK check and both
+eight-asset APK checks against exact archived source. Source382-file tree,
+wrapper/locks, core69/lint/threeAPKs and native alignment pass. API36 and the
+new exact-source independent rebuild remain pending; accepted e8 evidence is
+not promoted to this new source. See [the package receipt](evidence/android-5d568a7e.json).
 
 The accepted package's other native names are libandroidx.graphics.path.so
 and libdatastore_shared_counter.so. The official

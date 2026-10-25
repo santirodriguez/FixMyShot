@@ -23,9 +23,9 @@ preserves the native/source/full-review limits.
 A further [native source review](feasibility/native-source-review.md) verified
 libwebp's exact343blob source tree and original notices, and traced AndroidX
 native source. It found the NDK cpufeatures BSD notice missing from the package.
-That notice is now corrected in source, with a new actual-NDK check and eight
-required canonical assets. This newer notice-only package still needs its own
-grouped build/runtime and independent byte comparison; e8 acceptance above
+That notice is now corrected. Build40196478234 verified the actual NDK, eight
+canonical assets in both APKs, core69/lint/threeAPKs and native alignment. Its
+API36 and exact-source independent byte comparison are pending; e8 acceptance above
 remains valid only for its own seven-asset package.
 
 The dependency graph is byte-identical to the frozenf943 capture487/858, so

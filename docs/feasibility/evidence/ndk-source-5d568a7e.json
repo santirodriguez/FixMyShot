@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "PINNED_NDK_CPUFEATURES_SOURCE_AND_CANONICAL_NOTICES",
+  "status": "PASS",
+  "ndk_revision": "28.2.13676358",
+  "upstream": "https://android.googlesource.com/platform/ndk/+/805836ef53231ef86dd5fcc5652a1c28d74f4bc4/sources/android/cpufeatures/",
+  "files": [
+    {
+      "path": "cpu-features.c",
+      "bytes": 38642,
+      "sha256": "1b8a88eb7d3a5437d17e12475539398d3e1c5eef13d85941679841254af0a8f5"
+    },
+    {
+      "path": "cpu-features.h",
+      "bytes": 11862,
+      "sha256": "f4989fabece7ea538e3c1272dca47f8a9a4423a87c79a1344a2611e884cb7319"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 577,
+      "sha256": "c870d52f42a8f93023b99a85fe68d02637d6b04e5f35bbcd7f98759adb4e4d49"
+    }
+  ],
+  "canonical_sha256": "973f10e1c5b8e7de22da312ee73a1d970d70643e41c56f15fbb285f8a1894e25",
+  "complete_native_or_license_review": false,
+  "pgp_signature_claim": false
+}
