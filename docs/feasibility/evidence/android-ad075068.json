@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "source_commit": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+  "source_tree": "b5ecadc6a756e0c07a67b7f0b38ae354744d3b8b",
+  "run_id": 40142693059,
+  "build_job_id": 121017552767,
+  "api36_job_id": 121018857157,
+  "run_conclusion": "success",
+  "legacy_provider": "NOT_RUN_SKIPPED",
+  "build_artifact": {
+    "id": 12579476722,
+    "bytes": 34309127,
+    "sha256": "0b03a6224f7ce4a6c8f4c1ecc1cbb77fef5191dc2c13505c95677de50147dfe1"
+  },
+  "smoke_artifact": {
+    "id": 12579049058,
+    "bytes": 46344,
+    "sha256": "5964df00498bd0e6b7875d65a6793b53d18b8d7a0d8eaa8d4b63c2a7dca65407"
+  },
+  "unsigned_apk": {
+    "bytes": 23516325,
+    "sha256": "2ae8f0a8b2705fbf9e61d4bddf3933f22489cce0906225d573175f2f19dd7e27"
+  },
+  "checks": {
+    "source_files": 228,
+    "source_tree_and_build_inputs": "PASS",
+    "core_tests": 69,
+    "core_failures_errors_skipped": 0,
+    "api36_real_png_webp_encodes": 80,
+    "legal_files_per_debug_release": 5,
+    "legal_bytes_from_exact_archived_source": "PASS",
+    "native_libraries_per_apk": 9,
+    "native_abis": 3,
+    "elf_zip_16k_alignment": "PASS",
+    "runtime_16k": "NOT_RUN",
+    "observed_emulator_page_bytes": 4096,
+    "four_smoke_native_grid_layout_report_guards": "PASS"
+  },
+  "buildscript_report": {
+    "path": "buildscript-ad075068.txt",
+    "bytes": 31565,
+    "sha256": "20d443df827c3fa07fd8314ceb0f7eef131d2f6d3e1835f7dfa231457e22647e",
+    "scope": "SELECTED_BUILDSCRIPT_CLASSPATH_NOT_EXECUTION_OR_APK_REACHABILITY"
+  },
+  "generated_dependency_xml_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+  "publisher_review": {
+    "reviewed": 387,
+    "pending": 534,
+    "active_policy": false
+  },
+  "independent_rebuild": "PENDING_40147246792",
+  "physical_native_fidelity": "NOT_RUN",
+  "complete_license_security_approval": false,
+  "production_signing_distribution": "NOT_RUN"
+}

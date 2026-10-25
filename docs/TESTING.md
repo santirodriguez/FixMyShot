@@ -1041,3 +1041,37 @@ buildscript-dependencies.txt report with its SHA256, in addition to the existing
 source, APK and native receipts. A requested run is not acceptance. Inspect actual
 reports and terminal jobs; buildscript selection is not executed-code or app
 reachability evidence. Security remediation and independent rebuild remain open.
+
+
+## Accepted grouped legal/tooling checkpoint — ad075068
+
+[Actions40142693059](https://github.com/santirodriguez/FixMyShot/actions/runs/40142693059)
+finished SUCCESS for exactad075068564dc8a7d8d0eca35fc1f69ff3d16464:
+build121017552767 and API36121018857157 passed; optional SAF was skipped/NOT RUN.
+The [compact receipt](feasibility/evidence/android-ad075068.json) records exact
+archive/APK/source/report identities. Both downloaded ZIPs match provider size
+and SHA256 and pass CRC. The build archive reconstructs the inspected228-file
+Git tree and matches tracked build inputs/wrapper/locks. Generated514/921
+dependency inventory is unchanged, with no newly activated trust.
+
+Core69 tests have zero failures/errors/skips. Lint and three-APK build pass.
+API36 renderer6/cache3/private20/transaction12/export-flow5/share4/settings21/
+batch7/retry8/recovery16 and80 real PNG/WebP encodes pass. All four exact-source
+smoke/native/grid/layout guards replay locally after recovering full evidence;
+page size4096, grid5positive/12attempts and layoutDIAGNOSTIC_COMPLETE preserve
+their existing diagnostic limits. This is not physical codec or16KiB runtime
+acceptance.
+
+Actual debug and unsigned release APKs independently pass the legal checker
+against canonical bytes recovered from the exact archived source: five files
+each, with full-license-review=false. The canonical Apache file also contains
+upstream Gradle component-license appendices; its inclusion does not establish
+that those Gradle tools are packaged runtime components. Native inspection of
+both APKs passes9libraries/3ABIs/ELF+ZIP16KiB alignment. The actual unsigned APK
+is23516325B/SHA2562ae8f0a8b2705fbf9e61d4bddf3933f22489cce0906225d573175f2f19dd7e27.
+
+The retained [buildscript report](feasibility/evidence/buildscript-ad075068.txt)
+matches its generated SHA256 receipt. Interpretation is owned by the security
+review. Independent rebuild40147246792 is a separate pending gate; do not
+transfer earlier773 byte equality. No new APK was delivered or signed. Physical,
+complete publisher/security/license and distribution gates remain open.

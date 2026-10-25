@@ -90,3 +90,43 @@ cmp /tmp/fixmyshot-security-replayed.json \
 ```
 
 For the Kotlin extension, recover the previous receipt with `git show cbb9414a58be1efc77c501e70d7fcb8026fbfb19:gradle/dependency-provenance-review.json` into a temporary file, then run `scripts/review-kotlin-manifests.py` with the baseline XML, that prior receipt, `evidence/kotlin-publisher-manifests.json` and the pins in [committed inputs](committed-gradle-inputs.md). Its JSON/XML outputs reproduce the historical **379-file inactive candidate** at 8a6ba782, not the current 387-file receipt. Compare with that immutable historical receipt; then replay the runtime extension using the separate commands in [the evidence owner](evidence/README.md). This does not run Gradle or activate `gradle/verification-metadata.xml`.
+
+
+## Selected buildscript ownership — exact ad075068
+
+The [retained Gradle report](evidence/buildscript-ad075068.txt) is31565B, SHA256
+20d443df827c3fa07fd8314ceb0f7eef131d2f6d3e1835f7dfa231457e22647e, recovered
+from build artifact12579476722 and verified against its emitted SHA256 receipt.
+Its exact source/run/package acceptance is in [the checkpoint receipt](evidence/android-ad075068.json).
+Root classpath owns the plugin graph; app/core/codec-native buildEnvironment
+report no separate classpath dependencies. Those empty child reports do not
+remove inherited plugin use. The first expanded root paths establish:
+
+| Previously lock-absent capture | Observed selected path | Disposition |
+| --- | --- | --- |
+| commons-compress1.21 | AGP8.13.2 → sdk-common31.13.2 → sdklib/repository →1.21 | Selected tooling match; OPEN |
+| httpclient4.5.6 | AGP → sdklib → httpmime4.5.6 → httpclient4.5.6 **→4.5.14** | This path selects4.5.14; captured4.5.6 is not selected here. Not a global safety verdict. |
+| jose4j0.9.5 | AGP → bundletool1.18.1 →0.9.5 | Selected tooling match; OPEN |
+| bcpkix1.79 | AGP → sdk-common31.13.2 →1.79 | Selected tooling match; OPEN |
+| bcprov1.79 | AGP → sdk-common/bcpkix/builder/apkzlib →1.79 | Selected tooling match; OPEN, separate from Kotlin's locked1.80.x |
+| jdom2.0.6 | AGP → jetifier-processor1.0.0-beta10 →2.0.6 | Selected tooling match; OPEN |
+| kotlin-gradle-plugin2.2.21 | Kotlin Android/JVM plugin markers →2.2.21 | Selected tooling match; existing no-configured-KAPT inference retained |
+
+Six captured versions are confirmed selected, including the already known
+Kotlin plugin. One captured requested version is superseded on this graph.
+No match is dismissed merely as tooling. These paths do not establish exercised
+vulnerable operations, all detached configurations or Android APK inclusion.
+No version/override/lock changes were made. Next remediation must address the
+owning AGP/UTP and Kotlin configurations together, regenerate evidence and
+check the complete resolved graph instead of forcing leaf-library versions.
+
+Primary-source research on24October2026 identified Kotlin2.4.21 as a stable
+release ([release history](https://kotlinlang.org/docs/releases.html)).
+[The KGP compatibility matrix](https://kotlinlang.org/docs/gradle-configure-project.html)
+and [Android D8/R8 requirements](https://developer.android.com/build/kotlin-support)
+must be checked together; a KGP matrix entry alone is insufficient. AGP9 also
+introduces [built-in Kotlin and DSL migration](https://developer.android.com/build/migrate-to-built-in-kotlin).
+This is a significant build migration, not an approved drop-in version bump.
+No candidate stack has yet been qualified or claimed to remediate every finding.
+Keep the current verified baseline and obtain approval of the migration blueprint
+before implementation. No existing feature or physical gate is waived.
