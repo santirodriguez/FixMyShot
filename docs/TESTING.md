@@ -1097,3 +1097,17 @@ current bootstrap/wrapper checks and workflow YAML/permissions checks PASS.
 Migration compatibility/build/graph/security results are NOT RUN until the exact
 opt-in workflow finishes. Its mutated checkout is experimental derived source;
 normal frozen-source/API36/independent acceptance is a later separate checkpoint.
+
+
+## Migration recipe1 failure and recipe2 correction
+
+Actions40149344439/control6c920674 is FAILURE; app configuration rejected old
+SourceSet Provider registration before wrapper generation. Compilation was
+NOT RUN. The62089B partial artifact12582287135 passes exact SHA256/CRC/unique
+safe-member/control checks; its compact [receipt](feasibility/evidence/toolchain-migration-6c920674.json)
+and [migration plan](decisions/toolchain-migration.md#recipe2-generated-source-registration-correction)
+own the diagnosis/correction. Recipe2 uses typed per-variant generated tasks and
+Variant API resource/asset wiring, retaining exact canonical PNG/legal bytes and
+APK paths without a compatibility bypass. Four offline recipe refusal cases
+still pass. New Gradle configuration, generator execution and package contents
+remain unaccepted until the corrected experiment is reviewed.

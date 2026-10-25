@@ -13,5 +13,6 @@
     "gradle/libs.versions.toml": "7b00a21f08d89010c6e31b04eb905afc243f73af9bcdbe83f402f5a74f10e25f",
     "gradle/wrapper/gradle-wrapper.properties": "c040b6ef2fb893ff5beea5a281614f2848f1c3996a7886f650b713f8240656a2",
     "scripts/setup-android.sh": "8db584d39586abd7e91436f4aa3acfa774b5a1409aa7844fc37541eb5bf866be"
-  }
+  },
+  "recipe_revision": 2
 }

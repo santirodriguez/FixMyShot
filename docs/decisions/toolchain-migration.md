@@ -78,3 +78,24 @@ physical Pixel plus second-family HEIC/AVIF/fallback/resource/color acceptance,
 real-provider/process-death/quota/receiver behavior, language/accessibility,
 16KiB runtime, final screenshots, signing, Obtainium install/upgrade or publication.
 JXL remains deferred. Main/merge/signing/publication stay separately gated.
+
+
+## Recipe2: generated-source registration correction
+
+Experiment40149344439/control6c920674 failed before wrapper generation, during
+app configuration: AGP9 rejects Provider values passed to the old SourceSet
+registration for the branding resource and legal assets. Gradle9.4.1 launched
+from its checksum-pinned distribution; no migrated wrapper/graph/APK acceptance
+was reached. [The partial receipt](../feasibility/evidence/toolchain-migration-6c920674.json)
+preserves exact source/run/artifact identity and the observed boundary.
+
+Recipe2 replaces the complete pinned generator block only in the disposable
+checkout. Typed branding/legal tasks expose input files/directories and output
+DirectoryProperty values. Each variant owns separate generated tasks/directories;
+[addGeneratedSourceDirectory](https://developer.android.com/reference/tools/gradle-api/9.2/com/android/build/api/variant/SourceDirectories)
+wires the output and task dependency to resource/asset processing. Source PNG and
+legal bytes keep the same canonical owners and APK paths. The legal task clears
+only its generated legal subtree before copying current source texts, avoiding
+stale generated content. No SourceSet Provider bypass or legacy DSL flag is added.
+The original accepted app build remains unchanged on the release branch until
+Stage2 review; recipe revision is explicit in the request and controller.
