@@ -38,6 +38,7 @@
     "empty_sources_jar_sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3"
   },
   "full_native_source_license_security_approval": false,
-  "updated_APK_seven_file_legal_check": "PENDING_GROUPED_NORMAL_BUILD",
-  "raw_evidence_remote_status": "PENDING_PACKAGE_UPLOAD"
+  "updated_APK_seven_file_legal_check": "PASS_E8FD9C0F_ACTUAL_DEBUG_AND_UNSIGNED_RELEASE_AGAINST_ARCHIVED_SOURCE",
+  "raw_evidence_remote_status": "VERIFIED",
+  "raw_evidence_uploaded_commit": "b9256abd1dee6994860eb70f97230952b9c61f4c"
 }

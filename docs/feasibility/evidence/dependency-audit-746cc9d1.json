@@ -8,6 +8,8 @@
   "git_blob_sha1": "1e8e2a8c6f08a886df81451bed9d9136d0a7ff0b",
   "safe_members": 282,
   "crc_manifest_exact_roundtrip": "PASS",
-  "remote_upload": "PENDING_MANUAL_UPLOAD",
-  "control_commit": "746cc9d1d84cc0006ab85f0f833097a34aba9aee"
+  "remote_upload": "VERIFIED",
+  "control_commit": "746cc9d1d84cc0006ab85f0f833097a34aba9aee",
+  "uploaded_commit": "b9256abd1dee6994860eb70f97230952b9c61f4c",
+  "remote_size_sha256_git_blob_crc_manifest": "PASS"
 }

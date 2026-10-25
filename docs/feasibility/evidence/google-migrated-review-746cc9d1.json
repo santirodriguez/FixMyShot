@@ -51,7 +51,8 @@
   "publisher_key_sha256": "54dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c",
   "anchored_primary": "EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796",
   "active_policy_changed": false,
-  "raw_evidence_remote_status": "PENDING_MANUAL_UPLOAD",
+  "raw_evidence_remote_status": "VERIFIED",
   "scope_note": "Capture failure in a bounded run is not proof a publisher artifact does not exist. No unverified/deferred file is approved.",
-  "raw_evidence_package": "docs/feasibility/evidence/dependency-audit-746cc9d1.zip"
+  "raw_evidence_package": "docs/feasibility/evidence/dependency-audit-746cc9d1.zip",
+  "raw_evidence_uploaded_commit": "b9256abd1dee6994860eb70f97230952b9c61f4c"
 }

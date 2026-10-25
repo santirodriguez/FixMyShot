@@ -111,8 +111,9 @@ old canonical path. Missing raw bytes cannot be reconstructed from this summary.
 
 `dependency-audit-746cc9d1.zip` is a prepared13170421-byte data package with
 SHA2566c1befb07d88cb24b24792ec5def69a7ecc1d151820ca9a3c1dd5798037bd833.
-Its282safe regular members, CRC, manifest and exact byte roundtrip pass locally;
-upload is pending. The package receipt and runtime-license review identify
+Its actual uploaded bytes atb9256abd1dee6994860eb70f97230952b9c61f4c
+match size/SHA256/Git blob,282safe regular members, CRC and every manifest
+entry; remote persistence is verified. The package receipt and runtime-license review identify
 original/complete producers, reports, source and parent-POM pins.
 
 The Google replay uses google/ plus google-anchored-key.pub, the frozen

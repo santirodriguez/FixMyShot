@@ -1,42 +1,37 @@
 # Completion status
 
-This is a current-state index, not an acceptance waiver or a replacement for
-the [full blueprint](blueprints/first-functional-release.md) and
-[compatibility amendment](decisions/compatibility-and-validation.md).
+This index links current evidence; the [full blueprint](blueprints/first-functional-release.md)
+and [compatibility amendment](decisions/compatibility-and-validation.md) still govern.
 
-The import/edit/PNG/lossless-WebP workflow is implemented. The latest complete Android checkpoint and byte-identical independent rebuild
-are sourcef9434ab9.
-The migrated AGP9.2.1/Gradle9.4.1/Kotlin2.4.21 source-frozen build now passes
-atf9434ab9: core69, lint, three APKs, source/tree/lock audit and independently
-inspected native/legal bytes. Android36 also passes in Actions40160890302, including80real encodes and all four report guards.
-The independent unsigned rebuild also produced identical actual bytes.
-The frozen487/858 inventory completed488OSVqueries (49advisories on18tooling
-components; no133app-runtime matches at scan time), and67new Kotlin files were
-authenticated. The inactive review now contains223of858files,635pending, after7newGoogle
-signature proofs includingAGP9.2.1. Raw dependency evidence is committed and independently verified;
-security/license/device gates remain open.
-See [the build receipt](feasibility/evidence/android-f9434ab9.json).
+The import/edit/PNG/lossless-WebP workflow is implemented. Sourcee8fd9c0f passed
+normal Actions40190972725: core69/lint/threeAPK build,269-file exact source/tree/
+build-input audit, actual debug/release seven canonical legal assets and native
+9libraries/3ABIs/alignment, API36 suites/80real encodes/four report guards.
+The [receipt](feasibility/evidence/android-e8fd9c0f.json) identifies actual bytes.
+A clean independent rebuild of these new bytes is requested; byte equality is
+not yet accepted. Earlierf943 byte equality retains its historical scope.
 
-| Remaining work | Concrete completion evidence | Dependency |
-| --- | --- | --- |
-| Refresh security review | New pinned XML/lock/native inventory, raw OSV replay and advisory applicability/remediation review | Qualified new dependency graph; old results do not transfer |
-| Authenticate dependencies and finish licenses | Reviewed exact publisher evidence, corresponding source/notices and complete transitive obligations; deliberate strict-policy decision | Current graph; unavailable evidence remains unresolved, never approved by absence |
-| Accept real-device behavior | Pixel9ProXL plus second hardware family: HEIC/AVIF full/odd geometry, fidelity/color, resources, cancellation/fallback; real providers/batches/process death/storage pressure/gallery/receivers; TalkBack/text scaling/rotation/languages and16KiB runtime | Physical hardware and exact candidate; synthetic CI cannot supply these results |
-| Prepare distribution | Authorized signing identity, actual signed manifest/certificate checks, sequential install/upgrade/Obtainium, real screenshots and final source/notes/receipts | Technical and device gates, then separate exact signing/publication authority |
+The Protobuf BSD omission is corrected and the133component runtime declaration
+catalog is packaged. All133POMs/95hash-matched archives were reviewed, with the
+Guava parent declaration and exact Protobuf source/license traced. Both raw
+dependency evidence ZIPs are uploaded and actual size/SHA256/Git blob/CRC/
+manifest verified. The [license owner](feasibility/runtime-license-review.md)
+preserves the native/source/full-review limits.
 
-HEIC/AVIF remain unavailable for ordinary export until their applicable gates
-pass. JXL remains explicitly deferred for0.1.0. Legacy-only diagnostics are best
-effort under the amendment; skipped means NOT RUN. No signing/publication or
-new artifact delivery is implied by this status. Detailed execution evidence
-is in [TESTING](TESTING.md), the [migration plan](decisions/toolchain-migration.md),
-[dependency review](feasibility/committed-gradle-inputs.md),
-[security review](feasibility/dependency-security-review.md) and
-[release guide](RELEASING.md).
+The dependency graph is byte-identical to the frozenf943 capture487/858, so
+the223verified/635pending inactive publisher review and488-query OSV snapshot
+retain their scope. Five of six critical files have publisher proof; the Compose
+BOM POM remains unresolved metadata. OSV recorded49advisory IDs/18tooling
+components and no133app-runtime matches at scan time; applicability/remediation
+review remains open. No newly generated trust is activated.
 
-Current candidate: the Protobuf BSD notice and133component license catalog are
-added to canonical LICENSES/ and THIRD_PARTY_NOTICES. The checker now requires
-seven canonical assets. A grouped normal build/API36 checkpoint is requested;
-updated package bytes and independent reproducibility are pending. The scoped
-runtime declaration audit completed133POMs/95hash-matched archives, resolving
-one Guava parent declaration; it does not complete native/source/legal review.
-See [the license review](feasibility/runtime-license-review.md).
+| Remaining work | Required evidence |
+| --- | --- |
+| Reproduce the updated package | Independent exacte8source build and actual unsigned byte equality |
+| Dependency/security/source review | Remaining exact issuer/metadata/native-source/notice obligations; owning-tool applicability/remediation and deliberate strict policy |
+| Physical acceptance | Pixel9ProXL plus second hardware family: HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers/batches/process death/storage pressure/gallery/receivers, TalkBack/text scaling/rotation/languages/16KiB runtime |
+| Distribution preparation | Separately authorized signing identity, signed manifest/certificate checks, sequential install/upgrade/Obtainium, authentic captures and final receipts/docs |
+
+HEIC/AVIF remain unavailable for ordinary export pending their gates. JXL is
+explicitly deferred for0.1.0. Legacy-only diagnostics are best effort; skipped
+means NOT RUN. Signing, merge and publication remain separately gated.

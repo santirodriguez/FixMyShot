@@ -44,8 +44,10 @@ conditions, disclaimer and generated-code qualification.
 THIRD_PARTY_NOTICES links this component and its license. The existing generated
 legal task copies the two new canonical files into the APK. The package checker
 now requires seven exact canonical assets and still reports full-review=false.
-The oldf943 package fails the updated canonical check; new build/native/legal/
-API36 and subsequent independent byte equality are pending. No dependency,
+The oldf943 package fails the updated canonical check. Normal sourcee8fd9c0f
+now passes build/native/seven-filelegal/API36, with actual package bytes checked
+against the exact archived canonical sources. Independent comparison of the
+new unsigned bytes is requested and remains pending. No dependency,
 format, permission, source pixel or export behavior changed.
 
 ## Evidence persistence and remaining scope
@@ -56,7 +58,8 @@ this audit's raw POMs/notices, original and completed reports/producers, source
 references and the new Google signature capture. Its
 [package receipt](evidence/dependency-audit-746cc9d1.json) records13170421B/SHA256
 6c1befb07d88cb24b24792ec5def69a7ecc1d151820ca9a3c1dd5798037bd833;
-local282members/CRC/manifest/roundtrip passed, remote upload is pending.
+actual remote bytes uploaded atb9256abd match size/SHA256/Git blob,282members,
+CRC and every manifest entry; remote persistence is verified.
 
 Source/native notices, all required attribution and broader legal compatibility
 still need their appropriate review. This does not assert universal copyright
