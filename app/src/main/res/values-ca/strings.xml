@@ -10,6 +10,12 @@
     <string name="thumbnail_description">Imatge %1$d de %2$d, miniatura original</string>
     <string name="batch_count">Imatges del lot: %1$d</string>
     <string name="preview_description">Previsualització de la imatge seleccionada amb els marges previstos</string>
+    <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Resultat: %3$d × %4$d px</string>
+    <string name="preview_original_outline">Mostra el contorn original (només a la previsualització)</string>
+    <string name="preview_background_quick_heading">Compara els fons dels marges</string>
+    <string name="preview_background_auto">Auto</string>
+    <string name="preview_background_black">Negre</string>
+    <string name="preview_background_white">Blanc</string>
     <string name="preview_loading">Preparant la previsualització…</string>
     <string name="preview_unavailable">Previsualització no disponible. Tria una imatge SDR compatible.</string>
     <string name="preview_only_notice">Només previsualització. Consulta l\'estat de l\'exportació per revisar fitxers desats o interromputs.</string>

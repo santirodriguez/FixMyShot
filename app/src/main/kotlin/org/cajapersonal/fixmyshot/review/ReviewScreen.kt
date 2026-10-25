@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,6 +32,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -39,13 +41,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -57,11 +62,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
 import org.cajapersonal.fixmyshot.core.BackgroundChoice
+import org.cajapersonal.fixmyshot.core.ContainGeometry
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
+import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.PlannedGeometry
@@ -141,6 +148,7 @@ internal fun ReviewScreen(
     var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
+    var showOriginalOutline by rememberSaveable { mutableStateOf(true) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
     val batchResetDraft = confirmingBatchReset
@@ -274,6 +282,22 @@ internal fun ReviewScreen(
                 }
             }
             if (selected != null) {
+                val contained = (plan?.geometry as? PlannedGeometry.Contained)?.value
+                val cropped = (plan?.geometry as? PlannedGeometry.Cropped)?.value
+                val output = contained?.canvas ?: cropped?.output
+                val hasMargins = contained != null && (contained.placement.left > 0 ||
+                    contained.rightMargin > 0 || contained.placement.top > 0 ||
+                    contained.bottomMargin > 0)
+                if (output != null) {
+                    Text(stringResource(R.string.preview_dimensions_summary,
+                        selected.orientedSize.width, selected.orientedSize.height,
+                        output.width, output.height), style = MaterialTheme.typography.bodySmall)
+                    if (hasMargins && contained != null) {
+                        Text(stringResource(R.string.margin_details, contained.placement.left,
+                            contained.rightMargin, contained.placement.top, contained.bottomMargin),
+                            style = MaterialTheme.typography.bodySmall)
+                    }
+                }
                 Box(Modifier.fillMaxWidth().height(320.dp).background(MaterialTheme.colorScheme.surfaceVariant)
                     .cropGestures(selected, plan, editEnabled, onCrop),
                     contentAlignment = Alignment.Center) {
@@ -291,10 +315,39 @@ internal fun ReviewScreen(
                         }
                         Image(preview.asImageBitmap(), contentDescription = stringResource(R.string.preview_description),
                             modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                        if (hasMargins && showOriginalOutline && contained != null) {
+                            PreviewOriginalOutline(preview, contained)
+                        }
                     } else {
                         Text(stringResource(if (previewUnavailable) R.string.preview_unavailable
                             else R.string.preview_loading))
                     }
+                }
+                if (hasMargins) {
+                    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
+                        value = showOriginalOutline, role = Role.Checkbox,
+                        onValueChange = { showOriginalOutline = it }),
+                        verticalAlignment = Alignment.CenterVertically) {
+                        Checkbox(checked = showOriginalOutline, onCheckedChange = null)
+                        Text(stringResource(R.string.preview_original_outline))
+                    }
+                    Text(stringResource(R.string.preview_background_quick_heading),
+                        style = MaterialTheme.typography.bodySmall)
+                    FlowRow(Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        listOf(
+                            BackgroundChoice.Automatic to R.string.preview_background_auto,
+                            BackgroundChoice.Black to R.string.preview_background_black,
+                            BackgroundChoice.White to R.string.preview_background_white,
+                        ).forEach { (choice, label) ->
+                            FilterChip(selected = plan?.settings?.background == choice,
+                                onClick = { onBackground(choice, editSelectedOnly) },
+                                enabled = editEnabled, label = { Text(stringResource(label)) })
+                        }
+                    }
+                    Text(stringResource(if (editSelectedOnly) R.string.edit_scope_image
+                        else R.string.edit_scope_batch), style = MaterialTheme.typography.bodySmall)
                 }
             }
             androidx.compose.runtime.key(editorSessionKey) {
@@ -313,12 +366,6 @@ internal fun ReviewScreen(
             }
             if (selected != null && plan != null) CropControls(selected, plan, editEnabled, onCrop)
             if (selected != null && plan != null) {
-                val output = when (val geometry = plan.geometry) {
-                    is PlannedGeometry.Contained -> geometry.value.canvas
-                    is PlannedGeometry.Cropped -> geometry.value.output
-                    null -> null
-                }
-                if (output != null) Text(stringResource(R.string.output_dimensions, output.width, output.height))
                 if (selected.sourceColor != SourceColor.SRGB) Text(stringResource(R.string.color_conversion_details,
                     if (selected.sourceColor == SourceColor.DISPLAY_P3) "Display P3" else "Adobe RGB"),
                     style = MaterialTheme.typography.bodySmall)
@@ -328,10 +375,6 @@ internal fun ReviewScreen(
                 val enlarged = contained?.enlarged == true || cropped?.enlarged == true
                 if (resized) Text(stringResource(if (enlarged) R.string.size_will_enlarge else R.string.size_will_reduce),
                     style = MaterialTheme.typography.bodySmall)
-                if (contained != null) {
-                    Text(stringResource(R.string.margin_details, contained.placement.left,
-                        contained.rightMargin, contained.placement.top, contained.bottomMargin))
-                }
                 plan.reviewFlags.forEach { flag ->
                     Text(reviewFlagLabel(flag), color = MaterialTheme.colorScheme.error)
                 }
@@ -436,6 +479,35 @@ internal fun ReviewScreen(
                 enabled = !busy && !shareBusy)
         }
     }
+}
+
+/** Drawn above the Compose preview only; never written into an export bitmap. */
+@Composable
+private fun PreviewOriginalOutline(preview: Bitmap, geometry: ContainGeometry) {
+    Canvas(Modifier.fillMaxSize()) {
+        val bounds = previewOriginalContentRect(PixelSize(preview.width, preview.height), size, geometry)
+        drawRect(Color.Black.copy(alpha = 0.8f), topLeft = bounds.topLeft,
+            size = bounds.size, style = Stroke(width = 3.dp.toPx()))
+        drawRect(Color.White, topLeft = bounds.topLeft,
+            size = bounds.size, style = Stroke(width = 1.dp.toPx()))
+    }
+}
+
+/** Project immutable source placement onto the actual ContentScale.Fit viewport, including letterboxing. */
+internal fun previewOriginalContentRect(previewSize: PixelSize, viewport: Size, geometry: ContainGeometry): Rect {
+    val scale = minOf(viewport.width / previewSize.width, viewport.height / previewSize.height)
+    val displayWidth = previewSize.width * scale
+    val displayHeight = previewSize.height * scale
+    val displayLeft = (viewport.width - displayWidth) / 2f
+    val displayTop = (viewport.height - displayHeight) / 2f
+    val placement = geometry.placement
+    val canvas = geometry.canvas
+    return Rect(
+        displayLeft + displayWidth * placement.left / canvas.width,
+        displayTop + displayHeight * placement.top / canvas.height,
+        displayLeft + displayWidth * (placement.left + placement.width) / canvas.width,
+        displayTop + displayHeight * (placement.top + placement.height) / canvas.height,
+    )
 }
 
 @Composable

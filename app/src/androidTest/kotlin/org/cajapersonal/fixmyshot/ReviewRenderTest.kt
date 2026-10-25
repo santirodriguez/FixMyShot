@@ -2,6 +2,7 @@ package org.cajapersonal.fixmyshot
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import androidx.compose.ui.geometry.Size
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.cajapersonal.fixmyshot.core.BackgroundChoice
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
@@ -9,10 +10,13 @@ import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftImage
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.EditSettings
+import org.cajapersonal.fixmyshot.core.ExactRatio
+import org.cajapersonal.fixmyshot.core.GeometryPlanner
 import org.cajapersonal.fixmyshot.core.FitMode
 import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.LatestPreviewWorker
+import org.cajapersonal.fixmyshot.review.previewOriginalContentRect
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -117,6 +121,27 @@ class ReviewRenderTest {
                 assertEquals(300, preview.image.height)
             } finally { preview.image.recycle() }
         } finally { source.recycle() }
+    }
+
+    @Test fun originalOutlineFollowsPlayPaddingInsideLetterboxedPreview() {
+        val geometry = GeometryPlanner.playPhoneEnvelope(PixelSize(1344, 2992))
+        assertEquals(PixelSize(1496, 2992), geometry.canvas)
+        assertEquals(76, geometry.placement.left)
+        assertEquals(76, geometry.rightMargin)
+        val bounds = previewOriginalContentRect(PixelSize(600, 1200), Size(360f, 320f), geometry)
+        assertEquals(108.128f, bounds.left, 0.02f)
+        assertEquals(251.872f, bounds.right, 0.02f)
+        assertEquals(0f, bounds.top, 0.001f)
+        assertEquals(320f, bounds.bottom, 0.001f)
+    }
+
+    @Test fun originalOutlineFollowsTopBottomMarginsWithCenteredFit() {
+        val geometry = GeometryPlanner.preservePixelsAtRatio(PixelSize(80, 40), ExactRatio.of(1, 1))
+        val bounds = previewOriginalContentRect(PixelSize(400, 400), Size(240f, 320f), geometry)
+        assertEquals(0f, bounds.left, 0.001f)
+        assertEquals(240f, bounds.right, 0.001f)
+        assertEquals(100f, bounds.top, 0.001f)
+        assertEquals(220f, bounds.bottom, 0.001f)
     }
 
     @Test fun centeredCropUsesOriginalCoordinatesWithoutPadding() {

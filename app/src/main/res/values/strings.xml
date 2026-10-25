@@ -10,6 +10,12 @@
     <string name="thumbnail_description">Image %1$d of %2$d, original thumbnail</string>
     <string name="batch_count">Images in batch: %1$d</string>
     <string name="preview_description">Preview of the selected image with planned margins</string>
+    <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Output: %3$d × %4$d px</string>
+    <string name="preview_original_outline">Outline original area (preview only, not exported)</string>
+    <string name="preview_background_quick_heading">Compare margin backgrounds</string>
+    <string name="preview_background_auto">Auto</string>
+    <string name="preview_background_black">Black</string>
+    <string name="preview_background_white">White</string>
     <string name="preview_loading">Preparing preview…</string>
     <string name="preview_unavailable">Preview unavailable. Select a supported SDR image.</string>
     <string name="preview_only_notice">Preview only. Check export status for any previously saved or interrupted files.</string>

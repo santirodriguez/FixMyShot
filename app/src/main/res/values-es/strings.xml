@@ -10,6 +10,12 @@
     <string name="thumbnail_description">Imagen %1$d de %2$d, miniatura original</string>
     <string name="batch_count">Imágenes en el lote: %1$d</string>
     <string name="preview_description">Vista previa de la imagen seleccionada con los márgenes previstos</string>
+    <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Resultado: %3$d × %4$d px</string>
+    <string name="preview_original_outline">Mostrar el contorno original (solo en la vista previa)</string>
+    <string name="preview_background_quick_heading">Comparar fondos de los márgenes</string>
+    <string name="preview_background_auto">Auto</string>
+    <string name="preview_background_black">Negro</string>
+    <string name="preview_background_white">Blanco</string>
     <string name="preview_loading">Preparando vista previa…</string>
     <string name="preview_unavailable">Vista previa no disponible. Elegí una imagen SDR compatible.</string>
     <string name="preview_only_notice">Solo vista previa. Revisá el estado de las exportaciones anteriores.</string>
