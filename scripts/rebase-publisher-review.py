@@ -18,7 +18,7 @@ def rebase(old_metadata, prior_bytes, metadata, *, prior_pin, metadata_pin, sour
             raise ValueError('Missing inspected source identity')
     if batch.digest(metadata) != metadata_pin:
         raise ValueError('New inventory differs from its inspected pin')
-    prior, _, _ = batch.checked_receipt(prior_bytes, old_metadata, prior_pin)
+    prior, old_rows, _ = batch.checked_receipt(prior_bytes, old_metadata, prior_pin)
     rows = {batch.planner.identity(x): x for x in batch.core.captured_rows(metadata)}
     reused = []
     for old in prior['reviewed_artifacts']:
@@ -28,13 +28,14 @@ def rebase(old_metadata, prior_bytes, metadata, *, prior_pin, metadata_pin, sour
         if row['sha256'] != old['sha256']:
             raise ValueError('Previously reviewed exact identity has conflicting new bytes')
         reused.append(copy.deepcopy(old))
-    return {
+    result = {
         'schema': 1, 'status': 'PARTIAL_PUBLISHER_REVIEW__NOT_ACTIVE',
         'baseline_source_commit': source, 'baseline_metadata_sha256': metadata_pin,
         'captured_artifact_count': len(rows), 'reviewed_artifact_count': len(reused),
         'remaining_unreviewed_artifact_count': len(rows)-len(reused),
         'complete_for_baseline': len(rows) == len(reused),
         'active_gradle_policy_changed': False, 'current_vulnerability_review': 'OPEN',
+        'rebase_script_sha256': batch.digest(Path(__file__).read_bytes()),
         'reviewed_artifacts': reused,
         'inherited_review': {
             'repository': 'santirodriguez/FixMyShot', 'commit': prior_source,
@@ -45,6 +46,28 @@ def rebase(old_metadata, prior_bytes, metadata, *, prior_pin, metadata_pin, sour
             'scope': 'IDENTITY_AND_SHA256_EQUALITY_ONLY; original proof records unchanged; no new revocation or security verdict',
         },
     }
+    # Preserve attempted/deferred identities so existing planners cannot retry
+    # unavailable evidence merely because its inventory owner has changed.
+    for key in ('publisher_batches', 'runtime_publisher_batches'):
+        inherited = []
+        for previous in prior.get(key, []):
+            outcomes = []
+            for outcome in previous['outcomes']:
+                identity = tuple(outcome['identity'])
+                if identity not in rows or identity not in old_rows:
+                    continue
+                if rows[identity]['sha256'] != old_rows[identity]['sha256']:
+                    raise ValueError('Previously attempted exact identity has conflicting new bytes')
+                outcomes.append({k: copy.deepcopy(outcome[k]) for k in
+                                 ('identity', 'sha256', 'status', 'capture_status') if k in outcome})
+            if outcomes:
+                inherited.append({**{k: previous[k] for k in
+                                      ('control_commit', 'request_sha256', 'report_sha256') if k in previous},
+                                  'inherited_baseline_metadata_sha256': batch.digest(old_metadata),
+                                  'outcomes': outcomes})
+        if inherited:
+            result[key] = inherited
+    return result
 
 
 if __name__ == '__main__':

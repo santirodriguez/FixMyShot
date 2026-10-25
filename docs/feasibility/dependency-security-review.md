@@ -194,3 +194,30 @@ rebuild request pins this exact source/tree and actual unsigned APK11835411B/
 SHA256ae45b1fbefa652c851278f9a720c90597e34ece6eaebd93ff9ac7a5f640f29ab.
 These independent requests can run while API36 finishes; all actual terminal
 reports/bytes still require review. No trust/security/license approval follows.
+
+## Migrated OSV replay complete — review remains open
+
+Actions40161516912/control6135c1d1 completed all488queries at
+2026-10-25T04:20:30.880820Z with no pagination/error. The downloaded154842B
+artifact12585884358 matches SHA256/CRC and62safe unique members. Independent
+offline replay validates every request/input pin, batch order/count, detail
+identity, withdrawn state and conclusion. The [compact receipt](evidence/security-f9434ab9.json)
+retains49advisory IDs/18matching components and full raw-replay hashes.
+There were no matches for133app-release-runtime coordinates or exactWebPcommit
+at scan time; this is not a safety or APK-reachability verdict.
+
+| Matching inputs | Verified owning scope | Remaining review |
+| --- | --- | --- |
+|12Netty coordinates, versions4.1.93/4.1.110|UTP/test tooling in locked configurations; no app release-runtime selection|Network/HTTP/TLS advisories and actual tool paths remain open; no forced leaf override|
+|Commons Lang3.16.0|AGP sdk repository→Commons Compress1.27.1→Lang; also lint/UTP listener locks|GHSA-j288-q9x7-2f5v concerns recursive ClassUtils.getClass on long input; owning-tooling remediation/applicability still open|
+|HttpClient4.5.6|Actual lint/UTP listener lock selection; root classpath instead selects4.5.14|GHSA-7r82-7xv7-xcpj concerns malformed URI authority. Root upgrade does not close the separately selected old version|
+|jose4j0.9.5, JDOM2.0.6|Root AGP→bundletool / jetifier; absent from project locks does not mean unselected|Compressed-JWE/XXE findings still require owning-tool review|
+|BouncyCastle bcpkix/bcprov1.79|AGP/tooling and selected other configurations|PKIX/signature/crypto advisory paths remain open; no app/runtime or full-remediation claim|
+
+Do not compare49/18 to historical54/25 as a seven-component remediation count:
+the frozen487-component capture differs from the historical514 and derived554
+captures. All364locked coordinates are included, but67extra derived-only
+components lie outside this frozen scan. The corresponding raw report, original
+49detail responses and derived complete replay are in the evidence package.
+Its local checksum/CRC/manifest passed; remote persistence awaits the documented
+manual upload. No strict policy, whole security/license or device approval follows.

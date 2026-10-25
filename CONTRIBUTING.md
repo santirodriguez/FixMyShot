@@ -267,10 +267,10 @@ first validates the complete historical receipt, then inherits only an exact
 group/name/version/file identity with the same SHA256. A hash conflict fails;
 a different version has no inherited approval. The original records and
 immutable receipt locator are retained, with counts recomputed for the new
-inventory. Historical JSON/XML are not overwritten. The new partial output
+inventory. Historical JSON/XML are not overwritten. Unchanged attempted/deferred identities retain their original control/report locators so existing planners skip unavailable routes after migration; full historical records remain at the immutable inherited receipt. The new partial output
 and XML stay inactive; current revocation, native trust, security and license
 acceptance are not established by reuse. Run
-`python3 scripts/test-rebased-publisher-review.py` for four offline boundary cases.
+`python3 scripts/test-rebased-publisher-review.py` for five offline boundary cases.
 
 The separately inspected official Kotlin2.4.21 manifest registry is at
 `docs/feasibility/evidence/kotlin-manifest-registry-2.4.21.json`. It pins a real

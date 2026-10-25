@@ -4,11 +4,12 @@
   "baseline_source_commit": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
   "baseline_metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
   "captured_artifact_count": 858,
-  "reviewed_artifact_count": 149,
-  "remaining_unreviewed_artifact_count": 709,
+  "reviewed_artifact_count": 216,
+  "remaining_unreviewed_artifact_count": 642,
   "complete_for_baseline": false,
   "active_gradle_policy_changed": false,
   "current_vulnerability_review": "OPEN",
+  "rebase_script_sha256": "50754ac6b55b7a449c8fb5822b79410c8b594cba7f7b48ea5de7443155f8896f",
   "reviewed_artifacts": [
     {
       "group": "org.jetbrains.kotlin",
@@ -1201,6 +1202,542 @@
       "file": "kotlin-stdlib-jdk8-1.8.0.pom",
       "sha256": "2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26",
       "proof": "kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-compiler-gradle-plugin",
+      "version": "2.4.21",
+      "file": "compose-compiler-gradle-plugin-2.4.21-gradle813.jar",
+      "sha256": "17b7d35e53e23f4820e0fb9f3ad71f7ab463970d68bcd8ba7f8d71498b50395f",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-compiler-gradle-plugin",
+      "version": "2.4.21",
+      "file": "compose-compiler-gradle-plugin-2.4.21.module",
+      "sha256": "e7bc61dabd4381f4a8f53c7be30bfb5cccd971af27d55b7c39b0a37b28bef24d",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-group-mapping",
+      "version": "2.4.21",
+      "file": "compose-group-mapping-2.4.21.jar",
+      "sha256": "45bb5caf737fb50cf96fd67f4a45aff8a75cae387333a5be80ad29523442d327",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "compose-group-mapping",
+      "version": "2.4.21",
+      "file": "compose-group-mapping-2.4.21.pom",
+      "sha256": "a1c461dc79493649a9d1eee167c172dd32aa3260a48735751de30ee169cf4620",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "fus-statistics-gradle-plugin",
+      "version": "2.4.21",
+      "file": "fus-statistics-gradle-plugin-2.4.21-gradle813.jar",
+      "sha256": "44a07b9203eb2c75ceb2d33327f89b991f2d35095a96a0f1c224a012c5465367",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "fus-statistics-gradle-plugin",
+      "version": "2.4.21",
+      "file": "fus-statistics-gradle-plugin-2.4.21.module",
+      "sha256": "3090b4e873054cdc29991ae94c92fa45afb4c145d460441d803baf6ef165bbb8",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-statistics",
+      "version": "2.4.21",
+      "file": "kotlin-build-statistics-2.4.21.jar",
+      "sha256": "f917249997fe48d1eb1204906b4cabc8230bf32a1d9fb385e52311acaa6ebc68",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-statistics",
+      "version": "2.4.21",
+      "file": "kotlin-build-statistics-2.4.21.pom",
+      "sha256": "4ac9fe3a27069f9ad87dc36ede15fc06335663d4ae46fac09a16bb090e16038c",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-api",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-api-2.4.21.jar",
+      "sha256": "c5cd6a49bd072b529ae10809111c16a7aa0f92147e95d288354017fd65799461",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-api",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-api-2.4.21.pom",
+      "sha256": "4b909e42d55242520278d5397eca1edd58921fe128942eeff95a6da279c2eb27",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-compat",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-compat-2.4.21.jar",
+      "sha256": "9e71ba89b6d26e46a087d4f8b64bc2f0a774282ea779fc08b26527d0a80d4fe8",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-compat",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-compat-2.4.21.pom",
+      "sha256": "9d9b4627d5b7bb8631457061275f21524d874b865550addec4f3b029d8265817",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-cri-impl",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-cri-impl-2.4.21.jar",
+      "sha256": "d1849f9b98033f5333905409074ca90e6a0e17258cd0eb8befa47d795e695841",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-cri-impl",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-cri-impl-2.4.21.pom",
+      "sha256": "57f3c430dfec2e575bb1b64055412ace12d4ed5d9a02eb97a85dd47f53701ef1",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-impl",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-impl-2.4.21.jar",
+      "sha256": "3152b3e1fbaa4d48f3681734a2c0efc438359a48c8a3c5cac00d874670de1377",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-build-tools-impl",
+      "version": "2.4.21",
+      "file": "kotlin-build-tools-impl-2.4.21.pom",
+      "sha256": "6ef5cb90e2d8ea75faf9ec668d306b6be7628f11ebd41878a82cae3e17dbedfb",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-compiler-embeddable-2.4.21.jar",
+      "sha256": "ef19419c765e7ac8404465fa026ca8fc4dbb8a822de0fc79aa53c8dce29f1d02",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-compiler-embeddable-2.4.21.pom",
+      "sha256": "e1620d2b18319cf7495dc67697ab03ba23a7d6d9da685285884a7a8aa08ae891",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-runner",
+      "version": "2.4.21",
+      "file": "kotlin-compiler-runner-2.4.21.jar",
+      "sha256": "75cd5956405697559e6925ebc5808449a2e12002d4f017275281ad3d4c0c7985",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compiler-runner",
+      "version": "2.4.21",
+      "file": "kotlin-compiler-runner-2.4.21.pom",
+      "sha256": "619d17c885321949eaa167af0842cad8f7aa83a4a9ca1051e5de04d11a6c0f40",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compose-compiler-plugin-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-compose-compiler-plugin-embeddable-2.4.21.jar",
+      "sha256": "634f5c17bed5854548208f2901071f2ead5993ffad25b34fea1668ee9e314b53",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-compose-compiler-plugin-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-compose-compiler-plugin-embeddable-2.4.21.pom",
+      "sha256": "d5af6aa743ce0fa940b004a6cbd1777db0a76319e1daa1fded9b03c361aa03a3",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-client",
+      "version": "2.4.21",
+      "file": "kotlin-daemon-client-2.4.21.jar",
+      "sha256": "095903c4c4713bf91a562d226d7ba0464cf5424e76342d487deec494451ab29b",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-client",
+      "version": "2.4.21",
+      "file": "kotlin-daemon-client-2.4.21.pom",
+      "sha256": "c2f18065fa18f5e92eff14f34029e4f70052011070655120796adbce7167ad65",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-daemon-embeddable-2.4.21.jar",
+      "sha256": "7b3ef24674e5bcffcadfc4e43202ea314194939ecbcdd90a4770b2f1b04e0d07",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-daemon-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-daemon-embeddable-2.4.21.pom",
+      "sha256": "95236a3a7e9953545e2ff7c6dc0ea7ffeb27560000f20abe89dc53790fec3c7e",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-2.4.21-gradle813.jar",
+      "sha256": "60eaf7b2c098d6c0e2171e5d454b3f7b95c227215dc5f831d0aeefd405e98213",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-2.4.21.module",
+      "sha256": "a412aecabbb40c7ed2fad5311d0114d4ca0e3a9690658ad3c4caed619e400d94",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-annotations",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-annotations-2.4.21.jar",
+      "sha256": "5c386b0fa287584497b07d62af954e30d05907e6da867221124d0bb936989bbd",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-annotations",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-annotations-2.4.21.pom",
+      "sha256": "b0f6b87a35d4be7ae06e554efdb261ea4bc5d59fa282c23ee28061d30805ddd6",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-api",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-api-2.4.21-gradle813.jar",
+      "sha256": "43b8c73f3e4f123b1a5e4bc8e62bd9b258dfa84129e6564bebb03c5fada84d23",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-api",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-api-2.4.21.module",
+      "sha256": "b8ae1c9ee5976145d4fd7925012e5699e2df5df7fe9613bac41d59404a58e815",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-idea-2.4.21.jar",
+      "sha256": "086734484c7edf19a620ab1a617d097c40e03bc52602e77840ea5ebd6380e514",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-idea-2.4.21.module",
+      "sha256": "ddd2bb8f319a7c468ba2fb5a404b795c69e066bd5ad2d565b47b86fa2a337606",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea-proto",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-idea-proto-2.4.21.jar",
+      "sha256": "4559d92c5c1758a3e1ec5728822b059b2eb4aebef13c701ee86c7688acf164d5",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugin-idea-proto",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugin-idea-proto-2.4.21.pom",
+      "sha256": "3c6eff2166eb46a8474b7bcccaa7d1ca5074260c866cc4bb2ba3678216a7bc15",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugins-bom",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugins-bom-2.4.21.module",
+      "sha256": "04f6a73a2c34217ac31599b8ed5ff24b85ebd410d32242eb27965c7b213f56c3",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-gradle-plugins-bom",
+      "version": "2.4.21",
+      "file": "kotlin-gradle-plugins-bom-2.4.21.pom",
+      "sha256": "624c0c869b3fcf1665afec9c5c51a807be0a8c983931ebb188548ddcdb055780",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-api",
+      "version": "2.4.21",
+      "file": "kotlin-klib-commonizer-api-2.4.21.jar",
+      "sha256": "62ebe32fcf69600125b28388f0a80781276784d90e14d333bbd5080b4807220c",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-api",
+      "version": "2.4.21",
+      "file": "kotlin-klib-commonizer-api-2.4.21.pom",
+      "sha256": "186a53ce6f218e43472808dc32cab627e19c144df2517398794bdb53d2df14a0",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-klib-commonizer-embeddable-2.4.21.jar",
+      "sha256": "2f8df89c7567b6f732b83e7184af7bb9c039ecd6290c0805fe015d9743bb5cf7",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-klib-commonizer-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-klib-commonizer-embeddable-2.4.21.pom",
+      "sha256": "5f43d7cae54104cf0acc0e0f9dbce0f13f1df0c0138256b0f3299f5ff1e04a07",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-native-utils",
+      "version": "2.4.21",
+      "file": "kotlin-native-utils-2.4.21.jar",
+      "sha256": "e1858bf1fb5bbb1738c4fa0f9cfb502b911cabf313a5de4cae686d6c50d74814",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-native-utils",
+      "version": "2.4.21",
+      "file": "kotlin-native-utils-2.4.21.pom",
+      "sha256": "9882156113d96f7911101a721cce2adefe2c8d9acc8844fb6397b8523538db37",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-script-runtime",
+      "version": "2.4.21",
+      "file": "kotlin-script-runtime-2.4.21.jar",
+      "sha256": "a658cf5902a1525a06c264a5e42b437e97a6679ddeef8ca641246f270cf6a013",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-script-runtime",
+      "version": "2.4.21",
+      "file": "kotlin-script-runtime-2.4.21.pom",
+      "sha256": "425d1683a903d085a1718122918242ad6ad0246c79283786697395e4d3a8c801",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-common",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-common-2.4.21.jar",
+      "sha256": "67817eeee13da1f827f7ab9b961e300c2a6c612c290dfebb12db2eafcf0813b3",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-common",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-common-2.4.21.pom",
+      "sha256": "5bf1576f1519ef4ee07b35470bf79b921d3b0212b52bce2e2333e88ec54be257",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-compiler-embeddable-2.4.21.jar",
+      "sha256": "a9a2f4aab2d01ebec3a8ba91c4cc07a4589205867378e98854f2a3d0ecf0f31a",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-compiler-embeddable-2.4.21.pom",
+      "sha256": "cf0fd334e23f41d1a58d1c784b61e8abb3c8ff41f348c631967f98c8d6b039d4",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-impl-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-compiler-impl-embeddable-2.4.21.jar",
+      "sha256": "5794e84bb83b855540c1105997a5963745d7c15d12654bb07304bb115564a7cb",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-compiler-impl-embeddable",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-compiler-impl-embeddable-2.4.21.pom",
+      "sha256": "58f11ca7ed212eb26bf84416ee39a7714618f04a5dd119c09d3708cbbc3cf771",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-jvm",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-jvm-2.4.21.jar",
+      "sha256": "f00bc053865d7c2864e26087ce50b60ee8bdd30f9a252890d21a34e35d398f17",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-scripting-jvm",
+      "version": "2.4.21",
+      "file": "kotlin-scripting-jvm-2.4.21.pom",
+      "sha256": "f9de68cf49f356252fe4af9185f1dd3a2a5cf6ca236da03452a83513e223dbfc",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.4.21",
+      "file": "kotlin-stdlib-2.4.21.jar",
+      "sha256": "bd8250210584cb659847dce9cda660f8e9906e5def7fbebcea93dc6dcb6a88a3",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib",
+      "version": "2.4.21",
+      "file": "kotlin-stdlib-2.4.21.module",
+      "sha256": "03b0df67c0cd74a948a45c5b03c4bbcfb31ab9b9879fb380adf7c187b6594b7f",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-stdlib-common",
+      "version": "2.4.21",
+      "file": "kotlin-stdlib-common-2.4.21.module",
+      "sha256": "aeae4f24688e1dd7ebee648ab2b12be685cbe33e9c72bc1439730a794d6e2d5b",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-tooling-core",
+      "version": "2.4.21",
+      "file": "kotlin-tooling-core-2.4.21.jar",
+      "sha256": "5fc5db083803232857408ed5c25bcc307c703b04bdef6cb2c34ebf4db611a622",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-tooling-core",
+      "version": "2.4.21",
+      "file": "kotlin-tooling-core-2.4.21.pom",
+      "sha256": "b26b1cb6480001519d4650586cdc6054ea2d2d486ff332431c543eb8f76f41ce",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-io",
+      "version": "2.4.21",
+      "file": "kotlin-util-io-2.4.21.jar",
+      "sha256": "5821175f24578ca8f1ef405bc982b3668f3f40f1a5dd28bb3283dd5215a922d1",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-io",
+      "version": "2.4.21",
+      "file": "kotlin-util-io-2.4.21.pom",
+      "sha256": "a16f898aa8c686dc0b83d556ac4adecfcadbb6662ca547fca7802bf536d6d3d3",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib",
+      "version": "2.4.21",
+      "file": "kotlin-util-klib-2.4.21.jar",
+      "sha256": "f01f79d54968941dfa83a525ae173be93460bb85b0bf2cc9ff06f6eb0864691e",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib",
+      "version": "2.4.21",
+      "file": "kotlin-util-klib-2.4.21.pom",
+      "sha256": "97b59495de92c789c6963e4e70d5545ceccd2f0fab67d7ce72f7c5a87b948030",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib-metadata",
+      "version": "2.4.21",
+      "file": "kotlin-util-klib-metadata-2.4.21.jar",
+      "sha256": "a47f883b82fc3b99fe3d666498b22312628afb5cc1b9b26e8188175be2da6060",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin",
+      "name": "kotlin-util-klib-metadata",
+      "version": "2.4.21",
+      "file": "kotlin-util-klib-metadata-2.4.21.pom",
+      "sha256": "a0f7f315c9f60b53458cc1e034a7c55e17619ce7db51db43efb7d3cdacbb5c6c",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin.jvm",
+      "name": "org.jetbrains.kotlin.jvm.gradle.plugin",
+      "version": "2.4.21",
+      "file": "org.jetbrains.kotlin.jvm.gradle.plugin-2.4.21.pom",
+      "sha256": "8e08073d123182e69c07d24c6dca7b98cc53a37707a73a6af7be88e38218b42b",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    },
+    {
+      "group": "org.jetbrains.kotlin.plugin.compose",
+      "name": "org.jetbrains.kotlin.plugin.compose.gradle.plugin",
+      "version": "2.4.21",
+      "file": "org.jetbrains.kotlin.plugin.compose.gradle.plugin-2.4.21.pom",
+      "sha256": "ee66712b1006e971636f11554af63c56835caf315382ce23e54f59f5b8b9d4f9",
+      "proof": "Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
     }
   ],
   "inherited_review": {
@@ -1212,5 +1749,3288 @@
     "prior_reviewed_count": 387,
     "reused_exact_files": 149,
     "scope": "IDENTITY_AND_SHA256_EQUALITY_ONLY; original proof records unchanged; no new revocation or security verdict"
-  }
+  },
+  "publisher_batches": [
+    {
+      "control_commit": "be41345736cc65642c81c9e12b9c9a083d298dfd",
+      "request_sha256": "d6afd620fee71b219c097204c76448ac24ae5b9b6376cc0e2e3f187bcbff0963",
+      "report_sha256": "d86867f5b0b6a6da8c85ed1cd727f758b602847eab18849525db5e1b7ccce737",
+      "inherited_baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+      "outcomes": [
+        {
+          "identity": [
+            "androidx.activity",
+            "activity",
+            "1.11.0",
+            "activity-1.11.0.aar"
+          ],
+          "sha256": "26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.activity",
+            "activity-ktx",
+            "1.11.0",
+            "activity-ktx-1.11.0.aar"
+          ],
+          "sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-experimental",
+            "1.4.1",
+            "annotation-experimental-1.4.1.aar"
+          ],
+          "sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-jvm",
+            "1.8.1",
+            "annotation-jvm-1.8.1.jar"
+          ],
+          "sha256": "9aab326d9492800991854360ac248f493ce7f7c3183519309b78ace9e240f6f6",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-jvm",
+            "1.9.1",
+            "annotation-jvm-1.9.1.jar"
+          ],
+          "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.appcompat",
+            "appcompat",
+            "1.7.1",
+            "appcompat-1.7.1.aar"
+          ],
+          "sha256": "2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.appcompat",
+            "appcompat-resources",
+            "1.7.1",
+            "appcompat-resources-1.7.1.aar"
+          ],
+          "sha256": "8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.arch.core",
+            "core-common",
+            "2.2.0",
+            "core-common-2.2.0.jar"
+          ],
+          "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.arch.core",
+            "core-runtime",
+            "2.2.0",
+            "core-runtime-2.2.0.aar"
+          ],
+          "sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.autofill",
+            "autofill",
+            "1.0.0",
+            "autofill-1.0.0.aar"
+          ],
+          "sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.collection",
+            "collection-jvm",
+            "1.5.0",
+            "collection-jvm-1.5.0.jar"
+          ],
+          "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.collection",
+            "collection-ktx",
+            "1.5.0",
+            "collection-ktx-1.5.0.jar"
+          ],
+          "sha256": "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation-android",
+            "1.10.0",
+            "animation.aar"
+          ],
+          "sha256": "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation-core-android",
+            "1.10.0",
+            "animation-core.aar"
+          ],
+          "sha256": "55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation-android",
+            "1.10.0",
+            "foundation.aar"
+          ],
+          "sha256": "c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation-layout-android",
+            "1.10.0",
+            "foundation-layout.aar"
+          ],
+          "sha256": "85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material",
+            "material-ripple-android",
+            "1.10.0",
+            "material-ripple.aar"
+          ],
+          "sha256": "ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material3",
+            "material3-android",
+            "1.4.0",
+            "material3.aar"
+          ],
+          "sha256": "3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-android",
+            "1.10.0",
+            "runtime.aar"
+          ],
+          "sha256": "612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-annotation-android",
+            "1.10.0",
+            "runtime-annotation.aar"
+          ],
+          "sha256": "8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-retain-android",
+            "1.10.0",
+            "runtime-retain.aar"
+          ],
+          "sha256": "fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-saveable-android",
+            "1.10.0",
+            "runtime-saveable.aar"
+          ],
+          "sha256": "f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-android",
+            "1.10.0",
+            "ui.aar"
+          ],
+          "sha256": "d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-geometry-android",
+            "1.10.0",
+            "ui-geometry.aar"
+          ],
+          "sha256": "40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-graphics-android",
+            "1.10.0",
+            "ui-graphics.aar"
+          ],
+          "sha256": "b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-text-android",
+            "1.10.0",
+            "ui-text.aar"
+          ],
+          "sha256": "626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-unit-android",
+            "1.10.0",
+            "ui-unit.aar"
+          ],
+          "sha256": "b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.activity",
+            "activity",
+            "1.11.0",
+            "activity-1.11.0.module"
+          ],
+          "sha256": "c19b71592d90a24b6f6996d2c1b78a24ff05cb382250bb1c670617fd605caa27",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.activity",
+            "activity-compose",
+            "1.11.0",
+            "activity-compose-1.11.0.module"
+          ],
+          "sha256": "e1bf1fe873ee1921b1757b9947ba64dfe4bb6de85daf311ada07927a75754855",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.activity",
+            "activity-ktx",
+            "1.11.0",
+            "activity-ktx-1.11.0.module"
+          ],
+          "sha256": "4ec5ffc2997cd3c0f3117391668c44dd9133af0a80ee67cbc7511c7cbd0d37d7",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation",
+            "1.8.1",
+            "annotation-1.8.1.module"
+          ],
+          "sha256": "e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation",
+            "1.9.1",
+            "annotation-1.9.1.module"
+          ],
+          "sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-experimental",
+            "1.4.1",
+            "annotation-experimental-1.4.1.module"
+          ],
+          "sha256": "2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-jvm",
+            "1.8.1",
+            "annotation-jvm-1.8.1.module"
+          ],
+          "sha256": "c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.annotation",
+            "annotation-jvm",
+            "1.9.1",
+            "annotation-jvm-1.9.1.module"
+          ],
+          "sha256": "03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.appcompat",
+            "appcompat",
+            "1.7.1",
+            "appcompat-1.7.1.module"
+          ],
+          "sha256": "8bbf16792c81cc2dd083681783a5382f573007eee8157182932f1b454e2b7f04",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.appcompat",
+            "appcompat-resources",
+            "1.7.1",
+            "appcompat-resources-1.7.1.module"
+          ],
+          "sha256": "163cc5e0f249433ddb0016fbd011ab8de07cf23e07e618c74644688e26cd18e8",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.arch.core",
+            "core-common",
+            "2.2.0",
+            "core-common-2.2.0.module"
+          ],
+          "sha256": "edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.arch.core",
+            "core-runtime",
+            "2.2.0",
+            "core-runtime-2.2.0.module"
+          ],
+          "sha256": "a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.collection",
+            "collection",
+            "1.5.0",
+            "collection-1.5.0.module"
+          ],
+          "sha256": "bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.collection",
+            "collection-jvm",
+            "1.5.0",
+            "collection-jvm-1.5.0.module"
+          ],
+          "sha256": "dde85e292509231b5471bb091b575099d4f43161eb281e87385038a0161072e6",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.collection",
+            "collection-ktx",
+            "1.5.0",
+            "collection-ktx-1.5.0.module"
+          ],
+          "sha256": "4228894e25eec7e17329b206ba72e8aad255bc535018dc62acc5eff3b5c7aaa5",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation",
+            "1.10.0",
+            "animation-1.10.0.module"
+          ],
+          "sha256": "2158c1b57ce292ac2fd0d1541ece2cd08bbfbbd80aa6417a0668076693855458",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation-android",
+            "1.10.0",
+            "animation-android-1.10.0.module"
+          ],
+          "sha256": "048631961b8d45793f92705d8775d19e02824b120d1547b92852889678f5834b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation-core",
+            "1.10.0",
+            "animation-core-1.10.0.module"
+          ],
+          "sha256": "2560e6513e16978300d7f1cb2593e9cdc0f57dbb37b788efd2ee6769c12d7921",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.animation",
+            "animation-core-android",
+            "1.10.0",
+            "animation-core-android-1.10.0.module"
+          ],
+          "sha256": "c756a26751aa2dd8950ee29fea39ca81e419e4cd7d07a23b04c7158da9db33a2",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation",
+            "1.10.0",
+            "foundation-1.10.0.module"
+          ],
+          "sha256": "b9f547775ab6920e06afeb371322840ab72d738b5a694a6f733ad7049675c452",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation-android",
+            "1.10.0",
+            "foundation-android-1.10.0.module"
+          ],
+          "sha256": "d4d4ad1b52952463b0b1a5099f6591a8da70105249643ffe3b1fe59e311c3766",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.autofill",
+            "autofill",
+            "1.0.0",
+            "autofill-1.0.0.pom"
+          ],
+          "sha256": "3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose",
+            "compose-bom",
+            "2025.12.00",
+            "compose-bom-2025.12.00.pom"
+          ],
+          "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.cursoradapter",
+            "cursoradapter",
+            "1.0.0",
+            "cursoradapter-1.0.0.pom"
+          ],
+          "sha256": "62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.customview",
+            "customview",
+            "1.0.0",
+            "customview-1.0.0.pom"
+          ],
+          "sha256": "ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.documentfile",
+            "documentfile",
+            "1.0.0",
+            "documentfile-1.0.0.pom"
+          ],
+          "sha256": "013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.drawerlayout",
+            "drawerlayout",
+            "1.0.0",
+            "drawerlayout-1.0.0.pom"
+          ],
+          "sha256": "da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.dynamicanimation",
+            "dynamicanimation",
+            "1.0.0",
+            "dynamicanimation-1.0.0.pom"
+          ],
+          "sha256": "44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.interpolator",
+            "interpolator",
+            "1.0.0",
+            "interpolator-1.0.0.pom"
+          ],
+          "sha256": "0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.legacy",
+            "legacy-support-core-utils",
+            "1.0.0",
+            "legacy-support-core-utils-1.0.0.pom"
+          ],
+          "sha256": "8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.loader",
+            "loader",
+            "1.0.0",
+            "loader-1.0.0.pom"
+          ],
+          "sha256": "c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.localbroadcastmanager",
+            "localbroadcastmanager",
+            "1.0.0",
+            "localbroadcastmanager-1.0.0.pom"
+          ],
+          "sha256": "a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.print",
+            "print",
+            "1.0.0",
+            "print-1.0.0.pom"
+          ],
+          "sha256": "62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "core",
+            "1.6.1",
+            "core-1.6.1.pom"
+          ],
+          "sha256": "44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "monitor",
+            "1.7.2",
+            "monitor-1.7.2.pom"
+          ],
+          "sha256": "388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "runner",
+            "1.6.2",
+            "runner-1.6.2.pom"
+          ],
+          "sha256": "e6abf0cb643a79f3e120b3d6a03dd8906f8d6a9edb73cfbb7a64048d073a4f16",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test.ext",
+            "junit",
+            "1.2.1",
+            "junit-1.2.1.pom"
+          ],
+          "sha256": "983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test.services",
+            "storage",
+            "1.5.0",
+            "storage-1.5.0.pom"
+          ],
+          "sha256": "81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.vectordrawable",
+            "vectordrawable",
+            "1.1.0",
+            "vectordrawable-1.1.0.pom"
+          ],
+          "sha256": "5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.vectordrawable",
+            "vectordrawable-animated",
+            "1.1.0",
+            "vectordrawable-animated-1.1.0.pom"
+          ],
+          "sha256": "276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.versionedparcelable",
+            "versionedparcelable",
+            "1.1.1",
+            "versionedparcelable-1.1.1.pom"
+          ],
+          "sha256": "5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.viewpager",
+            "viewpager",
+            "1.0.0",
+            "viewpager-1.0.0.pom"
+          ],
+          "sha256": "1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        }
+      ]
+    },
+    {
+      "control_commit": "81af60aa7ddee8d71dedb217d178f1c6599022de",
+      "request_sha256": "89c768f9f5ba2fceee1f995c43200df5aa914315896b8e0cff4e474d8deb675d",
+      "report_sha256": "a1347d439d4d720a77a2f27dff762992c5e98ceb7bc8f9519530d4126c9a27ca",
+      "inherited_baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+      "outcomes": [
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-util-android",
+            "1.10.0",
+            "ui-util.aar"
+          ],
+          "sha256": "75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.concurrent",
+            "concurrent-futures",
+            "1.1.0",
+            "concurrent-futures-1.1.0.jar"
+          ],
+          "sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.concurrent",
+            "concurrent-futures-ktx",
+            "1.1.0",
+            "concurrent-futures-ktx-1.1.0.jar"
+          ],
+          "sha256": "1968bf52039e38636aa6f114cd17d7256919d1e8997417716fef9d1da1f24d85",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core",
+            "1.13.0",
+            "core-1.13.0.aar"
+          ],
+          "sha256": "1b96c8eb10c4b40283fdd6e9aa74ffff05fae4f15d54f61ba69d517fcd144695",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core",
+            "1.16.0",
+            "core-1.16.0.aar"
+          ],
+          "sha256": "6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-ktx",
+            "1.13.0",
+            "core-ktx-1.13.0.aar"
+          ],
+          "sha256": "59c54e6129e9261c6d810f8eea4a6ee2f4994d8162b1cd9fc88c9c84c92accfc",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-ktx",
+            "1.16.0",
+            "core-ktx-1.16.0.aar"
+          ],
+          "sha256": "1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-viewtree",
+            "1.0.0",
+            "core-viewtree-1.0.0.aar"
+          ],
+          "sha256": "dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.cursoradapter",
+            "cursoradapter",
+            "1.0.0",
+            "cursoradapter-1.0.0.aar"
+          ],
+          "sha256": "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.customview",
+            "customview",
+            "1.0.0",
+            "customview-1.0.0.aar"
+          ],
+          "sha256": "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.customview",
+            "customview-poolingcontainer",
+            "1.0.0",
+            "customview-poolingcontainer-1.0.0.aar"
+          ],
+          "sha256": "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-android",
+            "1.1.7",
+            "datastore-release.aar"
+          ],
+          "sha256": "26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core-android",
+            "1.1.7",
+            "datastore-core-release.aar"
+          ],
+          "sha256": "adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core-okio-jvm",
+            "1.1.7",
+            "datastore-core-okio-jvm-1.1.7.jar"
+          ],
+          "sha256": "291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-android",
+            "1.1.7",
+            "datastore-preferences-release.aar"
+          ],
+          "sha256": "1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-core-android",
+            "1.1.7",
+            "datastore-preferences-core-release.aar"
+          ],
+          "sha256": "31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-external-protobuf",
+            "1.1.7",
+            "datastore-preferences-external-protobuf-1.1.7.jar"
+          ],
+          "sha256": "fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-proto",
+            "1.1.7",
+            "datastore-preferences-proto-1.1.7.jar"
+          ],
+          "sha256": "63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.documentfile",
+            "documentfile",
+            "1.0.0",
+            "documentfile-1.0.0.aar"
+          ],
+          "sha256": "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.drawerlayout",
+            "drawerlayout",
+            "1.0.0",
+            "drawerlayout-1.0.0.aar"
+          ],
+          "sha256": "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.dynamicanimation",
+            "dynamicanimation",
+            "1.0.0",
+            "dynamicanimation-1.0.0.aar"
+          ],
+          "sha256": "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.emoji2",
+            "emoji2",
+            "1.4.0",
+            "emoji2-1.4.0.aar"
+          ],
+          "sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.emoji2",
+            "emoji2-views-helper",
+            "1.4.0",
+            "emoji2-views-helper-1.4.0.aar"
+          ],
+          "sha256": "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.exifinterface",
+            "exifinterface",
+            "1.4.2",
+            "exifinterface-1.4.2.aar"
+          ],
+          "sha256": "6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.fragment",
+            "fragment",
+            "1.5.4",
+            "fragment-1.5.4.aar"
+          ],
+          "sha256": "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.graphics",
+            "graphics-path",
+            "1.0.1",
+            "graphics-path-1.0.1.aar"
+          ],
+          "sha256": "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.interpolator",
+            "interpolator",
+            "1.0.0",
+            "interpolator-1.0.0.aar"
+          ],
+          "sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.legacy",
+            "legacy-support-core-utils",
+            "1.0.0",
+            "legacy-support-core-utils-1.0.0.aar"
+          ],
+          "sha256": "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-java8",
+            "2.9.4",
+            "lifecycle-common-java8-2.9.4.jar"
+          ],
+          "sha256": "497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-jvm",
+            "2.9.4",
+            "lifecycle-common-jvm-2.9.4.jar"
+          ],
+          "sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.9.4",
+            "lifecycle-livedata-2.9.4.aar"
+          ],
+          "sha256": "f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.9.4",
+            "lifecycle-livedata-core-2.9.4.aar"
+          ],
+          "sha256": "ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.9.4",
+            "lifecycle-livedata-core-ktx-2.9.4.aar"
+          ],
+          "sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-process",
+            "2.9.4",
+            "lifecycle-process-2.9.4.aar"
+          ],
+          "sha256": "4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-android",
+            "2.9.4",
+            "lifecycle-runtime-release.aar"
+          ],
+          "sha256": "86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation-layout",
+            "1.10.0",
+            "foundation-layout-1.10.0.module"
+          ],
+          "sha256": "421dccb4cf516955c206ca1cad456983934a9909b44b0e9a14f735a779a563d1",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.foundation",
+            "foundation-layout-android",
+            "1.10.0",
+            "foundation-layout-android-1.10.0.module"
+          ],
+          "sha256": "a6979914bfa087650ece415d36b0b0d74669f86c3f453a2f9c05fcf47aeef61a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material",
+            "material-ripple",
+            "1.10.0",
+            "material-ripple-1.10.0.module"
+          ],
+          "sha256": "31c55e4c7264b06da320bef7086a6bd4265a40422d36e5eb770798b33f9742c2",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material",
+            "material-ripple-android",
+            "1.10.0",
+            "material-ripple-android-1.10.0.module"
+          ],
+          "sha256": "6985cda3f981e229076a21b6e322bc03ec22342c869c083227a6a65b273c4138",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material3",
+            "material3",
+            "1.4.0",
+            "material3-1.4.0.module"
+          ],
+          "sha256": "757081d128daf8801c1dd9acc431fa5269e656b28a0a490ae98ccee68e9c3452",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.material3",
+            "material3-android",
+            "1.4.0",
+            "material3-android-1.4.0.module"
+          ],
+          "sha256": "fccd6a8d0d33fcf7c3277bc43eb452c73803ec620597c81dbc4a79e290a71a97",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime",
+            "1.10.0",
+            "runtime-1.10.0.module"
+          ],
+          "sha256": "c1be9e41b03bc50e3850e86e5827fdf3eca11707989d93affb38e1bc8b53d675",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-android",
+            "1.10.0",
+            "runtime-android-1.10.0.module"
+          ],
+          "sha256": "aafadad4ff1e6132fcf440f7f7e8c17cefa294e1de87db12e2c434569ab339ce",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-annotation",
+            "1.10.0",
+            "runtime-annotation-1.10.0.module"
+          ],
+          "sha256": "029616c9ddf00b22bf629e151fca5ce73a96f094c4b5d96dc813dd3faa585f02",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-annotation-android",
+            "1.10.0",
+            "runtime-annotation-android-1.10.0.module"
+          ],
+          "sha256": "7e99adea1a682fce56106f0bca2c53a1f58c130f0f31de9849760f7a5de212ce",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-retain",
+            "1.10.0",
+            "runtime-retain-1.10.0.module"
+          ],
+          "sha256": "8254e7bfa01e5471e6917a3730ad0af5265f9d52e7ddb3c3aa7a5befdf75f91f",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-retain-android",
+            "1.10.0",
+            "runtime-retain-android-1.10.0.module"
+          ],
+          "sha256": "7dcfa819b62306bf1658a3c84beeb799f6078200804db343a9559aa5d89498aa",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-saveable",
+            "1.10.0",
+            "runtime-saveable-1.10.0.module"
+          ],
+          "sha256": "835897174ebee1ebcf01000661f6cfcc8aedca1dbf4d17cb76245a5347b8f028",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.runtime",
+            "runtime-saveable-android",
+            "1.10.0",
+            "runtime-saveable-android-1.10.0.module"
+          ],
+          "sha256": "be1559a7468b8a82bdb71fbe953bb2b2f1f5ea9dfb6e25e3e3fe22454a5e27ea",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui",
+            "1.10.0",
+            "ui-1.10.0.module"
+          ],
+          "sha256": "48600c0d2ff9eaaf6d7888124496fa2dd4830a1cc328591054cafed5f6a657e3",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-android",
+            "1.10.0",
+            "ui-android-1.10.0.module"
+          ],
+          "sha256": "2e867f73ae9d2a78e6a78355d7c1f3d1da29edbc3f64cd78f77a889dab66895a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-geometry",
+            "1.10.0",
+            "ui-geometry-1.10.0.module"
+          ],
+          "sha256": "ed47254977efa73d57b1528d1d142cd1e662fb408321cb182affa3f82a2ab569",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-geometry-android",
+            "1.10.0",
+            "ui-geometry-android-1.10.0.module"
+          ],
+          "sha256": "22950743dd658d1f250a3d0a27dce49d03074928e116725e4e23e0d4b990365a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-graphics",
+            "1.10.0",
+            "ui-graphics-1.10.0.module"
+          ],
+          "sha256": "b29b99982c91b69dbd50ff989f6e33ed4d31548b3609492189dba634d0c589d9",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-graphics-android",
+            "1.10.0",
+            "ui-graphics-android-1.10.0.module"
+          ],
+          "sha256": "95b58307cbc92c52d3d1a22bb93586117f91957ca29ed3a572104e37100fe1e9",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-text",
+            "1.10.0",
+            "ui-text-1.10.0.module"
+          ],
+          "sha256": "9109b898376ca1af4e8748ac437beba461f0e9f806eddfe8384f81561e5733c8",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-text-android",
+            "1.10.0",
+            "ui-text-android-1.10.0.module"
+          ],
+          "sha256": "c6fd2b4f48b754c8dfd0b9427a6ee97c4f8018d9a6221b1498202ae1acabb4d3",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-unit",
+            "1.10.0",
+            "ui-unit-1.10.0.module"
+          ],
+          "sha256": "c10ac08770b2a090703664d21030e316cfddc4407c1b014b8ad3250f8bed51d5",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-unit-android",
+            "1.10.0",
+            "ui-unit-android-1.10.0.module"
+          ],
+          "sha256": "bbcadbde83e5f849c8ae272dfa37b934922ac645feb71b67e16137c6da43c6ef",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        }
+      ]
+    },
+    {
+      "control_commit": "f60178606ad269097ecbf9740361bbc5f7fd95d9",
+      "request_sha256": "e60ec6979cbd0fb7e9dd6585d9c67611e53c9d4d6e5bbceb290f23b1e94ad2ff",
+      "report_sha256": "07258a60b2b537946451e6f8c30cadf822539f873bb526f2c940d6259350fa29",
+      "inherited_baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+      "outcomes": [
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose-android",
+            "2.9.4",
+            "lifecycle-runtime-compose-release.aar"
+          ],
+          "sha256": "b6803f906a89fd85c77df343dd4aeeb349125ca79e12d55d68d4cf42f42231f6",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-ktx-android",
+            "2.9.4",
+            "lifecycle-runtime-ktx.aar"
+          ],
+          "sha256": "970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.9.4",
+            "lifecycle-viewmodel-2.9.4.aar"
+          ],
+          "sha256": "cab404b05d5faed209104a2aef14c0cbb316ab9fabe4a8f037b043e5d2f43435",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-android",
+            "2.9.4",
+            "lifecycle-viewmodel-release.aar"
+          ],
+          "sha256": "4b236b2e504db5ca5d09334fef05aa8cdc31ee35a433c3aa4d0420efa9613332",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-ktx",
+            "2.9.4",
+            "lifecycle-viewmodel-ktx-2.9.4.aar"
+          ],
+          "sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate-android",
+            "2.9.4",
+            "lifecycle-viewmodel-savedstate-release.aar"
+          ],
+          "sha256": "079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.loader",
+            "loader",
+            "1.0.0",
+            "loader-1.0.0.aar"
+          ],
+          "sha256": "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.localbroadcastmanager",
+            "localbroadcastmanager",
+            "1.0.0",
+            "localbroadcastmanager-1.0.0.aar"
+          ],
+          "sha256": "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.print",
+            "print",
+            "1.0.0",
+            "print-1.0.0.aar"
+          ],
+          "sha256": "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.profileinstaller",
+            "profileinstaller",
+            "1.4.0",
+            "profileinstaller-1.4.0.aar"
+          ],
+          "sha256": "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.resourceinspection",
+            "resourceinspection-annotation",
+            "1.0.1",
+            "resourceinspection-annotation-1.0.1.jar"
+          ],
+          "sha256": "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-android",
+            "1.3.2",
+            "savedstate-release.aar"
+          ],
+          "sha256": "1e26f137705596d09d3f4f52559a29026d9a1a6688be7f1a948316a4f1e39b20",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose-android",
+            "1.3.2",
+            "savedstate-compose.aar"
+          ],
+          "sha256": "93426691f25441cc3179494b25f401a8a468aabbee4c40b90c0327413fd65523",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-ktx",
+            "1.3.2",
+            "savedstate-ktx-1.3.2.aar"
+          ],
+          "sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.startup",
+            "startup-runtime",
+            "1.1.1",
+            "startup-runtime-1.1.1.aar"
+          ],
+          "sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "core",
+            "1.6.1",
+            "core-1.6.1.aar"
+          ],
+          "sha256": "7a7af31c21785ddb7c4319c838847e6d4d9b5bb531f3a951481ec3b98780bf51",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "monitor",
+            "1.7.2",
+            "monitor-1.7.2.aar"
+          ],
+          "sha256": "868cc120d10d024b886fa157e1e1eaee0e6a8e5d55e7f765ef41d8fc0fea775b",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test",
+            "runner",
+            "1.6.2",
+            "runner-1.6.2.aar"
+          ],
+          "sha256": "d8eac6d9864f432b15962b2c2739a7b31685c87777364ac97323c9e4b2c94744",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test.ext",
+            "junit",
+            "1.2.1",
+            "junit-1.2.1.aar"
+          ],
+          "sha256": "7b146a73c545b983430d2fae0081df67c76722c19a9abd2904e131696a8c5b20",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.test.services",
+            "storage",
+            "1.5.0",
+            "storage-1.5.0.aar"
+          ],
+          "sha256": "d59621845cff5ff5e8a6906445ef1b2d83624d796cbfad9a52e86a3ab42f8c48",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.1.0",
+            "tracing-1.1.0.aar"
+          ],
+          "sha256": "5b78e2c618fc10b3d14decc01df76158f15954ad746aacf0607766721da081f6",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.2.0",
+            "tracing-1.2.0.aar"
+          ],
+          "sha256": "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.transition",
+            "transition",
+            "1.6.0",
+            "transition-1.6.0.aar"
+          ],
+          "sha256": "248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.vectordrawable",
+            "vectordrawable",
+            "1.1.0",
+            "vectordrawable-1.1.0.aar"
+          ],
+          "sha256": "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.vectordrawable",
+            "vectordrawable-animated",
+            "1.1.0",
+            "vectordrawable-animated-1.1.0.aar"
+          ],
+          "sha256": "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.versionedparcelable",
+            "versionedparcelable",
+            "1.1.1",
+            "versionedparcelable-1.1.1.aar"
+          ],
+          "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.viewpager",
+            "viewpager",
+            "1.0.0",
+            "viewpager-1.0.0.aar"
+          ],
+          "sha256": "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window",
+            "1.5.0",
+            "window-1.5.0.aar"
+          ],
+          "sha256": "5de2d48aa578402f46deb5294a955cee62f0c7d8c1840ef626fc7afb8abe22f9",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window-core-android",
+            "1.5.0",
+            "window-core.aar"
+          ],
+          "sha256": "d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-util",
+            "1.10.0",
+            "ui-util-1.10.0.module"
+          ],
+          "sha256": "8e3bedd5c2e1c813a73e5282dbbfced422f786083828c42f9202da3929e54122",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.compose.ui",
+            "ui-util-android",
+            "1.10.0",
+            "ui-util-android-1.10.0.module"
+          ],
+          "sha256": "35161c6a849b54334edea68ee06b6f49419052dc825bdbbef4ee98d177a0c66a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.concurrent",
+            "concurrent-futures",
+            "1.1.0",
+            "concurrent-futures-1.1.0.module"
+          ],
+          "sha256": "77639a0b051e22510bad93affcea0ebd781ef124bf9b7621a95749937bcfcdfd",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.concurrent",
+            "concurrent-futures-ktx",
+            "1.1.0",
+            "concurrent-futures-ktx-1.1.0.module"
+          ],
+          "sha256": "69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core",
+            "1.13.0",
+            "core-1.13.0.module"
+          ],
+          "sha256": "2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core",
+            "1.16.0",
+            "core-1.16.0.module"
+          ],
+          "sha256": "4ab4a3b0bc1664e3a2c60dec699af635778e15c6ee373971690948f073dd721e",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-ktx",
+            "1.13.0",
+            "core-ktx-1.13.0.module"
+          ],
+          "sha256": "a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-ktx",
+            "1.16.0",
+            "core-ktx-1.16.0.module"
+          ],
+          "sha256": "89fb92ca127594cdcd11c5efb5ab0e8eb23466bc41b8df7579514d2fef6e1281",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.core",
+            "core-viewtree",
+            "1.0.0",
+            "core-viewtree-1.0.0.module"
+          ],
+          "sha256": "11386cfa46cbbfddb6a4059f14354c00691cf65d3d63c3618818a83326ef3c7f",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.customview",
+            "customview-poolingcontainer",
+            "1.0.0",
+            "customview-poolingcontainer-1.0.0.module"
+          ],
+          "sha256": "903034d5152dd2e0162b1468ea25a22e1ca384006b3d282d5a143cc760321a01",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore",
+            "1.1.7",
+            "datastore-1.1.7.module"
+          ],
+          "sha256": "705450d5e0d0a84c1599ae1421a9969e3aa704bc39640ebcd671e4643d2fc8f8",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-android",
+            "1.1.7",
+            "datastore-android-1.1.7.module"
+          ],
+          "sha256": "669f2695add59bab604dc5090a879e4163ddff550ef75a1298c4ec2250c837f9",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core",
+            "1.1.7",
+            "datastore-core-1.1.7.module"
+          ],
+          "sha256": "4821397339e3272f95139e408985bc91384ada3ca66e424ed8af6577070de489",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core-android",
+            "1.1.7",
+            "datastore-core-android-1.1.7.module"
+          ],
+          "sha256": "a38beb4eda9e2f92c06842dbba77aae924e5ee22c36e533c6960f1b054313bdd",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core-okio",
+            "1.1.7",
+            "datastore-core-okio-1.1.7.module"
+          ],
+          "sha256": "47fadb8caff5982ac29ccc1ff38d4206ee29ecb947fa06d4070c0ebc1086a7eb",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-core-okio-jvm",
+            "1.1.7",
+            "datastore-core-okio-jvm-1.1.7.module"
+          ],
+          "sha256": "05b2108ff565eb2b1aafb6b9e4d51f834a7bfaac2f4dfc7a81b3992d7e6bed21",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences",
+            "1.1.7",
+            "datastore-preferences-1.1.7.module"
+          ],
+          "sha256": "24f6866605ed027c6e13158ca18464d2a1af1ba8a5f0ce3ff2224b7604fe0a2b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-android",
+            "1.1.7",
+            "datastore-preferences-android-1.1.7.module"
+          ],
+          "sha256": "49d055ae6611ad770f6e3d22eec6875b5f5ab3a7398841cf84cae18d5c89d3a2",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-core",
+            "1.1.7",
+            "datastore-preferences-core-1.1.7.module"
+          ],
+          "sha256": "109dc49114519f2672fb3178de01fb53953e9559be83394dc259444550caed99",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-core-android",
+            "1.1.7",
+            "datastore-preferences-core-android-1.1.7.module"
+          ],
+          "sha256": "aa76e59310d9aa389efbc417934533ccc3563aed3f911186e16df787c40ffb00",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-external-protobuf",
+            "1.1.7",
+            "datastore-preferences-external-protobuf-1.1.7.module"
+          ],
+          "sha256": "87863e6b93a416dc00f857713edf683914b64ac6ebcf220e5826e336a841bfa5",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.datastore",
+            "datastore-preferences-proto",
+            "1.1.7",
+            "datastore-preferences-proto-1.1.7.module"
+          ],
+          "sha256": "3da01b6fb8751c39237202b8fe668c55347c0e35960db6d7776bd482f2e6ef3e",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.emoji2",
+            "emoji2",
+            "1.4.0",
+            "emoji2-1.4.0.module"
+          ],
+          "sha256": "92be16cccb757f807bddd92f1fca95a038a810ccca051c4149c11682478954b8",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.emoji2",
+            "emoji2-views-helper",
+            "1.4.0",
+            "emoji2-views-helper-1.4.0.module"
+          ],
+          "sha256": "248aa276fdba8116e656233cac3f3fd541444df2305de93e6813795fcd0ba26a",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        }
+      ]
+    },
+    {
+      "control_commit": "45b620e855ea1324cf07d1c03e443e30b3dc9269",
+      "request_sha256": "40f06ba4d2dac6f860aa72c3f368760a75ab5ee100ccb10a8e44cee82c394865",
+      "report_sha256": "2ab088c3fbd8f3689b4a90556c331d03befc1f7e5059acb3cad0c176f2f82240",
+      "inherited_baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+      "outcomes": [
+        {
+          "identity": [
+            "androidx.exifinterface",
+            "exifinterface",
+            "1.4.2",
+            "exifinterface-1.4.2.module"
+          ],
+          "sha256": "6365165eb5aacc700a34b1650a2910ea01ebd819821b89af7689fa41274fb00b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.fragment",
+            "fragment",
+            "1.5.4",
+            "fragment-1.5.4.module"
+          ],
+          "sha256": "af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.graphics",
+            "graphics-path",
+            "1.0.1",
+            "graphics-path-1.0.1.module"
+          ],
+          "sha256": "3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.heifwriter",
+            "heifwriter",
+            "1.2.0-rc01",
+            "heifwriter-1.2.0-rc01.module"
+          ],
+          "sha256": "1ab25b802cef746359456a5e6a4b86f8fbb18ef5777b2760a7b5172d89689d01",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.8.7",
+            "lifecycle-common-2.8.7.module"
+          ],
+          "sha256": "0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common",
+            "2.9.4",
+            "lifecycle-common-2.9.4.module"
+          ],
+          "sha256": "c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-java8",
+            "2.9.4",
+            "lifecycle-common-java8-2.9.4.module"
+          ],
+          "sha256": "07bab59d012bc806f03debd192f93e312d72bca56b25178234a21a6812daf041",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-common-jvm",
+            "2.9.4",
+            "lifecycle-common-jvm-2.9.4.module"
+          ],
+          "sha256": "1d1837f3942b33ea30aa2301fdcea2639408a0fd6fd4368c22478fa8153aebbf",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.8.7",
+            "lifecycle-livedata-2.8.7.module"
+          ],
+          "sha256": "d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata",
+            "2.9.4",
+            "lifecycle-livedata-2.9.4.module"
+          ],
+          "sha256": "9a8153a07ae2edd8b7919a34ad9195847005eaed69fa3e5060636208a728c312",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.8.7",
+            "lifecycle-livedata-core-2.8.7.module"
+          ],
+          "sha256": "b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core",
+            "2.9.4",
+            "lifecycle-livedata-core-2.9.4.module"
+          ],
+          "sha256": "dee60656abb194da028d93b9bd652b4b164cdab35a000b475d63303c5d00994b",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.8.7",
+            "lifecycle-livedata-core-ktx-2.8.7.module"
+          ],
+          "sha256": "3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-livedata-core-ktx",
+            "2.9.4",
+            "lifecycle-livedata-core-ktx-2.9.4.module"
+          ],
+          "sha256": "0a940e79e256cc7fbec69d8eb35362ac79599ab4b21ab4846aba64ba4960a192",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-process",
+            "2.9.4",
+            "lifecycle-process-2.9.4.module"
+          ],
+          "sha256": "f7cd5051bacb3f4b8ec7dc40ac6342a61eea1147592dda9f364a24cf882c7ddb",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.8.7",
+            "lifecycle-runtime-2.8.7.module"
+          ],
+          "sha256": "cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime",
+            "2.9.4",
+            "lifecycle-runtime-2.9.4.module"
+          ],
+          "sha256": "dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-android",
+            "2.9.4",
+            "lifecycle-runtime-android-2.9.4.module"
+          ],
+          "sha256": "c7888e850c40fd059fb2c1ec5bf46e88313e9b5d5152133c385a1aafb8433f47",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose",
+            "2.8.7",
+            "lifecycle-runtime-compose-2.8.7.module"
+          ],
+          "sha256": "cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose",
+            "2.9.4",
+            "lifecycle-runtime-compose-2.9.4.module"
+          ],
+          "sha256": "27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-compose-android",
+            "2.9.4",
+            "lifecycle-runtime-compose-android-2.9.4.module"
+          ],
+          "sha256": "e087a2c2bdfe360497339335ba51dbcdd1503c0a7c9f4f8285db7023e0429439",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-ktx",
+            "2.9.4",
+            "lifecycle-runtime-ktx-2.9.4.module"
+          ],
+          "sha256": "05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-runtime-ktx-android",
+            "2.9.4",
+            "lifecycle-runtime-ktx-android-2.9.4.module"
+          ],
+          "sha256": "6a2070e9d9243bd3b5d5a108b9db5583bcc4c742b32efb45fe33f49429eb7193",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.8.7",
+            "lifecycle-viewmodel-2.8.7.module"
+          ],
+          "sha256": "f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel",
+            "2.9.4",
+            "lifecycle-viewmodel-2.9.4.module"
+          ],
+          "sha256": "964d69d6b877296e8b79a77bb826ef5fb186aecaa7a1a7ff776fb2250c993006",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-android",
+            "2.9.4",
+            "lifecycle-viewmodel-android-2.9.4.module"
+          ],
+          "sha256": "b637acdd8aab5348974661830874a7456bac341f43a0b281827cc6b0fcfc73c1",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-ktx",
+            "2.9.4",
+            "lifecycle-viewmodel-ktx-2.9.4.module"
+          ],
+          "sha256": "5631efeab797f79a1adba5df64b2f0cca54e08b428756df7630cb23b90098a67",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.8.7",
+            "lifecycle-viewmodel-savedstate-2.8.7.module"
+          ],
+          "sha256": "bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate",
+            "2.9.4",
+            "lifecycle-viewmodel-savedstate-2.9.4.module"
+          ],
+          "sha256": "4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.lifecycle",
+            "lifecycle-viewmodel-savedstate-android",
+            "2.9.4",
+            "lifecycle-viewmodel-savedstate-android-2.9.4.module"
+          ],
+          "sha256": "bf64c4c3cf5ad5fe5d6fd0e07787ec68054cc226f9f670e05af5ef9da67c2593",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.profileinstaller",
+            "profileinstaller",
+            "1.4.0",
+            "profileinstaller-1.4.0.module"
+          ],
+          "sha256": "39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.resourceinspection",
+            "resourceinspection-annotation",
+            "1.0.1",
+            "resourceinspection-annotation-1.0.1.module"
+          ],
+          "sha256": "352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate",
+            "1.3.2",
+            "savedstate-1.3.2.module"
+          ],
+          "sha256": "320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-android",
+            "1.3.2",
+            "savedstate-android-1.3.2.module"
+          ],
+          "sha256": "5d962b8d6a4bc5284492a40003c9867fd392ac6979ab440bdecdd427899741bb",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose",
+            "1.3.2",
+            "savedstate-compose-1.3.2.module"
+          ],
+          "sha256": "3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-compose-android",
+            "1.3.2",
+            "savedstate-compose-android-1.3.2.module"
+          ],
+          "sha256": "8376ee32d654f97712f817275e785880daef1e44448f38272a7734ec091ce401",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.savedstate",
+            "savedstate-ktx",
+            "1.3.2",
+            "savedstate-ktx-1.3.2.module"
+          ],
+          "sha256": "f7fc8a13f9fbe5cf092128299aff529392f3eee54e6d3fe5f0a2f82fc6c5f3db",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.startup",
+            "startup-runtime",
+            "1.1.1",
+            "startup-runtime-1.1.1.module"
+          ],
+          "sha256": "cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.1.0",
+            "tracing-1.1.0.module"
+          ],
+          "sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.tracing",
+            "tracing",
+            "1.2.0",
+            "tracing-1.2.0.module"
+          ],
+          "sha256": "d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.transition",
+            "transition",
+            "1.6.0",
+            "transition-1.6.0.module"
+          ],
+          "sha256": "c763c376fd6d39e51477c902b315e58ca2a1f47d4b099cb99f49a148bd61c560",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window",
+            "1.5.0",
+            "window-1.5.0.module"
+          ],
+          "sha256": "8ac5d2772e97c957dddcbcb1c1198229d4afe57cdf5ecd5eb3cd436a05190743",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window-core",
+            "1.5.0",
+            "window-core-1.5.0.module"
+          ],
+          "sha256": "595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "androidx.window",
+            "window-core-android",
+            "1.5.0",
+            "window-core-android-1.5.0.module"
+          ],
+          "sha256": "5bd818686803bf3c037f61a0e96af4441e884aa8a4d91062d2ad57876f917b50",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-core",
+            "1.0.0-beta10",
+            "jetifier-core-1.0.0-beta10.jar"
+          ],
+          "sha256": "26abb4a13927d9062169c504c9e94fe80e9ae3a4f7b5ab8875ab007536a91f5e",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-core",
+            "1.0.0-beta10",
+            "jetifier-core-1.0.0-beta10.module"
+          ],
+          "sha256": "f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-processor",
+            "1.0.0-beta10",
+            "jetifier-processor-1.0.0-beta10.jar"
+          ],
+          "sha256": "c5067a7b928237a1271a5e9cb5710e9f80b4973293945bc51e3a4c864ea4bfed",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.android.tools.build.jetifier",
+            "jetifier-processor",
+            "1.0.0-beta10",
+            "jetifier-processor-1.0.0-beta10.module"
+          ],
+          "sha256": "36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13",
+          "status": "SIGNATURE_ABSENT",
+          "capture_status": "MATCHED_PIN"
+        }
+      ]
+    }
+  ],
+  "runtime_publisher_batches": [
+    {
+      "control_commit": "04a8aa0252d69b68bec6bbb1197f075b1f7beb2a",
+      "request_sha256": "5c965e9a09b70683bc70529c2bb2cceafca890a3d48fa517821f83dd0786066b",
+      "report_sha256": "46b9dc5e3e23dfdbfce7231d7af042184b3eb8f0df4d12c449fb65779d327f70",
+      "inherited_baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+      "outcomes": [
+        {
+          "identity": [
+            "com.google.guava",
+            "listenablefuture",
+            "1.0",
+            "listenablefuture-1.0.jar"
+          ],
+          "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.google.guava",
+            "listenablefuture",
+            "1.0",
+            "listenablefuture-1.0.pom"
+          ],
+          "sha256": "53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio",
+            "3.4.0",
+            "okio-3.4.0.module"
+          ],
+          "sha256": "69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio-jvm",
+            "3.4.0",
+            "okio-jvm-3.4.0.jar"
+          ],
+          "sha256": "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "com.squareup.okio",
+            "okio-jvm",
+            "3.4.0",
+            "okio-jvm-3.4.0.module"
+          ],
+          "sha256": "6fec13cf3361600364bfcc68004af7c760ceaf1fc1bbcc958742ae4d61db1512",
+          "status": "SIGNATURE_UNVERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains",
+            "annotations",
+            "23.0.0",
+            "annotations-23.0.0.jar"
+          ],
+          "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains",
+            "annotations",
+            "23.0.0",
+            "annotations-23.0.0.pom"
+          ],
+          "sha256": "c9490f655132328df2cfbcfdf743f53fc3916d6c1d10437175a6ca6e3a67771c",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-android-extensions-runtime",
+            "1.9.22",
+            "kotlin-android-extensions-runtime-1.9.22.jar"
+          ],
+          "sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-android-extensions-runtime",
+            "1.9.22",
+            "kotlin-android-extensions-runtime-1.9.22.pom"
+          ],
+          "sha256": "73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-parcelize-runtime",
+            "1.9.22",
+            "kotlin-parcelize-runtime-1.9.22.jar"
+          ],
+          "sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-parcelize-runtime",
+            "1.9.22",
+            "kotlin-parcelize-runtime-1.9.22.pom"
+          ],
+          "sha256": "ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk7",
+            "1.8.0",
+            "kotlin-stdlib-jdk7-1.8.0.jar"
+          ],
+          "sha256": "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk7",
+            "1.8.0",
+            "kotlin-stdlib-jdk7-1.8.0.pom"
+          ],
+          "sha256": "dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk8",
+            "1.8.0",
+            "kotlin-stdlib-jdk8-1.8.0.jar"
+          ],
+          "sha256": "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlin",
+            "kotlin-stdlib-jdk8",
+            "1.8.0",
+            "kotlin-stdlib-jdk8-1.8.0.pom"
+          ],
+          "sha256": "2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26",
+          "status": "VERIFIED",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-android",
+            "1.9.0",
+            "kotlinx-coroutines-android-1.9.0.jar"
+          ],
+          "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-android",
+            "1.9.0",
+            "kotlinx-coroutines-android-1.9.0.module"
+          ],
+          "sha256": "7df1e04d77f0cc411890d999a9449b0e3bcd4f159a46c3060b110204ca607d43",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-bom",
+            "1.9.0",
+            "kotlinx-coroutines-bom-1.9.0.pom"
+          ],
+          "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core",
+            "1.9.0",
+            "kotlinx-coroutines-core-1.9.0.module"
+          ],
+          "sha256": "ad534034a953b4e12cbeeb874c66adf8b1ca14df15fe0d2e6547aa34e86dfeca",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core-jvm",
+            "1.9.0",
+            "kotlinx-coroutines-core-jvm-1.9.0.jar"
+          ],
+          "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-coroutines-core-jvm",
+            "1.9.0",
+            "kotlinx-coroutines-core-jvm-1.9.0.module"
+          ],
+          "sha256": "b321a899e40d3ce345707aa2cfda9983ad0dcc69fea74a9b8bf906a16c1cf8a9",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-bom",
+            "1.7.3",
+            "kotlinx-serialization-bom-1.7.3.pom"
+          ],
+          "sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core",
+            "1.7.3",
+            "kotlinx-serialization-core-1.7.3.module"
+          ],
+          "sha256": "39d09a6e02df2b32558440a64c628f9c605fae8c4f6090321798334c82177e64",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core-jvm",
+            "1.7.3",
+            "kotlinx-serialization-core-jvm-1.7.3.jar"
+          ],
+          "sha256": "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jetbrains.kotlinx",
+            "kotlinx-serialization-core-jvm",
+            "1.7.3",
+            "kotlinx-serialization-core-jvm-1.7.3.module"
+          ],
+          "sha256": "73bb4c02793f87c29ef64bea4ba0258076f4d4c963fcda633d1248ef24b4b4ef",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jspecify",
+            "jspecify",
+            "1.0.0",
+            "jspecify-1.0.0.jar"
+          ],
+          "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        },
+        {
+          "identity": [
+            "org.jspecify",
+            "jspecify",
+            "1.0.0",
+            "jspecify-1.0.0.module"
+          ],
+          "sha256": "d307ca77a54e18ac1ef1aaed4e5bbe014bd2f49f29e1d2f813e47c278283195b",
+          "status": "ISSUER_ANCHOR_UNAVAILABLE",
+          "capture_status": "MATCHED_PIN"
+        }
+      ]
+    }
+  ],
+  "publisher_manifest_batches": [
+    {
+      "control_commit": "6135c1d18a52f3d1fa7d3fed25cafa113f923c52",
+      "request_sha256": "d6570065d7b12fbb9c7fc1e1afcfb49b8568de6143bcef9dc650e71e0ca21b34",
+      "report_sha256": "c28292284665e98212afedf3ee5043e61927be839b803c333e3ac261050a4812",
+      "prior_review_sha256": "1ab0c44a53bb566af17b77e9f9032fd7a263e660aa14a689edf208345cc80b9e",
+      "registry_sha256": "e63037de4f2f84a8cbb76f3a6893be7c15a9d5ebc1b560922f42662878e7af53",
+      "review_script_sha256": "c39ef77e9a1137de9b0194f8f2faa3e78346671c142a32a3316588f62bb21ac7",
+      "verified_file_count": 67,
+      "outcomes": [
+        {
+          "version": "2.4.21",
+          "asset_sha256": "89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2",
+          "status": "MATCHED_PIN",
+          "verified_files": [
+            [
+              "org.jetbrains.kotlin",
+              "compose-compiler-gradle-plugin",
+              "2.4.21",
+              "compose-compiler-gradle-plugin-2.4.21-gradle813.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "compose-compiler-gradle-plugin",
+              "2.4.21",
+              "compose-compiler-gradle-plugin-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "compose-group-mapping",
+              "2.4.21",
+              "compose-group-mapping-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "compose-group-mapping",
+              "2.4.21",
+              "compose-group-mapping-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "fus-statistics-gradle-plugin",
+              "2.4.21",
+              "fus-statistics-gradle-plugin-2.4.21-gradle813.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "fus-statistics-gradle-plugin",
+              "2.4.21",
+              "fus-statistics-gradle-plugin-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-statistics",
+              "2.4.21",
+              "kotlin-build-statistics-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-statistics",
+              "2.4.21",
+              "kotlin-build-statistics-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-api",
+              "2.4.21",
+              "kotlin-build-tools-api-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-api",
+              "2.4.21",
+              "kotlin-build-tools-api-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-compat",
+              "2.4.21",
+              "kotlin-build-tools-compat-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-compat",
+              "2.4.21",
+              "kotlin-build-tools-compat-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-cri-impl",
+              "2.4.21",
+              "kotlin-build-tools-cri-impl-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-cri-impl",
+              "2.4.21",
+              "kotlin-build-tools-cri-impl-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-impl",
+              "2.4.21",
+              "kotlin-build-tools-impl-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-build-tools-impl",
+              "2.4.21",
+              "kotlin-build-tools-impl-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compiler-embeddable",
+              "2.4.21",
+              "kotlin-compiler-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compiler-embeddable",
+              "2.4.21",
+              "kotlin-compiler-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compiler-runner",
+              "2.4.21",
+              "kotlin-compiler-runner-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compiler-runner",
+              "2.4.21",
+              "kotlin-compiler-runner-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compose-compiler-plugin-embeddable",
+              "2.4.21",
+              "kotlin-compose-compiler-plugin-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-compose-compiler-plugin-embeddable",
+              "2.4.21",
+              "kotlin-compose-compiler-plugin-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-daemon-client",
+              "2.4.21",
+              "kotlin-daemon-client-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-daemon-client",
+              "2.4.21",
+              "kotlin-daemon-client-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-daemon-embeddable",
+              "2.4.21",
+              "kotlin-daemon-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-daemon-embeddable",
+              "2.4.21",
+              "kotlin-daemon-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin",
+              "2.4.21",
+              "kotlin-gradle-plugin-2.4.21-gradle813.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin",
+              "2.4.21",
+              "kotlin-gradle-plugin-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-annotations",
+              "2.4.21",
+              "kotlin-gradle-plugin-annotations-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-annotations",
+              "2.4.21",
+              "kotlin-gradle-plugin-annotations-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-api",
+              "2.4.21",
+              "kotlin-gradle-plugin-api-2.4.21-gradle813.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-api",
+              "2.4.21",
+              "kotlin-gradle-plugin-api-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-idea",
+              "2.4.21",
+              "kotlin-gradle-plugin-idea-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-idea",
+              "2.4.21",
+              "kotlin-gradle-plugin-idea-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-idea-proto",
+              "2.4.21",
+              "kotlin-gradle-plugin-idea-proto-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugin-idea-proto",
+              "2.4.21",
+              "kotlin-gradle-plugin-idea-proto-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugins-bom",
+              "2.4.21",
+              "kotlin-gradle-plugins-bom-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-gradle-plugins-bom",
+              "2.4.21",
+              "kotlin-gradle-plugins-bom-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-klib-commonizer-api",
+              "2.4.21",
+              "kotlin-klib-commonizer-api-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-klib-commonizer-api",
+              "2.4.21",
+              "kotlin-klib-commonizer-api-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-klib-commonizer-embeddable",
+              "2.4.21",
+              "kotlin-klib-commonizer-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-klib-commonizer-embeddable",
+              "2.4.21",
+              "kotlin-klib-commonizer-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-native-utils",
+              "2.4.21",
+              "kotlin-native-utils-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-native-utils",
+              "2.4.21",
+              "kotlin-native-utils-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-script-runtime",
+              "2.4.21",
+              "kotlin-script-runtime-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-script-runtime",
+              "2.4.21",
+              "kotlin-script-runtime-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-common",
+              "2.4.21",
+              "kotlin-scripting-common-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-common",
+              "2.4.21",
+              "kotlin-scripting-common-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-compiler-embeddable",
+              "2.4.21",
+              "kotlin-scripting-compiler-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-compiler-embeddable",
+              "2.4.21",
+              "kotlin-scripting-compiler-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-compiler-impl-embeddable",
+              "2.4.21",
+              "kotlin-scripting-compiler-impl-embeddable-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-compiler-impl-embeddable",
+              "2.4.21",
+              "kotlin-scripting-compiler-impl-embeddable-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-jvm",
+              "2.4.21",
+              "kotlin-scripting-jvm-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-scripting-jvm",
+              "2.4.21",
+              "kotlin-scripting-jvm-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.4.21",
+              "kotlin-stdlib-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib",
+              "2.4.21",
+              "kotlin-stdlib-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-stdlib-common",
+              "2.4.21",
+              "kotlin-stdlib-common-2.4.21.module"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-tooling-core",
+              "2.4.21",
+              "kotlin-tooling-core-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-tooling-core",
+              "2.4.21",
+              "kotlin-tooling-core-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-io",
+              "2.4.21",
+              "kotlin-util-io-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-io",
+              "2.4.21",
+              "kotlin-util-io-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-klib",
+              "2.4.21",
+              "kotlin-util-klib-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-klib",
+              "2.4.21",
+              "kotlin-util-klib-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-klib-metadata",
+              "2.4.21",
+              "kotlin-util-klib-metadata-2.4.21.jar"
+            ],
+            [
+              "org.jetbrains.kotlin",
+              "kotlin-util-klib-metadata",
+              "2.4.21",
+              "kotlin-util-klib-metadata-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin.jvm",
+              "org.jetbrains.kotlin.jvm.gradle.plugin",
+              "2.4.21",
+              "org.jetbrains.kotlin.jvm.gradle.plugin-2.4.21.pom"
+            ],
+            [
+              "org.jetbrains.kotlin.plugin.compose",
+              "org.jetbrains.kotlin.plugin.compose.gradle.plugin",
+              "2.4.21",
+              "org.jetbrains.kotlin.plugin.compose.gradle.plugin-2.4.21.pom"
+            ]
+          ],
+          "manifest_path_count": 1152
+        }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "source_commit": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
+  "evidence_control_commit": "6135c1d18a52f3d1fa7d3fed25cafa113f923c52",
+  "filename": "dependency-evidence-f9434ab9.zip",
+  "target_path": "docs/feasibility/evidence/dependency-evidence-f9434ab9.zip",
+  "target_branch": "release/0.1.0",
+  "bytes": 225042,
+  "sha256": "7b1fe28d705c14049ba6401e9dadbd346a1e2ba881ef249bc16d1505c974fbea",
+  "safe_members": 70,
+  "crc_manifest_roundtrip": "PASS",
+  "remote_upload": "PENDING_MANUAL_UPLOAD",
+  "publisher_artifact": {
+    "id": 12586881743,
+    "bytes": 30150,
+    "sha256": "071ee7e612f36e33d6015db2778d1a3f885095f679a786cf284cf1b0b3770511"
+  },
+  "security_artifact": {
+    "id": 12585884358,
+    "bytes": 154842,
+    "sha256": "09d3903699237c806f1fb47c55067617dd2a8bd367370bf33928fb595268d185"
+  },
+  "publisher_request_sha256": "d6570065d7b12fbb9c7fc1e1afcfb49b8568de6143bcef9dc650e71e0ca21b34",
+  "publisher_report_sha256": "c28292284665e98212afedf3ee5043e61927be839b803c333e3ac261050a4812",
+  "inherited_review_sha256": "1ab0c44a53bb566af17b77e9f9032fd7a263e660aa14a689edf208345cc80b9e",
+  "security_request_sha256": "175f18f93558ea82c72725baca13b5706ba680d78b6363076119a568e138bf7f",
+  "security_report_sha256": "0f86a1bc1b0cb6b7565b250d3e9c511c5896a39afe7f09644b2da98e1b2de631"
+}

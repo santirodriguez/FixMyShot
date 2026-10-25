@@ -84,3 +84,24 @@ cmp /tmp/fixmyshot-runtime-replayed/reviewed-verification-candidate.xml \
 Expected result:387 reviewed/534 pending, with8 newly verified exact files and
 all379 previous proofs retained. Review is offline and uses disposable public
 keyrings; it changes neither active Gradle trust nor the prior security snapshot.
+
+## Migrated f9434ab9 dependency evidence
+
+`dependency-evidence-f9434ab9.json` records the225042-byte package
+`dependency-evidence-f9434ab9.zip`, SHA256
+7b1fe28d705c14049ba6401e9dadbd346a1e2ba881ef249bc16d1505c974fbea.
+Local CRC,70safe members, manifest hashes and raw-capture/replay checks passed.
+The package still awaits maintainer upload at this directory on release/0.1.0;
+do not claim remote persistence until the actual uploaded bytes are verified.
+It contains publisher/ (original Kotlin2.4.21 manifest capture), security/
+(all488queries/49detailresponses and capture report), inherited-review.json
+(the149-proof seed with unchanged attempted identities) and the full offline
+security replay receipt. It contains no application artifact or private input.
+
+Replay with the current repository scripts and frozen gradle-baseline-f9434ab9.xml
+plus the three matching locks. Use the explicit control/request/report/registry/
+prior pins in the package receipt: review-kotlin-manifests.py accepts publisher/,
+inherited-review.json and the pinned official registry; review-dependency-security.py
+accepts security/. Compare output bytes/counts to the migrated216/858 partial
+review and security-f9434ab9.json/full replay hash. Original387/921 remains at its
+old canonical path. Missing raw bytes cannot be reconstructed from this summary.

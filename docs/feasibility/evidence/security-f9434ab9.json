@@ -1,0 +1,572 @@
+{
+  "schema": 1,
+  "status": "OFFLINE_REPLAY_PASS__SECURITY_REVIEW_OPEN",
+  "security_approval": false,
+  "control_commit": "6135c1d18a52f3d1fa7d3fed25cafa113f923c52",
+  "request_sha256": "175f18f93558ea82c72725baca13b5706ba680d78b6363076119a568e138bf7f",
+  "captured_report_sha256": "0f86a1bc1b0cb6b7565b250d3e9c511c5896a39afe7f09644b2da98e1b2de631",
+  "review_script_sha256": "c8fac5eaccd9231bdd57a78302990c09e3ecd5c681fdee958941a34636df6548",
+  "scanned_at_utc": "2026-10-25T04:20:30.880820+00:00",
+  "inputs": {
+    "app/gradle.lockfile": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "codec-native/gradle.lockfile": "98bc94c4dafce1674c2230be7a7613433b9585f8f3fcdbab1fe81d9fe9ea5e76",
+    "codec-native/src/main/cpp/CMakeLists.txt": "28c077daa48e54afc846f03e76a84c185d1578a37b44820f34357748a68df7b2",
+    "core/gradle.lockfile": "c20b13045f651150ce29a8110b370464e5256f4631f57d44d251706960e0c93d",
+    "docs/feasibility/evidence/gradle-baseline-f9434ab9.xml": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755"
+  },
+  "component_count": 488,
+  "scope_counts": {
+    "app_release_runtime": 133,
+    "capture_without_lockfile_selection": 123,
+    "native_runtime_source": 1,
+    "selected_other_configuration": 231
+  },
+  "matching_component_count": 18,
+  "matching_scope_counts": {
+    "capture_without_lockfile_selection": 2,
+    "selected_other_configuration": 16
+  },
+  "advisory_count": 49,
+  "advisory_alias_groups": [
+    [
+      "BIT-solr-2021-33813",
+      "CVE-2021-33813",
+      "GHSA-2363-cqg2-863c"
+    ],
+    [
+      "CVE-2024-29371",
+      "GHSA-3677-xxcr-wjqv"
+    ],
+    [
+      "CVE-2025-25193",
+      "GHSA-389x-839f-4rhx"
+    ],
+    [
+      "CVE-2026-42585",
+      "GHSA-38f8-5428-x5cv"
+    ],
+    [
+      "CVE-2025-58057",
+      "GHSA-3p8m-j85q-pgmj"
+    ],
+    [
+      "CVE-2026-44249",
+      "GHSA-3qp7-7mw8-wx86"
+    ],
+    [
+      "CVE-2026-42578",
+      "GHSA-45q3-82m4-75jr"
+    ],
+    [
+      "CVE-2025-24970",
+      "GHSA-4g8c-wm8x-jfhw"
+    ],
+    [
+      "CVE-2026-59898",
+      "GHSA-4mp9-239f-g9hg"
+    ],
+    [
+      "CVE-2026-59901",
+      "GHSA-558v-64gr-wgg4"
+    ],
+    [
+      "CVE-2026-50560",
+      "GHSA-563q-j3cm-6jxm"
+    ],
+    [
+      "CVE-2025-14813",
+      "GHSA-574f-3g2m-x479"
+    ],
+    [
+      "CVE-2026-42584",
+      "GHSA-57rv-r2g8-2cj3"
+    ],
+    [
+      "CVE-2024-29025",
+      "GHSA-5jpm-x58v-624v"
+    ],
+    [
+      "CVE-2026-47244",
+      "GHSA-5x3r-wrvg-rp6q"
+    ],
+    [
+      "CVE-2026-56746",
+      "GHSA-6cqp-g7gg-8hr5"
+    ],
+    [
+      "CVE-2026-55831",
+      "GHSA-6jqx-86gh-f27w"
+    ],
+    [
+      "CVE-2023-34462",
+      "GHSA-6mjq-h674-j845"
+    ],
+    [
+      "CVE-2020-13956",
+      "GHSA-7r82-7xv7-xcpj"
+    ],
+    [
+      "CVE-2025-67735",
+      "GHSA-84h7-rjj3-6jx4"
+    ],
+    [
+      "CVE-2026-59903",
+      "GHSA-8c42-7qj2-3j46"
+    ],
+    [
+      "CVE-2026-56819",
+      "GHSA-93wv-jw9v-4972"
+    ],
+    [
+      "CVE-2026-8763",
+      "GHSA-9pwp-9qqc-pr26"
+    ],
+    [
+      "CVE-2026-48043",
+      "GHSA-c2gf-v879-257j"
+    ],
+    [
+      "CVE-2026-0636",
+      "GHSA-c3fc-8qff-9hwx"
+    ],
+    [
+      "CVE-2026-75595",
+      "GHSA-c4c3-7fpv-j4q5"
+    ],
+    [
+      "CVE-2026-50010",
+      "GHSA-c653-97m9-rcg9"
+    ],
+    [
+      "CVE-2026-59900",
+      "GHSA-c69g-56f8-xwqj"
+    ],
+    [
+      "CVE-2026-42587",
+      "GHSA-f6hv-jmp6-3vwv"
+    ],
+    [
+      "CVE-2026-75596",
+      "GHSA-fccg-mwvh-qqg4"
+    ],
+    [
+      "CVE-2025-58056",
+      "GHSA-fghv-69vj-qj49"
+    ],
+    [
+      "CVE-2026-59921",
+      "GHSA-gcjf-9mgh-3p7g"
+    ],
+    [
+      "CVE-2026-50020",
+      "GHSA-hvcg-qmg6-jm4c"
+    ],
+    [
+      "CVE-2025-48924",
+      "GHSA-j288-q9x7-2f5v"
+    ],
+    [
+      "CVE-2026-56745",
+      "GHSA-jppx-w49h-x2qq"
+    ],
+    [
+      "CVE-2026-42580",
+      "GHSA-m4cv-j2px-7723"
+    ],
+    [
+      "CVE-2026-42583",
+      "GHSA-mj4r-2hfc-f8p6"
+    ],
+    [
+      "CVE-2026-55833",
+      "GHSA-mvh2-crg5-v77c"
+    ],
+    [
+      "CVE-2025-55163",
+      "GHSA-prj3-ccx8-p6x4"
+    ],
+    [
+      "CVE-2026-33870",
+      "GHSA-pwqr-wmgm-9rr8"
+    ],
+    [
+      "CVE-2026-59899",
+      "GHSA-q4f6-jm68-57ww"
+    ],
+    [
+      "CVE-2026-13506",
+      "GHSA-qp49-qgx5-5m26"
+    ],
+    [
+      "CVE-2026-41417",
+      "GHSA-v8h7-rr48-vmmv"
+    ],
+    [
+      "CVE-2026-33871",
+      "GHSA-w9fj-cfpg-grvv"
+    ],
+    [
+      "CVE-2026-5588",
+      "GHSA-wg6q-6289-32hp"
+    ],
+    [
+      "CVE-2026-45416",
+      "GHSA-x4gw-5cx5-pgmh"
+    ],
+    [
+      "GHSA-xpw8-rcwv-8f8p"
+    ],
+    [
+      "CVE-2024-47535",
+      "GHSA-xq3w-v528-46rv"
+    ],
+    [
+      "CVE-2026-42581",
+      "GHSA-xxqh-mfjm-7mv9"
+    ]
+  ],
+  "scope_note": "Lockfile absence does not establish buildscript/plugin deselection. Database matches are not exploitability verdicts.",
+  "matching_components": [
+    {
+      "active_match_ids": [
+        "GHSA-563q-j3cm-6jxm",
+        "GHSA-5x3r-wrvg-rp6q",
+        "GHSA-93wv-jw9v-4972",
+        "GHSA-c2gf-v879-257j",
+        "GHSA-c69g-56f8-xwqj",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-prj3-ccx8-p6x4",
+        "GHSA-w9fj-cfpg-grvv"
+      ],
+      "coordinate": "io.netty:netty-codec-http2:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-563q-j3cm-6jxm",
+        "GHSA-5x3r-wrvg-rp6q",
+        "GHSA-93wv-jw9v-4972",
+        "GHSA-c2gf-v879-257j",
+        "GHSA-c69g-56f8-xwqj",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-prj3-ccx8-p6x4",
+        "GHSA-w9fj-cfpg-grvv"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-563q-j3cm-6jxm",
+        "GHSA-5x3r-wrvg-rp6q",
+        "GHSA-93wv-jw9v-4972",
+        "GHSA-c2gf-v879-257j",
+        "GHSA-c69g-56f8-xwqj",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-prj3-ccx8-p6x4",
+        "GHSA-w9fj-cfpg-grvv",
+        "GHSA-xpw8-rcwv-8f8p"
+      ],
+      "coordinate": "io.netty:netty-codec-http2:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-563q-j3cm-6jxm",
+        "GHSA-5x3r-wrvg-rp6q",
+        "GHSA-93wv-jw9v-4972",
+        "GHSA-c2gf-v879-257j",
+        "GHSA-c69g-56f8-xwqj",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-prj3-ccx8-p6x4",
+        "GHSA-w9fj-cfpg-grvv",
+        "GHSA-xpw8-rcwv-8f8p"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-38f8-5428-x5cv",
+        "GHSA-4mp9-239f-g9hg",
+        "GHSA-57rv-r2g8-2cj3",
+        "GHSA-6cqp-g7gg-8hr5",
+        "GHSA-6jqx-86gh-f27w",
+        "GHSA-84h7-rjj3-6jx4",
+        "GHSA-8c42-7qj2-3j46",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-fghv-69vj-qj49",
+        "GHSA-gcjf-9mgh-3p7g",
+        "GHSA-hvcg-qmg6-jm4c",
+        "GHSA-jppx-w49h-x2qq",
+        "GHSA-m4cv-j2px-7723",
+        "GHSA-mvh2-crg5-v77c",
+        "GHSA-pwqr-wmgm-9rr8",
+        "GHSA-q4f6-jm68-57ww",
+        "GHSA-v8h7-rr48-vmmv",
+        "GHSA-xxqh-mfjm-7mv9"
+      ],
+      "coordinate": "io.netty:netty-codec-http:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-38f8-5428-x5cv",
+        "GHSA-4mp9-239f-g9hg",
+        "GHSA-57rv-r2g8-2cj3",
+        "GHSA-6cqp-g7gg-8hr5",
+        "GHSA-6jqx-86gh-f27w",
+        "GHSA-84h7-rjj3-6jx4",
+        "GHSA-8c42-7qj2-3j46",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-fghv-69vj-qj49",
+        "GHSA-gcjf-9mgh-3p7g",
+        "GHSA-hvcg-qmg6-jm4c",
+        "GHSA-jppx-w49h-x2qq",
+        "GHSA-m4cv-j2px-7723",
+        "GHSA-mvh2-crg5-v77c",
+        "GHSA-pwqr-wmgm-9rr8",
+        "GHSA-q4f6-jm68-57ww",
+        "GHSA-v8h7-rr48-vmmv",
+        "GHSA-xxqh-mfjm-7mv9"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-38f8-5428-x5cv",
+        "GHSA-4mp9-239f-g9hg",
+        "GHSA-57rv-r2g8-2cj3",
+        "GHSA-5jpm-x58v-624v",
+        "GHSA-6cqp-g7gg-8hr5",
+        "GHSA-6jqx-86gh-f27w",
+        "GHSA-84h7-rjj3-6jx4",
+        "GHSA-8c42-7qj2-3j46",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-fghv-69vj-qj49",
+        "GHSA-gcjf-9mgh-3p7g",
+        "GHSA-hvcg-qmg6-jm4c",
+        "GHSA-jppx-w49h-x2qq",
+        "GHSA-m4cv-j2px-7723",
+        "GHSA-mvh2-crg5-v77c",
+        "GHSA-pwqr-wmgm-9rr8",
+        "GHSA-q4f6-jm68-57ww",
+        "GHSA-v8h7-rr48-vmmv",
+        "GHSA-xxqh-mfjm-7mv9"
+      ],
+      "coordinate": "io.netty:netty-codec-http:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-38f8-5428-x5cv",
+        "GHSA-4mp9-239f-g9hg",
+        "GHSA-57rv-r2g8-2cj3",
+        "GHSA-5jpm-x58v-624v",
+        "GHSA-6cqp-g7gg-8hr5",
+        "GHSA-6jqx-86gh-f27w",
+        "GHSA-84h7-rjj3-6jx4",
+        "GHSA-8c42-7qj2-3j46",
+        "GHSA-f6hv-jmp6-3vwv",
+        "GHSA-fghv-69vj-qj49",
+        "GHSA-gcjf-9mgh-3p7g",
+        "GHSA-hvcg-qmg6-jm4c",
+        "GHSA-jppx-w49h-x2qq",
+        "GHSA-m4cv-j2px-7723",
+        "GHSA-mvh2-crg5-v77c",
+        "GHSA-pwqr-wmgm-9rr8",
+        "GHSA-q4f6-jm68-57ww",
+        "GHSA-v8h7-rr48-vmmv",
+        "GHSA-xxqh-mfjm-7mv9"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-3p8m-j85q-pgmj",
+        "GHSA-558v-64gr-wgg4",
+        "GHSA-mj4r-2hfc-f8p6"
+      ],
+      "coordinate": "io.netty:netty-codec:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-3p8m-j85q-pgmj",
+        "GHSA-558v-64gr-wgg4",
+        "GHSA-mj4r-2hfc-f8p6"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-3p8m-j85q-pgmj",
+        "GHSA-558v-64gr-wgg4",
+        "GHSA-mj4r-2hfc-f8p6"
+      ],
+      "coordinate": "io.netty:netty-codec:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-3p8m-j85q-pgmj",
+        "GHSA-558v-64gr-wgg4",
+        "GHSA-mj4r-2hfc-f8p6"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-389x-839f-4rhx",
+        "GHSA-xq3w-v528-46rv"
+      ],
+      "coordinate": "io.netty:netty-common:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-389x-839f-4rhx",
+        "GHSA-xq3w-v528-46rv"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-389x-839f-4rhx",
+        "GHSA-xq3w-v528-46rv"
+      ],
+      "coordinate": "io.netty:netty-common:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-389x-839f-4rhx",
+        "GHSA-xq3w-v528-46rv"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-45q3-82m4-75jr"
+      ],
+      "coordinate": "io.netty:netty-handler-proxy:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-45q3-82m4-75jr"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-45q3-82m4-75jr"
+      ],
+      "coordinate": "io.netty:netty-handler-proxy:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-45q3-82m4-75jr"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-3qp7-7mw8-wx86",
+        "GHSA-4g8c-wm8x-jfhw",
+        "GHSA-c4c3-7fpv-j4q5",
+        "GHSA-c653-97m9-rcg9",
+        "GHSA-fccg-mwvh-qqg4",
+        "GHSA-x4gw-5cx5-pgmh"
+      ],
+      "coordinate": "io.netty:netty-handler:4.1.110.Final",
+      "database_match_ids": [
+        "GHSA-3qp7-7mw8-wx86",
+        "GHSA-4g8c-wm8x-jfhw",
+        "GHSA-c4c3-7fpv-j4q5",
+        "GHSA-c653-97m9-rcg9",
+        "GHSA-fccg-mwvh-qqg4",
+        "GHSA-x4gw-5cx5-pgmh"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-3qp7-7mw8-wx86",
+        "GHSA-4g8c-wm8x-jfhw",
+        "GHSA-6mjq-h674-j845",
+        "GHSA-c4c3-7fpv-j4q5",
+        "GHSA-c653-97m9-rcg9",
+        "GHSA-fccg-mwvh-qqg4",
+        "GHSA-x4gw-5cx5-pgmh"
+      ],
+      "coordinate": "io.netty:netty-handler:4.1.93.Final",
+      "database_match_ids": [
+        "GHSA-3qp7-7mw8-wx86",
+        "GHSA-4g8c-wm8x-jfhw",
+        "GHSA-6mjq-h674-j845",
+        "GHSA-c4c3-7fpv-j4q5",
+        "GHSA-c653-97m9-rcg9",
+        "GHSA-fccg-mwvh-qqg4",
+        "GHSA-x4gw-5cx5-pgmh"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-j288-q9x7-2f5v"
+      ],
+      "coordinate": "org.apache.commons:commons-lang3:3.16.0",
+      "database_match_ids": [
+        "GHSA-j288-q9x7-2f5v"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-7r82-7xv7-xcpj"
+      ],
+      "coordinate": "org.apache.httpcomponents:httpclient:4.5.6",
+      "database_match_ids": [
+        "GHSA-7r82-7xv7-xcpj"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-3677-xxcr-wjqv"
+      ],
+      "coordinate": "org.bitbucket.b_c:jose4j:0.9.5",
+      "database_match_ids": [
+        "GHSA-3677-xxcr-wjqv"
+      ],
+      "scope": "capture_without_lockfile_selection",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-wg6q-6289-32hp"
+      ],
+      "coordinate": "org.bouncycastle:bcpkix-jdk18on:1.79",
+      "database_match_ids": [
+        "GHSA-wg6q-6289-32hp"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-574f-3g2m-x479",
+        "GHSA-9pwp-9qqc-pr26",
+        "GHSA-c3fc-8qff-9hwx",
+        "GHSA-qp49-qgx5-5m26"
+      ],
+      "coordinate": "org.bouncycastle:bcprov-jdk18on:1.79",
+      "database_match_ids": [
+        "GHSA-574f-3g2m-x479",
+        "GHSA-9pwp-9qqc-pr26",
+        "GHSA-c3fc-8qff-9hwx",
+        "GHSA-qp49-qgx5-5m26"
+      ],
+      "scope": "selected_other_configuration",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    },
+    {
+      "active_match_ids": [
+        "GHSA-2363-cqg2-863c"
+      ],
+      "coordinate": "org.jdom:jdom2:2.0.6",
+      "database_match_ids": [
+        "GHSA-2363-cqg2-863c"
+      ],
+      "scope": "capture_without_lockfile_selection",
+      "status": "POTENTIAL_DATABASE_MATCH_REQUIRES_TRIAGE"
+    }
+  ],
+  "full_replay_receipt_sha256": "00b1a138bb881853a4d39f267c76d14be5581d4db814e71d903bcbe62ef6144e",
+  "raw_evidence": "docs/feasibility/evidence/dependency-evidence-f9434ab9.zip",
+  "raw_evidence_remote_status": "PENDING_MANUAL_UPLOAD"
+}

@@ -52,6 +52,19 @@ class Rebase(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.run_review(metadata(value='b'*64))
 
+    def test_deferred_identity_is_not_retried_by_existing_planner(self):
+        self.old = self.old.replace(b'group="example"', b'group="androidx.example"')
+        self.record.update(baseline_metadata_sha256=m.batch.digest(self.old),
+                           reviewed_artifacts=[], reviewed_artifact_count=0,
+                           remaining_unreviewed_artifact_count=1,
+                           publisher_batches=[{'outcomes': [{'identity': ['androidx.example', 'library', '1', 'library.jar'],
+                                                             'status': 'SIGNATURE_ABSENT'}]}])
+        before = copy.deepcopy(self.record)
+        result = self.run_review()
+        self.assertEqual(result['publisher_batches'][0]['outcomes'], before['publisher_batches'][0]['outcomes'])
+        self.assertEqual(m.batch.planner.plan(self.old, result)['entries'], [])
+        self.assertEqual(self.record, before)
+
     def test_changed_pins_source_and_duplicate_prior_proof_refused(self):
         for changes in ({'prior_pin': '0'*64}, {'metadata_pin': '0'*64}, {'source': 'not-a-commit'}):
             with self.subTest(changes=changes), self.assertRaises(ValueError):

@@ -263,7 +263,7 @@ then compares every inherited group/name/version/file and SHA256 with separately
 pinned new metadata. Only unchanged exact files inherit unchanged proof records;
 conflicting bytes fail and absent/different versions receive no approval. The
 new inactive receipt retains the immutable old source/path/hash so its original
-proof context remains recoverable. Four tests cover exact lineage/preservation,
+proof context remains recoverable. Five tests cover deferred-route exclusion, exact lineage/preservation,
 version isolation, conflicting bytes, pins and duplicate old proofs.
 
 A diagnostic projection against the reviewed derived554/925 capture finds157
@@ -276,7 +276,9 @@ status, native issuer or full security/license approval follows.
 The official Kotlin2.4.21 release406599202 publishes manifest asset621287973,
 189123B/SHA25689dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2.
 The [pinned registry](evidence/kotlin-manifest-registry-2.4.21.json) records that
-inspected primary metadata. The GitHub connector's direct release-download
-route returned404; no bytes or new proof were accepted. Use one normal bounded
-collector request for this new version after frozen inventory recovery; do not
-repeat previous unavailable version/publisher captures.
+inspected primary metadata. The connector's initial direct release-download route returned404. Subsequent
+bounded collection40161516887 matched the official size/digest and exact1152-path
+manifest; offline review accepted67new files (31JAR/8module/28POM). The new
+frozen-source candidate is216/858 reviewed,642pending; old387/921 remains intact.
+See gradle/migration-f9434ab9/ and the exact evidence-package receipt. No older
+unavailable version/publisher capture was retried.

@@ -1,5 +1,25 @@
 # Testing and evidence
 
+Current complete bounded checkpoint: **f9434ab9**, Actions40160890302.
+Core69/lint/threeAPK, source246-file tree/input audit, actual debug+release
+native/legal checks, API36 renderer6/cache3/private20/transaction12/export5/
+share4/settings21/batch7/retry8/recovery16,80realPNG/WebPencodes and all four
+report guards passed. Optional legacy SAF was skipped/NOT RUN. Emulated page
+size4096 is not physical16KiB or general HEIC/AVIF acceptance.
+The [exact receipt](feasibility/evidence/android-f9434ab9.json) binds downloaded
+build/smoke archive hashes, reconstructed source tree and actual package bytes.
+Independent40161516814 recreated the identical unsigned11835411-byte APK in a
+clean build; actual downloaded bytes were compared. See its
+[comparison receipt](feasibility/evidence/independent-rebuild-f9434ab9.json).
+
+The separate current dependency review inherited149exact proofs and accepted
+67newKotlinfiles, retaining all387historical proofs unchanged. OSV488queries
+replay completely, with49advisory IDs/18tooling components and no133runtime
+matches at scan time. These are bounded evidence, not whole trust/security/
+license acceptance. Raw dependency evidence is locally verified and pending
+upload; see [its package receipt](feasibility/evidence/dependency-evidence-f9434ab9.json).
+All earlier entries below are historical checkpoints with their original scopes.
+
 ## Checks in this slice
 
 `core` runs 23 cases for format/default policy, API boundaries, unavailable routes, dimension overflow, WebP limits, memory estimates and metadata-preservation rejection. These are policy tests, not codec execution.

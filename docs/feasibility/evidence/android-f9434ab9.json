@@ -25,14 +25,39 @@
     "equal_to_derived_exact_artifact_subset": true,
     "active_policy": false
   },
-  "api36_status": "IN_PROGRESS",
+  "api36_status": "PASS",
   "optional_legacy_saf": "SKIPPED_NOT_RUN",
-  "independent_rebuild": "REQUESTED_NOT_YET_ACCEPTED",
+  "independent_rebuild": "PASS_ACTUAL_BYTE_IDENTICAL_40161516814",
   "publisher_review": {
     "inherited_exact_files": 149,
-    "pending_files": 709,
+    "pending_files": 642,
     "historical_387_file_receipt_unchanged": true,
-    "kotlin2421_manifest_capture": "REQUESTED_NOT_YET_ACCEPTED"
+    "kotlin2421_manifest_capture": "PASS_OFFLINE_REVIEW",
+    "new_kotlin2421_files": 67,
+    "total_reviewed_files": 216
   },
-  "security_license_native_physical_signing_distribution": "OPEN"
+  "security_license_native_physical_signing_distribution": "OPEN",
+  "api36_job_id": 121073030368,
+  "smoke_artifact_id": 12586562119,
+  "smoke_artifact_bytes": 46352,
+  "smoke_artifact_sha256": "d95a77c75d14cfb16d60e01061a1c5310e0ec8ca2a204cfb207f3ea65149228c",
+  "smoke_archive_crc_unique_safe_members": "PASS_35_MEMBERS",
+  "core_and_runtime_regressions": {
+    "renderer": 6,
+    "review_cache": 3,
+    "private_execution": 20,
+    "transaction": 12,
+    "export_flow": 5,
+    "share": 4,
+    "settings": 21,
+    "batch": 7,
+    "retry": 8,
+    "recovery": 16,
+    "real_png_webp_encodes": 80
+  },
+  "local_exact_source_report_guards": "FOUR_PASS",
+  "emulator_page_size": 4096,
+  "physical_16kib_and_codec_acceptance": false,
+  "security_inventory": "488_COMPLETE_QUERIES_49_ADVISORIES_18_COMPONENTS_NO_MATCHES_133_APP_RUNTIME_REVIEW_OPEN",
+  "raw_dependency_evidence": "PENDING_MANUAL_UPLOAD_DEPENDENCY_EVIDENCE_F9434AB9_ZIP"
 }

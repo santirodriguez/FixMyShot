@@ -159,3 +159,24 @@ two raw build logs retain identities, scope and limits. Only the observed genera
 app lock correction is incorporated. Metadata554/925 remains an unauthenticated
 capture, not an active trust policy. The ordinary source-frozen/API36 request is
 renewed; its actual output and security inventory still need independent review.
+
+## Normal frozen-source/runtime and independent rebuild accepted
+
+Sourcef9434ab9/treeec4efb43 passed ordinary40160890302: core69/lint/threeAPK
+build, exact source246-file tree/build-input audit, actual canonical legal/native
+bytes and complete API36 suites/80real encodes/four local report guards.
+[The receipt](../feasibility/evidence/android-f9434ab9.json) retains precise scope.
+Independent40161516814 rebuilt that same source with empty caches and produced
+exactly identical11835411-byte unsigned output, confirmed against downloaded
+actual bytes; [its receipt](../feasibility/evidence/independent-rebuild-f9434ab9.json)
+owns the comparison. This closes the migration's bounded build/runtime/reproducibility
+qualification, without extending emulator diagnostics to physical formats/16KiB.
+
+The frozen build captures487/858, an exact subset of derived554/925 with no hash
+drift and all364locked coordinates present. New security and publisher evidence
+are separately reviewed:488queries complete with49tooling advisory IDs/18matching
+components;149unchanged exact proofs plus67new Kotlin-manifest proofs yield216/858,
+642pending. Old387/921 is unchanged. Raw dependency evidence is locally verified
+and awaiting the documented maintainer upload. Strict trust, full security/licenses,
+physical/native formats and signing/distribution remain open. No active policy,
+leaf override, format availability or shipping permission changed.
