@@ -88,3 +88,12 @@ Git repositories, preserving executable modes and wrapper CRLF. No source
 fetch/build/sign/upload occurred in packaging or restoration. Full other-runtime
 source materials and final corresponding-source review remain open. See
 [the preparation procedure](../RELEASING.md#02c--stage-recoverable-project-and-native-sources).
+
+
+The later [packaged-source audit](runtime-source-review.md#actual-packaged-class-owners-and-missing-materials)
+identified and added the missing DataStore JNI translation unit from the exact
+1.1.7release commit420da5f2. Its original bytes/Git blob match the pinned JNI
+directory, original Apache header remains and its local shared_counter.h include
+is already retained. The assembled source-material asset now includes this
+supplement beside the earlier exact project/WebP kit. This corrects source
+material coverage without changing an app/library binary or legal asset.

@@ -1,0 +1,151 @@
+{
+  "source_url": "https://repo.maven.apache.org/maven2/com/google/flatbuffers/flatbuffers-java/1.12.0/flatbuffers-java-1.12.0-sources.jar",
+  "archive_sha256": "6522155eaadf630f60c05154c4f79505f14675e408d10e0f40c7fbfebf0a21ab",
+  "files": [
+    {
+      "original_path": "com/google/flatbuffers/ByteBufferReadWriteBuf.java",
+      "local_file": "com__google__flatbuffers__ByteBufferReadWriteBuf.java",
+      "bytes": 3213,
+      "sha256": "c8724970028b622c59ec7112165871aa9e9b0c408d157aec80e5e18c1de28ccb"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Utf8Safe.java",
+      "local_file": "com__google__flatbuffers__Utf8Safe.java",
+      "bytes": 17905,
+      "sha256": "fe9969831c34d14775635676a1fd875b443fe25001d4811655b14b1b9c8a8418"
+    },
+    {
+      "original_path": "com/google/flatbuffers/FlatBufferBuilder.java",
+      "local_file": "com__google__flatbuffers__FlatBufferBuilder.java",
+      "bytes": 39656,
+      "sha256": "c6bea350deda012552350a1cebf0d0bbcf54ae743978b28f0dfde9e98d49c923"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Table.java",
+      "local_file": "com__google__flatbuffers__Table.java",
+      "bytes": 11501,
+      "sha256": "a1ea7205973cbc57d3bdd54e99019179c03a3df307cb1a99f74046435ba3773e"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ByteVector.java",
+      "local_file": "com__google__flatbuffers__ByteVector.java",
+      "bytes": 1889,
+      "sha256": "38fdae90c1d4c488d72b7a06c24ce5c465a49759844be950673b022e2ff1dc84"
+    },
+    {
+      "original_path": "com/google/flatbuffers/StringVector.java",
+      "local_file": "com__google__flatbuffers__StringVector.java",
+      "bytes": 1657,
+      "sha256": "593da13b9037c5cc2fd1ea7b61b7f37e7c934917b0c44d6267a3c151a9c817da"
+    },
+    {
+      "original_path": "com/google/flatbuffers/FlexBuffersBuilder.java",
+      "local_file": "com__google__flatbuffers__FlexBuffersBuilder.java",
+      "bytes": 26479,
+      "sha256": "bcd4ef9f02c9e6d162e929fa0a726b513ebfce47da022c17c6ecba93ed730eca"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ByteBufferUtil.java",
+      "local_file": "com__google__flatbuffers__ByteBufferUtil.java",
+      "bytes": 1611,
+      "sha256": "f4c4f5ed36597aa1c6310524ac9167d069b3a58de3d6efa6e0a397d6a14a32db"
+    },
+    {
+      "original_path": "com/google/flatbuffers/BooleanVector.java",
+      "local_file": "com__google__flatbuffers__BooleanVector.java",
+      "bytes": 1548,
+      "sha256": "4779a105116df27e4f2397da6abe69604b7cf0e773d5634bc2eab6225e08e413"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ArrayReadWriteBuf.java",
+      "local_file": "com__google__flatbuffers__ArrayReadWriteBuf.java",
+      "bytes": 5890,
+      "sha256": "06bf40a351c5804dc96462b2a1cfb5df4237f4df896c215e17c498c029774700"
+    },
+    {
+      "original_path": "com/google/flatbuffers/FlexBuffers.java",
+      "local_file": "com__google__flatbuffers__FlexBuffers.java",
+      "bytes": 37730,
+      "sha256": "bfc365315a6fbbeffe2361602ae5aaff0e158e734ecadce994c7852979d0ef30"
+    },
+    {
+      "original_path": "com/google/flatbuffers/FloatVector.java",
+      "local_file": "com__google__flatbuffers__FloatVector.java",
+      "bytes": 1553,
+      "sha256": "743ef37894238d18da251b348493c566726da594c7afc8f0274272daaa3bc656"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ReadBuf.java",
+      "local_file": "com__google__flatbuffers__ReadBuf.java",
+      "bytes": 2013,
+      "sha256": "f00eda11f2c39aa5b89a86c37d21163e416756311665f8587c8479e968d3268f"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Utf8.java",
+      "local_file": "com__google__flatbuffers__Utf8.java",
+      "bytes": 7136,
+      "sha256": "b4aa3e90078c0a880012fe5a5e2302289f59e25ff3f5f21c20afa444ba1d163e"
+    },
+    {
+      "original_path": "com/google/flatbuffers/LongVector.java",
+      "local_file": "com__google__flatbuffers__LongVector.java",
+      "bytes": 1552,
+      "sha256": "9d6dca679040ec8dce2db56db733d0b49338f9bf0036c828f62a8649bbd3070b"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Utf8Old.java",
+      "local_file": "com__google__flatbuffers__Utf8Old.java",
+      "bytes": 3232,
+      "sha256": "8468e6681865afd92770ebb82345bbec9eb3f95556861612ce49fade831ae9b0"
+    },
+    {
+      "original_path": "com/google/flatbuffers/UnionVector.java",
+      "local_file": "com__google__flatbuffers__UnionVector.java",
+      "bytes": 1755,
+      "sha256": "84a846d54f0d31b0c23159ba1999777843947d843392adf648ec81d98a03789f"
+    },
+    {
+      "original_path": "com/google/flatbuffers/DoubleVector.java",
+      "local_file": "com__google__flatbuffers__DoubleVector.java",
+      "bytes": 1562,
+      "sha256": "535f846041d2b07220ffc0e73c9de31a32c7ed0119e0459846ba94574113c206"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ReadWriteBuf.java",
+      "local_file": "com__google__flatbuffers__ReadWriteBuf.java",
+      "bytes": 3922,
+      "sha256": "43f8a25ba3f0cc3f808386ae6b689549d5739954cd8eb1f3c0a6f9fd7ac7811f"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Constants.java",
+      "local_file": "com__google__flatbuffers__Constants.java",
+      "bytes": 1967,
+      "sha256": "d6cac7f09abea9b017e7109bbbc062b26cdb8c436ff250464a50a74f103619bc"
+    },
+    {
+      "original_path": "com/google/flatbuffers/IntVector.java",
+      "local_file": "com__google__flatbuffers__IntVector.java",
+      "bytes": 1924,
+      "sha256": "ff34812db3ab52980ea8faa8d9cdaf44552ade8dd26405f19e71b56afd042dad"
+    },
+    {
+      "original_path": "com/google/flatbuffers/BaseVector.java",
+      "local_file": "com__google__flatbuffers__BaseVector.java",
+      "bytes": 2705,
+      "sha256": "ff7bcc5f58348e4fba6300150536475df7c08f45479565ffde11466e3b517222"
+    },
+    {
+      "original_path": "com/google/flatbuffers/ShortVector.java",
+      "local_file": "com__google__flatbuffers__ShortVector.java",
+      "bytes": 1931,
+      "sha256": "0cc669f81409f08ead687917206f7199ddeccf94039463faaba3d2835d9fabbd"
+    },
+    {
+      "original_path": "com/google/flatbuffers/Struct.java",
+      "local_file": "com__google__flatbuffers__Struct.java",
+      "bytes": 1865,
+      "sha256": "ba8e1848729c21300b312e6d62b25656c3c9c307b109d142a87b13a521939286"
+    }
+  ],
+  "source_text_stage_not_binary_equivalence": true
+}

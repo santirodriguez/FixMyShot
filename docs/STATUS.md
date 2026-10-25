@@ -119,3 +119,15 @@ records the38exact metadata source-owner mappings (34redirects, three BOMs
 and one dependency-only stdlib wrapper). Actual packaged-source closure and
 final corresponding-source/build-material review remain explicit. Publisher325/858 and physical/signing gates are unchanged.
 No new Android CI or heavy upload is needed for this source-staging batch.
+
+
+The accepted APK's16,986class names now have explicit frozen-archive,
+D8-name/resource-generation or project-namespace attribution; none is unassigned.
+Actual95archives match frozen hashes. The source stage now adds DataStore's
+missing JNI file,24FlatBuffers Java sources/two Noto metadata files and five
+Core stable AIDL inputs. A real [source-material bundle](feasibility/evidence/source-material-bundle-e516aa89.json)
+(32,779,542B/1,282members) passed all manifest checks and two byte-identical full
+assemblies. This completes that assembly stage. The [source owner](feasibility/runtime-source-review.md)
+retains398SourceFile-name diagnostics, the negative0/45naive relocation comparison
+and the unproved exact Noto build-checkout relation. Final source/distribution
+approval and publisher325/858 remain open. No new APK or phone result is claimed.

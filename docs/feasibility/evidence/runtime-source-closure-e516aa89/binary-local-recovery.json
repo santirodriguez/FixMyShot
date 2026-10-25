@@ -1,0 +1,180 @@
+{
+  "recovered": [
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
+      "sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0"
+    },
+    {
+      "coordinate": "androidx.fragment:fragment:1.5.4",
+      "sha256": "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde"
+    },
+    {
+      "coordinate": "androidx.legacy:legacy-support-core-utils:1.0.0",
+      "sha256": "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+    },
+    {
+      "coordinate": "androidx.documentfile:documentfile:1.0.0",
+      "sha256": "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487"
+    }
+  ],
+  "remaining": [
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "file": "activity-compose-1.11.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.aar",
+      "bytes": 1057910,
+      "sha256": "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a",
+      "embedded_notices": [
+        {
+          "member": "activity-compose-1.11.0.aar!/META-INF/androidx/activity/activity-compose/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.activity:activity:1.11.0",
+      "file": "activity-1.11.0.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0.aar",
+      "bytes": 221073,
+      "sha256": "26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3",
+      "embedded_notices": [
+        {
+          "member": "activity-1.11.0.aar!/META-INF/androidx/activity/activity/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "file": "appcompat-resources-1.7.1.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1.aar",
+      "bytes": 63997,
+      "sha256": "8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "file": "animation.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.aar",
+      "bytes": 1524283,
+      "sha256": "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9",
+      "embedded_notices": [
+        {
+          "member": "animation.aar!/lint.jar!/META-INF/androidx/compose/animation/animation-lint/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        },
+        {
+          "member": "animation.aar!/META-INF/androidx/compose/animation/animation/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+      "file": "foundation-layout.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout-android/1.10.0/foundation-layout-android-1.10.0.aar",
+      "bytes": 546419,
+      "sha256": "85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c",
+      "embedded_notices": [
+        {
+          "member": "foundation-layout.aar!/META-INF/androidx/compose/foundation/foundation-layout/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3-android:1.4.0",
+      "file": "material3.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3-android/1.4.0/material3-android-1.4.0.aar",
+      "bytes": 5167765,
+      "sha256": "3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e",
+      "embedded_notices": [
+        {
+          "member": "material3.aar!/lint.jar!/META-INF/androidx/compose/material3/material3-lint/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        },
+        {
+          "member": "material3.aar!/META-INF/androidx/compose/material3/material3/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+      "file": "lifecycle-runtime-compose-release.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.9.4/lifecycle-runtime-compose-android-2.9.4.aar",
+      "bytes": 1020096,
+      "sha256": "b6803f906a89fd85c77df343dd4aeeb349125ca79e12d55d68d4cf42f42231f6",
+      "embedded_notices": [
+        {
+          "member": "lifecycle-runtime-compose-release.aar!/META-INF/androidx/lifecycle/lifecycle-runtime-compose/LICENSE.txt",
+          "bytes": 10175,
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ]
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.4.21",
+      "file": "kotlin-stdlib-2.4.21.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21.jar",
+      "bytes": 1853315,
+      "sha256": "bd8250210584cb659847dce9cda660f8e9906e5def7fbebcea93dc6dcb6a88a3",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+      "file": "kotlinx-coroutines-android-1.9.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0.jar",
+      "bytes": 19247,
+      "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+      "file": "kotlinx-coroutines-core-jvm-1.9.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.jar",
+      "bytes": 1463587,
+      "sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+      "file": "kotlinx-serialization-core-jvm-1.7.3.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.7.3/kotlinx-serialization-core-jvm-1.7.3.jar",
+      "bytes": 390987,
+      "sha256": "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:23.0.0",
+      "file": "annotations-23.0.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar",
+      "bytes": 29371,
+      "sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05",
+      "embedded_notices": []
+    },
+    {
+      "coordinate": "org.jspecify:jspecify:1.0.0",
+      "file": "jspecify-1.0.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar",
+      "bytes": 3819,
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+      "embedded_notices": []
+    }
+  ]
+}

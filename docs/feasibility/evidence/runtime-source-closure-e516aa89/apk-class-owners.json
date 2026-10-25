@@ -1,0 +1,3198 @@
+{
+  "schema": 1,
+  "scope": "EXACT_APK_CLASS_NAME_AND_SOURCEFILE_MATERIAL_COVERAGE_NOT_BINARY_SOURCE_EQUIVALENCE",
+  "apk_sha256": "b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd",
+  "apk_bytes": 11841246,
+  "dex_files": [
+    {
+      "path": "classes.dex",
+      "sha256": "c37aa643493ae33bb48478c4536cb94a702168908c1cef652dc14ee52286a52c",
+      "classes": 8916
+    },
+    {
+      "path": "classes2.dex",
+      "sha256": "aec7abdd6f9813505164356af06489538e54c5b994e7c4bfd12db24ce84de88a",
+      "classes": 7188
+    },
+    {
+      "path": "classes3.dex",
+      "sha256": "c08bfc85221515755add3cea44744f01fbc77359042d146f5243c28368fd680b",
+      "classes": 882
+    }
+  ],
+  "total_class_definitions": 16986,
+  "class_categories": {
+    "FROZEN_CLASS_NAME": 13245,
+    "D8_GENERATED_NAME_RELATION": 2961,
+    "AAR_NAMESPACE_RESOURCE_CLASS_NAME": 212,
+    "ACCEPTED_PROJECT_NAMESPACE": 568
+  },
+  "assignment_manifest_sha256": "6ebbf7a6877a1ad3564950172b698b5e0bbd954a57bcb852e4e873bca347b810",
+  "source_material": {
+    "androidx.activity:activity-compose:1.11.0": {
+      "binary_sha256": "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a",
+      "source_sha256": "d90a2c22431fcd2bdad4b2f3637c831ec8ea124376f46a9a341e98c969e0f9e0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 7,
+      "archive_classes": 26,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 26,
+      "packaged_generated_relation": 21,
+      "sourcefile_name_matches": 42,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/activity/compose/ActivityResultRegistryKt$rememberLauncherForActivityResult$lambda$8$lambda$7$$inlined$onDispose$1",
+          "origin_class": "androidx/activity/compose/ActivityResultRegistryKt$rememberLauncherForActivityResult$lambda$8$lambda$7$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/activity/compose/BackHandlerKt$BackHandler$lambda$7$lambda$6$$inlined$onDispose$1",
+          "origin_class": "androidx/activity/compose/BackHandlerKt$BackHandler$lambda$7$lambda$6$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/activity/compose/PredictiveBackHandlerKt$PredictiveBackHandler$lambda$7$lambda$6$$inlined$onDispose$1",
+          "origin_class": "androidx/activity/compose/PredictiveBackHandlerKt$PredictiveBackHandler$lambda$7$lambda$6$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/activity/compose/ReportDrawnKt$ReportDrawnWhen$lambda$4$lambda$3$$inlined$onDispose$1",
+          "origin_class": "androidx/activity/compose/ReportDrawnKt$ReportDrawnWhen$lambda$4$lambda$3$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/activity/compose/ReportDrawnKt$ReportDrawnWhen$lambda$4$lambda$3$$inlined$onDispose$2",
+          "origin_class": "androidx/activity/compose/ReportDrawnKt$ReportDrawnWhen$lambda$4$lambda$3$$inlined$onDispose$2",
+          "sourcefile": "Effects.kt"
+        }
+      ]
+    },
+    "androidx.activity:activity-ktx:1.11.0": {
+      "binary_sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+      "source_sha256": "e3201cf6c56fade2fc70e2f70408260992b83ddf0ccf4b69221a98ae26c02d74",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.activity:activity:1.11.0": {
+      "binary_sha256": "26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3",
+      "source_sha256": "c5c0ec34e54ce4ca4d7f29010096d670f4fa3ec6528b57c48801b7e090ac2b6a",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 28,
+      "archive_classes": 131,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 131,
+      "packaged_generated_relation": 35,
+      "sourcefile_name_matches": 166,
+      "sourcefile_unmatched": []
+    },
+    "androidx.annotation:annotation-experimental:1.4.1": {
+      "binary_sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+      "source_sha256": "783a221a7c1093ff8932053998a69a24489f7930806a32b55366108146d29c1d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 6,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 6,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 6,
+      "sourcefile_unmatched": []
+    },
+    "androidx.annotation:annotation-jvm:1.9.1": {
+      "binary_sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0",
+      "source_sha256": "c6ae897fbfb73ca09d4ae31a24bfff85c652097ad10644cdbb738488728cb39b",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 70,
+      "archive_classes": 75,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 75,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 75,
+      "sourcefile_unmatched": []
+    },
+    "androidx.appcompat:appcompat-resources:1.7.1": {
+      "binary_sha256": "8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0",
+      "source_sha256": "cacf441fbbec0ebf12b4308bbeeb9a7389387c35a66f13bd2551dc328cf33ead",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 13,
+      "archive_classes": 35,
+      "resource_class_name_relations": 3,
+      "packaged_direct": 35,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 35,
+      "sourcefile_unmatched": []
+    },
+    "androidx.appcompat:appcompat:1.7.1": {
+      "binary_sha256": "2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26",
+      "source_sha256": "d3f8371e7b5b61e36450677af4e911c351c9ec625e9a7fc5b44acbb3fbc3a45d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 126,
+      "archive_classes": 400,
+      "resource_class_name_relations": 14,
+      "packaged_direct": 400,
+      "packaged_generated_relation": 10,
+      "sourcefile_name_matches": 390,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/appcompat/widget/AppCompatAutoCompleteTextView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatAutoCompleteTextView$InspectionCompanion",
+          "sourcefile": "AppCompatAutoCompleteTextView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatButton$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatButton$InspectionCompanion",
+          "sourcefile": "AppCompatButton$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatButton$InspectionCompanion$1",
+          "origin_class": "androidx/appcompat/widget/AppCompatButton$InspectionCompanion$1",
+          "sourcefile": "AppCompatButton$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatCheckBox$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatCheckBox$InspectionCompanion",
+          "sourcefile": "AppCompatCheckBox$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatCheckedTextView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatCheckedTextView$InspectionCompanion",
+          "sourcefile": "AppCompatCheckedTextView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatEditText$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatEditText$InspectionCompanion",
+          "sourcefile": "AppCompatEditText$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatImageButton$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatImageButton$InspectionCompanion",
+          "sourcefile": "AppCompatImageButton$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatImageView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatImageView$InspectionCompanion",
+          "sourcefile": "AppCompatImageView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatMultiAutoCompleteTextView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatMultiAutoCompleteTextView$InspectionCompanion",
+          "sourcefile": "AppCompatMultiAutoCompleteTextView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatRadioButton$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatRadioButton$InspectionCompanion",
+          "sourcefile": "AppCompatRadioButton$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatSpinner$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatSpinner$InspectionCompanion",
+          "sourcefile": "AppCompatSpinner$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatTextView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatTextView$InspectionCompanion",
+          "sourcefile": "AppCompatTextView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatTextView$InspectionCompanion$1",
+          "origin_class": "androidx/appcompat/widget/AppCompatTextView$InspectionCompanion$1",
+          "sourcefile": "AppCompatTextView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/AppCompatToggleButton$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/AppCompatToggleButton$InspectionCompanion",
+          "sourcefile": "AppCompatToggleButton$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion",
+          "sourcefile": "LinearLayoutCompat$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion$1",
+          "origin_class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion$1",
+          "sourcefile": "LinearLayoutCompat$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion$2",
+          "origin_class": "androidx/appcompat/widget/LinearLayoutCompat$InspectionCompanion$2",
+          "sourcefile": "LinearLayoutCompat$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/SearchView$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/SearchView$InspectionCompanion",
+          "sourcefile": "SearchView$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/SwitchCompat$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/SwitchCompat$InspectionCompanion",
+          "sourcefile": "SwitchCompat$InspectionCompanion.java"
+        },
+        {
+          "class": "androidx/appcompat/widget/Toolbar$InspectionCompanion",
+          "origin_class": "androidx/appcompat/widget/Toolbar$InspectionCompanion",
+          "sourcefile": "Toolbar$InspectionCompanion.java"
+        }
+      ]
+    },
+    "androidx.arch.core:core-common:2.2.0": {
+      "binary_sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+      "source_sha256": "563d430880d847890029234386ef03adb95403c34f3c9dec3a7002e2f4007ae4",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 3,
+      "archive_classes": 9,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 9,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 9,
+      "sourcefile_unmatched": []
+    },
+    "androidx.arch.core:core-runtime:2.2.0": {
+      "binary_sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+      "source_sha256": "4adaab3a8ab711634d566d2e239e199af8b5ac92c1de85540dc34c7040754e96",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 3,
+      "archive_classes": 5,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 5,
+      "packaged_generated_relation": 2,
+      "sourcefile_name_matches": 7,
+      "sourcefile_unmatched": []
+    },
+    "androidx.autofill:autofill:1.0.0": {
+      "binary_sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+      "source_sha256": "05d18219a30b897f96b2eed2480329ce48da34cfba6416ecfde1289674a1f35f",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 1,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 1,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 1,
+      "sourcefile_unmatched": []
+    },
+    "androidx.collection:collection-jvm:1.5.0": {
+      "binary_sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341",
+      "source_sha256": "bcc6197ec5fb349e86ae3ba6c94b164d3a9ac5a03d9f9c235d7c4eb24e5878b3",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 59,
+      "archive_classes": 162,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 162,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 162,
+      "sourcefile_unmatched": []
+    },
+    "androidx.collection:collection-ktx:1.5.0": {
+      "binary_sha256": "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353",
+      "source_sha256": "335a9cd93dcb4afab7c4daa34d5d4e24b38443ccef4ae5fffdfd6cf4f718b01e",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.animation:animation-android:1.10.0": {
+      "binary_sha256": "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9",
+      "source_sha256": "a9491a146c1715139444d74876897186699f5c8e49edf66f42d7df721f0f781d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 26,
+      "archive_classes": 282,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 282,
+      "packaged_generated_relation": 4,
+      "sourcefile_name_matches": 283,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/animation/AnimatedContentKt$AnimatedContent$6$1$5$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/AnimatedContentKt$AnimatedContent$6$1$5$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/AnimatedVisibilityScope$animateEnterExit$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/animation/AnimatedVisibilityScope$animateEnterExit$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/animation/SharedTransitionScopeImpl$drawInOverlay$$inlined$sortBy$1",
+          "origin_class": "androidx/compose/animation/SharedTransitionScopeImpl$drawInOverlay$$inlined$sortBy$1",
+          "sourcefile": "Comparisons.kt"
+        }
+      ]
+    },
+    "androidx.compose.animation:animation-core-android:1.10.0": {
+      "binary_sha256": "55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef",
+      "source_sha256": "12c1db9f74f744f4c33d04ab7272226dc1e67a1e5cfafbe808036718ac954fe1",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 39,
+      "archive_classes": 172,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 172,
+      "packaged_generated_relation": 62,
+      "sourcefile_name_matches": 227,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/animation/core/InfiniteTransitionKt$animateValue$lambda$2$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/InfiniteTransitionKt$animateValue$lambda$2$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/Transition$animateTo$lambda$2$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/Transition$animateTo$lambda$2$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/TransitionKt$createChildTransitionInternal$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/TransitionKt$createChildTransitionInternal$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/TransitionKt$createDeferredAnimation$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/TransitionKt$createDeferredAnimation$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/TransitionKt$createTransitionAnimation$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/TransitionKt$createTransitionAnimation$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/TransitionKt$rememberTransition$lambda$2$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/TransitionKt$rememberTransition$lambda$2$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/animation/core/TransitionKt$updateTransition$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/animation/core/TransitionKt$updateTransition$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        }
+      ]
+    },
+    "androidx.compose.foundation:foundation-android:1.10.0": {
+      "binary_sha256": "c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3",
+      "source_sha256": "741aed4a8fb21b91c03238dc6eddc9c2b10f57b0770c9d711dbdc1b7cf61b7e5",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 416,
+      "archive_classes": 1813,
+      "resource_class_name_relations": 3,
+      "packaged_direct": 1813,
+      "packaged_generated_relation": 881,
+      "sourcefile_name_matches": 2650,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/foundation/BackgroundKt$background$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/BackgroundKt$background$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/BackgroundKt$background-bw27NRU$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/BackgroundKt$background-bw27NRU$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/BasicTooltipKt$BasicTooltipBox$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/BasicTooltipKt$BasicTooltipBox$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/ClickableKt$clickable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/ClickableKt$clickable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/ClickableKt$combinedClickable-cJG_KMw$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/ClickableKt$combinedClickable-cJG_KMw$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/ClickableKt$combinedClickable-f5TDLPQ$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/ClickableKt$combinedClickable-f5TDLPQ$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/IndicationKt$indication$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/IndicationKt$indication$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/draganddrop/DragAndDropSourceKt",
+          "origin_class": "androidx/compose/foundation/draganddrop/DragAndDropSourceKt",
+          "sourcefile": null
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortBy$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortBy$2",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortBy$2",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortByDescending$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortByDescending$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortByDescending$2",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemAnimator$onMeasured$$inlined$sortByDescending$2",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemContentFactory$CachedItemContent$createContentLambda$lambda$0$0$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutItemContentFactory$CachedItemContent$createContentLambda$lambda$0$0$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutKt$LazyLayout$lambda$1$2$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutKt$LazyLayout$lambda$1$2$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazyLayoutPinnableItemKt$LazyLayoutPinnableItem$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazyLayoutPinnableItemKt$LazyLayoutPinnableItem$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/layout/LazySaveableStateHolder$SaveableStateProvider$lambda$0$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/lazy/layout/LazySaveableStateHolder$SaveableStateProvider$lambda$0$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/staggeredgrid/LazyStaggeredGridLaneInfo$getGaps$$inlined$binarySearchBy$default$1",
+          "origin_class": "androidx/compose/foundation/lazy/staggeredgrid/LazyStaggeredGridLaneInfo$getGaps$$inlined$binarySearchBy$default$1",
+          "sourcefile": "Collections.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/lazy/staggeredgrid/LazyStaggeredGridLaneInfo$setGaps$$inlined$binarySearchBy$default$1",
+          "origin_class": "androidx/compose/foundation/lazy/staggeredgrid/LazyStaggeredGridLaneInfo$setGaps$$inlined$binarySearchBy$default$1",
+          "sourcefile": "Collections.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/relocation/BringIntoViewRequesterKt",
+          "origin_class": "androidx/compose/foundation/relocation/BringIntoViewRequesterKt",
+          "sourcefile": null
+        },
+        {
+          "class": "androidx/compose/foundation/selection/SelectableKt$selectable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "origin_class": "androidx/compose/foundation/selection/SelectableKt$selectable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "sourcefile": "Clickable.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/selection/SelectableKt$selectable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/selection/SelectableKt$selectable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/selection/ToggleableKt$toggleable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "origin_class": "androidx/compose/foundation/selection/ToggleableKt$toggleable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "sourcefile": "Clickable.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/selection/ToggleableKt$toggleable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/selection/ToggleableKt$toggleable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/selection/ToggleableKt$triStateToggleable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "origin_class": "androidx/compose/foundation/selection/ToggleableKt$triStateToggleable-O2vRcR0$$inlined$clickableWithIndicationIfNeeded$1",
+          "sourcefile": "Clickable.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/selection/ToggleableKt$triStateToggleable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/selection/ToggleableKt$triStateToggleable-XHw0xAI$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicSecureTextField_androidKt$platformAllowsRevealLastTyped$lambda$5$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/BasicSecureTextField_androidKt$platformAllowsRevealLastTyped$lambda$5$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$lambda$12$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$lambda$12$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$1",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$1",
+          "sourcefile": "TextFieldSelectionState.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$2",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$2",
+          "sourcefile": "TextFieldSelectionState.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$3",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$3",
+          "sourcefile": "TextFieldSelectionState.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$4",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$4",
+          "sourcefile": "TextFieldSelectionState.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$5",
+          "origin_class": "androidx/compose/foundation/text/BasicTextFieldKt$BasicTextField$textToolbarHandler$1$1$showTextToolbar$lambda$0$$inlined$menuItem$5",
+          "sourcefile": "TextFieldSelectionState.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/CoreTextFieldKt$CoreTextField$lambda$21$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/CoreTextFieldKt$CoreTextField$lambda$21$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/CoreTextFieldKt$CoreTextField$lambda$22$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/CoreTextFieldKt$CoreTextField$lambda$22$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/HeightInLinesModifierKt$heightInLines$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/text/HeightInLinesModifierKt$heightInLines$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/TextFieldPressGestureFilterKt$tapPressTextFieldModifier$lambda$0$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/TextFieldPressGestureFilterKt$tapPressTextFieldModifier$lambda$0$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/TextFieldScrollKt$textFieldScrollable$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/text/TextFieldScrollKt$textFieldScrollable$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/TextLinkScope$StyleAnnotation$lambda$0$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/TextLinkScope$StyleAnnotation$lambda$0$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/contextmenu/internal/AndroidTextContextMenuToolbarProvider_androidKt$platformTextContextMenuToolbarProvider$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/contextmenu/internal/AndroidTextContextMenuToolbarProvider_androidKt$platformTextContextMenuToolbarProvider$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/contextmenu/provider/BasicTextContextMenuProviderKt$basicTextContextMenuProvider$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/contextmenu/provider/BasicTextContextMenuProviderKt$basicTextContextMenuProvider$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/input/TextUndoManager$Companion$Saver$special$$inlined$createSaver$1",
+          "origin_class": "androidx/compose/foundation/text/input/TextUndoManager$Companion$Saver$special$$inlined$createSaver$1",
+          "sourcefile": "UndoManager.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/input/internal/selection/TextFieldSelectionStateKt$contextMenuBuilder$lambda$0$textFieldItem$$inlined$TextItem$1",
+          "origin_class": "androidx/compose/foundation/text/input/internal/selection/TextFieldSelectionStateKt$contextMenuBuilder$lambda$0$textFieldItem$$inlined$TextItem$1",
+          "sourcefile": "CommonContextMenuArea.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/selection/SelectionContainerKt$SelectionContainer$lambda$10$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/text/selection/SelectionContainerKt$SelectionContainer$lambda$10$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/text/selection/SelectionManager$getSelectionLayout-Wko1d7g$$inlined$compareBy$1",
+          "origin_class": "androidx/compose/foundation/text/selection/SelectionManager$getSelectionLayout-Wko1d7g$$inlined$compareBy$1",
+          "sourcefile": "Comparisons.kt"
+        }
+      ]
+    },
+    "androidx.compose.foundation:foundation-layout-android:1.10.0": {
+      "binary_sha256": "85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c",
+      "source_sha256": "2078cb0647875e51b6a84ada6bd120a81f29ab977899d457f2b11656f4248e50",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 31,
+      "archive_classes": 273,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 273,
+      "packaged_generated_relation": 130,
+      "sourcefile_name_matches": 357,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/foundation/layout/AlignmentLineKt$paddingFrom-4j6BHR0$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/AlignmentLineKt$paddingFrom-4j6BHR0$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/AlignmentLineKt$paddingFrom-Y_r0B1c$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/AlignmentLineKt$paddingFrom-Y_r0B1c$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/AspectRatioKt$aspectRatio$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/AspectRatioKt$aspectRatio$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/BoxScopeInstance$align$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/BoxScopeInstance$align$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/BoxScopeInstance$matchParentSize$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/BoxScopeInstance$matchParentSize$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/IntrinsicKt$height$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/IntrinsicKt$height$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/IntrinsicKt$requiredHeight$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/IntrinsicKt$requiredHeight$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/IntrinsicKt$requiredWidth$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/IntrinsicKt$requiredWidth$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/IntrinsicKt$width$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/IntrinsicKt$width$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$height-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$height-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$heightIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$heightIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredHeight-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredHeight-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredHeightIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredHeightIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredSize-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredSize-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredSize-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredSize-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredSizeIn-qDBjuR0$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredSizeIn-qDBjuR0$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredWidth-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredWidth-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$requiredWidthIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$requiredWidthIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$size-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$size-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$size-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$size-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$sizeIn-qDBjuR0$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$sizeIn-qDBjuR0$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$width-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$width-3ABfNKs$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/SizeKt$widthIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/SizeKt$widthIn-VpY3zN4$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsConnection_androidKt$imeNestedScroll$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsConnection_androidKt$imeNestedScroll$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsConnection_androidKt$rememberWindowInsetsConnection_VRgvIgI$lambda$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsConnection_androidKt$rememberWindowInsetsConnection_VRgvIgI$lambda$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsHolder$Companion$current$lambda$0$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsHolder$Companion$current$lambda$0$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$consumeWindowInsets$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$consumeWindowInsets$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$consumeWindowInsets$$inlined$debugInspectorInfo$2",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$consumeWindowInsets$$inlined$debugInspectorInfo$2",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$onConsumedWindowInsetsChanged$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$onConsumedWindowInsetsChanged$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$windowInsetsPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPaddingKt$windowInsetsPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$captionBarPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$captionBarPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$displayCutoutPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$displayCutoutPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$imePadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$imePadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$mandatorySystemGesturesPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$mandatorySystemGesturesPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$navigationBarsPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$navigationBarsPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeContentPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeContentPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeDrawingPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeDrawingPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeGesturesPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$safeGesturesPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$statusBarsPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$statusBarsPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$systemBarsPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$systemBarsPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$systemGesturesPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$systemGesturesPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$waterfallPadding$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsPadding_androidKt$waterfallPadding$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsBottomHeight$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsBottomHeight$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsEndWidth$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsEndWidth$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsStartWidth$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsStartWidth$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsTopHeight$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/foundation/layout/WindowInsetsSizeKt$windowInsetsTopHeight$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        }
+      ]
+    },
+    "androidx.compose.material3:material3-android:1.4.0": {
+      "binary_sha256": "3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e",
+      "source_sha256": "3e3209422a382566a780e2c1410edd866e4474498098fdbcf942c690ade1ddaa",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 249,
+      "archive_classes": 1367,
+      "resource_class_name_relations": 4,
+      "packaged_direct": 1367,
+      "packaged_generated_relation": 1044,
+      "sourcefile_name_matches": 2397,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/material3/ExposedDropdownMenu_androidKt$SoftKeyboardListener$lambda$5$lambda$4$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/ExposedDropdownMenu_androidKt$SoftKeyboardListener$lambda$5$lambda$4$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/ModalBottomSheet_androidKt$ModalBottomSheetDialog_sW7UJKQ$lambda$8$lambda$7$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/ModalBottomSheet_androidKt$ModalBottomSheetDialog_sW7UJKQ$lambda$8$lambda$7$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/TabRowDefaults$tabIndicatorOffset$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/material3/TabRowDefaults$tabIndicatorOffset$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/material3/TimePickerKt$visible$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/material3/TimePickerKt$visible$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/material3/TooltipKt$animateTooltip$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/material3/TooltipKt$animateTooltip$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/material3/WideNavigationRail_androidKt$ModalWideNavigationRailDialog$lambda$7$lambda$6$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/WideNavigationRail_androidKt$ModalWideNavigationRailDialog$lambda$7$lambda$6$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/AccessibilityServiceStateProvider_androidKt$ObserveState$lambda$12$lambda$11$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/internal/AccessibilityServiceStateProvider_androidKt$ObserveState$lambda$12$lambda$11$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/BasicEdgeToEdgeDialog_androidKt$BasicEdgeToEdgeDialog$lambda$9$lambda$8$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/internal/BasicEdgeToEdgeDialog_androidKt$BasicEdgeToEdgeDialog$lambda$9$lambda$8$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/BasicTooltipKt$BasicTooltipBox$lambda$4$lambda$3$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/material3/internal/BasicTooltipKt$BasicTooltipBox$lambda$4$lambda$3$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/DraggableAnchorsElement$inspectableProperties$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/material3/internal/DraggableAnchorsElement$inspectableProperties$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/DraggableAnchorsElementV2$inspectableProperties$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/material3/internal/DraggableAnchorsElementV2$inspectableProperties$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1",
+          "origin_class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1$2",
+          "origin_class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1$2",
+          "sourcefile": "Emitters.kt"
+        },
+        {
+          "class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1$2$1",
+          "origin_class": "androidx/compose/material3/internal/MappedInteractionSource$special$$inlined$map$1$2$1",
+          "sourcefile": "Emitters.kt"
+        }
+      ]
+    },
+    "androidx.compose.material:material-ripple-android:1.10.0": {
+      "binary_sha256": "ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be",
+      "source_sha256": "7ec7d1d2136078edeadd3b01ab10af49b79f3d8b9b498a0ecf49416ebda7d252",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 7,
+      "archive_classes": 42,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 42,
+      "packaged_generated_relation": 5,
+      "sourcefile_name_matches": 47,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.runtime:runtime-android:1.10.0": {
+      "binary_sha256": "612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a",
+      "source_sha256": "7596b9060c0d4271a37d2b4ff5e60eaabb663469f86bfcf3429d49083c70703d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 190,
+      "archive_classes": 622,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 622,
+      "packaged_generated_relation": 106,
+      "sourcefile_name_matches": 725,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/runtime/RememberedCoroutineScope$special$$inlined$CoroutineExceptionHandler$1",
+          "origin_class": "androidx/compose/runtime/RememberedCoroutineScope$special$$inlined$CoroutineExceptionHandler$1",
+          "sourcefile": "CoroutineExceptionHandler.kt"
+        },
+        {
+          "class": "androidx/compose/runtime/SnapshotStateKt",
+          "origin_class": "androidx/compose/runtime/SnapshotStateKt",
+          "sourcefile": null
+        },
+        {
+          "class": "androidx/compose/runtime/collection/ExtensionsKt$sortBy$$inlined$sortBy$1",
+          "origin_class": "androidx/compose/runtime/collection/ExtensionsKt$sortBy$$inlined$sortBy$1",
+          "sourcefile": "Comparisons.kt"
+        }
+      ]
+    },
+    "androidx.compose.runtime:runtime-annotation-android:1.10.0": {
+      "binary_sha256": "8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d",
+      "source_sha256": "faddbe6240e43542fcccfb4106f15b36494facbd81dc18e58124c1327dfe4fb1",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 6,
+      "archive_classes": 6,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 6,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 6,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.runtime:runtime-retain-android:1.10.0": {
+      "binary_sha256": "fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f",
+      "source_sha256": "5acfa51320a00d8db46a2c54f67beaf636c5320274f4d76b3499161b0b7eb018",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 13,
+      "archive_classes": 24,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 24,
+      "packaged_generated_relation": 12,
+      "sourcefile_name_matches": 36,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.runtime:runtime-saveable-android:1.10.0": {
+      "binary_sha256": "f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36",
+      "source_sha256": "6d8d50f5fbdf4ae9ba0602328c9cd9e3ac1beaf64fe40d8890712d7b208fe39d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 9,
+      "archive_classes": 22,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 22,
+      "packaged_generated_relation": 19,
+      "sourcefile_name_matches": 40,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/runtime/saveable/SaveableStateHolderImpl$SaveableStateProvider$lambda$0$1$0$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/runtime/saveable/SaveableStateHolderImpl$SaveableStateProvider$lambda$0$1$0$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        }
+      ]
+    },
+    "androidx.compose.ui:ui-android:1.10.0": {
+      "binary_sha256": "d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8",
+      "source_sha256": "a47331ac10dc5080b12f08d182fcdb2ce11158b689090aae7ab1a38832c5bdb2",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 370,
+      "archive_classes": 1674,
+      "resource_class_name_relations": 5,
+      "packaged_direct": 1674,
+      "packaged_generated_relation": 26,
+      "sourcefile_name_matches": 1687,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/ui/Actual_jvmKt$tryPopulateReflectively$$inlined$sortedBy$1",
+          "origin_class": "androidx/compose/ui/Actual_jvmKt$tryPopulateReflectively$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/ui/graphics/vector/VectorPainterKt$rememberVectorPainter$2$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/graphics/vector/VectorPainterKt$rememberVectorPainter$2$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/input/pointer/PointerInteropFilter_androidKt$pointerInteropFilter$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/ui/input/pointer/PointerInteropFilter_androidKt$pointerInteropFilter$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/ui/modifier/ModifierLocalConsumerKt$modifierLocalConsumer$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/ui/modifier/ModifierLocalConsumerKt$modifierLocalConsumer$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/ui/modifier/ModifierLocalProviderKt$modifierLocalProvider$$inlined$debugInspectorInfo$1",
+          "origin_class": "androidx/compose/ui/modifier/ModifierLocalProviderKt$modifierLocalProvider$$inlined$debugInspectorInfo$1",
+          "sourcefile": "InspectableValue.kt"
+        },
+        {
+          "class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainImageVectorCache$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainResourceIdCache$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/platform/AndroidCompositionLocals_androidKt$obtainResourceIdCache$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/semantics/SemanticsSortKt$special$$inlined$thenBy$1",
+          "origin_class": "androidx/compose/ui/semantics/SemanticsSortKt$special$$inlined$thenBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/ui/semantics/SemanticsSortKt$special$$inlined$thenBy$2",
+          "origin_class": "androidx/compose/ui/semantics/SemanticsSortKt$special$$inlined$thenBy$2",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/ui/window/AndroidDialog_androidKt$Dialog$1$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/window/AndroidDialog_androidKt$Dialog$1$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/window/AndroidPopup_androidKt$Popup$2$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/window/AndroidPopup_androidKt$Popup$2$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/compose/ui/window/AndroidPopup_androidKt$Popup$4$1$invoke$$inlined$onDispose$1",
+          "origin_class": "androidx/compose/ui/window/AndroidPopup_androidKt$Popup$4$1$invoke$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        }
+      ]
+    },
+    "androidx.compose.ui:ui-geometry-android:1.10.0": {
+      "binary_sha256": "40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0",
+      "source_sha256": "8b4ab7f4776d1e1d78fbdde46637bfe51f01e365d13d5253b905bf3f0361b0e0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 8,
+      "archive_classes": 19,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 19,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 19,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.ui:ui-graphics-android:1.10.0": {
+      "binary_sha256": "b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae",
+      "source_sha256": "963de783dc1a7f8274e9eb9e3125092238cd784d4470e78a34d01fcf1624c0e7",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 110,
+      "archive_classes": 314,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 314,
+      "packaged_generated_relation": 27,
+      "sourcefile_name_matches": 341,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.ui:ui-text-android:1.10.0": {
+      "binary_sha256": "626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70",
+      "source_sha256": "9440b0cae0c4d7f811d840bde40c3eeeb466d53a78a266932fe5f4b3ce6503a5",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 162,
+      "archive_classes": 428,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 428,
+      "packaged_generated_relation": 109,
+      "sourcefile_name_matches": 534,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/compose/ui/text/AnnotatedString$special$$inlined$sortedBy$1",
+          "origin_class": "androidx/compose/ui/text/AnnotatedString$special$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/ui/text/AnnotatedStringKt$normalizedParagraphStyles$$inlined$sortedBy$1",
+          "origin_class": "androidx/compose/ui/text/AnnotatedStringKt$normalizedParagraphStyles$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "androidx/compose/ui/text/font/FontListFontFamilyTypefaceAdapter$special$$inlined$CoroutineExceptionHandler$1",
+          "origin_class": "androidx/compose/ui/text/font/FontListFontFamilyTypefaceAdapter$special$$inlined$CoroutineExceptionHandler$1",
+          "sourcefile": "CoroutineExceptionHandler.kt"
+        }
+      ]
+    },
+    "androidx.compose.ui:ui-unit-android:1.10.0": {
+      "binary_sha256": "b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762",
+      "source_sha256": "8a124fbc5b090990a96116d1190fb5cef817e7fec200ce2c91c19844b51a31d0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 21,
+      "archive_classes": 50,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 50,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 50,
+      "sourcefile_unmatched": []
+    },
+    "androidx.compose.ui:ui-util-android:1.10.0": {
+      "binary_sha256": "75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909",
+      "source_sha256": "d015468b2b45b1c09c7dce13dcbe954e8bda268a627096f987fc0961ee766d90",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 9,
+      "archive_classes": 8,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 8,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 8,
+      "sourcefile_unmatched": []
+    },
+    "androidx.concurrent:concurrent-futures:1.1.0": {
+      "binary_sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e",
+      "source_sha256": "cc06fb6045a6c066f50e237a3c2126bc88c16d358a57b3612ba633c9f530b0a0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 19,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 19,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 20,
+      "sourcefile_unmatched": []
+    },
+    "androidx.core:core-ktx:1.16.0": {
+      "binary_sha256": "1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c",
+      "source_sha256": "1aadd1028ab3bad23c90cfed674d660e0743056db16076d7d35a99f9827c4d42",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 57,
+      "archive_classes": 130,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 130,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 130,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/core/view/ViewGroupKt$special$$inlined$Sequence$1",
+          "origin_class": "androidx/core/view/ViewGroupKt$special$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        }
+      ]
+    },
+    "androidx.core:core-viewtree:1.0.0": {
+      "binary_sha256": "dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de",
+      "source_sha256": "7026f2086f667720c43d4ca6bc58ab016d122ae0a404ca94e5fef6a7090e0984",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 1,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 1,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 1,
+      "sourcefile_unmatched": []
+    },
+    "androidx.core:core:1.16.0": {
+      "binary_sha256": "6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431",
+      "source_sha256": "ed8ec0b5d74352b852c5eda44a6f21cdb726fd2a94293dc2609219330136b207",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 296,
+      "archive_classes": 918,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 918,
+      "packaged_generated_relation": 86,
+      "sourcefile_name_matches": 977,
+      "sourcefile_unmatched": [
+        {
+          "class": "android/support/v4/app/INotificationSideChannel",
+          "origin_class": "android/support/v4/app/INotificationSideChannel",
+          "sourcefile": "INotificationSideChannel.java"
+        },
+        {
+          "class": "android/support/v4/app/INotificationSideChannel$Default",
+          "origin_class": "android/support/v4/app/INotificationSideChannel$Default",
+          "sourcefile": "INotificationSideChannel.java"
+        },
+        {
+          "class": "android/support/v4/app/INotificationSideChannel$Stub",
+          "origin_class": "android/support/v4/app/INotificationSideChannel$Stub",
+          "sourcefile": "INotificationSideChannel.java"
+        },
+        {
+          "class": "android/support/v4/app/INotificationSideChannel$Stub$Proxy",
+          "origin_class": "android/support/v4/app/INotificationSideChannel$Stub$Proxy",
+          "sourcefile": "INotificationSideChannel.java"
+        },
+        {
+          "class": "android/support/v4/app/INotificationSideChannel$_Parcel",
+          "origin_class": "android/support/v4/app/INotificationSideChannel$_Parcel",
+          "sourcefile": "INotificationSideChannel.java"
+        },
+        {
+          "class": "android/support/v4/app/RemoteActionCompatParcelizer",
+          "origin_class": "android/support/v4/app/RemoteActionCompatParcelizer",
+          "sourcefile": "RemoteActionCompatParcelizer.java"
+        },
+        {
+          "class": "android/support/v4/graphics/drawable/IconCompatParcelizer",
+          "origin_class": "android/support/v4/graphics/drawable/IconCompatParcelizer",
+          "sourcefile": "IconCompatParcelizer.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver",
+          "origin_class": "android/support/v4/os/IResultReceiver",
+          "sourcefile": "IResultReceiver.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver$Default",
+          "origin_class": "android/support/v4/os/IResultReceiver$Default",
+          "sourcefile": "IResultReceiver.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver$Stub",
+          "origin_class": "android/support/v4/os/IResultReceiver$Stub",
+          "sourcefile": "IResultReceiver.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver$Stub$Proxy",
+          "origin_class": "android/support/v4/os/IResultReceiver$Stub$Proxy",
+          "sourcefile": "IResultReceiver.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver$_Parcel",
+          "origin_class": "android/support/v4/os/IResultReceiver$_Parcel",
+          "sourcefile": "IResultReceiver.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver2",
+          "origin_class": "android/support/v4/os/IResultReceiver2",
+          "sourcefile": "IResultReceiver2.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver2$Default",
+          "origin_class": "android/support/v4/os/IResultReceiver2$Default",
+          "sourcefile": "IResultReceiver2.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver2$Stub",
+          "origin_class": "android/support/v4/os/IResultReceiver2$Stub",
+          "sourcefile": "IResultReceiver2.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver2$Stub$Proxy",
+          "origin_class": "android/support/v4/os/IResultReceiver2$Stub$Proxy",
+          "sourcefile": "IResultReceiver2.java"
+        },
+        {
+          "class": "android/support/v4/os/IResultReceiver2$_Parcel",
+          "origin_class": "android/support/v4/os/IResultReceiver2$_Parcel",
+          "sourcefile": "IResultReceiver2.java"
+        },
+        {
+          "class": "androidx/core/app/RemoteActionCompatParcelizer",
+          "origin_class": "androidx/core/app/RemoteActionCompatParcelizer",
+          "sourcefile": "RemoteActionCompatParcelizer.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback",
+          "sourcefile": "IUnusedAppRestrictionsBackportCallback.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Default",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Default",
+          "sourcefile": "IUnusedAppRestrictionsBackportCallback.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Stub",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Stub",
+          "sourcefile": "IUnusedAppRestrictionsBackportCallback.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Stub$Proxy",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback$Stub$Proxy",
+          "sourcefile": "IUnusedAppRestrictionsBackportCallback.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService",
+          "sourcefile": "IUnusedAppRestrictionsBackportService.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Default",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Default",
+          "sourcefile": "IUnusedAppRestrictionsBackportService.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Stub",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Stub",
+          "sourcefile": "IUnusedAppRestrictionsBackportService.java"
+        },
+        {
+          "class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Stub$Proxy",
+          "origin_class": "androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService$Stub$Proxy",
+          "sourcefile": "IUnusedAppRestrictionsBackportService.java"
+        },
+        {
+          "class": "androidx/core/graphics/drawable/IconCompatParcelizer",
+          "origin_class": "androidx/core/graphics/drawable/IconCompatParcelizer",
+          "sourcefile": "IconCompatParcelizer.java"
+        }
+      ]
+    },
+    "androidx.cursoradapter:cursoradapter:1.0.0": {
+      "binary_sha256": "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564",
+      "source_sha256": "99b72a3aec8c9edfd9de20f5913ce4c413bca2f0cf9877b504e26aa03ef50323",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 9,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 9,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 9,
+      "sourcefile_unmatched": []
+    },
+    "androidx.customview:customview-poolingcontainer:1.0.0": {
+      "binary_sha256": "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752",
+      "source_sha256": "0715571baa86e8f7683fcc1d59fe2881c5e8603af9ff212c82423ae098d34c62",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 3,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 3,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 3,
+      "sourcefile_unmatched": []
+    },
+    "androidx.customview:customview:1.0.0": {
+      "binary_sha256": "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2",
+      "source_sha256": "87c910a3c3c5d1e4881ebcc7a8f7fced04fdad6ff1f8e5ff7f100adf62df1787",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 15,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 15,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 15,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-android:1.1.7": {
+      "binary_sha256": "26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e",
+      "source_sha256": "09186429ebf9da4236ff7a0b164fb117bae713cdc22f3b3cd79bc2deaf0cf6f2",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 16,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 16,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 16,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-core-android:1.1.7": {
+      "binary_sha256": "adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984",
+      "source_sha256": "66af76cdc50e22705b73fc0ec634badefa53b4bb5c2726c9bf8a26e57c682488",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 35,
+      "archive_classes": 128,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 128,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 126,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1",
+          "origin_class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1$2",
+          "origin_class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1$2",
+          "sourcefile": "Emitters.kt"
+        },
+        {
+          "class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1$2$1",
+          "origin_class": "androidx/datastore/core/DataStoreImpl$data$1$invokeSuspend$$inlined$map$1$2$1",
+          "sourcefile": "Emitters.kt"
+        }
+      ]
+    },
+    "androidx.datastore:datastore-core-okio-jvm:1.1.7": {
+      "binary_sha256": "291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5",
+      "source_sha256": "779bb1b6960be085987dbc68bafb117d4719c9930d447397d36baaa52278853b",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 17,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 17,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 17,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-preferences-android:1.1.7": {
+      "binary_sha256": "1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d",
+      "source_sha256": "c66873f4fd455388d75d7d2bb82503b73de6930e7ed5702b1900754300185938",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 9,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 9,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 9,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-preferences-core-android:1.1.7": {
+      "binary_sha256": "31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0",
+      "source_sha256": "e1e5bcb0ecc3724a2498ad31525aeb3f1c09d8cf80974e4a207e9cf5d9332dd5",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 10,
+      "archive_classes": 20,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 20,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 20,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-preferences-external-protobuf:1.1.7": {
+      "binary_sha256": "fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7",
+      "source_sha256": "2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971",
+      "source_kind": "PINNED_UPSTREAM_SOURCE_WITH_RECORDED_NAMESPACE_RELOCATION",
+      "source_keys": 159,
+      "archive_classes": 523,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 523,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 523,
+      "sourcefile_unmatched": []
+    },
+    "androidx.datastore:datastore-preferences-proto:1.1.7": {
+      "binary_sha256": "63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127",
+      "source_sha256": "3fdbe97382d8360355fe77b8b73c047535dc5e900f5c2e3400fc877fdc8644c7",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 2,
+      "archive_classes": 15,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 15,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 15,
+      "sourcefile_unmatched": []
+    },
+    "androidx.documentfile:documentfile:1.0.0": {
+      "binary_sha256": "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487",
+      "source_sha256": "79c2424477565d0500b47c8288fb8e6dd9c8306984e8dbd38d576f013873b410",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 5,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 5,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 5,
+      "sourcefile_unmatched": []
+    },
+    "androidx.drawerlayout:drawerlayout:1.0.0": {
+      "binary_sha256": "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1",
+      "source_sha256": "3702e90acc99c16d192eada8467aea9595d1c3fff3e2155ffe66e5f31e334513",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 11,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 11,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 11,
+      "sourcefile_unmatched": []
+    },
+    "androidx.dynamicanimation:dynamicanimation:1.0.0": {
+      "binary_sha256": "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04",
+      "source_sha256": "7ddbf0b830e295b8013a41c2c6771416118bcc8d61328a881daae657c1429196",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 8,
+      "archive_classes": 36,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 36,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 36,
+      "sourcefile_unmatched": []
+    },
+    "androidx.emoji2:emoji2-views-helper:1.4.0": {
+      "binary_sha256": "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375",
+      "source_sha256": "7c813c4fc93038ef7d262fd894c48f960f6d914f79d83407106ede1ab55b92a0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 8,
+      "archive_classes": 17,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 17,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 17,
+      "sourcefile_unmatched": []
+    },
+    "androidx.emoji2:emoji2:1.4.0": {
+      "binary_sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+      "source_sha256": "5db44eec9cee653ba403f0e88a02ce41ab6301a0b7dd7cb35fc32f9747f2228b",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 16,
+      "archive_classes": 112,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 112,
+      "packaged_generated_relation": 6,
+      "sourcefile_name_matches": 68,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ArrayReadWriteBuf",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ArrayReadWriteBuf",
+          "sourcefile": "ArrayReadWriteBuf.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/BaseVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/BaseVector",
+          "sourcefile": "BaseVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/BooleanVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/BooleanVector",
+          "sourcefile": "BooleanVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ByteBufferReadWriteBuf",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ByteBufferReadWriteBuf",
+          "sourcefile": "ByteBufferReadWriteBuf.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ByteBufferUtil",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ByteBufferUtil",
+          "sourcefile": "ByteBufferUtil.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ByteVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ByteVector",
+          "sourcefile": "ByteVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Constants",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Constants",
+          "sourcefile": "Constants.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/DoubleVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/DoubleVector",
+          "sourcefile": "DoubleVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder",
+          "sourcefile": "FlatBufferBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferBackedInputStream",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferBackedInputStream",
+          "sourcefile": "FlatBufferBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferFactory",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferFactory",
+          "sourcefile": "FlatBufferBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$HeapByteBufferFactory",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$HeapByteBufferFactory",
+          "sourcefile": "FlatBufferBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Blob",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Blob",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$FlexBufferException",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$FlexBufferException",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Key",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Key",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$KeyVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$KeyVector",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Map",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Map",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Object",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Object",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Reference",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Reference",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Sized",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Sized",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$TypedVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$TypedVector",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Unsigned",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Unsigned",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Vector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffers$Vector",
+          "sourcefile": "FlexBuffers.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder",
+          "sourcefile": "FlexBuffersBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$1",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$1",
+          "sourcefile": "FlexBuffersBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$Value",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$Value",
+          "sourcefile": "FlexBuffersBuilder.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/FloatVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/FloatVector",
+          "sourcefile": "FloatVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/IntVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/IntVector",
+          "sourcefile": "IntVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/LongVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/LongVector",
+          "sourcefile": "LongVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/MetadataItem",
+          "origin_class": "androidx/emoji2/text/flatbuffer/MetadataItem",
+          "sourcefile": "MetadataItem.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/MetadataItem$Vector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/MetadataItem$Vector",
+          "sourcefile": "MetadataItem.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/MetadataList",
+          "origin_class": "androidx/emoji2/text/flatbuffer/MetadataList",
+          "sourcefile": "MetadataList.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/MetadataList$Vector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/MetadataList$Vector",
+          "sourcefile": "MetadataList.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ReadBuf",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ReadBuf",
+          "sourcefile": "ReadBuf.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ReadWriteBuf",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ReadWriteBuf",
+          "sourcefile": "ReadWriteBuf.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/ShortVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/ShortVector",
+          "sourcefile": "ShortVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/StringVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/StringVector",
+          "sourcefile": "StringVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Struct",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Struct",
+          "sourcefile": "Struct.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Table",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Table",
+          "sourcefile": "Table.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Table$1",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Table$1",
+          "sourcefile": "Table.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/UnionVector",
+          "origin_class": "androidx/emoji2/text/flatbuffer/UnionVector",
+          "sourcefile": "UnionVector.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8",
+          "sourcefile": "Utf8.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8$DecodeUtil",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8$DecodeUtil",
+          "sourcefile": "Utf8.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8$UnpairedSurrogateException",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8$UnpairedSurrogateException",
+          "sourcefile": "Utf8.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8Old",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8Old",
+          "sourcefile": "Utf8Old.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8Old$$ExternalSyntheticLambda0",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8Old",
+          "sourcefile": "Utf8Old.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8Old$Cache",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8Old$Cache",
+          "sourcefile": "Utf8Old.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8Safe",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8Safe",
+          "sourcefile": "Utf8Safe.java"
+        },
+        {
+          "class": "androidx/emoji2/text/flatbuffer/Utf8Safe$UnpairedSurrogateException",
+          "origin_class": "androidx/emoji2/text/flatbuffer/Utf8Safe$UnpairedSurrogateException",
+          "sourcefile": "Utf8Safe.java"
+        }
+      ]
+    },
+    "androidx.exifinterface:exifinterface:1.4.2": {
+      "binary_sha256": "6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425",
+      "source_sha256": "dc69c04f03e72ad38ed43774554e6612dd9ffe7299eacaab62a38df8ac2c7767",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 2,
+      "archive_classes": 12,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 12,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 12,
+      "sourcefile_unmatched": []
+    },
+    "androidx.fragment:fragment:1.5.4": {
+      "binary_sha256": "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde",
+      "source_sha256": "388140b5e899ea70dceb7de93ebe732b7d534a14ca87014895faf19ef74ac8fe",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 52,
+      "archive_classes": 149,
+      "resource_class_name_relations": 5,
+      "packaged_direct": 149,
+      "packaged_generated_relation": 11,
+      "sourcefile_name_matches": 160,
+      "sourcefile_unmatched": []
+    },
+    "androidx.graphics:graphics-path:1.0.1": {
+      "binary_sha256": "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03",
+      "source_sha256": "9f1b5995b9577a8876525c3411ebb2a49f9ef0e875f6aec3059e807596dc6ca6",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 13,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 13,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 13,
+      "sourcefile_unmatched": []
+    },
+    "androidx.heifwriter:heifwriter:1.2.0-rc01": {
+      "binary_sha256": "2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd",
+      "source_sha256": "5212f3f9901707514ed0b88c6529ac79e4214ac23719471d5d3da5d8dcbb8f84",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 10,
+      "archive_classes": 31,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 31,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 32,
+      "sourcefile_unmatched": []
+    },
+    "androidx.interpolator:interpolator:1.0.0": {
+      "binary_sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a",
+      "source_sha256": "fa13ada71fe7bd9461f622f418e7c16a18e85da7708fb505c75229a9b8830345",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 4,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 4,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 4,
+      "sourcefile_unmatched": []
+    },
+    "androidx.legacy:legacy-support-core-utils:1.0.0": {
+      "binary_sha256": "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7",
+      "source_sha256": "dff5a95a7a706957b16edbf5b36c619fc869742bdf18845520d0cf71748c8070",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 1,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 1,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 1,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-common-java8:2.9.4": {
+      "binary_sha256": "497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651",
+      "source_sha256": "895e71679cd319db8140664d650af6695b0530f5896be9b8ecccd24cc4f6674f",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-common-jvm:2.9.4": {
+      "binary_sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184",
+      "source_sha256": "5764b2618dfb88b98668e5e84bec8e5af0e0c168d714687a0a3b3591f669846c",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 20,
+      "archive_classes": 38,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 38,
+      "packaged_generated_relation": 5,
+      "sourcefile_name_matches": 43,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4": {
+      "binary_sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+      "source_sha256": "20e0447343b348bc66275a8601ee4fc95bd83624620155e6ac7b2f80fe0aeafd",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-livedata-core:2.9.4": {
+      "binary_sha256": "ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4",
+      "source_sha256": "c01b92cdc3d62ca3621ab3ffa98346253c4f6ccfa855bb57d53b654241a01a82",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 9,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 9,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 9,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-livedata:2.9.4": {
+      "binary_sha256": "f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181",
+      "source_sha256": "9ddf30e9f2d811372d0f3cf24ba8dfa95441a043be257e0463ce218c977774a2",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 30,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 30,
+      "packaged_generated_relation": 11,
+      "sourcefile_name_matches": 41,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-process:2.9.4": {
+      "binary_sha256": "4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6",
+      "source_sha256": "3591d371c62f87ff407b3bc303689b33e1fd813aa5a799d02abbec92b8a4f2b0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 10,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 10,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 11,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-runtime-android:2.9.4": {
+      "binary_sha256": "86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173",
+      "source_sha256": "df2a5880a320144ece50e794a75fa45a87802d92a033fd3d283503c07a718b67",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 10,
+      "archive_classes": 30,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 30,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 30,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4": {
+      "binary_sha256": "b6803f906a89fd85c77df343dd4aeeb349125ca79e12d55d68d4cf42f42231f6",
+      "source_sha256": "60f77ad98798c212db32fc534e3e481f7f517b002ab293a31ba36f749dc7e8d1",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 6,
+      "archive_classes": 20,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 20,
+      "packaged_generated_relation": 21,
+      "sourcefile_name_matches": 38,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleEventEffect$lambda$4$lambda$3$$inlined$onDispose$1",
+          "origin_class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleEventEffect$lambda$4$lambda$3$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleResumeEffectImpl$lambda$34$lambda$33$$inlined$onDispose$1",
+          "origin_class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleResumeEffectImpl$lambda$34$lambda$33$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        },
+        {
+          "class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleStartEffectImpl$lambda$19$lambda$18$$inlined$onDispose$1",
+          "origin_class": "androidx/lifecycle/compose/LifecycleEffectKt$LifecycleStartEffectImpl$lambda$19$lambda$18$$inlined$onDispose$1",
+          "sourcefile": "Effects.kt"
+        }
+      ]
+    },
+    "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4": {
+      "binary_sha256": "970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b",
+      "source_sha256": "c5df5b7bfa9c6d61ef14047bd9de207db688188c0d5d7b5f5c4ad6613806b1fc",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-viewmodel-android:2.9.4": {
+      "binary_sha256": "4b236b2e504db5ca5d09334fef05aa8cdc31ee35a433c3aa4d0420efa9613332",
+      "source_sha256": "7fc71221f470885593b974fe086e5b14ee24669a94c010254de1c64fb4c2218d",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 27,
+      "archive_classes": 46,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 46,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 45,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/lifecycle/ViewModelProvider$AndroidViewModelFactory$special$$inlined$Key$1",
+          "origin_class": "androidx/lifecycle/ViewModelProvider$AndroidViewModelFactory$special$$inlined$Key$1",
+          "sourcefile": "CreationExtras.kt"
+        },
+        {
+          "class": "androidx/lifecycle/ViewModelProvider$special$$inlined$Key$1",
+          "origin_class": "androidx/lifecycle/ViewModelProvider$special$$inlined$Key$1",
+          "sourcefile": "CreationExtras.kt"
+        }
+      ]
+    },
+    "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4": {
+      "binary_sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+      "source_sha256": "f15c9fbd9ade832f04d2deed9cdc1732697e63b8c34ffae0ada712197abcc6ec",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4": {
+      "binary_sha256": "079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421",
+      "source_sha256": "743019a7d172beaa5823675df52affcef66ccc4ef8716e4494fd46bf5a315a13",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 13,
+      "archive_classes": 24,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 24,
+      "packaged_generated_relation": 3,
+      "sourcefile_name_matches": 24,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$1",
+          "origin_class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$1",
+          "sourcefile": "CreationExtras.kt"
+        },
+        {
+          "class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$2",
+          "origin_class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$2",
+          "sourcefile": "CreationExtras.kt"
+        },
+        {
+          "class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$3",
+          "origin_class": "androidx/lifecycle/SavedStateHandleSupport$special$$inlined$Key$3",
+          "sourcefile": "CreationExtras.kt"
+        }
+      ]
+    },
+    "androidx.lifecycle:lifecycle-viewmodel:2.9.4": {
+      "binary_sha256": "cab404b05d5faed209104a2aef14c0cbb316ab9fabe4a8f037b043e5d2f43435",
+      "source_sha256": "cf92e89f5195e58638722e9b3f4ab9b1227c7fc517d00f30e9082024b8c44a6e",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 33,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.loader:loader:1.0.0": {
+      "binary_sha256": "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025",
+      "source_sha256": "efcbafaac8fc06bd5b162b57ac1e146d11919b79dea2202339470c931cecdc67",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 6,
+      "archive_classes": 23,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 23,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 23,
+      "sourcefile_unmatched": []
+    },
+    "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0": {
+      "binary_sha256": "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8",
+      "source_sha256": "952b8567a76d6484aa96f9712b9dc90f21b83a73e2496daf243e2e1adfb65dd4",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 4,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 4,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 4,
+      "sourcefile_unmatched": []
+    },
+    "androidx.print:print:1.0.0": {
+      "binary_sha256": "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd",
+      "source_sha256": "659b6e2047484dbae409b9b49c19f9ebd9540bb7ef3610438e2c2b15064fc217",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 7,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 7,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 7,
+      "sourcefile_unmatched": []
+    },
+    "androidx.profileinstaller:profileinstaller:1.4.0": {
+      "binary_sha256": "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a",
+      "source_sha256": "7b8637080b47188656fd54dab66e9270334242d277d2a8e3c46691c3afa152a0",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 13,
+      "archive_classes": 26,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 26,
+      "packaged_generated_relation": 7,
+      "sourcefile_name_matches": 33,
+      "sourcefile_unmatched": []
+    },
+    "androidx.resourceinspection:resourceinspection-annotation:1.0.1": {
+      "binary_sha256": "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb",
+      "source_sha256": "cdca7861ae17115f8d74f9f197d1a4f8b0217ca035a3990da2e2c1ca1fa7f822",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 3,
+      "archive_classes": 3,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 3,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 3,
+      "sourcefile_unmatched": []
+    },
+    "androidx.savedstate:savedstate-android:1.3.2": {
+      "binary_sha256": "1e26f137705596d09d3f4f52559a29026d9a1a6688be7f1a948316a4f1e39b20",
+      "source_sha256": "6749d720e67c3bcfef3380ba4b98ccafb6a9a57d9298d8abaa17242351a53224",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 32,
+      "archive_classes": 69,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 69,
+      "packaged_generated_relation": 6,
+      "sourcefile_name_matches": 73,
+      "sourcefile_unmatched": [
+        {
+          "class": "androidx/savedstate/SavedStateKt",
+          "origin_class": "androidx/savedstate/SavedStateKt",
+          "sourcefile": null
+        },
+        {
+          "class": "androidx/savedstate/SavedStateReaderKt",
+          "origin_class": "androidx/savedstate/SavedStateReaderKt",
+          "sourcefile": null
+        }
+      ]
+    },
+    "androidx.savedstate:savedstate-compose-android:1.3.2": {
+      "binary_sha256": "93426691f25441cc3179494b25f401a8a468aabbee4c40b90c0327413fd65523",
+      "source_sha256": "e5e73c5468cb23da524156e64051417342e21c9bcfdefc1ae3a939a54c7ad5f5",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 7,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 7,
+      "packaged_generated_relation": 1,
+      "sourcefile_name_matches": 8,
+      "sourcefile_unmatched": []
+    },
+    "androidx.savedstate:savedstate-ktx:1.3.2": {
+      "binary_sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+      "source_sha256": "b1e8d78600a68fb3c0029793146ac07ea0335819f813554e85c568caa35cb5e4",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "androidx.startup:startup-runtime:1.1.1": {
+      "binary_sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3",
+      "source_sha256": "53e03bc065b26b2227b5fdca6776cbfa0d1a69afb8f3c1e96c1743fa54320196",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 5,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 5,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 5,
+      "sourcefile_unmatched": []
+    },
+    "androidx.tracing:tracing:1.2.0": {
+      "binary_sha256": "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2",
+      "source_sha256": "3daf3a210e213f1675e6ea9ae2a9c0b9c837b42805835b65d999eca58fbddc90",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 3,
+      "archive_classes": 3,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 3,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 3,
+      "sourcefile_unmatched": []
+    },
+    "androidx.transition:transition:1.6.0": {
+      "binary_sha256": "248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6",
+      "source_sha256": "d366250918f6b6bc89cdc05d771e88ee057574546cd19210cf52fae6dcaa4cec",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 53,
+      "archive_classes": 136,
+      "resource_class_name_relations": 2,
+      "packaged_direct": 136,
+      "packaged_generated_relation": 7,
+      "sourcefile_name_matches": 143,
+      "sourcefile_unmatched": []
+    },
+    "androidx.vectordrawable:vectordrawable-animated:1.1.0": {
+      "binary_sha256": "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8",
+      "source_sha256": "a3880c595965c55fd1bdee0554b99c66e9c28d3311b7ce6242189fc1f554fcf1",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 6,
+      "archive_classes": 13,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 13,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 13,
+      "sourcefile_unmatched": []
+    },
+    "androidx.vectordrawable:vectordrawable:1.1.0": {
+      "binary_sha256": "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26",
+      "source_sha256": "a1ae4fccc4ab76a734c10f79adf39262517658a79084bad467c4c6f41c478187",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 3,
+      "archive_classes": 12,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 12,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 12,
+      "sourcefile_unmatched": []
+    },
+    "androidx.versionedparcelable:versionedparcelable:1.1.1": {
+      "binary_sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4",
+      "source_sha256": "135016af471acf4cd9583d36ceb779710c6b46812ccaaef7c526d5d60eae6b0b",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 10,
+      "archive_classes": 15,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 15,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 15,
+      "sourcefile_unmatched": []
+    },
+    "androidx.viewpager:viewpager:1.0.0": {
+      "binary_sha256": "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682",
+      "source_sha256": "d4f9a044ab8c23392b12a3f2930d5fd6b5982421a746f2f2a812e9619431fbfd",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 4,
+      "archive_classes": 24,
+      "resource_class_name_relations": 11,
+      "packaged_direct": 24,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 24,
+      "sourcefile_unmatched": []
+    },
+    "androidx.window:window-core-android:1.5.0": {
+      "binary_sha256": "d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22",
+      "source_sha256": "df2d830a33d04300574b65d7a87904458a910b879af3d13022def0a627a22df6",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 8,
+      "resource_class_name_relations": 1,
+      "packaged_direct": 8,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 8,
+      "sourcefile_unmatched": []
+    },
+    "androidx.window:window:1.5.0": {
+      "binary_sha256": "5de2d48aa578402f46deb5294a955cee62f0c7d8c1840ef626fc7afb8abe22f9",
+      "source_sha256": "37d85fa5e68b3bc28c88b05dc2b0d5d7caf0af3d7692bd0bc0c56a8dc6ca6a33",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 115,
+      "archive_classes": 262,
+      "resource_class_name_relations": 4,
+      "packaged_direct": 262,
+      "packaged_generated_relation": 132,
+      "sourcefile_name_matches": 394,
+      "sourcefile_unmatched": []
+    },
+    "com.google.guava:listenablefuture:1.0": {
+      "binary_sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+      "source_sha256": "3d1bd8d4a39b293612a40e547ec51d9ce34fa638d7adeae83871cdbe2923b161",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 1,
+      "archive_classes": 1,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 1,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 1,
+      "sourcefile_unmatched": []
+    },
+    "com.squareup.okio:okio-jvm:3.4.0": {
+      "binary_sha256": "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e",
+      "source_sha256": "724af2ce287bf9b101194df419ebbe3765debf516c6a2e26b9d67c168d902778",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 62,
+      "archive_classes": 107,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 107,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 105,
+      "sourcefile_unmatched": [
+        {
+          "class": "okio/Okio",
+          "origin_class": "okio/Okio",
+          "sourcefile": null
+        },
+        {
+          "class": "okio/internal/ZipFilesKt$buildIndex$$inlined$sortedBy$1",
+          "origin_class": "okio/internal/ZipFilesKt$buildIndex$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        }
+      ]
+    },
+    "org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22": {
+      "binary_sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4",
+      "source_sha256": "418ea1adaaaf4537d180cc25e0b1c0d02a54fa3a38f88bd7625eb2307aa447dd",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 9,
+      "archive_classes": 12,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 12,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 12,
+      "sourcefile_unmatched": []
+    },
+    "org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22": {
+      "binary_sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc",
+      "source_sha256": "b7cf21217b9bbfbea21dd944c163454a8592344bef5b0b92ba2fa46aa1e97660",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 7,
+      "archive_classes": 9,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 9,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 9,
+      "sourcefile_unmatched": []
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0": {
+      "binary_sha256": "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666",
+      "source_sha256": "ea10d3e5e6e695d8a5283cbf116321acae6ba42d0bdd3eda50f7c34a26fa25cb",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0": {
+      "binary_sha256": "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946",
+      "source_sha256": "40e9a80f6b953d12389623760d438e69914098d0c4d7053f70f90533ec041259",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 0,
+      "archive_classes": 0,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 0,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 0,
+      "sourcefile_unmatched": []
+    },
+    "org.jetbrains.kotlin:kotlin-stdlib:2.4.21": {
+      "binary_sha256": "bd8250210584cb659847dce9cda660f8e9906e5def7fbebcea93dc6dcb6a88a3",
+      "source_sha256": "1e29c0668b0aa555e7b154e5da2e8094e1b755cfee25737839195bbbdad8a4a2",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 391,
+      "archive_classes": 994,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 994,
+      "packaged_generated_relation": 86,
+      "sourcefile_name_matches": 1036,
+      "sourcefile_unmatched": [
+        {
+          "class": "kotlin/ContextParametersKt",
+          "origin_class": "kotlin/ContextParametersKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/DeepRecursiveScopeImpl$crossFunctionCompletion$$inlined$Continuation$1",
+          "origin_class": "kotlin/DeepRecursiveScopeImpl$crossFunctionCompletion$$inlined$Continuation$1",
+          "sourcefile": "Continuation.kt"
+        },
+        {
+          "class": "kotlin/LazyKt",
+          "origin_class": "kotlin/LazyKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/NumbersKt",
+          "origin_class": "kotlin/NumbersKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/PreconditionsKt",
+          "origin_class": "kotlin/PreconditionsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/StandardKt",
+          "origin_class": "kotlin/StandardKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/ArraysKt",
+          "origin_class": "kotlin/collections/ArraysKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$2",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$2",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$3",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$3",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$4",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$4",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$5",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$5",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$6",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$6",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$7",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$7",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$8",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$8",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$9",
+          "origin_class": "kotlin/collections/ArraysKt___ArraysKt$asSequence$$inlined$Sequence$9",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/CollectionsKt",
+          "origin_class": "kotlin/collections/CollectionsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/collections/CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/GroupingKt",
+          "origin_class": "kotlin/collections/GroupingKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/MapsKt",
+          "origin_class": "kotlin/collections/MapsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/SetsKt",
+          "origin_class": "kotlin/collections/SetsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/collections/SlidingWindowKt$windowedSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/collections/unsigned/UArraysKt",
+          "origin_class": "kotlin/collections/unsigned/UArraysKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/comparisons/ComparisonsKt",
+          "origin_class": "kotlin/comparisons/ComparisonsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/concurrent/atomics/AtomicArraysKt",
+          "origin_class": "kotlin/concurrent/atomics/AtomicArraysKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/concurrent/atomics/AtomicsKt",
+          "origin_class": "kotlin/concurrent/atomics/AtomicsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/coroutines/intrinsics/IntrinsicsKt",
+          "origin_class": "kotlin/coroutines/intrinsics/IntrinsicsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/io/FilesKt",
+          "origin_class": "kotlin/io/FilesKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/io/path/PathsKt",
+          "origin_class": "kotlin/io/path/PathsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/math/MathKt",
+          "origin_class": "kotlin/math/MathKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/ranges/RangesKt",
+          "origin_class": "kotlin/ranges/RangesKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/sequences/SequencesKt",
+          "origin_class": "kotlin/sequences/SequencesKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/sequences/SequencesKt___SequencesKt$asIterable$$inlined$Iterable$1",
+          "origin_class": "kotlin/sequences/SequencesKt___SequencesKt$asIterable$$inlined$Iterable$1",
+          "sourcefile": "Iterables.kt"
+        },
+        {
+          "class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$2",
+          "origin_class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$2",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$3",
+          "origin_class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$3",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$4",
+          "origin_class": "kotlin/streams/jdk8/StreamsKt$asSequence$$inlined$Sequence$4",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/text/CharsKt",
+          "origin_class": "kotlin/text/CharsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/text/StringsKt",
+          "origin_class": "kotlin/text/StringsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/text/StringsKt__StringsKt$lineSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/text/StringsKt__StringsKt$lineSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/text/StringsKt___StringsKt$asIterable$$inlined$Iterable$1",
+          "origin_class": "kotlin/text/StringsKt___StringsKt$asIterable$$inlined$Iterable$1",
+          "sourcefile": "Iterables.kt"
+        },
+        {
+          "class": "kotlin/text/StringsKt___StringsKt$asSequence$$inlined$Sequence$1",
+          "origin_class": "kotlin/text/StringsKt___StringsKt$asSequence$$inlined$Sequence$1",
+          "sourcefile": "Sequences.kt"
+        },
+        {
+          "class": "kotlin/time/DurationUnitKt",
+          "origin_class": "kotlin/time/DurationUnitKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlin/uuid/UuidKt",
+          "origin_class": "kotlin/uuid/UuidKt",
+          "sourcefile": null
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0": {
+      "binary_sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72",
+      "source_sha256": "dd4d70dbc424eb0492126446b4035821d40d255664a8a36091d357f11390bc50",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 2,
+      "archive_classes": 7,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 7,
+      "packaged_generated_relation": 3,
+      "sourcefile_name_matches": 8,
+      "sourcefile_unmatched": [
+        {
+          "class": "kotlinx/coroutines/android/HandlerContext$scheduleResumeAfterDelay$$inlined$Runnable$1",
+          "origin_class": "kotlinx/coroutines/android/HandlerContext$scheduleResumeAfterDelay$$inlined$Runnable$1",
+          "sourcefile": "Runnable.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/android/HandlerDispatcherKt$awaitFrameSlowPath$lambda$3$$inlined$Runnable$1",
+          "origin_class": "kotlinx/coroutines/android/HandlerDispatcherKt$awaitFrameSlowPath$lambda$3$$inlined$Runnable$1",
+          "sourcefile": "Runnable.kt"
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0": {
+      "binary_sha256": "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a",
+      "source_sha256": "01e0f26a274d8f2f2ae702b161bc0980cea817bfcaf66ca4944434ea7b601771",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 165,
+      "archive_classes": 825,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 825,
+      "packaged_generated_relation": 45,
+      "sourcefile_name_matches": 774,
+      "sourcefile_unmatched": [
+        {
+          "class": "kotlinx/coroutines/BuildersKt",
+          "origin_class": "kotlinx/coroutines/BuildersKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/JobKt",
+          "origin_class": "kotlinx/coroutines/JobKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/ThreadPoolDispatcherKt",
+          "origin_class": "kotlinx/coroutines/ThreadPoolDispatcherKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/channels/BroadcastKt$broadcast$$inlined$CoroutineExceptionHandler$1",
+          "origin_class": "kotlinx/coroutines/channels/BroadcastKt$broadcast$$inlined$CoroutineExceptionHandler$1",
+          "sourcefile": "CoroutineExceptionHandler.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/channels/ChannelsKt",
+          "origin_class": "kotlinx/coroutines/channels/ChannelsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/debug/internal/DebugProbesImpl$dumpCoroutinesInfoImpl$$inlined$sortedBy$1",
+          "origin_class": "kotlinx/coroutines/debug/internal/DebugProbesImpl$dumpCoroutinesInfoImpl$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/debug/internal/DebugProbesImpl$dumpCoroutinesSynchronized$$inlined$sortedBy$1",
+          "origin_class": "kotlinx/coroutines/debug/internal/DebugProbesImpl$dumpCoroutinesSynchronized$$inlined$sortedBy$1",
+          "sourcefile": "Comparisons.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$10",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$10",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$10$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$10$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$2",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$2",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$3",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$3",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$3$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$3$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$4",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$4",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$4$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$4$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$5",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$5",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$5$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$5$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$6",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$6",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$6$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$6$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$7",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$7",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$7$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$7$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$8$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$9",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$9",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$9$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$asFlow$$inlined$unsafeFlow$9$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$2",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__BuildersKt$flowOf$$inlined$unsafeFlow$2",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onCompletion$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onCompletion$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onCompletion$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onCompletion$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onEmpty$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onEmpty$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onEmpty$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onEmpty$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onStart$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onStart$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onStart$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$onStart$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$unsafeTransform$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$unsafeTransform$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$unsafeTransform$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__EmittersKt$unsafeTransform$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$retryWhen$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$retryWhen$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$retryWhen$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ErrorsKt$retryWhen$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$drop$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$drop$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$dropWhile$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$dropWhile$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$take$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$take$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$take$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$take$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$lambda$6$$inlined$collectWhile$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$takeWhile$lambda$6$$inlined$collectWhile$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__LimitKt$transformWhile$1$invokeSuspend$$inlined$collectWhile$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__LimitKt$transformWhile$1$invokeSuspend$$inlined$collectWhile$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapConcat$$inlined$map$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapConcat$$inlined$map$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapConcat$$inlined$map$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapConcat$$inlined$map$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapMerge$$inlined$map$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapMerge$$inlined$map$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapMerge$$inlined$map$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flatMapMerge$$inlined$map$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__MergeKt$flattenConcat$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ReduceKt$first$$inlined$collectWhile$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ReduceKt$first$$inlined$collectWhile$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ReduceKt$firstOrNull$$inlined$collectWhile$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ReduceKt$firstOrNull$$inlined$collectWhile$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$chunked$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$chunked$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$chunked$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$chunked$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filter$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$2",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$2",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$2$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterIsInstance$$inlined$filter$2$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNot$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNotNull$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNotNull$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNotNull$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$filterNotNull$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$map$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$mapNotNull$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$onEach$$inlined$unsafeTransform$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$onEach$$inlined$unsafeTransform$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$onEach$$inlined$unsafeTransform$1$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$onEach$$inlined$unsafeTransform$1$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningFold$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningFold$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningFold$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningFold$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningReduce$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$runningReduce$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__TransformKt$withIndex$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__TransformKt$withIndex$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$2",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$2",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$3",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$combineUnsafe$FlowKt__ZipKt$3",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$2",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$2",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$2$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$2$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$3",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$3",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$3$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combine$$inlined$unsafeFlow$3$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combineUnsafe$$inlined$unsafeFlow$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combineUnsafe$$inlined$unsafeFlow$1",
+          "sourcefile": "SafeCollector.common.kt"
+        },
+        {
+          "class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combineUnsafe$$inlined$unsafeFlow$1$1",
+          "origin_class": "kotlinx/coroutines/flow/FlowKt__ZipKt$combineUnsafe$$inlined$unsafeFlow$1$1",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/internal/SystemPropsKt",
+          "origin_class": "kotlinx/coroutines/internal/SystemPropsKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/coroutines/selects/OnTimeout$register$$inlined$Runnable$1",
+          "origin_class": "kotlinx/coroutines/selects/OnTimeout$register$$inlined$Runnable$1",
+          "sourcefile": "Runnable.kt"
+        }
+      ]
+    },
+    "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3": {
+      "binary_sha256": "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb",
+      "source_sha256": "d084ce9bf130919d4b899db09896531440d1e330919187c7932d7fe0fa5257b8",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 52,
+      "archive_classes": 225,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 225,
+      "packaged_generated_relation": 32,
+      "sourcefile_name_matches": 253,
+      "sourcefile_unmatched": [
+        {
+          "class": "kotlinx/serialization/SealedClassSerializer$special$$inlined$groupingBy$1",
+          "origin_class": "kotlinx/serialization/SealedClassSerializer$special$$inlined$groupingBy$1",
+          "sourcefile": "_Collections.kt"
+        },
+        {
+          "class": "kotlinx/serialization/SerializersKt",
+          "origin_class": "kotlinx/serialization/SerializersKt",
+          "sourcefile": null
+        },
+        {
+          "class": "kotlinx/serialization/descriptors/SerialDescriptorKt$special$$inlined$Iterable$1",
+          "origin_class": "kotlinx/serialization/descriptors/SerialDescriptorKt$special$$inlined$Iterable$1",
+          "sourcefile": "Iterables.kt"
+        },
+        {
+          "class": "kotlinx/serialization/descriptors/SerialDescriptorKt$special$$inlined$Iterable$2",
+          "origin_class": "kotlinx/serialization/descriptors/SerialDescriptorKt$special$$inlined$Iterable$2",
+          "sourcefile": "Iterables.kt"
+        }
+      ]
+    },
+    "org.jetbrains:annotations:23.0.0": {
+      "binary_sha256": "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05",
+      "source_sha256": "ff2309b42f7584520497bb48bc609aca04c9886cf48708f14be83f00423ec144",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 29,
+      "archive_classes": 57,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 57,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 57,
+      "sourcefile_unmatched": []
+    },
+    "org.jspecify:jspecify:1.0.0": {
+      "binary_sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab",
+      "source_sha256": "adf0898191d55937fb3192ba971826f4f294292c4a960740f3c27310e7b70296",
+      "source_kind": "PUBLISHED_COMPANION",
+      "source_keys": 5,
+      "archive_classes": 4,
+      "resource_class_name_relations": 0,
+      "packaged_direct": 4,
+      "packaged_generated_relation": 0,
+      "sourcefile_name_matches": 4,
+      "sourcefile_unmatched": []
+    }
+  },
+  "unattributed_classes": [],
+  "semantic_or_binary_source_equivalence": false,
+  "resources_and_native_covered_by_this_audit": false,
+  "publisher_authentication_changed": false,
+  "complete_distribution_approved": false,
+  "inputs": {
+    "binary_plan_sha256": "3a0e1aae590a2296f8315d097b083758663c5f8fbb22e5f50c39bf60047fb08e",
+    "source_capture_sha256": "f88e271b106e6f92484d7be1e5ac605ea66d6ff1e70bf0882e2501101fb5da31",
+    "producer_sha256": "1105f4aa5b53c838a62abe0f5b5fff18e3202b1552cb77c257dbddd2a4929bb5",
+    "dex_parser_sha256": "93b37f98a56d11c6603b6c5db5f06740d97e70e92c2b62b8e1c48c610e1f0fa9"
+  }
+}

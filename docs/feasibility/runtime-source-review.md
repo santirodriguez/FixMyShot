@@ -80,3 +80,76 @@ proof every source/resource/build obligation is fulfilled. The current app's
 GPL identity and existing original upstream notices remain unchanged. Publisher
 review325/858, full distribution-source review, physical acceptance and
 separately authorized production signing/publication retain their own gates.
+
+
+## Actual packaged class owners and missing materials
+
+The [APK owner audit](evidence/runtime-source-closure-e516aa89/review.json)
+reads the accepted full b677 APK and all95actual frozen binary archives
+(40,739,883bytes). Every archive matches its frozen SHA256; the initial timed-out
+captures, six local exact-hash reuses, eleven curl completions and two successful
+same-publisher alternate URL completions remain separate records. No publisher
+row is approved by this download.
+
+All16,986DEX class names now have an explicit bounded category:13,245match a
+class in a frozen archive,2,961have a D8 generated-name relation to such a class,
+212are R/R-member names tied to actual AAR manifest namespaces, and568are in
+the accepted project namespace. There are zero unassigned class names. The
+lifecycle-viewmodel anchor is a real small AAR manifest namespace; it must not
+be guessed from a general androidx prefix. Duplicate owners fail closed.
+Seven offline tests cover class parsing, SourceFile/internal-name integrity,
+malformed/truncated input, nested classes, explicit resource namespaces, JVM
+package overrides and generated-name relations requiring an existing origin.
+
+Class/name attribution is not source/binary equivalence. The398remaining
+package/SourceFile-name mismatches are retained diagnostics, including79absent
+SourceFile attributes. They are not398unaccounted libraries: Kotlin inlining,
+JVM package overrides, generated inspection/AIDL/parcel classes and repackaging
+make this debug attribute unsuitable as a source-completeness oracle. Do not
+silently mark its unmatched cases as verified original source.
+
+The audit found two concrete omissions in the earlier staged material:
+
+* DataStore's JNI translation unit was missing beside its CMake/shared-counter
+  sources. The exact1.1.7release source at420da5f2 now supplies the original
+  2370byte file, SHA256adde5c7d79854f584e413277a03bd25ba4055c110d70c327d42f496e8fc4ce93,
+  matching Git blob7a02dac044499fa19ad5020a1d3eb6d7edeb800e and its pinned
+  directory. Its only local include resolves to the already retained header.
+* Emoji2's source companion omits its bundled FlatBuffers/metadata code.
+  Its1.4.0release build/settings identify the Noto external project and two
+  namespace relocations.24original FlatBuffers1.12Java files, the historical
+  Noto1.12build/schema and two original generated metadata Java files are now
+  retained with original notices. The frozen classes expose the1.12marker;
+  historical Noto tag android-13.0.0_r52 resolves to896f6b4d. This does **not**
+  prove that tag is Emoji2's exact build checkout. Current Noto main uses2.0
+  and was not substituted. A naive namespace-only byte comparison matches0of45
+  classes; that negative result is preserved, not promoted to equivalence.
+
+Five original Core1.16stable AIDL files and its Kotlin build file are also
+retained from the official release endpoint096ee90d. Initial old aidl/Groovy
+paths returned404; inspected directories established the actual stableAidl/
+Kotlin layout before the successful capture. This supplies generation inputs
+without pretending their output was independently rebuilt. All original
+headers, source URLs, hashes and explicit limits remain in the receipt.
+
+## Assembled source-material asset
+
+[The bundle receipt](evidence/source-material-bundle-e516aa89.json) records a
+real32,779,542byte source-material archive with1,282safe unique regular members,
+SHA256b9e007771a2a18aa3a76d30cdff0fa82346251afbfc1fab9cc93ed083b9b2693.
+Two full generations are byte-identical on the recorded Python/zlib runtime.
+Every member/manifest hash, normalized ownership/mode/time and original nested
+project/WebP source-kit hash passes. It adds the94companions, upstream Protobuf,
+1,074original AAR resource/manifest/rule inputs from72coordinates and the
+supplemental/review material. Resources are original published AAR inputs;
+this does not prove each is the original preferred editing form.
+
+The offline assembler is scripts/prepare-source-material-bundle.py. It requires
+the exact existing project/WebP kit, source-stage directory,95frozen binaries,
+committed source/closure evidence and pinned upstream Protobuf file; outputs
+must be fresh. It downloads/builds/signs/uploads nothing. The committed producer,
+URLs and byte pins make this source-material stage recoverable without another
+large Git upload. Preserve the original source kit's separate Git-restoration
+procedure. No complete offline toolchain or source/binary equivalence follows.
+Final distribution/source review, including the exact external relocation and
+generation context, remains open alongside publisher and physical/signing gates.

@@ -1258,3 +1258,23 @@ source-owner relations are34variant redirects, three BOM descriptors and one
 dependency-only stdlib wrapper. Full original metadata is retained. This is
 source-material staging, not another Android/app/device run, binary
 reproduction or publisher approval. No active verification policy changed.
+
+
+## Actual APK source-material ownership and assembly
+
+Seven offline class/source-owner parser cases PASS. Actual accepted b677 APK:
+16,986DEX definitions,13,245frozen class-name matches,2,961D8 name relations,
+212R/resource names tied to actual manifest namespaces,568accepted-project
+namespace classes, zero unassigned names. All95actual archive SHA256 values
+match the frozen inventory. The398SourceFile/package-name diagnostics (79without
+that debug attribute) remain visible and are not a completeness verdict.
+No semantic/source-compiled equivalence or extra publisher trust is inferred.
+
+The real source-material bundle has1,282safe unique regular members and all
+manifest/hash/normalized metadata checks pass. Two complete32,779,542byte
+assemblies are byte-identical on Python3.12.14/zlib1.3.2. Its nested original
+project/WebP kit is unchanged. [The receipt](feasibility/evidence/source-material-bundle-e516aa89.json)
+records full pins; [the source owner](feasibility/runtime-source-review.md)
+retains the supplemental JNI/FlatBuffers/Core AIDL captures, initial failures,
+negative naive relocation comparison and remaining source/distribution limits.
+No Android/OSV rerun or physical/signing acceptance was added.

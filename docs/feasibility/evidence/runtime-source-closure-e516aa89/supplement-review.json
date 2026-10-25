@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "scope": "SUPPLEMENTAL_NATIVE_AND_REPACKAGED_SOURCE_MATERIAL_NOT_SOURCE_BINARY_EQUIVALENCE",
+  "datastore_jni": {
+    "release_commit": "420da5f291449f11801e378c6789a328a06ec6cb",
+    "original_path": "datastore/datastore-core/src/androidMain/cpp/jni/androidx_datastore_core_SharedCounter.cc",
+    "blob_sha1": "7a02dac044499fa19ad5020a1d3eb6d7edeb800e",
+    "sha256": "adde5c7d79854f584e413277a03bd25ba4055c110d70c327d42f496e8fc4ce93",
+    "local_header_reference": "../shared_counter.h",
+    "source_notice": "ORIGINAL_APACHE_HEADER_RETAINED"
+  },
+  "emoji2": {
+    "release_commit": "2d25c5e925564cf1f52fb6d2f88088d2dd5becfe",
+    "build_and_settings_confirm_external_noto_project_and_two_namespace_relocations": true,
+    "observed_frozen_version_symbol": "FLATBUFFERS_1_12_0",
+    "flatbuffers_1_12_sources_archive_sha256": "6522155eaadf630f60c05154c4f79505f14675e408d10e0f40c7fbfebf0a21ab",
+    "noto_historical_tag": "android-13.0.0_r52",
+    "noto_historical_commit": "896f6b4d50411b9798fe56eaec7ec817a94ea1f3",
+    "noto_generated_java_blob_membership": "PASS_2_FILES",
+    "noto_generated_metadata_schema_and_1_12_dependency_staged": true,
+    "historical_noto_tag_is_exact_emoji2_build_checkout_proved": false,
+    "current_noto_main_2_0_dependency_not_substituted": true,
+    "naive_namespace_only_class_byte_comparison": "0_OF_45_IDENTICAL_NOT_BINARY_EQUIVALENCE",
+    "original_java_source_files_staged": 26,
+    "full_original_headers_retained": true
+  },
+  "core_generation": {
+    "release_commit": "096ee90dd35920496448ba4b5c14f3979bcfee47",
+    "old_aidl_and_groovy_paths_returned_404": true,
+    "actual_release_layout": "build.gradle.kts and src/main/stableAidl",
+    "original_sources_not_generated_bytecode_staged": 5
+  },
+  "publisher_verification_changed": false,
+  "source_binary_equivalence_approved": false
+}

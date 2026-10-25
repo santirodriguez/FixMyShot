@@ -1,0 +1,162 @@
+)]}'
+{
+  "id": "272ea8c03452b03b60b901ca073146677a57887c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "cbc9e89982e636b44c36d582cf2172dc8335a491",
+      "name": "OWNERS"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "8ffb0b8d21b1530e3dd6c616aa07583eed56fe5b",
+      "name": "README.md"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "0ee1c4bfef76a551872b03d5c355ee0617bf6eb4",
+      "name": "core-animation-integration-tests"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "f6dae8c0de72c83da5f1dbdc3de966d07c4a277b",
+      "name": "core-animation-testing"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "c8c79500c89a0e6e67fbffbb0b660c87d67705b6",
+      "name": "core-animation"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "5f6f02401c7e79d212a196dd58b26f4a58db8eaf",
+      "name": "core-appdigest"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "dd3ab2f9ca86e571229a494aaac206293a761a47",
+      "name": "core-backported-fixes"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "4fefc546fdb8983211fce808557fd745f21d17c5",
+      "name": "core-google-shortcuts"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "2c0b02e589be12b248428c7e2e230693f70fdbf8",
+      "name": "core-graphics-integration-tests"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "3524c792f680c1be7d01acc8de6162ca65456eeb",
+      "name": "core-i18n"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "64c866f9c7ab24ec7292b374f6b0082aec99e6d1",
+      "name": "core-ktx"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "8cafbf8fd3d2b356eff99c76f5551b054f3c1c52",
+      "name": "core-location-altitude-external-protobuf"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "46e4cdfb86ed238b528998789e39fcda6f73e088",
+      "name": "core-location-altitude-proto"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "61ba27575b25a056a5f260b5bbd0636cfce166b2",
+      "name": "core-location-altitude"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "4c375a67afd00d03ca3d74eb6bbd4651650d5dbb",
+      "name": "core-performance-play-services"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "602574c111a43acb7f1ca1904e6abf2d3f979f5c",
+      "name": "core-performance-testing"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "ee19d1fb5c707dfb7e97f761596aeb5f368038d9",
+      "name": "core-performance"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "31961d489b8a459d2c080b5b4905d69698d1182b",
+      "name": "core-remoteviews"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "a1d6dd45399c9998760e1809333ba16690fd6852",
+      "name": "core-role"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "1b82b9b8358cbae584eef8fcb51a407e833b8751",
+      "name": "core-splashscreen"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "2295412f07e76a3707d35f370007a08b7feddb75",
+      "name": "core-telecom"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "3df57f1c8415fc284cd93d85f4dd07a6ce1e05b9",
+      "name": "core-testing"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "fc5207d74ef4658c581ebc6e11366a30ccbd7a48",
+      "name": "core-viewtree"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "c0202080f06e02c20b0d725f5a42874b453410b8",
+      "name": "core"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "4bb34db1cfbe4934793d2e2c1bfeda0262c2a883",
+      "name": "haptics"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "12b40c22c2d717436f7d654431913764c9b1f1b8",
+      "name": "uwb"
+    }
+  ]
+}

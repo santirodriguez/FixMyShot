@@ -1,0 +1,32 @@
+[
+  {
+    "file": "core__core__build.gradle.kts",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/build.gradle.kts?format=TEXT",
+    "bytes": 4068
+  },
+  {
+    "file": "core__core__src__main__stableAidl__android__support__v4__app__INotificationSideChannel.aidl",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/android/support/v4/app/INotificationSideChannel.aidl?format=TEXT",
+    "bytes": 1352
+  },
+  {
+    "file": "core__core__src__main__stableAidl__android__support__v4__os__IResultReceiver.aidl",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/android/support/v4/os/IResultReceiver.aidl?format=TEXT",
+    "bytes": 876
+  },
+  {
+    "file": "core__core__src__main__stableAidl__android__support__v4__os__IResultReceiver2.aidl",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/android/support/v4/os/IResultReceiver2.aidl?format=TEXT",
+    "bytes": 877
+  },
+  {
+    "file": "core__core__src__main__stableAidl__androidx__core__app__unusedapprestrictions__IUnusedAppRestrictionsBackportCallback.aidl",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback.aidl?format=TEXT",
+    "bytes": 1280
+  },
+  {
+    "file": "core__core__src__main__stableAidl__androidx__core__app__unusedapprestrictions__IUnusedAppRestrictionsBackportService.aidl",
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService.aidl?format=TEXT",
+    "bytes": 1584
+  }
+]

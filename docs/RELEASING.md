@@ -113,6 +113,32 @@ public pinned Git objects; do not duplicate it as another large Git evidence
 upload. Stage the final accepted source asset with release materials only when
 the remaining gates and publication authority apply.
 
+## 02d · Assemble the staged runtime source materials
+
+[The source-material assembler](../scripts/prepare-source-material-bundle.py)
+combines the exact existing project/WebP kit,94published companions, mapped
+upstream Protobuf, original AAR resource/manifest/rule inputs and committed
+supplemental source/review evidence. It performs no network, build or signing.
+
+```sh
+python3 scripts/prepare-source-material-bundle.py \
+  /stage/FixMyShot-source-e516aa89.tar.gz /stage/runtime-source-companions-e516 \
+  /stage/runtime-frozen-binaries-e516 \
+  docs/feasibility/evidence/runtime-source-companions-e516aa89 \
+  docs/feasibility/evidence/runtime-source-closure-e516aa89 \
+  /stage/protobuf-javalite-4.28.2-sources.jar \
+  /new/FixMyShot-source-materials-e516aa89.tar.gz /new/source-materials.json
+```
+
+The [actual receipt](feasibility/evidence/source-material-bundle-e516aa89.json)
+records two identical assemblies and full1,282member validation. After extraction,
+run sha256sum -c MANIFEST.sha256; extract the nested original source kit separately
+and retain its Git restoration instructions. This is a source-material asset,
+not final corresponding-source or publisher approval. Review the [exact limits](feasibility/runtime-source-review.md)
+before distribution; regenerate for a later accepted compiled source. Do not
+upload the32.8MBbinary through connector blob/base64 calls. An actual future
+manual upload must identify the exact file and destination explicitly.
+
 ## 03 · Verify the exact signed candidate
 
 Creating FixMyShot's long-lived key, securing backups and signing require separate explicit authority. Never borrow another app's key or regenerate a missing identity. Keep keys/passwords outside the repository and receipts; record only the public certificate fingerprint.

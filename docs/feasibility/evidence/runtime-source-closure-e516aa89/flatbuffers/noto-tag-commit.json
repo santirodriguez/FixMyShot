@@ -1,0 +1,21 @@
+)]}'
+{
+  "commit": "896f6b4d50411b9798fe56eaec7ec817a94ea1f3",
+  "tree": "aca803a5efaf0971e0d62924a44b0f5f62420338",
+  "parents": [
+    "1b1d2ec3523e039ab32f475a6bab6154bbcc076b",
+    "cddbcbf8d453175511ea82b908d1145b9aadb714"
+  ],
+  "author": {
+    "name": "Android Build Coastguard Worker",
+    "email": "android-build-coastguard-worker@google.com",
+    "time": "Tue Jan 10 00:10:48 2023 +0000"
+  },
+  "committer": {
+    "name": "Android Build Coastguard Worker",
+    "email": "android-build-coastguard-worker@google.com",
+    "time": "Tue Jan 10 00:10:48 2023 +0000"
+  },
+  "message": "Snap for 9470583 from cddbcbf8d453175511ea82b908d1145b9aadb714 to tm-qpr3-release\n\nChange-Id: If705e0f583c18562802ecb4014a78ea42dc10d45\n",
+  "tree_diff": []
+}
