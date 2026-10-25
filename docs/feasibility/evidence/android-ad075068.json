@@ -48,7 +48,15 @@
     "pending": 534,
     "active_policy": false
   },
-  "independent_rebuild": "PENDING_40147246792",
+  "independent_rebuild": {
+    "status": "PASS_EXACT_UNSIGNED_BYTES",
+    "run_id": 40147246792,
+    "control_commit": "033a03929140a806e49402978b49f2c885dc444e",
+    "artifact_id": 12580449027,
+    "artifact_bytes": 17345839,
+    "artifact_sha256": "6e6e2da466f7cf52b157287f5caa130b3e92e424a91da4668a3df1182ae80b29",
+    "receipt": "independent-rebuild-ad075068.json"
+  },
   "physical_native_fidelity": "NOT_RUN",
   "complete_license_security_approval": false,
   "production_signing_distribution": "NOT_RUN"

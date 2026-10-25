@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "scope": "EXPERIMENTAL_DERIVED_CHECKOUT",
+  "source_commit": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+  "source_tree": "b5ecadc6a756e0c07a67b7f0b38ae354744d3b8b",
+  "inputs": {
+    "app/build.gradle.kts": "3811c85f3582ace60accc3e03800fa4c3804321ca0a170962d06a6bdaf9eca6e",
+    "app/gradle.lockfile": "97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b",
+    "build.gradle.kts": "04ccb5b61f4e2c3659eb90b0eae88621a3a09c6612e12b60b7897d2e709aa530",
+    "codec-native/build.gradle.kts": "e233d4b9acda0c1110c53152efe5b724b09276c5e31fdc2194afb40a8e9485e1",
+    "codec-native/gradle.lockfile": "98f03edd2fce07085f9208a86c65c7d65038f21639f3bc43e600898c53088832",
+    "core/gradle.lockfile": "c6c472230eb7772de2dc71b2e4a04889f9e8651a5be76b7ab58c7a20115925a7",
+    "gradle/libs.versions.toml": "7b00a21f08d89010c6e31b04eb905afc243f73af9bcdbe83f402f5a74f10e25f",
+    "gradle/wrapper/gradle-wrapper.properties": "c040b6ef2fb893ff5beea5a281614f2848f1c3996a7886f650b713f8240656a2",
+    "scripts/setup-android.sh": "8db584d39586abd7e91436f4aa3acfa774b5a1409aa7844fc37541eb5bf866be"
+  }
+}

@@ -1075,3 +1075,25 @@ matches its generated SHA256 receipt. Interpretation is owned by the security
 review. Independent rebuild40147246792 is a separate pending gate; do not
 transfer earlier773 byte equality. No new APK was delivered or signed. Physical,
 complete publisher/security/license and distribution gates remain open.
+
+
+## Independent ad075068 rebuild accepted; migration experiment prepared
+
+Actions40147246792/control033a03929140a806e49402978b49f2c885dc444e finished
+SUCCESS. Downloaded artifact12580449027 is17345839B, SHA256
+6e6e2da466f7cf52b157287f5caa130b3e92e424a91da4668a3df1182ae80b29; size,
+ZIP CRC, exact request/source and actual unsigned APK bytes match. The retained
+[comparison receipt](feasibility/evidence/independent-rebuild-ad075068.json)
+reports true byte equality:23516325B/SHA256
+2ae8f0a8b2705fbf9e61d4bddf3933f22489cce0906225d573175f2f19dd7e27.
+The inspected workflow requires pristine exactad075 source, empty Gradle/project
+caches, no-build-cache/rerun-tasks and core/release rebuild. This supersedes the
+previous pending status for that source only, with no signing/physical/security
+approval.
+
+The [approved migration plan](decisions/toolchain-migration.md) now owns the
+AGP9.2.1/Gradle9.4.1/Kotlin2.4.21 experiment. Four local recipe refusal tests,
+current bootstrap/wrapper checks and workflow YAML/permissions checks PASS.
+Migration compatibility/build/graph/security results are NOT RUN until the exact
+opt-in workflow finishes. Its mutated checkout is experimental derived source;
+normal frozen-source/API36/independent acceptance is a later separate checkpoint.
