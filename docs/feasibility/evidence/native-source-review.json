@@ -25,7 +25,7 @@
   "old_e8_APK_does_not_qualify_new_notices": true,
   "all_native_source_license_security_or_patent_clearance": false,
   "tag_signature_verification": false,
-  "full_source_archive_distribution": "NOT_PREPARED_NOT_PUBLISHED",
+  "full_source_archive_distribution": "EXACT_PROJECT_AND_FULL_WEBP_KIT_PREPARED_VALIDATED_NOT_PUBLISHED; COMPLETE_CORRESPONDING_SOURCE_REVIEW_OPEN",
   "raw_files": {
     "NOTICE": {
       "bytes": 577,
@@ -160,5 +160,6 @@
       "sha256": "2b062f4d1e548c906bd73ab4bb4fb768a4e08d54537bdfa712a77bc9eb3a6e57"
     }
   },
-  "package_acceptance_receipt": "android-5d568a7e.json"
+  "package_acceptance_receipt": "android-5d568a7e.json",
+  "source_kit_receipt": "docs/feasibility/evidence/source-kit-e516aa89/review.json"
 }

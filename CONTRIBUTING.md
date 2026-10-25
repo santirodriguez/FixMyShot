@@ -359,3 +359,15 @@ The focused clean rebuild exercises that actual rejection before compiling.
 This blocks the configured legacy conversion route that owns the JDOM finding;
 it does not remove or patch the AGP classpath dependency. Reconsidering this
 boundary requires a source/security review, not an implicit property override.
+
+
+### Prepare source materials without changing the accepted build
+
+scripts/prepare-source-kit.py reads an explicit immutable project commit/tree
+and the full pinned WebP Git tree, creates a deterministic source archive and
+retains original Git identities. Its restore-source-snapshot.py companion
+validates exact bytes/modes before creating fresh local .git directories.
+It never fetches sources, builds, signs or publishes. Do not package a dirty
+working tree or silently substitute HEAD for the accepted compiled source.
+[The release procedure](docs/RELEASING.md#02c--stage-recoverable-project-and-native-sources)
+records the real regeneration/restoration and remaining source-review limits.

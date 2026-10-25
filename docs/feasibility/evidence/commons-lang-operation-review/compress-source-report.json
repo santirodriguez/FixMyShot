@@ -1,0 +1,2036 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/org/apache/commons/commons-compress/1.27.1/commons-compress-1.27.1-sources.jar",
+  "bytes": 901466,
+  "sha256": "90839ce19b8afb8ee50db75c84aa7555ebc054ba1bd43fdb2202cbf094c77f81",
+  "java_files": [
+    {
+      "path": "org/apache/commons/compress/MemoryLimitException.java",
+      "sha256": "2baf3febc7764116180e93f613bbe75274b7737217c0d33a480148f3de3c3ead",
+      "bytes": 2391
+    },
+    {
+      "path": "org/apache/commons/compress/PasswordRequiredException.java",
+      "sha256": "a90fffae35bf7d1eba9c2a98182112f7e653c5275b863055a79a569164d4f7e0",
+      "bytes": 1441
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveEntry.java",
+      "sha256": "e907c70bc8b6b4d9351a4e6cd7da8afbb2f2edb2374401d05bbb31d90e97113a",
+      "bytes": 2616
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveException.java",
+      "sha256": "1bffa9939492ddb6dbc46607c098d2116a18053ae034e308e8a10d6274a46cc5",
+      "bytes": 1573
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveInputStream.java",
+      "sha256": "e9c144e76a8a33639845321fc5000ad508bc85a1c26259ab8880698f4e909022",
+      "bytes": 8638
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveOutputStream.java",
+      "sha256": "a7812edebd617ea334f8caef60aa32257651885b858d15789d27891e4b0fcd0d",
+      "bytes": 8714
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveStreamFactory.java",
+      "sha256": "9143e584187357f991c690482843ec0db9367b583c8a221b8f0ff0a40978a4a6",
+      "bytes": 23901
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ArchiveStreamProvider.java",
+      "sha256": "65b800ca3f5d7af0fa9468fc6a9a7f5af77d1095888e33c9efe2f39a86a401ec",
+      "bytes": 4363
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/EntryStreamOffsets.java",
+      "sha256": "f8ef307412f63ae4854e835adca5eb6da9cde73a1d2d2d528b0f6a2639e2fc67",
+      "bytes": 1511
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/Lister.java",
+      "sha256": "3195282a520bca7997491e65e2ad1bbabe4656fa0e1b14be85961b00b2736da7",
+      "bytes": 6489
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/StreamingNotSupportedException.java",
+      "sha256": "7c72ec60bd74c8ca6a7db5ee7a72a7ce4c739664b6ea7defb5eb2151aaa835b3",
+      "bytes": 1661
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ar/ArArchiveEntry.java",
+      "sha256": "ac07222b9d74e56ace2ad8896cd56101bb25d4e54aa553bc7b6fa10afbf4d502",
+      "bytes": 6905
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ar/ArArchiveInputStream.java",
+      "sha256": "35c490dd5feb024b508269fd2bc8f495725a1e6cd47993379cc0a9e122e96fed",
+      "bytes": 16226
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ar/ArArchiveOutputStream.java",
+      "sha256": "0c7fc3a00c374aceafc72772ec6c4c447aac087f47279155ad3974e4218f60e9",
+      "bytes": 7346
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/ar/package-info.java",
+      "sha256": "76095a1b365a80bc25bc0d2d0f68f01f12a3eb73287715d2d4aa9634282166c0",
+      "bytes": 1048
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/arj/ArjArchiveEntry.java",
+      "sha256": "245051bff9167fdfd02948facb6b1bc6f7e836244a535e2d9a6651d529b04789",
+      "bytes": 6048
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/arj/ArjArchiveInputStream.java",
+      "sha256": "b24bf71da2b681d8f6c7a331ba201a94bf1add6ab5db4b8b1e0b9c56df78588e",
+      "bytes": 15388
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/arj/LocalFileHeader.java",
+      "sha256": "8b0b9a8f73a0a9dd865f0b751fc81a0f9653f68100aa27aced722563bab6a653",
+      "bytes": 5832
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/arj/MainHeader.java",
+      "sha256": "37047b418a1536c065e815838fe44177467bae128ab8f86c63709a1672dd34d8",
+      "bytes": 4171
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/arj/package-info.java",
+      "sha256": "78e3e207e28ade43982f898a37cddc0dc46cdb88e75c7e238bf402d1f3c5f3db",
+      "bytes": 936
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/CpioArchiveEntry.java",
+      "sha256": "d69dfe32ad88940ee97c591df41f23c140d7d9746a24bf9e1ce66cf57d4bc389",
+      "bytes": 27619
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/CpioArchiveInputStream.java",
+      "sha256": "db88c76e00f412ff18e04ec8a3fb94095e0506baba679d38293971565187900c",
+      "bytes": 19616
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/CpioArchiveOutputStream.java",
+      "sha256": "dceb3826a7f7715a963ce01f0fb91824b3eac6a683f67082f8ce1721d2616ded",
+      "bytes": 18530
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/CpioConstants.java",
+      "sha256": "f87efce44329a691948084992168410903885b3142e58ce3fa1b1b7a2c962a31",
+      "bytes": 4011
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/CpioUtil.java",
+      "sha256": "0df9735997f224a588cbf7f127d589ad47a4eb7c662ac6351650f725c5ea02d5",
+      "bytes": 3567
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/cpio/package-info.java",
+      "sha256": "8038089b8266d5d4f7270e5440cfd2940b8f7253bdb8c038c68826c30ec5a3ee",
+      "bytes": 950
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/Dirent.java",
+      "sha256": "2cee39e9c5034aa3af328da6fb179232e78d6a61f7210e768bc65af4df1979f7",
+      "bytes": 2147
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveConstants.java",
+      "sha256": "22523d6df55395bebe6257a810db6912a1493106db1deae3ee9cf7a650c9bdca",
+      "bytes": 2461
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveEntry.java",
+      "sha256": "6ade8c75190c822b0818b21c272868f38c86a8430b92ae792b9ffef1547ceae1",
+      "bytes": 23443
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveException.java",
+      "sha256": "2277714134c675d73b68e085507e9a7bdb81e09c93d6a5aab7e09a1852b93b9c",
+      "bytes": 1351
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveInputStream.java",
+      "sha256": "c7b502210c8b5f6b95ecf74cb9f9be2f9739fcc0055fabc7feb82dd099157124",
+      "bytes": 18214
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveSummary.java",
+      "sha256": "74f92c40da0bed734d72741947448f57aa58179c947a012d7442d3e51aa4026c",
+      "bytes": 8766
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/DumpArchiveUtil.java",
+      "sha256": "7f0a5d0cd44d570cf41da69abc38acaff15f938328184e89e069137e222b9a4a",
+      "bytes": 3956
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/InvalidFormatException.java",
+      "sha256": "1645d2fd8b356d5ef7f10ff2290c4b89d9b67c4058f97d8767064a75c1ac0335",
+      "bytes": 1448
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/ShortFileException.java",
+      "sha256": "fbc40c24d72115c2d5a9eed98663018727ce0c18fed0003b5a5efbb12a04e452",
+      "bytes": 1143
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/TapeInputStream.java",
+      "sha256": "6e8194d5c0dd73fb48ea35440be2c632cfc2cc0ae7e55eab528b11435e8039d1",
+      "bytes": 11565
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/UnrecognizedFormatException.java",
+      "sha256": "c0e9f03add8263493c1215a528632f9fa37732670574cc6931708e25b753ec7d",
+      "bytes": 1212
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/UnsupportedCompressionAlgorithmException.java",
+      "sha256": "4f44d20802f65b83ba6461fecc0720f0b1c81ecf3700c6b3e90f6481254bfd43",
+      "bytes": 1418
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/dump/package-info.java",
+      "sha256": "16cd637296164c2d3ec3e0790747bd663581243385a0a3b016c7f0339fea5213",
+      "bytes": 2264
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/examples/Archiver.java",
+      "sha256": "2a5a99f79cfbb4066a3ea105d3b28e397f210b8082f5713144695615cf346e37",
+      "bytes": 17430
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/examples/CloseableConsumer.java",
+      "sha256": "647493b8d400cfbd9e9e95bed57ed22a8776fdbedbbc7d31214d21968023799e",
+      "bytes": 1891
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/examples/CloseableConsumerAdapter.java",
+      "sha256": "dfcba14a91a340e7dfcbd0c6d8a815f54f54757a049cc59c37ddc1b32c67611a",
+      "bytes": 1500
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/examples/Expander.java",
+      "sha256": "364d121d3d9ab683b8386cde4d7f00ad7cde3ebed6073178f1604c43aaf612c9",
+      "bytes": 22594
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/examples/package-info.java",
+      "sha256": "215db0f04b4cf20977e3481b8b74c12f6389bc1c1db117b4d6bb49e1eb6e4316",
+      "bytes": 980
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/jar/JarArchiveEntry.java",
+      "sha256": "1ab7009036742527af16639e1530150c7573e4a2b4945e889d768f19b8676682",
+      "bytes": 3097
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/jar/JarArchiveInputStream.java",
+      "sha256": "f6b8050dbcf931b64b220939cde02249203388718d01cfd0833336889aa556c7",
+      "bytes": 2801
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/jar/JarArchiveOutputStream.java",
+      "sha256": "0c43cf39e5fa3fa1a7f456e47487b59d25a6ac4f62358bfcfeddfa33259e843b",
+      "bytes": 2250
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/jar/package-info.java",
+      "sha256": "78d2bc63fdcb4e0d6e61fd441f74daeaa3761b483369ea701aecf15b3180b84c",
+      "bytes": 1006
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/package-info.java",
+      "sha256": "5d7b86a129382d1ab3cb41093ccdce084b6715eee2bd7fe41efd7d0ff485efda",
+      "bytes": 950
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/AES256Options.java",
+      "sha256": "9fddb5610b3ba90c0482f1c0bdeac17805cc8da79bb654c45aa6faf239b7c329",
+      "bytes": 3867
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/AES256SHA256Decoder.java",
+      "sha256": "dfc040f6eaaaddceba153a30425944b242ca608dea18ddef715a5c5c5dc4d4b4",
+      "bytes": 11019
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/AbstractCoder.java",
+      "sha256": "7b25bacbb4d6a78a3c6c9a6b5e22dbea19d81ecbbb9bbf350d30a74816b9f458",
+      "bytes": 3791
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/Archive.java",
+      "sha256": "bc8cf0cb538a29c1a8f622c75fb1ad5aa08d804a74026e1a3d1d95207d86f08f",
+      "bytes": 2293
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/BindPair.java",
+      "sha256": "f22494897af6345992fe22d85048dce8f922b814124a0f36122a817c668e108d",
+      "bytes": 1204
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/BoundedSeekableByteChannelInputStream.java",
+      "sha256": "c9992faf8468e2882f182dd8fd40e9171176c2ac00ce38c8f8213defc8456552",
+      "bytes": 3404
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/CLI.java",
+      "sha256": "c5b2159465f6409a1ac51358412a7479a549c9cd166efa3cbb685d6bc38915da",
+      "bytes": 3864
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/Coder.java",
+      "sha256": "0cb5270ef5815d8bb84bc181f41f960e812adbf5aca4127368b38c338d23afaa",
+      "bytes": 1335
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/Coders.java",
+      "sha256": "224dfa24d274e212db1a00d8ce1105591ba0ece83a1f022903e5ab82eb5f2efe",
+      "bytes": 10095
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/DeltaDecoder.java",
+      "sha256": "eca66f105ee826c57a31330aba0404fadce13b2c35ea60a58e751a2807632921",
+      "bytes": 2448
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/Folder.java",
+      "sha256": "2f056060e6f450cd68d086bf55cb39d24b1d100b8ba6fc60b1cdeaa42ea4973e",
+      "bytes": 4663
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/LZMA2Decoder.java",
+      "sha256": "7cf9e2de64e41642a26657cb9c88e8bea3056d4e85a31e0ee97ddf98012ff479",
+      "bytes": 4165
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/LZMADecoder.java",
+      "sha256": "66bd0b7a0277c08045a1997e134bfda97f03a3729d3a0e607467f3d333fbd0f1",
+      "bytes": 4587
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/NID.java",
+      "sha256": "7f294bf05de4bf53e4182e201286ff9e0395efa2035a60237c3532cab730878d",
+      "bytes": 1931
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZArchiveEntry.java",
+      "sha256": "4930bc2c33d764dae9c17e78c4173d7d713501ac9a7327cb1dcaa195dc5d3737",
+      "bytes": 19550
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZFile.java",
+      "sha256": "1789b6b6fab53a082ef9a8dab9d46c1ce15121df26aaa9e50768d459875d80bd",
+      "bytes": 96413
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZFileOptions.java",
+      "sha256": "8de2a8f2df6c63751f4ac818a4e2441d94c75f205615613ecfb78011073bd3b4",
+      "bytes": 6059
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZMethod.java",
+      "sha256": "84844b66560e951dc605397ee013a01e2146b3af56c81248fbfab8acff092ee9",
+      "bytes": 3671
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZMethodConfiguration.java",
+      "sha256": "ca645dc6f672b7d2dd152586b4598a15a620884c796c797f9ad2c9017d23010d",
+      "bytes": 3628
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SevenZOutputFile.java",
+      "sha256": "9b1d813af3293e92de40f518672c51d55e1e2323a8775383e95d14ec3332ad80",
+      "bytes": 33219
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/StartHeader.java",
+      "sha256": "c057ea7ec357b31adab5155db69fdfaf7e843ad88143ca64323fc33232056849",
+      "bytes": 1239
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/StreamMap.java",
+      "sha256": "1e3ea8c969f6a3fa8da7ca44366ecb7441a78af83779838ee746042a84ac50e0",
+      "bytes": 2150
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/SubStreamsInfo.java",
+      "sha256": "5482dbffbbc25dac84b5498677a87e125169203f943c7b72362f6937e9cc45e9",
+      "bytes": 1464
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/sevenz/package-info.java",
+      "sha256": "8635db962c7f5b17e7555c159643e747aad2329d24541b05583a274166999203",
+      "bytes": 943
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveEntry.java",
+      "sha256": "16e090e6b0db72c470055eb333a4aac75cab9bb74e21f6fde6ba2a7fd61393a5",
+      "bytes": 74667
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java",
+      "sha256": "9e1b8a32ee6f5ed9f92af7fb39fee05c57ba56da9ed5d31a26d81ca197f3a7fe",
+      "bytes": 33793
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+      "sha256": "eeda1f8fac71b52de153e4ee65ef6221e9b5ced35d73aaf37265fc4c38422172",
+      "bytes": 28480
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveSparseEntry.java",
+      "sha256": "72d51b24f1690089dda216146821e3af56628d29261f9874e561cb46caa81c25",
+      "bytes": 2941
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveSparseZeroInputStream.java",
+      "sha256": "7a7df7aa96be0fc9d6e31feed6b57952c935003bcc89f3c633f4c9208bb6de24",
+      "bytes": 1462
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarArchiveStructSparse.java",
+      "sha256": "30d22dc17cd06740678c38e0cf9826f5e963eea8709a821d42b20f8b0d83e2b4",
+      "bytes": 2408
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarConstants.java",
+      "sha256": "616aa16f772d75cbd8b43c5289ee0b783487d4d4a5b7394bf80b3595e86ed9d4",
+      "bytes": 9946
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarFile.java",
+      "sha256": "e9f7c56a71dfa590a95ec73ba77d969a8da3953b27ce7929c80955a7e9489aa9",
+      "bytes": 29158
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarGnuSparseKeys.java",
+      "sha256": "5d07b9aa8021411b7d90aa698d40247b392e2a2a3f5aca12b42fb1f14a609fbb",
+      "bytes": 1245
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/TarUtils.java",
+      "sha256": "030c8e64aff4d25c13e405e1bc2fc25832011630a52662c3c43c1ab91f5a11ca",
+      "bytes": 39231
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/tar/package-info.java",
+      "sha256": "0c6a98574086d4d45cecbcb7fbd2a40fad01b48f52ddc14ee9f03f059c0c8e25",
+      "bytes": 1272
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/AbstractUnicodeExtraField.java",
+      "sha256": "8555f150c11419bd8aef6685959ad0d2aba853a17b30f3b93ca31e5730e932ff",
+      "bytes": 5768
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/AsiExtraField.java",
+      "sha256": "3f12ccc981e922c8d4e26cd308e6292f816fde94d5458d8db4dba5f06eba573c",
+      "bytes": 10985
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/BinaryTree.java",
+      "sha256": "b30fa4db3ecfda9bfa9fbd1ad4bc32ea7faec9fa325da41be60b94d661ec89dd",
+      "bytes": 7160
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/BitStream.java",
+      "sha256": "a2f3168785cc0d147a9cebea0c51d172feb61a545a29558194a8906ee2f6fcbb",
+      "bytes": 2102
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/CharsetAccessor.java",
+      "sha256": "0af5f5e003269f8d4f316f613e8157e43e7191332a24f15ef14ff2c257c56807",
+      "bytes": 1646
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/CircularBuffer.java",
+      "sha256": "2901bb812b92d099b4fa5b75b8b07232dd515ae45848c5c4d4492b0e37d53024",
+      "bytes": 2639
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/DefaultBackingStoreSupplier.java",
+      "sha256": "111cd40d622142292ed72a3bc6359d55ab2b2642b4ad0080814f36690bbb42d1",
+      "bytes": 2559
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ExplodingInputStream.java",
+      "sha256": "6202c8169e21c9c41e4a0eeb905fa8d11968b138140d88b35428924d106db835",
+      "bytes": 6635
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ExtraFieldParsingBehavior.java",
+      "sha256": "35f945bae21f4b2e8a5646f3204299331b3aceb46668e0c584342b8dd55f37ba",
+      "bytes": 2698
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ExtraFieldUtils.java",
+      "sha256": "7aa7b49cfb80a2c861d36408b123c7f14ebf1ccdf71d1243d9578d737deb3f22",
+      "bytes": 17029
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/FileRandomAccessOutputStream.java",
+      "sha256": "28ab1b8f05335ab466dba10d3d4ae65e26a7abc917f852c3e84f56ad20fc756d",
+      "bytes": 2863
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/GeneralPurposeBit.java",
+      "sha256": "39d0757cbd1574f21885961854cbc11ab020f079d23994ee75deb2f7668b6dc8",
+      "bytes": 8050
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/InflaterInputStreamWithStatistics.java",
+      "sha256": "acc443346e017f10bca3a302006cd163c110ee04f9ecdf141e4162eec0231987",
+      "bytes": 2403
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/JarMarker.java",
+      "sha256": "9abe0b912762425bd378675846c44e037f47b0770fd2d562ec0fa691fd59cf04",
+      "bytes": 3590
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/NioZipEncoding.java",
+      "sha256": "9350a3a5adbcb45a03d6316abcde8bcd78cfe8ad84e5315b2da9fc1c438abab2",
+      "bytes": 7791
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/PKWareExtraHeader.java",
+      "sha256": "67b7875b273c080343ac74974c939fbc311660a1d9afef78fcf864fd856426f1",
+      "bytes": 8536
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ParallelScatterZipCreator.java",
+      "sha256": "144951f950cff77b7e2157804a9930941d9508c78870e888046f8f2e0d2e48bb",
+      "bytes": 13954
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/RandomAccessOutputStream.java",
+      "sha256": "a354122f1ea7656ce6eb81efed71dcc9f14de707c5bdc46b35afe994d1f277a6",
+      "bytes": 2203
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ResourceAlignmentExtraField.java",
+      "sha256": "2f1aad753ac588efaa8d2580dbc4ef43666041e81f2a512f00f1db970345c07b",
+      "bytes": 4639
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ScatterStatistics.java",
+      "sha256": "e220f16141c3389ff78887984ae6671c54d8335c515a2c042c8a10be02480df0",
+      "bytes": 1896
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ScatterZipOutputStream.java",
+      "sha256": "9d39f2569cca4d3c4ae1f66ba38c0f5043a177c1190bde99019f51b133a15d8a",
+      "bytes": 10064
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/SeekableChannelRandomAccessOutputStream.java",
+      "sha256": "1f2c630c16461a84467befea16fb36ad0c1b843459883d63c5d6670bce87a695",
+      "bytes": 2169
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/StreamCompressor.java",
+      "sha256": "51ce38ebb53db1012c85ff5f169e05d6e260f5a8d62538110157a0fca710b024",
+      "bytes": 11119
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnicodeCommentExtraField.java",
+      "sha256": "d21dbf70640a4e1deadcac56873ed4668a7a067cd92bc3d7fbd3223a273e4d70",
+      "bytes": 2408
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnicodePathExtraField.java",
+      "sha256": "5cb61e95fc4e83f4d6fd32c3984618a37aaf277d71e96318ad4a9028b03ae900",
+      "bytes": 2404
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnixStat.java",
+      "sha256": "321e2175c9a5671b35483f3a9a5559a439ccd193dbc0a07d35839561b73fee74",
+      "bytes": 1962
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnparseableExtraFieldBehavior.java",
+      "sha256": "c6d91bf9b2a54096e86db00bf6dd6366386e44d5cf9f346c95e18307fe69b86a",
+      "bytes": 2087
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnparseableExtraFieldData.java",
+      "sha256": "36036377fdbedc06b8c456f184ed54b1895ba9d82c55908446736c84d311bd87",
+      "bytes": 3844
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnrecognizedExtraField.java",
+      "sha256": "c5f191bd6adc1663e233c04a01aa19c1570ec0890899a5560051e75230954be2",
+      "bytes": 4507
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnshrinkingInputStream.java",
+      "sha256": "0f3145831f3f54210f545c77c9858e3a890a65cfd49e4e165fe5879701dd22c7",
+      "bytes": 4341
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/UnsupportedZipFeatureException.java",
+      "sha256": "265637e3c2dfd9d9e90b6322786e775bf6d312f758892fa61fe4a0c1c2bacd14",
+      "bytes": 4423
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X000A_NTFS.java",
+      "sha256": "2ede81186a8288ac5172978f9948f15e3dd158d6c7c0d9ab2d349f4cb5f21849",
+      "bytes": 15355
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X0014_X509Certificates.java",
+      "sha256": "753af261d2696a7c078fc0b738ac326240dc923a46f39d0cf7fa3697387d8ecb",
+      "bytes": 1857
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X0015_CertificateIdForFile.java",
+      "sha256": "999a556b500bd5450a6faa601dbc6614b81adff3ab80c918e344f55b2021d5e4",
+      "bytes": 2717
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X0016_CertificateIdForCentralDirectory.java",
+      "sha256": "21c763e62e48c2a72ba7622f0725d8b9f3ecc9bcbf0d9fb5531e308c45af9d30",
+      "bytes": 2832
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X0017_StrongEncryptionHeader.java",
+      "sha256": "df83b748ec748503f433ad08981023958931041d1ab056db26aeee7fdc11ad38",
+      "bytes": 17638
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X0019_EncryptionRecipientCertificateList.java",
+      "sha256": "b1669769b4bc657618bab2652e5358de7a9f08347801bfe8f1735eb29cf6caaa",
+      "bytes": 2345
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X5455_ExtendedTimestamp.java",
+      "sha256": "b75932520e9ada096fef201a5cb4009953298230d567de351431a79b2357e6b9",
+      "bytes": 25004
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/X7875_NewUnix.java",
+      "sha256": "012663b4c523f30adf413a7a27d498caa3286eab5f3164adefa7cbf3d1b3fed9",
+      "bytes": 13258
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/Zip64ExtendedInformationExtraField.java",
+      "sha256": "cad7798f67175412f3121c460f51db278cf7991092f4623064b4410a06538395",
+      "bytes": 12272
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/Zip64Mode.java",
+      "sha256": "34abc4253c9094369f9e024eafed511d6a6b492c67007bf7f3495275c5031094",
+      "bytes": 1954
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/Zip64RequiredException.java",
+      "sha256": "eb3368850ee552854ed19b60e447206570b4dc6e56abd990487e10f1a7bd6cfd",
+      "bytes": 2294
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveEntry.java",
+      "sha256": "7ff78309eacb43ea05618c41e807029fcbe7c052f0cc63faf44f8da231ed9c16",
+      "bytes": 56571
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveEntryPredicate.java",
+      "sha256": "cdd8b0236917be20675c47f6a8cc2ff6c3658fb793d212bf45b4971de89ec56f",
+      "bytes": 1303
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveEntryRequest.java",
+      "sha256": "0804c2369333ced96fad8bd544a1fe93826041e46f5eb8edc7865669a6b86c39",
+      "bytes": 3006
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveEntryRequestSupplier.java",
+      "sha256": "bdd98f6032d975326f12e8bbf2712264f69de570cf8ea997fb1779597f0ca5f8",
+      "bytes": 1413
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveInputStream.java",
+      "sha256": "a211421eb99fd461039a3a55ce1c2634af42f66a5d607364bcf093e50729aaa1",
+      "bytes": 54888
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipArchiveOutputStream.java",
+      "sha256": "b6baff5b0ad0d8f50212cf7a93599de631fd74c921aad4c3a701178816d9269a",
+      "bytes": 76949
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipConstants.java",
+      "sha256": "3292b4d6b405873598bf1898409719c6e4478cac520a7008e826a152e51e242f",
+      "bytes": 2108
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipEightByteInteger.java",
+      "sha256": "802b04a5cefef5c7998610795072bd6bde7110ad98a28958dffffc0c2239e583",
+      "bytes": 8230
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipEncoding.java",
+      "sha256": "ab2e831ee27fd9e307fd536eb12a10438d029039559a613f7c9153a38858facf",
+      "bytes": 3160
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipEncodingHelper.java",
+      "sha256": "a4efbde8cf7c565da21f8a00401ca300bd67405155e9220a123962a919adb8e9",
+      "bytes": 4479
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipExtraField.java",
+      "sha256": "81b459914eeb76a2c9dfc7d7cf5739a1264ef5de4e4011d4a1b3cc43bdd8a5d6",
+      "bytes": 3069
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipFile.java",
+      "sha256": "1c2af1ec265f2f7c59f26dbf89b3fe9bed73160ab82313cd4a6ee8e82d0e0af6",
+      "bytes": 73571
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipIoUtil.java",
+      "sha256": "426f24ccd265931bc88cee6ca62faee5a6c0328eb4f9f8aa1ecc85b05f9859de",
+      "bytes": 2629
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipLong.java",
+      "sha256": "3d9e0d2eeee7cc7764b8fbf12938ab98f41965950c3ddfbb72eb25609b9a12f8",
+      "bytes": 6522
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipMethod.java",
+      "sha256": "c38270a56bd8d58ba392887d4c3ba57136420c263cb091b6a3db38f4fd72a0da",
+      "bytes": 5822
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipShort.java",
+      "sha256": "d7593ea78a27937c58ef2ceff3b5f925c07e28909cbf05203c1fab9f9db73345",
+      "bytes": 4961
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipSplitOutputStream.java",
+      "sha256": "9c272c493f8cdcc325bcc9000fb6d1de62dd4a314117b7879825d88e79ca40e3",
+      "bytes": 13235
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipSplitReadOnlySeekableByteChannel.java",
+      "sha256": "318608299fb079ae7f7e51e8189f791e4755706de72b6bf32ab3d254564996c7",
+      "bytes": 14625
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/ZipUtil.java",
+      "sha256": "76d7b1c2bafec4513d43246d88d3571b54dbf9e475412da0d5b95417e681fb7e",
+      "bytes": 15501
+    },
+    {
+      "path": "org/apache/commons/compress/archivers/zip/package-info.java",
+      "sha256": "c0d197760600c77d4a53e2bebfa540b4cea756999a926ae9a6669f2583ff2d48",
+      "bytes": 948
+    },
+    {
+      "path": "org/apache/commons/compress/changes/Change.java",
+      "sha256": "5873d63013c323cc106649816f5fd7118131301ba671557377ade2e3c07fdee6",
+      "bytes": 3117
+    },
+    {
+      "path": "org/apache/commons/compress/changes/ChangeSet.java",
+      "sha256": "777124f8d61775d834b8ac5cfec90e3d8b57592b20ab01d86d5866fadd609ea6",
+      "bytes": 5459
+    },
+    {
+      "path": "org/apache/commons/compress/changes/ChangeSetPerformer.java",
+      "sha256": "2d26c9d19a3f902cc32d270524376355f14ad9683481952ce41db6b548ab5096",
+      "bytes": 11071
+    },
+    {
+      "path": "org/apache/commons/compress/changes/ChangeSetResults.java",
+      "sha256": "8332bf2bc0bf849c672244e051e3fbc84af689eb2c74d0ce54a148757b7b2efe",
+      "bytes": 3048
+    },
+    {
+      "path": "org/apache/commons/compress/changes/package-info.java",
+      "sha256": "ba87208364b3f2cf4a7d2f46d3c61a253d98ba6832583c81b36f6c32990c9976",
+      "bytes": 1052
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/CompressorException.java",
+      "sha256": "ba86a9ad0b37414bb671d2985bd14a31074a5f7f07c8ccc0ffac568113fa0ca0",
+      "bytes": 1582
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/CompressorInputStream.java",
+      "sha256": "96ee5da65cffb1d225c8b8e4f581b06491a688846fc7775025b44065a88e9b74",
+      "bytes": 2967
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/CompressorOutputStream.java",
+      "sha256": "6627e67947ad7d8a30935a1608ce98ef8a772bf458244910be4f7e1857e87068",
+      "bytes": 2012
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/CompressorStreamFactory.java",
+      "sha256": "cf5797b0ba7863656fd059a08643ff56aeee00b6a72a8398ea106333184adc03",
+      "bytes": 30323
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/CompressorStreamProvider.java",
+      "sha256": "5c13fad58a3f4f518ad03af181de22e06bf6576d8aaf6f459a5ef048dadb38f3",
+      "bytes": 4320
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/FileNameUtil.java",
+      "sha256": "4dfdca3b891f21ea3c3bbc2b25204322291f6e438e35ee5cd943a8edeff8b9b6",
+      "bytes": 8985
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/brotli/BrotliCompressorInputStream.java",
+      "sha256": "866cda5bac91866441b896774264a5a94f7dc418f9db85efcb809af9e50ea06f",
+      "bytes": 3257
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/brotli/BrotliUtils.java",
+      "sha256": "2e3db7bff1ad265ed98ff43f5670e769dbade46e3984e48ad4729c4ffe4c649b",
+      "bytes": 3171
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/brotli/package-info.java",
+      "sha256": "87e0b3a916669b44b54c57358f7a0921e609cea63df68d983ff8d6287ab87af5",
+      "bytes": 1030
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java",
+      "sha256": "fed03b7471d12ac0a4bab3148f07a9d367bdbe434b8f5c398726b49ea56b7e3f",
+      "bytes": 31976
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/BZip2CompressorOutputStream.java",
+      "sha256": "8efd51a22ecf34ecfc5a1a12a71b9d9d91c34ef1059853c71afd4f68cdacbb38",
+      "bytes": 40663
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/BZip2Constants.java",
+      "sha256": "199487181de60952552a9a1857b52e4fdf52f3d8b7f4578e9180f47f493a9a50",
+      "bytes": 1237
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/BZip2Utils.java",
+      "sha256": "5d6d0be2f600b768e2a457acfcf82f52336a5461015c63f5d3cad6edc72bf559",
+      "bytes": 5564
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/BlockSort.java",
+      "sha256": "3a1840d359de55337da7161be05902bf184115e87e380716753dbefed21f0827",
+      "bytes": 39816
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/CRC.java",
+      "sha256": "e15e6779348d991e07851fd8aa11187c05f4a5e60e6f278c6443e9a2e8e2bdc6",
+      "bytes": 5100
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/Rand.java",
+      "sha256": "63d6d7ca50d70692a51c48e7d1def50f0479e3a7eb4a27d6611871c455e465a6",
+      "bytes": 3943
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/bzip2/package-info.java",
+      "sha256": "a4118ba280c56966a14d1f3c51ad96c5d974e0eb583e2cb501b61855f27a3db2",
+      "bytes": 966
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate/DeflateCompressorInputStream.java",
+      "sha256": "fe68c0fbae39bfd5d1d312a09ca4c45ddbb05299c6260778520625fff6ca31bd",
+      "bytes": 4289
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate/DeflateCompressorOutputStream.java",
+      "sha256": "5defb98cca7a56c9695c0f8f8343782c668d28a64a1d85b7378e33168690dd53",
+      "bytes": 3344
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate/DeflateParameters.java",
+      "sha256": "f731ff0fddad3af05a8a161e3c57f4b00203f488e60909098d01d75da7bcac77",
+      "bytes": 2616
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate/package-info.java",
+      "sha256": "d7dc2e165ffbf1c8f292ac78d72f35eb0fa94342accf37b30f508bafa3d10088",
+      "bytes": 965
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate64/Deflate64CompressorInputStream.java",
+      "sha256": "04eaf37aab71380d9533d1542c6068098e887d58ecb32ad1464f57c289ae1c1b",
+      "bytes": 3811
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate64/HuffmanDecoder.java",
+      "sha256": "1f8baf8f3cfc67dc84258be66c09bbe4549e3a297d83a04a2c96dfb3f352faa0",
+      "bytes": 20104
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate64/HuffmanState.java",
+      "sha256": "e3f0202195da59b45230162b0e6af8bc5044e78b421ac9c201b2d85aa4774798",
+      "bytes": 944
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/deflate64/package-info.java",
+      "sha256": "a6df096ba953365450dd2c0e595941259a324deed5d9f794cec2bcb47e59adde",
+      "bytes": 1005
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/gzip/GzipCompressorInputStream.java",
+      "sha256": "c38f67d03018b737b02482c7c7457bab8231a73c4e3bfd190d8047d7dae5c857",
+      "bytes": 13469
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/gzip/GzipCompressorOutputStream.java",
+      "sha256": "a32e783c01b05845f35dc0c8a9f82c1666485c58ca1bfaa07e0a188c991f147a",
+      "bytes": 7482
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/gzip/GzipParameters.java",
+      "sha256": "2192ae7f741f89383a5c6fb3ec6035fc6ab0d08f845e4497e42dfa91ff28b8d1",
+      "bytes": 5726
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/gzip/GzipUtils.java",
+      "sha256": "e79184f20a482d7bf10309fd9352bb9e15a3e753f8bde028619ed977095a9a44",
+      "bytes": 6181
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/gzip/package-info.java",
+      "sha256": "b7ad5e7bedf807a7cef4285e7585c40e714d21b522a97fb8a8a3c249b3fa8690",
+      "bytes": 1176
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/BlockLZ4CompressorInputStream.java",
+      "sha256": "c0082c11fc16eff2b91803833569f7afbc6faac6bb3c5ef99167ce146b1e7b4c",
+      "bytes": 5612
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/BlockLZ4CompressorOutputStream.java",
+      "sha256": "c42a664e1438a7e3bb8a5f9b027ca1f6a6fa9c98b69d8415a6cf81949d6456f4",
+      "bytes": 18696
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorInputStream.java",
+      "sha256": "483f5eb6215854ea46c3f0a8afb397b4c5337293e6138e0b4b52fc77f1d46a63",
+      "bytes": 14811
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/FramedLZ4CompressorOutputStream.java",
+      "sha256": "78187a2d354f32c8a6d747e7c8109e8748137f25003cf29fd0fbcd01f5711341",
+      "bytes": 13009
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/XXHash32.java",
+      "sha256": "aca166114e6c51d5df294971eaf0904d3684888afa9d65fd05d13c8b6f5579ff",
+      "bytes": 1447
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz4/package-info.java",
+      "sha256": "80fbf983f024f1dbaa53fbb5b4c3a78742729880830499a3234162256bc76fee",
+      "bytes": 1555
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz77support/AbstractLZ77CompressorInputStream.java",
+      "sha256": "1ceefb09e79946d4fa186b993ef2dc09b680a8cdb58e67dc6ab8369bff5e3354",
+      "bytes": 13624
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz77support/LZ77Compressor.java",
+      "sha256": "dbb449b09e4ab710c009b78a9c1ba2f2a3c772e9c4cc702346f0c8494beadb5f",
+      "bytes": 20950
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz77support/Parameters.java",
+      "sha256": "d1d921f1409681e4b7ec52f458dbf7357708aefb1c0ec61d5d64721f32da58b8",
+      "bytes": 14677
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lz77support/package-info.java",
+      "sha256": "c7d62bccdccdd160e25f2f82fbdcb25d2f717fd976f16e9abf35d4a9c6e6086c",
+      "bytes": 1119
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzma/LZMACompressorInputStream.java",
+      "sha256": "a75acf7f803b7b0f6d187d84bfb617c02b667cc34a4277b5f005b1c857f5513b",
+      "bytes": 4686
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzma/LZMACompressorOutputStream.java",
+      "sha256": "94c01398e4cbbfa79e81ab596c4cd563929f63f15e43e5917dc3559bb8244aa6",
+      "bytes": 2246
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzma/LZMAUtils.java",
+      "sha256": "11abe7df3daa57539fc11c7e4d4d7eaabaa542899b0cd4d714c0764f0f4c5244",
+      "bytes": 7155
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzma/package-info.java",
+      "sha256": "e08eae206a2b2911eb421b34385cb1d3762b1cc6061d26cf85935e8350bf06b1",
+      "bytes": 1237
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzw/LZWInputStream.java",
+      "sha256": "e16e546fbb8329424b749863a10d4775930e481026280a67aaa82e72cff5fe23",
+      "bytes": 10304
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/lzw/package-info.java",
+      "sha256": "d38f923a97ef233973b975901cbd616cd050749adc93fa337412a5f268abbb2e",
+      "bytes": 899
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/AbstractStreamBridge.java",
+      "sha256": "99c92e291219fac3dfb882270b1d8a16030bddacfd605b9229cc237c631c4cbd",
+      "bytes": 2163
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/InMemoryCachingStreamBridge.java",
+      "sha256": "163379ebe3644b9f79754431042347a7823c642807be558d3b57b04ba5cf9975",
+      "bytes": 1421
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/Pack200CompressorInputStream.java",
+      "sha256": "12ef107ef8c9dd0a67fa830c09b22540cb3cf90a0c114b2325776bfd30e8a847",
+      "bytes": 9286
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/Pack200CompressorOutputStream.java",
+      "sha256": "abb5eac61cb9ce40f8a2a594a609aa909358f3d39e400554f923b67e97f5e6d3",
+      "bytes": 4242
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/Pack200Strategy.java",
+      "sha256": "500f15f7bf8427b0fdd61ef0634b5994abb2aa6df9eaefa0e513c28c0c40fed7",
+      "bytes": 1510
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/Pack200Utils.java",
+      "sha256": "d065ab604b4c9ea7be5cd3b94cb408f8813304e896ebdc64ef176cd27a5887da",
+      "bytes": 5829
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/TempFileCachingStreamBridge.java",
+      "sha256": "f7da587a188fe5ed93e17331bac167125d4caf0b374e79f9e963182d58f50ab6",
+      "bytes": 2122
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/pack200/package-info.java",
+      "sha256": "af81c48a9cdd733cd26c3c3113e93f1d7a23cca539e151a79364349fb58089ce",
+      "bytes": 3705
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/package-info.java",
+      "sha256": "ba507cddf959dbd1ec6000f58206e2245ba5f1791bee409b5be1f440cbdba5b9",
+      "bytes": 941
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/FramedSnappyCompressorInputStream.java",
+      "sha256": "9a0de456528f5f9481b48676edf294d32d0a27d7b409cb77ec5f68699e59505b",
+      "bytes": 12884
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/FramedSnappyCompressorOutputStream.java",
+      "sha256": "9583f982db1b0a0ab4fbafeb9aa562c0090b8e648ec62b47cc779bbc5f515911",
+      "bytes": 5806
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/FramedSnappyDialect.java",
+      "sha256": "dc50fe2d93ac55dcc548c4adf03bac615692f12349476647c2da825b983af25a",
+      "bytes": 1824
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/SnappyCompressorInputStream.java",
+      "sha256": "03dbbe31371a88d5844780b620bcf52cb55ef5afa6d614293f99c515f4d75178",
+      "bytes": 10320
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/SnappyCompressorOutputStream.java",
+      "sha256": "0c5680e10ec47395cd885b62ed9f79bf49a87711eed3b5dc1e1749fce20d95ae",
+      "bytes": 12110
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/snappy/package-info.java",
+      "sha256": "2a03bc46841f6a72aa92d5b0cbf7558d8211b2e80acb3e1aecc568c7b70d4a48",
+      "bytes": 1591
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/xz/XZCompressorInputStream.java",
+      "sha256": "27f6a8c9e3fa53454ea3635c54427ba01a7cdf84961bcde48fc1dca861f8ea65",
+      "bytes": 6621
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/xz/XZCompressorOutputStream.java",
+      "sha256": "b0511caffa946d9015049941367c9da1c36bfdfa87e0e95f7d9a051a268a6ae3",
+      "bytes": 3359
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/xz/XZUtils.java",
+      "sha256": "fe2f2a95e530fe1393972e28695be6ee4c91292ae239a4c9488214c015b2cc60",
+      "bytes": 8425
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/xz/package-info.java",
+      "sha256": "d74294a448ba27801dd662dd4cedeb90f43ceec83f6f042c09e1ed961e1239c1",
+      "bytes": 1265
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/z/ZCompressorInputStream.java",
+      "sha256": "7f52c34c9f1369ddb3f305983bcd99ce90f31a7b4b1073f7f914d6b6bb9c1fb5",
+      "bytes": 6080
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/z/package-info.java",
+      "sha256": "b046c8ba0e828c83186dbb78d964eea7fb762f40972b4194d4ca26fc60f19434",
+      "bytes": 974
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/zstandard/ZstdCompressorInputStream.java",
+      "sha256": "4f32c1151f15ed72afca0dfc4d23b3564d5d9a86fc600cc80eafc7f0a66a5e40",
+      "bytes": 3915
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/zstandard/ZstdCompressorOutputStream.java",
+      "sha256": "2a60bb79fc8e4ba41e5d0d1173e149886752bb2d8d5085b5e15ae2e013b3be30",
+      "bytes": 4121
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/zstandard/ZstdUtils.java",
+      "sha256": "cb32d44c93eef73b7990a61efa096d538c2fbff126ba82d4358c85f3ec4dd898",
+      "bytes": 4619
+    },
+    {
+      "path": "org/apache/commons/compress/compressors/zstandard/package-info.java",
+      "sha256": "1e6383277c5e0a3c8aa0c3e77646be53c32e9837682ea00ef4bee41adeb9dd1e",
+      "bytes": 1029
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/archive/internal/nls/Messages.java",
+      "sha256": "da344406329f7ce961a78e6de974c568d2aef0f54bd72cea2dd8600a49bcf5a1",
+      "bytes": 8547
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/archive/internal/nls/package-info.java",
+      "sha256": "2676fd9d14513062e623640d7175fc41a2f13ecbf60cb8093b810be5dcedece7",
+      "bytes": 902
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Archive.java",
+      "sha256": "9526ee4bd5a30d15fae5bfc88364d33566e1aef7ff743da7452482d08fec0235",
+      "bytes": 11502
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/AttributeDefinitionBands.java",
+      "sha256": "e3670a4ba9b51a7cd8293b4ce22d1b3d0bb251488900fa044c5477271f31918a",
+      "bytes": 10394
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/BHSDCodec.java",
+      "sha256": "13a8653a33f8afe3cee722f63e66feca7d3e74a17700dd8f8c15f065155c7154",
+      "bytes": 16066
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/BandSet.java",
+      "sha256": "ccc6b6ac182c4b714a88be13bb5df9ec2ea8e4751dc0f4391ae41bd3215349cc",
+      "bytes": 33773
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/BcBands.java",
+      "sha256": "a153617036b9a1c6d29d0212450ae02d031db8b631410b29d86536ea193ef43a",
+      "bytes": 22155
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPClass.java",
+      "sha256": "52a1a8c142d385c8a0aa1aa65596475a4cc1ba56b4f184ed4d1ffdee2e13f438",
+      "bytes": 1791
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPConstant.java",
+      "sha256": "0df4a9d87f48f171d976c344465be1e2d0490bfc5be98aa3e94d027fac439165",
+      "bytes": 1117
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPDouble.java",
+      "sha256": "6fe53fddb7b251f08feabce5b3c2811adad87faae03f5602af10253a83ff91d2",
+      "bytes": 1283
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPFloat.java",
+      "sha256": "939a1a44f1e87974b4f5832b2b17bf647141d3cd364c7b3105978500ae0fa7cd",
+      "bytes": 1266
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPInt.java",
+      "sha256": "98a65913db4c4a3815206619798ae7ca083110ab0ac7e01124275f1f43e3f5f7",
+      "bytes": 1237
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPLong.java",
+      "sha256": "407f16e0940c71c0b4e8258092f6aa6615a0b5bff566cd44a331e8744b6e0772",
+      "bytes": 1331
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPMethodOrField.java",
+      "sha256": "db44ca711b1d612a46fe4ad30b1384d780b34b0db87ca93a2098dde18fe30871",
+      "bytes": 2529
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPNameAndType.java",
+      "sha256": "f9ab6c0fc973f5972240a5da6c2faf8ea5a5ee84f60fd137cae58373fdad4a39",
+      "bytes": 1954
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPSignature.java",
+      "sha256": "cc78413ee2430f712ed226202b3db7aa63ab3efa9b4cc4fdfd4736180441d6aa",
+      "bytes": 2907
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPString.java",
+      "sha256": "ca4f9002a3929a1f43180b095032a03b9c49beeb1ebd788b2cc3fd97a56777e0",
+      "bytes": 1422
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CPUTF8.java",
+      "sha256": "68858baa2a6dce8b81c2a3040b6bb2bc39f0719dc704e686609e447c44da4682",
+      "bytes": 1403
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CanonicalCodecFamilies.java",
+      "sha256": "1396f0d769c288e3b0505b55dcf5ba92228a105264eb30aae5b0ac40133a1764",
+      "bytes": 9838
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/ClassBands.java",
+      "sha256": "8c6015138ab9355874b6ef9b2ecf1492efc215b2ab3474135aa9af57dfdcf8ca",
+      "bytes": 68082
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Codec.java",
+      "sha256": "40428012bbc2263b5f2210ce29776fdca5f6ec57d6edf942540df0350d0890ab",
+      "bytes": 9255
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CodecEncoding.java",
+      "sha256": "761c15a9ad94212af29aa3d6db4a0a93544fe09986a6dde067baa461f4a146de",
+      "bytes": 15414
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/ConstantPoolEntry.java",
+      "sha256": "6f0457f0180a1a35c39c8711399cfd93b1b519a05c23eaf9e1dfb581a9e4946c",
+      "bytes": 1135
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/CpBands.java",
+      "sha256": "0664afde4b29b43d3f5d3c055aeea1f06299eb16f04413a1398d8cec32420ca6",
+      "bytes": 27707
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/FileBands.java",
+      "sha256": "6dfdb9aff6c5e90e3a5137805613bbe355d93bcd9674d9cd66319dd32a3fa6f4",
+      "bytes": 7042
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/IcBands.java",
+      "sha256": "13df8bcacb42ffd67cd797493e88122150f84fbb9529bd44d5e4e1198a5c513e",
+      "bytes": 7347
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/IntList.java",
+      "sha256": "5291bd55a82d338cc0be8e6cd6c0ee97fd5181492f69c60ccf0cb8b9698d82c2",
+      "bytes": 8241
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/MetadataBandGroup.java",
+      "sha256": "c97291a6d4126ba71a341df90c15ec51a2eff8c62a481fc8c5335828b6d4098f",
+      "bytes": 17612
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/NewAttribute.java",
+      "sha256": "3426a8c9bc6ef2dbc8b76d77d3c8407d6ba3a56659103744471ca9cffbfc5826",
+      "bytes": 6565
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/NewAttributeBands.java",
+      "sha256": "6199f8c53a52c7700739be595fc454d9248fb97cbbc002b70431b3a74f9edb28",
+      "bytes": 33139
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Pack200Adapter.java",
+      "sha256": "5431f2d1d5577f572bccc7dc29e006f113b05781369fd23aa25b8ccb455bb4ee",
+      "bytes": 2559
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Pack200ClassReader.java",
+      "sha256": "9a064c9b9b16af29dd82d308a3c0d5a8b21a6722ae9e1c00b722fedb0520d4f4",
+      "bytes": 2676
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Pack200Exception.java",
+      "sha256": "4af5d5e7afa04d29fafc64eec9c41d358877e1364e266ec8ddbf8f84e8ea9162",
+      "bytes": 1379
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Pack200PackerAdapter.java",
+      "sha256": "889077d54d1b22869ef15a2e296452b7428749e6973d1d4b0935654a1c9e6007",
+      "bytes": 5005
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/PackingOptions.java",
+      "sha256": "3688ece270d95ab7c082be124cd66a9226991e98f7dd04b09769821fd3a9044b",
+      "bytes": 11077
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/PackingUtils.java",
+      "sha256": "9048a22e677f972a7223c60df3fcc14f514d5536689fe16b8d7e23a3c8a53810",
+      "bytes": 9088
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/PopulationCodec.java",
+      "sha256": "ee84ff27f39ab344e14afd6f1d3807f880101684930d9532b7e362375e02f06d",
+      "bytes": 6376
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/RunCodec.java",
+      "sha256": "e3569280e75af1efe17cd181679dbfec9e625a21bac497558d090e182f244d41",
+      "bytes": 5898
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/Segment.java",
+      "sha256": "729dcf112804dd389b24ad683a1118775dfc4fbc7ced8f08322a75edb7bdd93f",
+      "bytes": 28273
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/SegmentHeader.java",
+      "sha256": "dc1afce15b96a03261925e8a7195d1cf0cfc315098addc09cef616cf0c3121e5",
+      "bytes": 11566
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/pack200/package-info.java",
+      "sha256": "10ab08c9fa1c4522e40ec9a22491cafec2aeb736cafab15206affea6d7002b72",
+      "bytes": 889
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/package-info.java",
+      "sha256": "c0997d27c1f3a55546f3f0133863fa10bffd114e415725242599973407b68669",
+      "bytes": 881
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/Archive.java",
+      "sha256": "5a28ef5460f38fb679d8d8270df480fb587142957ff3567565eaa3d92859124c",
+      "bytes": 9052
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/AttrDefinitionBands.java",
+      "sha256": "2de77b56d91d9c0f40a7c5ac9d49224a3b8b60161cb462a08ea99268be9fa8b5",
+      "bytes": 6290
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/AttributeLayout.java",
+      "sha256": "914a30e7237c70203f88aea59bfc8f48abdab13d32838595c7d00bbb5a5de2a5",
+      "bytes": 11340
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/AttributeLayoutMap.java",
+      "sha256": "4f9c0a6a4fc718f86f8344c038f10440564d3e4d5dfff479b717be7c7f5d05a3",
+      "bytes": 12869
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/BandSet.java",
+      "sha256": "ed93b8b171066a6244a5cee1b0de6f33134c646f5ec70e2120658291aa69459b",
+      "bytes": 22000
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/BcBands.java",
+      "sha256": "f84a81cd495c09158935ed3a7d05c0c1c9697e91450fc0c099cf85c7db0695d2",
+      "bytes": 23826
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/ClassBands.java",
+      "sha256": "518b94f685a7dce3316124a26d89f098101577d9b414ff88b86ea89b7250812c",
+      "bytes": 57912
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/CpBands.java",
+      "sha256": "9ab667dc6a6206717d9cc58cc1514e0deeadf8494d271b0bbfcfbabbdd3740ba",
+      "bytes": 26323
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/FileBands.java",
+      "sha256": "cf103103e259aabe59f68c1250863ee8b609e90546d8d11c9f273b57eb530430",
+      "bytes": 4029
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/IMatcher.java",
+      "sha256": "7e3e2bef5ccf4e9e81bbbdf9874c6460eb25c8a8b4d66e1567b7623818f6c1d8",
+      "bytes": 1009
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/IcBands.java",
+      "sha256": "b3e2c401d0fe26aa07b4d25e233e5552919ba77c151ecb6d614f4ae049014180",
+      "bytes": 8887
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/IcTuple.java",
+      "sha256": "6fc92e61da83bd90c5946ee703d01bb97537d9e4c59dcbafbb7a383f1d735068",
+      "bytes": 10808
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/MetadataBandGroup.java",
+      "sha256": "f8b3d374517859cf40272001ddfed0a38a5097724b3c8109e1b48dc12bffa4d9",
+      "bytes": 9071
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/NewAttributeBands.java",
+      "sha256": "8280ecd5bf6b8efd60898f0ae7f15277b408b14907a804db897f1643e4e54563",
+      "bytes": 36714
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/Pack200UnpackerAdapter.java",
+      "sha256": "f690c8ed9dd350287c445419c3738bf59fa7bb8a5f1cf3ffd408591e29be0cb5",
+      "bytes": 7554
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/Segment.java",
+      "sha256": "a3c4f309f160ce74ed91fe3beb2d5527395c0a4e0ea94da485a91af2ac6d184a",
+      "bytes": 24427
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/SegmentConstantPool.java",
+      "sha256": "a7908f706093fef86a067fc3591fe4c04815abc7560d049530b817aea0f99193",
+      "bytes": 12581
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/SegmentConstantPoolArrayCache.java",
+      "sha256": "72b12db5a21f39f9072aab15d6b78cb4545a448faceab4249b6bcca98c2ed012",
+      "bytes": 5826
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/SegmentHeader.java",
+      "sha256": "ebc573bf87526957b4f71e06b50541a114303d0756ec4068a425bbd2f5818c78",
+      "bytes": 11755
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/SegmentOptions.java",
+      "sha256": "e636712476abb79135aa2ee87257a89d0253edfb0a017deedb5702ec014b3cbe",
+      "bytes": 3982
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/SegmentUtils.java",
+      "sha256": "c7fc2771720f12077f75644f4f71b41379bc5218b718779cc33696d8ddaa1c6a",
+      "bytes": 4147
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/AnnotationDefaultAttribute.java",
+      "sha256": "ac7721737e41898d3087ec71a13dea2a9de4cc86ac9d0438fd71b8128bfd2295",
+      "bytes": 2623
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/AnnotationsAttribute.java",
+      "sha256": "de0c1971af5bf44bac1194071e79289b1f94542ff83bb87284de66b563380f2e",
+      "bytes": 7308
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/Attribute.java",
+      "sha256": "f30ad821eb671d971734a0b1106997a79f2b60eedc3e70b72a388b856e267187",
+      "bytes": 3449
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/BCIRenumberedAttribute.java",
+      "sha256": "fb5998f68fb0e9d200eddff567e3089891333ff49d373aa33bb4a74e13a0a26d",
+      "bytes": 2697
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ByteCode.java",
+      "sha256": "9e773e8579979565d377976749a5c08d3e1b85ddf5bf33941afe4839419b8beb",
+      "bytes": 12937
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPClass.java",
+      "sha256": "4496334083ccb64644e745e3baa715870c5e5e23d62cad35683438d26290c8d5",
+      "bytes": 2791
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPConstant.java",
+      "sha256": "1ae403455557822d00383be6c56d0790d4dbb52cb60216cbe88ae7cef3283fc0",
+      "bytes": 2022
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPConstantNumber.java",
+      "sha256": "79801f695c4c5df0b400f61f8065f394916eb5ac91912be0b825a0f7cd8b9c50",
+      "bytes": 1230
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPDouble.java",
+      "sha256": "81429b030d9e170a181675c464cb22ee6503f6ba2c141a96cb8c681bcc201ba6",
+      "bytes": 1392
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPField.java",
+      "sha256": "9b5530fcfeaeff4c64c5056d7432cd7a123d550674533f29af0c9958f0972856",
+      "bytes": 1269
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPFieldRef.java",
+      "sha256": "27cccc88630aa87dbed2dd434b1030746ba804b9114475de80a5029ecdbc1c90",
+      "bytes": 3096
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPFloat.java",
+      "sha256": "5feff9124eab71b8089056f455ac3dc62f1ef041bd4bad7773086135df72c9c3",
+      "bytes": 1384
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPInteger.java",
+      "sha256": "50e13b1b8a5aedfde4bb57ffa3d06b57aa29a1e3d660db8c02f6fe8c8998c6f2",
+      "bytes": 1392
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPInterfaceMethodRef.java",
+      "sha256": "cf3610ba41842953c03594096a6f126f75619b29c449a9fd2d9cd8b1eab68807",
+      "bytes": 2021
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPLong.java",
+      "sha256": "0f839c8a166cfefe77cbae1d7b76f2626f9f1d3dea4c8a56d9d1cf034f2f7ba5",
+      "bytes": 1376
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPMember.java",
+      "sha256": "e5f1281af3e576b9575e6cacea475c6d930b7d9e09abd947cde88744834c5cdc",
+      "bytes": 4056
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPMethod.java",
+      "sha256": "49260944fd2afb879bc66d4459d26fc1d74bd1a2e108be3d1cabdccf849f605f",
+      "bytes": 1773
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPMethodRef.java",
+      "sha256": "dfaa397f06ec123e4a5b8463eaddf483460685fc0dfb1ab41d6195727660c9d4",
+      "bytes": 1800
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPNameAndType.java",
+      "sha256": "7912f98654f02060a207e1b2aadce2c830981bedc350b75ef714d44b1ef71a7d",
+      "bytes": 3868
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPRef.java",
+      "sha256": "b391f1f7a8440ee6f5b65b47d853617ae46067001547d3dcb75379fa1595a048",
+      "bytes": 3674
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPString.java",
+      "sha256": "3b3eebc1dae3b7593359451e0fc2ff3e12568f4dc36042a0739a8293fafd419c",
+      "bytes": 2303
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CPUTF8.java",
+      "sha256": "1f6b5c8ed58c588545840b1e68212d89653251974ec462144881602658f95d80",
+      "bytes": 2718
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ClassConstantPool.java",
+      "sha256": "22f23126e999a51462f2f49d6eee6bce6914e0ab0f58f0344ac2dfd2c3631bbb",
+      "bytes": 8126
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ClassFile.java",
+      "sha256": "99cc7f2fad9a552a62fcd88d9e2084735ce35d2b21d975b1f110ed2e959bc015",
+      "bytes": 2695
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ClassFileEntry.java",
+      "sha256": "1cde0c2d2487adca2d4e1d02a89bbac11df2af7925ba0f4b3fd588b39da9beb7",
+      "bytes": 1982
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/CodeAttribute.java",
+      "sha256": "3eac28eee194cd6e27e1cf8129972ee7684aa3f145781109edcbf50be822e016",
+      "bytes": 6878
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ConstantPoolEntry.java",
+      "sha256": "475882517730eab7cd87421f038c1fff6b5f240bd89fe564e4be1f47aa192adf",
+      "bytes": 2470
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ConstantValueAttribute.java",
+      "sha256": "fb464769cc2d79756ff9e9fab348beb1764e8924e1ab0163d0293d83cecc3891",
+      "bytes": 2730
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/DeprecatedAttribute.java",
+      "sha256": "4888fe302ee2ba7b2b77690d084375adfc52ea301c3dbb39d8771df345ace08b",
+      "bytes": 1970
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/EnclosingMethodAttribute.java",
+      "sha256": "395b71608570197e72488a3868a8c85ff6cab279bee09935d581e3aababffb6e",
+      "bytes": 2894
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ExceptionTableEntry.java",
+      "sha256": "ba59b56667cf9529f2b3f3f9ce8d01d0b60e9c9221d0efa4a6b58484840c6d55",
+      "bytes": 3161
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/ExceptionsAttribute.java",
+      "sha256": "88af39c79cd25852e64b7d819f8ba12086a51931e3720f270f2b18c5c7810cbd",
+      "bytes": 3707
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/InnerClassesAttribute.java",
+      "sha256": "53eff23ce03ca4bbe2aed0fe17bc2a515e8d4b0d6c62c2e37b11983bccb64e3d",
+      "bytes": 5784
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/LineNumberTableAttribute.java",
+      "sha256": "16bd40c08cdc7ece10519ffbb4649ced06d1a50500c1f9e26515174b2a519702",
+      "bytes": 2726
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/LocalVariableTableAttribute.java",
+      "sha256": "825293fc98bcead46cc20426977f4d04e52b72a091fcb5467bb76c266ab4fece",
+      "bytes": 6211
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/LocalVariableTypeTableAttribute.java",
+      "sha256": "4e356c79c173eda51b9b9c0ed3dafb47cce0c9063c09b750a5ea72cf7acc8aa1",
+      "bytes": 6267
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/NewAttribute.java",
+      "sha256": "ec3e150a2baab3bd9f3bae70e5ff79777677cae4c31e9b16277ac22364fd38fa",
+      "bytes": 7961
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/OperandManager.java",
+      "sha256": "deac7ef93c953d96236e6d109dbdcbde08440e62de27cf7a6c38cfbfa49e67b3",
+      "bytes": 6460
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/RuntimeVisibleorInvisibleAnnotationsAttribute.java",
+      "sha256": "0e544f2d65127a6ee6108a41cf868a3db1850f56839830f6ddffb04e26a81942",
+      "bytes": 2803
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/RuntimeVisibleorInvisibleParameterAnnotationsAttribute.java",
+      "sha256": "de58f7cf518074799a716e0ffc08c6b4ed66c9d6679e53188865f94979ed762c",
+      "bytes": 4254
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/SignatureAttribute.java",
+      "sha256": "64d7b6a5bcd215bc85a50fd174604ea62bcf531f6ef6cd4781e4354e32c1bbe3",
+      "bytes": 2498
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/SourceFileAttribute.java",
+      "sha256": "a59bd395a74aa9a3016ada5d23525430fabb73a56cc794f27cf82b06777c0cbd",
+      "bytes": 2832
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ByteCodeForm.java",
+      "sha256": "bd19039bd92607f944bf631bc2321d72c5d6292d21077a8f946ea06d283a2a3b",
+      "bytes": 25137
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ByteForm.java",
+      "sha256": "d34c5f276ef4ac9ee69f1b3adbf8d1d4618b7eb32589398a5eabf002a9df5b51",
+      "bytes": 1874
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ClassRefForm.java",
+      "sha256": "787059e15b444188234fffd1c74b69a841059a1e7441b5e2d48dc3b2e3f4b5a7",
+      "bytes": 2941
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ClassSpecificReferenceForm.java",
+      "sha256": "3b43cf2d87a4a291ba83204976479d11f7cdda93220af17d06797ea44aaa8675",
+      "bytes": 2418
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/DoubleForm.java",
+      "sha256": "7b9fbbacd8f02ece20688bfcec524dff2e3c784298eccb267407602967da5478",
+      "bytes": 1579
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/FieldRefForm.java",
+      "sha256": "f2379a903962606ab31430008b93ce44d129b6fd51dc4b9a020245bd8393ef47",
+      "bytes": 1579
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/FloatRefForm.java",
+      "sha256": "af53f6f8a3637cf60137be37430c6dd9686c3abe4f408826b17e1c17ed4e261c",
+      "bytes": 1772
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/IMethodRefForm.java",
+      "sha256": "f64036388ca13ed7de4239e55c56fe7700926d06d59b3df2ecc3b61c91a557e4",
+      "bytes": 2473
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/IincForm.java",
+      "sha256": "d9db4352bf2c2624c2d2941699cd58e73c6a0604f3dd6626c4c722cf5d64ae95",
+      "bytes": 2013
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/InitMethodReferenceForm.java",
+      "sha256": "cbab93573eeba5ea0c03f67693c6a8633da99ad34e991171850883982ea78f8f",
+      "bytes": 2451
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/IntRefForm.java",
+      "sha256": "a9cc64590e110de4757b401fb80898e33a6d9cabd1e5cfb4b1ade6f0ce788bc4",
+      "bytes": 1758
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/LabelForm.java",
+      "sha256": "34cc9cc9486ffdf356f5a471a39b49afca555d756ba0bd37d811aac475e980ab",
+      "bytes": 3606
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/LocalForm.java",
+      "sha256": "9a9f3d40279d05f36004cf25c80050bc9d724811a8df7f925cbe94dd24609db6",
+      "bytes": 1980
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/LongForm.java",
+      "sha256": "8999cd4a5deacb3be2774972d8986cff0a068c4fa2b624bdd51605d2cd4316b0",
+      "bytes": 1567
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/LookupSwitchForm.java",
+      "sha256": "a49f29889e1a5cbe32393f89e3ee4c40905b45ef7991ea1d0ed724d10ff36b19",
+      "bytes": 3956
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/MethodRefForm.java",
+      "sha256": "f7593b2c38d368477fcf38d88cd62427afc026fc91e4e53a289c06fe532be0fe",
+      "bytes": 1747
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/MultiANewArrayForm.java",
+      "sha256": "8725885f4794d61e826a1002990f5ce366be13ac7be68fd5cf48271c8a64ee5f",
+      "bytes": 2282
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/NarrowClassRefForm.java",
+      "sha256": "4a39d299746b3ecb5707719d1a9e7d3da2460d70d24d9af165377b2ebe726c8d",
+      "bytes": 2041
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/NewClassRefForm.java",
+      "sha256": "a5a69f2a8e608ab853a3427da73117e78721b89ec86d985a0174aaea8e4a14d0",
+      "bytes": 3192
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/NewInitMethodRefForm.java",
+      "sha256": "d471bf56e99c3cf989b5b297fc5f66d27de1e4e56710c2aa769ebf079aecef7b",
+      "bytes": 2227
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/NoArgumentForm.java",
+      "sha256": "96afe89452c8d8e098c73230387514bb7ca1c1bb5abfbabf4e69161db24aa4ef",
+      "bytes": 1954
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ReferenceForm.java",
+      "sha256": "e466ec6cfe684ae5acf676b199950351eb75eef2d2064653994e633eea493f77",
+      "bytes": 2951
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ShortForm.java",
+      "sha256": "743c22fddafae297e3b68ad3a2659f7d5b3d154486ac14f80465791fa7439580",
+      "bytes": 1871
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/SingleByteReferenceForm.java",
+      "sha256": "581a1838ae70fefb9f7c107fa0be69476a0ee09d0690e72e46d3a8cc828db970",
+      "bytes": 2155
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/StringRefForm.java",
+      "sha256": "f8b71ef4caa3181df0ccf6bd2861c3cfe666ee7e5dd46fd71012c77f2ea9b619",
+      "bytes": 2551
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/SuperFieldRefForm.java",
+      "sha256": "eb5b55071a01a04ec280b672ed705347295bdd736026fa071ffd12288caef4fa",
+      "bytes": 1878
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/SuperInitMethodRefForm.java",
+      "sha256": "f6255c8804cfbaa98bf3d7ebf7eb25a1bede8789390b579c4f5b27e02922a7ac",
+      "bytes": 1405
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/SuperMethodRefForm.java",
+      "sha256": "f9549edf66a65d7257c5862820c5c118b8121ebcfc5e0e6544cf0b807ca41e0f",
+      "bytes": 1884
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/SwitchForm.java",
+      "sha256": "44b0864b65309fb83e443378e79cd90a005494acd3b492ecf703dadbd27d2242",
+      "bytes": 2579
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/TableSwitchForm.java",
+      "sha256": "3c93a1cfa2a686e78cca4760e87d3543303fb2351562b321511b1fd4411b9ddd",
+      "bytes": 4299
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ThisFieldRefForm.java",
+      "sha256": "b7c6bda8ded9adc1a1404daebe724503303e6814cf30218820bdf22ad8ed7f5e",
+      "bytes": 1878
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ThisInitMethodRefForm.java",
+      "sha256": "e54dbb4d410751884e40f7f58d2eafe7dc888d951f6b04302660d6f56d34d75b",
+      "bytes": 1432
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/ThisMethodRefForm.java",
+      "sha256": "12a23daf8c6665d2e2224277a2170ee43fe53a570a80ecb57b7bd6f5eed351ef",
+      "bytes": 1892
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/VariableInstructionForm.java",
+      "sha256": "4595456cc3c19cd1974b695b73d097e8a9c510af04d1c013c448739d6815ea33",
+      "bytes": 4784
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/WideForm.java",
+      "sha256": "149d04d8ba57c61baef7609d67412572a98495a9c1fc3ab0c89857db78fd847b",
+      "bytes": 5456
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/forms/package-info.java",
+      "sha256": "bb866999024315114ba7e309eeb119f069ffc8f2fa10371a1f43d2f0ba8005c3",
+      "bytes": 906
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/bytecode/package-info.java",
+      "sha256": "7535c5aaa73b0d7e8bd13955e3012454ead574cadf55d99ce0bf16cd7257c343",
+      "bytes": 900
+    },
+    {
+      "path": "org/apache/commons/compress/harmony/unpack200/package-info.java",
+      "sha256": "e125a8f9f068e7ba4f0dddd6e1c4e252eaee57f805ae2f4137c5abcf79fb8099",
+      "bytes": 891
+    },
+    {
+      "path": "org/apache/commons/compress/java/util/jar/Pack200.java",
+      "sha256": "56aec12ed1bf3002b3bf49a80f16f4591f9bfaeba1f7b64c0fbb6721852d98e6",
+      "bytes": 10546
+    },
+    {
+      "path": "org/apache/commons/compress/java/util/jar/package-info.java",
+      "sha256": "c888581c3e005af38ee80df02f18e04bc73f97ba6c6107bc2072ae197cd57d0e",
+      "bytes": 887
+    },
+    {
+      "path": "org/apache/commons/compress/package-info.java",
+      "sha256": "fd27002e0e7f1da650d9f5fb20dc6be01b3de29ac2e8ca43d1d3cbfc75d26d11",
+      "bytes": 880
+    },
+    {
+      "path": "org/apache/commons/compress/parallel/FileBasedScatterGatherBackingStore.java",
+      "sha256": "cc1599e75c8980d13374a24628ed87b78d2c651f9549d51cfc31ec4328ed8e35",
+      "bytes": 2861
+    },
+    {
+      "path": "org/apache/commons/compress/parallel/InputStreamSupplier.java",
+      "sha256": "decb275925cfa2cc1b57813beaf0ad6321ef360f24340f63f5394967b22c65f0",
+      "bytes": 1358
+    },
+    {
+      "path": "org/apache/commons/compress/parallel/ScatterGatherBackingStore.java",
+      "sha256": "5cc0304ae8fa90ba4fdd412fda7ea9870ef7785118c4ee88d717a4ad435a918f",
+      "bytes": 2230
+    },
+    {
+      "path": "org/apache/commons/compress/parallel/ScatterGatherBackingStoreSupplier.java",
+      "sha256": "3ab694d5a4b8c0f5480061615583dda323d9cd52739f7ab449246bbec7c0b027",
+      "bytes": 1247
+    },
+    {
+      "path": "org/apache/commons/compress/parallel/package-info.java",
+      "sha256": "9d606bc9c3ea36f09083569729fb42c34cefef16e09989bd4705f00090117a7f",
+      "bytes": 927
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ArchiveUtils.java",
+      "sha256": "0cee54ec6489e7cc019737862237f80123d6cef9152898ad5055a98d1be73a88",
+      "bytes": 9909
+    },
+    {
+      "path": "org/apache/commons/compress/utils/BitInputStream.java",
+      "sha256": "99e93908503899805ad64c757980b8aa01ace9b4fc373fed7461353ab91287be",
+      "bytes": 6936
+    },
+    {
+      "path": "org/apache/commons/compress/utils/BoundedArchiveInputStream.java",
+      "sha256": "871c31d783ca702c724cced89b313ced897b84a653c129aae902bfc9311e1636",
+      "bytes": 3377
+    },
+    {
+      "path": "org/apache/commons/compress/utils/BoundedInputStream.java",
+      "sha256": "dbbe2811b8cd826c2a215f79756de0c31678c136cbc5d621a3057a9d8866736e",
+      "bytes": 1986
+    },
+    {
+      "path": "org/apache/commons/compress/utils/BoundedSeekableByteChannelInputStream.java",
+      "sha256": "728bbb43951576675cae2ee8b5ed7d90c5112bee0ebc6f92296ed915101304d4",
+      "bytes": 2118
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ByteUtils.java",
+      "sha256": "c452b451c7aaffc4fd91547d3de58995ebb3778baae66f46600281c4b262370c",
+      "bytes": 9675
+    },
+    {
+      "path": "org/apache/commons/compress/utils/CRC32VerifyingInputStream.java",
+      "sha256": "2f0c43a0b5c85d1f677b579ae327e6944f6a67d8c3f5f8c2d509df8978637684",
+      "bytes": 2023
+    },
+    {
+      "path": "org/apache/commons/compress/utils/CharsetNames.java",
+      "sha256": "c844d8978da5a6914acbd0115217d0b6697bf301133aa4194c1f1adaed1fe493",
+      "bytes": 5304
+    },
+    {
+      "path": "org/apache/commons/compress/utils/Charsets.java",
+      "sha256": "f9aaede5c84947b9a80980c846ac4bb90c22e8d1ca16b379f39e81cb3946618e",
+      "bytes": 7000
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ChecksumCalculatingInputStream.java",
+      "sha256": "ca7bfd3ea062d8757b4fa6782a0f79d0f525056b46adc5006140714b5c21ae3f",
+      "bytes": 2023
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ChecksumVerifyingInputStream.java",
+      "sha256": "0028ab94620e120854cb5d667c8c00c72f4134b9e2911622f6e84bb7bb5a489c",
+      "bytes": 3256
+    },
+    {
+      "path": "org/apache/commons/compress/utils/CloseShieldFilterInputStream.java",
+      "sha256": "82ae27cf5a59723b1f21bbe87817c559db9ac105b1354e5e970f5066c0fe2b1b",
+      "bytes": 1384
+    },
+    {
+      "path": "org/apache/commons/compress/utils/CountingInputStream.java",
+      "sha256": "eb3291feb110ca0e7764ce96f365f534a652f135a1d357c645467c15cfef3247",
+      "bytes": 2356
+    },
+    {
+      "path": "org/apache/commons/compress/utils/CountingOutputStream.java",
+      "sha256": "da0e0894f2e6d8c23e5ecdead275712745ac7277d5d5c41515e08a2973878351",
+      "bytes": 2217
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ExactMath.java",
+      "sha256": "7a8349b1ae421cf052f5708adccb95f7d789a1abb02dab9b13c303dfb59974a3",
+      "bytes": 1648
+    },
+    {
+      "path": "org/apache/commons/compress/utils/FileNameUtils.java",
+      "sha256": "419ab13494925555eddc0e0abdb20a88a5db3d85aac71f2d54cb6af3a7a4c7f8",
+      "bytes": 3902
+    },
+    {
+      "path": "org/apache/commons/compress/utils/FixedLengthBlockOutputStream.java",
+      "sha256": "f5ddeef27ff8fe9bee86f1ab0c1fa6e034fe9f0a890b49b8f6b3e039f9e8eaf9",
+      "bytes": 9446
+    },
+    {
+      "path": "org/apache/commons/compress/utils/FlushShieldFilterOutputStream.java",
+      "sha256": "21f47cf51ab73d7f7504fdd1d9b73e3ba8c56b74f2412cd49b8eda91b5359a37",
+      "bytes": 1284
+    },
+    {
+      "path": "org/apache/commons/compress/utils/IOUtils.java",
+      "sha256": "6f54d0479d0dc06f716c3f9486cc221c7627219efd6d06ca940381664e428bcb",
+      "bytes": 12541
+    },
+    {
+      "path": "org/apache/commons/compress/utils/InputStreamStatistics.java",
+      "sha256": "19f906d83a793cdfa0ee675bd8c960aacb84ae718ea4e1a28c46337140326164",
+      "bytes": 1512
+    },
+    {
+      "path": "org/apache/commons/compress/utils/Iterators.java",
+      "sha256": "463836a87c4a6924fda4406400def7fd54a55ccb31cfd6447afaa7a9a20e49c7",
+      "bytes": 1976
+    },
+    {
+      "path": "org/apache/commons/compress/utils/Lists.java",
+      "sha256": "eb8c0543e469decf450b342d4a0dc94d1d4dae803daf18118cae0c27822b93a4",
+      "bytes": 1756
+    },
+    {
+      "path": "org/apache/commons/compress/utils/MultiReadOnlySeekableByteChannel.java",
+      "sha256": "5784f433061c2437cef8d1e44118855223a388db36d6cb4fe0277023fa988589",
+      "bytes": 9631
+    },
+    {
+      "path": "org/apache/commons/compress/utils/OsgiUtils.java",
+      "sha256": "4f6bd902b27d08fa859739eb5ac96c13e397a1bd9db5d0f5f10a7d1bf8ed40e0",
+      "bytes": 1925
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ParsingUtils.java",
+      "sha256": "adeceacae9a641cf4a6c545c60034f28ca79539906cd9cdab94644aee08c7e34",
+      "bytes": 3002
+    },
+    {
+      "path": "org/apache/commons/compress/utils/SeekableInMemoryByteChannel.java",
+      "sha256": "694577b9d4f4826580e60ddb1eb0281bace6ea49f0d4dd0453bf4584c846e9c4",
+      "bytes": 6840
+    },
+    {
+      "path": "org/apache/commons/compress/utils/ServiceLoaderIterator.java",
+      "sha256": "8960d7c413fc530bd2dc44dc8188abb60a0b2619e2ce3d28f0d8a1b540511b32",
+      "bytes": 2755
+    },
+    {
+      "path": "org/apache/commons/compress/utils/Sets.java",
+      "sha256": "9b0f952d6f4d7283dbe2f88d65886488a11431fb5b1057c03abe5efff9c2262a",
+      "bytes": 1545
+    },
+    {
+      "path": "org/apache/commons/compress/utils/SkipShieldingInputStream.java",
+      "sha256": "3739200b2597293fd89f08e2d54a368eb3ec247f62bd4ab93a00c5b68d1b04c5",
+      "bytes": 2219
+    },
+    {
+      "path": "org/apache/commons/compress/utils/TimeUtils.java",
+      "sha256": "946d7f6d134fa902d491515b2d6bf0cd46c181bcfd05d983f5e4cc0b519c633d",
+      "bytes": 7649
+    },
+    {
+      "path": "org/apache/commons/compress/utils/package-info.java",
+      "sha256": "16f9a2b9386a1a9e8f11af23bedf9797591b27b3ad450abe2aade4474e21da9a",
+      "bytes": 921
+    }
+  ],
+  "selected_paths": [
+    "org/apache/commons/compress/archivers/tar/TarArchiveEntry.java",
+    "org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java",
+    "org/apache/commons/compress/archivers/zip/BinaryTree.java",
+    "org/apache/commons/compress/compressors/deflate64/HuffmanDecoder.java",
+    "org/apache/commons/compress/compressors/lz77support/LZ77Compressor.java",
+    "org/apache/commons/compress/harmony/unpack200/Pack200UnpackerAdapter.java"
+  ],
+  "publisher_authentication_claim": false
+}

@@ -65,7 +65,7 @@ CRC and every manifest entry; remote persistence is verified.
 Source/native notices, all required attribution and broader legal compatibility
 still need their appropriate review. This does not assert universal copyright
 or patent clearance, whole build-tool licensing or complete artifact trust.
-The current publisher subset is294/858,564pending, with all six critical files
+The current publisher subset is325/858,533pending, with all six critical files
 corroborated. The [source-copy review](google-source-copy-review.md) distinguishes
 exact official Google source copies and JetBrains-owned checksum records
 from detached signatures and earlier release manifests.
@@ -83,3 +83,10 @@ eight-asset APK checks, build/native/core/lint/API36 and local report replay.
 Its new exact-source independent rebuild40197042011 also passed; the actual
 downloaded unsigned APK matches the original full file byte for byte. This
 closes updated-package reproducibility, not whole source/security/legal gates.
+
+
+The exact accepted e516aa89project/full-WebP source kit is now prepared and
+independently regenerated/restored; see [its receipt](evidence/source-kit-e516aa89/review.json).
+This stages recoverable project/native material without changing packaged
+notices or claiming complete source distribution for every other runtime
+component. Source-kit generation is offline and does not build/sign/publish.

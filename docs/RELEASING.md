@@ -63,6 +63,53 @@ byte comparator for another clean build of that same source.
 
 A fresh [GitHub-hosted VM](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) and an empty cache are execution properties, not dependency/publisher authentication. Even identical APK bytes leave strict dependency verification, physical acceptance and signing gates open. This same-environment byte comparison also does not prove portability to every build host.
 
+## 02c · Stage recoverable project and native sources
+
+Use [prepare-source-kit.py](../scripts/prepare-source-kit.py) with existing local
+public Git objects, an explicit accepted source commit/tree and the exact
+libwebp repository. It performs no fetch, build, signing or upload. For the
+accepted guarded source:
+
+```sh
+python3 scripts/prepare-source-kit.py /path/to/FixMyShot /path/to/libwebp \
+  /new/staging/FixMyShot-source-e516aa89.tar.gz \
+  --source e516aa89efae94fe2376fd9f62e143218b49ccac \
+  --tree 6089799f41df2239ab111e172b7989cccee07bf9 \
+  --receipt /new/staging/source-kit-e516aa89.json
+```
+
+The tool reads exact Git blobs rather than dirty working files. It stages all
+468project files and all343pinned WebP files, original notices, per-file
+SHA256/Git blob/mode manifests, original public commit objects, the exact packer and an offline
+restoration helper. It refuses unsafe/symlink/submodule entries, wrong source
+pins and existing outputs. Sorted archive entries, fixed modes/ownership/time
+and a timestamp-free gzip header make repeated output identical with the same
+packer/Python/zlib. The [actual receipt](feasibility/evidence/source-kit-e516aa89/review.json)
+records two full23003112-byte generations with identical bytes and successful
+restoration of both exact pristine Git identities. The restored kit
+regenerated the complete archive using its own bundled packer and Git objects,
+without the original producer workspace or a network fetch. Six fixture tests exercise
+mutations, missing/extra files, modes, symlinks, wrong commit/tree and existing
+repositories. Run python3 scripts/test-source-kit.py.
+
+Extract into a fresh staging directory with modes preserved, then use its
+restore-source-snapshot.py to validate every file and restore local shallow
+Git identities without a network request. AGP embeds the project commit in the
+APK, so a source archive without its original Git identity is insufficient for
+the existing full-byte reproduction procedure. The helper refuses existing
+.git directories and writes only inside the two extracted source directories.
+
+This kit supplies exact project/full-WebP sources; NDK helper sources and the
+AndroidX native excerpts are already in its project evidence. It is not a mirror
+of every Maven/SDK dependency, a complete offline build or completion of all
+corresponding-source obligations. Complete the remaining third-party source/
+distribution review before calling the final release source-complete. The
+accepted CMake configuration remains unchanged; this does not validate a new
+host or change the compiled source. The binary archive is regenerable from
+public pinned Git objects; do not duplicate it as another large Git evidence
+upload. Stage the final accepted source asset with release materials only when
+the remaining gates and publication authority apply.
+
 ## 03 · Verify the exact signed candidate
 
 Creating FixMyShot's long-lived key, securing backups and signing require separate explicit authority. Never borrow another app's key or regenerate a missing identity. Keep keys/passwords outside the repository and receipts; record only the public certificate fingerprint.

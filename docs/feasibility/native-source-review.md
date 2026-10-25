@@ -61,8 +61,9 @@ Independent builders can fetch the exact upstream WebP commit used by the
 tracked CMake configuration and compare the per-file manifest. Keep all source
 notices in a complete corresponding-source checkout. A final distribution
 still needs its recoverable full source/native build materials staged with
-the release artifacts; no source archive, signature or publication is claimed
-here. General build-tool licensing, remaining614 publisher files, owning-tool
+the release artifacts; the exact project/full-WebP source kit is now prepared and validated as
+described below. No complete corresponding-source, signature or publication
+approval follows. General build-tool licensing, remaining533 publisher files, owning-tool
 security and physical/runtime/distribution gates remain separate.
 
 To replay the NDK boundary with an installed exact revision, run:
@@ -74,3 +75,16 @@ python3 scripts/check-ndk-native-notices.py \
 
 The output path must be fresh. It contains only source text, source.properties
 and a bounded receipt. Do not substitute source from a different NDK version.
+
+
+## Validated source-kit staging
+
+[The source-kit receipt](evidence/source-kit-e516aa89/review.json) records the
+accepted e516aa89project source (468files) and the full previously audited WebP
+source (343files/8073794B). Two complete archive generations are identical;
+all818safe regular members, per-file manifest entries and normalized metadata
+pass. Both original public commit/tree identities restore as pristine local
+Git repositories, preserving executable modes and wrapper CRLF. No source
+fetch/build/sign/upload occurred in packaging or restoration. Full other-runtime
+source materials and final corresponding-source review remain open. See
+[the preparation procedure](../RELEASING.md#02c--stage-recoverable-project-and-native-sources).

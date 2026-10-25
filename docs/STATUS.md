@@ -81,3 +81,13 @@ See the [operation receipt](feasibility/evidence/build-operation-review-e516aa89
 HEIC/AVIF remain unavailable for ordinary export pending their gates. JXL is
 explicitly deferred for0.1.0. Legacy diagnostics are best effort; skipped means
 NOT RUN. Signing, merge and publication remain separately gated.
+
+
+Source preparation now has an executable, validated stage: the exact accepted
+project and full pinned WebP source produce identical archives and restore their
+original Git identities without a network request. [Source-kit evidence](feasibility/evidence/source-kit-e516aa89/review.json)
+records all818members. Complete other-runtime source/distribution review remains
+open. The new [Commons call review](feasibility/evidence/commons-lang-operation-review/review.json)
+finds no vulnerable class-name resolver through inspected Compress calls; it
+does not reduce the vulnerability inventory or approve the entire toolchain.
+No new application build or phone acceptance is claimed by these preparations.

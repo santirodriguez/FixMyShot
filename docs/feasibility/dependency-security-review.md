@@ -342,3 +342,32 @@ override rejection pass in both. [The independent receipt](evidence/build-operat
 records archive/CRC/source/actual bytes. Neither run is emulator/device acceptance
 or production signing approval. No version, dependency or pixel pipeline
 changed, and unchanged application evidence retains its source-bound scope.
+
+
+## Commons Compress to Commons Lang: inspect the actual calls
+
+The [call review](evidence/commons-lang-operation-review/review.json) examines
+all404Java files in the exact published Commons Compress1.27.1 sources and
+retains the full per-file manifest. Six files import Commons Lang. Their calls
+initialize byte/int arrays with ArrayFill.fill, read the host OS with
+SystemProperties.getOsName, or unwrap existing InputStreams using
+FieldUtils.readField and constant field names in/path. The original caller and
+Lang3.16.0 method sources/archive pins are retained as text. One upstream Java
+file is not UTF8; its .bytes.json wrapper preserves every original byte through
+a reversible Latin-1 code-point mapping, with the original SHA256. This is not
+an assertion about its upstream character encoding.
+
+The transitive FieldUtils route was followed: readField/getField traverses
+loaded fields/class hierarchy and uses ClassUtils.getAllInterfaces(Class).
+It does not call the recursive ClassUtils.getClass(ClassLoader,String,boolean)
+identified by GHSA-j288-q9x7-2f5v. ArrayFill and the inspected OS-property getter
+also do not call that class-name resolver. Object.getClass in TarArchiveEntry
+is a different Java operation, not a vulnerable Commons Lang call.
+
+The bounded conclusion is **no advisory-method path found through these
+inspected Compress calls**. It does not prove all direct/reflective AGP/lint/UTP
+callers absent, compiled-tool/source equivalence or a patched version. Keep the
+frozen49IDs/18component matches and remaining security gate unchanged. Revisit
+on owner/call-site changes. Netty, HttpClient, Bouncy Castle and any other actual
+Lang callers still require their own review; do not force a leaf override or
+suppress a database match solely from this scoped inference.
