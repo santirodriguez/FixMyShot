@@ -30,7 +30,9 @@
     "sha256": "84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb",
     "git_blob_sha1": "663b7776cf98f6aedd1de0567a6ffc662e891c3f",
     "safe_regular_unique_members": 94,
-    "crc_and_every_manifest_entry": "PASS_LOCAL",
-    "remote_persistence": "PENDING_MANUAL_UPLOAD"
+    "crc_and_every_manifest_entry": "PASS_ACTUAL_UPLOADED_BYTES",
+    "remote_persistence": "VERIFIED",
+    "upload_commit": "f7c1fa7f5e64a92659a3b507ff6b96e92880b930",
+    "upload_tree": "7ee0bc4f40e000ccb226d9cc7c54847a5298a89a"
   }
 }

@@ -890,6 +890,19 @@
         <sha256 value="582e85078b60eb80669223b34b58200ba034654b2edb1cf9621e62fde7dfc0a3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="com.squareup.okio" name="okio" version="3.4.0">
+      <artifact name="okio-3.4.0.module">
+        <sha256 value="69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+    </component>
+    <component group="com.squareup.okio" name="okio-jvm" version="3.4.0">
+      <artifact name="okio-jvm-3.4.0.jar">
+        <sha256 value="0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+      <artifact name="okio-jvm-3.4.0.module">
+        <sha256 value="6fec13cf3361600364bfcc68004af7c760ceaf1fc1bbcc958742ae4d61db1512" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+    </component>
     <component group="junit" name="junit" version="4.13.2">
       <artifact name="junit-4.13.2.jar">
         <sha256 value="8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3" origin="JUnit detached PGP; publisher KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51" />

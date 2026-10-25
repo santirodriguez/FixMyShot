@@ -26,11 +26,12 @@ ZIP uploads are verified. The [license owner](feasibility/runtime-license-review
 and [native owner](feasibility/native-source-review.md) retain full-review limits.
 
 The frozen dependency inventory remains byte-identical at 487 components and
-858 files. Inactive publisher review covers **294/858 files**, with 564 pending:
-**16 runtime-associated files** and 548 other captured files. All six critical
+858 files. Inactive publisher review covers **297/858 files**, with 561 pending:
+**13 runtime-associated files** and 548 other captured files. All six critical
 files retain evidence. New source-copy and publisher-checksum proofs preserve
-all earlier entries and remain distinct from PGP signatures. One new 1.24 MB
-raw evidence ZIP awaits manual upload. See the
+all earlier entries and remain distinct from PGP signatures. Three additional
+Okio files have verified detached signatures. The 1.24 MB raw evidence ZIP is
+verified at upload commit `f7c1fa7f`; all 94 members and manifest entries pass. See the
 [source-proof owner](feasibility/google-source-copy-review.md).
 
 The unchanged OSV snapshot records 49 advisory IDs across 18 tooling components
@@ -42,7 +43,7 @@ open. No generated trust policy is activated. See the
 
 | Remaining work | Required evidence |
 | --- | --- |
-| Dependency/security/source review | Raw evidence upload; remaining 564 exact issuer/metadata files, owning-tool applicability/remediation, deliberate strict policy and final corresponding-source distribution materials |
+| Dependency/security/source review | Remaining 561 exact issuer/metadata files, owning-tool applicability/remediation, deliberate strict policy and final corresponding-source distribution materials |
 | Physical acceptance | Pixel 9 Pro XL plus a second family: HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers/batches/process death/storage pressure/gallery/receivers, TalkBack/text scaling/rotation/languages/16 KiB runtime |
 | Distribution preparation | Separately authorized signing identity, manifest/certificate checks, sequential install/upgrade/Obtainium, authentic captures and final receipts/docs |
 

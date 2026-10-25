@@ -160,19 +160,26 @@ Independent40197042011 passed; independent-rebuild-5d568a7e.json records actual
 
 ## Runtime44 source copies, JetBrains six checksums and actual APK exposure
 
-The current publisher subset is294/858,564pending. runtime-source-review-ebfe90ec.json
+The current publisher subset is297/858,561pending. runtime-source-review-ebfe90ec.json
 and runtime-source-report-ebfe90ec.json pin44exact AndroidX runtime artifact
 bytes, canonical routes and directory/blob membership. The prepared raw ZIP
 runtime-publisher-source-ebfe90ec.zip is1243209B/SHA256
 84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb,
 Git blob663b7776cf98f6aedd1de0567a6ffc662e891c3f,94safe regular unique members.
-Local CRC/all manifest entries pass; remote upload remains PENDING.
+Actual uploaded bytes at f7c1fa7f5e64a92659a3b507ff6b96e92880b930 match
+size/SHA256/Git blob; CRC/all 94 members and every manifest entry pass.
+Remote persistence is VERIFIED.
 
 kotlin-release-source-2.4.21.xml is the complete exact original publisher
 release-source checksum record. kotlin-source-checksum-review-2.4.21.json
 pins its release commit/blob/SHA256, the288→294 replay and all16remaining
 runtime identities. No PGP or whole trust approval is claimed.
-[Complete replay](../google-source-copy-review.md) preserves244→288→294.
+[Complete replay](../google-source-copy-review.md) preserves244→288→294→297.
+The historical six-checksum receipt retains its own 294 checkpoint; current
+okio-publisher-review-3.4.0.json lists the 13 remaining runtime identities.
+Three exact Okio SHA512 signatures validate with square-issuer-key-2021.asc,
+a complete public bundle for the existing independently anchored issuer.
+The original stripped key remains rejected. No new binary upload is required.
 
 apk-tooling-types-5d568a7e.json records actual accepted debug/release DEX hashes,
 definitions/type counts and zero matches for all six tooling package families.

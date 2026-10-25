@@ -2,9 +2,9 @@
 
 Scope: frozenf943487-component/858-artifact inventory. The initial21 Google
 POM proofs below are supplemented by44 exact runtime archive/module copies and
-six exact JetBrains-owned checksum records. Current inactive subset:294/858
-reviewed,564pending; all six critical files retain evidence. Runtime-associated
-files are212reviewed/16pending; other files are82reviewed/548pending. No app/build
+six exact JetBrains-owned checksum records and three exact Okio signatures.
+Current inactive subset:297/858 reviewed,561pending; all six critical files retain evidence. Runtime-associated
+files are215reviewed/13pending; other files are82reviewed/548pending. No app/build
 inputs, dependencies, active trust policy or runtime gates changed. All previous
 244 and historical387 proof entries are preserved.
 
@@ -108,10 +108,10 @@ so its historical223→224→244 replay retains exact output hashes.
 44-row report and original producer. Raw binary evidence is in the prepared
 1,243,209-byte runtime-publisher-source-ebfe90ec.zip, SHA256
 84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb.
-Its94safe regular members/CRC/every manifest entry passed locally. Remote
-persistence is PENDING MANUAL UPLOAD at the receipt's exact path. Source proofs
-were checked against actual captured bytes; durable self-contained raw replay
-requires that upload. Do not claim it is already committed.
+Its94safe regular members/CRC/every manifest entry passed against the actual
+uploaded bytes in commit f7c1fa7f5e64a92659a3b507ff6b96e92880b930, tree
+7ee0bc4f40e000ccb226d9cc7c54847a5298a89a. Remote persistence is VERIFIED;
+the self-contained raw replay evidence is committed at the receipt's exact path.
 
 After verifying that ZIP's SHA256, extract safely into a fresh directory. From
 the repository root, using fresh output paths:
@@ -172,3 +172,46 @@ remaining runtime identities and current212/16 plus82/548 counts. Old attempts
 remain recorded; new independent source proof supersedes an older unavailable
 signature only for its exact file. Full strict policy and remaining issuer,
 security, physical and distribution gates remain open.
+
+
+## Three exact Okio signatures: 294 to 297
+
+The historical capture already retains all three exact frozen files and detached
+signatures: Okio 3.4.0 root module, Okio JVM 3.4.0 JAR and JVM module. The previous
+854-byte keys.openpgp.org bundle has no valid UID/self-certification: GnuPG marks
+the primary invalid and refuses the signatures. This was a key-bundle limitation,
+not an artifact mismatch. A new 1,712-byte public ASCII bundle from the Ubuntu
+keyserver includes the UID/self-certification and validates all three SHA512
+signatures with the existing validity and strong-hash checks. No check was relaxed.
+
+The issuer fingerprint DBD744ACE7ADE6AA50DD591F66B50994442D2D40 remains
+independently anchored in the already inspected publisher security source,
+lysine-dev/okhttp commit ba92108a334394a9fb2ee27858f35375cffa6cae,
+blob aa9020585609634c850ca79d9bea53e42a9293bd. Its historical-key statement
+covers releases before 2026-07-21. The keyserver is transport, not the issuer
+anchor. The prior 294 proofs are unchanged. No wildcard trust, active policy,
+new binary capture or key freshness/absent-revocation claim is made.
+
+[Receipt](evidence/okio-publisher-review-3.4.0.json) lists all three VALIDSIG
+records, exact file/signature/key/registry/archive/producer hashes and the 13
+remaining runtime identities. Four offline tests exercise actual signatures,
+all five input mutations, changed artifact and wrong primary, and rejection
+of the previous stripped bundle. No downloaded code is executed or user keyring used.
+
+For a standalone replay after the preceding 244→288→294 steps, use that exact
+294 JSON as `PRIOR294` and a fresh output directory:
+
+```sh
+python3 scripts/review-okio-publisher.py \
+  docs/feasibility/evidence/gradle-baseline-f9434ab9.xml \
+  "$PRIOR294" \
+  docs/feasibility/evidence/runtime-publisher-anchors.json \
+  docs/feasibility/evidence/square-issuer-key-2021.asc \
+  docs/feasibility/evidence/runtime-publishers-04a8aa02.zip \
+  /tmp/fixmyshot-reviewed297
+```
+
+Expected: 297 reviewed / 561 pending, including 215 reviewed / 13 pending
+runtime-associated files. Compare both output files byte-for-byte with
+`gradle/migration-f9434ab9/`. The old capture and all historical reviewers remain
+unchanged. No Android or unchanged OSV rerun is needed for this data-only review.
