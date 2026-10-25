@@ -53,6 +53,15 @@ jobs:
           ./gradlew --version > evidence/gradle-version.txt
       - name: Rebuild core tests and unsigned release without build-cache reuse
         run: |
+          if ./gradlew --no-daemon -Pandroid.enableJetifier=true help > evidence/jetifier-override-rejection.txt 2>&1; then
+            echo 'FAIL: Jetifier override was accepted'
+            exit 1
+          fi
+          if ! grep -Fq 'FixMyShot does not permit Jetifier; use AndroidX dependencies directly.' evidence/jetifier-override-rejection.txt; then
+            cat evidence/jetifier-override-rejection.txt
+            echo 'FAIL: override did not fail at the expected settings boundary'
+            exit 1
+          fi
           ./gradlew --no-daemon --no-build-cache --rerun-tasks --write-verification-metadata sha256 :core:test :app:assembleRelease
           git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
           python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json
