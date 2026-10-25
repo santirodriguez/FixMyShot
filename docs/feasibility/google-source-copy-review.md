@@ -70,3 +70,19 @@ directory membership and refusal of other publishers. Actual report replay
 also rejects altered release and automatic-approval fields. This evidence does
 not close remaining artifact authentication, tooling security, native/source
 license obligations or physical/distribution acceptance.
+
+
+## Current remaining runtime priority
+
+Cross-checking this244-file receipt against the byte-identical frozen XML and
+the133-component runtime catalog yields228 exact files associated with app
+release-runtime components:165 reviewed,63 pending (25AAR,11JAR,23module,4POM).
+The other630 captured files are79 reviewed/551pending. These sum to244/614.
+This is component selection, not proof every selected archive/class is packaged.
+Prioritize the63 runtime-associated files when a new independent publisher
+evidence route exists. Keep the551 tooling/test/other files in the strict-policy
+backlog; do not drop them or retry previously unavailable signatures blindly.
+The inputs are the canonical frozen XML, current reviewed JSON SHA256
+38c8e5c17d2fcc40f38f73e2728ec99e52ad49d71fc46cda325ae486c5659ee0
+and LICENSES/runtime-components.json SHA256
+f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407.

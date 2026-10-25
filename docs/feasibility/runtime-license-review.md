@@ -77,4 +77,8 @@ its compiled NDK cpufeatures source and AndroidX native C++ files. The NDK
 source has a BSD two-clause header distinct from its module's Apache NOTICE;
 both are now preserved in a new canonical legal text. The package checker
 requires eight assets for this newer source. e8's seven-file acceptance remains
-historical; actual installed NDK and updated package CI/rebuild are pending.
+historical. Normal5d568a7e now passes actual installed NDK source pins, both
+eight-asset APK checks, build/native/core/lint/API36 and local report replay.
+Its new exact-source independent rebuild40197042011 also passed; the actual
+downloaded unsigned APK matches the original full file byte for byte. This
+closes updated-package reproducibility, not whole source/security/legal gates.

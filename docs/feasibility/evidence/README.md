@@ -151,5 +151,8 @@ AUTHORS/build inputs, NDK cpufeatures source/header/module NOTICE, and exact
 AndroidX graphics-path/DataStore C++ release source. The
 [owner](../native-source-review.md) distinguishes source identity/notice review
 from actual SDK/package acceptance and full-source distribution. The new
-cpufeatures canonical notice requires eight package assets; grouped CI and a
-new exact-source rebuild remain pending. All evidence is small source text.
+cpufeatures canonical notice requires eight package assets. Normal source5d
+passed actual SDK/build/eight-asset/native/API36 and local report replay; see
+android-5d568a7e.json, ndk-source-5d568a7e.json and source-audit-5d568a7e.json.
+Independent40197042011 passed; independent-rebuild-5d568a7e.json records actual
+22-member archive/source/tree/core69 checks and full unsigned byte equality. All evidence is small source text.

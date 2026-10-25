@@ -1173,3 +1173,34 @@ updates only the affected Kotlin common module through Gradle, then runs all
 compile/lint tasks with no lock/metadata writes, no build cache and rerun-tasks.
 A digest snapshot must remain unchanged. This is a derived-checkout diagnostic;
 ordinary frozen-source/API36 qualification still follows incorporation.
+
+
+## Native source and eight-asset package checkpoint —5d568a7e
+
+Normal Actions40196478234/build121178282623/API36job121179379662 SUCCESS;
+legacy SAF121179381429 skipped/NOT_RUN. Actual build artifact12600262339,
+42313734B/SHA25665ecd679354499752ee1cabc9c254524e541bc090e2f305cb5ce1cbb1802fede,
+and smoke12599852889,46357B/SHA2560390dd24201bd1270932ca726458463369817c89382f928ac4466651c0b0b813
+were downloaded. CRC/safe44+35members/source382-file tree/wrapper/locks PASS.
+Core69 zero fail/error/skip; lint/threeAPKs; actual installed NDK source/header/
+NOTICE pins PASS. Both debug/release eight canonical legal texts independently
+matched exact archived source. Native nine libraries/threeABIs/ELF+ZIPalignment
+PASS. Frozen XML exactly unchanged at487/858.
+API36 renderer6/cache3/private20/transaction12/export5/share4/settings21/batch7/
+retry8/recovery16,80real PNG/WebP encodes and four local report guards PASS.
+Page4096/grid5positive12/layoutDIAGNOSTIC_COMPLETE are diagnostic evidence,
+not physical/native format acceptance.
+
+Independent40197042011/control4d37096c846eefbb671780b036b1272a938c73f6/
+job121180026164 SUCCESS. Actual artifact12599868284,27791819B/SHA256
+a7c931ad27a796faf56e418190528f7df09e470b89e1767e1613212256791c8e,
+passed CRC/safe22members/actual source/tree/control/core69 checks. Logs establish
+pristine exact source/emptyGradle+project caches/no-build-cache/rerun-tasks.
+Full downloaded unsigned file comparison is identical:11841246B/SHA256
+cc902a395a73ca8c18d98b03a36b4f823ee33cdf3d59e88f4aaf5b5f2eeff360.
+This newer source has its own bounded build/runtime/reproducibility acceptance.
+Receipts android-5d568a7e.json/source-audit-5d568a7e.json/ndk-source-5d568a7e.json/
+independent-rebuild-5d568a7e.json and [native owner](feasibility/native-source-review.md)
+retain exact pins and limits. Full dependency/source/legal/security, physical
+and separately authorized signing/distribution gates remain open. No APK was
+delivered, no generated trust activated, no new binary upload required.

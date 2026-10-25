@@ -36,9 +36,10 @@ checks the combined canonical attribution before recording the raw actual
 inputs. The grouped Android build executes that check. Offline source replay
 and canonical omission/same-size mutation refusals passed. Normal build40196478234 now passes the actual installed SDK check and both
 eight-asset APK checks against exact archived source. Source382-file tree,
-wrapper/locks, core69/lint/threeAPKs and native alignment pass. API36 and the
-new exact-source independent rebuild remain pending; accepted e8 evidence is
-not promoted to this new source. See [the package receipt](evidence/android-5d568a7e.json).
+wrapper/locks, core69/lint/threeAPKs and native alignment pass. API36 also passed; its actual downloaded smoke evidence and all four report
+guards were independently checked. Exact-source independent rebuild40197042011 also passed. Its actual downloaded
+unsigned APK is byte-identical to the original5d package; the new source has
+its own bounded build/runtime/reproducibility acceptance. See [the package receipt](evidence/android-5d568a7e.json).
 
 The accepted package's other native names are libandroidx.graphics.path.so
 and libdatastore_shared_counter.so. The official
