@@ -14,7 +14,7 @@ This folder preserves the original generated dependency inventory so later revie
 
 The XML is byte-for-byte equal to the downloaded original build artifact. Its nonstandard path and filename are deliberately inactive: Gradle does not load this as verification-metadata.xml. Generated hashes record observed bytes; they do not establish publisher authenticity. The independently reviewed subset lives in [the review record](../../../gradle/dependency-provenance-review.json), with full scope and limits in [committed inputs](../committed-gradle-inputs.md).
 
-The Google-route planner currently has **zero unattempted files**. Do not replace the active request with an empty plan or automatically retry the 118 deferred files. Inspect the current review record before selecting another publisher.
+For the historical773b34f0 baseline, the Google-route planner has **zero unattempted files**. Do not replace the active request with an empty plan or automatically retry the 118 deferred files. Inspect the current review record before selecting another publisher.
 
 The [retained dependency-review ZIP](dependency-review-64745e1f.zip) contains the Kotlin 2.2.0/2.2.20 manifests and complete bounded OSV captures. [Security triage](../dependency-security-review.md) owns the artifact/control/request/report digests, interpretation limits and offline security replay. These are repository evidence, not a trust policy.
 
@@ -106,3 +106,21 @@ inherited-review.json and the pinned official registry; review-dependency-securi
 accepts security/. Compare output bytes/counts to the migrated216/858 partial
 review and security-f9434ab9.json/full replay hash. Original387/921 remains at its
 old canonical path. Missing raw bytes cannot be reconstructed from this summary.
+
+## Google migration and runtime-license evidence
+
+`dependency-audit-746cc9d1.zip` is a prepared13170421-byte data package with
+SHA2566c1befb07d88cb24b24792ec5def69a7ecc1d151820ca9a3c1dd5798037bd833.
+Its282safe regular members, CRC, manifest and exact byte roundtrip pass locally;
+upload is pending. The package receipt and runtime-license review identify
+original/complete producers, reports, source and parent-POM pins.
+
+The Google replay uses google/ plus google-anchored-key.pub, the frozen
+gradle-baseline-f9434ab9.xml and the previous216-file receipt from immutable
+596989ea561b61de288ac9232c6b2b870a7dfe59. Explicit control/request/prior pins
+are in google-migrated-review-746cc9d1.json and the current partial receipt.
+Expected223reviewed/635pending; all216previous and387historical proofs retained.
+The original64-file collection is partial:12captured,7verified,4signature failures,
+1missing signature and52unavailable captures. No unverified bytes are approved.
+The license evidence is data only; do not execute archived JARs or producer files
+merely to inspect the archive. Updated package acceptance is a separate gate.

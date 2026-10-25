@@ -282,3 +282,26 @@ manifest; offline review accepted67new files (31JAR/8module/28POM). The new
 frozen-source candidate is216/858 reviewed,642pending; old387/921 remains intact.
 See gradle/migration-f9434ab9/ and the exact evidence-package receipt. No older
 unavailable version/publisher capture was retried.
+
+## Migrated Google batch — AGP9.2.1 authenticated
+
+Control746cc9d1 pins64previously unattempted exact files from the new graph,
+excluding all unchanged deferred identities inherited from earlier reviews.
+The existing bounded collector captured12matching files,11detached signatures;
+52captures were unavailable within this run. This is partial capture, not a
+publisher-availability verdict. Offline strong-digest/primary/signing-key checks
+accepted7exactJARs: AGP9.2.1, its two data-binding libraries, and four DataStore
+JVM1.1.7 artifacts. Prior216 and historical387proofs remain unchanged; current
+new-graph partial candidate is223/858,635pending and inactive.
+
+The current Google public key bundle matches its independently anchored
+19640-byte/SHA25654dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c
+identity. AGP9.2.1 has a valid detached signature tied to primary
+EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796. Five of the six existing critical
+coordinate/file checks now have publisher proof; Compose BOM2025.12.00 POM
+remains unresolved metadata. Four signatures were unverified and one absent;
+none was accepted. Full strict trust, source/native issuer and security/license
+gates remain open. No application/build inputs or normal validation marker
+changed. The compact [receipt](evidence/google-migrated-review-746cc9d1.json)
+records exact pins and counts; original capture/signature bytes await the next
+evidence-package upload. Do not repeat deferred routes automatically.

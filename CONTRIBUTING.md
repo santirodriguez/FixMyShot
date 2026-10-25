@@ -278,3 +278,21 @@ GitHub release/asset ID, size and provider digest; it does not mean the manifest
 bytes have been collected or any new file authenticated. After the source-bound
 inventory is recovered, the existing bounded publisher collector and manifest
 reviewer can consume this registry without repeating older unavailable routes.
+
+## Runtime license declaration and notice audit
+
+`scripts/audit-runtime-licenses.py` pins the source build inventory and app lock
+before networking. It selects releaseRuntimeClasspath coordinates, fetches only
+reviewed Google/Central routes with bounded time/bytes/concurrency and no
+redirects, compares actual archives with frozen SHA256, and reads embedded
+LICENSE/NOTICE texts including nested JARs without executing downloads. POMs
+without a frozen hash remain publisher-origin declarations, not issuer proofs.
+The report never grants whole license/security/source approval. Five offline
+cases cover pins/routes, parent-only declarations, unsafe XML, nested exact
+notice bytes and traversal refusal. Run `python3 scripts/test-runtime-licenses.py`.
+
+An explicit `--previous` report and `--expected-previous` digest allow completing
+missing rows from the same source/inventory/lock only. Complete prior rows are
+reused; cached text hashes are checked. The original partial report/producer
+and new report retain separate identities. See the current
+[license review](docs/feasibility/runtime-license-review.md).

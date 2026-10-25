@@ -112,6 +112,12 @@ checkout of the exact candidate source. It requires one copy of each mandatory
 asset, matching the canonical bytes, and refuses missing, duplicate or altered
 entries. The ordinary Android workflow checks both debug and unsigned release
 packages and preserves the JSON reports. The four offline checker cases run
-with `python3 scripts/test-apk-legal.py`. A pass establishes those five files
+with `python3 scripts/test-apk-legal.py`. A pass establishes those seven files
 only: it does not approve transitive copyright/NOTICE completeness, dependency
 licenses, corresponding source, publisher trust or distribution.
+
+The canonical license directory also retains the exact upstream Protobuf BSD
+notice for DataStore's repackaged protobuf-javalite and the133component runtime
+declaration catalog. The checker verifies those two assets as well. The audit
+[owner](feasibility/runtime-license-review.md) records source pins and limits;
+asset presence alone is not full native/source/license compatibility acceptance.

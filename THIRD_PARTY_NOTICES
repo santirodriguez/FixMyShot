@@ -62,3 +62,21 @@ assets/legal/THIRD_PARTY_NOTICES, and LICENSES/ to assets/legal/licenses/.
 Apache-2.0.txt is the canonical Apache license text. WebP COPYING/PATENTS keep
 their existing assets/licenses/libwebp/ paths. These are build-generated copies.
 This explicit text bundle does not complete the transitive attribution review.
+
+Runtime component declarations
+------------------------------
+The selected runtime components and their declared licenses are listed in
+assets/legal/licenses/runtime-components.json (source: LICENSES/runtime-components.json).
+This list includes metadata-only entries; it does not imply every class from
+every selected component is packaged. Apache-2.0 terms are retained alongside
+this inventory. Native WebP COPYING and PATENTS remain at the paths above.
+
+AndroidX DataStore repackaged Protocol Buffers
+--------------------------------------------
+Component: androidx.datastore:datastore-preferences-external-protobuf:1.1.7.
+Declared license: BSD-3-Clause. Exact upstream copyright/conditions/disclaimer
+are retained in assets/legal/licenses/Protobuf-BSD-3-Clause.txt.
+AndroidX's release source420da5f291449f11801e378c6789a328a06ec6cb relocates
+protobuf-javalite4.28.2 into androidx.datastore.preferences.protobuf.
+Upstream: https://github.com/protocolbuffers/protobuf/tree/9fff46d7327c699ef970769d5c9fd0e44df08fc7
+License: https://github.com/protocolbuffers/protobuf/blob/9fff46d7327c699ef970769d5c9fd0e44df08fc7/LICENSE

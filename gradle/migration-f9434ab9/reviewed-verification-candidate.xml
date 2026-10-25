@@ -299,6 +299,16 @@
         <sha256 value="11386cfa46cbbfddb6a4059f14354c00691cf65d3d63c3618818a83326ef3c7f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.databinding" name="databinding-common" version="9.2.1">
+      <artifact name="databinding-common-9.2.1.jar">
+        <sha256 value="82816382a2a9dec4f0ab17c79cef08a9e4fe4b97d896ac20d7f215b6dd788b18" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.databinding" name="databinding-compiler-common" version="9.2.1">
+      <artifact name="databinding-compiler-common-9.2.1.jar">
+        <sha256 value="68ab090ddb4d1f411b7defa90c021e068d1aa46878b5beb94de87ff971106dcb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="androidx.datastore" name="datastore" version="1.1.7">
       <artifact name="datastore-1.1.7.module">
         <sha256 value="705450d5e0d0a84c1599ae1421a9969e3aa704bc39640ebcd671e4643d2fc8f8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -325,6 +335,11 @@
         <sha256 value="adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.datastore" name="datastore-core-jvm" version="1.1.7">
+      <artifact name="datastore-core-jvm-1.1.7.jar">
+        <sha256 value="362cbad1f13874a22c7360a18eb995ca52a360379ba0ea5af1b1cf0df0319a2f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="androidx.datastore" name="datastore-core-okio" version="1.1.7">
       <artifact name="datastore-core-okio-1.1.7.module">
         <sha256 value="47fadb8caff5982ac29ccc1ff38d4206ee29ecb947fa06d4070c0ebc1086a7eb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -336,6 +351,11 @@
       </artifact>
       <artifact name="datastore-core-okio-jvm-1.1.7.module">
         <sha256 value="05b2108ff565eb2b1aafb6b9e4d51f834a7bfaac2f4dfc7a81b3992d7e6bed21" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-jvm" version="1.1.7">
+      <artifact name="datastore-jvm-1.1.7.jar">
+        <sha256 value="bbd2d9f6c8bcf5a7ae97b999bc6641ef304224b7392b4cea26b9cf87d7cb0281" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.datastore" name="datastore-preferences" version="1.1.7">
@@ -364,12 +384,22 @@
         <sha256 value="31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.datastore" name="datastore-preferences-core-jvm" version="1.1.7">
+      <artifact name="datastore-preferences-core-jvm-1.1.7.jar">
+        <sha256 value="8817e03c8856d8cb530723abaaf3a588c18e7a12af8fb7a393fceef06e026d53" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
     <component group="androidx.datastore" name="datastore-preferences-external-protobuf" version="1.1.7">
       <artifact name="datastore-preferences-external-protobuf-1.1.7.jar">
         <sha256 value="fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
       <artifact name="datastore-preferences-external-protobuf-1.1.7.module">
         <sha256 value="87863e6b93a416dc00f857713edf683914b64ac6ebcf220e5826e336a841bfa5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-jvm" version="1.1.7">
+      <artifact name="datastore-preferences-jvm-1.1.7.jar">
+        <sha256 value="2c9606bbf8b2255e47aec0c0d3b020d2ba726eb26b3b406d53ea0477b6d31637" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="androidx.datastore" name="datastore-preferences-proto" version="1.1.7">
@@ -586,6 +616,11 @@
       </artifact>
       <artifact name="window-core.aar">
         <sha256 value="d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="gradle" version="9.2.1">
+      <artifact name="gradle-9.2.1.jar">
+        <sha256 value="582e85078b60eb80669223b34b58200ba034654b2edb1cf9621e62fde7dfc0a3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
     <component group="junit" name="junit" version="4.13.2">

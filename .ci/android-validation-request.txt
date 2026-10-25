@@ -1,14 +1,7 @@
-Source-frozen migrated toolchain qualification checkpoint.
-Reviewed derived inputs: experiment40157298004/control3af69cddb1b71986e5dfaf15d88a017c58874cd9.
-Gradle-generated common-lock correction: three runtime associations, no version override.
-Derived read-mode rebuild passed all219executed tasks; lock/XML hashes unchanged.
-AGP9.2.1 / Gradle9.4.1 / Kotlin-Compose2.4.21 / BuildTools36.0.0;
-JDK17 / compile-target36 / min26 / NDK28.2.13676358 / CMake3.22.1 / threeABIs retained.
-Require committed official wrapper guard, reviewed lockfile no-drift, core/lint/
-debug/release/test APK build, actual five-file canonical legal checks and native alignment.
-Run complete established API36 suites and four final source-bound smoke/native/grid/layout guards.
-Keep all source/digest/alpha/privacy/transaction/recovery assertions unchanged.
-Capture buildscript report and new generated metadata for a subsequent bounded security inventory.
-No generated trust activation, forced leaf override, legacy/automatic-locale/JXL run,
-native format enablement, signing, main merge or publication. Physical gates stay open.
+Canonical legal packaging refresh: Protobuf BSD-3-Clause and133component runtime declarations.
+Source evidence: exact DataStore1.1.7 release commit420da5f2 ->protobuf-javalite4.28.2.
+Require seven canonical legal files in actual debug/release APKs, unchanged native alignment,
+source/lock audit, core/lint/threeAPK build and established API36 regressions.
+Dependency graph/toolchain/permissions/format availability unchanged.
+No signing, main merge, publication or artifact delivery.
 profile=current

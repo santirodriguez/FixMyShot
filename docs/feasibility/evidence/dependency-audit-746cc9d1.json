@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "filename": "dependency-audit-746cc9d1.zip",
+  "target_path": "docs/feasibility/evidence/dependency-audit-746cc9d1.zip",
+  "branch": "release/0.1.0",
+  "bytes": 13170421,
+  "sha256": "6c1befb07d88cb24b24792ec5def69a7ecc1d151820ca9a3c1dd5798037bd833",
+  "git_blob_sha1": "1e8e2a8c6f08a886df81451bed9d9136d0a7ff0b",
+  "safe_members": 282,
+  "crc_manifest_exact_roundtrip": "PASS",
+  "remote_upload": "PENDING_MANUAL_UPLOAD",
+  "control_commit": "746cc9d1d84cc0006ab85f0f833097a34aba9aee"
+}

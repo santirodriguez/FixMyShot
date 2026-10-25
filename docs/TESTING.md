@@ -1,5 +1,13 @@
 # Testing and evidence
 
+Current pending block: canonical Protobuf BSD notice and133component declaration
+catalog. Seven exact canonical legal assets are now required. The runtime-license
+audit completed133POMs/95hash-matched archives and reviewed the Guava parent and
+pinned Protobuf source license. Five new parser/boundary cases and four legal
+cases pass locally; the grouped normal build/API36 is requested. Current
+acceptedf943 runtime/reproducibility evidence below remains its historical scope.
+
+
 Current complete bounded checkpoint: **f9434ab9**, Actions40160890302.
 Core69/lint/threeAPK, source246-file tree/input audit, actual debug+release
 native/legal checks, API36 renderer6/cache3/private20/transaction12/export5/

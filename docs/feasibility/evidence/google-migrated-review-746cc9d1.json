@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "control_commit": "746cc9d1d84cc0006ab85f0f833097a34aba9aee",
+  "baseline_source": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
+  "request_sha256": "9fdf6cda517089f7089fe5102ae578a2be225e4b09bee0691a77c5ae1eb2e735",
+  "capture_report_sha256": "9ba67c8287a446ed37bbffb8a3afa4503bda0c5e7c077ef0d93cd923530ffab9",
+  "status": "PARTIAL_BOUNDED_CAPTURE_SEVEN_EXACT_FILES_VERIFIED",
+  "capture_entries": 64,
+  "matched_captured_files": 12,
+  "capture_unavailable": 52,
+  "verified_new_files": 7,
+  "signature_unverified": 4,
+  "signature_absent": 1,
+  "previous216_proofs_unchanged": true,
+  "historical387_proofs_unchanged": true,
+  "current_reviewed_files": 223,
+  "current_pending_files": 635,
+  "current_captured_files": 858,
+  "critical_checks": [
+    {
+      "coordinate": "com.android.tools.build:gradle:9.2.1",
+      "file": "gradle-9.2.1.jar",
+      "publisher_authenticated": true
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21",
+      "file": "kotlin-gradle-plugin-2.4.21-gradle813.jar",
+      "publisher_authenticated": true
+    },
+    {
+      "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+      "file": "heifwriter-1.2.0-rc01.aar",
+      "publisher_authenticated": true
+    },
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "file": "activity-compose-1.11.0.aar",
+      "publisher_authenticated": true
+    },
+    {
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "file": "compose-bom-2025.12.00.pom",
+      "publisher_authenticated": false
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "file": "junit-4.13.2.jar",
+      "publisher_authenticated": true
+    }
+  ],
+  "publisher_key_sha256": "54dea5f6c2a26091578cf52a999cebc6b64df478d37ad4dce96376b711e3b27c",
+  "anchored_primary": "EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796",
+  "active_policy_changed": false,
+  "raw_evidence_remote_status": "PENDING_MANUAL_UPLOAD",
+  "scope_note": "Capture failure in a bounded run is not proof a publisher artifact does not exist. No unverified/deferred file is approved.",
+  "raw_evidence_package": "docs/feasibility/evidence/dependency-audit-746cc9d1.zip"
+}
