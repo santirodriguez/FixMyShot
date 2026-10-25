@@ -176,7 +176,7 @@ The frozen build captures487/858, an exact subset of derived554/925 with no hash
 drift and all364locked coordinates present. New security and publisher evidence
 are separately reviewed:488queries complete with49tooling advisory IDs/18matching
 components;149unchanged exact proofs plus67new Kotlin-manifest proofs yield216/858,
-642pending. Old387/921 is unchanged. Raw dependency evidence is locally verified
-and awaiting the documented maintainer upload. Strict trust, full security/licenses,
+642pending. Old387/921 is unchanged. Raw dependency evidence is committed at98bdedb9 and actual uploaded bytes match
+size/SHA256/Git blob/CRC/manifest. Strict trust, full security/licenses,
 physical/native formats and signing/distribution remain open. No active policy,
 leaf override, format availability or shipping permission changed.

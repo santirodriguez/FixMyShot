@@ -568,5 +568,6 @@
   ],
   "full_replay_receipt_sha256": "00b1a138bb881853a4d39f267c76d14be5581d4db814e71d903bcbe62ef6144e",
   "raw_evidence": "docs/feasibility/evidence/dependency-evidence-f9434ab9.zip",
-  "raw_evidence_remote_status": "PENDING_MANUAL_UPLOAD"
+  "raw_evidence_remote_status": "VERIFIED",
+  "raw_evidence_uploaded_commit": "98bdedb9caddeb2426328f9ce85b47dc56975202"
 }

@@ -12,8 +12,8 @@ inspected native/legal bytes. Android36 also passes in Actions40160890302, inclu
 The independent unsigned rebuild also produced identical actual bytes.
 The frozen487/858 inventory completed488OSVqueries (49advisories on18tooling
 components; no133app-runtime matches at scan time), and67new Kotlin files were
-authenticated. The inactive review is216/858complete,642pending. Raw dependency
-evidence awaits its documented upload; security/license/device gates remain open.
+authenticated. The inactive review is216/858complete,642pending. Raw dependency evidence is committed and independently verified;
+security/license/device gates remain open.
 See [the build receipt](feasibility/evidence/android-f9434ab9.json).
 
 | Remaining work | Concrete completion evidence | Dependency |

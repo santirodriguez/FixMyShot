@@ -16,8 +16,7 @@ The separate current dependency review inherited149exact proofs and accepted
 67newKotlinfiles, retaining all387historical proofs unchanged. OSV488queries
 replay completely, with49advisory IDs/18tooling components and no133runtime
 matches at scan time. These are bounded evidence, not whole trust/security/
-license acceptance. Raw dependency evidence is locally verified and pending
-upload; see [its package receipt](feasibility/evidence/dependency-evidence-f9434ab9.json).
+license acceptance. Raw dependency evidence is uploaded and independently verified; see [its package receipt](feasibility/evidence/dependency-evidence-f9434ab9.json).
 All earlier entries below are historical checkpoints with their original scopes.
 
 ## Checks in this slice

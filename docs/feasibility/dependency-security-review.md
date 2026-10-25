@@ -219,5 +219,5 @@ the frozen487-component capture differs from the historical514 and derived554
 captures. All364locked coordinates are included, but67extra derived-only
 components lie outside this frozen scan. The corresponding raw report, original
 49detail responses and derived complete replay are in the evidence package.
-Its local checksum/CRC/manifest passed; remote persistence awaits the documented
-manual upload. No strict policy, whole security/license or device approval follows.
+Its actual uploaded bytes at98bdedb9 match size/SHA256/Git blob/CRC/manifest;
+remote evidence persistence is verified. No strict policy, whole security/license or device approval follows.

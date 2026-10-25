@@ -59,5 +59,6 @@
   "emulator_page_size": 4096,
   "physical_16kib_and_codec_acceptance": false,
   "security_inventory": "488_COMPLETE_QUERIES_49_ADVISORIES_18_COMPONENTS_NO_MATCHES_133_APP_RUNTIME_REVIEW_OPEN",
-  "raw_dependency_evidence": "PENDING_MANUAL_UPLOAD_DEPENDENCY_EVIDENCE_F9434AB9_ZIP"
+  "raw_dependency_evidence": "VERIFIED_COMMITTED_ZIP",
+  "raw_dependency_evidence_uploaded_commit": "98bdedb9caddeb2426328f9ce85b47dc56975202"
 }

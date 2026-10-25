@@ -9,7 +9,7 @@
   "sha256": "7b1fe28d705c14049ba6401e9dadbd346a1e2ba881ef249bc16d1505c974fbea",
   "safe_members": 70,
   "crc_manifest_roundtrip": "PASS",
-  "remote_upload": "PENDING_MANUAL_UPLOAD",
+  "remote_upload": "VERIFIED",
   "publisher_artifact": {
     "id": 12586881743,
     "bytes": 30150,
@@ -24,5 +24,8 @@
   "publisher_report_sha256": "c28292284665e98212afedf3ee5043e61927be839b803c333e3ac261050a4812",
   "inherited_review_sha256": "1ab0c44a53bb566af17b77e9f9032fd7a263e660aa14a689edf208345cc80b9e",
   "security_request_sha256": "175f18f93558ea82c72725baca13b5706ba680d78b6363076119a568e138bf7f",
-  "security_report_sha256": "0f86a1bc1b0cb6b7565b250d3e9c511c5896a39afe7f09644b2da98e1b2de631"
+  "security_report_sha256": "0f86a1bc1b0cb6b7565b250d3e9c511c5896a39afe7f09644b2da98e1b2de631",
+  "uploaded_commit": "98bdedb9caddeb2426328f9ce85b47dc56975202",
+  "git_blob_sha1": "c0fa7ecb9d7a774df28052a5436d5334117928b6",
+  "remote_bytes_sha256_crc_manifest": "PASS"
 }

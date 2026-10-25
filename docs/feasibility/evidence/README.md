@@ -91,8 +91,9 @@ keyrings; it changes neither active Gradle trust nor the prior security snapshot
 `dependency-evidence-f9434ab9.zip`, SHA256
 7b1fe28d705c14049ba6401e9dadbd346a1e2ba881ef249bc16d1505c974fbea.
 Local CRC,70safe members, manifest hashes and raw-capture/replay checks passed.
-The package still awaits maintainer upload at this directory on release/0.1.0;
-do not claim remote persistence until the actual uploaded bytes are verified.
+The package is uploaded in commit98bdedb9caddeb2426328f9ce85b47dc56975202
+on release/0.1.0. Actual remote bytes matched size/SHA256/Git blob, CRC and
+every manifest entry; remote persistence is verified.
 It contains publisher/ (original Kotlin2.4.21 manifest capture), security/
 (all488queries/49detailresponses and capture report), inherited-review.json
 (the149-proof seed with unchanged attempted identities) and the full offline
