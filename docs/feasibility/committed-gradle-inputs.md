@@ -254,3 +254,29 @@ outputs. Application/build inputs, dependency pins, lockfiles and normal Android
 validation request are unchanged; the exact773 Android and independent unsigned
 rebuild evidence retain their original scope. Strict verification, publisher/native
 trust, full security/license review and physical/distribution gates remain open.
+
+## Migrated proof lineage — exact reuse tooling prepared
+
+The historical387/921 JSON/XML remain unchanged. A new offline rebase reviewer
+validates that old receipt against its own metadata and explicit receipt pin,
+then compares every inherited group/name/version/file and SHA256 with separately
+pinned new metadata. Only unchanged exact files inherit unchanged proof records;
+conflicting bytes fail and absent/different versions receive no approval. The
+new inactive receipt retains the immutable old source/path/hash so its original
+proof context remains recoverable. Four tests cover exact lineage/preservation,
+version isolation, conflicting bytes, pins and duplicate old proofs.
+
+A diagnostic projection against the reviewed derived554/925 capture finds157
+reusable old files and768pending. This is not a promotion to the new frozen
+source: recover the ordinary checkpoint's exact XML and rerun the reviewer
+against its verified source before committing any migrated partial candidate.
+The old387 proofs stay intact throughout. No broad publisher trust, revocation
+status, native issuer or full security/license approval follows.
+
+The official Kotlin2.4.21 release406599202 publishes manifest asset621287973,
+189123B/SHA25689dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2.
+The [pinned registry](evidence/kotlin-manifest-registry-2.4.21.json) records that
+inspected primary metadata. The GitHub connector's direct release-download
+route returned404; no bytes or new proof were accepted. Use one normal bounded
+collector request for this new version after frozen inventory recovery; do not
+repeat previous unavailable version/publisher captures.

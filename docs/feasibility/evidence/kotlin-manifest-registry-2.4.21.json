@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "publisher_repository": "JetBrains/kotlin",
+  "sources": [
+    {
+      "version": "2.4.21",
+      "release_id": 406599202,
+      "asset_id": 621287973,
+      "release_url": "https://github.com/JetBrains/kotlin/releases/tag/v2.4.21",
+      "asset_url": "https://github.com/JetBrains/kotlin/releases/download/v2.4.21/maven-2.4.21-sha256.txt",
+      "size": 189123,
+      "sha256": "89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2"
+    }
+  ]
+}
