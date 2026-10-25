@@ -1,6 +1,7 @@
-Native-source notice correction: original NDK cpufeatures BSD2 plus module Apache NOTICE.
-Require actual NDK28.2.13676358 source/header/NOTICE pins and eight canonical legal assets
-in both debug/release APKs, source/lock audit, unchanged native alignment,
-core/lint/threeAPK build and established API36 regressions.
-Graph/toolchain/permissions/format availability unchanged; no signing/publication/delivery.
+Review-only Google Play screenshot preview validation checkpoint (2026-10-25).
+App-source baseline: 0395a5e25e12fb8ead8d7c107bcc99cd3dd16f1f
+Build core tests, Android lint, debug/unsigned-release/test APKs and API36 emulator regressions.
+Verify 8 ReviewRenderTest cases and unchanged PNG/WebP export invariants.
+UI-only outline/dimensions and quick background selectors; no change to exported pixels.
+No Pixel 9 Pro XL acceptance or signing, merge, tag, release or publication.
 profile=current
