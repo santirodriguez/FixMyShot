@@ -170,3 +170,27 @@ continues to bind the exact raw request, hashes, rows, captures and conclusions.
 No request for the migrated graph has yet been issued: first recover and verify
 the source-frozen checkpoint's exact generated XML, then pin that graph and
 locks in the new request. Its inventory remains non-approving evidence.
+
+## Source-frozen migrated build — f9434ab9 inventory requested
+
+Ordinary Actions40160890302/build121072016773 passed core69/lint/three APKs
+with unchanged committed version locks. Downloaded build12586877386 matches
+size28691208B/SHA2569f97cabc4b853400c956bdcf65cc934a3d6945505a7a59a780fcfd47102f82a6,
+CRC/source/archive246-file Git tree/build-input audit and actual native/legal
+checks. API36 is still in progress; build success alone does not close it.
+
+The exact frozen [XML](evidence/gradle-baseline-f9434ab9.xml) has487components/
+858artifacts, all858 identical to the derived554/925 capture subset. It contains
+all364coordinates in the current three version locks. The derived whole-report
+experiment captured67additional files/components not exercised by this normal
+build; do not conflate its count with the frozen build snapshot. The retained
+[root report](evidence/buildscript-f9434ab9.txt) binds actual owning selection.
+
+The standalone security request now pins this frozen XML, all three locks and
+native source:488queries including WebP, with explicit per-lock runtime/other
+scopes. It does not rerun publisher capture. The separate publisher request
+collects only the new official Kotlin2.4.21 checksum manifest; the independent
+rebuild request pins this exact source/tree and actual unsigned APK11835411B/
+SHA256ae45b1fbefa652c851278f9a720c90597e34ece6eaebd93ff9ac7a5f640f29ab.
+These independent requests can run while API36 finishes; all actual terminal
+reports/bytes still require review. No trust/security/license approval follows.
