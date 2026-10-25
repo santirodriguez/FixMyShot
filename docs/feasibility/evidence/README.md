@@ -156,3 +156,27 @@ passed actual SDK/build/eight-asset/native/API36 and local report replay; see
 android-5d568a7e.json, ndk-source-5d568a7e.json and source-audit-5d568a7e.json.
 Independent40197042011 passed; independent-rebuild-5d568a7e.json records actual
 22-member archive/source/tree/core69 checks and full unsigned byte equality. All evidence is small source text.
+
+
+## Runtime44 source copies, JetBrains six checksums and actual APK exposure
+
+The current publisher subset is294/858,564pending. runtime-source-review-ebfe90ec.json
+and runtime-source-report-ebfe90ec.json pin44exact AndroidX runtime artifact
+bytes, canonical routes and directory/blob membership. The prepared raw ZIP
+runtime-publisher-source-ebfe90ec.zip is1243209B/SHA256
+84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb,
+Git blob663b7776cf98f6aedd1de0567a6ffc662e891c3f,94safe regular unique members.
+Local CRC/all manifest entries pass; remote upload remains PENDING.
+
+kotlin-release-source-2.4.21.xml is the complete exact original publisher
+release-source checksum record. kotlin-source-checksum-review-2.4.21.json
+pins its release commit/blob/SHA256, the288→294 replay and all16remaining
+runtime identities. No PGP or whole trust approval is claimed.
+[Complete replay](../google-source-copy-review.md) preserves244→288→294.
+
+apk-tooling-types-5d568a7e.json records actual accepted debug/release DEX hashes,
+definitions/type counts and zero matches for all six tooling package families.
+tooling-risk-review-5d568a7e.json maps all49advisory IDs/18components to those
+families while leaving build-operation risk open. agp933-security-comparison/
+retains original official POMs and precise comparison limits. These text
+reviews require neither an Android rebuild nor a redundant unchanged OSV scan.

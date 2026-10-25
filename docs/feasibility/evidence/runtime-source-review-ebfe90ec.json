@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "scope": "EXACT_GOOGLE_RELEASE_RUNTIME_SOURCE_COPY_REVIEW",
+  "metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "app_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+  "prior244_review_sha256": "38c8e5c17d2fcc40f38f73e2728ec99e52ad49d71fc46cda325ae486c5659ee0",
+  "capture_report_sha256": "7386dfc8bf09a1ecdccd69efff6a50fd3d9b7ed70a5b5cf1d74a38f56ac5f2e0",
+  "collector_reviewer_sha256": "32444850b73e8ac97113d24c5338fd06409e4475855286aa9da7d19b1a0e8889",
+  "source_repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "source_commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "source_tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "lookups": 44,
+  "exact_files_verified": 44,
+  "new_types": {
+    "aar": 25,
+    "jar": 4,
+    "module": 15
+  },
+  "old244_proofs_unchanged": true,
+  "historical387_proofs_unchanged": true,
+  "intermediate_reviewed": 288,
+  "intermediate_pending": 570,
+  "intermediate288_review_sha256": "1fc1f4351872a87f63df853443ff2a07f6126fc245624390db2129613d2bd7fb",
+  "pgp_signature_claim": false,
+  "namespace_wide_trust": false,
+  "active_gradle_policy_changed": false,
+  "raw_package": {
+    "path": "docs/feasibility/evidence/runtime-publisher-source-ebfe90ec.zip",
+    "bytes": 1243209,
+    "sha256": "84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb",
+    "git_blob_sha1": "663b7776cf98f6aedd1de0567a6ffc662e891c3f",
+    "safe_regular_unique_members": 94,
+    "crc_and_every_manifest_entry": "PASS_LOCAL",
+    "remote_persistence": "PENDING_MANUAL_UPLOAD"
+  }
+}

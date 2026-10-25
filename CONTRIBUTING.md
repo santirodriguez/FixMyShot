@@ -321,3 +321,29 @@ scripts/check-ndk-native-notices.py against the actual source-pinned NDK and
 retains its small raw source inputs/report. An SDK/hash/canonical-text mismatch
 fails instead of approving a different source. The APK checker now requires
 eight canonical legal assets. See [the owner](docs/feasibility/native-source-review.md).
+
+
+## Runtime source-copy and actual APK exposure review
+
+`scripts/review-runtime-source-copies.py` captures/replays exact runtime-selected
+AndroidX AAR/JAR/module files from the already inspected immutable AOSP release.
+Pins include frozen metadata, prior receipt, app lock, producer, capture report
+and exact Git directory/blob membership. Collection is bounded96rows/120s/
+32MiB/six workers, with no redirects/retries or downloaded-code execution.
+Unavailable same-release outcomes prevent automatic recapture. Run
+`python3 scripts/test-runtime-source-copies.py` (six offline cases). Preserve
+large raw archives through the documented evidence path; capture is not upload.
+
+`scripts/review-kotlin-source-checksums.py` checks a separately pinned official
+release-source checksum record for exact JetBrains-owned files only. Foreign
+publishers, adjacent metadata and blanket namespace trust are excluded. Four
+offline cases use the retained original publisher record. See the complete
+[replay owner](docs/feasibility/google-source-copy-review.md).
+
+`scripts/audit-apk-tooling-exposure.py` reads actual APK DEX class definitions
+and type references for the six matched tooling package families. Six offline
+cases include positive/multidex and malformed-input boundaries. Absence is
+package evidence only; do not mark build operations or whole security safe.
+The [security owner](docs/feasibility/dependency-security-review.md) separates
+actual APK exposure from residual build risk. These read-only analysis tools
+change no app input and do not require a new Android build by themselves.

@@ -221,3 +221,63 @@ components lie outside this frozen scan. The corresponding raw report, original
 49detail responses and derived complete replay are in the evidence package.
 Its actual uploaded bytes at98bdedb9 match size/SHA256/Git blob/CRC/manifest;
 remote evidence persistence is verified. No strict policy, whole security/license or device approval follows.
+
+
+## Actual packaged tooling-family exposure —source5d568a7e
+
+The unchanged frozen scan still has49advisory IDs across18tooling components;
+no new scan or vulnerability count is claimed. A read-only DEX parser checked
+the actual accepted debug and unsigned release APKs, identified by their
+existing exact SHA256. It validates DEX header/file integrity, bounded string/
+type/class tables and all standard multidex members, then examines actual
+class definitions and type descriptors. Six offline tests include positive
+matches, the tenth DEX, exact package boundaries, malformed tables/integrity
+and duplicate/missing payload refusal. No downloaded code is executed.
+
+Debug contains17705class definitions/22565type references; release contains
+16986definitions/20769references. Both contain zero definitions and zero type
+references under io.netty, org.apache.commons.lang3, org.apache.http,
+org.jose4j, org.bouncycastle and org.jdom2. All18matching Maven coordinates map
+to these six families. The
+[actual package report](evidence/apk-tooling-types-5d568a7e.json) and
+[component/49-ID mapping](evidence/tooling-risk-review-5d568a7e.json) retain
+per-DEX hashes/counts and every advisory's selected scope. This strengthens
+package-inclusion evidence; it does not cover reflection/dynamic code loading,
+all Android platform libraries, actual exploitability or build-host safety.
+The known package hashes and unchanged graph bind this result to5d source.
+
+| Remaining build operation boundary | Review disposition |
+| --- | --- |
+| UTP Netty HTTP/HTTP2/SPDY/proxy/CORS/SNI/TLS/decompression and Windows-specific operations | Tool/configuration ownership established; endpoint/input reachability and compatible owning-tool fixes remain open. No finding is waived merely because the current runner is Linux or the app lacks these classes. |
+| Commons Lang ClassUtils recursion | Review actual AGP/lint/UTP call sites and lengths of attacker-controlled class names; no universal non-execution assertion. |
+| HttpClient URI/authority handling | Root's4.5.14 selection does not remove lint/UTP4.5.6. Review the owning downloader/listener operations and redirects. |
+| bundletool jose4j compressed JWE and jetifier JDOM XML parsing | Review enabled operations and untrusted encrypted/XML inputs through their owning tools; dependency presence alone neither proves exploitation nor clears it. |
+| Bouncy Castle ASN.1/name constraints/LDAP/GOST/certificate algorithms | Review the selected algorithms, parsing and certificate/key inputs in their owning build tools. No app-key/signing operations were performed. |
+
+Existing build controls were inspected: contents:read workflows on GitHub-hosted
+ubuntu-24.04, immutable action pins, checkout persist-credentials:false, no
+signing-secret configuration in these build jobs, central dependency repository
+control with FAIL_ON_PROJECT_REPOS and explicit official repositories. The
+independent rebuild starts from empty caches. These constrain impact and
+reproducibility; they do not authenticate every dependency, isolate all network
+inputs or eliminate49known vulnerable-version matches. Remaining issuer trust
+and actual build-operation applicability/remediation stay open.
+
+## Newer owning-tool candidate examined without another migration
+
+Official [AGP9.3 release notes](https://developer.android.com/build/releases/agp-9-3-0-release-notes)
+list9.3.3, minimum Gradle9.5.0/JDK17 and default NDK28.2.13676358. A bounded
+read-only comparison of official9.2.1/9.3.3 root POMs plus9.3.3 repository,
+sdk-common and lint POMs found unchanged owner inputs: bundletool1.18.3,
+jetifier1.0.0-beta10, httpmime4.5.6, repository→Compress1.27.1 and
+sdk-common→bcpkix/bcprov1.79. Raw original POMs/URLs/SHA256 and observed direct
+edges are in [the comparison](evidence/agp933-security-comparison/comparison.json).
+
+This is POM evidence, not a newly resolved/conflict-selected candidate graph or
+qualified9.3.3build. No claim all49findings persist unchanged in every newer
+stack is made. Merely choosing that newer version would not establish
+remediation of these unchanged routes; avoid an otherwise unmotivated rebuild
+and repeat migration. Current accepted AGP9.2.1/Gradle9.4.1/Kotlin2.4.21 stay
+unchanged. Review owning operations/fixes before selecting another coherent
+stack; no forced leaf override, automatic risk acceptance or active generated
+trust follows from this comparison.

@@ -65,9 +65,10 @@ CRC and every manifest entry; remote persistence is verified.
 Source/native notices, all required attribution and broader legal compatibility
 still need their appropriate review. This does not assert universal copyright
 or patent clearance, whole build-tool licensing or complete artifact trust.
-The current publisher subset is244/858,614pending, with all six critical files
+The current publisher subset is294/858,564pending, with all six critical files
 corroborated. The [source-copy review](google-source-copy-review.md) distinguishes
-21 exact official Google POM copies from the earlier signature/manifest proofs.
+exact official Google source copies and JetBrains-owned checksum records
+from detached signatures and earlier release manifests.
 
 
 ## Native notice follow-up

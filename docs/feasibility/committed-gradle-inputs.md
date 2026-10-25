@@ -317,3 +317,16 @@ and historical387 proof entries are unchanged. The
 [source-copy owner](google-source-copy-review.md) provides the immutable release
 anchor, raw evidence and offline replay. Forty absent copies at this release
 remain pending and are excluded from automatic lookup at the same commit.
+
+
+## Current294/858 publisher subset and16-file runtime priority
+
+The current inactive JSON/XML append44exact AndroidX runtime source-copy proofs
+(25AAR/4JAR/15module) and six exact JetBrains-owned release-source checksums
+to the previous244. All earlier244 and historical387 proofs remain unchanged.
+Current294reviewed/564pending:212reviewed/16pending among runtime-associated
+files and82reviewed/548pending among other captured files. No adjacent metadata,
+foreign-publisher checksum, namespace-wide trust or active strict policy is
+approved. The [owner](google-source-copy-review.md) pins exact methods, source
+anchors, raw94-member ZIP pending manual upload and offline replay. No app/build
+inputs, locks, wrapper, CI marker or accepted5d package qualification changed.

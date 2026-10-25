@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "scope": "JETBRAINS_OWNED_EXACT_SOURCE_CHECKSUM_RECORDS_ONLY",
+  "repository": "JetBrains/kotlin",
+  "release_tag": "v2.4.21",
+  "commit": "9180ce6a7a7d3627f88b424717583f28ddca052d",
+  "path": "gradle/verification-metadata.xml",
+  "source_sha256": "60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a",
+  "source_git_blob_sha1": "274270d7a46c4e1b6ce6734a32dca82721e58368",
+  "prior288_review_sha256": "1fc1f4351872a87f63df853443ff2a07f6126fc245624390db2129613d2bd7fb",
+  "new294_review_sha256": "9dc7776b37f4fd9e8eee1c62e4dff3ce687ab507971489b72a7f01a3041c3e77",
+  "new294_xml_sha256": "6ab2153c7e16887870f0e9f81f2202415ab67b05d51be93dbac3e1dad6ec9230",
+  "exact_files_verified": 6,
+  "runtime_files": 3,
+  "other_files": 3,
+  "old288_proofs_unchanged": true,
+  "foreign_publisher_checksums_ignored": true,
+  "adjacent_pom_or_module_not_approved_by_jar": true,
+  "pgp_signature_claim": false,
+  "active_gradle_policy_changed": false,
+  "current_counts": {
+    "runtime_reviewed": 212,
+    "other_pending": 548,
+    "other_reviewed": 82,
+    "runtime_pending": 16
+  },
+  "remaining_runtime_identities": [
+    [
+      "com.google.guava",
+      "listenablefuture",
+      "1.0",
+      "listenablefuture-1.0.jar"
+    ],
+    [
+      "com.google.guava",
+      "listenablefuture",
+      "1.0",
+      "listenablefuture-1.0.pom"
+    ],
+    [
+      "com.squareup.okio",
+      "okio",
+      "3.4.0",
+      "okio-3.4.0.module"
+    ],
+    [
+      "com.squareup.okio",
+      "okio-jvm",
+      "3.4.0",
+      "okio-jvm-3.4.0.jar"
+    ],
+    [
+      "com.squareup.okio",
+      "okio-jvm",
+      "3.4.0",
+      "okio-jvm-3.4.0.module"
+    ],
+    [
+      "org.jetbrains",
+      "annotations",
+      "23.0.0",
+      "annotations-23.0.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.jar"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-bom",
+      "1.9.0",
+      "kotlinx-coroutines-bom-1.9.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core",
+      "1.9.0",
+      "kotlinx-coroutines-core-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core-jvm",
+      "1.9.0",
+      "kotlinx-coroutines-core-jvm-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-bom",
+      "1.7.3",
+      "kotlinx-serialization-bom-1.7.3.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core",
+      "1.7.3",
+      "kotlinx-serialization-core-1.7.3.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core-jvm",
+      "1.7.3",
+      "kotlinx-serialization-core-jvm-1.7.3.module"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.jar"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.module"
+    ]
+  ]
+}
