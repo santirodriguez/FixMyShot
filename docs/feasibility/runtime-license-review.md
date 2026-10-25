@@ -90,3 +90,11 @@ independently regenerated/restored; see [its receipt](evidence/source-kit-e516aa
 This stages recoverable project/native material without changing packaged
 notices or claiming complete source distribution for every other runtime
 component. Source-kit generation is offline and does not build/sign/publish.
+
+
+The [runtime source review](runtime-source-review.md) now stages94published
+companions and mapped upstream Protobuf4.28.2 sources, with complete archive
+hash/CRC/member-digest replay. Seven empty companions were checked against
+actual exact-hash frozen binaries: all contain zero class implementations;
+original small resource/manifest/rule texts are retained. This source-material
+staging does not approve additional publisher files or final distribution.

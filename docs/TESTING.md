@@ -1242,3 +1242,19 @@ copy only the final classes-*.log files into a fresh input directory; report.jso
 is output, not an input log. Replay on another host cannot rehash vanished CI
 JAR paths. No new emulator/physical acceptance, dependency change or active
 verification policy follows from this operation review.
+
+
+## Runtime source companion stage
+
+Six offline source-capture cases pass. The actual bounded primary-repository
+capture staged all94requested companions with zero errors,9,438,796bytes and
+3,673source files. All94CRC/full SHA256/sorted member-digest sets replay. The
+separate mapped Protobuf4.28.2 upstream archive passes actual CRC/SHA256 and
+contains159Java sources. Seven empty source companions were compared with
+actual frozen-hash binaries; outer/nested class counts are zero. See
+[the source receipt](feasibility/evidence/runtime-source-companions-e516aa89/review.json).
+All38no-binary metadata files also match their exact frozen hashes; static
+source-owner relations are34variant redirects, three BOM descriptors and one
+dependency-only stdlib wrapper. Full original metadata is retained. This is
+source-material staging, not another Android/app/device run, binary
+reproduction or publisher approval. No active verification policy changed.

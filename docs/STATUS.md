@@ -108,3 +108,14 @@ retains every finding, source/trace limits and explicit reopen triggers. The
 initial observer failure is preserved; the corrected run does not erase it.
 This closes the current scoped operation-review batch, with publisher/source,
 physical and separately authorized signing/distribution gates still open.
+
+
+Runtime source preparation now covers94published companions,3,673code files,
+and the mapped upstream Protobuf4.28.2 source archive (159Java files), with zero
+capture errors and actual hash/CRC replay. Seven empty companions match exact
+frozen binaries containing no class implementations; their small original
+manifest/resource/rule text is retained. [The owner](feasibility/runtime-source-review.md)
+records the38exact metadata source-owner mappings (34redirects, three BOMs
+and one dependency-only stdlib wrapper). Actual packaged-source closure and
+final corresponding-source/build-material review remain explicit. Publisher325/858 and physical/signing gates are unchanged.
+No new Android CI or heavy upload is needed for this source-staging batch.

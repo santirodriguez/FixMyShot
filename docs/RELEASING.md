@@ -102,8 +102,11 @@ the existing full-byte reproduction procedure. The helper refuses existing
 This kit supplies exact project/full-WebP sources; NDK helper sources and the
 AndroidX native excerpts are already in its project evidence. It is not a mirror
 of every Maven/SDK dependency, a complete offline build or completion of all
-corresponding-source obligations. Complete the remaining third-party source/
-distribution review before calling the final release source-complete. The
+corresponding-source obligations. The [runtime source stage](feasibility/runtime-source-review.md) now adds94
+published companions and mapped upstream Protobuf sources with exact archive
+pins; it remains separate from this project/WebP kit. Complete the remaining
+source/build-material and distribution review before calling the final release
+source-complete. The
 accepted CMake configuration remains unchanged; this does not validate a new
 host or change the compiled source. The binary archive is regenerable from
 public pinned Git objects; do not duplicate it as another large Git evidence
