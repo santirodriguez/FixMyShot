@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "control_commit": "3af69cddb1b71986e5dfaf15d88a017c58874cd9",
+  "run_id": 40157298004,
+  "job_id": 121061295076,
+  "status": "PASS_DERIVED_LOCKED_READ_BUILD",
+  "scope": "EXPERIMENTAL_DERIVED_CHECKOUT",
+  "base_source": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+  "recipe_revision": 2,
+  "validation_revision": 3,
+  "artifact_id": 12585487667,
+  "artifact_bytes": 10384752,
+  "artifact_sha256": "46961961a7869be4220df62efcff87ee75a78808a38d5b8500bf89bdcea9aee4",
+  "safe_unique_members_crc_control_source": "PASS",
+  "archive_members": 44,
+  "core_tests": 69,
+  "core_failures_errors_skipped": 0,
+  "strict_tasks_executed": 219,
+  "strict_build": "CORE_LINT_DEBUG_RELEASE_TEST_APK_PASS_NO_LOCK_OR_METADATA_WRITES",
+  "strict_build_flags": [
+    "--no-build-cache",
+    "--rerun-tasks"
+  ],
+  "strict_inputs_sha256": {
+    "app/gradle.lockfile": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "core/gradle.lockfile": "c20b13045f651150ce29a8110b370464e5256f4631f57d44d251706960e0c93d",
+    "codec-native/gradle.lockfile": "98bc94c4dafce1674c2230be7a7613433b9585f8f3fcdbab1fe81d9fe9ea5e76",
+    "gradle/verification-metadata.xml": "97647f7516e3b06284dadb6c291955263a34b1e342cdc9f84e2e135bb5e89009"
+  },
+  "logs_sha256": {
+    "strict-read-build.txt": "b8c3d2f4fb60daaa8bd17dd70c141fcc44a1b85cd789c7681245051b58bc4d02",
+    "common-lock-update.txt": "254de2a80836f73446b3ac3a85c963b153b0688d55a3cab86004db08862d3b24"
+  },
+  "lock_correction": {
+    "module": "org.jetbrains.kotlin:kotlin-stdlib-common:2.4.21",
+    "added_app_configurations": [
+      "debugRuntimeClasspath",
+      "debugUnitTestRuntimeClasspath",
+      "releaseRuntimeClasspath"
+    ],
+    "other_derived_inputs": "BYTE_IDENTICAL_TO_PREVIOUSLY_INCORPORATED_INPUTS_EXCEPT_GENERATED_METADATA",
+    "manual_lock_entry": false
+  },
+  "native": "9_LIBRARIES_3_ABIS_ELF_ZIP_ALIGNMENT_PASS",
+  "legal": "5_CANONICAL_FILES_PASS_COMPLETE_LICENSE_REVIEW_FALSE",
+  "generated_metadata": {
+    "components": 554,
+    "artifacts": 925,
+    "active_policy": false
+  },
+  "frozen_source_api36": "PENDING_NORMAL_CHECKPOINT",
+  "publisher_security_license_signing_distribution_approved": false
+}

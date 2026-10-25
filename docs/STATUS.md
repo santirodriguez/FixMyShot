@@ -7,10 +7,11 @@ the [full blueprint](blueprints/first-functional-release.md) and
 The import/edit/PNG/lossless-WebP workflow is implemented. The latest complete
 Android checkpoint and byte-identical independent rebuild are sourcead075068.
 The migrated AGP9.2.1/Gradle9.4.1/Kotlin2.4.21 inputs are committed but not
-qualified: frozen-source run40156666980 failed on a Kotlin common lock entry
-before API36. See [the exact receipt](feasibility/evidence/android-ff01c514.json).
-Validation revision3 of the isolated migration is testing Gradle-generated
-lock completion followed by a build that cannot write locks or metadata.
+qualified. Initial frozen-source run40156666980 failed on a Kotlin common lock
+entry before API36. The corrected experiment40157298004 passed a full219-task
+read-mode rebuild with unchanged lock/XML hashes; its exact Gradle-generated
+app-lock correction is now incorporated. A new ordinary frozen-source/API36
+checkpoint is requested. See the [correction receipt](feasibility/evidence/toolchain-migration-3af69cdd.json).
 
 | Remaining work | Concrete completion evidence | Dependency |
 | --- | --- | --- |

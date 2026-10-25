@@ -1,5 +1,7 @@
 Source-frozen migrated toolchain qualification checkpoint.
-Reviewed derived inputs: experiment40152344573/controlafea6e4563322e58212d6d8ab7623d73dceeb696.
+Reviewed derived inputs: experiment40157298004/control3af69cddb1b71986e5dfaf15d88a017c58874cd9.
+Gradle-generated common-lock correction: three runtime associations, no version override.
+Derived read-mode rebuild passed all219executed tasks; lock/XML hashes unchanged.
 AGP9.2.1 / Gradle9.4.1 / Kotlin-Compose2.4.21 / BuildTools36.0.0;
 JDK17 / compile-target36 / min26 / NDK28.2.13676358 / CMake3.22.1 / threeABIs retained.
 Require committed official wrapper guard, reviewed lockfile no-drift, core/lint/

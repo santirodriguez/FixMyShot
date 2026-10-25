@@ -144,3 +144,18 @@ This tests a bounded correction; no hand-written lock entry, disabled lock
 validation, version override or claim of source-frozen acceptance is introduced.
 Only exact observed output followed by this read-mode pass can be considered
 for incorporation and another ordinary source-frozen/API36 checkpoint.
+
+## Locked-read correction passed; normal qualification requested
+
+Actions40157298004/control3af69cdd passed. Gradle's bounded common-module update
+added only debugRuntimeClasspath, debugUnitTestRuntimeClasspath and
+releaseRuntimeClasspath to kotlin-stdlib-common2.4.21 in the app lock. Core/native
+locks and all other incorporated derived inputs are byte-identical. The following
+read-mode build executed all219tasks with no-build-cache/rerun-tasks, no lock or
+metadata writes, and unchanged three-lock/XML digests. Core69, lint/three APKs,
+native9libraries/3ABIs/alignment and five canonical legal files passed.
+The exact [receipt](../feasibility/evidence/toolchain-migration-3af69cdd.json) and
+two raw build logs retain identities, scope and limits. Only the observed generated
+app lock correction is incorporated. Metadata554/925 remains an unauthenticated
+capture, not an active trust policy. The ordinary source-frozen/API36 request is
+renewed; its actual output and security inventory still need independent review.
