@@ -17,10 +17,13 @@ class OkioPublisher(unittest.TestCase):
     def setUp(self):
         record = json.loads((ROOT/'gradle/migration-f9434ab9/dependency-provenance-review.json').read_bytes())
         if 'okio_publisher_reviews' in record:
-            record.pop('okio_publisher_reviews')
-            record['reviewed_artifacts'] = record['reviewed_artifacts'][:-3]
-            record['reviewed_artifact_count'] -= 3
-            record['remaining_unreviewed_artifact_count'] += 3
+            # Later append-only reviews must not change this historical replay.
+            keys = list(record)
+            for key in keys[keys.index('okio_publisher_reviews'):]:
+                record.pop(key)
+            record['reviewed_artifacts'] = record['reviewed_artifacts'][:294]
+            record['reviewed_artifact_count'] = 294
+            record['remaining_unreviewed_artifact_count'] = 564
         self.args = [(EVIDENCE/'gradle-baseline-f9434ab9.xml').read_bytes(),
                      (json.dumps(record, indent=2)+'\n').encode(),
                      (EVIDENCE/'runtime-publisher-anchors.json').read_bytes(),

@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "3e7b2579718bcaf282bbb5b11ef70003e36dbff5",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e5d0f433a1867bd7da1d126808c2914697bb41a5",
+      "name": "annotation-1.8.1-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b42f964cf4031f26b920efecbfa7651114df2b63",
+      "name": "annotation-1.8.1-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ff30692978136ef83e02456b609ae805e38fa035",
+      "name": "annotation-1.8.1.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d547f710e5ed81a450090b02d122d46df065271e",
+      "name": "annotation-1.8.1.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "32a12cd147928898c4e81c8e27d598ed60d22d75",
+      "name": "annotation-1.8.1.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c8cf035e65ddf512083927031438be3c86044918",
+      "name": "annotation-1.8.1.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f8303fc6a77ab8720ae3598abae1ad5380953b76",
+      "name": "annotation-1.8.1.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e552c3733bb11b44f6129ad8689e22748a733017",
+      "name": "annotation-1.8.1.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e16358e9301891448309a30468f3c485d2778ff7",
+      "name": "origin.json"
+    }
+  ]
+}

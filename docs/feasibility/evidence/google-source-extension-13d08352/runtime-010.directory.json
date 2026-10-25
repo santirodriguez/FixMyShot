@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "730df03943d95f6da67001fd6104cb86f95e477b",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ed10d325fdf0a7295e745a203d40d6fa6a5cc5e6",
+      "name": "lifecycle-common-jvm-2.8.7-sources.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "33aa8f1ae60b1cf9a1ef35208d60e13b4ba7cfc6",
+      "name": "lifecycle-common-jvm-2.8.7-sources.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "27480c02dcd3aaa473f1d4c70e8f35180d82ef02",
+      "name": "lifecycle-common-jvm-2.8.7.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "3ff9a25e3ff18562cf6f9f89b6f2a6cc72d1dee4",
+      "name": "lifecycle-common-jvm-2.8.7.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ee9bf3095850d0bb3b29c0ea4aca056c64589cb7",
+      "name": "lifecycle-common-jvm-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d560058f1ba5593e8095f72df2fd17d52ea78cfb",
+      "name": "lifecycle-common-jvm-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0c8b93318eec078cd1d7a641463737f08640770f",
+      "name": "lifecycle-common-jvm-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "66d3bce68620518982785d14ae072ac0a2924d6b",
+      "name": "lifecycle-common-jvm-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "8dedae3d7b4629a6ac6c1cd3609e33ebd10af03c",
+      "name": "origin.json"
+    }
+  ]
+}

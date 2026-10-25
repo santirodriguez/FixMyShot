@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "8f5541a5aad56b3b98c9c57f78aeb27231d14301",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1795a2a750c329c2fec967f3a37c9ba13d7efbdc",
+      "name": "lifecycle-runtime-2.8.7-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "af5d6c39fc44dcb9b849d6926fb13a4eb88660da",
+      "name": "lifecycle-runtime-2.8.7-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1f172c423256265bb222b342bebf4cdf37e890a1",
+      "name": "lifecycle-runtime-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "93ed05974b9b9b1ceb2f036563a66091a30f54b9",
+      "name": "lifecycle-runtime-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5d1dcea31779bb699836d593018382fe82d5a035",
+      "name": "lifecycle-runtime-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "10d1b7286b32ca8f1255f72f9c4a51352bb2bbda",
+      "name": "lifecycle-runtime-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5169051d5c9d1696cbe9fa1e675388a3a05880ba",
+      "name": "lifecycle-runtime-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "93f435b363ea6c130ef7f01c9803f8e77a22a5d7",
+      "name": "lifecycle-runtime-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "44284ae82baa9e14b4490c95f0a8cdbe656c90f0",
+      "name": "origin.json"
+    }
+  ]
+}

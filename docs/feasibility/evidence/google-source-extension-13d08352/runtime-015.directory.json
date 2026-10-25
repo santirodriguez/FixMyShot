@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "e6a4e685ae21adad759b23255cbf2220885cce0a",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b82363dcd95f62c5152cda0e755cb219dacb6629",
+      "name": "lifecycle-runtime-android-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9d300b302c0c549acdeaaafe1c311a2197618979",
+      "name": "lifecycle-runtime-android-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1aad30de28f49ae4ecd71556afd2659e0d72c059",
+      "name": "lifecycle-runtime-android-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f829bf42aafa2db94373526afdbde5000f0e57f3",
+      "name": "lifecycle-runtime-android-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d0facb34d6038b23c04f820446dcb55a7c8cfdad",
+      "name": "lifecycle-runtime-android-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "268704d3d1a4b29a863c6088546f6a62d4dc8b09",
+      "name": "lifecycle-runtime-android-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4dbd7270df19011d33069803ce87db08a4968305",
+      "name": "origin.json"
+    }
+  ]
+}

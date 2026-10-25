@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "2beab86a47e70fc9e2d13623aecb99b6435ea4a7",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ed4cf5afcd806c444327bcefe0c363207a9d4087",
+      "name": "concurrent-futures-ktx-1.1.0.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "24a651f938a746f90240695a52b214c15ff2a013",
+      "name": "concurrent-futures-ktx-1.1.0.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "eaa0c6788121186862871a98a89d75586e76a836",
+      "name": "concurrent-futures-ktx-1.1.0.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c14847f22617c0823d8b74650d91d32252b08ef7",
+      "name": "concurrent-futures-ktx-1.1.0.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "52d0e75014f322dbb1cd23fa04a8970be6fb4976",
+      "name": "concurrent-futures-ktx-1.1.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9299c2350acc13408e887a690308f5bdc08ea8b4",
+      "name": "concurrent-futures-ktx-1.1.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "003ded46fbd59d64ceffb1c6cac5c791bf9cd85b",
+      "name": "origin.json"
+    }
+  ]
+}

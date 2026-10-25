@@ -160,7 +160,7 @@ Independent40197042011 passed; independent-rebuild-5d568a7e.json records actual
 
 ## Runtime44 source copies, JetBrains six checksums and actual APK exposure
 
-The current publisher subset is297/858,561pending. runtime-source-review-ebfe90ec.json
+The current publisher subset is325/858,533pending. runtime-source-review-ebfe90ec.json
 and runtime-source-report-ebfe90ec.json pin44exact AndroidX runtime artifact
 bytes, canonical routes and directory/blob membership. The prepared raw ZIP
 runtime-publisher-source-ebfe90ec.zip is1243209B/SHA256
@@ -174,9 +174,9 @@ kotlin-release-source-2.4.21.xml is the complete exact original publisher
 release-source checksum record. kotlin-source-checksum-review-2.4.21.json
 pins its release commit/blob/SHA256, the288→294 replay and all16remaining
 runtime identities. No PGP or whole trust approval is claimed.
-[Complete replay](../google-source-copy-review.md) preserves244→288→294→297.
-The historical six-checksum receipt retains its own 294 checkpoint; current
-okio-publisher-review-3.4.0.json lists the 13 remaining runtime identities.
+[Complete replay](../google-source-copy-review.md) preserves244→288→294→297→325.
+The historical six-checksum receipt retains its own 294 checkpoint; the
+okio-publisher-review-3.4.0.json receipt records its historical 13-file runtime checkpoint.
 Three exact Okio SHA512 signatures validate with square-issuer-key-2021.asc,
 a complete public bundle for the existing independently anchored issuer.
 The original stripped key remains rejected. No new binary upload is required.
@@ -187,3 +187,15 @@ tooling-risk-review-5d568a7e.json maps all49advisory IDs/18components to those
 families while leaving build-operation risk open. agp933-security-comparison/
 retains original official POMs and precise comparison limits. These text
 reviews require neither an Android rebuild nor a redundant unchanged OSV scan.
+
+
+## Google module and exact Guava extension
+
+[Capture and standalone replay](google-source-extension-13d08352/CAPTURE.md)
+retain all original text evidence for 26 new exact Google module copies and
+ownership/directory proof for two exact Guava files using their existing capture.
+The original report's runtime collector label is disclosed, not treated as
+selection evidence. The reviewer recomputes the 47 exact pending Google modules;
+21 absent directories remain unapproved. No foreign publisher or namespace is
+trusted, and no new binary upload is required. review.json records current
+325/858,533pending: runtime217/11 and other108/522, with prior297proofs unchanged.

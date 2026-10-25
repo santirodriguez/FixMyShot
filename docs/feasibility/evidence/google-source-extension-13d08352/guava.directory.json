@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "bf30c117c3419e5f2d36b44d42be4866c72fa71f",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5e676925fa90da084afc26f2c9ae38c8201ec044",
+      "name": "listenablefuture-1.0.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ba991dedf9b0465b57c8382213f03699c1d45f19",
+      "name": "listenablefuture-1.0.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "3bd8c01db211326957dfcf2440a326b46b1c2ab8",
+      "name": "listenablefuture-1.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "3b45c1360ad60c958ee158014d938ccefdee9e50",
+      "name": "listenablefuture-1.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "470fe748784b97eeab2edf6197ed9aea7fbad4e2",
+      "name": "origin.json"
+    }
+  ]
+}
