@@ -281,3 +281,64 @@ and repeat migration. Current accepted AGP9.2.1/Gradle9.4.1/Kotlin2.4.21 stay
 unchanged. Review owning operations/fixes before selecting another coherent
 stack; no forced leaf override, automatic risk acceptance or active generated
 trust follows from this comparison.
+
+
+## Owning-operation review and a blocked legacy route
+
+The [operation receipt](evidence/build-operation-review-e516aa89/review.json)
+and original selected source files advance applicability review without changing
+any frozen vulnerability count or publisher trust. Source e516aa89 explicitly
+sets android.enableJetifier=false and rejects every present value except the
+literal false during settings evaluation, before Android project configuration.
+This blocks the configured old-library conversion route, rather than pretending
+the AGP-owned JDOM2.0.6 dependency has been upgraded or removed.
+
+The exact published jetifier-processor1.0.0-beta10 XmlUtils.kt constructs a
+SAXBuilder and builds the incoming XML without setExpandEntities(false) in that
+method. The retained JDOM advisory identifies that missing mitigation. Android's
+[AndroidX documentation](https://developer.android.com/jetpack/androidx) documents
+the migration flag as false by default; the explicit settings guard additionally
+prevents a CLI/user-home true override from silently enabling this route.
+Actual override rejection and successful guarded compilation/core69 were
+verified from downloaded [40208750635](https://github.com/santirodriguez/FixMyShot/actions/runs/40208750635)
+reports/source/bytes. Its final literal cross-source comparison failed solely
+on the expected120-byte Git source marker; all465other payloads are identical.
+JDOM remains on the tooling classpath. This control is not a claim about every
+possible direct caller, arbitrary plugin/init script or deliberate policy edit.
+
+For jose4j, all420src/main files from the exact official bundletool1.18.3 source
+commit586a43a450712a1067f3d92cf7574dee68226302 were read and rehashed against
+Git blobs; git fsck passed. Four production files reference jose4j, all in code
+transparency/JWS operations. The original files, full source manifest and exact
+published jose4j0.9.5 source excerpts are retained. Merely finding no JWE import
+would be inadequate: JsonWebSignature.fromCompactSerialization is an inherited
+base factory that can construct a JWE. Inspection follows that factory through
+setCompactSerializationParts: it parses fields, while decryption/decompression
+is deferred to JWE plaintext access. Bundletool casts the returned object to
+JsonWebSignature before payload access, so a five-part JWE fails that cast first.
+The inspected JWS getters return payload bytes without JWE decompression.
+
+This is a **source-level inference: no compressed-JWE decompression route found
+in these inspected calls**, not dynamic tracing or proof of tool-JAR/source
+byte equivalence. Normal configured tasks build tests/lint/APKs; no configured
+AAB/code-transparency CLI task was found. The selected vulnerable version and
+possible oversized-input/other-caller risks remain visible. Do not reduce the
+49advisory/18component inventory or declare the whole build safe. Revisit on
+bundletool/jose4j changes, new JOSE consumers or transparency/AAB operations.
+Netty, Commons Lang, HttpClient and Bouncy Castle applicability/owning fixes,
+remaining issuer trust and complete distribution-source review remain open.
+
+The first focused hosted job compared a clean build of the **new guarded source**
+with accepted5d APK bytes. Literal equality correctly failed because the embedded
+source revision changed. The separate strict payload comparison verifies both
+exact expected source records and465identical remaining entries, with unchanged
+entry metadata; it records marker compression and local-header relocation.
+Actual native alignment passes separately. This does not relabel the failed
+run as green or weaken the independent byte comparator. A second clean build
+of the same e516source completed SUCCESS in40209306060. Its actual downloaded
+APK equals the first complete file (11841246B/SHAb677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd).
+The source archives match the reconstructed468-file tree; core69 and actual
+override rejection pass in both. [The independent receipt](evidence/build-operation-review-e516aa89/independent-e516aa89.json)
+records archive/CRC/source/actual bytes. Neither run is emulator/device acceptance
+or production signing approval. No version, dependency or pixel pipeline
+changed, and unchanged application evidence retains its source-bound scope.

@@ -1,0 +1,168 @@
+{
+  "schema": 1,
+  "scope": "TWO_OWNING_BUILD_OPERATIONS_SOURCE_REVIEW_AND_JETIFIER_SETTINGS_GUARD",
+  "app_baseline_source": "5d568a7efc90df280551a4c4c8fb5e5f454f6177",
+  "guarded_source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "guarded_source_tree": "6089799f41df2239ab111e172b7989cccee07bf9",
+  "validation_control_commit": "81b53324044ee27f40a8d585f9fb03226b208a0c",
+  "validation_run_id": 40208750635,
+  "validation_job_id": 121215249780,
+  "validation_status": "ACTUAL_GUARD_REJECTION_CORE69_AND_TWO_CLEAN_BUILDS_PASS; FIRST_CROSS_SOURCE_LITERAL_COMPARE_RETAINED_AS_FAILURE",
+  "dependency_versions_changed": false,
+  "active_dependency_verification_changed": false,
+  "publisher_reviewed_count": 325,
+  "publisher_pending_count": 533,
+  "osv_snapshot_advisory_ids": 49,
+  "osv_snapshot_matched_components": 18,
+  "osv_match_counts_reduced": false,
+  "jdom": {
+    "coordinate": "org.jdom:jdom2:2.0.6",
+    "advisory": "GHSA-2363-cqg2-863c",
+    "owning_route": "AGP -> jetifier-processor:1.0.0-beta10 -> XmlUtils.createDocumentFromByteArray -> new SAXBuilder().build(input)",
+    "source_observation": "The exact published processor sources show no setExpandEntities(false) or external-entity disabling in this method. Do not call this dependency patched.",
+    "control": "Explicit false property; settings rejects every non-null value except literal false before Android project configuration. Workflow must demonstrate true-override rejection and successful default build.",
+    "disposition": "CONFIGURED_JETIFIER_ROUTE_BLOCKED__ACTUAL_TRUE_OVERRIDE_REJECTED_AND_DEFAULT_BUILD_PASSED",
+    "residual": "JDOM remains on the AGP classpath. Other direct callers, arbitrary plugins/init scripts and deliberate source-policy changes are not cleared."
+  },
+  "jose4j": {
+    "coordinate": "org.bitbucket.b_c:jose4j:0.9.5",
+    "advisory": "GHSA-3677-xxcr-wjqv",
+    "owning_release": "google/bundletool@586a43a450712a1067f3d92cf7574dee68226302 (1.18.3)",
+    "source_review_files": 420,
+    "jose4j_referencing_production_files": 4,
+    "observed_flow": "Bundletool code transparency uses JWS and casts JsonWebStructure.fromCompactSerialization to JsonWebSignature before payload access. The base factory can instantiate JWE, so a missing JWE import alone would be insufficient evidence. Exact jose4j sources defer JWE decryption/decompression until plaintext access; a five-part JWE fails the JWS cast first. JWS payload getters return payload bytes without the JWE decompress route.",
+    "disposition": "NO_COMPRESSED_JWE_DECOMPRESSION_PATH_FOUND_IN_INSPECTED_CALLS__SOURCE_INFERENCE",
+    "configured_tasks": "Normal workflow builds tests/lint/APKs; no configured AAB/code-transparency CLI task found. This is source/task inspection, not dynamic call tracing.",
+    "residual": "No claim of bytecode/source equivalence for tool JARs, exhaustive reflection/reachability, immunity to oversized ordinary inputs or whole-build safety. The vulnerable version remains selected."
+  },
+  "remaining_security_families": [
+    "Netty",
+    "Commons Lang",
+    "HttpClient",
+    "Bouncy Castle"
+  ],
+  "release_security_gate": "OPEN",
+  "raw_text_files": [
+    {
+      "path": "build-e516aa89.json",
+      "bytes": 1579,
+      "sha256": "c05706b4b4bf0392c0fbb7f632496ee8ea710e35a7daeed81355bae901804ef3"
+    },
+    {
+      "path": "bundletool-AddTransparencyCommand.java",
+      "bytes": 27149,
+      "sha256": "1b0b1cac80e60177514eecfdde911345a506c0bfb41b1e4abf3a61d239d6c0c7"
+    },
+    {
+      "path": "bundletool-ApkTransparencyCheckUtils.java",
+      "bytes": 9091,
+      "sha256": "089a028c0d44ca3728816ec5f55f80a1008995ad08b3ca48e45b0ad050fd3213"
+    },
+    {
+      "path": "bundletool-BundleTransparencyCheckUtils.java",
+      "bytes": 7016,
+      "sha256": "11edcf0b0fa9c04164886758cce3c95e03c4981fbaf79515d279b2f2daa7fddc"
+    },
+    {
+      "path": "bundletool-CodeTransparencyCryptoUtils.java",
+      "bytes": 6116,
+      "sha256": "28e629f3e0567b514fb70d1be3df7edc940d9130b3a3d245201c3bc9b838f17c"
+    },
+    {
+      "path": "bundletool-CodeTransparencyValidator.java",
+      "bytes": 1926,
+      "sha256": "b34ed79b91a29b12e169b110d94fac90d22e3c7979cb3c86c2a9ab22ac110ab5"
+    },
+    {
+      "path": "bundletool-build.gradle",
+      "bytes": 8936,
+      "sha256": "53b76fdb9953712fea27a02616c5d67647e8b658620ef5bff5f929bb100d995b"
+    },
+    {
+      "path": "bundletool-gradle.properties",
+      "bytes": 25,
+      "sha256": "7a4d99d86892d1c6aa42fd6985e374e39339575f300f696c2d6ea3d4eed0412a"
+    },
+    {
+      "path": "bundletool-main-source-manifest.json",
+      "bytes": 119816,
+      "sha256": "e3bbe40093bc737685508afe1db067e4a56273b910d92d873df5479fb7f1ba6f"
+    },
+    {
+      "path": "first-literal-comparison.json",
+      "bytes": 1000,
+      "sha256": "45558bdba2394d70c0b38c409e656b8bee943d87ab3282e57cb57aee33fda32d"
+    },
+    {
+      "path": "independent-e516aa89.json",
+      "bytes": 1283,
+      "sha256": "467d05c4ec3791dfa2914592af124f3451ac834167a46a7d30a36e3c65c108c2"
+    },
+    {
+      "path": "jetifier-XmlUtils.kt",
+      "bytes": 4696,
+      "sha256": "9430d4f6f20d765c261369e0e6629d1e474c9e95de016a0b095a50abed586a87"
+    },
+    {
+      "path": "jetifier-override-rejection.txt",
+      "bytes": 777,
+      "sha256": "ccdf4c6e4e64539138c0dcad0330cb47137dbe72465d6113b98e368ea3b5ef15"
+    },
+    {
+      "path": "jetifier-source-report.json",
+      "bytes": 584,
+      "sha256": "6c4a72ff0db2d194085e11dcfe56f5f84412152bd538ded81f5cf4c021d726b1"
+    },
+    {
+      "path": "jose4j-DeflateRFC1951CompressionAlgorithm.java",
+      "bytes": 3066,
+      "sha256": "7a98f396c716553a923fd89f21732b01a32936fd3410a54d233af06cad8b7f45"
+    },
+    {
+      "path": "jose4j-JsonWebEncryption.java",
+      "bytes": 15090,
+      "sha256": "db9df2e32e072e7df617aa2275db2e78fc1f9f1175cd98b157c2f599e12938f2"
+    },
+    {
+      "path": "jose4j-JsonWebSignature.java",
+      "bytes": 15092,
+      "sha256": "703626ef8db79ccb45e92e4d428866cdc64656f5706f885bb117861924a78e44"
+    },
+    {
+      "path": "jose4j-JsonWebStructure.java",
+      "bytes": 13801,
+      "sha256": "0371b9ee25bad05136d2c163f04db496de6f33a5089b9f17c1de9945e5ef6f01"
+    },
+    {
+      "path": "jose4j-source-report.json",
+      "bytes": 1201,
+      "sha256": "a7a9dae4a5e9167823fa81834e3819d8bd120b1eac3d7fe18d86dad6aaf0fe0a"
+    },
+    {
+      "path": "legal-e516aa89.json",
+      "bytes": 1511,
+      "sha256": "173e83b477c809237023242aaa8d857ff542678fa0528eb29f0e07123a371de1"
+    },
+    {
+      "path": "native-e516aa89.json",
+      "bytes": 1738,
+      "sha256": "4a85aec53cd61c6e7aa08bb9b8cdc3afc6a86aeb5458814466f261b35c7e8c68"
+    },
+    {
+      "path": "second-literal-comparison.json",
+      "bytes": 999,
+      "sha256": "bded931ecba6ce250d6a20f6675a6b73064e46e8a199cdbee0a7cba636a537e9"
+    },
+    {
+      "path": "source-transition.json",
+      "bytes": 73192,
+      "sha256": "e49a9ea8226136df9670e272f32bda6ef0e5cf6ec6804452c797485d27765277"
+    }
+  ],
+  "full_downloaded_source_archives_persisted": false,
+  "primary_source_archive_checksums_in_reports": true,
+  "raw_source_selection_authenticates_additional_frozen_artifacts": false,
+  "same_source_rebuild_control_commit": "6bdc1c446c2ddb0a057123332fe340c03d5d7bfa",
+  "same_source_rebuild_run_id": 40209306060,
+  "same_source_rebuild_status": "PASS_ACTUAL_FULL_BYTES_IDENTICAL"
+}

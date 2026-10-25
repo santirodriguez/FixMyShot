@@ -319,14 +319,24 @@ anchor, raw evidence and offline replay. Forty absent copies at this release
 remain pending and are excluded from automatic lookup at the same commit.
 
 
-## Current294/858 publisher subset and16-file runtime priority
+## Current325/858 publisher subset and11-file runtime priority
 
-The current inactive JSON/XML append44exact AndroidX runtime source-copy proofs
-(25AAR/4JAR/15module) and six exact JetBrains-owned release-source checksums
-to the previous244. All earlier244 and historical387 proofs remain unchanged.
-Current294reviewed/564pending:212reviewed/16pending among runtime-associated
-files and82reviewed/548pending among other captured files. No adjacent metadata,
-foreign-publisher checksum, namespace-wide trust or active strict policy is
-approved. The [owner](google-source-copy-review.md) pins exact methods, source
-anchors, raw94-member ZIP pending manual upload and offline replay. No app/build
-inputs, locks, wrapper, CI marker or accepted5d package qualification changed.
+The inactive JSON/XML preserve all earlier exact proofs and historical387
+entries. Subsequent stages added44AndroidX runtime copies, six JetBrains-owned
+release-source checksums, three real Okio signatures,26Google module copies and
+two exact Guava copies. Current325reviewed/533pending:217reviewed/11pending
+runtime-associated files and108reviewed/522pending other files. No adjacent
+metadata, foreign-publisher checksum, namespace-wide trust or active strict
+policy is approved. The [owner](google-source-copy-review.md) pins every method,
+source anchor and complete offline replay. The94-member ZIP upload was verified
+at f7c1fa7f; the latest57text evidence files are committed at2cc5a10d.
+
+The later e516aa89 build guard explicitly disables Jetifier and rejects true or
+malformed overrides in settings, before configuring Android projects. This does
+not remove JDOM from the AGP classpath or change any dependency version. Its
+first clean build40208750635 passed core69/default assembly/override rejection;
+literal cross-source bytes differ only in the expected Git revision marker,
+with465identical payloads. Same-source40209306060 completed SUCCESS; both actual downloaded unsigned
+APKs match full bytes, with identical468-file source archives and69core tests
+in each. The independent byte comparator is unchanged. Existing5d application evidence retains
+its own scope. No active dependency policy or ordinary emulator request changes.

@@ -16,7 +16,9 @@ used the exact source and empty caches. The downloaded unsigned APK is identical
 to the original full file: 11,841,246 bytes, SHA256
 `cc902a395a73ca8c18d98b03a36b4f823ee33cdf3d59e88f4aaf5b5f2eeff360`.
 This closes bounded build/runtime/reproducibility acceptance for that source.
-Subsequent source-review tools and evidence change no app/build inputs.
+Later source-review evidence preserves those application inputs. The subsequent
+e516aa89 settings guard changes build configuration; its clean-build and exact
+payload/reproducibility checks are described below.
 
 The Protobuf BSD and compiled NDK cpufeatures notice omissions are corrected.
 The 133-component runtime declaration catalog is packaged; its 133 POMs and
@@ -42,12 +44,40 @@ package families. This narrows packaged exposure; build-operation risk remains
 open. No generated trust policy is activated. See the
 [security owner](feasibility/dependency-security-review.md).
 
-| Remaining work | Required evidence |
-| --- | --- |
-| Dependency/security/source review | Remaining 533 exact issuer/metadata files, owning-tool applicability/remediation, deliberate strict policy and final corresponding-source distribution materials |
-| Physical acceptance | Pixel 9 Pro XL plus a second family: HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers/batches/process death/storage pressure/gallery/receivers, TalkBack/text scaling/rotation/languages/16 KiB runtime |
-| Distribution preparation | Separately authorized signing identity, manifest/certificate checks, sequential install/upgrade/Obtainium, authentic captures and final receipts/docs |
+## The path to delivery
+
+1. **Finish the technical delivery controls.** Application implementation and
+   bounded automated acceptance are recorded above. Dependency authenticity,
+   owning-tool security applicability and corresponding-source materials are
+   still open. The533pending files are one dependency-review backlog, not533
+   product features. Further issuer attempts need a materially new primary
+   anchor; recorded unavailable routes must not be retried automatically.
+2. **Complete real-device acceptance.** Pixel9ProXL and a second hardware family:
+   HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers,
+   batches/process death/storage pressure/gallery/receivers, accessibility,
+   languages and16KiB runtime. These checks are postponed, not waived.
+3. **Prepare and verify distribution.** Separately authorized signing identity,
+   manifest/certificate checks, sequential install/upgrade/Obtainium, authentic
+   captures and final receipts/docs. No store submission or deployed website
+   is required for the initial GitHub delivery.
+
+The latest technical change blocks Jetifier activation at the settings boundary,
+addressing a known AGP→Jetifier→JDOM operation. A focused clean-build comparison
+of guarded source e516aa89 against accepted5d runs in
+[40208750635](https://github.com/santirodriguez/FixMyShot/actions/runs/40208750635).
+Actual default compilation/core69 and true-override rejection pass. Its overall
+literal cross-source comparison failed only because the Git source marker
+changed; the other465APK payloads match. A second same-source clean build,
+[40209306060](https://github.com/santirodriguez/FixMyShot/actions/runs/40209306060),
+passed: both downloaded same-source APKs match full bytes
+(11,841,246B/SHA256b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd),
+with69core tests, the actual override guard, eight legal assets and native
+alignment verified. [The receipt](feasibility/evidence/build-operation-review-e516aa89/independent-e516aa89.json)
+retains the exact scope. No new device acceptance follows. The vulnerable
+classpath version is not claimed patched. A separate source-level bundletool/
+jose4j call review narrows its compressed-JWE finding; full security remains open.
+See the [operation receipt](feasibility/evidence/build-operation-review-e516aa89/review.json).
 
 HEIC/AVIF remain unavailable for ordinary export pending their gates. JXL is
-explicitly deferred for 0.1.0. Legacy diagnostics are best effort; skipped means
+explicitly deferred for0.1.0. Legacy diagnostics are best effort; skipped means
 NOT RUN. Signing, merge and publication remain separately gated.

@@ -3,7 +3,7 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The current candidate is unreleased `0.1.0-alpha.1`, versionCode `1`. Production signing, independent reproducibility, install/upgrade and the image/device gates remain open. This guide does not authorize signing, merge, tags or publication.
+> **Preparation, not publication.** The current candidate is unreleased `0.1.0-alpha.1`, versionCode `1`. Production signing, install/upgrade and image/device gates remain open. Bounded unsigned reproducibility is verified for source `5d568a7e` and the subsequent guarded build `e516aa89`; see [current evidence](STATUS.md). This guide does not authorize signing, merge, tags or publication.
 
 ## The release kit
 
@@ -50,7 +50,18 @@ After inspecting a baseline build, commit an explicit [rebuild request](../.ci/i
 
 The controller validates the request, then the workflow checks out the exact requested source into the normal workspace. The controller/request survive outside that checkout. Before building, require the pinned commit/tree, pristine worktree, empty Gradle user home and absent project outputs. Build with the source's SDK/wrapper/locks and --no-build-cache --rerun-tasks, run core tests, inspect the actual release APK libraries and compare unsigned SHA256 plus byte length. A mismatch fails after writing its report; keep the actual APK for local entry/native-digest diagnosis instead of rerunning blindly.
 
-Artifact names identify the workflow control commit and run attempt; evidence/source-sha.txt, source-tree.txt, source.tar and independent-rebuild.json identify the compiled source. Inspect the actual run and downloaded artifact before accepting the comparison. A fresh [GitHub-hosted VM](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) and an empty cache are execution properties, not dependency/publisher authentication. Even identical APK bytes leave strict dependency verification, physical acceptance and signing gates open. This same-environment byte comparison also does not prove portability to every build host.
+Artifact names identify the workflow control commit and run attempt; evidence/source-sha.txt, source-tree.txt, source.tar and independent-rebuild.json identify the compiled source. Inspect the actual run and downloaded artifact before accepting the comparison. Compare two builds of the **same compiled source commit**. AGP embeds that Git
+revision in META-INF/version-control-info.textproto, so even a build-settings
+change can alter the full APK digest while all application payloads stay equal.
+For a diagnosed cross-source transition, scripts/compare-apk-source-transition.py
+checks both exact expected source records and every other entry, rejects changed
+payloads/entry metadata/duplicates and records any compression/header relocation.
+Its four refusal/positive checks run with scripts/test-apk-source-transition.py.
+It is not a byte-identical rebuild verdict. Keep a failed literal comparison
+visible, establish the actual new baseline, then use the unchanged strict
+byte comparator for another clean build of that same source.
+
+A fresh [GitHub-hosted VM](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) and an empty cache are execution properties, not dependency/publisher authentication. Even identical APK bytes leave strict dependency verification, physical acceptance and signing gates open. This same-environment byte comparison also does not prove portability to every build host.
 
 ## 03 · Verify the exact signed candidate
 
@@ -112,7 +123,7 @@ checkout of the exact candidate source. It requires one copy of each mandatory
 asset, matching the canonical bytes, and refuses missing, duplicate or altered
 entries. The ordinary Android workflow checks both debug and unsigned release
 packages and preserves the JSON reports. The four offline checker cases run
-with `python3 scripts/test-apk-legal.py`. A pass establishes those seven files
+with `python3 scripts/test-apk-legal.py`. A pass establishes those eight files
 only: it does not approve transitive copyright/NOTICE completeness, dependency
 licenses, corresponding source, publisher trust or distribution.
 

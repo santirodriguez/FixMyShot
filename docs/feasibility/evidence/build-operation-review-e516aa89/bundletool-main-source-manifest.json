@@ -1,0 +1,2534 @@
+{
+  "source_commit": "586a43a450712a1067f3d92cf7574dee68226302",
+  "tree": "32ca1f0ca398d902c06e2fa9b0bc8dd74437a050",
+  "files": [
+    {
+      "path": "src/main/dex_src/README.md",
+      "git_blob_sha1": "dc04c60c5c7891d690b83e3c62eb5e100b143a81",
+      "bytes": 60,
+      "sha256": "303bd668aea63c701b7c15f0c9746b9f6326d0076e36c03315c4732d14801828"
+    },
+    {
+      "path": "src/main/dex_src/com/google/android/archive/README.md",
+      "git_blob_sha1": "8d3bc6212ff3ce2b5eca1fcbcd0997c79f355fd0",
+      "bytes": 134,
+      "sha256": "b43e6ec1b501a3d4f1cb393df460d229129dcc05578abdc759da7bb3f3b3979a"
+    },
+    {
+      "path": "src/main/dex_src/com/google/android/archive/ReactivateActivity.java",
+      "git_blob_sha1": "3c7c95f3e9a617a4895aaaf7f284abd7ac7ac94a",
+      "bytes": 6150,
+      "sha256": "27cd48a30903eddeff9a0898dffa4a5e8da1a8cc5c6c0ac89d1b59b7b84e4e87"
+    },
+    {
+      "path": "src/main/dex_src/com/google/android/archive/UpdateBroadcastReceiver.java",
+      "git_blob_sha1": "387ac038be50739a1b59bc9e80867c586e7316c5",
+      "bytes": 1312,
+      "sha256": "ffc208103fda9050bed58b16745c29c617d68e01d4712f87b81037eeb37ca6c9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/BundleToolMain.java",
+      "git_blob_sha1": "8f1ddbe2d7b289c2ac8aca436f49704bc3ad8f69",
+      "bytes": 8953,
+      "sha256": "eb24cc67584f8f9667b53e47fc407ec781a4a7a880d0fff4116be427ce291054"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/androidtools/Aapt2Command.java",
+      "git_blob_sha1": "cdfd016fc1fe4385806652db2399d7924bdf2ff2",
+      "bytes": 4787,
+      "sha256": "24a95005c75696ac6217a7e4fcdf6cd996dc8e11183016110ba417255b550ecd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/androidtools/AdbCommand.java",
+      "git_blob_sha1": "987ab3694f4c21c4a4716054127bc7c6bf1b69bb",
+      "bytes": 3858,
+      "sha256": "a0da765f1a38890b4a9b0270435fbb6e0a1848635022bce57f122d2a9ff94e20"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/androidtools/CommandExecutor.java",
+      "git_blob_sha1": "631f8784a9e8beb03a9eb07b6904ecd085492982",
+      "bytes": 1636,
+      "sha256": "90d119ed4bd90b4c80f58c985c974c0c7d9e63f863604ed0a0211bad5e976087"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/androidtools/DefaultCommandExecutor.java",
+      "git_blob_sha1": "7ff7b4a20a82b10573ca60e387567c3c468c1dac",
+      "bytes": 4481,
+      "sha256": "831d0be60b0328b11451359cee46f79218903c16f925e5c38a6535e2f31559d9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/androidtools/P7ZipCommand.java",
+      "git_blob_sha1": "776c7d8f80e05addd7f21436ab9a7970c6c2452a",
+      "bytes": 2106,
+      "sha256": "f2f86ebbe7b3d5aeeeb01f0fc9a417c055ee2630ed69419414dedb2163c65701"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/archive/ArchivedAndroidManifestUtils.java",
+      "git_blob_sha1": "59df7caadd7be5d4ae153a9448a797fafef7e247",
+      "bytes": 11838,
+      "sha256": "bc413ea20790f5cf1a6ff9e2715e88da7092e090513ed99a0c50ad9c8b979eca"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/archive/ArchivedApksGenerator.java",
+      "git_blob_sha1": "e251c09f26ed0293c6c6ea943c38b595f561ffe3",
+      "bytes": 6501,
+      "sha256": "8c9b8b50416f6fd08d79a1fa2d1283c8cbda6e41efc6f4cdc96ddf7516de3628"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/archive/ArchivedResourcesHelper.java",
+      "git_blob_sha1": "478b17c062967ff6213b689f020807416c83e5dc",
+      "bytes": 15976,
+      "sha256": "002d9dba4f17845938a8a02dbe0bff5ae30ca71cd3c545f8a8005656946b2126"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/archive/ArchivedSplashScreenLayout.java",
+      "git_blob_sha1": "b21a4d19009394a753f27370f4d4439748b9eb8b",
+      "bytes": 6407,
+      "sha256": "2ad24862ada98c1b71b2a3f81085ef5d5e771c2ad59783acd548b64c7acabf83"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/archive/drawable/README.md",
+      "git_blob_sha1": "5a214406057f1fad452d695edb40985ead8e6f68",
+      "bytes": 59,
+      "sha256": "bac74701dc997d1d10a4ac03f1bd2de95cc86c40a20354bb13854ca5692f7e90"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/AddTransparencyCommand.java",
+      "git_blob_sha1": "680288c9666aca57a22048b25cde84a113aa120e",
+      "bytes": 27149,
+      "sha256": "1b0b1cac80e60177514eecfdde911345a506c0bfb41b1e4abf3a61d239d6c0c7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/AppBundleModule.java",
+      "git_blob_sha1": "a793120b46d42081a09e8ed29deb89ed2b4d2b3e",
+      "bytes": 1455,
+      "sha256": "c74cd66b88fb7a1eba1443057f77b929901ceb4d13c09042dc236c116961e409"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildApksCommand.java",
+      "git_blob_sha1": "49a9c9afebe5930daff79edcf46e559b216ef301",
+      "bytes": 91089,
+      "sha256": "43e775a5c52edb3ecf67f398a8cad81fdfaee53390d7a8e25a0233ead28dec6f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildApksManager.java",
+      "git_blob_sha1": "3f80dba87af2e19aa438e57dcffd24bd25f2971f",
+      "bytes": 28128,
+      "sha256": "2ee6132f8dec064aba781ded401d3f0dc6e82571e7c7d39130fa11b743480e40"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildApksManagerComponent.java",
+      "git_blob_sha1": "6751151543a579d54f0952da3fd92c93d591d277",
+      "bytes": 1418,
+      "sha256": "c148ea617019fcf0e0c647fbb610ec13cc9767162586c4fbf2561ebeaaf4dd57"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildApksModule.java",
+      "git_blob_sha1": "01cfa03f5ab93cee1a76d386a048d7c9db3a9a26",
+      "bytes": 8462,
+      "sha256": "d0e3add6bbff5f9f3cad0c455b7c80a0cceb1869835dcc8e4e9464f9e6e7ad1d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildBundleCommand.java",
+      "git_blob_sha1": "c55e3c32e5b5f106fd390ef3d9acc2aafaa2076d",
+      "bytes": 15542,
+      "sha256": "cf345be52e8fd1f7ec5ea7bf1e696f9ef11d98b965786056c90d540389916fd7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksCommand.java",
+      "git_blob_sha1": "5d2a5d2e1d19c882a298dae76005752546a7dd5a",
+      "bytes": 24700,
+      "sha256": "ef88feb8b1e1f43a2b622d129da121e6e6f983aa6c2bfc368ab2a20d4a2f055b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksForAppCommand.java",
+      "git_blob_sha1": "34e42ddfa7250a35133259e098f1569ee9fb0d2d",
+      "bytes": 24726,
+      "sha256": "eef5afb313c02a34792e557b9627f0f23f707f664797fce825f89fd84026088c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksForAppManager.java",
+      "git_blob_sha1": "b4f5622acac3f8b394dd33568214b0bbfbd92f57",
+      "bytes": 4004,
+      "sha256": "8001908a99fd06ff6fd41e0298e80852505c3ec9064782270771e67eb5bab9c3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksForAppManagerComponent.java",
+      "git_blob_sha1": "1e40f5b1579a805cebb7ca64df43c9913c8f1d97",
+      "bytes": 1469,
+      "sha256": "632fd447535a4076da682d907e2c3b30ddd8cf7b241de5fe1046f2d9efe6a25a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksForAppModule.java",
+      "git_blob_sha1": "d4bb356b3bc6d1e73d29fbdf57b7597f9f8fb810",
+      "bytes": 4829,
+      "sha256": "f597a306207b3f8a3016f86f989c4f4587b1ae938b4ff8425fc777026e3f12e3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksManager.java",
+      "git_blob_sha1": "a30b53fe5e7806ba025e84efd673ab1dcfce3d2c",
+      "bytes": 5865,
+      "sha256": "94e3dd89e0b6ec3d2d34c6dd89e7255d2213af3e60377666bc2e089b551b55fc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksManagerComponent.java",
+      "git_blob_sha1": "7d52ce7edd4fe1cea377ec553ab2194328267d29",
+      "bytes": 1428,
+      "sha256": "dd5b8b0c18be4761ed9a07a94972e4e2e824e0e9cf40726077fc9298ddc4f922"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkApksModule.java",
+      "git_blob_sha1": "456e4d9c68979501dd8b40f66b199bc4a5f21271",
+      "bytes": 4801,
+      "sha256": "3a8e54541824e7a772c647e995f8582c82d9279159bd5f725bed116ec0d44ea7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkAsarCommand.java",
+      "git_blob_sha1": "165686640704681130da5bf545b512cefc69d8a4",
+      "bytes": 7626,
+      "sha256": "6ef20493b974f855fea7a44e9821182c5d8c4704f48781e7757d025e7c23a82e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkAsarManager.java",
+      "git_blob_sha1": "a3652569541dc0d374622ebf2a43b0e88f7b0c8c",
+      "bytes": 3438,
+      "sha256": "5556c92692ec53baf05db54032a86a35f5fb2d9cfd9db2c7fa3ada4220ccb9ae"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkAsarManagerComponent.java",
+      "git_blob_sha1": "fa1129b41024602b5cb2b28121901822c7347355",
+      "bytes": 1289,
+      "sha256": "3a313ef83afadb7f46b747ef3eb4d50803e0178b77f1af1addf4ada7a91b9087"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkAsarModule.java",
+      "git_blob_sha1": "f84f02eed6c61ccacdd7e3b17e03c455724a697f",
+      "bytes": 802,
+      "sha256": "1b2296625a1644fc2631daca0f85c232a50c44e8ca6ebf42668d6435866b84ef"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BuildSdkBundleCommand.java",
+      "git_blob_sha1": "2d43eaa4990808d57c91bc2873c090f7a5a21963",
+      "bytes": 17989,
+      "sha256": "1460c3f9fa88e4dabc644132dbc0001dd81657ed27fca3ee648b5905d68f4a83"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BundleConfigModule.java",
+      "git_blob_sha1": "1f65d853b571930b5a09f924bbc3aff7c0fefc38",
+      "bytes": 1136,
+      "sha256": "a14b42ce9ad31b0e25f0b9e10805eca5a8cf87da8e44ce3a098c3ebdeb039e41"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/BundletoolModule.java",
+      "git_blob_sha1": "98066d35e8cd6762cf643bfbb80f41a3b5c7c439",
+      "bytes": 1428,
+      "sha256": "389561e70df3300e6a9cb882395c8de9178cf82fec795bb6b0a8ea5f64855a4d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/CheckTransparencyCommand.java",
+      "git_blob_sha1": "bc7739911527cbda6de66029e66111648fb3a84b",
+      "bytes": 19373,
+      "sha256": "3770fbfb33fe1f2f5bc84ad9a6569d718f4f759b0c81a105f3fd157cc191ea8e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/CommandHelp.java",
+      "git_blob_sha1": "8ad2bced8b26f15f119f7de80a56f58489a96345",
+      "bytes": 11020,
+      "sha256": "f31c3e139de36d7bcd0efc7b15160177ca7181b95bc2518d677a9bedfd7f78e5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/CommandScoped.java",
+      "git_blob_sha1": "fc57c4b8fe36731c8480beb6ff071a2675edfbf1",
+      "bytes": 971,
+      "sha256": "03124ada89dcd06ef906c05b22540b7d4a758b19757c0ce79c7f5ef39e739dd7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/CommandUtils.java",
+      "git_blob_sha1": "14654ff5b81620b1941fdc3674a77cdc47a9be4c",
+      "bytes": 3004,
+      "sha256": "0cc7f971bb15c567bbf9fa6a6a81604dd8558dee7c7070961e9b976b7dd54d97"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DebugKeystoreUtils.java",
+      "git_blob_sha1": "e2cc230ba58894d85deb3172bb138294e188cf10",
+      "bytes": 3358,
+      "sha256": "277a2d4ba2fe6d371a0caa48df53740ea78beb6e7f4bb90e18a4137127784c38"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DumpCommand.java",
+      "git_blob_sha1": "e6e37184ba216034aa32360aa1bd8d5ae6b16ec5",
+      "bytes": 14360,
+      "sha256": "f156f6c1935bd7fef2b10f4a1527ad1e57d268404d68b53f9022a75eea25f9b7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DumpManager.java",
+      "git_blob_sha1": "4c96e560521ba53c589e3448e6f4046803640c0f",
+      "bytes": 4345,
+      "sha256": "9e72fa9dd8f131b71452da86da4217dcdcbe161d60dea346f7c0e4d2aea95310"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DumpManagerUtils.java",
+      "git_blob_sha1": "81351eaa94f7340ebb80cbbf1db7e51fd8641a06",
+      "bytes": 8487,
+      "sha256": "87de8a5dc10557b0be0bf18f57773f9ba8552bbc536d2e74eecd5ccaf68aec89"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DumpSdkBundleCommand.java",
+      "git_blob_sha1": "d71750f76d18df2f5203db49f8c621dc17fa7f13",
+      "bytes": 12744,
+      "sha256": "02e8c54eac4dbec45ac8867c0550d6aa3483b45368761f35caa54c7ad1b660c0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/DumpSdkBundleManager.java",
+      "git_blob_sha1": "c0f55342d69d80fac9ea972380ad0350e4f4ae59",
+      "bytes": 3723,
+      "sha256": "b973947a39f38c083ed2f0ec3ba35f28cb31e79df2c4d3f02755b48fdc8784f8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/EvaluateDeviceTargetingConfigCommand.java",
+      "git_blob_sha1": "6b2f51ff67c604bd0cfcfb1c60f684f100b9ff61",
+      "bytes": 13866,
+      "sha256": "a09960f5577fec7efbd872157359fdf7dd60eef205f8370001b3ac57f7493e83"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/ExtractApksCommand.java",
+      "git_blob_sha1": "d7e45e06ae39e73887e2bec1b10a37e6a972e4c3",
+      "bytes": 20544,
+      "sha256": "ec49e69625e6117d4d3e3fee381dc089b8da66be29f8e5ffdc65849e874c6105"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/GetDeviceSpecCommand.java",
+      "git_blob_sha1": "5f7b7ecfcc58569d11ce8966c3b045e73b22810c",
+      "bytes": 11924,
+      "sha256": "ac95a982e2b56f78f877f624acdc304d4ec980f78b9d58e2be917d9419ab3f59"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/GetSizeCommand.java",
+      "git_blob_sha1": "ca2e6e61407aa787e57caee99cfb0b89815acec6",
+      "bytes": 15538,
+      "sha256": "941a5a387da67029c42e5a9f3d719b2d2ba57610949db72c58ce997e1a219716"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/InstallApksCommand.java",
+      "git_blob_sha1": "506f941095802f170a10f7b23f6c27f0e88cb54b",
+      "bytes": 23801,
+      "sha256": "b52aba6c4f27c956b7efd167cc53213d6d3fe9273c57cc9df067f30ee6456cc0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/InstallMultiApksCommand.java",
+      "git_blob_sha1": "38a6ad3bd2956ddd7d59de6deb2d6f1175d9c874",
+      "bytes": 29577,
+      "sha256": "b46b0eb61b83ef9cb8fdcfc31a02d84b3502b4dbbf3b523db7331907463ac2c8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/PrintDeviceTargetingConfigCommand.java",
+      "git_blob_sha1": "c72a011afb07d0882b30a9f2286dc1eb19c57c38",
+      "bytes": 13438,
+      "sha256": "199ff2802db818c5781485547b87fb4e6ff419beef91908476a0919e0265c9a4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/ValidateBundleCommand.java",
+      "git_blob_sha1": "c75b7cd14b2021d24094cf0ac9fa65cb05356392",
+      "bytes": 5062,
+      "sha256": "1c98ecd5cb7fc45298b37171e215c6c7ada277f5826771cd1cfe585dbb4370df"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/commands/VersionCommand.java",
+      "git_blob_sha1": "d3621734c4d2473c86663cdf872669344b77801e",
+      "bytes": 1714,
+      "sha256": "b6006d92f66dedb871f04a7cde193491b2e4cd6895d7d46984fd52656e57004f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AbiMatcher.java",
+      "git_blob_sha1": "7e222bda353503d346012d53bd9ee875138585e7",
+      "bytes": 5092,
+      "sha256": "57cf6cf420a400ea652a5fff0a0e24e48a6b56640389ca9f82f42d2b7bf3bb3f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AbstractSizeAggregator.java",
+      "git_blob_sha1": "b3626886f6475b3b7cc61ec782bb22376856a4fa",
+      "bytes": 18543,
+      "sha256": "16bc5c208eda8d63d977319e9325a582ff93d8dfceb2da44c88efa429c01df9f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AdbRunner.java",
+      "git_blob_sha1": "3c33d2b0b3d8b8d467c25b91d9db3cafeb8bd3f3",
+      "bytes": 3461,
+      "sha256": "8ffed9d2e82866b0bd4fc0b58b64e7ae5d5c6f879d8c61d263ba25a09d0d6dd3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AdbServer.java",
+      "git_blob_sha1": "088ede324801c2f37b34eaad13421ffabef8140b",
+      "bytes": 2322,
+      "sha256": "15c6ca2ba846b1e5d80df9bf607e4f0234c4f31c17c480e32e021b9181fe6b58"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AdbShellCommandTask.java",
+      "git_blob_sha1": "33e71b54251f28aca6544d9a454010ccbf61c7fa",
+      "bytes": 3421,
+      "sha256": "ae20b2e18f54ddfdd70a1f0c7b60a46679c60c6ca8293ddf7dd3e4834fcdf845"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/ApkMatcher.java",
+      "git_blob_sha1": "64dca46900aa71dda9353eb493785bcfbf848a4e",
+      "bytes": 17244,
+      "sha256": "2da979c22f9caa3ddebc8aa49a20e9d08c414bbc270c212f68074e993fe1d1e4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/AssetModuleSizeAggregator.java",
+      "git_blob_sha1": "09663149514ef4178d0ba9d0275be201dc709835",
+      "bytes": 6116,
+      "sha256": "b87fd7585981716af1eeb6f859b5b0d3bdc5634aacbee50da4804bb2d27c518b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/BadgingInfoParser.java",
+      "git_blob_sha1": "162940be603b4415567c3f389fea48489156d325",
+      "bytes": 2517,
+      "sha256": "bf47246842c6cb8d753fb1ed80f3fe21f543af9f0097cb685c3a2fd16d48b905"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/CountrySetApkMatcher.java",
+      "git_blob_sha1": "28010785c07090871acc89f1efe395e3fcf5b957",
+      "bytes": 3944,
+      "sha256": "4f26471dd70b71d98a632257d5049893d38c8fd8fc9d3dbea2b6592d53f67318"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DdmlibAdbServer.java",
+      "git_blob_sha1": "ef57c5ae8e6ce8335e0b164cdc9e5aacf3369d63",
+      "bytes": 5307,
+      "sha256": "a53ff5c199e5bdf80eadec462647aefb73aea6e480735aa91b280e9b901509ba"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DdmlibDevice.java",
+      "git_blob_sha1": "0f16a47698156e8c299ae38951b6c5ad1009f766",
+      "bytes": 15275,
+      "sha256": "b513f36910eafd1151a5bb74407df5d2be01f40cc79447caa5e5b0cf8c09028d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/Device.java",
+      "git_blob_sha1": "06e0248e7b3c646a38663ca153280d2d4a0fd283",
+      "bytes": 5913,
+      "sha256": "fb33dc048c8219a52566f83ea3c9a390cb89663427a19d879f870d9cf598565e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceAnalyzer.java",
+      "git_blob_sha1": "fea52526c6bd6beae2fc6c9d316ec71758f65fbc",
+      "bytes": 8002,
+      "sha256": "4d3b2a995732a59eb5edc7ff679e08114ba6cb5bbe0d8b80e9060f5128e9a00e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceFeatureMatcher.java",
+      "git_blob_sha1": "398a8d5f45f2259c37accb598646b2dd1e505625",
+      "bytes": 2574,
+      "sha256": "c6ab0a7a92b09c336c6d9d9c1394fb3516b3512214126ab5f5e38043f87f82ed"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceFeaturesParser.java",
+      "git_blob_sha1": "ea6f21444110673237f90cb5af140cdf8deb86ff",
+      "bytes": 1810,
+      "sha256": "87aadf53a6b56bc0412a8e7d0b6ae4cf25c4104abd23a0243ff6de6ff96d3ff4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceGroupApkMatcher.java",
+      "git_blob_sha1": "25164894fa397a8ab331338aee940a2055be9c91",
+      "bytes": 1951,
+      "sha256": "9cf17b69d6ea4e22761df1dca81f93d43c68626b62c2bd9cff675747fc87af2b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceGroupModuleMatcher.java",
+      "git_blob_sha1": "097540ce3a5684d766fc1d224d074c065d90970a",
+      "bytes": 2012,
+      "sha256": "9d69ae71e9b61acab8ad91dded849a127aebbc5b0e25bea02704474ab2e273e7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceSpecParser.java",
+      "git_blob_sha1": "acc048b219e199e309dc30b0aa0869108538482c",
+      "bytes": 4426,
+      "sha256": "a79bfe1631d246932814353879fd4425ae02209d45dba44229595611be3437fc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceSpecUtils.java",
+      "git_blob_sha1": "73b39d877ee8cbcd85d308a385698cb10ffb4760",
+      "bytes": 9616,
+      "sha256": "5be4cf79137364c6b8a87e78b51b03b9821cc866bb458fc38b0055127339b741"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceTargetingConfigEvaluator.java",
+      "git_blob_sha1": "057fe2e93824bc2d697bbbf08c6447f14bcc89da",
+      "bytes": 8029,
+      "sha256": "8e50a3c57aefc491aea4a030e4fe88feae98d548f583d3275549fab751c5b122"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/DeviceTierApkMatcher.java",
+      "git_blob_sha1": "533bf49fcb08ce48a957ae6fac4dc2a206a9c6e1",
+      "bytes": 4162,
+      "sha256": "36d85bcdbec92ae0910b838658e3c5d1db5195d05ed2415d71faddc8338337c0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/GlExtensionsParser.java",
+      "git_blob_sha1": "629374bcdad2d7fa198a5bc133fedcab7d0ec9b2",
+      "bytes": 2600,
+      "sha256": "f30b74f56b0b701be1b9b4eafd4bc23f9ffa8c6f9e799d2012ddebf05611bef9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/LanguageMatcher.java",
+      "git_blob_sha1": "dc68350dafa7df4df5ba472d057c66d5a655be81",
+      "bytes": 3672,
+      "sha256": "fd4b653b7a81fa462feeb9d0f31707a30d6649cc672f45fd0f750e821ea4c382"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/LocalTestingPathResolver.java",
+      "git_blob_sha1": "462eb2e291b0e3caa3e7bfb6beba4cc70f7db455",
+      "bytes": 1892,
+      "sha256": "fdb61c5f39536cfa5133f4db8e066e7ca453b53f13bdb91210c5867108d93d34"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/ModuleMatcher.java",
+      "git_blob_sha1": "a1473d5275b8b9ceae453a7f9b83def508f24ef9",
+      "bytes": 2109,
+      "sha256": "4d8f35e20fdbceb99f10754d03670e1db7f390302554c0039141468e3a5dbb39"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/MultiAbiMatcher.java",
+      "git_blob_sha1": "dcb80b8d4f2243adfef902c8d586d6dd594a8eb2",
+      "bytes": 5138,
+      "sha256": "52f73e9e4585007ff86180619921df08d85edd1321ae0c6e2865adbc8e5b0c77"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/OpenGlFeatureMatcher.java",
+      "git_blob_sha1": "a17fca61273de87bd860c1b66d89a358fbabe413",
+      "bytes": 2868,
+      "sha256": "b01e173eb6c786bf0f1db007a23f2f448ce466119aa587a1376088109abac50d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/PackagesParser.java",
+      "git_blob_sha1": "297d9fbbc20c1fa2eb44e494dedff5927c8d8379",
+      "bytes": 2443,
+      "sha256": "a78b4294823b26f8afd3797320fb60d293c47ac57f7f5c27c8565d679db52b9b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/ScreenDensityMatcher.java",
+      "git_blob_sha1": "c24cca30cc7cf77c76e71cedd5750a606708b695",
+      "bytes": 2787,
+      "sha256": "eb417beb44250271dc908ff05d54563ec0c2d247b2d55e76666ed6d4aa976666"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/SdkRuntimeMatcher.java",
+      "git_blob_sha1": "e12bc851b11d1370b0147c0e760c42d4ca0242d8",
+      "bytes": 2261,
+      "sha256": "dc20a5cb2a9d873a94516155bd080bba3a563231228b0e4213c8d9db28e748ea"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/SdkVersionMatcher.java",
+      "git_blob_sha1": "cf281c6b828c41d53cad628f0f6d32c2a2195e34",
+      "bytes": 5208,
+      "sha256": "0dbafe8bbdbbed41fc990c6be20f216e7832c0f8fff57081609f855b695e9a2b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/SessionIdParser.java",
+      "git_blob_sha1": "13efbff39cc51f5dc035518bd0276ff81f4e1a61",
+      "bytes": 2183,
+      "sha256": "af5eb4dd42a2aa227584ff5c1eff6d47a5d57aaca56d0fdad378b78babc68d6d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/TargetingDimensionMatcher.java",
+      "git_blob_sha1": "a46fb11086817b24296f82e491ff0db2a1d99441",
+      "bytes": 4789,
+      "sha256": "1c75e57a75b84503ff3b48e6f546edfdc41ebd575c7b33276620eb7d521d56fd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/TextureCompressionFormatMatcher.java",
+      "git_blob_sha1": "e58462362c5b1d44f141dc81bb5d3bfaf0e2f589",
+      "bytes": 6874,
+      "sha256": "9000eb3b93976ad5d0b00b30e7b8a1efaf24b57e04f1b77c9d3bdb965ae5c4b8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/VariantMatcher.java",
+      "git_blob_sha1": "bb45215539b44d8ed817233d508abfff538210e2",
+      "bytes": 6325,
+      "sha256": "d671ac24f3f768597ca7cbe707d6e8432de36447fa892db4dd0011b87e5f36ac"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/VariantTotalSizeAggregator.java",
+      "git_blob_sha1": "f80940d5f8e69930532801b44f1bee66cf931db9",
+      "bytes": 7452,
+      "sha256": "0561d630f435e8d9b3695f833b85e599b5fb3045c7dbd7dc9e555f6490779e1c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/AbiStringParser.java",
+      "git_blob_sha1": "0fde707ce61bf8b7159655744d4564e3380a0cc8",
+      "bytes": 1721,
+      "sha256": "6184396f7fd554d444aba194b007ecd2219d7b965607fd2e822a5648b907adc5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/ActivityManagerRunner.java",
+      "git_blob_sha1": "df712edf5fa79ff4af16ab99cd5637f8060dddd1",
+      "bytes": 3520,
+      "sha256": "ed60cd07a1c7b3bbbf7e0626048b64407f411ab70c570f5b19d2ada61165dcb1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/ConfigStringIterator.java",
+      "git_blob_sha1": "4bf15336567bc33637f1895b7c38eddf3e52df22",
+      "bytes": 2677,
+      "sha256": "f706fb28cdad8961071516ea47a0e2b3d92d4e51f04de1adb4a37aa22cec799b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/LocaleParser.java",
+      "git_blob_sha1": "24504c2c359ffe18e49bd29642b109736d540342",
+      "bytes": 7770,
+      "sha256": "ace4266dbc9c7fda13713341c919adf3be7e557ab7bef3494b52a0957f6ad94b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/PatternConfigQualifierParser.java",
+      "git_blob_sha1": "10ed801752da1da38f98c971e74170ad5966f51c",
+      "bytes": 3054,
+      "sha256": "4a44746c1e249608abf46a02853288db644bea3b2b3c1dd6be578f8a4c7611a8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/device/activitymanager/ResourceConfigParser.java",
+      "git_blob_sha1": "57a5276ab42a999f5da36659efbdad5a1dc3f23a",
+      "bytes": 3122,
+      "sha256": "724ddf41d24fcd8289d2f98698f9855bf5edaea7ae7494954eb1896f85db051e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/flags/Flag.java",
+      "git_blob_sha1": "954997f799b58e4bb0d64a7b57c7df5c96b759f0",
+      "bytes": 14827,
+      "sha256": "1848e50eda0e0ce6486eb1048522f0c83ca0dae191d65b8e39c17d05da534db3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/flags/FlagParser.java",
+      "git_blob_sha1": "b89f4d54de2f11942eced63edd5da99e98deadb6",
+      "bytes": 3502,
+      "sha256": "2e1b6196ddcfd06aa124feaa0f169332b3bb516f283e4a50c67a8511e071291e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/flags/ParsedFlags.java",
+      "git_blob_sha1": "4ae7b766fb517efe97922451a1f8230ea3bff4a8",
+      "bytes": 3754,
+      "sha256": "be2c9f6814ddaf65bc4e1308b56c0671c1d3a8b5ac47ba2c966934620759c82f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/Aapt2ResourceConverter.java",
+      "git_blob_sha1": "fec081279fcf50b1ca033b92a5f32cf2f2efc328",
+      "bytes": 11732,
+      "sha256": "6c7f149d1f0465207c2e0b4fe316f0b3259c7fc1972763006ca940c8e1f6a2bf"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkDescriptionHelper.java",
+      "git_blob_sha1": "8203d13693c3cc99d7be3d0cd264afe017e6fc33",
+      "bytes": 4327,
+      "sha256": "9778b33d1eb93dd90d71119723261149082c534d8f069dccc29e0d8dcd175362"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkPathManager.java",
+      "git_blob_sha1": "9b4a1049eeb4089d1f640f60c33862a170ad855e",
+      "bytes": 5717,
+      "sha256": "afb3515977c58dbe2110b544158717297f851a82bd6493ddaa9b38690e6eca51"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSerializer.java",
+      "git_blob_sha1": "0f84a4986089bf61d9b7a11aba20b058b18937c3",
+      "bytes": 2544,
+      "sha256": "c5b4d6fe35675a6be8da475d6a5033ce025a15687cacacb81d5ab9f4871b2d20"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSerializerHelper.java",
+      "git_blob_sha1": "3eb809727bde869bb72b71c03ca7e3be3ce6695c",
+      "bytes": 5232,
+      "sha256": "d8b0660c0a0be9a90a2e4ba20539cb02f63ef817796eef27474be0e77765d0db"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSerializerManager.java",
+      "git_blob_sha1": "9af5a043286784b80cf13c64d9a84367e35a3728",
+      "bytes": 28477,
+      "sha256": "0274c4789dd546c8b8b9c9d16636d9e60245803b9a158e23f72ff6a188ebe435"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSerializerModule.java",
+      "git_blob_sha1": "4a1a62212a74f405ae52e06cfbd238546e34612c",
+      "bytes": 1905,
+      "sha256": "3cda14b2ec2b40ed203a7ce18148f951648ded7fd9bfbfc2f08f0983ee1fe60d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSetWriter.java",
+      "git_blob_sha1": "6d22547c53bf938cf9c8bb16bd7f08ed53540ef4",
+      "bytes": 5135,
+      "sha256": "d5bbd9133296315d82f6047bfed5c20cbd4d763529617750ec3a23516a6cdcdb"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ApkSigner.java",
+      "git_blob_sha1": "6514323237b3d7e65234cddf74d459926c9bbf93",
+      "bytes": 7537,
+      "sha256": "cfba477c0aca6a5987450066798fc3ac2b324f49bda618830d749148c2e82cef"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/AppBundleSerializer.java",
+      "git_blob_sha1": "96b3b3d1df93eb49ba71a59d645521c94ddd72c6",
+      "bytes": 4891,
+      "sha256": "68c2c9bee22d016ec5b53cf99db55903d74174ab20294c73eec408aac91fa371"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/CacheablePathMatcher.java",
+      "git_blob_sha1": "b6092d70c543dc657e93a3ed8cead646546424e6",
+      "bytes": 1320,
+      "sha256": "e2ef3adbecf0e9384532a1755d3aeb2119bb283996a16907be833e49c8cb2fca"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ConcurrencyUtils.java",
+      "git_blob_sha1": "f3e3e3483d62036407f63683850e8b18ccec288a",
+      "bytes": 3464,
+      "sha256": "d18a7a0651939ff8c2abc0e8f2811874e62290c0a45a2791f76423fdab0d5d5a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ModuleEntriesPack.java",
+      "git_blob_sha1": "629972c60660cf9bd7f37221875b90876b820ba2",
+      "bytes": 5949,
+      "sha256": "8a98d5258de4e6acc7a81f961f450015f409e6a5260f98b10cd2874caf784668"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ModuleEntriesPacker.java",
+      "git_blob_sha1": "c609347b0e8ffc5c299b1ce14e6f2e3353349142",
+      "bytes": 3715,
+      "sha256": "fa03537059b504b69332a607a80549ab7f4c861cc7b68ea4bfdf6b4a4682552d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ModuleSplitSerializer.java",
+      "git_blob_sha1": "cdd48fdaea7a17e89a04ec012db8e4b9420ec0a1",
+      "bytes": 18498,
+      "sha256": "01aca547c42a614ba926eaeef7c9ce77ea2edc0b337a91a6932fc2c2213b43da"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ResourceReader.java",
+      "git_blob_sha1": "17ed3a166e765ed719abaae1e4d1e0c6edef7841",
+      "bytes": 2608,
+      "sha256": "9c568774ccc0d8d1a1bd7569709ce4177e24ce2f1b4af2e706bc07914a58ddc8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/SdkAsarSerializer.java",
+      "git_blob_sha1": "8ca30ca733092cb48e976fe00cb6581a2eabab06",
+      "bytes": 2285,
+      "sha256": "66fa4f906be7f610c741ed235b31fc3260cf1b92592da17e4fe614ca244cbb33"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/SdkBundleSerializer.java",
+      "git_blob_sha1": "7f4812711232db82f02edeac0f7c093377f32d37",
+      "bytes": 4366,
+      "sha256": "f20052eb2d6088a0ccdc2efdc74d4107b578d10d21ebc2928e8633cc85b8e3eb"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/SerializationFilesManager.java",
+      "git_blob_sha1": "ac877f9ec94e8fb6c1edb3f10f5552b9b8a84a5c",
+      "bytes": 3124,
+      "sha256": "4d57d66e3f30cc4ebba618362fc7383b45ad72a033ab3b1b5df26c2948c00baa"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/TempDirectory.java",
+      "git_blob_sha1": "2a2eea053898acc62ba8693ad243b4acedf77d62",
+      "bytes": 2603,
+      "sha256": "b006e9cef52fd774704aaa71090855cbee1628a00f19010aead790814ab98d19"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ZipBuilder.java",
+      "git_blob_sha1": "cb33dacac02e4a9d3751f19592af1b10c8b5185f",
+      "bytes": 10780,
+      "sha256": "f3a42c500b555aa104189e416b9fcb652db5a8c143e1891245e5d6c2db043bc3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/ZipFlingerBundleSerializer.java",
+      "git_blob_sha1": "d54cc9191c6e950633f1a5fdb0d26916c2975045",
+      "bytes": 14437,
+      "sha256": "d1dd5b3fb39fd53f806b7729a62fe2c97fda75301b711d9b029a8f6d45ab09db"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/io/Zipper.java",
+      "git_blob_sha1": "98a7448f82392e21c90780e6d0db9df8c22f08f4",
+      "bytes": 4719,
+      "sha256": "58fc5af1bc16cee16343837a982c307b1115ef969f74b2b1779dc928297b9b25"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/AndroidManifestMerger.java",
+      "git_blob_sha1": "252b4e233e872ff4700ea725c1705598f2805485",
+      "bytes": 2847,
+      "sha256": "e16bd84389d70f383c006a1cf426f4d5276bb4e1bed121dcc1c7b5019a9579e4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/BundleModuleMerger.java",
+      "git_blob_sha1": "a2512ed9fd5c30c5bc52ff944afb0e3fcfeb599a",
+      "bytes": 10993,
+      "sha256": "a1559b503ad07b537576a3e90362d93670525195e5ee8d27953d80f2488fc139"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/D8DexMerger.java",
+      "git_blob_sha1": "1ec1c01b47f7ac855556d8c9419c3b33fe5db609",
+      "bytes": 10494,
+      "sha256": "6c0bd04220ccd87a2bee1ae5502289a63d9940dc5f015883eee82f4e0168d60d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/DexMerger.java",
+      "git_blob_sha1": "105c9b2a8fbc813c7b413dbc2b83f5b21d96af96",
+      "bytes": 1798,
+      "sha256": "f496eda43954c30be5cf25090ffd72e1215ba1b41d77a8fe15a987d23d17585f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/FusingAndroidManifestMerger.java",
+      "git_blob_sha1": "f547eb0c06f7037ea0d258037c49548e6deed93b",
+      "bytes": 14652,
+      "sha256": "0414dd8b862783f00bd3952917a309f785368f1ec1525a0eadb7bc8ad00b7cee"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/MergingUtils.java",
+      "git_blob_sha1": "57092a4ee5d24597ebb9c9763410267a08ceaf10",
+      "bytes": 12434,
+      "sha256": "bef10ff234a40b7e533ceb20333d941133464b18d6205f45bdfd41c27a01ab8e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/ModuleSplitMerger.java",
+      "git_blob_sha1": "47a8a10c580cab5d9374474e13cc067439d45d8d",
+      "bytes": 1059,
+      "sha256": "0897ae3626f77742f0fb9e2321c77005b12b4df554ea9ef49eaf527d75865b53"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/ModuleSplitsToShardMerger.java",
+      "git_blob_sha1": "3ee27984e4aad66b901ea8935af8721765d85130",
+      "bytes": 22448,
+      "sha256": "52bc7b6b48442dbea172a695f210422667b0b4d366992a9b90ab0dca1763e912"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/ResourceTableMerger.java",
+      "git_blob_sha1": "16d06980b9cbee6f2928c00582f12a1631ec424c",
+      "bytes": 11747,
+      "sha256": "323f37abc2d0e1add346b1f60a54a1a72e82424f3e15fb08ddbda344996df619"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/mergers/SameTargetingMerger.java",
+      "git_blob_sha1": "a5059cce3457005162a8d59abd118a1baf26cc89",
+      "bytes": 7827,
+      "sha256": "75b091e1711c5f95c59cdcd4e3a5a67c04274ef90782b795ced5922c484f0118"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/Aapt2Command.java",
+      "git_blob_sha1": "a02c403bafde003d81515248b690b0ebde85230d",
+      "bytes": 1322,
+      "sha256": "f53fff794483418d1e75ae75e0ebc3f1871e30bb6c81383d40b7309db3d799cb"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/AbiName.java",
+      "git_blob_sha1": "fd429a17c925accbe2ea82ac2035d1e031b2b5a7",
+      "bytes": 3179,
+      "sha256": "392cf9ea88d290fd29a25981bf1a49398d284499d4829a8a399e594ab1276259"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/AndroidManifest.java",
+      "git_blob_sha1": "7b422b5559b0620de4334ac7ede664f2ab1fdacb",
+      "bytes": 51808,
+      "sha256": "58a9bf0dee4669b5cfbe8b32d662fded54b6695c5f3bd49b096f212ef47368b0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ApkListener.java",
+      "git_blob_sha1": "26f76a34608870d6c9b613c9417c5fb5d4fe5643",
+      "bytes": 1058,
+      "sha256": "19c33012144ad03a088cc8442045fbfb134aa0bfef44713536664a8ef0e46899"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ApkModifier.java",
+      "git_blob_sha1": "4b02b556c2be9b0ba245f13fce9c11d857fcfbf9",
+      "bytes": 3733,
+      "sha256": "1fbf8884928c3a6f1e33a922cd0d4296f689462a825fd4d88b9a2c98f355497b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ApksigSigningConfiguration.java",
+      "git_blob_sha1": "c9adb00fd4a771898324874d211a755cf93495d0",
+      "bytes": 3116,
+      "sha256": "c8de33553adaf006ea2866bf80a25016a572c21bc057b278a6e70fadda075220"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/AppBundle.java",
+      "git_blob_sha1": "2eb48fbb13f46b988f1bfa83c67ec6d21adcac10",
+      "bytes": 16670,
+      "sha256": "692fd7f2529005387554237bb645b24be00892f5c62b7f0833069666f92802df"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/BinaryArtProfileConstants.java",
+      "git_blob_sha1": "acb9143b11aa3f729193dc693eff93ea982c5003",
+      "bytes": 1782,
+      "sha256": "5c54245ffba34e0b0e091f656f5813900c87bce3fa08af8a71c3d537bfede361"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/Bundle.java",
+      "git_blob_sha1": "a8745ae0cba85ec30fe103dd9312f167c60353b6",
+      "bytes": 961,
+      "sha256": "20bd26e1db80c980827bd4dfece2d08400b5405de706dc2a4d2aa6b05e7c269e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/BundleMetadata.java",
+      "git_blob_sha1": "f3111ae966f57828d94b1e9a39f05f73d07b0fd1",
+      "bytes": 6208,
+      "sha256": "f253d80d02d4a12e5352321316853ee7c26677d665a6a1e0f41e38ac5f0b90c8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/BundleModule.java",
+      "git_blob_sha1": "22b3ed0b4c72b86bd0b44564fdf48847fc9bd5e4",
+      "bytes": 22246,
+      "sha256": "a1bc4e807fc481f47d09f2717adf58b02099c9a965b59c67512231734cc19251"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/BundleModuleName.java",
+      "git_blob_sha1": "1f51ee612faa6b325c2f7a387685661eb8b23b7a",
+      "bytes": 2318,
+      "sha256": "a66801aa769d73a458ea0873f1e918f5d89cbe601c55766d09efe7c2caf70724"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ClassesDexSanitizer.java",
+      "git_blob_sha1": "be6ae62d662d0c6cd35f97ffcc011fc30f7ad27a",
+      "bytes": 3028,
+      "sha256": "7e4998599e44c34bab9b44d8f83842c09538a06b4e49e3e6d665f97a24377040"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/CompressionLevel.java",
+      "git_blob_sha1": "15b6e00a6598c16b59a434cf825d3b331a0d6349",
+      "bytes": 1616,
+      "sha256": "08866fdc4f0d8440aef18e13d18a9ee66bf8d6c18fe0707864d120cd91ea8169"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ConfigurationSizes.java",
+      "git_blob_sha1": "4726eaa4d2558d41c8f0dff242afbca1c41d7d72",
+      "bytes": 1436,
+      "sha256": "553bc7d593bf6fa8e509f1c89c0ef9b46220d16fb241c3e7266b8a19f7678319"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/DefaultSigningConfigurationProvider.java",
+      "git_blob_sha1": "7784b4757699606f9d5e904e288ef2b1d24339b2",
+      "bytes": 3774,
+      "sha256": "64b8dfc01a3da33579b4203c7ff16430d079ff562ca02b7201be8b61fdda2ed7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/DeviceFeatureCondition.java",
+      "git_blob_sha1": "26572141f43983ce9e6a3b6682c883e48d118a93",
+      "bytes": 1392,
+      "sha256": "b958a501e786cd496e03248328595d3867e3d0beb753d9f88efc157d1059f81a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/DeviceGroupsCondition.java",
+      "git_blob_sha1": "f8a82a754f8dabd00bb615812ef241e0604924b0",
+      "bytes": 1374,
+      "sha256": "31699ad0fa5ab104576202c2342b93304eeb8266bef27486affc1fe9ba7a16bd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/GeneratedApks.java",
+      "git_blob_sha1": "9b4fde222a791cec09b78c32e8fcea729f0790ad",
+      "bytes": 4754,
+      "sha256": "30cfb993dc10877a46fd40f1e62b9acf6b86e5473699a927a0bc093f7e6bef17"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/GeneratedAssetSlices.java",
+      "git_blob_sha1": "ae093ca041616dea53d563a0559f778fbdf12c92",
+      "bytes": 2059,
+      "sha256": "38a77ec2490f49ab96352cd3f88ebe4f2348c3427f2eb323e3d55364f7fb0033"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/GetSizeRequest.java",
+      "git_blob_sha1": "bc4fff4f67da746100d003ab95274d61e04ccba1",
+      "bytes": 1427,
+      "sha256": "b64caf2e474af41a699838a94a10a2352e0f653649c9c2f0a9431b55761e4ac0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/KeystoreProperties.java",
+      "git_blob_sha1": "5265edca4f779e3ef2b633377e0951d781e69274",
+      "bytes": 5621,
+      "sha256": "f9619d22a8107355a3f38f831ac09a0a209a2654b95b27589952c937063b50d2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ManifestDeliveryElement.java",
+      "git_blob_sha1": "5fdb4b1d15d78f50f678d82939ff9840e890ef76",
+      "bytes": 22646,
+      "sha256": "f64c19c1f394e14ac3690957697c1e3a85eb2f833951bc56a9beba2218b785a5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ManifestEditor.java",
+      "git_blob_sha1": "5583036a476e09ab77560f5cc5a345587cd2aef3",
+      "bytes": 40129,
+      "sha256": "df89d67d084b0f9c29fa2dcf4883a43f36401193d06d17787d03069818672233"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ManifestMutator.java",
+      "git_blob_sha1": "8001bb69963cea24903fe3a555a11b1d990da5e7",
+      "bytes": 1358,
+      "sha256": "a6587b17053c30366d200318c5ceb2ef46a6a107e483c3b1fbc8944508f34915"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleAbiSanitizer.java",
+      "git_blob_sha1": "165bb65e67eafc38f7f3715cbdbc21829c680136",
+      "bytes": 6085,
+      "sha256": "b0769f11ee0c30801082b5183d8ae0ffe1b4e806e78f079b09a949c61ec25d72"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleConditions.java",
+      "git_blob_sha1": "a67f4a58cb06a74a716a20ec8a5ff76cfd973745",
+      "bytes": 5080,
+      "sha256": "7766f295ec3333ac21dc56de2b070e296a6392a4ae018bbe8f435a1653ae3122"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleDeliveryType.java",
+      "git_blob_sha1": "972c1769fc7945cee97043f101554f788e46a6fa",
+      "bytes": 897,
+      "sha256": "697ea8dde2bb9bedd378e23adc3a2b61cecbfa7102dfefaf6602b995b67989db"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleEntriesMutator.java",
+      "git_blob_sha1": "3af815cd4a73fc2042909cf72f27f73f73c6e1b9",
+      "bytes": 2703,
+      "sha256": "07d3e8fe88e503a34c6d50c07d4f89cfbab8481fba76107e8bf63ae77a608b90"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleEntry.java",
+      "git_blob_sha1": "92bb6ade7e8e6e17c2f20b236b15f70458c03578",
+      "bytes": 5168,
+      "sha256": "63d7cf2ac3bec388f09b02b66c8f8b749938bf68b673fdf1c96d2f92d613c6eb"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ModuleSplit.java",
+      "git_blob_sha1": "767517568cc4ab948c4d1b62b1bc6ed547b0ddf0",
+      "bytes": 32517,
+      "sha256": "feeec40230084e75967e162856dca5a4f11dbd38a74f11efdd81f4a15967cc0f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/OptimizationDimension.java",
+      "git_blob_sha1": "203119534ac6c6971fdf3891992602af4cd690d9",
+      "bytes": 995,
+      "sha256": "175f49b3967636e62fed62cb890128410fd204427e73c39bbc10cface0db4049"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/Password.java",
+      "git_blob_sha1": "bddccde7c9e921959ae6dccd2567802c6013501b",
+      "bytes": 2917,
+      "sha256": "1c50d119d40997b4007cd3ddab97401387214079d5b2986ba43f3e2c4b24332d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/RequiredSplitTypesInjector.java",
+      "git_blob_sha1": "67fcc48eb1ad7cd46b96dbcdf683e0b4eb6f2821",
+      "bytes": 6642,
+      "sha256": "55cc76482c60e62edf0518b18bab748bcbccc5efc2bbc61ea8a47ebb2f0af312"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ResourceId.java",
+      "git_blob_sha1": "deab099a9b849f6b12131f7f0625d14fefb96560",
+      "bytes": 4013,
+      "sha256": "a7ee937a9ee1c2f0c745a071173bbe5f202b94fd199274ae1a79d96a3d8054a1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ResourceInjector.java",
+      "git_blob_sha1": "f08e9b9948c22289714a2d527d3dad27a318fe0d",
+      "bytes": 7875,
+      "sha256": "a7ba72221a93f041477ad6a35f46098e7670da1d9bf2bc57db4577be2e0219d8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ResourceTableEntry.java",
+      "git_blob_sha1": "900a0c99fc371c7c06f1032e9c05caa0ba4d9a7d",
+      "bytes": 1471,
+      "sha256": "a39c7604c50024f8f7d241a06fd24708ef5c2e5ffe0e96c6c1914ca770c0d8aa"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/RuntimeEnabledSdkVersionEncoder.java",
+      "git_blob_sha1": "d30852f7ed7dd955718c4b718139e467e0ed55a5",
+      "bytes": 2697,
+      "sha256": "379170f28daa399ee9387dcbb7982898ad6f9732e5f4787208bea98d4dfa325f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SdkAsar.java",
+      "git_blob_sha1": "1195a025e4a549a5f7de2cb1b1ba7ddb1de9258e",
+      "bytes": 6554,
+      "sha256": "9d2ca69a1d87a4ef608f32fef544e5d88f7b2d545640bfc7a197821d0ed11d92"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SdkBundle.java",
+      "git_blob_sha1": "622666fbd7e55504695aded6074e80e2b14da26b",
+      "bytes": 7774,
+      "sha256": "f826b54f062c3a178b89da5ca9e56f30f2bae5901a9d47f849282160f656e08a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ShardedSystemSplits.java",
+      "git_blob_sha1": "9f1d211da523d4c88e41bd366fc23baee38122ee",
+      "bytes": 1785,
+      "sha256": "be8914e8f12e8a58718737ba421116d2ed767765b31f48d593a387db162f248a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SignerConfig.java",
+      "git_blob_sha1": "0ed77d10dedd2beed0f7058afb3f3ce1747a7856",
+      "bytes": 8146,
+      "sha256": "10abb12ec871d473d4236b38b80e3dbf259a885ccdb02b931e1eee6dc4fba658"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SigningConfiguration.java",
+      "git_blob_sha1": "276aa1dbe0dd13c61cdc79c72e6fc237125feb60",
+      "bytes": 5653,
+      "sha256": "8a5207644e4ffd15831bfb7459a7b63a81b7930eab37a2cda0c1f272a67e4d70"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SigningConfigurationProvider.java",
+      "git_blob_sha1": "bea955aeadcede955128e0f9b6f3c4f6a0886af1",
+      "bytes": 4786,
+      "sha256": "1f860f1092113a3f9dcb78a2960dc851ac0e461b35f34e157fb78ca45bed0e53"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SizeConfiguration.java",
+      "git_blob_sha1": "9e4c455b31ae83be6fe0d4e3207e40b1414c504f",
+      "bytes": 6863,
+      "sha256": "0ecb24ef8ca312a552a571501785b6c6e101e8c7470d3bba2abb2e506cf86db8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SourceStamp.java",
+      "git_blob_sha1": "78d6257cd88e4d7e792f53ecf01ec6b2135d9979",
+      "bytes": 2104,
+      "sha256": "922d5daf8ef9b21b73b461c9ee8e4000fc951f595bce3c8843117d289f3c064b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SourceStampConstants.java",
+      "git_blob_sha1": "96e901dcfc5516ed7549ed744f96a4b8bd451697",
+      "bytes": 1185,
+      "sha256": "83114c20e503dc0ad6e75c53a2b0e033f05ec91c993b86a61de5fad5c1dcc0e2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SplitsProtoXmlBuilder.java",
+      "git_blob_sha1": "f15a60ed804169f388ccc6d2a1f908b53dab26ad",
+      "bytes": 3542,
+      "sha256": "db143337e876efa604a99416d988a4de0f6cf32defce3999facdf23562f406e2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/SuffixManager.java",
+      "git_blob_sha1": "7fd42e40a4c9f43513f3616eee32ea20b59f9d06",
+      "bytes": 1704,
+      "sha256": "f042f01b289fdc453959c041643461dd2428be796ee2ca40bd9538954c537847"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/UserCountriesCondition.java",
+      "git_blob_sha1": "0679527c95fc09add6701942eb3392e92b239a61",
+      "bytes": 1679,
+      "sha256": "f774388922eb1fddab3d8a2b0a36e052d5cc6c56b0d2e8de93913759c39baa63"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/VariantKey.java",
+      "git_blob_sha1": "c9cd7b431fd393b430a7804997d1b374f5b8e63f",
+      "bytes": 2700,
+      "sha256": "f9e4cf737e110e4dc6c5ee81123886057ab9e4f10ad8fd7cfbc25b2571ab7b7f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/WearApkLocator.java",
+      "git_blob_sha1": "d92df9fc51e83aa45de88bb42cf06d9410d0a005",
+      "bytes": 7517,
+      "sha256": "ff23a412d74598ddaacef4a6304b565e68f155215fc8d5825a15386378faf2eb"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/ZipPath.java",
+      "git_blob_sha1": "c51b405be9d6150712c56db0ffb5fa72cdeb2e1d",
+      "bytes": 5724,
+      "sha256": "cba2f3161a62e8a103c00838419b663976b34affd681590642947cca69396f84"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/AdbOutputParseException.java",
+      "git_blob_sha1": "7a170a7dc1c7e316fd221cd74fd98c4e527e1c1f",
+      "bytes": 1103,
+      "sha256": "593c507d92bb0ddf6272ada1a4eaa96c10b5cf45a3cb5d73aad38fa888c7a60a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/BundleToolException.java",
+      "git_blob_sha1": "94bbf0a0ef15d2e1a10e336c09a66689ff42d9ca",
+      "bytes": 1691,
+      "sha256": "43dfc03dc1467311d00de9f1fac92a8b3898ef73cc62f881a0b57d61e06c36c0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/CommandExecutionException.java",
+      "git_blob_sha1": "0b7455385d94c5283fc4dc7a6e1715f61d29fb68",
+      "bytes": 1407,
+      "sha256": "2e1f40a9c0f596bfd73ed156d3a5fdbc275397cbbc99fecabb94ba19e74b550a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/DeviceNotFoundException.java",
+      "git_blob_sha1": "c7780f08d31b87fac7d6b581b8e4aecf00fd5e13",
+      "bytes": 1661,
+      "sha256": "3614541c502105d19dc16e7de512ab3b3412b88ebcf8fec715e1dcdfdef8da74"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/IncompatibleDeviceException.java",
+      "git_blob_sha1": "64e286bb73df280db75c1872daf5851071c7fd2c",
+      "bytes": 1231,
+      "sha256": "8e234be06717859fe31c556496bcd5399410c8eddf50b25275146b94c6aae901"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InternalExceptionBuilder.java",
+      "git_blob_sha1": "34051a583f6f1142ba4c552ee39df739f98b9e40",
+      "bytes": 2278,
+      "sha256": "ee227065a0db8c3b341b87d3c83074fc040a71282d22162d78d517e06a0ee1fa"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InvalidBundleException.java",
+      "git_blob_sha1": "187d3586cbf5be5b395b9ec8039ba4adf9793562",
+      "bytes": 1507,
+      "sha256": "a9bfebde5929ccb3276e05fac5d9ec59c98e1b1516ee49072029194bbfe090c2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InvalidCommandException.java",
+      "git_blob_sha1": "527b2e503b1ac7dfb43e573c4ea2c2ac5ec6db1d",
+      "bytes": 1215,
+      "sha256": "6ce789a79440710443f04eac20d9df86c882c02a5e5276e7d1485ed2c6dbe07b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InvalidDeviceSpecException.java",
+      "git_blob_sha1": "e61255b88688621a483777dde715dc789f478919",
+      "bytes": 1216,
+      "sha256": "45261023aaf746453ecd88077ecf719d108e3950eaee26f39629c8a82f02cdd5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InvalidSigningConfigException.java",
+      "git_blob_sha1": "c4bbe0c3650f799b0a4b5e7aae99cdd4119d4a39",
+      "bytes": 1255,
+      "sha256": "c1825525a27ba5426bf079368fe8fe953402fe9575b123a8597b9338ecd56a96"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/InvalidVersionCodeException.java",
+      "git_blob_sha1": "004eb6a4128a7a09ceebdc221fae68358709a657",
+      "bytes": 1211,
+      "sha256": "621a2d8ea49cd191cec68fb2491f669180ee5fb7511a8e2a68d5b346fd7e6c02"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/exceptions/UserExceptionBuilder.java",
+      "git_blob_sha1": "6b7a322b6a6053b7ece9328d8fe5e44daa312fae",
+      "bytes": 2328,
+      "sha256": "d2d4156d49c26b3a90cd4947ceb82fddf8a267a587f04cfbf4898fbb535cdd2a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/manifestelements/Activity.java",
+      "git_blob_sha1": "484bf26ce6428d2210d58670c47eca65314bea04",
+      "bytes": 7069,
+      "sha256": "64ec2c88baff3335430ed9fc4f47c632b1ccaf617894301b23647d3e0b33ddf5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/manifestelements/IntentFilter.java",
+      "git_blob_sha1": "cff4e25e6367b509652f959564cb2f1831957805",
+      "bytes": 3786,
+      "sha256": "e95cc28d82fa8adfeb684fc900c78712960803de2c8c6acece562d0b2f938179"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/manifestelements/Provider.java",
+      "git_blob_sha1": "b8159a28447c356a6b5e71b1202b88f304924482",
+      "bytes": 4302,
+      "sha256": "a3021a64100522e4b323bb90f1bf213d339c0dd8cb148c8a50ea496877c2e52c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/manifestelements/Receiver.java",
+      "git_blob_sha1": "95ade8107eee86d9df5c865abb5df695ea850497",
+      "bytes": 3383,
+      "sha256": "c3e1e05bfc01528dd877b390faf645f3b3c88660251b09f1ced0bb4a79d93056"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/manifestelements/Service.java",
+      "git_blob_sha1": "2ef1dd0317f112bd01f5bc8441c949e6745a926e",
+      "bytes": 2979,
+      "sha256": "185ee36c1982035525af54c71120b75e7a5252e403826b3644d12ba474babeb4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/AlternativeVariantTargetingPopulator.java",
+      "git_blob_sha1": "6972be0dd2973ec8ef139784a936d8312880ae16",
+      "bytes": 10391,
+      "sha256": "f620819aa7564bedf804207e7a7770d5f1e58518a956a36542028add491c39fe"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/DimensionKeyValue.java",
+      "git_blob_sha1": "1118d8a2b445573a95799e7a025dad83a3a4797a",
+      "bytes": 1915,
+      "sha256": "fb49ac314fec02dc9ef0a0f603d77fff911346fa1dcc848fa1fb2d99e0a93408"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/ScreenDensitySelector.java",
+      "git_blob_sha1": "0e69dc820b89e60b13207f4e640b48a26a0c144a",
+      "bytes": 12326,
+      "sha256": "3083e32707111a24c675076249f2e4831575e95392cf4a1c6157e545148bc0a0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetedDirectory.java",
+      "git_blob_sha1": "31beaa76ce1170cec635239d6726960f4576e53a",
+      "bytes": 7384,
+      "sha256": "d8f63f22624beec019891b50284a3f83fbb477ff918dfc9485087bd3137d0964"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetedDirectorySegment.java",
+      "git_blob_sha1": "9f6bf54e3221bd1156d1a5b5dceeab9b39a661b8",
+      "bytes": 16646,
+      "sha256": "e53949f17e6431eeaac82613a68b36b9d89ac11923b5e4d20f9a341aaf23891f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetingComparators.java",
+      "git_blob_sha1": "f8d82a1cdd680e1cca3d3998900af0eb8f7acf9b",
+      "bytes": 8353,
+      "sha256": "cfa1af151ea2c85ff2b57ce10d34b2b4289c178583db393ed05c3b5df80ed66f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetingDimension.java",
+      "git_blob_sha1": "41f30bc4a5fc4bfeeae14beaef4539e15cd25f7f",
+      "bytes": 943,
+      "sha256": "b4d347714df239b69525720b570275055f3c7897a54946147413aacbc2cfeb0f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetingGenerator.java",
+      "git_blob_sha1": "048fb22f5041cb83c90cd6eec26a9bfa8217b8d0",
+      "bytes": 10894,
+      "sha256": "e1e215b28f7297e40f5f3f55d294ef6eef9686df1cace0986108549c640b9652"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/targeting/TargetingUtils.java",
+      "git_blob_sha1": "bd2d9f2a33741d612fae8dce94a113098afb4b00",
+      "bytes": 20870,
+      "sha256": "44add57a6f507fa3d2794c376a0fa20c40e469373ba61e6604a6c34b18c6b558"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ApkSizeUtils.java",
+      "git_blob_sha1": "8709bcb3b7188eb6f6ffa9199748f00eafe1f10a",
+      "bytes": 2867,
+      "sha256": "5831ea451041f2b4a83c746149a0afc8c9f70a52812f31d9ccc06bb3340ca380"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/BundleModuleParser.java",
+      "git_blob_sha1": "166bdb17af06726d801a51509e2b5103eedcffe0",
+      "bytes": 3996,
+      "sha256": "87c4854c53c1e719eb55855def0bcd0743f7acf75601b68ba840f6eb34e4be9d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/BundleParser.java",
+      "git_blob_sha1": "19bf72bf8eefeb7129d8b1e44b581bfde4a39cae",
+      "bytes": 12400,
+      "sha256": "ae60f52561fae422b852e563394f2e5e454a86d9d002633dfdc8a45056fd79df"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/CertificateHelper.java",
+      "git_blob_sha1": "3f8d112b12fed967454663d3b21b11364687594f",
+      "bytes": 1747,
+      "sha256": "f0d3244892c0e5eaec64268ed27f91eb69af83fc175de0925bbda20d9c239f7b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/CollectorUtils.java",
+      "git_blob_sha1": "2e65dffb1f42d2ba999bca2e50633be392563879",
+      "bytes": 3934,
+      "sha256": "cd779bab955b883167e808e867662d0b55b417fed849500ff3b9b9342e6fbd42"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ConfigurationSizesMerger.java",
+      "git_blob_sha1": "0648e29da1109c23459f8656de833a320934fd10",
+      "bytes": 5001,
+      "sha256": "0739c14d2b912b3b094f15c4e37317eaa3646cd3962e283fb8d8c2c9c27b260b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/CsvFormatter.java",
+      "git_blob_sha1": "8ba4c954db00b2c38e19e791744608dae1e056a7",
+      "bytes": 3960,
+      "sha256": "531d2f8ae7d2ebe07f6cc7897fdee79e2ac008f758a59386800d3740b5389af0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/DefaultSystemEnvironmentProvider.java",
+      "git_blob_sha1": "6b8fbfd86c3a28fd4240b53ecafd99e3b5b605a6",
+      "bytes": 1142,
+      "sha256": "d93a99a640d647a18a0812af9ac34d4361d11825e4d67269d9a8569fc1969987"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/DeviceTargetingUtils.java",
+      "git_blob_sha1": "f30b59fc8e692873cd0f736a8c6ccfbe79c692f0",
+      "bytes": 4034,
+      "sha256": "58a2b055686c61201eacb5d38042e2c5abbdedcdf508a3ab9e59f4068f2728e8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/EnumMapper.java",
+      "git_blob_sha1": "dda62ab0dba09776a89d0899e705f39aabd1cb9a",
+      "bytes": 3185,
+      "sha256": "9c111613f043edaa5ed1db5ce7fbc4a5af6e46e269b9050cfa4e1eb007037c2f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/FileNames.java",
+      "git_blob_sha1": "0ffb747059358cc0ba3f42d7859cc13fd93e8ad7",
+      "bytes": 1128,
+      "sha256": "97cb0009bfe6ebac1944bb1b8bc3e82ef908a9c464a45a0291311b948f52ce4f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/GZipUtils.java",
+      "git_blob_sha1": "aeec34552d7f946340a1d7b8864b85b4bf6fa48a",
+      "bytes": 2428,
+      "sha256": "a8fd5331d2037dce79f34b7bb797787feca5938138d8ec12f323dbed8f6a7178"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/GetSizeCsvUtils.java",
+      "git_blob_sha1": "d5d25963763926fd4c3aed4da47c4508ca3225d2",
+      "bytes": 4698,
+      "sha256": "5005f59034b1c6a83c7609acd03dfb512071825cc1df965f87d2d91073b88de8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/LocaleConfigXmlInjector.java",
+      "git_blob_sha1": "caf1532edcf74c4a074dacc74f2dd5d8031d1690",
+      "bytes": 8562,
+      "sha256": "d6c191c9ecbfab343d5f89906da8524111b060210ab23d2f2cefb7315b62abf4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ModuleDependenciesUtils.java",
+      "git_blob_sha1": "dcece6ba38cca40842e1d951a5963086ba48334f",
+      "bytes": 5898,
+      "sha256": "f8c6849308ea267075d13064e3d15093e6098be78a18b27512f616a1ae20d447"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/OsPlatform.java",
+      "git_blob_sha1": "471c7b3e242971a977a579da8133b334b970e710",
+      "bytes": 1181,
+      "sha256": "54c3b86a9e15aa6d1c04469ba8ee63ed247bcf8446f91516fb848c89bf96cde5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/PathMatcher.java",
+      "git_blob_sha1": "252ec132cf8cf23162ceaa7f01ca663ad60aacbd",
+      "bytes": 6261,
+      "sha256": "abe444b7a065a410523dd1c3b533205e5cf621601511f9fb78bb507c5ce7a144"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ProtoUtils.java",
+      "git_blob_sha1": "a5f71626360d0561f459cf1ba8b6d7af06d86db2",
+      "bytes": 1186,
+      "sha256": "10b6d4bebc9a67c13c149e7439976bb7d6072a11759b8778ccc33142fc869011"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ResourcesUtils.java",
+      "git_blob_sha1": "d729a024ae1b21c0d74e7bdb3d87ed0a92470459",
+      "bytes": 11936,
+      "sha256": "21ca532836c93c374a9b032eb2769398e2d4c05994b65c65a5c35c6a5ba932a8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ResultUtils.java",
+      "git_blob_sha1": "eeef8717ff9b3f1739ace4f556015e76b7519efb",
+      "bytes": 11290,
+      "sha256": "7bafeac8859aa6bcff79a5c50e2ec9b425158f2a30b990a7ff119fb12c9dc54e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/SdkToolsLocator.java",
+      "git_blob_sha1": "4d4114bd2a227e20f718df807531dfb536cf58b4",
+      "bytes": 10106,
+      "sha256": "614fa9aff04ed4696f569dfd07eb14c37a08a72a53f227b6ac4fb886bbca3f50"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/SizeFormatter.java",
+      "git_blob_sha1": "5fa5f7a47f6403b953f1cb43301e8dbd8ca0627c",
+      "bytes": 2573,
+      "sha256": "81d68d69c7f12bfaa8a4541a800cd24f94900c52a948e732551ba8ba5ec8cc56"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java",
+      "git_blob_sha1": "b4a3ec28f944c8c6e990ec098571147461ccc1a6",
+      "bytes": 8319,
+      "sha256": "ec038fd9c64a5bea7572441fc08e80f32e085a1d16eb12ac71743d72de3dc535"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/SystemEnvironmentProvider.java",
+      "git_blob_sha1": "b532925bc6d2814a7adcc113dd2c27703e4bfe0a",
+      "bytes": 1294,
+      "sha256": "e0383fca2e9f3828255a88f1088a6365d8a325d367d3502d30ff05ad69cc4c03"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/TargetingNormalizer.java",
+      "git_blob_sha1": "e94c64093b95030e8a38e1a73379dde8a868eb47",
+      "bytes": 11411,
+      "sha256": "85cfb2ed9964e4ae1d3571c99dc16c52e7e63e0343dca08dc27377ffe3192f83"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/TargetingProtoUtils.java",
+      "git_blob_sha1": "d1a8cad9cb772f5ffd547489dcdeb8b0e16efea4",
+      "bytes": 11050,
+      "sha256": "bc3f8a3308c9c70b2eb65b95bfb55b26d4406d7cb57ad772ac54aaebc79d1090"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/TextureCompressionUtils.java",
+      "git_blob_sha1": "250a3e645fb06b28b18f71d49f00f8489b20a23f",
+      "bytes": 5613,
+      "sha256": "581d64bef6224568292bfedce93276597ec1a083ffa8cc31e11e14b0014e1637"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ThrowableUtils.java",
+      "git_blob_sha1": "7ffcbae9bb2fa117a6c68e300db6b14d6d31863b",
+      "bytes": 1551,
+      "sha256": "43411d06dd94b78c1020ea25009722b1a8a00be40b3b50a17fffafbc174193b2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/Versions.java",
+      "git_blob_sha1": "3df4fe5a0728aff1305066a923b15acc21edac62",
+      "bytes": 1504,
+      "sha256": "b28612e4dc63eb02efb4b8aa140be6307d0c4647e171e31bbf75cb8681983f0c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/ZipUtils.java",
+      "git_blob_sha1": "72255e04d043957b78e77b1e939dfd02418217d5",
+      "bytes": 3964,
+      "sha256": "5eb2609c441712ba4599fbf43ac08e333b3f7c0e4a5820e19040d36f02df277d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/files/BufferedIo.java",
+      "git_blob_sha1": "feaa5012401c48196ca859426ecc360ba7dfdf28",
+      "bytes": 2355,
+      "sha256": "062f63cb01f562c3d6917ce7b8b8e2c4fec6d30a39cb1fee3d25522dedae22a0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/files/FilePreconditions.java",
+      "git_blob_sha1": "cba73436664758554cc7a44950c9d585edde6b8a",
+      "bytes": 3499,
+      "sha256": "c4918f831965410639584ef9bb0b7d976e69cd5959f5caa73ce3fab04efa8f71"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/files/FileUtils.java",
+      "git_blob_sha1": "cd9f54c4ac0f94636d26efc35f6dda3e741174b3",
+      "bytes": 3712,
+      "sha256": "bf0b1c7cbe62ec6f6e21c2a0d975350bae97340fca45ea90e6a9e96f42ff8fd4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/ToXmlNode.java",
+      "git_blob_sha1": "dba058e55491571e24bff01348d1fa5d4047306f",
+      "bytes": 903,
+      "sha256": "a425a6d0a6ebd9104f2b25320d323537b5a851137c54a6d7081c92975e0c1d5c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/UnexpectedAttributeTypeException.java",
+      "git_blob_sha1": "8443289ea97b0424851f9cc0c6c5e8bc11b3022b",
+      "bytes": 1419,
+      "sha256": "baa590a9d38c6d3d7c39c641c59af8eb9baff856543eefea17b541f72bb49dc2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoAttribute.java",
+      "git_blob_sha1": "7f4f5bb63ae7caab71dbd0a0ba604bc4aa64f6ac",
+      "bytes": 2558,
+      "sha256": "12f4366915aa14eaa1b889809b43f967ee0870d5ae86e4cc391bb6e5dd865046"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoAttributeBuilder.java",
+      "git_blob_sha1": "da25442dd47d0cfd34b49c916525ff298b58f416",
+      "bytes": 4353,
+      "sha256": "6056f485c566665da753bc58d8af6fc7a49eb19670cacb44d3df787b155212ae"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoAttributeOrBuilder.java",
+      "git_blob_sha1": "9e18e73ef51ec816a40c67b548f393c4df04b623",
+      "bytes": 4574,
+      "sha256": "b2578b14ad1c3c364302269b3d342dac13561d05ef74fe7d6843b8dd59bcf62a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoElement.java",
+      "git_blob_sha1": "c107c2304bdf17f649ba715d846f93571eaaa45e",
+      "bytes": 2762,
+      "sha256": "daf7090a1888fae05c3b54761aaae62d6b94d519a190412a1b7b29d3975138db"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoElementBuilder.java",
+      "git_blob_sha1": "45735360a40f9e70b24d4d874ad24d8fb1791fbc",
+      "bytes": 9807,
+      "sha256": "c5bcabef12601447ebf0705189096911a32a8f811bee1a7af49c18e686d753b9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoElementOrBuilder.java",
+      "git_blob_sha1": "a9773fa3421fb99f367e79feb7d2fe10862eec3a",
+      "bytes": 6793,
+      "sha256": "37e727dbd1cec38e6fc8949e4e210a3795e540dad6c6c8f150c7441e167a4859"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoException.java",
+      "git_blob_sha1": "39887031423b0d9e31e1c88310aeae01b69e5c34",
+      "bytes": 1006,
+      "sha256": "83cdec3fa2db405036ad1205b9fa55b231524eeb998d3785db30dabdc9b1c5de"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoNamespace.java",
+      "git_blob_sha1": "e066e816583760ae37112ca5bbb4f3e2d156a7be",
+      "bytes": 1680,
+      "sha256": "aadeae0d8697f4e04ae7246613846bcf7fe9eddd9415df06d44220b14e789d14"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoNode.java",
+      "git_blob_sha1": "42c940394ac8065a9dca9d0e8376ffa8b6a4d17c",
+      "bytes": 2207,
+      "sha256": "e4b47017452118ee58bc08df5eaa16c752c544015f2627cb57a95e9ef0491aaf"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoNodeBuilder.java",
+      "git_blob_sha1": "272385645b55fbd2867ba82d012a17c01fb63f70",
+      "bytes": 2261,
+      "sha256": "1a85f91827f638926fa91033d10afa350f7b26e194d82d39f7b87d0c9c828e78"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoNodeOrBuilder.java",
+      "git_blob_sha1": "c70c3d12908f9a45fbfd766b1e5293d883c6bae7",
+      "bytes": 2129,
+      "sha256": "a520a5804370743a5cad544c2dd3f27d108d4f1af925bc251110571dd7f9c558"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/utils/xmlproto/XmlProtoPrintUtils.java",
+      "git_blob_sha1": "18b4f1d58d5a7b9cd0a63001981d61c9838ad6e2",
+      "bytes": 10701,
+      "sha256": "46dec45817899733d5f2ff129ec1e25d7926f3497521233d6118360bdaf67543"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/version/BundleToolVersion.java",
+      "git_blob_sha1": "2b2db9aee14e68b6105d85d491ce045ec34729dc",
+      "bytes": 1499,
+      "sha256": "ec6a38f5240747738d24e1af48230d93a07bfd4a779821c4b2c55dee79ca13cd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/version/Version.java",
+      "git_blob_sha1": "aef98875250966ef96325e5dbee25ef8e6eb875b",
+      "bytes": 4008,
+      "sha256": "9000484da2f8b466234cf74e16e26d1a87e83e36c321ed1c1473922048c1895d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/model/version/VersionGuardedFeature.java",
+      "git_blob_sha1": "0463cd428b8053b841c194fc81226404c340d2aa",
+      "bytes": 6183,
+      "sha256": "b2a1d6917cfa2ce8955f94a08797668a6f69c6ff6423b08d8dd1c6c2b4fcad4c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/optimizations/ApkOptimizations.java",
+      "git_blob_sha1": "8e6187edc06ccc691fad21ad20960940ce42e2b6",
+      "bytes": 13325,
+      "sha256": "86cb8469b6a4b152d70ca7403f9321acdeeb684bfa7de46510944cd6ef87a0fd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/optimizations/OptimizationsMerger.java",
+      "git_blob_sha1": "cfd7093b5e9af7a4dc60cc8c645695b02c0f35c0",
+      "bytes": 10018,
+      "sha256": "4a16b5ff40211de4c8b45cb37da555e25bed94b897badd619b1e8da685cfd339"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundle64BitNativeLibrariesPreprocessor.java",
+      "git_blob_sha1": "b73888602ff2c2539575fbcd690001f162351008",
+      "bytes": 3124,
+      "sha256": "46fb4bd77ccefce3c0edbfcbaacce1de9eb1c65369b6a81b982c7a79c67cd34a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundleObfuscationPreprocessor.java",
+      "git_blob_sha1": "8e42754f96e59099168082f1bd61ebb0b3f507e7",
+      "bytes": 8680,
+      "sha256": "0172161e5d9d067ebb5b98a028acde52aa94279e33c914c1adb768dcdc50fc59"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundlePreprocessor.java",
+      "git_blob_sha1": "fab3a3988d5532edcc553c616f0036a6eddf05ba",
+      "bytes": 923,
+      "sha256": "8dc3e1a8852d7998a6a077e3fd89e507879ca5096f298dbe7c9e51f2a5841500"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundlePreprocessorComponent.java",
+      "git_blob_sha1": "4f761e86ba658257afc2dde949a02b00f041ae0a",
+      "bytes": 1557,
+      "sha256": "a673dd83d5d044fdfedac4ecca689b0391c2ca60bba20173a38c858f5a0a2be3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundlePreprocessorManager.java",
+      "git_blob_sha1": "f4a24b972a506e51a31461149f155d1d85d8c68b",
+      "bytes": 1469,
+      "sha256": "0c267b4237f130d9b53cce40aeae90f5efc45188df7a4744dad4889cc34295ee"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/AppBundlePreprocessorModule.java",
+      "git_blob_sha1": "1e38f3c43c5fd887be8b3de19a2b2c9cb3b8fa5a",
+      "bytes": 2316,
+      "sha256": "7c6fe6ede22dc3a76581d7bc7f060410be2fc96b956fa593bbcaac096f717300"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/EmbeddedApkSigningPreprocessor.java",
+      "git_blob_sha1": "b3f66e82776747ce856ce8515da995d0b89ff7e7",
+      "bytes": 3964,
+      "sha256": "fd54075420192d58269768c2fa38bf12cbf7e17b1ffacb058495253da10e37c0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/EntryCompressionPreprocessor.java",
+      "git_blob_sha1": "47244f70a9dc9de2540bbe592c06cae85471c63f",
+      "bytes": 2777,
+      "sha256": "19ac7c198f1ba539d59569ae3681a86fcb24eb0cad7e2949af0feb9b42ab0704"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/LocalRuntimeEnabledSdkConfigPreprocessor.java",
+      "git_blob_sha1": "2395c246b2b12054733fe48e54293a5e4f5f3e92",
+      "bytes": 4980,
+      "sha256": "56a610133e5b82e4afd41a23ef4e22cabf21d90c16edddb74f64abba23ead636"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/LocalTestingPreprocessor.java",
+      "git_blob_sha1": "ce685790f04d0bbf76c32dfab6872e898dd52c95",
+      "bytes": 2289,
+      "sha256": "35a9e1d77c63a8a680541f0f791f40014421f98b65ee19475bcb3e777d13c5ba"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/ModuleCompressionManager.java",
+      "git_blob_sha1": "843cf541d529cc56caaad4cbd4a4061d95b04c81",
+      "bytes": 2234,
+      "sha256": "c97a99aa24f40dac7971c19596da35ad4384934000b0df79b4c622bf325c7190"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/preprocessors/RuntimeEnabledSdkDependencyPreprocessor.java",
+      "git_blob_sha1": "7d9ed09c702504b5f2b8def8c09b8b5f98b5151a",
+      "bytes": 2082,
+      "sha256": "e3cc8ddd186a45d2aff2b375a723243edf5a66242d2c0a0d9966a15798029019"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/AndroidResourceRenamer.java",
+      "git_blob_sha1": "b973386819b56b1205363dde2c04ea93ff7bdda3",
+      "bytes": 5216,
+      "sha256": "2a7816ed7d85544ade4c6c573ca8ef15415cb0dd611af398c065bbbf66f1cb63"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/DexAndResourceRepackager.java",
+      "git_blob_sha1": "7d1c2ec6151d6e87d34905640e3006ce2696725d",
+      "bytes": 10274,
+      "sha256": "a5f10526b8d04c92f1c2547b0fa6b0458711ca09b707d53a81b937d9ef4f64e9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/DexRepackager.java",
+      "git_blob_sha1": "83103513427aa39e988e19d9307bc9f1b5d483b0",
+      "bytes": 2650,
+      "sha256": "1dec22998c44a941bfc0e72692307735c7f359486e8ef61bc8859f466a27d19e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/JavaResourceRepackager.java",
+      "git_blob_sha1": "f4994036902c231753930f4287bd26c4d73dd48a",
+      "bytes": 3084,
+      "sha256": "15c10baa1a8083eca2431ff07eb95e599e23515c252578818d757c790669c595"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/ResourceTablePackageIdRemapper.java",
+      "git_blob_sha1": "9bda1f33e7f60edaa0e3c7e60d033f3787647a93",
+      "bytes": 7617,
+      "sha256": "86065494e7285fbe0fcb09906ba56affed7037c3fb60cbdc66d7e7d66110a13f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/SdkModuleToAppBundleModuleConverter.java",
+      "git_blob_sha1": "91e76611b98d454e9b379b3af2c9c209594685f6",
+      "bytes": 5212,
+      "sha256": "edde804b616e374ef602454ff82b893699a531354b5ec07ba036afe247d45b41"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/sdkmodule/XmlPackageIdRemapper.java",
+      "git_blob_sha1": "db7871f230db9a67ab60bf076aba61e213d6da8d",
+      "bytes": 5675,
+      "sha256": "4b85d2f007ba9aa5080f7d7eadcc03c66c727d1da17738e9a37b46bab16b901e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/BundleModule64BitNativeLibrariesRemover.java",
+      "git_blob_sha1": "0d46434e1a1cf7d7718fc2220a928af666744172",
+      "bytes": 4549,
+      "sha256": "364e3ce639358c7160f87c9c44025a73306a6ae341652096c21d348c7e43987d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/ModuleSplitterForShards.java",
+      "git_blob_sha1": "ff844df21268003e940486e69728acdb4109c943",
+      "bytes": 9093,
+      "sha256": "8c97172ada5e48dbdf3a73d6d3673256a5a2128f3f7d7794c4726ef962d3f342"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/ShardedApksFacade.java",
+      "git_blob_sha1": "1e7ba4db046645e52f9823c1ee5ecfdd0b10af7b",
+      "bytes": 3827,
+      "sha256": "c6499126c8a67933bd99a400d7b48935436c22229cf8927acd6914f78825fb0c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/Sharder.java",
+      "git_blob_sha1": "24ab4d3851bb5bcd0df8d00c9c4499efcb20cf28",
+      "bytes": 8804,
+      "sha256": "9bdecf7d5f7e6fca1f73ec3874184ac67ec162980ae81bcbc93f502db1c9e1ac"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/StandaloneApexApksGenerator.java",
+      "git_blob_sha1": "11f6189f0cf96a31cbb53df28315d7c342c5c720",
+      "bytes": 3322,
+      "sha256": "df1d7afa77503a0d6f976dcd8f165d01c8243c15fdb7c1b4ea0dc0bb8f92f1c7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/StandaloneApksGenerator.java",
+      "git_blob_sha1": "ca319b32d45f9b293c6fa3eda8006d6845ee35ad",
+      "bytes": 11474,
+      "sha256": "a0ac4e2511833ca8b54bea747bd2b0413e59f79ad7e20d0b61a62c0f620e5ef7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/SuffixStripper.java",
+      "git_blob_sha1": "888bf8317985f5206ccb80fddcccaff5b9913d7d",
+      "bytes": 20504,
+      "sha256": "f8bccff8e8fc8c0692d608d8dc4610e749f1459bdbc5109b50596255a5983d08"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/shards/SystemApksGenerator.java",
+      "git_blob_sha1": "8ebc23a8129e95795ec4707dbeb0f57a1cb5da08",
+      "bytes": 10482,
+      "sha256": "3f5c50a8caef3e45abe8613dcaa7f21cf61505a45eefae90ae577dec2e8fcf84"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/size/ApkBreakdownGenerator.java",
+      "git_blob_sha1": "20c5786442b50e162fe59c8c16a8d2b527653e8b",
+      "bytes": 5304,
+      "sha256": "bbee18a000c67ce3508aaec281735253c8def3cc7837255c7ec905f088815d43"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/size/ApkComponent.java",
+      "git_blob_sha1": "93d20dbda70851b8081a33c671abd001e41f18cd",
+      "bytes": 1282,
+      "sha256": "d4c08152a80d91db44e40f9cce11cdd74165ed67b1eb86287b1047f54d0b4c94"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/size/ApkCompressedSizeCalculator.java",
+      "git_blob_sha1": "348e7a01185b87e61c2bd4bf38713964745a6db3",
+      "bytes": 4257,
+      "sha256": "e5c600e2f09906b30dc84092b4a51975ac4e84e6007ae325bb22eb7ca3709b0e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/size/SizeUtils.java",
+      "git_blob_sha1": "c52e00a80d12e0307afe35a07b8fa87f810569cc",
+      "bytes": 1503,
+      "sha256": "d8e692d982181a715d0d07f594987c91fa97a091dcfcd849e0cf696588ab12d7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AbiApexImagesSplitter.java",
+      "git_blob_sha1": "d845226aed841666b715e9735c24800ac8b8d9d3",
+      "bytes": 4226,
+      "sha256": "4f1b1d4ba8c9d523bd95aa89382d290e722cb586e9e7c796d1a192468741373c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AbiNativeLibrariesSplitter.java",
+      "git_blob_sha1": "1984e17e4ad0b344a824ae66304f2880cd9aae32",
+      "bytes": 4280,
+      "sha256": "7ef9ab4f13cbe9bfe1488d8709c21934b2eda0f624132b9fc9f4727d37f040d0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AbiPlaceholderInjector.java",
+      "git_blob_sha1": "48c33167acfd391ec697c9ba94b29461dccc9b77",
+      "bytes": 2798,
+      "sha256": "08cbdb7ff230266aa655c4c7d702cfd4c14b723890dcc4e3c359f302e381550c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/ApkGenerationConfiguration.java",
+      "git_blob_sha1": "ee488159c4032b26b5422f2103c57643e72ad5e1",
+      "bytes": 7017,
+      "sha256": "ee8be2f3ce371705e694c57ae21da74cd29a8dae7ea1ca5f2179565589f306d4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AssetModuleSplitter.java",
+      "git_blob_sha1": "54146590f5263c2e4894ef46bbea3bda1d24a5a5",
+      "bytes": 6265,
+      "sha256": "e08bebceac3e89d00ea05e788d1c2d599c4f80ce6c388b1c63c5ad5714d5c31d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AssetSlicesGenerator.java",
+      "git_blob_sha1": "14602761136a5584151ab59a6c84bb7919705946",
+      "bytes": 4254,
+      "sha256": "e5cf2a8e028d7d4f5bf257c9bd67607355b6cae0fc9199009920140ca75fb83c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/AssetsDimensionSplitterFactory.java",
+      "git_blob_sha1": "de9eda9e63578e76d88c1323bac12b90e805a69b",
+      "bytes": 9144,
+      "sha256": "4a33ec717540af37190c427a9bfb43a1c2a4c95556b8cafd35c5036aba914948"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/BinaryArtProfilesInjector.java",
+      "git_blob_sha1": "61b70d51b5b30e34fac76a4d91d7dbf12346d1d3",
+      "bytes": 3718,
+      "sha256": "b8a7a37f094fa28cc8de87e0faca0ec70eca4751eaf494df1a34669a5c1f8fce"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/BundleModuleVariantGenerator.java",
+      "git_blob_sha1": "d368f182b57852ab18f5172c73ed88da36eef163",
+      "bytes": 1245,
+      "sha256": "5d33d281d8c9337d9b7b57da7044045e3a8d043ada35a8c307152a9e2f945cbc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/CodeTransparencyInjector.java",
+      "git_blob_sha1": "900c0d9993e6c9e7dda430c56263eb5b42c3eee4",
+      "bytes": 1839,
+      "sha256": "5ec56fd2cbf694284ea853444305f03bebc0d367c77dfba776692b5f7f0ab0b2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/CountrySetAssetsSplitter.java",
+      "git_blob_sha1": "fda64038e5e4dbe50b054100639841fc6d0e0ed6",
+      "bytes": 1818,
+      "sha256": "69b89de87668fd7f877dbfae5a6370770415003977b680d47797ae411364fcc7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/DeviceGroupAssetsSplitter.java",
+      "git_blob_sha1": "05fc12a285daac81e576895cc7a7ffb86c09c004",
+      "bytes": 2058,
+      "sha256": "0b691903454bd949411d759a4f9dbd3cc57a785e3df35df3e9a4990e662e2b5d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/DeviceTierAssetsSplitter.java",
+      "git_blob_sha1": "cac55c7f7b7118e9867d40e58715353e9b7c00a2",
+      "bytes": 1819,
+      "sha256": "0b85179e12bc694dee769f8db1de121a3e0883cd0cb5f15421ea56d244a431d3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/DexCompressionSplitter.java",
+      "git_blob_sha1": "ed666e42998774c9075c5b85a25edede09796015",
+      "bytes": 3551,
+      "sha256": "258a0f94ffb607822819ee3cdceac5a6e6f5fb5197a514567eae9105e5b47cb8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/DexCompressionVariantGenerator.java",
+      "git_blob_sha1": "6f845fccb3c2477dd47da52cc99610bc7fd1a992",
+      "bytes": 2623,
+      "sha256": "58dd73064fd00563e04dd5bd9e6c425bf9fcd6c961ccaeb434cf8d7ffddedba6"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/LanguageAssetsSplitter.java",
+      "git_blob_sha1": "ded53af5839a64440e14e0fda0bb4531bad83903",
+      "bytes": 1575,
+      "sha256": "1140cd1a3e429ac1803a65c8658743f1bc489beaa08c1be3885eb63add9c6abf"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/LanguageResourcesSplitter.java",
+      "git_blob_sha1": "8657520020f7e91e7c15d47ba22cef7221ca7853",
+      "bytes": 8588,
+      "sha256": "64ba2463f0ee285665deaad3018475c860c696d2533a79fa7d54d8e239f88448"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitSplitter.java",
+      "git_blob_sha1": "bb66932a34a39b37318d75a77609f81afd2e7927",
+      "bytes": 1199,
+      "sha256": "7355bfa6a938f362a3409b786a5bc73252e9be67fa161bbec7951cdce5771ba5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitter.java",
+      "git_blob_sha1": "4192b4a851e3f66838ad1509df0e4e2f6eae83f9",
+      "bytes": 25737,
+      "sha256": "3362c90b1e74c0cc202994ae962a1af45c584e4d1da52666ef2d89b144e8c4be"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/NativeLibrariesCompressionSplitter.java",
+      "git_blob_sha1": "8721f7a96f7dfb81602cfa027c031b449cc1baa8",
+      "bytes": 6361,
+      "sha256": "82a42021113cb7ac02af90e30efedb2af768f2d470f19e32b7d9ff7477cd7e6b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/NativeLibrariesHelper.java",
+      "git_blob_sha1": "d89be0c528859dd98f37c4fa29bdf1d36e0e6365",
+      "bytes": 3344,
+      "sha256": "29f2518f5bf6b1a1bb8be0894519eb931511cca9f5aa07b5726f4f48bb76f30d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/NativeLibsCompressionVariantGenerator.java",
+      "git_blob_sha1": "bbb82931855d4102ff497dfdc12e9d1aa609d28a",
+      "bytes": 3420,
+      "sha256": "f97aeef75a18436fbafd832f41039da1b09de10de3cddd45c0b58c7636ee06fc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/PerModuleVariantTargetingGenerator.java",
+      "git_blob_sha1": "be9f73dbaf1af2a7eaf07f064346ceea35e14f4e",
+      "bytes": 3643,
+      "sha256": "3a9aea1f0b9956b0e3d20d695547745ff114845c20fc0df122f1c9b69a0609f9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/PinSpecInjector.java",
+      "git_blob_sha1": "e7827e14d62ff8865327ae64a8af6d198eaf5ca0",
+      "bytes": 1923,
+      "sha256": "6ba4e8d705eb23b9015e1152f837f8c21ccafa5243c8b9621d9d3ff8a918ea00"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/ResourceAnalyzer.java",
+      "git_blob_sha1": "dbc91f38ac431467af7878485b4fbace0aad5580",
+      "bytes": 8353,
+      "sha256": "841a34210fd9a7daff0c384e05997d1e25d7b4841488ed39edb99ef0c0848abf"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/RuntimeEnabledSdkTableInjector.java",
+      "git_blob_sha1": "8dfd3adf1e1b6d0883937ab64ae76efd2e95deba",
+      "bytes": 6843,
+      "sha256": "ba97867e7a43a58c9a2b67b033ff344f955dba4971448e5c81917746fd3fd5e7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SanitizerNativeLibrariesSplitter.java",
+      "git_blob_sha1": "1219c838be252ebb9798a9ced0092bcbd4f13dec",
+      "bytes": 3257,
+      "sha256": "f0bfc6007cd4aeb081ffb9e108fe4a1c3669b0ea5e99fb8a579a23d631a6fb9a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/ScreenDensityResourcesSplitter.java",
+      "git_blob_sha1": "8fc98fed1ab5344e53cf8a2330a830689264fffc",
+      "bytes": 14184,
+      "sha256": "71b34a4c60864747b2f317a7afe8cebb9cd78f3979a023690aff4cb7a5605a97"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SdkRuntimeVariantGenerator.java",
+      "git_blob_sha1": "9719746baf713ecdc0905e4905d36b79689f1361",
+      "bytes": 3607,
+      "sha256": "ab0c3b62b74a4d0bc23b93dee19fc47176a97aa7d4d59db0e2039768506fbe66"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SigningConfigurationVariantGenerator.java",
+      "git_blob_sha1": "e6a67f0678a7baf2b25816d59a362349a8d22066",
+      "bytes": 2035,
+      "sha256": "4d29a08b0469b89d8b5b4593c713488f271f5b2dd74fdec1f1bffb5583ee96b9"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SparseEncodingVariantGenerator.java",
+      "git_blob_sha1": "45ee22398b66fc43a6a6cfda6226959fdcf8e0d2",
+      "bytes": 1917,
+      "sha256": "3cdf9d51aecdd3bddef68f48fcf9f3f69d27080ba0fb42180dd68b0b4e7e8bb7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SplitApksGenerator.java",
+      "git_blob_sha1": "e9a79dc4a35545ef2602ff5326e3b05ce6ab4545",
+      "bytes": 6311,
+      "sha256": "bdac36fa01f083c2074eda38c83aaf4d204f1f481af8b6d3fa37facc93b11650"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SplitterForOneTargetingDimension.java",
+      "git_blob_sha1": "74b2674c272b3a4f108e650aae19c611bb4615c0",
+      "bytes": 1426,
+      "sha256": "fad9852a711443371125adaa8c6b878c73ba5f14bb7a75771b1207e8e4b43b91"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/SplittingPipeline.java",
+      "git_blob_sha1": "9e993470b075b20c276a4a40db7b228633fdeb99",
+      "bytes": 1699,
+      "sha256": "26bafe7f312640f9add949af2040ee2ef962560dcc10a691c4951a4a1f313891"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/TextureCompressionFormatAssetsSplitter.java",
+      "git_blob_sha1": "788f95a827051f27668778d95b00e003e6a1f166",
+      "bytes": 2130,
+      "sha256": "767eda37e321297d1ee027666557fde273d4742aec895a45c478fa43481d23c1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/splitters/VariantTargetingGenerator.java",
+      "git_blob_sha1": "5b55ec249f329f114e6e726efadf9dd7b2b722c8",
+      "bytes": 2982,
+      "sha256": "47e380fd2d2d81353ca4083e74807f2f85b5e2d3cb2e75a025c262a8debb778c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/ApkModeTransparencyChecker.java",
+      "git_blob_sha1": "70ea389668e77255b3a21b34974005b8c89ed396",
+      "bytes": 3349,
+      "sha256": "364171618a7a41012d282e2cdaf28adb36d6321aa196cac41259dba21d51ad6d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/ApkSignatureVerifier.java",
+      "git_blob_sha1": "a535574e595e6dda26eeb6a20af3b3f0e3722e1f",
+      "bytes": 4361,
+      "sha256": "0565f300d9711ebf6c4a33a5570fda4a41b05872dffe7a6c4df359f7e5aa01d0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/ApkTransparencyCheckUtils.java",
+      "git_blob_sha1": "316fa483470e2c8db29ad4152d9dde7ad479deff",
+      "bytes": 9091,
+      "sha256": "089a028c0d44ca3728816ec5f55f80a1008995ad08b3ca48e45b0ad050fd3213"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/BundleModeTransparencyChecker.java",
+      "git_blob_sha1": "9c103e33e3fdfc44409e4b16019c1c9a1e502208",
+      "bytes": 1833,
+      "sha256": "ec69929949800610519232913b0b0a4ee06398b1d6d2e509a99f0024a12ad63a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/BundleTransparencyCheckUtils.java",
+      "git_blob_sha1": "98000816378c4a5b8b9774864fd3852481318099",
+      "bytes": 7016,
+      "sha256": "11edcf0b0fa9c04164886758cce3c95e03c4981fbaf79515d279b2f2daa7fddc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/CodeTransparencyCryptoUtils.java",
+      "git_blob_sha1": "373afba4f24d26c4bf6c4cc245d6be2fcdaf8686",
+      "bytes": 6116,
+      "sha256": "28e629f3e0567b514fb70d1be3df7edc940d9130b3a3d245201c3bc9b838f17c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/CodeTransparencyFactory.java",
+      "git_blob_sha1": "bbedbc55392603e5490a5f76bab4cdce423764aa",
+      "bytes": 5764,
+      "sha256": "d6277f09c1fd243a19fe32e8a0b50ebf2ad6149d62d62b16fe401adf04702bc8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/CodeTransparencyVersion.java",
+      "git_blob_sha1": "c61d2ee1f6bd231523fd669627001bd66c9b509d",
+      "bytes": 1741,
+      "sha256": "7e659643a92504afe4e60c6e47d0fcf54d4bedc75e1a8a1290fb29050bdaeaf7"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/ConnectedDeviceModeTransparencyChecker.java",
+      "git_blob_sha1": "380439d097bb409734d5c046e38c80953e89e672",
+      "bytes": 4761,
+      "sha256": "3864ec16471f9100fe887e8e2816889ac097ae30a8dc592345c409322719a8da"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/transparency/TransparencyCheckResult.java",
+      "git_blob_sha1": "4f473d54e470973b773fb909c3ab7f4e1eb7aa24",
+      "bytes": 4016,
+      "sha256": "30057db2a864bff6aaa42ac7db093231b3d9348a276c134efe1f3e8e89cd0da0"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AbiParityValidator.java",
+      "git_blob_sha1": "406917637650d04ece7a5dd1128006126835f902",
+      "bytes": 2780,
+      "sha256": "6161e1fe7e7904a26062d9fe3a41ad3591691ff0bce215a98b393e9d2d96ffb6"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AndroidManifestValidator.java",
+      "git_blob_sha1": "8912d588239fb93916f36428b7671058e0fc122c",
+      "bytes": 21047,
+      "sha256": "805b8059541d20feab08a7cdce4b45aaddf061c9ceb4d837cd972faeb29c3fb6"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ApexBundleValidator.java",
+      "git_blob_sha1": "095bf3d6f92427b6419f2e1f81aa2c328a32a128",
+      "bytes": 12427,
+      "sha256": "ca8fc3785e44e0b0cb1ecd19b7acda59a153bbf8b3bd59abae7897042cbcf952"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AppBundleValidator.java",
+      "git_blob_sha1": "e14668f2fa19fb37089344eebcb6752046ca16ff",
+      "bytes": 5105,
+      "sha256": "63cf3739fda3b0d12c1f068373a696e0ca5c79d40e7d3ffe12ad6d50471bbbf1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ArchiveEntriesValidator.java",
+      "git_blob_sha1": "aa66ab5bd4029e99ec26fdd7e763fd9a2cab4b57",
+      "bytes": 3399,
+      "sha256": "5c1652875e178f48e09ccf467f8e6157101bdcb40de790adf122967b77aa42cd"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AssetBundleValidator.java",
+      "git_blob_sha1": "8002a47152ab5a0517be39091b4b085bfaf96ee9",
+      "bytes": 2597,
+      "sha256": "a4da093d94104dcd6090e24ef9a7253f401c98766b44a346ace8aac10df1d739"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AssetModuleFilesValidator.java",
+      "git_blob_sha1": "3c28f047161b0570ab793bcc34aa8cf0582b8874",
+      "bytes": 3558,
+      "sha256": "d65e1df2f0f060f71f8c022309d4738a5fb339d922e744f958b76c2b90ca8a6e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/AssetsTargetingValidator.java",
+      "git_blob_sha1": "a6494c44f07d316868ee0dfa359b036023fd149f",
+      "bytes": 5026,
+      "sha256": "0395409dbe186ca713a3fb31bfc9325bf4da0b9c7629495dce0ac7a2ee4f3136"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/BundleConfigValidator.java",
+      "git_blob_sha1": "0b3b5ee3d6e282eba849997a7b09ebd560c23872",
+      "bytes": 7875,
+      "sha256": "7a8d96f5f2388f82754213f93ac24904da5a4b09ef1380d959db348b72a40b1f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/BundleFilesValidator.java",
+      "git_blob_sha1": "5e08f7099fe3272841c2cba4a48fa68958ceb03e",
+      "bytes": 7796,
+      "sha256": "033f1673a50e1dc2945ddb872febe18e9139f776e1c1bae10af6e0315c897ab6"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/BundleModulesValidator.java",
+      "git_blob_sha1": "612a72a04d331226561909fda22f5596bcc5aa37",
+      "bytes": 3388,
+      "sha256": "a5cb7830a0e9ac35abadd451fd6637a91faeb3597ae0f4989ae3a3beb6ed185b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/BundleValidationUtils.java",
+      "git_blob_sha1": "7c1723709c08a8d6ed38ef36a3ce5269f6211159",
+      "bytes": 9034,
+      "sha256": "7842676d3b7f53704ce67c06871cf99a71af7276fb76d136f83eab0b988f06ea"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/BundleZipValidator.java",
+      "git_blob_sha1": "d6fa3232eeb47cd921846e89b6e0b9cb57987a84",
+      "bytes": 1589,
+      "sha256": "72a94a5c226b378a39d827391c91e45a02725b78288121378e1eed2f2829518b"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/CodeTransparencyValidator.java",
+      "git_blob_sha1": "083045e920b655fa7ccb05ee021504077cfcb251",
+      "bytes": 1926,
+      "sha256": "b34ed79b91a29b12e169b110d94fac90d22e3c7979cb3c86c2a9ab22ac110ab5"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/CountrySetParityValidator.java",
+      "git_blob_sha1": "72e20a6353b06e2a9c63658671325f5a79c65675",
+      "bytes": 8080,
+      "sha256": "4e67b056c398b0b537986a002ed356f60994f9b972a08e8f723cfe1468f496c1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeclarativeWatchFaceBundleValidator.java",
+      "git_blob_sha1": "39c1783f609570d268d7282040806f3f0799c291",
+      "bytes": 8570,
+      "sha256": "ff1ebcbf194227979ba7747346f9a34b99a0ea343e66a0da9f1b826938a0cc0f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeviceGroupConfigValidator.java",
+      "git_blob_sha1": "cefa8dd035e663c149df6730847e92c3258c38b5",
+      "bytes": 3982,
+      "sha256": "946ffabd1baf763079e4b3d3bc610bc015d21fe7364cfd4e9c0675c7e0448e6e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeviceGroupParityValidator.java",
+      "git_blob_sha1": "88c72f13629f34f38487c49216f182f99500b4e0",
+      "bytes": 3800,
+      "sha256": "11977bf3712c3068a764f3cb2b189a0fbdf7badceb74464364f7a0550acf81b8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeviceGroupTargetingValidator.java",
+      "git_blob_sha1": "6f744bb61241b49f6d3c5bbf1d682208f3f8fdb5",
+      "bytes": 4630,
+      "sha256": "9ec980088bb402a24d9678f76cd1a7cc5e10ac4baf7b56b91b15d4a336a7825f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeviceTierConfigValidator.java",
+      "git_blob_sha1": "b66bf2cc25df630f320e9348932c360c272fe5e3",
+      "bytes": 9382,
+      "sha256": "5e9cd26ac69a504810f5df0b576edfcd08928a6d4b2b4939159d5ee096179b51"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DeviceTierParityValidator.java",
+      "git_blob_sha1": "097731dbeddbb33246f9b5260e7ff63f30b2e905",
+      "bytes": 4571,
+      "sha256": "e6d8ce4d5d723bf3600c391d7c4df4946fca6c44da374d37552b4c10edec345d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/DexFilesValidator.java",
+      "git_blob_sha1": "c4ec27e457caf1cfd0c2d5ee4316f5c7dd895087",
+      "bytes": 4352,
+      "sha256": "fc608535d022c8b27f8574463cef1785909d891eaa8388b757357e777a485dc6"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/EntryClashValidator.java",
+      "git_blob_sha1": "c5089f6b0c0213482dd7d69e6b0eefcf71cf8c49",
+      "bytes": 4216,
+      "sha256": "ac05bd0801bbd92e998c976f429888db1bdaeb3f266b5aa1514ca9ff0c8e686e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/FingerprintDigestValidator.java",
+      "git_blob_sha1": "7015dbe081cf8870c356449313dcf2510be95477",
+      "bytes": 1016,
+      "sha256": "18687006b78467e448e8ca305ff38d7ce6800e1f1e01f68e4a0fbff194a22d8e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/MandatoryFilesPresenceValidator.java",
+      "git_blob_sha1": "c545fc0625c2fb62bfcaca227913590df2f8c6d1",
+      "bytes": 3436,
+      "sha256": "5bd1ceb520536e497ac560514af1468af10de47f21217598ac456912651c3221"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ModuleDependencyValidator.java",
+      "git_blob_sha1": "9350461b9c2f84ee5308e9d91c87801468a53388",
+      "bytes": 14239,
+      "sha256": "91072b5a27b47cae136309c3182b58d8807744b9e891fa30fe8007398db680c4"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ModuleNamesValidator.java",
+      "git_blob_sha1": "0b9ee88f396964144e0f23c682a6a3ce4a2ce478",
+      "bytes": 4022,
+      "sha256": "fa27f979382e9cbd65b37e3382df0da31aa1d459dcafc7ede13956f5c7ccca21"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ModuleTitleValidator.java",
+      "git_blob_sha1": "898eea583d87b4f47a3b3c61bb01ee9d0caebdc5",
+      "bytes": 4017,
+      "sha256": "16fd2f05ece3dd9a5e9e0374acd004849f108c60b48d0d3c5505329976faa8b1"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/NativeTargetingValidator.java",
+      "git_blob_sha1": "6a575f57a994b78ad2825364f4051418dbb5e802",
+      "bytes": 3385,
+      "sha256": "d6442eeced1822b1bf658378ee67a46469c6f837c138dc2ce326d56a9c0053e2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/NestedTargetingValidator.java",
+      "git_blob_sha1": "fa393290f7bfef954c59ad0f78ad580b71203fe8",
+      "bytes": 13404,
+      "sha256": "a717cb548dab0a0f343aeba9a1cc41e4e3e70f1d751581277671457cdf3e3132"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ResourceTableValidator.java",
+      "git_blob_sha1": "0226595bb91b95618c7ddbe82e2d7c4ef634f190",
+      "bytes": 6070,
+      "sha256": "3daccee73f3832b3aa611901bdf77d45c9c31fa1d60ac5eb0902c1dc3cee13d8"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/RuntimeEnabledSdkConfigValidator.java",
+      "git_blob_sha1": "b62c1ff967de5b558c66e8ced5ec4626d109ca18",
+      "bytes": 7542,
+      "sha256": "66afdab88935e5b16fe127a4604b58dc3974b2652539d226c8e4ae45cc8c3393"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/RuntimeEnabledSdkManifestCompatibilityValidator.java",
+      "git_blob_sha1": "0afe9e90909403160c92b65fe873821502c76a9d",
+      "bytes": 4599,
+      "sha256": "51bd75795a27427143316b9d8b7e92d43400a4b8b6c4cd31587aa34b9bd32b95"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkAndroidManifestValidator.java",
+      "git_blob_sha1": "4e2f5cedc5cf7c9bc4082de449f5ad125d7df45f",
+      "bytes": 6498,
+      "sha256": "03831c8fab321fb558130b82ed0011ded2ce459c3a92c748024c9da605155945"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkAsarValidator.java",
+      "git_blob_sha1": "912c3f00857bb99b68860ce40b3d2a50d01e44ab",
+      "bytes": 1289,
+      "sha256": "0c6951919471d6ddf530ed041eca75f444ff48500302ef032c291c8ebedc19ee"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleConfigValidator.java",
+      "git_blob_sha1": "4c2a5ea07ab451497287b86bafd7d57736ef5be7",
+      "bytes": 4888,
+      "sha256": "f7e8f45bc155cae9a6e3598a9d782b22fccc4e2c09c685035e410198d9a5a6cc"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleHasOneModuleValidator.java",
+      "git_blob_sha1": "cd4a26ab51cf560dd07229a6beb6809e0433cc15",
+      "bytes": 2013,
+      "sha256": "c95ce1b2e10478d0c2feff3ef67f2c6de66ad620e4364b77e12efcd09ff2b1ed"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleMandatoryFilesPresenceValidator.java",
+      "git_blob_sha1": "53f42a3f28117617956528de7c5b08aca42365fa",
+      "bytes": 2245,
+      "sha256": "cb01edd1e993581b80e31178f78d8186686f2a82c76f1fcf233c0ae8f452b94a"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleModuleNameValidator.java",
+      "git_blob_sha1": "2055493bfa70bd7beef2d3db871d91f85013643d",
+      "bytes": 1346,
+      "sha256": "3398320dc107dfd358a01c8ad788891cd61b916f00b76ae33baca3f403671870"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleModuleResourceIdValidator.java",
+      "git_blob_sha1": "ae9a2a51b96a2e63e138b43ac912e66fbfbf81c7",
+      "bytes": 1767,
+      "sha256": "1f36baca7020e5283a0e9163adf221f81648b4db5dfee4da8f446978fa1a6d75"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleModulesMandatoryFilesPresenceValidator.java",
+      "git_blob_sha1": "d7b4e6a3a466c64447c79e261f673595468d1f79",
+      "bytes": 2961,
+      "sha256": "4e9363cfcbc404fef41a44bddc9f589d7a21909b05f456362e7dc842e8ac45d2"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleModulesValidator.java",
+      "git_blob_sha1": "11f3d38b81a9649eaa7179c45e9cb882a95aa6ba",
+      "bytes": 2277,
+      "sha256": "f8c2f87de21752863e523b2e0da54615f08480ccb4e1f3027005b2378ab9e066"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkBundleValidator.java",
+      "git_blob_sha1": "da650bde242111c74e1f5d67e74b46a7762f3fe9",
+      "bytes": 3751,
+      "sha256": "2228e673cefc6d73b4feaabec9ad1998c94a7f7e4fbde02be71bca8bbf3290fe"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkModulesConfigValidator.java",
+      "git_blob_sha1": "80310823129748fd10302886274d60c125ea12d3",
+      "bytes": 4285,
+      "sha256": "d7bc66e3e6f6ec9b6408ebbff254925d8c2116ec0ae624ff9471e69278003fe3"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SdkModulesFileValidator.java",
+      "git_blob_sha1": "f4d1feca069d0ef34080edd7fbe08153c91ac510",
+      "bytes": 2030,
+      "sha256": "bd53b4b8d70e68281bb5a4e0a5f4cd318652bcc0d6b591552b838966d21c1337"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/StandaloneFeatureModulesValidator.java",
+      "git_blob_sha1": "e36c7e6af3a766b457840201b9c19c1791b262b9",
+      "bytes": 2532,
+      "sha256": "b567e7eeb2a80325eb9e0c95e3e04aeda9f58d78f838826b823a20553bd7765c"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/SubValidator.java",
+      "git_blob_sha1": "959a6d0f237581238290c7e1a69930358f92a8bb",
+      "bytes": 2723,
+      "sha256": "99713721f6bdff26f0600945a2c0a9b4f5a6d7914f871cfb5a75ddb04b19c33e"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/TextureCompressionFormatParityValidator.java",
+      "git_blob_sha1": "4d63001d63910e1626766f40aec5153de32591ea",
+      "bytes": 10256,
+      "sha256": "1a539eff9a92b90564830ef807ef4738bad6212045a793c0ab3faadcf0878176"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/validation/ValidatorRunner.java",
+      "git_blob_sha1": "14cf6fb1c79a3dce794c78ced60bd352bc31cde6",
+      "bytes": 4642,
+      "sha256": "7b24b49c7514a3bf76aebbb8750747bff4684c7601dc1f196037c6d52ba4a111"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/xml/XPathResolver.java",
+      "git_blob_sha1": "6a863fd11ca0c640583f1a32c8b189648c1f3d89",
+      "bytes": 3401,
+      "sha256": "cc669c49941dee483fef2876d664c0738748ebf1469f31a251aeb7933ca0bc39"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/xml/XmlNamespaceContext.java",
+      "git_blob_sha1": "0dc6c1a37489b5bd1f2bb655ef6d3001864b29aa",
+      "bytes": 3189,
+      "sha256": "b4fb4bec2adcb2882428f1cc1b46f2eb91fd3224d7858a2a6843cf83b019b24f"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/xml/XmlProtoToXmlConverter.java",
+      "git_blob_sha1": "26c2f7c45eebe82de67970b98487cd864a6ffe69",
+      "bytes": 7552,
+      "sha256": "5af16d34faa16e3ea3cdc9970bb8547528f13f366d83efb18994b27ed9e05e8d"
+    },
+    {
+      "path": "src/main/java/com/android/tools/build/bundletool/xml/XmlUtils.java",
+      "git_blob_sha1": "c0f84c733dc101ca6ee6c5bfe1de20473cc4dd53",
+      "bytes": 2325,
+      "sha256": "703d80eecbab1bd8004d2a8a0ab5da776fadcd83ec073ab1de7878f3a9e45d9b"
+    },
+    {
+      "path": "src/main/proto/apex_manifest.proto",
+      "git_blob_sha1": "1b6474f5cf220f39066b05951ba29a16a9443db5",
+      "bytes": 1061,
+      "sha256": "9c3224066090030760e41a4c2af6e59fb5d2ee1b02126f181d308e8c34c4e8c1"
+    },
+    {
+      "path": "src/main/proto/app_dependencies.proto",
+      "git_blob_sha1": "08aee809b83abfe19892f3e1a11eadf701d8ef0b",
+      "bytes": 2801,
+      "sha256": "63ed64d7c881257a50b794695b62f8e455d4a8ce7a54ac9f9a850e7163ab2eb5"
+    },
+    {
+      "path": "src/main/proto/app_integrity_config.proto",
+      "git_blob_sha1": "346dec76253b89dee39160a184e2494290dffdb1",
+      "bytes": 2028,
+      "sha256": "7120cddbdd2b055cd0bbf88823958aa8ded7df64b111e233c6f82c5ab1b93f0b"
+    },
+    {
+      "path": "src/main/proto/build_stamp.proto",
+      "git_blob_sha1": "06cb276e57ce8b892019e6add8b6c8dc255b93b9",
+      "bytes": 1299,
+      "sha256": "b4bbd5f56a130a0a66aa24c5fe33c762b488b7292e49e28304758bdeb06ec4f4"
+    },
+    {
+      "path": "src/main/proto/code_transparency.proto",
+      "git_blob_sha1": "5f46cb695837083030397aa3ae70e8d03e790ba7",
+      "bytes": 1159,
+      "sha256": "cf8adb7daff4a58a2a0bc23bb194022ef51d4b18f33c5b1cb575ae7da692d3e7"
+    },
+    {
+      "path": "src/main/proto/commands.proto",
+      "git_blob_sha1": "12cc30ffbe0b99f503e2e51313d54cb2a2bcfff9",
+      "bytes": 11227,
+      "sha256": "d2d63a5271d50305cf2c89e155ddd5c43ff88de5bd813ea49542b03d68c97356"
+    },
+    {
+      "path": "src/main/proto/config.proto",
+      "git_blob_sha1": "c123ced0fb2143c8bfe4687d24039d6bb5c604a2",
+      "bytes": 13723,
+      "sha256": "d8c3a05ce1aff7e22e7a958b0cf5986d66b00e302b7ec6ada966e30e475633fd"
+    },
+    {
+      "path": "src/main/proto/device_targeting_config.proto",
+      "git_blob_sha1": "d5e374fbbc018f5971e68df3d423a6ccc5ff0e60",
+      "bytes": 5630,
+      "sha256": "ccab035d0002849c181cfe922caccf50f574e2624131ae3a121db7fabc151cd8"
+    },
+    {
+      "path": "src/main/proto/devices.proto",
+      "git_blob_sha1": "49648111382bf8e0c7161c2dc80ce1921c1edca1",
+      "bytes": 1922,
+      "sha256": "a5a965571aeca409a48b088483554310271874fa45c4bb5b0eeb4813800b6c01"
+    },
+    {
+      "path": "src/main/proto/errors.proto",
+      "git_blob_sha1": "d21161810865a13ed21ea74386b843219a4a0a56",
+      "bytes": 3511,
+      "sha256": "420daf8fcc985ee293658cdcbc15386d7ab2ea16f5d3b16299f0a71911c332b2"
+    },
+    {
+      "path": "src/main/proto/feature_modules_config.proto",
+      "git_blob_sha1": "6b4ea88855f648b26af40e50b7d7720cf840578d",
+      "bytes": 377,
+      "sha256": "d25f656ea54b980437c75256831198efbd21bac63005f163c0c4444068bb57c9"
+    },
+    {
+      "path": "src/main/proto/files.proto",
+      "git_blob_sha1": "7d3bf3f4c65a76873df83570df2be70acea59229",
+      "bytes": 2087,
+      "sha256": "a419a5c510ad861772d465da9c9673155cb48ea2c74584ef7f6d26474ca83316"
+    },
+    {
+      "path": "src/main/proto/rotation_config.proto",
+      "git_blob_sha1": "6521a82da3fedeac3be67ece26e158bb4a713cdc",
+      "bytes": 763,
+      "sha256": "f6b8a60f78bba63cbb22f67b12caabfc734d975ee2ddbc20b478d833ca2e5c16"
+    },
+    {
+      "path": "src/main/proto/runtime_enabled_sdk_config.proto",
+      "git_blob_sha1": "54d4f5676a0ace8c0aacead0a312b39ea5fc7b08",
+      "bytes": 3050,
+      "sha256": "bdeecc95cc56635e182279ad54479cb09d7a99fafd3d01619436e228943e99a9"
+    },
+    {
+      "path": "src/main/proto/sdk_bundle_config.proto",
+      "git_blob_sha1": "9984d9701c25086132cdd523b3597c6c3d90146c",
+      "bytes": 1623,
+      "sha256": "a21e6fa24e04623ed09bcba387ab32118b6f2f4d4b18ec1b7d186810cc1f75a6"
+    },
+    {
+      "path": "src/main/proto/sdk_metadata.proto",
+      "git_blob_sha1": "e7d29d72035a8d8afbf3e37de69fc9c056905334",
+      "bytes": 639,
+      "sha256": "e9f4aa82e6afc3b050f2e1051c561fdde284583aa4376641446b7d9d33ac2b24"
+    },
+    {
+      "path": "src/main/proto/sdk_modules_config.proto",
+      "git_blob_sha1": "d99a7ecc6e1efba95f9af64d6357fb3391519993",
+      "bytes": 1093,
+      "sha256": "416c100d2f4f9b788d450df8d50c1ef00e8918b946e86e3313bdfa016e137b45"
+    },
+    {
+      "path": "src/main/proto/sizes.proto",
+      "git_blob_sha1": "ecae0ad4f82c137a1d45dd20eab26a5b39e1edc6",
+      "bytes": 649,
+      "sha256": "2362e09647adfe1cad0c78da73fe2b18e7e1e082749f8bfe2a0638cd50fd2a5d"
+    },
+    {
+      "path": "src/main/proto/targeting.proto",
+      "git_blob_sha1": "0a7c752c075092e317be1a1a8f2ca41736c46ffd",
+      "bytes": 7982,
+      "sha256": "47f3c2f7b26f6f1ad4e083b757e203f718f6062c4b7546beacd385546e51ed36"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/dex/0_0_0/classes.dex",
+      "git_blob_sha1": "c8a54c84bc14b23b986304cfea8d57518e18d1b0",
+      "bytes": 6976,
+      "sha256": "e69a5de4240a8fda81f07cf16c071e2452612a401af0616e7ff20b37e5185802"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/dex/1_13_0/classes.dex",
+      "git_blob_sha1": "a5ec967c31393972c034a420fa01e0a7215e97c2",
+      "bytes": 5476,
+      "sha256": "26b5d071057f667df5688c3d790f520f6751196c09a069438ff7c33e0cf61cd8"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/dex/1_15_3/classes.dex",
+      "git_blob_sha1": "107da51926f20f1315acd3b6beaa439138dc3eda",
+      "bytes": 6696,
+      "sha256": "fd940417b25a9218e0a1a503f53c538ed9744dbcec77ab16fc99fe777edc97b7"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/dex/1_16_0/classes.dex",
+      "git_blob_sha1": "e29b043f768486c61bfb8472c8c3753c233906a0",
+      "bytes": 6980,
+      "sha256": "640d7452108a970d7801be7cd0059439df5b83f20a9159bb6e87297dc368a9b8"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/drawable/cloud_symbol_xml.pb",
+      "git_blob_sha1": "5797dea377f52aec03b8b1c308b5e0c132fbe7df",
+      "bytes": 1309,
+      "sha256": "777b110897b23502bdaa53a0f57efa9c2194834d0b1db7131b512aad8c6a34dd"
+    },
+    {
+      "path": "src/main/resources/com/android/tools/build/bundletool/archive/drawable/opacity_layer_xml.pb",
+      "git_blob_sha1": "307ac908cc4654cb5e675d929c08d7041ed9d2d1",
+      "bytes": 1623,
+      "sha256": "b2887ae002fb149fd6ff3d6c0a8f400b7fa2fb929b0c4f273e6286ccb89a3291"
+    }
+  ],
+  "jose4j_referencing_source_files": [
+    "src/main/java/com/android/tools/build/bundletool/commands/AddTransparencyCommand.java",
+    "src/main/java/com/android/tools/build/bundletool/transparency/ApkTransparencyCheckUtils.java",
+    "src/main/java/com/android/tools/build/bundletool/transparency/BundleTransparencyCheckUtils.java",
+    "src/main/java/com/android/tools/build/bundletool/transparency/CodeTransparencyCryptoUtils.java"
+  ],
+  "git_fsck": "PASS",
+  "tag_signature_authenticated": false
+}

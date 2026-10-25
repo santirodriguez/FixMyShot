@@ -347,3 +347,15 @@ package evidence only; do not mark build operations or whole security safe.
 The [security owner](docs/feasibility/dependency-security-review.md) separates
 actual APK exposure from residual build risk. These read-only analysis tools
 change no app input and do not require a new Android build by themselves.
+
+
+### Keep the obsolete Jetifier route disabled
+
+FixMyShot consumes AndroidX dependencies directly. gradle.properties explicitly
+sets android.enableJetifier=false; settings.gradle.kts rejects any present value
+other than the literal false before configuring Android projects. A CLI or
+user-home override to true must fail with the project's Jetifier message.
+The focused clean rebuild exercises that actual rejection before compiling.
+This blocks the configured legacy conversion route that owns the JDOM finding;
+it does not remove or patch the AGP classpath dependency. Reconsidering this
+boundary requires a source/security review, not an implicit property override.

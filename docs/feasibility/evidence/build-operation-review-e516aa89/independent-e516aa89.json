@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "scope": "ACTUAL_TWO_CLEAN_BUILDS_OF_SAME_GUARDED_SOURCE_FULL_BYTE_EQUALITY",
+  "source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "source_tree": "6089799f41df2239ab111e172b7989cccee07bf9",
+  "control_commit": "6bdc1c446c2ddb0a057123332fe340c03d5d7bfa",
+  "run_id": 40209306060,
+  "job_id": 121216923633,
+  "conclusion": "success",
+  "artifact_id": 12604614866,
+  "artifact_bytes": 29198623,
+  "artifact_sha256": "640241aef358fdd57c964e22a0f1f75a5f88a63f304330b3118a9587d70b7a44",
+  "safe_unique_members_and_crc": "PASS_23_MEMBERS",
+  "source_archive_byte_identical_to_reconstructed_first": "PASS_468_FILES_TREE_6089799f",
+  "source_pristine_and_empty_cache_logs": "PASS",
+  "core": {
+    "tests": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "jetifier_true_override_rejection": "PASS_ACTUAL_SETTINGS_BOUNDARY_AGAIN",
+  "unsigned_apk_sha256": "b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd",
+  "unsigned_apk_bytes": 11841246,
+  "actual_full_apk_bytes_equal_first_guarded_build": true,
+  "original_literal_byte_comparator_unchanged": true,
+  "first_cross_source_run_remains_failure": true,
+  "new_api36_or_physical_acceptance": false,
+  "dependency_authentication": "OPEN",
+  "signing_and_publication": "NOT_RUN"
+}

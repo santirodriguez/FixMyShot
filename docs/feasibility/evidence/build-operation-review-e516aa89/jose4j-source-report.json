@@ -1,0 +1,33 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/org/bitbucket/b_c/jose4j/0.9.5/jose4j-0.9.5-sources.jar",
+  "sha256": "9865f3f3a5c60fde3bfb285d45071135cfd1a07dccae98d4d03abc29a1ba638f",
+  "bytes": 223538,
+  "members": 184,
+  "selected": [
+    {
+      "path": "org/jose4j/jws/JsonWebSignature.java",
+      "local": "jose4j-JsonWebSignature.java",
+      "bytes": 15092,
+      "sha256": "703626ef8db79ccb45e92e4d428866cdc64656f5706f885bb117861924a78e44"
+    },
+    {
+      "path": "org/jose4j/jwe/JsonWebEncryption.java",
+      "local": "jose4j-JsonWebEncryption.java",
+      "bytes": 15090,
+      "sha256": "db9df2e32e072e7df617aa2275db2e78fc1f9f1175cd98b157c2f599e12938f2"
+    },
+    {
+      "path": "org/jose4j/zip/DeflateRFC1951CompressionAlgorithm.java",
+      "local": "jose4j-DeflateRFC1951CompressionAlgorithm.java",
+      "bytes": 3066,
+      "sha256": "7a98f396c716553a923fd89f21732b01a32936fd3410a54d233af06cad8b7f45"
+    },
+    {
+      "path": "org/jose4j/jwx/JsonWebStructure.java",
+      "local": "jose4j-JsonWebStructure.java",
+      "bytes": 13801,
+      "sha256": "0371b9ee25bad05136d2c163f04db496de6f33a5089b9f17c1de9945e5ef6f01"
+    }
+  ],
+  "publisher_authentication_claim": false
+}

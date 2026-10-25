@@ -1,31 +1,44 @@
 # Testing and evidence
 
-Current bounded checkpoint: **e8fd9c0f**, Actions40190972725. Core69/lint/
-threeAPK,269-file source/tree/input audit, actual debug/release seven canonical
-legal assets, native9libraries/3ABIs/alignment and fullAPI36/80real encodes/
-four final report guards pass. Both build/smoke archives were downloaded and
-verified. Independent40192020106 rebuilt that exact source with empty caches; downloaded
-unsigned bytes match the original package exactly (11839827B/SHA256e36d5444…). [The exact receipt](feasibility/evidence/android-e8fd9c0f.json)
-retains size/hash/source and scope. No physical codec/16KiB approval follows.
+Latest accepted application checkpoint: **5d568a7e**, normal Actions
+[40196478234](https://github.com/santirodriguez/FixMyShot/actions/runs/40196478234)
+and exact-source independent rebuild
+[40197042011](https://github.com/santirodriguez/FixMyShot/actions/runs/40197042011).
+Both downloaded artifacts and actual package bytes were reviewed. Core69,
+lint, three APKs, exact382-file source/tree/input audit, actual NDK source,
+eight canonical legal assets, nine native libraries/three ABIs/alignment and
+API36 regressions with80real encodes/four replay guards pass. The independent
+unsigned APK matches the original full11,841,246-byte file. See the
+[package](feasibility/evidence/android-5d568a7e.json) and
+[independent](feasibility/evidence/independent-rebuild-5d568a7e.json) receipts.
+Optional legacy SAF was skipped/NOT RUN. Emulated page size4096 does not
+establish physical16KiB, HEIC/AVIF or manual acceptance.
 
-Previous complete bounded checkpoint: **f9434ab9**, Actions40160890302.
-Core69/lint/threeAPK, source246-file tree/input audit, actual debug+release
-native/legal checks, API36 renderer6/cache3/private20/transaction12/export5/
-share4/settings21/batch7/retry8/recovery16,80realPNG/WebPencodes and all four
-report guards passed. Optional legacy SAF was skipped/NOT RUN. Emulated page
-size4096 is not physical16KiB or general HEIC/AVIF acceptance.
-The [exact receipt](feasibility/evidence/android-f9434ab9.json) binds downloaded
-build/smoke archive hashes, reconstructed source tree and actual package bytes.
-Independent40161516814 recreated the identical unsigned11835411-byte APK in a
-clean build; actual downloaded bytes were compared. See its
-[comparison receipt](feasibility/evidence/independent-rebuild-f9434ab9.json).
+The later Jetifier settings guard at source **e516aa89** has a focused clean-build
+comparison in Actions
+[40208750635](https://github.com/santirodriguez/FixMyShot/actions/runs/40208750635).
+The actual true override was rejected at settings; core69/default assembleRelease
+passed without build-cache reuse. The overall run failed its literal cross-source
+byte check: the only changed entry is the expected120-byte Git source marker;
+all465other payloads match. The [downloaded build receipt](feasibility/evidence/build-operation-review-e516aa89/build-e516aa89.json)
+and strict payload comparator preserve that distinction. The actual unsigned
+APK is11841246B/SHA256b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd.
+Same-source [40209306060](https://github.com/santirodriguez/FixMyShot/actions/runs/40209306060)
+completed SUCCESS and its downloaded actual APK matches that baseline in full
+bytes. Both builds use the same source; the independent source archive matches
+the first reconstructed468-file tree. Core69 and actual override rejection pass
+in both. [The independent receipt](feasibility/evidence/build-operation-review-e516aa89/independent-e516aa89.json)
+retains the archive/digest/source bindings. No API36 rerun or new physical
+acceptance is claimed.
 
-The separate current dependency review inherited149exact proofs and accepted
-67newKotlinfiles, retaining all387historical proofs unchanged. OSV488queries
-replay completely, with49advisory IDs/18tooling components and no133runtime
-matches at scan time. These are bounded evidence, not whole trust/security/
-license acceptance. Raw dependency evidence is uploaded and independently verified; see [its package receipt](feasibility/evidence/dependency-evidence-f9434ab9.json).
-All earlier entries below are historical checkpoints with their original scopes.
+Publisher review is325/858individual files,533pending (runtime11; other522).
+The frozen OSV inventory has49advisory IDs/18tooling components and no matches
+for133app-runtime coordinates at scan time. These are separate authenticity
+and security gates, not missing product features. All raw ZIP uploads are
+verified. [Completion status](STATUS.md) owns the remaining delivery steps;
+[source review](feasibility/google-source-copy-review.md) and
+[security review](feasibility/dependency-security-review.md) own their limits.
+All subsequent historical entries retain their original source and scope.
 
 ## Checks in this slice
 
