@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "scope": "ACTUAL_FROZEN_DELIVERY_CONTROLS_AND_FUNCTIONAL_TEST_BOUNDARY_NOT_RELEASE_APPROVAL",
+  "compiled_source": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "inventory_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "inactive_proof_record_sha256": "9c3fb232913c5225d62f8aa0351961be17a03c791ebce034dc6a2fd79f76f467",
+  "runtime_component_coordinates": 133,
+  "runtime_associated_frozen_files": 228,
+  "reviewed_runtime_files": 217,
+  "runtime_binary_archives": 95,
+  "reviewed_runtime_binary_archives": 93,
+  "pending_runtime_binary_archives": 2,
+  "pending_runtime_modules": 6,
+  "pending_runtime_poms": 3,
+  "remaining_runtime_identities": [
+    {
+      "group": "org.jetbrains",
+      "name": "annotations",
+      "version": "23.0.0",
+      "file": "annotations-23.0.0.pom",
+      "sha256": "c9490f655132328df2cfbcfdf743f53fc3916d6c1d10437175a6ca6e3a67771c"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-coroutines-android",
+      "version": "1.9.0",
+      "file": "kotlinx-coroutines-android-1.9.0.jar",
+      "sha256": "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-coroutines-android",
+      "version": "1.9.0",
+      "file": "kotlinx-coroutines-android-1.9.0.module",
+      "sha256": "7df1e04d77f0cc411890d999a9449b0e3bcd4f159a46c3060b110204ca607d43"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-coroutines-bom",
+      "version": "1.9.0",
+      "file": "kotlinx-coroutines-bom-1.9.0.pom",
+      "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-coroutines-core",
+      "version": "1.9.0",
+      "file": "kotlinx-coroutines-core-1.9.0.module",
+      "sha256": "ad534034a953b4e12cbeeb874c66adf8b1ca14df15fe0d2e6547aa34e86dfeca"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-coroutines-core-jvm",
+      "version": "1.9.0",
+      "file": "kotlinx-coroutines-core-jvm-1.9.0.module",
+      "sha256": "b321a899e40d3ce345707aa2cfda9983ad0dcc69fea74a9b8bf906a16c1cf8a9"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-serialization-bom",
+      "version": "1.7.3",
+      "file": "kotlinx-serialization-bom-1.7.3.pom",
+      "sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-serialization-core",
+      "version": "1.7.3",
+      "file": "kotlinx-serialization-core-1.7.3.module",
+      "sha256": "39d09a6e02df2b32558440a64c628f9c605fae8c4f6090321798334c82177e64"
+    },
+    {
+      "group": "org.jetbrains.kotlinx",
+      "name": "kotlinx-serialization-core-jvm",
+      "version": "1.7.3",
+      "file": "kotlinx-serialization-core-jvm-1.7.3.module",
+      "sha256": "73bb4c02793f87c29ef64bea4ba0258076f4d4c963fcda633d1248ef24b4b4ef"
+    },
+    {
+      "group": "org.jspecify",
+      "name": "jspecify",
+      "version": "1.0.0",
+      "file": "jspecify-1.0.0.jar",
+      "sha256": "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+    },
+    {
+      "group": "org.jspecify",
+      "name": "jspecify",
+      "version": "1.0.0",
+      "file": "jspecify-1.0.0.module",
+      "sha256": "d307ca77a54e18ac1ef1aaed4e5bbe014bd2f49f29e1d2f813e47c278283195b"
+    }
+  ],
+  "all_frozen_files": 858,
+  "all_reviewed_files": 325,
+  "all_pending_files": 533,
+  "other_pending_files": 522,
+  "new_accepted_publisher_anchor_found": false,
+  "active_gradle_verification_enabled": false,
+  "reviewed_counts_or_trust_relaxed": false,
+  "source_material_bundle_stage": "COMPLETE_VALIDATED_B9E00777",
+  "repackaged_version_material_identification": "COMPLETE_WITH_EXPLICIT_SCOPE_LIMITS",
+  "full_source_distribution_and_publisher_gate": "OPEN",
+  "functional_phone_checks": "PENDING_USER_DEVICE_EXECUTION_AND_APK_HANDOFF_AUTHORITY",
+  "functional_test_readiness_is_not_distribution_approval": true,
+  "user_no_APK_delivery_preference_changed": false,
+  "production_signing_merge_or_publication_authorized": false,
+  "next_publisher_action": "Only a materially new credible primary publisher anchor or an explicitly approved change to the assurance policy; repeated capture alone cannot establish provenance",
+  "existing_evidence_to_preserve": [
+    "same-source unsigned byte reproducibility",
+    "full normal API36 application acceptance with guarded-source transition scope",
+    "all49frozen tooling findings and bounded host operation assessment",
+    "physical/codecs/locale/accessibility/upgrade checks remain separate and unexecuted where recorded"
+  ]
+}

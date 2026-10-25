@@ -247,3 +247,24 @@ The historical Okio replay test now tolerates later append-only review batches
 while reconstructing its exact pinned 294 predecessor. No historical production
 reviewer or prior proof changes. Current total: 325/858; runtime 217/11, other
 108/522. No app/build inputs, active verification policy or codec gates change.
+
+
+## Exact remaining runtime partition
+
+The [current delivery-control receipt](evidence/delivery-control-status-e516aa89.json)
+joins the frozen inventory, actual app runtime lock and unchanged325-file proof
+record. Of95runtime binary archives,93have reviewed publisher evidence. The
+two pending binaries are kotlinx-coroutines-android1.9.0and JSpecify1.0.0.
+The other nine pending runtime-associated files are six modules and three POMs;
+all11exact identities/hashes remain listed. Other captured files still have
+522pending reviews. No count, proof rule or active policy changed.
+
+The bounded follow-up found no new acceptable primary issuer anchor. Kotlin's
+already pinned own release verification file has no trusted-key declarations
+and verify-signatures=false; its existing six exact checksum proofs do not
+approve adjacent metadata. Foreign key caches, short identifiers and source
+availability do not satisfy the missing publisher evidence. Do not repeat
+completed captures merely to seek another transport match. Progress requires
+new credible primary evidence or a separately considered assurance-policy change.
+Functional device evidence is a different acceptance dimension and cannot
+silently close these distribution controls.

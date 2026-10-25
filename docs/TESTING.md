@@ -1278,3 +1278,22 @@ records full pins; [the source owner](feasibility/runtime-source-review.md)
 retains the supplemental JNI/FlatBuffers/Core AIDL captures, initial failures,
 negative naive relocation comparison and remaining source/distribution limits.
 No Android/OSV rerun or physical/signing acceptance was added.
+
+
+## Repackaged symbols and functional-device boundary
+
+Four offline symbol-comparator cases PASS. Actual pinned FlatBuffers1.12.0and
+frozen Emoji2 archives yield45matching declaration layouts;31exact unique
+resolved constant sets and14sets with original-only class-reference differences.
+The actual full45-class differences remain recorded; method bodies/other
+attributes/source equivalence were not compared. This is version/source-material
+identification evidence, not a passing replacement for the earlier full-byte
+comparison. See [the receipt](feasibility/evidence/repackaged-source-review-e516aa89/review.json).
+
+A bounded functional phone exercise and final distribution approval are distinct.
+Use an identified diagnostic build and record actual device/input/output/test
+scope. It does not approve unreviewed dependencies, enable strict verification,
+qualify production signatures/upgrades or waive any physical/native-format gate.
+The [current controls](feasibility/evidence/delivery-control-status-e516aa89.json)
+record all11pending runtime files and the unchanged larger publisher backlog.
+No new Android build, source bundle or phone result follows from this data review.

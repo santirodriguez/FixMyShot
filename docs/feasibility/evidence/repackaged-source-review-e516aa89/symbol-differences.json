@@ -1,0 +1,262 @@
+[
+  {
+    "class": "com/google/flatbuffers/BaseVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/BooleanVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/ByteBufferUtil.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/ByteVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/DoubleVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/FlatBufferBuilder.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/FlexBuffersBuilder$Value.class",
+    "only_original": [
+      [
+        1,
+        "6a6176612f6c616e672f446f75626c65"
+      ],
+      [
+        1,
+        "6a6176612f6c616e672f4c6f6e67"
+      ],
+      [
+        7,
+        [
+          1,
+          "6a6176612f6c616e672f446f75626c65"
+        ]
+      ],
+      [
+        7,
+        [
+          1,
+          "6a6176612f6c616e672f4c6f6e67"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/FlexBuffersBuilder.class",
+    "only_original": [
+      [
+        1,
+        "6a6176612f6c616e672f42797465"
+      ],
+      [
+        1,
+        "6a6176612f6c616e672f53686f7274"
+      ],
+      [
+        7,
+        [
+          1,
+          "6a6176612f6c616e672f42797465"
+        ]
+      ],
+      [
+        7,
+        [
+          1,
+          "6a6176612f6c616e672f53686f7274"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/FloatVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/IntVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/LongVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/ShortVector.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/Table.class",
+    "only_original": [
+      [
+        1,
+        "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+      ],
+      [
+        7,
+        [
+          1,
+          "616e64726f6964782f656d6f6a69322f746578742f666c61746275666665722f436f6e7374616e7473"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  },
+  {
+    "class": "com/google/flatbuffers/Utf8$DecodeUtil.class",
+    "only_original": [
+      [
+        1,
+        "6a6176612f6c616e672f436861726163746572"
+      ],
+      [
+        7,
+        [
+          1,
+          "6a6176612f6c616e672f436861726163746572"
+        ]
+      ]
+    ],
+    "only_frozen": []
+  }
+]

@@ -153,3 +153,30 @@ large Git upload. Preserve the original source kit's separate Git-restoration
 procedure. No complete offline toolchain or source/binary equivalence follows.
 Final distribution/source review, including the exact external relocation and
 generation context, remains open alongside publisher and physical/signing gates.
+
+
+## Repackaged version identification review
+
+[The symbol review](evidence/repackaged-source-review-e516aa89/review.json)
+adds a bounded comparison of the published1.12.0binary against the frozen
+Emoji2 repackaged JAR. All45classes have the same version, access, superclass,
+interfaces and field/method declaration layouts after the two explicit namespace
+mappings.31have exactly the same unique resolved constant set. The other14
+retain no new frozen constants; differences are only original-side UTF8/class
+references to Constants or five java.lang wrapper types. The full differences
+remain recorded. Constant-pool indices/order/duplicate slots are representation
+details; this comparison resolves them without dropping differing values.
+
+This corroborates the FlatBuffers1.12.0version/material identification and
+accounts for all four additional MetadataItem/MetadataList classes using the
+previously staged Noto Java/schema material. That bounded source-version/material
+review is complete. Method instructions and other attributes were **not**
+compared; exact Noto checkout and source/binary equivalence remain unproved.
+The original0/45full-byte result and the31/45constant-set result are preserved.
+Four offline tests cover index reordering, changed literals/declarations,
+retained differing debug constants and malformed/cyclic input. Do not promote
+this into publisher identity, bytecode equivalence or final source clearance.
+
+No source input changed, so the validated b9e00777source-material asset remains
+unchanged. Final corresponding-source/distribution acceptance is separate from
+functional device testing; a diagnostic run does not approve release provenance.

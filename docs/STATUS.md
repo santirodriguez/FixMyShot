@@ -47,6 +47,13 @@ security gate and future-input/signing review remain open. No generated trust po
 
 ## The path to delivery
 
+These are acceptance tracks, not an unconditional serial barrier to a bounded
+functional device run. The blueprint records actual device acceptance before
+final distribution acceptance. A diagnostic candidate may be exercised while
+publisher/source controls remain open; retain its exact source/artifact and
+all limits. This does not authorize distribution, signing, merge or publication,
+or turn any pending control into PASS.
+
 1. **Finish the technical delivery controls.** Application implementation and
    bounded automated acceptance are recorded above. Publisher authenticity
    and corresponding-source materials are
@@ -131,3 +138,20 @@ assemblies. This completes that assembly stage. The [source owner](feasibility/r
 retains398SourceFile-name diagnostics, the negative0/45naive relocation comparison
 and the unproved exact Noto build-checkout relation. Final source/distribution
 approval and publisher325/858 remain open. No new APK or phone result is claimed.
+
+
+The [repackaged-symbol review](feasibility/evidence/repackaged-source-review-e516aa89/review.json)
+corroborates FlatBuffers1.12.0material identification:45matching declaration
+layouts,31matching unique constant sets and14sets with original-only class
+reference differences; no new frozen constants/members. No method-body/source
+or publisher equivalence is inferred, and the earlier byte mismatch remains.
+No source change or new bundle/build is needed.
+
+The [delivery-control partition](feasibility/evidence/delivery-control-status-e516aa89.json)
+now makes the remaining runtime work concrete:93/95binary archives have reviewed
+publisher evidence; the two pending binaries are coroutines-android1.9.0and
+JSpecify1.0.0. Six module files/three POMs account for the other nine pending
+runtime files;522other captured files remain pending. New issuer searches found
+no accepted primary anchor, so325/858and the inactive policy are unchanged.
+Functionality/device acceptance and distribution approval must be reported
+separately. No phone run or APK handoff is claimed here.
