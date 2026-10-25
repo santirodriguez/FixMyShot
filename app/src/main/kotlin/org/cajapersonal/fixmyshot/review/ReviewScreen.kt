@@ -333,6 +333,7 @@ internal fun ReviewScreen(
                     }
                     Text(stringResource(R.string.preview_background_quick_heading),
                         style = MaterialTheme.typography.bodySmall)
+                    val quickBackground = if (editSelectedOnly) plan?.settings?.background else draft.batch.background
                     FlowRow(Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -341,9 +342,10 @@ internal fun ReviewScreen(
                             BackgroundChoice.Black to R.string.preview_background_black,
                             BackgroundChoice.White to R.string.preview_background_white,
                         ).forEach { (choice, label) ->
-                            FilterChip(selected = plan?.settings?.background == choice,
+                            FilterChip(selected = quickBackground == choice,
                                 onClick = { onBackground(choice, editSelectedOnly) },
-                                enabled = editEnabled, label = { Text(stringResource(label)) })
+                                enabled = editEnabled && (!editSelectedOnly || plan != null),
+                                label = { Text(stringResource(label)) })
                         }
                     }
                     Text(stringResource(if (editSelectedOnly) R.string.edit_scope_image
