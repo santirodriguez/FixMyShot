@@ -6,7 +6,7 @@ Run `python3 scripts/check-release.py` for the checked version ledger, source id
 
 ## Bootstrap build
 
-Use JDK 17 and Android SDK platform 36, build tools 35.0.0, NDK 28.2.13676358 and CMake 3.22.1. The initial candidate pins AGP 8.13.2, Gradle 8.13, Kotlin 2.2.21 and Compose BOM 2025.12.00. These are starting pins, not claims of current security approval or independently reproducible output. Review the actual resolved dependency/security inventory before freezing G1.
+Use JDK 17 and Android SDK platform 36, build tools 36.0.0, NDK 28.2.13676358 and CMake 3.22.1. The migrated candidate pins AGP 9.2.1, Gradle 9.4.1, Kotlin 2.4.21 and Compose BOM 2025.12.00. These are starting pins, not claims of current security approval or independently reproducible output. Review the actual resolved dependency/security inventory before freezing G1.
 
 ```sh
 bash scripts/bootstrap-gradle.sh
@@ -15,7 +15,7 @@ python3 scripts/check-bootstrap.py
 ./gradlew :app:connectedDebugAndroidTest
 ```
 
-The standard Gradle8.13 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
+The standard Gradle9.4.1 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
 
 HEIC/AVIF native writer feasibility uses the pinned AndroidX HeifWriter release candidate; inspect actual device output before advertising those formats. A bounded Photo Picker / received-share / app-private review import path exists, with immutable PNG/WebP preflight, a test-only private output executor, and an internal API29+ journaled MediaStore transaction adapter. An experimental user-triggered Export UI now uses the frozen sequential coordinator: owned MediaStore on API29+, explicit user-selected SAF folder on API26–28, localized progress and per-item results. Source-bound build/API26/API36 tests now cover synthetic export results, selected-output share payloads and read-only recovery checks; genuine selected SAF trees, external receiving apps and complete recovery remain unverified. See docs/TESTING.md for the exact receipt; this is not G4/release acceptance. No storage permission was added.
 
@@ -225,7 +225,7 @@ Gpgv validates the signature but does not enforce key expiry/revocation itself. 
 
 ### Review additional Kotlin release manifests
 
-Use `scripts/review-kotlin-manifests.py` with explicit control, request, prior-receipt and release-registry pins. It preserves previous exact proofs and appends only matching full Maven paths from the appropriate official release asset. A duplicate/unsafe path, changed asset or conflicting checksum fails closed. An unavailable manifest contributes no approval. Run `python3 scripts/test-kotlin-manifest-review.py` (7 offline cases). The original Kotlin 2.2.21 hard pin remains unchanged.
+Use `scripts/review-kotlin-manifests.py` with explicit control, request, prior-receipt and release-registry pins. It preserves previous exact proofs and appends only matching full Maven paths from the appropriate official release asset. A duplicate/unsafe path, changed asset or conflicting checksum fails closed. An unavailable manifest contributes no approval. Run `python3 scripts/test-kotlin-manifest-review.py` (7 offline cases). That historical Kotlin2.2.21 receipt remains unchanged; it does not authenticate the current Kotlin2.4.21 tooling.
 
 ### Inventory current vulnerability database matches
 

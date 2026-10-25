@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.android)
 }
 android {
     namespace = "org.cajapersonal.fixmyshot.codec"
     compileSdk = 36
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "36.0.0"
     ndkVersion = "28.2.13676358"
     defaultConfig {
         minSdk = 26

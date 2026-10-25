@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""Check the reviewed Gradle 8.13 launcher before executing any Java/download code."""
+"""Check the reviewed Gradle 9.4.1 launcher before executing any Java/download code."""
 import hashlib
 from pathlib import Path
 import sys
 
-# JAR/distribution anchors: https://gradle.org/release-checksums/ (8.13).
-# Launcher scripts: source-bound, verified-distribution generated artifact12489096076.
+# JAR/distribution anchors: https://gradle.org/release-checksums/ (9.4.1).
+# Launcher scripts: source-bound, verified-distribution generated experiment12583168008 atafea6e45.
 FILES = {
-    'gradle/wrapper/gradle-wrapper.jar': '81a82aaea5abcc8ff68b3dfcb58b3c3c429378efd98e7433460610fecd7ae45f',
-    'gradlew': '734b3879d3501dce471cf0522d3bcbafe76873d9fc5129345b67fb43bd15e933',
-    'gradlew.bat': '57931b17dd228e5c24dac90e815d0bf82477e831a4618dfab4136f5446b42a9f',
+    'gradle/wrapper/gradle-wrapper.jar': '55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c',
+    'gradlew': 'aed171fb114f82e6eaea4970a245a200e0582a7dcc8ec0891ca41b6e4a62b754',
+    'gradlew.bat': 'fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234',
 }
 PROPERTIES = {
     'distributionBase': 'GRADLE_USER_HOME',
     'distributionPath': 'wrapper/dists',
-    'distributionSha256Sum': '20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78',
-    'distributionUrl': r'https\://services.gradle.org/distributions/gradle-8.13-bin.zip',
+    'distributionSha256Sum': '2ab2958f2a1e51120c326cad6f385153bb11ee93b3c216c5fccebfdfbb7ec6cb',
+    'distributionUrl': r'https\://services.gradle.org/distributions/gradle-9.4.1-bin.zip',
     'networkTimeout': '10000',
     'validateDistributionUrl': 'true',
     'zipStoreBase': 'GRADLE_USER_HOME',
@@ -44,4 +44,4 @@ if __name__ == '__main__':
         check(Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1])
     except (OSError, ValueError) as error:
         sys.exit(f'FAIL: {error}')
-    print('PASS: committed Gradle 8.13 wrapper and distribution pins; no network or Java execution')
+    print('PASS: committed Gradle 9.4.1 wrapper and distribution pins; no network or Java execution')

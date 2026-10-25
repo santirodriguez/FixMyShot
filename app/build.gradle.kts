@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 }
 android {
     namespace = "org.cajapersonal.fixmyshot"
     compileSdk = 36
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "36.0.0"
     defaultConfig {
         applicationId = "org.cajapersonal.fixmyshot"
         minSdk = 26
@@ -46,22 +45,60 @@ dependencies {
 }
 
 
-// One checked-in icon serves store metadata, documentation and Android resources.
-// Generated packaging copies stay under build/, never as a second committed PNG.
-val prepareBrandingResources by tasks.registering(Sync::class) {
-    from(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
-    into(layout.buildDirectory.dir("generated/branding/res/drawable-nodpi"))
-    rename { "brand_icon.png" }
-}
-android.sourceSets.getByName("main").res.srcDir(layout.buildDirectory.dir("generated/branding/res"))
-tasks.named("preBuild").configure { dependsOn(prepareBrandingResources) }
+// Typed task outputs keep generated resources wired to each Android variant.
+abstract class PrepareBrandingTask : DefaultTask() {
+    @get:org.gradle.api.tasks.InputFile
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
+    abstract val sourceIcon: org.gradle.api.file.RegularFileProperty
+    @get:org.gradle.api.tasks.OutputDirectory
+    abstract val outputDirectory: org.gradle.api.file.DirectoryProperty
 
-// Package canonical legal texts without maintaining separate Android copies.
-val prepareLegalAssets by tasks.registering(Sync::class) {
-    from(rootProject.layout.projectDirectory.file("LICENSE")) { into("project") }
-    from(rootProject.layout.projectDirectory.file("THIRD_PARTY_NOTICES"))
-    from(rootProject.layout.projectDirectory.dir("LICENSES")) { into("licenses") }
-    into(layout.buildDirectory.dir("generated/legal/assets/legal"))
+    @org.gradle.api.tasks.TaskAction
+    fun generate() {
+        val target = outputDirectory.file("drawable-nodpi/brand_icon.png").get().asFile
+        target.parentFile.mkdirs()
+        sourceIcon.get().asFile.copyTo(target, overwrite = true)
+    }
 }
-android.sourceSets.getByName("main").assets.srcDir(layout.buildDirectory.dir("generated/legal/assets"))
-tasks.named("preBuild").configure { dependsOn(prepareLegalAssets) }
+
+abstract class PrepareLegalTask : DefaultTask() {
+    @get:org.gradle.api.tasks.InputFile
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
+    abstract val projectLicense: org.gradle.api.file.RegularFileProperty
+    @get:org.gradle.api.tasks.InputFile
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
+    abstract val thirdPartyNotices: org.gradle.api.file.RegularFileProperty
+    @get:org.gradle.api.tasks.InputDirectory
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.RELATIVE)
+    abstract val licenseDirectory: org.gradle.api.file.DirectoryProperty
+    @get:org.gradle.api.tasks.OutputDirectory
+    abstract val outputDirectory: org.gradle.api.file.DirectoryProperty
+
+    @org.gradle.api.tasks.TaskAction
+    fun generate() {
+        val legal = outputDirectory.dir("legal").get().asFile
+        if (legal.exists()) check(legal.deleteRecursively()) { "Cannot clear generated legal assets" }
+        check(legal.resolve("project").mkdirs()) { "Cannot create generated legal directory" }
+        projectLicense.get().asFile.copyTo(legal.resolve("project/LICENSE"), overwrite = true)
+        thirdPartyNotices.get().asFile.copyTo(legal.resolve("THIRD_PARTY_NOTICES"), overwrite = true)
+        check(licenseDirectory.get().asFile.copyRecursively(legal.resolve("licenses"), overwrite = true))
+    }
+}
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        val suffix = variant.name.replaceFirstChar { it.uppercase() }
+        val branding = tasks.register<PrepareBrandingTask>("prepare${suffix}BrandingResources") {
+            sourceIcon.set(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
+            outputDirectory.set(layout.buildDirectory.dir("generated/branding/${variant.name}/res"))
+        }
+        val legal = tasks.register<PrepareLegalTask>("prepare${suffix}LegalAssets") {
+            projectLicense.set(rootProject.layout.projectDirectory.file("LICENSE"))
+            thirdPartyNotices.set(rootProject.layout.projectDirectory.file("THIRD_PARTY_NOTICES"))
+            licenseDirectory.set(rootProject.layout.projectDirectory.dir("LICENSES"))
+            outputDirectory.set(layout.buildDirectory.dir("generated/legal/${variant.name}/assets"))
+        }
+        variant.sources.res?.addGeneratedSourceDirectory(branding, PrepareBrandingTask::outputDirectory)
+        variant.sources.assets?.addGeneratedSourceDirectory(legal, PrepareLegalTask::outputDirectory)
+    }
+}

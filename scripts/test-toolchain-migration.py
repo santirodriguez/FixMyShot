@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline source-pin and all-before-mutation boundaries for the migration recipe."""
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -23,7 +24,10 @@ class Migration(unittest.TestCase):
         for name in self.request['inputs']:
             target = self.root / name
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes((ROOT / name).read_bytes())
+            # Synthetic old-source fixture, independent of the current migrated checkout.
+            data = ('\n'.join(old for old, _ in m.EDITS[name]) if name in m.EDITS else 'fixture version lock\n').encode()
+            target.write_bytes(data)
+            self.request['inputs'][name] = hashlib.sha256(data).hexdigest()
 
     def prepare(self, head=m.SOURCE, status=''):
         def git(root, *args):

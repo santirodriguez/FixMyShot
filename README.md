@@ -88,11 +88,11 @@ Private working copies support review and recovery. Cleanup can be delayed to pr
 
 ## Development status
 
-**Implemented does not mean fully accepted.** Scoped API 36 coverage includes PNG/WebP export, batch sharing, session finishing, recovery and two 100-item real-codec exercises with simulated provider faults. The combined run still fails one strict enlarged transparent-WebP edge check. PNG passed that case; complete appearance acceptance remains open.
+**Implemented does not mean fully accepted.** Scoped API 36 coverage includes PNG/WebP export, batch sharing, session finishing, recovery and two 100-item real-codec exercises with simulated provider faults. The accepted ad075068 checkpoint passes its configured renderer, alpha and lossless-output checks. Broader appearance acceptance remains open; the migrated toolchain is undergoing a new source-bound checkpoint.
 
 | Area | What is still open |
 |---|---|
-| Image fidelity | The WebP alpha edge; broader ICC/color/HDR and orientation acceptance |
+| Image fidelity | Broader ICC/color/HDR, orientation and physical-device appearance acceptance |
 | Reliable output | Real-provider 100-item, process-kill, interruption and low-space scenarios; broader unresolved-job cleanup |
 | Native formats | HEIC/AVIF hardware, fidelity, resources and fallback qualification. [JPEG XL is deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) |
 | Real-world use | Pixel plus another hardware family, receiving apps/gallery, performance, accessibility and visual language review |

@@ -1111,3 +1111,21 @@ Variant API resource/asset wiring, retaining exact canonical PNG/legal bytes and
 APK paths without a compatibility bypass. Four offline recipe refusal cases
 still pass. New Gradle configuration, generator execution and package contents
 remain unaccepted until the corrected experiment is reviewed.
+
+
+## Migrated inputs incorporated — frozen checkpoint requested
+
+The corrected experiment40152344573 passed; see the
+[exact derived-input receipt](feasibility/evidence/toolchain-migration-afea6e45.json).
+The known wrapper JAR checksum and generated launcher hashes now govern normal
+execution. All three reviewed lockfiles and migrated source files are committed
+for a new source-bound checkpoint. The archive auditor retains its historical8.13
+profile and recognizes the reviewed9.4.1/AGP9.2.1/KGP2.4.21 profile separately.
+Its historical13cases,4wrapper,4migration-boundary and4legal cases pass locally;
+bootstrap236 and source release identity pass. Official Windows launcher CRLF
+bytes are preserved; diff whitespace is checked with cr-at-eol.
+
+The experiment did not run emulators or independent reproducibility. Its APK is
+not a promoted release artifact. Normal current-profile build/API36/legal/native
+acceptance and new-source security/reproducibility remain pending. No API limit,
+permission, format availability, product version, signing or distribution changes.

@@ -99,3 +99,29 @@ only its generated legal subtree before copying current source texts, avoiding
 stale generated content. No SourceSet Provider bypass or legacy DSL flag is added.
 The original accepted app build remains unchanged on the release branch until
 Stage2 review; recipe revision is explicit in the request and controller.
+
+
+## Experiment2 passed; reviewed inputs incorporated for qualification
+
+Actions40152344573/controlafea6e45 completed SUCCESS: new standard wrapper matched
+the official9.4.1 JAR anchor, whole configuration resolution completed, core69
+zero-failure/error/skip tests, lint and all three APK compiles passed. Actual
+release native9libraries/3ABIs/alignment and five canonical legal assets passed.
+[The retained receipt](../feasibility/evidence/toolchain-migration-afea6e45.json)
+records all derived input hashes, archive identity and precise limits.
+The raw generated XML is retained under a non-active experimental evidence path;
+it is not gradle/verification-metadata.xml or a publisher-approved baseline.
+
+Reviewed wrapper/launchers, source recipe outputs and complete three lockfiles
+are now incorporated, with the matching pre-execution wrapper guard and dual
+historical/current source-audit profiles. The old773 inventory and its387 proofs
+are retained unchanged. The candidate has553 components/924 artifacts;582 exact
+identities overlap without hash drift and157 prior proof records could be reused
+after frozen-source reconciliation. No proof promotion or active trust occurred.
+
+Resolved KGP/Compose compiler are2.4.21; Commons Compress changes to1.27.1.
+Some Bouncy Castle1.79, jose4j0.9.5, JDOM2.0.6 and UTP Netty versions remain
+selected in tooling configurations. Therefore this is not a complete security
+remediation. A fresh bounded inventory and applicability review are required.
+Normal source-frozen build/API36/package/source-audit and a subsequent independent
+unsigned rebuild are pending. Device/manual/native-format/signing gates remain.

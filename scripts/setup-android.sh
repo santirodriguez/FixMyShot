@@ -15,4 +15,4 @@ done
 if [[ -n "${GITHUB_PATH:-}" ]]; then
   printf '%s\n' "$(dirname "$manager")" "$sdk_root/platform-tools" "$sdk_root/emulator" >> "$GITHUB_PATH"
 fi
-"$manager" --sdk_root="$sdk_root" 'platforms;android-36' 'build-tools;35.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1' 2>&1 | tee evidence/sdk-install.txt
+"$manager" --sdk_root="$sdk_root" 'platforms;android-36' 'build-tools;36.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1' 2>&1 | tee evidence/sdk-install.txt

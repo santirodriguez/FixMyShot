@@ -96,7 +96,7 @@ def digest(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
-def audit_metadata(xml: bytes) -> dict:
+def audit_metadata(xml: bytes, critical=CRITICAL) -> dict:
     if len(xml) > 3_000_000:
         raise ValueError('Oversized candidate verification metadata')
     root = ET.fromstring(xml)
@@ -125,7 +125,7 @@ def audit_metadata(xml: bytes) -> dict:
             all_artifacts.append({'key': key, 'sha256': checksums[0].get('value'),
                                   'origin': checksums[0].get('origin', ''), 'pgp': len(signatures)})
     checks = []
-    for group, name, version, ext, publisher in CRITICAL:
+    for group, name, version, ext, publisher in critical:
         eligible = [a for a in all_artifacts if a['key'][:3] == (group, name, version)
                     and a['key'][3].endswith(ext)]
         if not eligible:
@@ -172,10 +172,20 @@ def audit_archive(path: Path, *, expected_source: str | None = None,
     if not GIT_SHA_RE.fullmatch(source_sha):
         raise ValueError('Invalid build source SHA')
     properties = files['gradle/wrapper/gradle-wrapper.properties'].decode()
-    if f'distributionSha256Sum={GRADLE_DIST_SHA}' not in properties or 'gradle-8.13-bin.zip' not in properties:
+    # Retain the immutable historical8.13 profile while recognizing the reviewed migration.
+    if 'gradle-9.4.1-bin.zip' in properties:
+        distribution_sha = '2ab2958f2a1e51120c326cad6f385153bb11ee93b3c216c5fccebfdfbb7ec6cb'
+        wrapper_sha = '55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c'
+        critical = (('com.android.tools.build', 'gradle', '9.2.1', '.jar', 'GOOGLE_MAVEN'),
+                    ('org.jetbrains.kotlin', 'kotlin-gradle-plugin', '2.4.21', '.jar', 'MAVEN_CENTRAL'), *CRITICAL[2:])
+    elif 'gradle-8.13-bin.zip' in properties:
+        distribution_sha, wrapper_sha, critical = GRADLE_DIST_SHA, GRADLE_JAR_SHA, CRITICAL
+    else:
+        raise ValueError('Unrecognized Gradle distribution version')
+    if f'distributionSha256Sum={distribution_sha}' not in properties:
         raise ValueError('Unrecognized Gradle distribution pin')
-    if digest(files['gradle/wrapper/gradle-wrapper.jar']) != GRADLE_JAR_SHA:
-        raise ValueError('Wrong official Gradle 8.13 wrapper JAR')
+    if digest(files['gradle/wrapper/gradle-wrapper.jar']) != wrapper_sha:
+        raise ValueError('Wrong official Gradle wrapper JAR')
     source_info = inspect_source_tar(files['evidence/source.tar'])
     identity_verified = expected_source is not None
     if identity_verified and (source_sha != expected_source or source_info['tree_sha1'] != expected_tree):
@@ -206,10 +216,10 @@ def audit_archive(path: Path, *, expected_source: str | None = None,
         'source_build_inputs_verified': not untracked_inputs,
         'source_untracked_build_inputs': untracked_inputs,
         'candidate_archive_sha256': digest(path.read_bytes()),
-        'gradle_distribution_sha256': GRADLE_DIST_SHA,
+        'gradle_distribution_sha256': distribution_sha,
         'official_gradle_wrapper_jar_verified': True,
         'observed_candidate_sha256': digest(files['gradle/verification-metadata.xml']),
-        'generated_metadata': audit_metadata(files['gradle/verification-metadata.xml']),
+        'generated_metadata': audit_metadata(files['gradle/verification-metadata.xml'], critical),
         'lockfiles': locks,
         'trust_status': 'GENERATED_ONLY__NOT_APPROVED_FOR_STRICT_FREEZE',
         'next_requirement': 'Verify publisher identity and independent artifact hashes/signatures for critical GAVs, '

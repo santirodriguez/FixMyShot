@@ -30,8 +30,8 @@ Resolved transitive inventory/notices remain a G1 review deliverable.
 Kotlin and Gradle
 Sources: https://github.com/JetBrains/kotlin and https://github.com/gradle/gradle
 Build tooling / Kotlin runtime: Apache License 2.0.
-Bootstrap pins: Kotlin 2.2.21, Gradle 8.13.
-The committed standard Gradle8.13 wrapper/launchers retain their upstream notices.
+Current pins: Kotlin 2.4.21, Gradle 9.4.1; Android Gradle plugin 9.2.1.
+The committed standard Gradle9.4.1 wrapper/launchers retain their upstream notices.
 Apache License2.0 text: LICENSES/Apache-2.0.txt and the wrapper JAR META-INF/LICENSE.
 The wrapper was generated from the checksum-verified Gradle distribution; exact
 provenance and hashes are in docs/feasibility/committed-gradle-inputs.md.

@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "control_commit": "afea6e4563322e58212d6d8ab7623d73dceeb696",
+  "run_id": 40152344573,
+  "job_id": 121046307419,
+  "status": "PASS_EXPERIMENT_ONLY",
+  "scope": "EXPERIMENTAL_DERIVED_CHECKOUT",
+  "base_source": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+  "recipe_revision": 2,
+  "artifact_id": 12583168008,
+  "artifact_bytes": 10367973,
+  "artifact_sha256": "379107e6ae0d18e537934ed0971de55013de7e9e358ca6832e217afc1449546b",
+  "core_tests": 69,
+  "core_failures_errors_skipped": 0,
+  "build": "CORE_LINT_DEBUG_RELEASE_TEST_APK_PASS",
+  "native": "9_LIBRARIES_3_ABIS_ELF_ZIP_ALIGNMENT_PASS",
+  "legal": "5_CANONICAL_FILES_PASS",
+  "selected_kgp": "2.4.21",
+  "selected_compose_compiler": "2.4.21",
+  "generated_metadata": {
+    "components": 553,
+    "artifacts": 924,
+    "sha256": "a6976ec841167eed2cfbb8096a845f1f7e0dbbb3d8f646c93232873cff7d2151",
+    "active_policy": false
+  },
+  "historical_baseline_comparison": {
+    "same_identity_artifacts": 582,
+    "same_identity_hash_drift": 0,
+    "potentially_reusable_prior_proofs": 157,
+    "proofs_promoted": false
+  },
+  "whole_configuration_report_sha256": "f1ffb710e9d3ec7abf66228cdbcb6dc23f8cc9300e9de663073c16cd1cc11fc1",
+  "derived_input_sha256": {
+    "app/build.gradle.kts": "de0d1e7bad6d5775f67af9011a3732fe3abb79855908b233a602966276090aa2",
+    "app/gradle.lockfile": "9911f8324e47289a7e33c420b8514658b4bb6ae5cc09c865024fcaa8aef93116",
+    "build.gradle.kts": "1c28a66eab9c7877094943b243ae40cf92261599515c1706e761fd841f78a4ad",
+    "codec-native/build.gradle.kts": "f15e7cca22c492aff74a32f1c2c647dbd9707a888981fc8b1fe1608d93c2a541",
+    "codec-native/gradle.lockfile": "98bc94c4dafce1674c2230be7a7613433b9585f8f3fcdbab1fe81d9fe9ea5e76",
+    "core/gradle.lockfile": "c20b13045f651150ce29a8110b370464e5256f4631f57d44d251706960e0c93d",
+    "gradle/libs.versions.toml": "faa846cbda15d0bfe1f33558b2deb754dd9942d24e255c6b845c8282002f55ef",
+    "gradle/wrapper/gradle-wrapper.jar": "55243ef57851f12b070ad14f7f5bb8302daceeebc5bce5ece5fa6edb23e1145c",
+    "gradle/wrapper/gradle-wrapper.properties": "032a71c92fc7f3c1cadf8880f0554b71aa6beb411f97ac253aa93932cb3784d5",
+    "gradlew": "aed171fb114f82e6eaea4970a245a200e0582a7dcc8ec0891ca41b6e4a62b754",
+    "gradlew.bat": "fedad02c18e266ec094995a5751b7fe1eb6e74f66bf75db64fae2e50eb22c234",
+    "scripts/setup-android.sh": "b8e7e6bfc8708d9080ec2959579d4b906bbc233597fe9d61d51d64a99e79fcfd"
+  },
+  "runtime_emulator_acceptance": "NOT_RUN_EXPERIMENT",
+  "frozen_source_acceptance": "PENDING_NEW_CHECKPOINT",
+  "security_remediation": "PARTIAL_NOT_APPROVED",
+  "complete_licenses_signing_distribution": false
+}

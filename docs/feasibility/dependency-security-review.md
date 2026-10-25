@@ -1,6 +1,6 @@
 # Dependency security · evidence before verdicts
 
-> Snapshot: 24 October 2026 · **inventory complete; security gate OPEN**
+> Historical773 snapshot:24October2026 · **inventory complete for that graph; security gate OPEN**
 
 The first bounded OSV inventory covers the captured **514 Maven components** and the exact native WebP source commit. It found **54 advisory IDs across 25 Maven components**. This is a database-match inventory, not an exploitability verdict or release approval.
 
@@ -130,3 +130,22 @@ This is a significant build migration, not an approved drop-in version bump.
 No candidate stack has yet been qualified or claimed to remediate every finding.
 Keep the current verified baseline and obtain approval of the migration blueprint
 before implementation. No existing feature or physical gate is waived.
+
+
+## Migrated graph — new inventory required
+
+The accepted migration experiment40152344573 selected AGP9.2.1 and KGP/Compose
+compiler2.4.21 and regenerated all three locks. The experimental XML contains
+553 components/924 exact artifacts, distinct from the historical514/921 scan
+above. Existing387 proofs and54-advisory/25-component counts remain bound to
+the historical graph. They are not the current migration's trust/security verdict.
+The [migration receipt](evidence/toolchain-migration-afea6e45.json) and
+[retained root classpath](evidence/toolchain-buildscript-afea6e45.txt) own the
+actual derived evidence; child/UTP associations remain in the reviewed locks.
+
+Commons Compress now selects1.27.1, but older Bouncy Castle/jose4j/JDOM and
+UTP Netty versions remain in owning configurations. Kotlin's version change
+alone cannot close those findings. First validate the incorporated source and
+recover its exact generated inventory; then pin a fresh bounded security scan
+to that inventory/source/locks/native input. Do not force leaf versions or label
+the compiler upgrade complete vulnerability remediation.

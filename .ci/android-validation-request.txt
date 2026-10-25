@@ -1,16 +1,12 @@
-Grouped canonical legal packaging and tooling ownership checkpoint.
-Implementation base: 3cd2e9095c24f4a19912fb87f46aed07459f85c0.
-Run the existing core/lint/debug/unsigned-release/test APK build and full API36
-regression suite, with unchanged source-bound smoke/native/grid/layout guards.
-Require the actual debug and release APKs to contain byte-exact canonical GPL,
-THIRD_PARTY_NOTICES, Apache text and existing WebP COPYING/PATENTS, verified by
-scripts/check-apk-legal.py; preserve both legal JSON receipts in build evidence.
-Capture root/app/core/codec-native buildEnvironment reports and their SHA256
-without upgrading versions, forcing transitive overrides or changing lockfiles.
-Reports establish selected buildscript paths only, not code execution or APK
-reachability. Keep unresolved security/issuer/license findings open.
-No isolated case, legacy/automatic-locale/JXL run, native export enablement,
-production signing, main merge, tag or release. Physical/manual gates remain open.
-Prior773 Android/rebuild evidence is historical; these changed build inputs need
-fresh artifact inspection and, before delivery, a new independent unsigned rebuild.
+Source-frozen migrated toolchain qualification checkpoint.
+Reviewed derived inputs: experiment40152344573/controlafea6e4563322e58212d6d8ab7623d73dceeb696.
+AGP9.2.1 / Gradle9.4.1 / Kotlin-Compose2.4.21 / BuildTools36.0.0;
+JDK17 / compile-target36 / min26 / NDK28.2.13676358 / CMake3.22.1 / threeABIs retained.
+Require committed official wrapper guard, reviewed lockfile no-drift, core/lint/
+debug/release/test APK build, actual five-file canonical legal checks and native alignment.
+Run complete established API36 suites and four final source-bound smoke/native/grid/layout guards.
+Keep all source/digest/alpha/privacy/transaction/recovery assertions unchanged.
+Capture buildscript report and new generated metadata for a subsequent bounded security inventory.
+No generated trust activation, forced leaf override, legacy/automatic-locale/JXL run,
+native format enablement, signing, main merge or publication. Physical gates stay open.
 profile=current
