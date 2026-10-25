@@ -40,16 +40,19 @@ verified at upload commit `f7c1fa7f`; all 94 members and manifest entries pass. 
 The unchanged OSV snapshot records 49 advisory IDs across 18 tooling components
 and no matches for the 133 app-runtime components at scan time. Actual debug
 and release DEX definitions/type references contain none of the six affected
-package families. This narrows packaged exposure; build-operation risk remains
-open. No generated trust policy is activated. See the
+package families. This narrows packaged exposure. The current observed host-task and known SDK
+certificate route review is complete within its recorded limits; the full
+security gate and future-input/signing review remain open. No generated trust policy is activated. See the
 [security owner](feasibility/dependency-security-review.md).
 
 ## The path to delivery
 
 1. **Finish the technical delivery controls.** Application implementation and
-   bounded automated acceptance are recorded above. Dependency authenticity,
-   owning-tool security applicability and corresponding-source materials are
-   still open. The533pending files are one dependency-review backlog, not533
+   bounded automated acceptance are recorded above. Publisher authenticity
+   and corresponding-source materials are
+   still open. The current observed build-task security review is complete;
+   new tasks/inputs and production signing reopen its documented limits.
+   The533pending files are one dependency-review backlog, not533
    product features. Further issuer attempts need a materially new primary
    anchor; recorded unavailable routes must not be retried automatically.
 2. **Complete real-device acceptance.** Pixel9ProXL and a second hardware family:
@@ -91,3 +94,17 @@ open. The new [Commons call review](feasibility/evidence/commons-lang-operation-
 finds no vulnerable class-name resolver through inspected Compress calls; it
 does not reduce the vulnerability inventory or approve the entire toolchain.
 No new application build or phone acceptance is claimed by these preparations.
+
+
+The grouped host-tool review now has actual successful evidence from
+[40214535917](https://github.com/santirodriguez/FixMyShot/actions/runs/40214535917):
+core69, lint, three APK tasks and full unsigned-byte equality to accepted e516.
+Thirteen JVM traces/126398class loads cover all49frozen findings as bounded
+observations. Netty/jose4j/JDOM were absent in those traces; the observed URI
+resolver and ClassUtils origins are the newer Gradle-bundled JARs. Four BC
+prerequisite classes were absent. Lazy ASN.1 was loaded, but the inspected SDK
+local-certificate route uses the non-lazy constructor. The [assessment](feasibility/evidence/host-tool-operation-review/assessment.json)
+retains every finding, source/trace limits and explicit reopen triggers. The
+initial observer failure is preserved; the corrected run does not erase it.
+This closes the current scoped operation-review batch, with publisher/source,
+physical and separately authorized signing/distribution gates still open.

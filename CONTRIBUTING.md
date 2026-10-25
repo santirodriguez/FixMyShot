@@ -371,3 +371,17 @@ It never fetches sources, builds, signs or publishes. Do not package a dirty
 working tree or silently substitute HEAD for the accepted compiled source.
 [The release procedure](docs/RELEASING.md#02c--stage-recoverable-project-and-native-sources)
 records the real regeneration/restoration and remaining source-review limits.
+
+
+The grouped host class-loading probe is maintained by
+scripts/audit-build-classloads.py and its nine offline cases in
+scripts/test-build-classloads.py. Preserve startup/SDK/Gradle/AGP/lint/JUnit
+coverage requirements, raw-before-parse snapshots, bounded files, fail-closed
+record parsing and origin-specific JAR hashes. Preflight proves format/startup
+only. Class presence does not prove a method ran; absence is limited to captured
+JVMs, declared prefixes and tasks. The [assessment](docs/feasibility/evidence/host-tool-operation-review/assessment.json)
+records completion for the current source/task set and known SDK route, plus
+reopen triggers. New certificate/CRL/keystore/production-signing inputs require
+fresh operation review. Do not relabel the initial failed observer run, suppress
+frozen findings, activate generated trust or repeat unchanged probes merely to
+obtain another green run.

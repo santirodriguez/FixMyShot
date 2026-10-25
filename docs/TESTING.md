@@ -1217,3 +1217,28 @@ independent-rebuild-5d568a7e.json and [native owner](feasibility/native-source-r
 retain exact pins and limits. Full dependency/source/legal/security, physical
 and separately authorized signing/distribution gates remain open. No APK was
 delivered, no generated trust activated, no new binary upload required.
+
+
+## Observed host tooling — accepted e516 source
+
+Control e69ce830372392a62feeb4432b285016e598dfb5, run40214535917,
+job121232707660 succeeded on unchanged sourcee516aa89. Actual artifact12606988356
+is45380360B/SHA256012f984332b327c583195b9c24cf6eb23d595e9ecc4804402dd8053cd7c9a306.
+CRC/safe44members, exact468-file source, core69 zero fail/error/skip,
+lintDebug/assembleDebug/assembleRelease/assembleDebugAndroidTest PASS. The
+actual unsigned release is the accepted11,841,246B/b677f044 file in full.
+Frozen inventory is byte-identical487/858. Startup preflight and13final JVMs
+with126398class events pass; offline replay exactly matches raw hashes and
+class/origin/process sets. Original CI JAR hashes remain separately recorded.
+See [build evidence](feasibility/evidence/host-tool-operation-review/build.json)
+and [bounded findings](feasibility/evidence/host-tool-operation-review/assessment.json).
+
+Initial run40213670439 passed those builds/core/strict release comparison but
+failed the new observer parser. Its exact rejected line was not retained, so it
+has no absence verdict. The correction preserves raw traces before parsing,
+handles documented same-tag HotSpot classpath metadata and adds an actual
+startup-format preflight. Nine offline auditor tests pass. For raw replay,
+copy only the final classes-*.log files into a fresh input directory; report.json
+is output, not an input log. Replay on another host cannot rehash vanished CI
+JAR paths. No new emulator/physical acceptance, dependency change or active
+verification policy follows from this operation review.

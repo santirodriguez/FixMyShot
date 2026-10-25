@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "scope": "ACTUAL_INSTRUMENTED_FULL_HOST_BUILD_AND_CLASS_OBSERVATION",
+  "source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "control_commit": "e69ce830372392a62feeb4432b285016e598dfb5",
+  "run_id": 40214535917,
+  "job_id": 121232707660,
+  "conclusion": "success",
+  "artifact_id": 12606988356,
+  "artifact_bytes": 45380360,
+  "artifact_sha256": "012f984332b327c583195b9c24cf6eb23d595e9ecc4804402dd8053cd7c9a306",
+  "safe_unique_members_and_crc": "PASS_44",
+  "actual_source_archive_equals_468_file_e516_archive": true,
+  "core": {
+    "tests": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint_and_three_apk_tasks": "PASS_ACTUAL_WORKFLOW_LOGS",
+  "literal_unsigned_release_bytes": "IDENTICAL_TO_ACCEPTED_B677_11841246B",
+  "observed_jvms": 13,
+  "class_load_events": 126398,
+  "sdk_gradle_agp_lint_junit_coverage": "PASS",
+  "raw_class_event_replay": "PASS_EXACT_COUNTS_SETS_AND_HASHES",
+  "original_ci_jar_hashes_retained": true,
+  "no_new_emulator_or_physical_run": true,
+  "dependency_versions_or_active_trust_changed": false,
+  "frozen_inventory": {
+    "sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+    "components": 487,
+    "files": 858,
+    "actual_capture_byte_identical_to_frozen_baseline": true
+  }
+}

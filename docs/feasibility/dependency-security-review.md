@@ -371,3 +371,72 @@ frozen49IDs/18component matches and remaining security gate unchanged. Revisit
 on owner/call-site changes. Netty, HttpClient, Bouncy Castle and any other actual
 Lang callers still require their own review; do not force a leaf override or
 suppress a database match solely from this scoped inference.
+
+
+## Observe host execution as one explicit batch
+
+A focused class-loading probe reuses accepted source e516aa89 and the existing
+strict unsigned-byte comparison. It builds core tests, lintDebug, debug APK,
+unsigned release APK and instrumentation APK in a clean hosted environment.
+Normal emulator smoke uses adb shell am instrument directly; it does not select
+a connectedAndroidTest/managed-device/UTP execution task. That configured-task
+fact alone does not prove every hidden tooling caller absent.
+
+Java17 class+load logging starts before SDK preparation and is inherited by
+subsequent Java launches. The parser bounds every file/collection, rejects
+rotated/partial/unrecognized traces, requires JVM startup plus SDK/Gradle/AGP/
+lint/JUnit coverage markers, retains class origins and hashes allowed local JARs.
+It observes the six finding families and the known gRPC-shaded Netty alias.
+Unknown origins are not silently assigned a version. Class presence is not
+method execution; absence is limited to the captured logged JVMs, prefixes and
+explicit task set. Native executables/device VMs/future tasks and arbitrary
+changes to Java environments remain outside this observation.
+
+Initial run40213670439 passed all builds/core69 and actual full unsigned-byte
+comparison, but its new parser refused a log record. The exact rejected line
+was not retained, so it produces no class-absence verdict. Primary OpenJDK17
+[classLoader.cpp](https://github.com/openjdk/jdk17u/blob/master/src/hotspot/share/classfile/classLoader.cpp)
+(blob501fed37badb31d0cc823065483c4f104968180f) confirms opened:/path: metadata
+records under the same tag. The corrected parser handles those separately,
+freezes raw data before parsing even on failure, and performs a real startup
+preflight before building. This correction does not ignore arbitrary records
+or relax source/byte checks. Corrective [run40214535917](https://github.com/santirodriguez/FixMyShot/actions/runs/40214535917)
+succeeded. The downloaded archive passes size/SHA256, CRC,44safe unique members,
+exact468-file source archive, core69 with no failures/errors/skips, lint and
+three APK tasks. Its actual unsigned release equals accepted e516 bytes in full:
+11,841,246B/SHA256 b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd.
+The actual frozen inventory remains byte-identical at487components/858files.
+
+The [build receipt](evidence/host-tool-operation-review/build.json) and
+[49-finding assessment](evidence/host-tool-operation-review/assessment.json)
+bind13JVM traces/126398class-load events and all SDK/Gradle/AGP/lint/JUnit roles.
+Offline replay matches raw-file hashes, startup markers, counts and complete
+class/origin/process sets. Original CI JAR hashes are retained; local replay
+without those CI paths does not recompute their bytes.
+
+| Frozen finding scope | Actual observation and bounded disposition |
+| --- | --- |
+| 40 Netty, one jose4j and one JDOM advisory | No family classes observed in the13captured JVMs, including the known gRPC-shaded Netty prefix. |
+| One HttpClient4.5.6 advisory | URIUtils loaded only from Gradle's4.5.14 JAR; actual SHA256 c8bc7e1c51a6d4ce72f40d2ebbabf1c4b68bfe76e732104b04381b493478e9d6 matches that exact frozen JAR. |
+| One Commons Lang3.16 advisory | ClassUtils loaded only from Gradle's3.20.0 origin; actual JAR SHA25669e5c9fa35da7a51a5fd2099dfe56a2d8d32cf233e2f6d770e796146440263f4 is retained. The separate Compress call review retains its source-level scope. |
+| Four Bouncy Castle advisories | The specific GOST-CTR, LDAP, name-constraint and composite-verifier prerequisite classes were not observed. |
+| One Bouncy Castle lazy ASN.1 advisory | LazyEncodedSequence was loaded. The known SDK local-certificate route was then reviewed in source; see below. No class-absence or universal method-nonexecution claim. |
+
+Published sdk-common32.2.1 has one direct Bouncy Castle importer across its
+Java/Kotlin sources: KeystoreHelper. Its debug-store route generates a local
+RSA key/certificate with the fixed Android Debug subject and SHA256withRSA,
+then uses X509v1CertificateBuilder/JcaX509CertificateConverter. The exact1.79
+certificate factory's DER route constructs ASN1InputStream with lazyEvaluate
+false; its CRL route is distinct and explicitly enables lazy evaluation.
+Original source-archive pins, selected callers/constructors and upstream notices
+are retained beside the assessment. Loaded classes do not establish execution
+of every source route, compiled-source equivalence or all reflective callers.
+
+This completes the **current observed task-set and known SDK-route review**.
+It does not patch the matched versions, suppress the49IDs/18components, approve
+publisher authenticity or close the full security/distribution gate. Reopen on
+source/dependency/environment/task changes, UTP connected/managed-device work,
+new HTTP/JOSE inputs, external certificates/CRLs/keystores, production signing,
+or a materially new relevant advisory. Do not repeat the unchanged capture
+without such a trigger. No physical/emulator acceptance or production signing
+was performed by this probe.

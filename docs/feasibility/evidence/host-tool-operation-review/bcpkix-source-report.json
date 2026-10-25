@@ -1,0 +1,62 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/org/bouncycastle/bcpkix-jdk18on/1.79/bcpkix-jdk18on-1.79-sources.jar",
+  "bytes": 726647,
+  "sha256": "e68973be5e2eed5c887e9e85d4ac68ceafe4d907e0f03bfb36db80964c904922",
+  "selected": [
+    {
+      "path": "org/bouncycastle/operator/jcajce/JcaContentVerifierProviderBuilder.java",
+      "sha256": "3f290fb3110db09f10a40080fac4574c844e4adc483b8a1f432985aa0688f3be",
+      "bytes": 14575,
+      "local": "bcpkix-org__bouncycastle__operator__jcajce__JcaContentVerifierProviderBuilder.java"
+    },
+    {
+      "path": "org/bouncycastle/pkix/ASN1PKIXNameConstraintValidator.java",
+      "sha256": "6ca34947bb3f17140f1c4daf6100cd39144f6eb900cdd804a72d6b447001628a",
+      "bytes": 63858,
+      "local": "bcpkix-org__bouncycastle__pkix__ASN1PKIXNameConstraintValidator.java"
+    },
+    {
+      "path": "org/bouncycastle/pkix/PKIXNameConstraintValidatorException.java",
+      "sha256": "83ac74fb47f9c7899e34b1e7186559f2685dc812de921d5130e031f97150aa11",
+      "bytes": 428,
+      "local": "bcpkix-org__bouncycastle__pkix__PKIXNameConstraintValidatorException.java"
+    },
+    {
+      "path": "org/bouncycastle/pkix/PKIXNameConstraintValidator.java",
+      "sha256": "880b66d8c61eac47ef77beae5d8a73bad69d8297f281469c881e203934d6413c",
+      "bytes": 3750,
+      "local": "bcpkix-org__bouncycastle__pkix__PKIXNameConstraintValidator.java"
+    },
+    {
+      "path": "org/bouncycastle/cert/X509CertificateHolder.java",
+      "local": "bcpkix-org__bouncycastle__cert__X509CertificateHolder.java",
+      "bytes": 11770,
+      "sha256": "f3bf43fe447d6dd1441e234efa410dee47d7b1ecc5c677a4c0c79efb3844bedd"
+    },
+    {
+      "path": "org/bouncycastle/cert/CertUtils.java",
+      "local": "bcpkix-org__bouncycastle__cert__CertUtils.java",
+      "bytes": 10181,
+      "sha256": "cc429aa7322af947ba1c31aa4529ed6a5188b1d437485094bbfb9e4e86cd9f22"
+    },
+    {
+      "path": "org/bouncycastle/cert/X509v3CertificateBuilder.java",
+      "local": "bcpkix-org__bouncycastle__cert__X509v3CertificateBuilder.java",
+      "bytes": 19577,
+      "sha256": "a4956471836b207d8b1c1a4336b23f77acf55fc5d45c2f9089cffe0a55750213"
+    },
+    {
+      "path": "org/bouncycastle/cert/X509v1CertificateBuilder.java",
+      "local": "bcpkix-org__bouncycastle__cert__X509v1CertificateBuilder.java",
+      "bytes": 4015,
+      "sha256": "a4717487ec95384a7b395d8cc98533348899f30b5eac723ceb28a9423a86830c"
+    },
+    {
+      "path": "org/bouncycastle/cert/jcajce/JcaX509CertificateConverter.java",
+      "local": "bcpkix-org__bouncycastle__cert__jcajce__JcaX509CertificateConverter.java",
+      "bytes": 3188,
+      "sha256": "03435d67a51f88b138c6643bf66999ee31d70f8a81f9cfd534973337239b0de3"
+    }
+  ],
+  "publisher_authentication_claim": false
+}

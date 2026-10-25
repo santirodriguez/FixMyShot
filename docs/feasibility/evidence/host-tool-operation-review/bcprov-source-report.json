@@ -1,0 +1,62 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/org/bouncycastle/bcprov-jdk18on/1.79/bcprov-jdk18on-1.79-sources.jar",
+  "bytes": 4963663,
+  "sha256": "ddab0541b2490e3013cac96179c1c4a8a50685d9b39f29ce5b233b310061ed23",
+  "selected": [
+    {
+      "path": "org/bouncycastle/jce/provider/PKIXNameConstraintValidatorException.java",
+      "sha256": "1873d7edd16781336efc61f223323d48fd6e6fb75bb17eb6f0c401c700bfaa30",
+      "bytes": 436,
+      "local": "bcprov-org__bouncycastle__jce__provider__PKIXNameConstraintValidatorException.java"
+    },
+    {
+      "path": "org/bouncycastle/jce/provider/PKIXNameConstraintValidator.java",
+      "sha256": "f1bd9324cf7d027b8dd568cf1c3f6a55178359dc12d6a9224c40b27fdda3cca5",
+      "bytes": 3804,
+      "local": "bcprov-org__bouncycastle__jce__provider__PKIXNameConstraintValidator.java"
+    },
+    {
+      "path": "org/bouncycastle/x509/util/LDAPStoreHelper.java",
+      "sha256": "d2599f02a96c787588747f8f422b188fddde5f9b2865f67c0e31687d1c0b4db9",
+      "bytes": 40120,
+      "local": "bcprov-org__bouncycastle__x509__util__LDAPStoreHelper.java"
+    },
+    {
+      "path": "org/bouncycastle/asn1/x509/PKIXNameConstraintValidator.java",
+      "sha256": "876b435d7367145aec87513590a3c13ead2dde4978659e45abbd0943c734bbd6",
+      "bytes": 64231,
+      "local": "bcprov-org__bouncycastle__asn1__x509__PKIXNameConstraintValidator.java"
+    },
+    {
+      "path": "org/bouncycastle/asn1/LazyEncodedSequence.java",
+      "sha256": "95bc10119ef97eb8d71a665966909f65f9de6c3c4cf636864097eca4529d4b6e",
+      "bytes": 3319,
+      "local": "bcprov-org__bouncycastle__asn1__LazyEncodedSequence.java"
+    },
+    {
+      "path": "org/bouncycastle/crypto/modes/G3413CTRBlockCipher.java",
+      "sha256": "061a03bc6cfb8b4ac3d77d987de6907016d4ce458359c03d34937d35b5d7f97b",
+      "bytes": 5952,
+      "local": "bcprov-org__bouncycastle__crypto__modes__G3413CTRBlockCipher.java"
+    },
+    {
+      "path": "org/bouncycastle/asn1/ASN1InputStream.java",
+      "local": "bcprov-org__bouncycastle__asn1__ASN1InputStream.java",
+      "bytes": 18899,
+      "sha256": "63c3872d200206ee176e4ce3981ffe6faa0c8f0c666c0c3cb99fab24d5a07248"
+    },
+    {
+      "path": "org/bouncycastle/asn1/ASN1Primitive.java",
+      "local": "bcprov-org__bouncycastle__asn1__ASN1Primitive.java",
+      "bytes": 3162,
+      "sha256": "9b975c854ee598d33e97152ca5b267cca8ff140d14459c0f0c2d4be9ee7d83c8"
+    },
+    {
+      "path": "org/bouncycastle/jcajce/provider/asymmetric/x509/CertificateFactory.java",
+      "local": "bcprov-org__bouncycastle__jcajce__provider__asymmetric__x509__CertificateFactory.java",
+      "bytes": 12674,
+      "sha256": "f7c74cc3bbfaea1ad9ca6ef8082837f596945f8237b9656a860f17c1c5475851"
+    }
+  ],
+  "publisher_authentication_claim": false
+}

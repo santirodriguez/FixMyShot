@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "scope": "EXACT_APK_DEX_DEFINITIONS_AND_TYPE_REFERENCES_ONLY",
+  "source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "apk_bytes": 16315489,
+  "apk_sha256": "8825f7308fd25196bd5299ec372f34d4cf841d7e07f6cbae629d45ccfd395d6d",
+  "status": "NO_MATCHING_PACKAGED_TYPES",
+  "dex_files": [
+    {
+      "path": "classes.dex",
+      "bytes": 17655192,
+      "sha256": "bc85cfd284b1984c7d7a2f6e48e1cda53f6ca50cf644276178c96544bdc5756e",
+      "class_definitions": 8917,
+      "type_references": 10453
+    },
+    {
+      "path": "classes10.dex",
+      "bytes": 112084,
+      "sha256": "4cb87f7ace7c665d16755b3466eca73c87cc7167104d4b901b704bb2a4c9d30b",
+      "class_definitions": 706,
+      "type_references": 784
+    },
+    {
+      "path": "classes11.dex",
+      "bytes": 12297616,
+      "sha256": "2eff1664218fdfc0991adcd8b423158cd8aeb368512c7d20bf7e167970138baa",
+      "class_definitions": 7134,
+      "type_references": 8977
+    },
+    {
+      "path": "classes12.dex",
+      "bytes": 448376,
+      "sha256": "da3ff2dcb052186182237821dca345974e48651d283bbce0f3f7b3a6821fa8aa",
+      "class_definitions": 168,
+      "type_references": 356
+    },
+    {
+      "path": "classes2.dex",
+      "bytes": 27360,
+      "sha256": "4bb85993ab1e03a1793e973d8f54e3ac60df9943b60ec2f7e434ea08342030e3",
+      "class_definitions": 11,
+      "type_references": 94
+    },
+    {
+      "path": "classes3.dex",
+      "bytes": 122944,
+      "sha256": "a00cf071b0db4e88358e4c7d1526cc237a6f3c7b5034cd31b2e738e4a8fab118",
+      "class_definitions": 62,
+      "type_references": 126
+    },
+    {
+      "path": "classes4.dex",
+      "bytes": 165808,
+      "sha256": "e44b650bde47da1651104be4e6742c32c44ed1d731f25814260b3b9613751b81",
+      "class_definitions": 220,
+      "type_references": 227
+    },
+    {
+      "path": "classes5.dex",
+      "bytes": 182652,
+      "sha256": "872e1e73ac82e63b78b92206e1e9bab7e7f324537f118c9fe4855168a17a0caf",
+      "class_definitions": 84,
+      "type_references": 265
+    },
+    {
+      "path": "classes6.dex",
+      "bytes": 70816,
+      "sha256": "ba39750f6689bce712a0d26a7f7477e0218620521a334d5fd68f8ef9d37ea308",
+      "class_definitions": 36,
+      "type_references": 203
+    },
+    {
+      "path": "classes7.dex",
+      "bytes": 603272,
+      "sha256": "8701a724127bcfd77217ac986c86d983b102cfa22a97945c442c6ec86935456b",
+      "class_definitions": 284,
+      "type_references": 657
+    },
+    {
+      "path": "classes8.dex",
+      "bytes": 100356,
+      "sha256": "9c38e2097490692772a9f63fb12d8156fbbcc01d48bd94c89db47ed857349e55",
+      "class_definitions": 62,
+      "type_references": 236
+    },
+    {
+      "path": "classes9.dex",
+      "bytes": 66592,
+      "sha256": "e7fd25523c27ca502235484c5cb418b28901bb2a2f3fc4b3892b642d27bfd1d6",
+      "class_definitions": 21,
+      "type_references": 187
+    }
+  ],
+  "families": {
+    "netty": {
+      "class_definitions": 0,
+      "type_references": 0
+    },
+    "commons_lang3": {
+      "class_definitions": 0,
+      "type_references": 0
+    },
+    "apache_httpclient": {
+      "class_definitions": 0,
+      "type_references": 0
+    },
+    "jose4j": {
+      "class_definitions": 0,
+      "type_references": 0
+    },
+    "bouncycastle": {
+      "class_definitions": 0,
+      "type_references": 0
+    },
+    "jdom2": {
+      "class_definitions": 0,
+      "type_references": 0
+    }
+  },
+  "reflection_or_dynamic_loading_coverage": false,
+  "build_tool_risk_closed": false,
+  "whole_security_or_exploitability_approval": false
+}

@@ -1,0 +1,70 @@
+{
+  "apk": "app-debug.apk",
+  "apk_bytes": 16315489,
+  "elf_zip_alignment": "PASS",
+  "libraries": [
+    {
+      "path": "lib/arm64-v8a/libandroidx.graphics.path.so",
+      "abi": "arm64-v8a",
+      "bytes": 10096,
+      "compressed_bytes": 10096,
+      "data_offset": 12255232
+    },
+    {
+      "path": "lib/arm64-v8a/libdatastore_shared_counter.so",
+      "abi": "arm64-v8a",
+      "bytes": 7112,
+      "compressed_bytes": 7112,
+      "data_offset": 12271616
+    },
+    {
+      "path": "lib/arm64-v8a/libfixmyshot_webp.so",
+      "abi": "arm64-v8a",
+      "bytes": 903640,
+      "compressed_bytes": 903640,
+      "data_offset": 12288000
+    },
+    {
+      "path": "lib/armeabi-v7a/libandroidx.graphics.path.so",
+      "abi": "armeabi-v7a",
+      "bytes": 7252,
+      "compressed_bytes": 7252,
+      "data_offset": 13205504
+    },
+    {
+      "path": "lib/armeabi-v7a/libdatastore_shared_counter.so",
+      "abi": "armeabi-v7a",
+      "bytes": 4416,
+      "compressed_bytes": 4416,
+      "data_offset": 13221888
+    },
+    {
+      "path": "lib/armeabi-v7a/libfixmyshot_webp.so",
+      "abi": "armeabi-v7a",
+      "bytes": 618056,
+      "compressed_bytes": 618056,
+      "data_offset": 13238272
+    },
+    {
+      "path": "lib/x86_64/libandroidx.graphics.path.so",
+      "abi": "x86_64",
+      "bytes": 10760,
+      "compressed_bytes": 10760,
+      "data_offset": 13860864
+    },
+    {
+      "path": "lib/x86_64/libdatastore_shared_counter.so",
+      "abi": "x86_64",
+      "bytes": 6224,
+      "compressed_bytes": 6224,
+      "data_offset": 13877248
+    },
+    {
+      "path": "lib/x86_64/libfixmyshot_webp.so",
+      "abi": "x86_64",
+      "bytes": 1175216,
+      "compressed_bytes": 1175216,
+      "data_offset": 13893632
+    }
+  ]
+}
