@@ -2,9 +2,9 @@
   "schema": 1,
   "source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
   "source_tree": "6089799f41df2239ab111e172b7989cccee07bf9",
-  "baseline_run_id": 40209306060,
-  "baseline_artifact_id": 12604614866,
-  "baseline_archive_sha256": "640241aef358fdd57c964e22a0f1f75a5f88a63f304330b3118a9587d70b7a44",
+  "baseline_run_id": 40213670439,
+  "baseline_artifact_id": 12605944796,
+  "baseline_archive_sha256": "ea122a11bf817cba241fdf7415da33ed5922dd29a3475c6aac93ed30a720634c",
   "expected_unsigned_apk_sha256": "b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd",
   "expected_unsigned_apk_bytes": 11841246
 }

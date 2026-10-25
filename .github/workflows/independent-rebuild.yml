@@ -57,6 +57,12 @@ jobs:
           bash scripts/setup-android.sh
           bash scripts/bootstrap-gradle.sh
           ./gradlew --version > evidence/gradle-version.txt
+      - name: Validate actual JVM trace format before the full build
+        run: |
+          python3 "$RUNNER_TEMP/fixmyshot-classload-controller.py" \
+            "$RUNNER_TEMP/fixmyshot-jvm-audit" evidence/jvm-trace-preflight \
+            --preflight --source "${{ steps.request.outputs.source_commit }}" --control "$WORKFLOW_CONTROL_COMMIT" \
+            --source-root "$GRADLE_USER_HOME" --source-root "$ANDROID_HOME" --source-root "$JAVA_HOME"
       - name: Rebuild core tests and unsigned release without build-cache reuse
         run: |
           if ./gradlew --no-daemon -Pandroid.enableJetifier=true help > evidence/jetifier-override-rejection.txt 2>&1; then
