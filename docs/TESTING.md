@@ -1297,3 +1297,30 @@ qualify production signatures/upgrades or waive any physical/native-format gate.
 The [current controls](feasibility/evidence/delivery-control-status-e516aa89.json)
 record all11pending runtime files and the unchanged larger publisher backlog.
 No new Android build, source bundle or phone result follows from this data review.
+
+
+## First physical diagnostic APK handoff — e516 source
+
+[The exact debug handoff](feasibility/evidence/phone-debug-handoff-e516aa89.json)
+uses accepted compiled sourcee516aa89, successful host run40214535917/control
+e69ce830/artifact12606988356. Actual ZIP size/SHA256/CRC/source identity and the
+entire debug member match the delivered copy. APK16,315,489B/SHA256
+60b7953087f342c4ede7f72cd0dee7b54e2b9d275b282f354c75e3ee27701f8f.
+Official apksig9.2.1, exact frozen JAR SHA256
+562cd0a88890960d2ece48e116c61f12872222f1dcc306890799382bc019b201,
+verifies the v2 signature for APIs26–36 with no warnings. Actual manifest:
+org.cajapersonal.fixmyshot.debug,0.1.0-alpha.1/code1,min26/target36,debuggable,
+backup disabled,no INTERNET permission. Public ephemeral debug certificate
+SHA2560bd000c02c8c48d3f9423bbd2f342f4c243f774648fba1a06ac05145c0011b9e.
+All eight legal assets and nine native libraries/three ABIs/ELF-ZIP16KiB alignment
+pass on these actual bytes. No source/dependency/build/signing-key change or
+new CI run was required. This is a diagnostic artifact, not production signing
+or a qualified same-certificate upgrade path.
+
+First device pass: one PNG export, a three-image WebP export, then Settings →
+Comprobar HEIC y AVIF → Iniciar comprobación → Compartir informe. The native
+check uses six synthetic cases, saves no gallery files and does not enable
+ordinary HEIC/AVIF export. Bind the returned report to this exact APK hash;
+record model/Android and actual results. Startup, gallery, source preservation,
+native codec, physical16KiB and all wider device gates remain PENDING until
+observed. The debug handoff grants no publisher/source/distribution approval.

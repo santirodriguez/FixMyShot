@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "scope": "FUNCTIONAL_DEVICE_TEST_APK_HANDOFF_NOT_DISTRIBUTION_APPROVAL",
+  "compiled_source": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "compiled_source_tree": "6089799f41df2239ab111e172b7989cccee07bf9",
+  "control_commit": "e69ce830372392a62feeb4432b285016e598dfb5",
+  "workflow_run": 40214535917,
+  "artifact_id": 12606988356,
+  "artifact_zip_sha256": "012f984332b327c583195b9c24cf6eb23d595e9ecc4804402dd8053cd7c9a306",
+  "apk_filename": "FixMyShot-0.1.0-alpha.1-debug-e516aa89.apk",
+  "apk_bytes": 16315489,
+  "apk_sha256": "60b7953087f342c4ede7f72cd0dee7b54e2b9d275b282f354c75e3ee27701f8f",
+  "actual_archive_member_full_bytes_equal": true,
+  "official_apksig_verifier": "com.android.tools.build:apksig:9.2.1",
+  "verifier_jar_sha256": "562cd0a88890960d2ece48e116c61f12872222f1dcc306890799382bc019b201",
+  "signature_verified": true,
+  "signature_v2_verified": true,
+  "signature_v3_present": false,
+  "platforms_checked": [
+    26,
+    36
+  ],
+  "signature_warnings": [],
+  "public_debug_certificate_sha256": "0bd000c02c8c48d3f9423bbd2f342f4c243f774648fba1a06ac05145c0011b9e",
+  "certificate_subject": "C=US, O=Android, CN=Android Debug",
+  "application_id": "org.cajapersonal.fixmyshot.debug",
+  "version_name": "0.1.0-alpha.1",
+  "version_code": 1,
+  "min_sdk": 26,
+  "target_sdk": 36,
+  "debuggable": true,
+  "allow_backup": false,
+  "permissions": [
+    "org.cajapersonal.fixmyshot.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "physical_acceptance": "PENDING_USER_RESULTS",
+  "heic_avif_export_enabled": false,
+  "production_signing_upgrade_release_acceptance": false,
+  "publisher_source_distribution_controls": "OPEN_UNCHANGED",
+  "new_ci_run": false,
+  "new_signing_key_created": false,
+  "canonical_legal_assets": "PASS_EIGHT_EXACT_BYTES",
+  "native_ELF_ZIP_16KiB_alignment": "PASS_NINE_LIBRARIES_THREE_ABIS",
+  "user_authorized_functional_debug_handoff": true,
+  "functional_test_plan": [
+    "Open and export one screenshot as PNG; inspect Pictures/FixMyShot and intact original",
+    "Export three screenshots as WebP; inspect margins/proportions and batch completion",
+    "Settings: Comprobar HEIC y AVIF, Iniciar comprobacion, then share the synthetic report"
+  ],
+  "native_diagnostic_does_not_enable_ordinary_HEIC_AVIF_export": true
+}
