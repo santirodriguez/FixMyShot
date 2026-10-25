@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.legacy",
+    "legacy-support-core-utils",
+    "1.0.0",
+    "legacy-support-core-utils-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom",
+  "directory_sha256": "bfd7a4fc76a2de45bd1d6cee6879f5e1de42d58aba3f408a20af94320179db02",
+  "directory_tree": "a8981029bf06c51338e3bc4b98586d67a28dbddc",
+  "blob_sha1": "39f3ee8f8fe53fee80b48dc511af40c68ed36703",
+  "bytes": 2633,
+  "sha256": "8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38"
+}

@@ -8,8 +8,10 @@ normal Actions40190972725: core69/lint/threeAPK build,269-file exact source/tree
 build-input audit, actual debug/release seven canonical legal assets and native
 9libraries/3ABIs/alignment, API36 suites/80real encodes/four report guards.
 The [receipt](feasibility/evidence/android-e8fd9c0f.json) identifies actual bytes.
-A clean independent rebuild of these new bytes is requested; byte equality is
-not yet accepted. Earlierf943 byte equality retains its historical scope.
+Independent40192020106 rebuilt the same source with empty caches. Downloaded
+actual unsigned bytes are identical:11839827B/SHA256
+e36d5444a988557707dd2272d1574409786b361b7c24a68b61fd58b4102c159a.
+The updated source now has scoped build/runtime/reproducibility acceptance.
 
 The Protobuf BSD omission is corrected and the133component runtime declaration
 catalog is packaged. All133POMs/95hash-matched archives were reviewed, with the
@@ -19,15 +21,16 @@ manifest verified. The [license owner](feasibility/runtime-license-review.md)
 preserves the native/source/full-review limits.
 
 The dependency graph is byte-identical to the frozenf943 capture487/858, so
-the223verified/635pending inactive publisher review and488-query OSV snapshot
-retain their scope. Five of six critical files have publisher proof; the Compose
-BOM POM remains unresolved metadata. OSV recorded49advisory IDs/18tooling
+the488-query OSV snapshot retains its scope. The inactive publisher review now
+covers244/858 exact files, with614pending. All six critical files have publisher
+proof. The Compose BOM and20other Google POMs match a separate pinned official
+AOSP source copy; these21 proofs are not PGP signatures. See the
+[source-copy review](feasibility/google-source-copy-review.md). OSV recorded49advisory IDs/18tooling
 components and no133app-runtime matches at scan time; applicability/remediation
 review remains open. No newly generated trust is activated.
 
 | Remaining work | Required evidence |
 | --- | --- |
-| Reproduce the updated package | Independent exacte8source build and actual unsigned byte equality |
 | Dependency/security/source review | Remaining exact issuer/metadata/native-source/notice obligations; owning-tool applicability/remediation and deliberate strict policy |
 | Physical acceptance | Pixel9ProXL plus second hardware family: HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers/batches/process death/storage pressure/gallery/receivers, TalkBack/text scaling/rotation/languages/16KiB runtime |
 | Distribution preparation | Separately authorized signing identity, signed manifest/certificate checks, sequential install/upgrade/Obtainium, authentic captures and final receipts/docs |

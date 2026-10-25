@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.interpolator",
+    "interpolator",
+    "1.0.0",
+    "interpolator-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom",
+  "directory_sha256": "785a174894f67716331ef38d71344d37611b5b94086da8a416993f0757292988",
+  "directory_tree": "01c2c012a18d70ba2cbcfdfb238bd87db95409f8",
+  "blob_sha1": "49a663964345f69b668ccc07148b4274be77967e",
+  "bytes": 1608,
+  "sha256": "0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b"
+}

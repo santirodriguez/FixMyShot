@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.test.ext",
+    "junit",
+    "1.2.1",
+    "junit-1.2.1.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom",
+  "directory_sha256": "5348e5c0b68b85cdfb70192d7e008dffb8dec514146587d8521832e44c7724b5",
+  "directory_tree": "32c0672762c07fc6631fa624a62085d4b5bebaac",
+  "blob_sha1": "195c430b7a339e4c81f934301d8c853f0ebf0f75",
+  "bytes": 2107,
+  "sha256": "983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751"
+}

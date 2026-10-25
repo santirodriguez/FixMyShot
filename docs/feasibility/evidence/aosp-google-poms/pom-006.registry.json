@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.drawerlayout",
+    "drawerlayout",
+    "1.0.0",
+    "drawerlayout-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom",
+  "directory_sha256": "6d1349033f9f5631131578b66996b1032adac4441a5d3272f878cded7ac43bed",
+  "directory_tree": "51b36461d6ef901fcaf316df2a9cc461d386f83b",
+  "blob_sha1": "507479bcd8f7a2064f96cb759ec7390b3e92b26e",
+  "bytes": 2006,
+  "sha256": "da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4"
+}

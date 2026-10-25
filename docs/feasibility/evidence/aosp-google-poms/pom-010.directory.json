@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "9d6b6a7eda359adbe614237f1235c268284f5f9c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "32c57746c035c91f560c6a4e6e7ead3e48ab9c06",
+      "name": "loader-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "51949dd79b7f05f9d33d20e2c27a9d2839ac9069",
+      "name": "loader-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "8bf9635b6c405474631b27bea86126b61c95c220",
+      "name": "loader-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4e81b0daf1c55074710589646d088bf02793c805",
+      "name": "loader-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1e001ebc1fa1a06e291a6e4665a54447bdaa4f51",
+      "name": "origin.json"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "com.android.tools.build",
+    "bundletool",
+    "1.18.3",
+    "bundletool-1.18.3.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/com/android/tools/build/bundletool/1.18.3/bundletool-1.18.3.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/bundletool/1.18.3/bundletool-1.18.3.pom",
+  "directory_sha256": "f6ab096a0cfa3383b5a8e42a2c685afb9a1ced6a9045a60559d1212bd5af435a",
+  "directory_tree": "c4729d8b54b4b13d5e932e74ac6c1624a33a9899",
+  "blob_sha1": "f6f2c23829bdd8230e9220f0a2c4adf08d648147",
+  "bytes": 2673,
+  "sha256": "fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae"
+}

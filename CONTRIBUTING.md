@@ -296,3 +296,17 @@ missing rows from the same source/inventory/lock only. Complete prior rows are
 reused; cached text hashes are checked. The original partial report/producer
 and new report retain separate identities. See the current
 [license review](docs/feasibility/runtime-license-review.md).
+
+## Exact Google POM source-copy review
+
+A separate official AOSP release can corroborate an exact Google-published POM
+when detached-signature collection did not resolve it.
+`scripts/review-google-source-copy.py` checks an explicitly pinned registry,
+release commit, exact canonical route, raw Gitiles directory/blob membership,
+size and frozen SHA256. It never approves other publishers mirrored by Google.
+`scripts/collect-google-source-poms.py` is a bounded data-only collector;
+`scripts/review-google-source-poms.py` independently replays matching rows and
+records all outcomes. The same-release planner omits earlier failed lookups.
+Run `python3 scripts/test-google-source-copy.py` and the actual offline replay in
+[the owner](docs/feasibility/google-source-copy-review.md). The candidate remains
+inactive; source-copy evidence must never be described as PGP verification.

@@ -46,8 +46,9 @@ legal task copies the two new canonical files into the APK. The package checker
 now requires seven exact canonical assets and still reports full-review=false.
 The oldf943 package fails the updated canonical check. Normal sourcee8fd9c0f
 now passes build/native/seven-filelegal/API36, with actual package bytes checked
-against the exact archived canonical sources. Independent comparison of the
-new unsigned bytes is requested and remains pending. No dependency,
+against the exact archived canonical sources. Independent40192020106 also passed; actual downloaded unsigned bytes equal
+the baseline exactly. Updated source has bounded build/runtime/reproducibility
+acceptance, with broader native/source/legal gates unchanged. No dependency,
 format, permission, source pixel or export behavior changed.
 
 ## Evidence persistence and remaining scope
@@ -64,5 +65,6 @@ CRC and every manifest entry; remote persistence is verified.
 Source/native notices, all required attribution and broader legal compatibility
 still need their appropriate review. This does not assert universal copyright
 or patent clearance, whole build-tool licensing or complete artifact trust.
-The reviewed publisher subset is223/858,635pending, with five of six critical
-checks authenticated; the Compose BOM POM remains unresolved metadata.
+The current publisher subset is244/858,614pending, with all six critical files
+corroborated. The [source-copy review](google-source-copy-review.md) distinguishes
+21 exact official Google POM copies from the earlier signature/manifest proofs.

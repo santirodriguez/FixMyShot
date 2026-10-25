@@ -4,8 +4,8 @@ Current bounded checkpoint: **e8fd9c0f**, Actions40190972725. Core69/lint/
 threeAPK,269-file source/tree/input audit, actual debug/release seven canonical
 legal assets, native9libraries/3ABIs/alignment and fullAPI36/80real encodes/
 four final report guards pass. Both build/smoke archives were downloaded and
-verified. Independent byte equality of the changed unsigned package is requested,
-not yet accepted. [The exact receipt](feasibility/evidence/android-e8fd9c0f.json)
+verified. Independent40192020106 rebuilt that exact source with empty caches; downloaded
+unsigned bytes match the original package exactly (11839827B/SHA256e36d5444…). [The exact receipt](feasibility/evidence/android-e8fd9c0f.json)
 retains size/hash/source and scope. No physical codec/16KiB approval follows.
 
 Previous complete bounded checkpoint: **f9434ab9**, Actions40160890302.

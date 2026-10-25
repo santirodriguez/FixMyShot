@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.versionedparcelable",
+    "versionedparcelable",
+    "1.1.1",
+    "versionedparcelable-1.1.1.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom",
+  "directory_sha256": "26b40285fe5d035b42676d6bc5dd9524ec1b3a860dfd03c9c6b303b26e806266",
+  "directory_tree": "2bcd7e19ade37cd59d208b521e877d1b063f008d",
+  "blob_sha1": "c8349960d22498ce0ec49f0ca9e5d965ff652505",
+  "bytes": 1643,
+  "sha256": "5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f"
+}

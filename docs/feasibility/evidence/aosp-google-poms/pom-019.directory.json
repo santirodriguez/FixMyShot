@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "7d2025b2978a48568c4ca443d45f22cddb83d3f9",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d5791a58e312aa1ed9ad6d934be0b227bc39c318",
+      "name": "origin.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "bf8857759508816a3032bca28c5e35c7a2e00388",
+      "name": "vectordrawable-animated-1.1.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "8c8da48814fac69993586d62085ba04b667a3900",
+      "name": "vectordrawable-animated-1.1.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ec234d3b46220320e50835c53dd25bb5a2aa71af",
+      "name": "vectordrawable-animated-1.1.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4a89b1b3ecfc2c933b7c15e24781665da8f55a1e",
+      "name": "vectordrawable-animated-1.1.0.pom.sha1"
+    }
+  ]
+}

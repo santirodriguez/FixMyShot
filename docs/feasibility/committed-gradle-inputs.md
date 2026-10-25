@@ -303,5 +303,17 @@ remains unresolved metadata. Four signatures were unverified and one absent;
 none was accepted. Full strict trust, source/native issuer and security/license
 gates remain open. No application/build inputs or normal validation marker
 changed. The compact [receipt](evidence/google-migrated-review-746cc9d1.json)
-records exact pins and counts; original capture/signature bytes await the next
-evidence-package upload. Do not repeat deferred routes automatically.
+records exact pins and counts; original capture/signature bytes are in the
+verified user upload atb9256abd (dependency-audit-746cc9d1.zip). Do not repeat deferred routes automatically.
+
+## Exact Google publisher source copies — current244/858
+
+The preceding223/858 snapshot is superseded by21 additional exact Google POM
+proofs from a separate publisher-maintained AOSP release repository. Compose
+BOM2025.12.00 now has proof, so all six critical file checks are corroborated.
+This is not a PGP claim, namespace-wide trust or active Gradle policy.
+The current partial candidate is244/858 reviewed,614pending. All previous223
+and historical387 proof entries are unchanged. The
+[source-copy owner](google-source-copy-review.md) provides the immutable release
+anchor, raw evidence and offline replay. Forty absent copies at this release
+remain pending and are excluded from automatic lookup at the same commit.

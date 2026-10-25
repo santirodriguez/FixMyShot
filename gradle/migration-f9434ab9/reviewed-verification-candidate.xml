@@ -46,6 +46,11 @@
         <sha256 value="163cc5e0f249433ddb0016fbd011ab8de07cf23e07e618c74644688e26cd18e8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.autofill" name="autofill" version="1.0.0">
+      <artifact name="autofill-1.0.0.pom">
+        <sha256 value="3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom; Git blob 7dc90a5fd94d0e3f793c277a02294fdf3bc2030f; exact SHA256 3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450" />
+      </artifact>
+    </component>
     <component group="androidx.collection" name="collection" version="1.5.0">
       <artifact name="collection-1.5.0.module">
         <sha256 value="bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -65,6 +70,11 @@
       </artifact>
       <artifact name="collection-ktx-1.5.0.module">
         <sha256 value="4228894e25eec7e17329b206ba72e8aad255bc535018dc62acc5eff3b5c7aaa5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose" name="compose-bom" version="2025.12.00">
+      <artifact name="compose-bom-2025.12.00.pom">
+        <sha256 value="08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom; Git blob 6eedce3f09ebe4622a3114c8f1a8644c93328240; exact SHA256 08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17" />
       </artifact>
     </component>
     <component group="androidx.compose.animation" name="animation" version="1.10.0">
@@ -299,6 +309,16 @@
         <sha256 value="11386cfa46cbbfddb6a4059f14354c00691cf65d3d63c3618818a83326ef3c7f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.cursoradapter" name="cursoradapter" version="1.0.0">
+      <artifact name="cursoradapter-1.0.0.pom">
+        <sha256 value="62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom; Git blob ffca433f2f77b5a75ad1245769fe67daa74968a6; exact SHA256 62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100" />
+      </artifact>
+    </component>
+    <component group="androidx.customview" name="customview" version="1.0.0">
+      <artifact name="customview-1.0.0.pom">
+        <sha256 value="ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.pom; Git blob db3906ef20dc0f998a5ce505105cbe8ef90c37ac; exact SHA256 ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49" />
+      </artifact>
+    </component>
     <component group="androidx.databinding" name="databinding-common" version="9.2.1">
       <artifact name="databinding-common-9.2.1.jar">
         <sha256 value="82816382a2a9dec4f0ab17c79cef08a9e4fe4b97d896ac20d7f215b6dd788b18" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -410,6 +430,21 @@
         <sha256 value="3da01b6fb8751c39237202b8fe668c55347c0e35960db6d7776bd482f2e6ef3e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.documentfile" name="documentfile" version="1.0.0">
+      <artifact name="documentfile-1.0.0.pom">
+        <sha256 value="013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom; Git blob dfc9aaddb4dfd91489dd4116ba4e61eb134e20bd; exact SHA256 013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5" />
+      </artifact>
+    </component>
+    <component group="androidx.drawerlayout" name="drawerlayout" version="1.0.0">
+      <artifact name="drawerlayout-1.0.0.pom">
+        <sha256 value="da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom; Git blob 507479bcd8f7a2064f96cb759ec7390b3e92b26e; exact SHA256 da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4" />
+      </artifact>
+    </component>
+    <component group="androidx.dynamicanimation" name="dynamicanimation" version="1.0.0">
+      <artifact name="dynamicanimation-1.0.0.pom">
+        <sha256 value="44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom; Git blob dc09da5853ce10e045e7ee16832b458ba84267aa; exact SHA256 44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898" />
+      </artifact>
+    </component>
     <component group="androidx.exifinterface" name="exifinterface" version="1.4.2">
       <artifact name="exifinterface-1.4.2.aar">
         <sha256 value="6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -424,6 +459,16 @@
       </artifact>
       <artifact name="heifwriter-1.2.0-rc01.module">
         <sha256 value="1ab25b802cef746359456a5e6a4b86f8fbb18ef5777b2760a7b5172d89689d01" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F" />
+      </artifact>
+    </component>
+    <component group="androidx.interpolator" name="interpolator" version="1.0.0">
+      <artifact name="interpolator-1.0.0.pom">
+        <sha256 value="0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom; Git blob 49a663964345f69b668ccc07148b4274be77967e; exact SHA256 0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b" />
+      </artifact>
+    </component>
+    <component group="androidx.legacy" name="legacy-support-core-utils" version="1.0.0">
+      <artifact name="legacy-support-core-utils-1.0.0.pom">
+        <sha256 value="8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom; Git blob 39f3ee8f8fe53fee80b48dc511af40c68ed36703; exact SHA256 8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38" />
       </artifact>
     </component>
     <component group="androidx.lifecycle" name="lifecycle-common" version="2.9.4">
@@ -555,6 +600,21 @@
         <sha256 value="079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.loader" name="loader" version="1.0.0">
+      <artifact name="loader-1.0.0.pom">
+        <sha256 value="c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.pom; Git blob 8bf9635b6c405474631b27bea86126b61c95c220; exact SHA256 c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e" />
+      </artifact>
+    </component>
+    <component group="androidx.localbroadcastmanager" name="localbroadcastmanager" version="1.0.0">
+      <artifact name="localbroadcastmanager-1.0.0.pom">
+        <sha256 value="a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom; Git blob abf4d6f44c33d4978575e9e0a524b75cdbbd2b98; exact SHA256 a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9" />
+      </artifact>
+    </component>
+    <component group="androidx.print" name="print" version="1.0.0">
+      <artifact name="print-1.0.0.pom">
+        <sha256 value="62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.pom; Git blob 927140aec1cf4227c6ab7654ed42d3ec8defffb6; exact SHA256 62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7" />
+      </artifact>
+    </component>
     <component group="androidx.savedstate" name="savedstate" version="1.3.2">
       <artifact name="savedstate-1.3.2.module">
         <sha256 value="320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
@@ -589,12 +649,52 @@
         <sha256 value="f7fc8a13f9fbe5cf092128299aff529392f3eee54e6d3fe5f0a2f82fc6c5f3db" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
     </component>
+    <component group="androidx.test" name="core" version="1.6.1">
+      <artifact name="core-1.6.1.pom">
+        <sha256 value="44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/core/1.6.1/core-1.6.1.pom; Git blob c2ce2e89c3dcbab5e3584c8999318b2cb7d1f0fa; exact SHA256 44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b" />
+      </artifact>
+    </component>
+    <component group="androidx.test" name="monitor" version="1.7.2">
+      <artifact name="monitor-1.7.2.pom">
+        <sha256 value="388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/monitor/1.7.2/monitor-1.7.2.pom; Git blob 0c14b7e21e6c1125435113e4f9f3c9e6e5e5a889; exact SHA256 388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce" />
+      </artifact>
+    </component>
+    <component group="androidx.test.ext" name="junit" version="1.2.1">
+      <artifact name="junit-1.2.1.pom">
+        <sha256 value="983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom; Git blob 195c430b7a339e4c81f934301d8c853f0ebf0f75; exact SHA256 983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751" />
+      </artifact>
+    </component>
+    <component group="androidx.test.services" name="storage" version="1.5.0">
+      <artifact name="storage-1.5.0.pom">
+        <sha256 value="81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/services/storage/1.5.0/storage-1.5.0.pom; Git blob 14adbc12bfdd9c4aaae2a67b3443162879b2b21b; exact SHA256 81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d" />
+      </artifact>
+    </component>
     <component group="androidx.transition" name="transition" version="1.6.0">
       <artifact name="transition-1.6.0.aar">
         <sha256 value="248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
       </artifact>
       <artifact name="transition-1.6.0.module">
         <sha256 value="c763c376fd6d39e51477c902b315e58ca2a1f47d4b099cb99f49a148bd61c560" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.vectordrawable" name="vectordrawable" version="1.1.0">
+      <artifact name="vectordrawable-1.1.0.pom">
+        <sha256 value="5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom; Git blob 80acd8792a9f3e2128adba13571a11e3c0353eb8; exact SHA256 5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2" />
+      </artifact>
+    </component>
+    <component group="androidx.vectordrawable" name="vectordrawable-animated" version="1.1.0">
+      <artifact name="vectordrawable-animated-1.1.0.pom">
+        <sha256 value="276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.pom; Git blob ec234d3b46220320e50835c53dd25bb5a2aa71af; exact SHA256 276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd" />
+      </artifact>
+    </component>
+    <component group="androidx.versionedparcelable" name="versionedparcelable" version="1.1.1">
+      <artifact name="versionedparcelable-1.1.1.pom">
+        <sha256 value="5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom; Git blob c8349960d22498ce0ec49f0ca9e5d965ff652505; exact SHA256 5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f" />
+      </artifact>
+    </component>
+    <component group="androidx.viewpager" name="viewpager" version="1.0.0">
+      <artifact name="viewpager-1.0.0.pom">
+        <sha256 value="1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.pom; Git blob c062095003a41bc8b40b00f09a2376437db1ac33; exact SHA256 1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128" />
       </artifact>
     </component>
     <component group="androidx.window" name="window" version="1.5.0">
@@ -616,6 +716,11 @@
       </artifact>
       <artifact name="window-core.aar">
         <sha256 value="d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="bundletool" version="1.18.3">
+      <artifact name="bundletool-1.18.3.pom">
+        <sha256 value="fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/bundletool/1.18.3/bundletool-1.18.3.pom; Git blob f6f2c23829bdd8230e9220f0a2c4adf08d648147; exact SHA256 fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae" />
       </artifact>
     </component>
     <component group="com.android.tools.build" name="gradle" version="9.2.1">

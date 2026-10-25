@@ -125,3 +125,19 @@ The original64-file collection is partial:12captured,7verified,4signature failur
 1missing signature and52unavailable captures. No unverified bytes are approved.
 The license evidence is data only; do not execute archived JARs or producer files
 merely to inspect the archive. Updated package acceptance is a separate gate.
+
+## Updated package and exact Google source-copy evidence
+
+android-e8fd9c0f.json and source-audit-e8fd9c0f.json record the updated seven-file
+legal package, normal build/API36 and frozen dependency equivalence.
+independent-rebuild-e8fd9c0f.json records downloaded unsigned full byte equality
+after a pristine exact-source empty-cache rebuild40192020106. This source now
+has bounded build/runtime/reproducibility acceptance.
+
+The Google source-copy evidence is small plain text: aosp-compose-bom-* records
+one exact BOM; aosp-google-poms/ records60 later lookups,20 exact matches and40
+HTTP404 outcomes. aosp-google-pom-review.json pins the report and final244/858
+review. The [owner](../google-source-copy-review.md) specifies offline replay.
+These21 publisher-maintained exact source copies are not detached signatures;
+614files and full strict trust remain pending. No additional binary upload is
+needed for this text evidence. Preserve raw Gitiles XSSI prefixes and POM bytes.

@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "51b36461d6ef901fcaf316df2a9cc461d386f83b",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a9968c7fec10003c8418407e744713a4be86d89e",
+      "name": "drawerlayout-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a0511aecd017464ae571d26d0f7bbafa369269d7",
+      "name": "drawerlayout-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "507479bcd8f7a2064f96cb759ec7390b3e92b26e",
+      "name": "drawerlayout-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "29b88300cbb11173fd0d25ad617707aaf3c172e0",
+      "name": "drawerlayout-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "804150285e406431f0cebbdae221396e3a9a722d",
+      "name": "origin.json"
+    }
+  ]
+}

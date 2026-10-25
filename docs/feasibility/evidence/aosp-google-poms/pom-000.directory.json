@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "7db9662d71cc5b09d5f2244933644a463629c3d2",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b88bd83afb87b296110ebddd9e8db6b64e08f875",
+      "name": "autofill-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c6e9c2e3b4746c9ae7bfbc0dfee0cfa4d157587a",
+      "name": "autofill-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7dc90a5fd94d0e3f793c277a02294fdf3bc2030f",
+      "name": "autofill-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0422d9761a027e019b1c5d9eb002a5b9d6a7acfb",
+      "name": "autofill-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "93260412b08baa35e632d3e02eac1000d35f8416",
+      "name": "origin.json"
+    }
+  ]
+}

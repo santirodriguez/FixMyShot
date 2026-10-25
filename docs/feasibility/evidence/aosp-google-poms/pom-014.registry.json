@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.test",
+    "monitor",
+    "1.7.2",
+    "monitor-1.7.2.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/test/monitor/1.7.2/monitor-1.7.2.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/monitor/1.7.2/monitor-1.7.2.pom",
+  "directory_sha256": "55e822af7849d8123b49396f5a9b8c026bdc37a92a7ae874fa09e208a4edee4f",
+  "directory_tree": "de4f29690bad7ccb6345eec1881691d3d6fd7631",
+  "blob_sha1": "0c14b7e21e6c1125435113e4f9f3c9e6e5e5a889",
+  "bytes": 1589,
+  "sha256": "388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce"
+}

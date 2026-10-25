@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.dynamicanimation",
+    "dynamicanimation",
+    "1.0.0",
+    "dynamicanimation-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom",
+  "directory_sha256": "d5a93e352f20107a0474282fec0f5a2798ff492eb8c603626dbab15915b1c75d",
+  "directory_tree": "2e642af117d9b2b5c09c46e9a73b4b8b4af5d98c",
+  "blob_sha1": "dc09da5853ce10e045e7ee16832b458ba84267aa",
+  "bytes": 1923,
+  "sha256": "44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898"
+}

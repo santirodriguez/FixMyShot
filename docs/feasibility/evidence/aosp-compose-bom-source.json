@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.compose",
+    "compose-bom",
+    "2025.12.00",
+    "compose-bom-2025.12.00.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "release_tree": "e8536352ff557c49904a09eb623cfa00e79ddd96",
+  "path": "common/m2/repository/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+  "directory_tree": "a4c5f0e7918cc8bf89681a41914821fd5c543b5c",
+  "directory_sha256": "079ada77189337ea18c48fdedaafc842cab4e0103cd5716d9161ac3f38e6fe8d",
+  "blob_sha1": "6eedce3f09ebe4622a3114c8f1a8644c93328240",
+  "bytes": 39897,
+  "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+  "scope": "Exact Google-published Compose BOM POM source copy; no PGP or namespace-wide trust claim"
+}

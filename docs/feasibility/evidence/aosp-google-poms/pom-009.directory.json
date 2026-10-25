@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "a8981029bf06c51338e3bc4b98586d67a28dbddc",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "2980f6039d1bda8b69b366e5f019d14148a6e518",
+      "name": "legacy-support-core-utils-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "854d8886841cfbc0e7cb95f424c91b1b8214ff28",
+      "name": "legacy-support-core-utils-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "39f3ee8f8fe53fee80b48dc511af40c68ed36703",
+      "name": "legacy-support-core-utils-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "314f41356bbbc8a6c17964fc0ca636a7f2539e90",
+      "name": "legacy-support-core-utils-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5d8e623738b7bb2e76bfa9079563478d1910ba15",
+      "name": "origin.json"
+    }
+  ]
+}

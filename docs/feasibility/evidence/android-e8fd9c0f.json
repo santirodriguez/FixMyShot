@@ -18,7 +18,7 @@
   "generated_inventory": "BYTE_IDENTICAL_TO_F943_487_COMPONENTS_858_ARTIFACTS",
   "generated_inventory_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
   "api36_status": "PASS",
-  "independent_rebuild": "REQUESTED_NOT_YET_ACCEPTED",
+  "independent_rebuild": "PASS_ACTUAL_BYTE_IDENTICAL_40192020106",
   "security_native_physical_full_licensing_signing_distribution": "OPEN",
   "api36_job_id": 121162966616,
   "smoke_artifact_id": 12598212441,
