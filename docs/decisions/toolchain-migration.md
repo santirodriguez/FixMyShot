@@ -125,3 +125,22 @@ selected in tooling configurations. Therefore this is not a complete security
 remediation. A fresh bounded inventory and applicability review are required.
 Normal source-frozen build/API36/package/source-audit and a subsequent independent
 unsigned rebuild are pending. Device/manual/native-format/signing gates remain.
+
+## Locked-read failure and graph completion
+
+Normal source-frozen Actions40156666980 atff01c514 failed in
+:app:processDebugNavigationResources: kotlin-stdlib-common2.4.21 was resolved
+in debugRuntimeClasspath but absent from that configuration's lock state.
+The previous experiment compiled with --write-locks and therefore did not
+prove locked-read completeness. API36 was skipped; migration acceptance is open.
+
+Validation revision3 preserves the first generated locks, then lets Gradle
+update only org.jetbrains.kotlin:kotlin-stdlib-common with existing graph
+constraints while executing the real compile/lint tasks. It records the exact
+log and snapshots all three final locks plus metadata. A subsequent full
+--no-build-cache --rerun-tasks build uses no lock/metadata write option and
+requires all four snapshots unchanged. Failure preserves partial evidence.
+This tests a bounded correction; no hand-written lock entry, disabled lock
+validation, version override or claim of source-frozen acceptance is introduced.
+Only exact observed output followed by this read-mode pass can be considered
+for incorporation and another ordinary source-frozen/API36 checkpoint.

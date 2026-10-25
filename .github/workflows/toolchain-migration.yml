@@ -58,6 +58,26 @@ jobs:
           python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json
           python3 scripts/check-apk-legal.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-legal.json
           sha256sum app/build/outputs/apk/release/app-release-unsigned.apk > evidence/experimental-apk.sha256
+      - name: Complete Kotlin common locks with existing graph constraints
+        run: |
+          cp app/gradle.lockfile evidence/app-before-common-update.lockfile
+          cp core/gradle.lockfile evidence/core-before-common-update.lockfile
+          cp codec-native/gradle.lockfile evidence/native-before-common-update.lockfile
+          ./gradlew --no-daemon --console=plain \
+            --update-locks org.jetbrains.kotlin:kotlin-stdlib-common --write-verification-metadata sha256 \
+            :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease :app:assembleDebugAndroidTest \
+            > evidence/common-lock-update.txt 2>&1
+          sha256sum app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile \
+            gradle/verification-metadata.xml > evidence/strict-inputs.sha256
+      - name: Rebuild derived inputs with locked read mode and no metadata writes
+        run: |
+          ./gradlew --no-daemon --console=plain --no-build-cache --rerun-tasks \
+            :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease :app:assembleDebugAndroidTest \
+            > evidence/strict-read-build.txt 2>&1
+          sha256sum -c evidence/strict-inputs.sha256
+          python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/strict-release-native.json
+          python3 scripts/check-apk-legal.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/strict-release-legal.json
+          sha256sum app/build/outputs/apk/release/app-release-unsigned.apk > evidence/strict-experimental-apk.sha256
       - name: Preserve exact derived inputs and truthful partial evidence
         if: always()
         run: |
