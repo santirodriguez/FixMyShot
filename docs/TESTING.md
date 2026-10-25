@@ -1129,3 +1129,20 @@ The experiment did not run emulators or independent reproducibility. Its APK is
 not a promoted release artifact. Normal current-profile build/API36/legal/native
 acceptance and new-source security/reproducibility remain pending. No API limit,
 permission, format availability, product version, signing or distribution changes.
+
+## Migrated frozen checkpoint rejected — ff01c514
+
+Actions40156666980/build121059397880 failed in
+:app:processDebugNavigationResources because kotlin-stdlib-common2.4.21 was
+missing from the debugRuntimeClasspath lock state. Core69 had zero failures,
+errors or skips; the APK/lint stage did not complete. API36 and optional SAF
+were skipped. The downloaded partial archive matches provider size/digest,
+CRC, safe unique20members and exact source; [the receipt](feasibility/evidence/android-ff01c514.json)
+records the boundary. This rejects migrated frozen-source acceptance.
+The earlierad075 full checkpoint and independent rebuild retain historical scope.
+
+Validation revision3 in the migration experiment preserves before/after locks,
+updates only the affected Kotlin common module through Gradle, then runs all
+compile/lint tasks with no lock/metadata writes, no build cache and rerun-tasks.
+A digest snapshot must remain unchanged. This is a derived-checkout diagnostic;
+ordinary frozen-source/API36 qualification still follows incorporation.

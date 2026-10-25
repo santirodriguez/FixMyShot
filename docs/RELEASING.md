@@ -102,7 +102,7 @@ Initial functional 0.1.0 is a GitHub prerelease; public 1.0 remains the later st
 
 ## Canonical legal assets
 
-The app's prepareLegalAssets task packages the root GPL LICENSE,
+The app's per-variant PrepareLegalTask instances package the root GPL LICENSE,
 THIRD_PARTY_NOTICES and LICENSES/ from their canonical files. WebP's exact
 COPYING/PATENTS remain in the native module assets. Do not maintain another
 manually edited copy of these texts under app/src/main/assets.

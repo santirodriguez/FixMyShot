@@ -130,3 +130,5 @@ Created by [Santiago Rodriguez](https://santiagorodriguez.com). If FixMyShot sav
 <p align="center"><sub>The header is branding artwork. Actual app screenshots will come from the accepted candidate.</sub></p>
 
 
+
+Current completion work and remaining evidence: [status](docs/STATUS.md).
