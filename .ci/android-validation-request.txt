@@ -1,7 +1,7 @@
-Review-only Google Play screenshot preview validation checkpoint (2026-10-25).
-App-source baseline: 0395a5e25e12fb8ead8d7c107bcc99cd3dd16f1f
-Build core tests, Android lint, debug/unsigned-release/test APKs and API36 emulator regressions.
-Verify 8 ReviewRenderTest cases and unchanged PNG/WebP export invariants.
-UI-only outline/dimensions and quick background selectors; no change to exported pixels.
-No Pixel 9 Pro XL acceptance or signing, merge, tag, release or publication.
+Side-by-side private diagnostic build for visual review of screenshot margins.
+Base app validation: d7b78af7b32ac8d7d6d6e7a77c4e47cd79f996b1 (API36 and build PASS in Actions 40243253301).
+Separate debug applicationId org.cajapersonal.fixmyshot.preview; preserve previously installed
+org.cajapersonal.fixmyshot.debug and app data. Debug APK uses disposable CI signer.
+Compare Play phone layout (1344x2992 source) with Auto vs Black, no exporter changes.
+No public release, no signing-key custody, no production identity or upgrade claim.
 profile=current
