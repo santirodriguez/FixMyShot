@@ -1,0 +1,30 @@
+)]}'
+{
+  "id": "c2a6fe988616d75047c5fe4fb5ac2885b3076e90",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a6bd4f3b2f085a11f1349915bd17df91f38df1f7",
+      "name": "CMakeLists.txt"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "2b5e395a6920f1e45a818d5a4005e194b4720653",
+      "name": "jni"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "803735ae2881b05db449737d3102392594b8dd03",
+      "name": "shared_counter.cc"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d99b307d7edaa1484f23945a573c2ce8b80d54d2",
+      "name": "shared_counter.h"
+    }
+  ]
+}

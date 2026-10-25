@@ -53,6 +53,10 @@ jobs:
           python3 scripts/test-saf-provider.py
       - name: Install pinned Android build packages
         run: bash scripts/setup-android.sh
+      - name: Verify actual NDK source notices
+        run: |
+          python3 scripts/check-ndk-native-notices.py \
+            "$ANDROID_HOME/ndk/28.2.13676358" evidence/ndk-cpufeatures
       - name: Validate committed standard wrapper without regeneration
         run: bash scripts/bootstrap-gradle.sh
       - name: Resolve and build the initial candidate

@@ -1,0 +1,163 @@
+{
+  "schema": 1,
+  "scope": "PINNED_NATIVE_SOURCE_IDENTITY_AND_NOTICE_REVIEW",
+  "webp_commit": "4fa21912338357f89e4fd51cf2368325b59e9bd9",
+  "webp_tree": "3a7830b9713d9187cf1211862d4571ff58b0d507",
+  "webp_tag_object": "b7e29b9d75bd31422b00c2a446d49d7af06c328d",
+  "full_git_source_blobs": 343,
+  "full_git_source_bytes": 8073794,
+  "git_fsck": "PASS",
+  "official_commit_tree_and_mirror_agreement": "PASS",
+  "packaged_webp_COPYING_PATENTS_exact_upstream": "PASS",
+  "ndk_revision": "28.2.13676358",
+  "ndk_release": "ndk-r28c",
+  "ndk_tag_object": "a51e1194e5ab334be5bace0a13bdbd7047a5a896",
+  "ndk_commit": "805836ef53231ef86dd5fcc5652a1c28d74f4bc4",
+  "cpufeatures_c_and_h_have_same_BSD_2_clause_header": true,
+  "separate_module_NOTICE_is_Apache_2": true,
+  "canonical_combined_notice_sha256": "973f10e1c5b8e7de22da312ee73a1d970d70643e41c56f15fbb285f8a1894e25",
+  "graphics_path_1_0_1_source_commit": "8a05a22af450d589ef911d772a001a49dcb05b71",
+  "datastore_1_1_7_source_commit": "420da5f291449f11801e378c6789a328a06ec6cb",
+  "androidx_captured_cpp_blob_membership": "PASS",
+  "androidx_captured_cpp_headers": "Apache-2.0",
+  "actual_NDK_installation_check": "PENDING_GROUPED_ANDROID_CI",
+  "new_eight_asset_APK_check": "PENDING_GROUPED_ANDROID_CI",
+  "old_e8_APK_does_not_qualify_new_notices": true,
+  "all_native_source_license_security_or_patent_clearance": false,
+  "tag_signature_verification": false,
+  "full_source_archive_distribution": "NOT_PREPARED_NOT_PUBLISHED",
+  "raw_files": {
+    "NOTICE": {
+      "bytes": 577,
+      "sha256": "c870d52f42a8f93023b99a85fe68d02637d6b04e5f35bbcd7f98759adb4e4d49"
+    },
+    "commit.json": {
+      "bytes": 823,
+      "sha256": "2a2b6d925c27e2078872b84aa83224b0e6cfcd04a0e8d5ee5c0b5dd5c5ce3253"
+    },
+    "cpu-features.c": {
+      "bytes": 38642,
+      "sha256": "1b8a88eb7d3a5437d17e12475539398d3e1c5eef13d85941679841254af0a8f5"
+    },
+    "cpu-features.h": {
+      "bytes": 11862,
+      "sha256": "f4989fabece7ea538e3c1272dca47f8a9a4423a87c79a1344a2611e884cb7319"
+    },
+    "datastore-CMakeLists.txt": {
+      "bytes": 1062,
+      "sha256": "e9d5e05a8630a7d7a39d0a3f2cf8f9e7d87b6f61e86da7b201e7d7e9476f2a55"
+    },
+    "datastore-directory.json": {
+      "bytes": 645,
+      "sha256": "dc074edaee4fe5195d3dd9520a22e2db8785b75e67836809457ede1ca50d8c81"
+    },
+    "datastore-shared_counter.cc": {
+      "bytes": 3038,
+      "sha256": "de6380bc98df78f37deaff1b85b03d0309d911ea973449b2e828115145d02166"
+    },
+    "datastore-shared_counter.h": {
+      "bytes": 1025,
+      "sha256": "81a607d69505f760d51cc1c4477ffb6f5269eda72811b3e9d71c7f1117a5a158"
+    },
+    "graphics-CMakeLists.txt": {
+      "bytes": 390,
+      "sha256": "87a8967586e828d2b1cc6c5745d09f30466036bffbcd780b378c75239d90b173"
+    },
+    "graphics-Conic.cpp": {
+      "bytes": 5546,
+      "sha256": "49b3da93aa43480cf9cd481590be48705cb9340c52e5d09635efbd0ece07be83"
+    },
+    "graphics-Conic.h": {
+      "bytes": 1847,
+      "sha256": "cd315ad7c8d030c72e96893e9a0feec463d72d2066209a203dedcf0925398a6f"
+    },
+    "graphics-Path.h": {
+      "bytes": 3376,
+      "sha256": "4ee841338063d8c6f71ff4c655ecf52559f6c6df9af79835388dae1ebcd8b982"
+    },
+    "graphics-PathIterator.cpp": {
+      "bytes": 3721,
+      "sha256": "3705946b43bf894e013f46ccc940f9923f43285340f8fc2128f95c59238ec7f8"
+    },
+    "graphics-PathIterator.h": {
+      "bytes": 2181,
+      "sha256": "a16e99b0273fb7205607eb0cf51fc7be518a55f3446a304f92ecab353e77be6f"
+    },
+    "graphics-directory.json": {
+      "bytes": 1487,
+      "sha256": "1ea72e1bee9473d2e3ec4f6cfe9a99d7a2c6ed10430636ab682b3cd216101a4e"
+    },
+    "graphics-libandroidx.graphics.path.map": {
+      "bytes": 85,
+      "sha256": "bc338abd36eeb27059572903ad167cf4231a36ca92be4eae3574501aa83f0d8c"
+    },
+    "graphics-math-TVecHelpers.h": {
+      "bytes": 19058,
+      "sha256": "1b0d6b06c5bbd6b438f9d8440ac78cf93fb8a713761badc59a4412b6457c1014"
+    },
+    "graphics-math-compiler.h": {
+      "bytes": 3667,
+      "sha256": "d53e85383580e5dbf81cbcb24426b0fe1bf419b4837540242dbdca3f1df4cf66"
+    },
+    "graphics-math-directory.json": {
+      "bytes": 495,
+      "sha256": "dddf474599ab5ec796360a4430ba075f8f2da328e765a88d2841a22696d306ee"
+    },
+    "graphics-math-vec2.h": {
+      "bytes": 3063,
+      "sha256": "09e1a8eb3f8fdf9c1071500f1a4933f67caeb6d0f765d5c44ba968370de9fcb1"
+    },
+    "graphics-pathway.cpp": {
+      "bytes": 10200,
+      "sha256": "4be68d6fdb6376e95560f7c49a79aa0cd97218d758cf11ea3230ac9124485800"
+    },
+    "graphics-scalar.h": {
+      "bytes": 1998,
+      "sha256": "b1d2bba80a4c9272d84473b6f09f700972b016f7579842d3a87bdbbdb2af1edc"
+    },
+    "ndk-r28-commit.json": {
+      "bytes": 1032,
+      "sha256": "1af788dd1286206635d498398a60018c991a5f0b28f03451ccc585c50900dca9"
+    },
+    "ndk-r28c-tag.html": {
+      "bytes": 22726,
+      "sha256": "68119f62c40871fae3c7c4a3ecdf42e5e5abc31a250207cd074f4243391002b0"
+    },
+    "root.json": {
+      "bytes": 5884,
+      "sha256": "9a8e1a9a39dcbda662a7982bf1798c60336b3cd60743e3203894fb01c7873b25"
+    },
+    "tag.json": {
+      "bytes": 823,
+      "sha256": "2a2b6d925c27e2078872b84aa83224b0e6cfcd04a0e8d5ee5c0b5dd5c5ce3253"
+    },
+    "webp-AUTHORS": {
+      "bytes": 3279,
+      "sha256": "f251be89fd442bd9d701360730aea163cc8e2076ff03528f59267dc2c4f8b60a"
+    },
+    "webp-CMakeLists.txt": {
+      "bytes": 32704,
+      "sha256": "03d5331adeeacdfff75c21eb0511a9bfbbed8c7b6f72b1ac906705177690a96a"
+    },
+    "webp-COPYING": {
+      "bytes": 1496,
+      "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf"
+    },
+    "webp-PATENTS": {
+      "bytes": 1436,
+      "sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c"
+    },
+    "webp-cmake-deps.cmake": {
+      "bytes": 5169,
+      "sha256": "d9e2596a91f758854c0e19ecb63a9d6128126ea79b3a7048b39e71fb3fdb8f03"
+    },
+    "webp-source-manifest.json": {
+      "bytes": 83486,
+      "sha256": "4ae02c07380b7a4b8f32c6da390b567a0815093b765beb5cbb21d4a893eb8710"
+    },
+    "webp-v1.6.0-tag.html": {
+      "bytes": 24811,
+      "sha256": "2b062f4d1e548c906bd73ab4bb4fb768a4e08d54537bdfa712a77bc9eb3a6e57"
+    }
+  }
+}

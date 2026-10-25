@@ -1,0 +1,24 @@
+)]}'
+{
+  "id": "939ae8209e7375a01b21f01256ce7467ef87833b",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ef7e182d804f20d3ecb3b3f5c69409b335ee8d57",
+      "name": "TVecHelpers.h"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d6e18aaae05a3be3e4fe766b38bb1c3046240b40",
+      "name": "compiler.h"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ae67a2563332513d7b3fe071494d004dc39ae1af",
+      "name": "vec2.h"
+    }
+  ]
+}

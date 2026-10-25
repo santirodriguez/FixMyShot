@@ -310,3 +310,14 @@ records all outcomes. The same-release planner omits earlier failed lookups.
 Run `python3 scripts/test-google-source-copy.py` and the actual offline replay in
 [the owner](docs/feasibility/google-source-copy-review.md). The candidate remains
 inactive; source-copy evidence must never be described as PGP verification.
+
+
+## Compiled NDK helper notices
+
+libwebp's Android target compiles the installed NDK cpufeatures implementation.
+Its BSD source notice differs from the module's Apache NOTICE. Preserve both
+in LICENSES/Android-NDK-cpufeatures.txt. The grouped build runs
+scripts/check-ndk-native-notices.py against the actual source-pinned NDK and
+retains its small raw source inputs/report. An SDK/hash/canonical-text mismatch
+fails instead of approving a different source. The APK checker now requires
+eight canonical legal assets. See [the owner](docs/feasibility/native-source-review.md).

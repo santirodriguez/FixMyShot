@@ -141,3 +141,15 @@ review. The [owner](../google-source-copy-review.md) specifies offline replay.
 These21 publisher-maintained exact source copies are not detached signatures;
 614files and full strict trust remain pending. No additional binary upload is
 needed for this text evidence. Preserve raw Gitiles XSSI prefixes and POM bytes.
+
+
+## Native source identity and omitted NDK notice
+
+native-source-review.json pins all text under native-source-review/: official
+WebP/NDK release anchors,343blob WebP source manifest, exact WebP notices and
+AUTHORS/build inputs, NDK cpufeatures source/header/module NOTICE, and exact
+AndroidX graphics-path/DataStore C++ release source. The
+[owner](../native-source-review.md) distinguishes source identity/notice review
+from actual SDK/package acceptance and full-source distribution. The new
+cpufeatures canonical notice requires eight package assets; grouped CI and a
+new exact-source rebuild remain pending. All evidence is small source text.

@@ -20,6 +20,14 @@ dependency evidence ZIPs are uploaded and actual size/SHA256/Git blob/CRC/
 manifest verified. The [license owner](feasibility/runtime-license-review.md)
 preserves the native/source/full-review limits.
 
+A further [native source review](feasibility/native-source-review.md) verified
+libwebp's exact343blob source tree and original notices, and traced AndroidX
+native source. It found the NDK cpufeatures BSD notice missing from the package.
+That notice is now corrected in source, with a new actual-NDK check and eight
+required canonical assets. This newer notice-only package still needs its own
+grouped build/runtime and independent byte comparison; e8 acceptance above
+remains valid only for its own seven-asset package.
+
 The dependency graph is byte-identical to the frozenf943 capture487/858, so
 the488-query OSV snapshot retains its scope. The inactive publisher review now
 covers244/858 exact files, with614pending. All six critical files have publisher
@@ -31,6 +39,7 @@ review remains open. No newly generated trust is activated.
 
 | Remaining work | Required evidence |
 | --- | --- |
+| Updated native notice package | Actual NDK pins/eight legal assets/build/API36 and independent unsigned comparison |
 | Dependency/security/source review | Remaining exact issuer/metadata/native-source/notice obligations; owning-tool applicability/remediation and deliberate strict policy |
 | Physical acceptance | Pixel9ProXL plus second hardware family: HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers/batches/process death/storage pressure/gallery/receivers, TalkBack/text scaling/rotation/languages/16KiB runtime |
 | Distribution preparation | Separately authorized signing identity, signed manifest/certificate checks, sequential install/upgrade/Obtainium, authentic captures and final receipts/docs |

@@ -68,3 +68,13 @@ or patent clearance, whole build-tool licensing or complete artifact trust.
 The current publisher subset is244/858,614pending, with all six critical files
 corroborated. The [source-copy review](google-source-copy-review.md) distinguishes
 21 exact official Google POM copies from the earlier signature/manifest proofs.
+
+
+## Native notice follow-up
+
+The [native source review](native-source-review.md) separately traced libwebp,
+its compiled NDK cpufeatures source and AndroidX native C++ files. The NDK
+source has a BSD two-clause header distinct from its module's Apache NOTICE;
+both are now preserved in a new canonical legal text. The package checker
+requires eight assets for this newer source. e8's seven-file acceptance remains
+historical; actual installed NDK and updated package CI/rebuild are pending.

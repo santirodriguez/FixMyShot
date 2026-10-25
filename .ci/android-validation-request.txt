@@ -1,7 +1,6 @@
-Canonical legal packaging refresh: Protobuf BSD-3-Clause and133component runtime declarations.
-Source evidence: exact DataStore1.1.7 release commit420da5f2 ->protobuf-javalite4.28.2.
-Require seven canonical legal files in actual debug/release APKs, unchanged native alignment,
-source/lock audit, core/lint/threeAPK build and established API36 regressions.
-Dependency graph/toolchain/permissions/format availability unchanged.
-No signing, main merge, publication or artifact delivery.
+Native-source notice correction: original NDK cpufeatures BSD2 plus module Apache NOTICE.
+Require actual NDK28.2.13676358 source/header/NOTICE pins and eight canonical legal assets
+in both debug/release APKs, source/lock audit, unchanged native alignment,
+core/lint/threeAPK build and established API36 regressions.
+Graph/toolchain/permissions/format availability unchanged; no signing/publication/delivery.
 profile=current

@@ -38,7 +38,7 @@ class LegalAssets(unittest.TestCase):
     def test_complete_bytes_do_not_approve_license_review(self):
         self.write()
         result = legal.inspect(self.apk, self.root)
-        self.assertEqual(len(result['files']), 7)
+        self.assertEqual(len(result['files']), 8)
         self.assertFalse(result['complete_third_party_license_review'])
 
     def test_missing_or_duplicate_asset_refused(self):

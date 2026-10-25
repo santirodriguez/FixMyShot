@@ -80,3 +80,12 @@ AndroidX's release source420da5f291449f11801e378c6789a328a06ec6cb relocates
 protobuf-javalite4.28.2 into androidx.datastore.preferences.protobuf.
 Upstream: https://github.com/protocolbuffers/protobuf/tree/9fff46d7327c699ef970769d5c9fd0e44df08fc7
 License: https://github.com/protocolbuffers/protobuf/blob/9fff46d7327c699ef970769d5c9fd0e44df08fc7/LICENSE
+
+Android NDK cpufeatures compiled into the WebP JNI library
+--------------------------------------------------------
+libwebp's Android CMake target compiles the NDK cpu-features.c and includes
+cpu-features.h from NDK28.2.13676358 (r28c). Their original BSD two-clause
+copyright/conditions/disclaimer and the module's separate Apache NOTICE are
+retained verbatim in assets/legal/licenses/Android-NDK-cpufeatures.txt.
+Source release: https://android.googlesource.com/platform/ndk/+/805836ef53231ef86dd5fcc5652a1c28d74f4bc4/sources/android/cpufeatures/
+These source notices are distinct from a whole-NDK license or patent review.

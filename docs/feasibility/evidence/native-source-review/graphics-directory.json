@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "27981507de4b994a6e92a9da8d89e5436600f00c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "722eb2d68bf63dffefa1eaf0fadae397c23fc6ba",
+      "name": "CMakeLists.txt"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e22e2b2c0643d377f21bc92a18458867618296a2",
+      "name": "Conic.cpp"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "2bd34419cd410e0c38391ecf580e068f0fc59191",
+      "name": "Conic.h"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f25d708782be3f13fb77fef6098fdd26e57b10b6",
+      "name": "Path.h"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "cab9c5d1eb14317ee973cf6198a452393fc94fca",
+      "name": "PathIterator.cpp"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "414dbdd1d62f4a50fa30d49143edad60ea6d959e",
+      "name": "PathIterator.h"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d1310e52849b7f49928acbd74384c3c7d507a602",
+      "name": "libandroidx.graphics.path.map"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "939ae8209e7375a01b21f01256ce7467ef87833b",
+      "name": "math"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d3a7d75a447274e8941f327a50593493f495115c",
+      "name": "pathway.cpp"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0342d138393b2bc579e5055fd3ee09e80a6f390d",
+      "name": "scalar.h"
+    }
+  ]
+}

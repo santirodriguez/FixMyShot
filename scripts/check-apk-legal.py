@@ -13,6 +13,7 @@ REQUIRED = {
     'assets/legal/licenses/Apache-2.0.txt': 'LICENSES/Apache-2.0.txt',
     'assets/legal/licenses/Protobuf-BSD-3-Clause.txt': 'LICENSES/Protobuf-BSD-3-Clause.txt',
     'assets/legal/licenses/runtime-components.json': 'LICENSES/runtime-components.json',
+    'assets/legal/licenses/Android-NDK-cpufeatures.txt': 'LICENSES/Android-NDK-cpufeatures.txt',
     'assets/licenses/libwebp/COPYING': 'codec-native/src/main/assets/licenses/libwebp/COPYING',
     'assets/licenses/libwebp/PATENTS': 'codec-native/src/main/assets/licenses/libwebp/PATENTS',
 }

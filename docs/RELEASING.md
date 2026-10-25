@@ -121,3 +121,11 @@ notice for DataStore's repackaged protobuf-javalite and the133component runtime
 declaration catalog. The checker verifies those two assets as well. The audit
 [owner](feasibility/runtime-license-review.md) records source pins and limits;
 asset presence alone is not full native/source/license compatibility acceptance.
+
+
+The native-source follow-up adds LICENSES/Android-NDK-cpufeatures.txt: original
+BSD source/header notice plus the separate module Apache NOTICE. The checker
+now requires eight exact legal assets. The grouped build verifies the actual
+installed NDK source against its pinned release before package acceptance. See
+[native source review](feasibility/native-source-review.md); an earlier seven-
+asset package does not qualify a later notice update.
