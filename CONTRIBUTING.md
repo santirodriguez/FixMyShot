@@ -231,7 +231,7 @@ Use `scripts/review-kotlin-manifests.py` with explicit control, request, prior-r
 
 An explicitly paired `.ci/dependency-security-request.json` adds an OSV inventory to the same data-only job. It pins the baseline, three lockfiles and native source commit, and becomes a no-network skip when the provenance request changes. Collection uses only the fixed official OSV API, batches of 100, no retries, a 180-second deadline, response/total limits and at most 100 advisory-detail fetches. Pagination or incomplete details cannot pass as a complete inventory.
 
-Run `python3 scripts/test-dependency-security.py` (5 cases), then replay retained evidence with `scripts/review-dependency-security.py`; its 4 offline tests cover scope changes, missing/paginated results, false clean claims and withdrawn advisories. Release-runtime selection comes from the app lockfile. Absence from these project lockfiles does **not** prove a plugin/buildscript dependency is unselected. Database matches require applicability/remediation review; no match means only no database match at the recorded time. [Current triage and reproduction](docs/feasibility/dependency-security-review.md) own the findings and open actions.
+Run `python3 scripts/test-dependency-security.py` (6 cases), then replay retained evidence with `scripts/review-dependency-security.py`; its 4 offline tests cover scope changes, missing/paginated results, false clean claims and withdrawn advisories. Release-runtime selection comes from the app lockfile. Absence from these project lockfiles does **not** prove a plugin/buildscript dependency is unselected. Database matches require applicability/remediation review; no match means only no database match at the recorded time. [Current triage and reproduction](docs/feasibility/dependency-security-review.md) own the findings and open actions.
 
 
 ### Review the runtime publisher capture
@@ -250,3 +250,11 @@ recover the actual public evidence without networking or another Android build.
 Missing issuer anchors, unverifiable signatures and unavailable captures stay
 pending; do not automatically retry them or broaden trust to a publisher group.
 The candidate stays inactive and current security/license gates remain open.
+
+
+The migrated security inventory can be requested separately from publisher
+capture after an exact source-bound XML/lock snapshot is reviewed. The opt-in
+`.ci/security-inventory-request.json` and `--standalone` collector mode require
+explicit STANDALONE_PINNED_SECURITY_INVENTORY scope and complete hash pins.
+See the [security owner](docs/feasibility/dependency-security-review.md#security-only-refresh-after-migrated-source-qualification).
+This mode never retries publisher collection or approves trust/security.

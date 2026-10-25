@@ -3,6 +3,7 @@
 import copy
 import importlib.util
 import json
+import hashlib
 from pathlib import Path
 import tempfile
 import unittest
@@ -24,23 +25,44 @@ class SecurityInventory(unittest.TestCase):
                          [{'ids': [], 'incomplete': False}, {'ids': [], 'incomplete': True}])
 
     def test_inventory_exact_scopes_and_native_pin(self):
-        policy = json.loads(Path('.ci/dependency-security-request.json').read_text())
-        rows = audit.inventory(Path('.'), policy)
-        self.assertEqual(len(rows), 515)
-        self.assertEqual(len({x['coordinate'] for x in rows}), len(rows))
-        self.assertTrue(any(x['scope'] == 'capture_without_lockfile_selection' for x in rows))
-        runtime = [x for x in rows if x['scope'] == 'app_release_runtime']
-        self.assertTrue(runtime)
-        self.assertTrue(all(any(a['lockfile'] == 'app/gradle.lockfile' and
-                                'releaseRuntimeClasspath' in a['configurations'] for a in x['lock_associations']) for x in runtime))
-        changed = copy.deepcopy(policy)
-        changed['inputs'][audit.LOCKS[0]] = '0'*64
-        with self.assertRaises(ValueError):
-            audit.inventory(Path('.'), changed)
-        changed = copy.deepcopy(policy)
-        changed['native_commit'] = '0'*40
-        with self.assertRaises(ValueError):
-            audit.inventory(Path('.'), changed)
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            native = 'b' * 40
+            data = {audit.BASELINE: b'<verification-metadata xmlns="https://schema.gradle.org/dependency-verification"><components><component group="example" name="runtime" version="1"/><component group="example" name="captured" version="1"/></components></verification-metadata>',
+                    audit.LOCKS[0]: b'example:runtime:1=releaseRuntimeClasspath\n',
+                    audit.LOCKS[1]: b'empty=\n', audit.LOCKS[2]: b'empty=\n',
+                    audit.NATIVE: ('GIT_TAG '+native+'\n').encode()}
+            policy = {'schema': 1, 'baseline_source_commit': 'a'*40, 'native_commit': native,
+                      'inputs': {p: hashlib.sha256(b).hexdigest() for p,b in data.items()}}
+            for p,b in data.items():
+                target = root/p
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(b)
+            rows = audit.inventory(root, policy)
+            self.assertEqual(len(rows), 3)
+            self.assertEqual(len({x['coordinate'] for x in rows}), len(rows))
+            self.assertTrue(any(x['scope'] == 'capture_without_lockfile_selection' for x in rows))
+            runtime = [x for x in rows if x['scope'] == 'app_release_runtime']
+            self.assertEqual(len(runtime), 1)
+            self.assertEqual(runtime[0]['coordinate'], 'example:runtime:1')
+            changed = copy.deepcopy(policy)
+            changed['inputs'][audit.LOCKS[0]] = '0'*64
+            with self.assertRaises(ValueError):
+                audit.inventory(root, changed)
+            changed = copy.deepcopy(policy)
+            changed['native_commit'] = '0'*40
+            with self.assertRaises(ValueError):
+                audit.inventory(root, changed)
+            changed = copy.deepcopy(policy)
+            changed['baseline_path'] = '../unowned.xml'
+            with self.assertRaises(ValueError):
+                audit.inventory(root, changed)
+            alternate = 'docs/feasibility/evidence/gradle-baseline-1234abcd.xml'
+            (root/alternate).write_bytes(data[audit.BASELINE])
+            changed = copy.deepcopy(policy)
+            changed['baseline_path'] = alternate
+            changed['inputs'][alternate] = changed['inputs'].pop(audit.BASELINE)
+            self.assertEqual(rows, audit.inventory(root, changed))
 
     def test_unpaired_request_has_no_network(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -54,6 +76,22 @@ class SecurityInventory(unittest.TestCase):
             try:
                 self.assertTrue(audit.collect(root, policy, root/'out', 'a'*40))
                 self.assertEqual(json.loads((root/'out/report.json').read_text())['network_requests'], 0)
+            finally:
+                audit.Capture = original
+
+    def test_standalone_requires_scope_and_validated_inputs_before_network(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            policy = root/'request.json'
+            original = audit.Capture
+            audit.Capture = lambda *_: self.fail('invalid standalone request created a network client')
+            try:
+                policy.write_text('{}')
+                with self.assertRaises(ValueError):
+                    audit.collect(root, policy, root/'out', 'a'*40, standalone=True)
+                policy.write_text(json.dumps({'collection_scope': 'STANDALONE_PINNED_SECURITY_INVENTORY'}))
+                with self.assertRaises((ValueError, KeyError)):
+                    audit.collect(root, policy, root/'out', 'a'*40, standalone=True)
             finally:
                 audit.Capture = original
 

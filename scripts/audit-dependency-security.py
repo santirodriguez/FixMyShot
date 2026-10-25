@@ -36,7 +36,10 @@ def read_pin(root, path, value):
 
 
 def inventory(root, policy):
-    if (policy.get('schema') != 1 or set(policy['inputs']) != {BASELINE, *LOCKS, NATIVE} or
+    baseline = policy.get('baseline_path', BASELINE)
+    if (not isinstance(baseline, str) or
+            re.fullmatch(r'docs/feasibility/evidence/gradle-baseline-[0-9a-f]{8}\.xml', baseline) is None or
+            policy.get('schema') != 1 or set(policy['inputs']) != {baseline, *LOCKS, NATIVE} or
             not re.fullmatch('[0-9a-f]{40}', policy['baseline_source_commit']) or
             not re.fullmatch('[0-9a-f]{40}', policy['native_commit'])):
         raise ValueError('Unsupported inventory scope')
@@ -52,7 +55,7 @@ def inventory(root, policy):
             if len(coordinate.split(':')) != 3:
                 raise ValueError('Ambiguous locked coordinate')
             selected.setdefault(coordinate, []).append({'lockfile': path, 'configurations': configurations.split(',')})
-    components = ET.fromstring(inputs[BASELINE]).findall(NS+'components/'+NS+'component')
+    components = ET.fromstring(inputs[baseline]).findall(NS+'components/'+NS+'component')
     coordinates = sorted({':'.join(x.attrib[k] for k in ('group', 'name', 'version')) for x in components})
     if len(coordinates) != len(components) or not coordinates:
         raise ValueError('Empty or duplicate baseline components')
@@ -119,14 +122,16 @@ class Capture:
         self.files.append({'file': name, 'sha256': digest(data), 'bytes': len(data)})
 
 
-def collect(root, policy_path, output, control):
+def collect(root, policy_path, output, control, *, standalone=False):
     if not re.fullmatch('[0-9a-f]{40}', control or ''):
         raise ValueError('Missing exact collection control')
     raw_policy = policy_path.read_bytes()
     policy = json.loads(raw_policy)
-    active = (root/'.ci/dependency-provenance-request.json').read_bytes()
+    if standalone and policy.get('collection_scope') != 'STANDALONE_PINNED_SECURITY_INVENTORY':
+        raise ValueError('Standalone collection needs an explicit pinned-security request')
+    active = b'' if standalone else (root/'.ci/dependency-provenance-request.json').read_bytes()
     output.mkdir(parents=True, exist_ok=False)
-    if digest(active) != policy['paired_provenance_request_sha256']:
+    if not standalone and digest(active) != policy['paired_provenance_request_sha256']:
         (output/'report.json').write_bytes(encoded({'status': 'SKIPPED_UNPAIRED_REQUEST', 'network_requests': 0,
                                                   'control_commit': control, 'security_approval': False}))
         return True
@@ -179,5 +184,6 @@ if __name__ == '__main__':
     parser.add_argument('request', type=Path)
     parser.add_argument('output', type=Path)
     parser.add_argument('--control-commit', required=True)
+    parser.add_argument('--standalone', action='store_true', help='Explicit security-only request; never retries publisher capture')
     args = parser.parse_args()
-    raise SystemExit(0 if collect(Path('.'), args.request, args.output, args.control_commit) else 1)
+    raise SystemExit(0 if collect(Path('.'), args.request, args.output, args.control_commit, standalone=args.standalone) else 1)

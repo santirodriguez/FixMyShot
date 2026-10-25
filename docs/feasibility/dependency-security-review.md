@@ -73,7 +73,7 @@ The original collector called lockfile-absent captures `capture_only_unselected`
 
 ## Reproduce offline
 
-From the repository root, verify the ZIP digest above before extracting it into a fresh directory. The inspected archive has 73 unique regular files, no unsafe paths or links, and passed CRC validation. No captured file should be executed.
+For this historical replay, use a pristine checkout of immutable8a6ba7828488a02382a0ba64b368f030b57c3959 with its own scripts and old lockfiles; the migrated checkout intentionally refuses those old input pins. From that historical repository root, verify the ZIP digest above before extracting it into a fresh directory. The inspected archive has 73 unique regular files, no unsafe paths or links, and passed CRC validation. No captured file should be executed.
 
 ```bash
 sha256sum docs/feasibility/evidence/dependency-review-64745e1f.zip
@@ -149,3 +149,24 @@ alone cannot close those findings. First validate the incorporated source and
 recover its exact generated inventory; then pin a fresh bounded security scan
 to that inventory/source/locks/native input. Do not force leaf versions or label
 the compiler upgrade complete vulnerability remediation.
+
+
+## Security-only refresh after migrated source qualification
+
+A separate contents:read workflow now supports an explicit
+`.ci/security-inventory-request.json` containing
+`collection_scope=STANDALONE_PINNED_SECURITY_INVENTORY`, the exact baseline source
+commit, an allowed `baseline_path` under the canonical evidence directory, and
+SHA256 pins for that XML, all three locks and the native source definition.
+It is not triggered until that exact request file changes. It runs the same
+bounded OSV API collector with `--standalone`, without SDK/Gradle/emulators or
+publisher downloads. No previously deferred publisher capture is retried.
+
+The previous provenance-paired mode retains its no-network unpaired-request
+skip. Standalone mode requires explicit scope and validates every pinned input
+before creating a network client; arbitrary baseline paths are refused. Six
+offline inventory/refusal tests and four replay tests pass. The replay schema
+continues to bind the exact raw request, hashes, rows, captures and conclusions.
+No request for the migrated graph has yet been issued: first recover and verify
+the source-frozen checkpoint's exact generated XML, then pin that graph and
+locks in the new request. Its inventory remains non-approving evidence.
