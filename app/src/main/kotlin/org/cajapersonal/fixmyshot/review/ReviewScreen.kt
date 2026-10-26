@@ -89,6 +89,11 @@ internal fun ReviewScreen(
     onEditSelectedOnly: (Boolean) -> Unit,
     preview: Bitmap?,
     thumbnails: Map<String, Bitmap>,
+    cropSource: Bitmap? = null,
+    cropSourceId: String? = null,
+    cropLoadingId: String? = null,
+    onOpenCropEditor: (String) -> Unit = {},
+    onCloseCropEditor: () -> Unit = {},
     busy: Boolean,
     invalidImports: Int,
     previewUnavailable: Boolean,
@@ -155,6 +160,12 @@ internal fun ReviewScreen(
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
     val batchResetDraft = confirmingBatchReset
+    if (selected != null && plan != null && cropSource != null &&
+        cropSourceId == selected.id && plan.geometry is PlannedGeometry.Cropped) {
+        CropPreviewEditor(image = selected, sample = cropSource, plan = plan, enabled = editEnabled,
+            onDismiss = onCloseCropEditor,
+            onApply = { proposed -> onCloseCropEditor(); onCrop(proposed) })
+    }
     if (selected != null && plan != null && preview != null && positionEditorFor == selected.id) {
         val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
         if (contained != null && (contained.placement.left + contained.rightMargin > 0 ||
@@ -381,7 +392,14 @@ internal fun ReviewScreen(
                     Text(stringResource(R.string.batch_apply_all))
                 }
             }
-            if (selected != null && plan != null) CropControls(selected, plan, editEnabled, onCrop)
+            if (selected != null && plan != null && plan.geometry is PlannedGeometry.Cropped) {
+                OutlinedButton(onClick = { onOpenCropEditor(selected.id) },
+                    enabled = editEnabled && cropLoadingId != selected.id) {
+                    Text(stringResource(R.string.crop_editor_open))
+                }
+                if (cropLoadingId == selected.id) Text(stringResource(R.string.preview_loading))
+                CropControls(selected, plan, editEnabled, onCrop)
+            }
             if (selected != null && plan != null) {
                 if (selected.sourceColor != SourceColor.SRGB) Text(stringResource(R.string.color_conversion_details,
                     if (selected.sourceColor == SourceColor.DISPLAY_P3) "Display P3" else "Adobe RGB"),
