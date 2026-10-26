@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.debug
+package=org.cajapersonal.fixmyshot.crop
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt

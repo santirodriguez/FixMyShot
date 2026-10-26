@@ -16,7 +16,7 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = ".debug" }
+        debug { applicationIdSuffix = ".crop" }
         release { isMinifyEnabled = false }
     }
     buildFeatures { compose = true }
