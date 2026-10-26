@@ -1,7 +1,7 @@
-WYSIWYG crop preview final source-bound validation checkpoint.
-Source commit: a09570ef43626f867d7a0742f4cc8accbcedfd2a
-Run Kotlin core checks, XML/localized resources, Android lint, debug/unsigned/test APKs
-and API36 instrumented regressions. Verify sampled crop output uses CropPlanner plan,
-frame shadows excluded original pixels, Apply/Cancel remain staged, 8 renderer tests pass.
-Do not infer physical crop UX acceptance or publish/merge/sign production artifacts.
+Isolated crop WYSIWYG diagnostic Android validation.
+Source release commit: 52ed38c9983d5adf4a95021de6df9ff70b3fc235 (Android/API36 PASS in run 40259520793).
+Diagnostic package org.cajapersonal.fixmyshot.crop; independent of installed .debug/.preview/.position.
+Check Kotlin/resource/lint, debug and unsigned release/test APKs, API36 smoke.
+Verify crop dialog, preview/output parity, synthetic PNG/WebP, and established regressions.
+No real-device acceptance, stable signing lineage, release, merge or publication.
 profile=current
