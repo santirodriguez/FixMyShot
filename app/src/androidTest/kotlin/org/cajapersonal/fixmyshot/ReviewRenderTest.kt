@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.compose.ui.geometry.Size
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.cajapersonal.fixmyshot.core.BackgroundChoice
+import org.cajapersonal.fixmyshot.core.ContainPosition
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftImage
@@ -94,6 +95,17 @@ class ReviewRenderTest {
             assertEquals(Color.BLUE, bitmap.getPixel(150, 140))
             assertEquals(Color.WHITE, bitmap.getPixel(319, 319))
         } finally { bitmap.recycle() }
+        val moved = ReviewBitmapRenderer.preview(
+            Bitmap.createBitmap(40, 80, Bitmap.Config.ARGB_8888).also { it.eraseColor(Color.BLUE) },
+            PixelSize(40, 80),
+            plan(PixelSize(40, 80), EditSettings(background = BackgroundChoice.White,
+                position = ContainPosition(1.0, 0.0)), DestinationCatalog.PLAY_PHONE),
+            maxLongSide = 500).image
+        try {
+            assertEquals(Color.WHITE, moved.getPixel(0, 0))
+            assertEquals(Color.BLUE, moved.getPixel(319, 0))
+            assertEquals(Color.WHITE, moved.getPixel(319, 80))
+        } finally { moved.recycle() }
     }
 
     @Test fun edgeMedianUsesDeterministicOpaqueColors() {

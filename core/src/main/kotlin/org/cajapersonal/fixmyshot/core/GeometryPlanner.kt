@@ -21,6 +21,15 @@ data class ExactRatio private constructor(val p: Long, val q: Long) {
     }
 }
 
+/** User-selected alignment inside an unchanged contain canvas. Center is the default. */
+data class ContainPosition(val x: Double = 0.5, val y: Double = 0.5) {
+    init {
+        require(x.isFinite() && x in 0.0..1.0 && y.isFinite() && y in 0.0..1.0) {
+            "Contained position must be finite and normalized"
+        }
+    }
+}
+
 /** The source is not cropped; downscale/upscale is explicit in the resulting immutable plan. */
 data class PixelPlacement(
     val left: Int,
@@ -37,6 +46,16 @@ data class ContainGeometry(
 ) {
     val rightMargin: Int get() = canvas.width - placement.left - placement.width
     val bottomMargin: Int get() = canvas.height - placement.top - placement.height
+
+    /** Only redistribute existing padding; the source size and destination canvas remain intact. */
+    fun positioned(position: ContainPosition): ContainGeometry {
+        val freeX = canvas.width - placement.width
+        val freeY = canvas.height - placement.height
+        fun coordinate(free: Int, fraction: Double): Int =
+            if (fraction == 0.5) free / 2 else kotlin.math.round(free.toDouble() * fraction).toInt().coerceIn(0, free)
+        return copy(placement = placement.copy(
+            left = coordinate(freeX, position.x), top = coordinate(freeY, position.y)))
+    }
 }
 
 /** Conservative pixel-space plans: never crop, stretch, or silently exceed the allocation limit. */

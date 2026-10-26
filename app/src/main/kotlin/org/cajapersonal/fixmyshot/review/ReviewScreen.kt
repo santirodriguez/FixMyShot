@@ -63,6 +63,7 @@ import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
 import org.cajapersonal.fixmyshot.core.BackgroundChoice
 import org.cajapersonal.fixmyshot.core.ContainGeometry
+import org.cajapersonal.fixmyshot.core.ContainPosition
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftReviewFlag
@@ -120,6 +121,7 @@ internal fun ReviewScreen(
     onSettings: () -> Unit = {},
     onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
     onCrop: (CropFocus) -> Unit = {},
+    onPosition: (ContainPosition) -> Unit = {},
     onRetryExport: () -> Unit = {},
     onRestoreDraft: () -> Unit = {},
     onRefreshOutputs: () -> Unit = {},
@@ -149,9 +151,19 @@ internal fun ReviewScreen(
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var showOriginalOutline by rememberSaveable { mutableStateOf(true) }
+    var positionEditorFor by remember { mutableStateOf<String?>(null) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
     val batchResetDraft = confirmingBatchReset
+    if (selected != null && plan != null && preview != null && positionEditorFor == selected.id) {
+        val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
+        if (contained != null && (contained.placement.left + contained.rightMargin > 0 ||
+                contained.placement.top + contained.bottomMargin > 0)) {
+            ContainPositionEditor(selected.id, preview, contained, plan.settings.position, editEnabled,
+                onDismiss = { positionEditorFor = null },
+                onApply = { onPosition(it); positionEditorFor = null })
+        }
+    }
     if (batchResetDraft != null && batchResetDraft == draft && editEnabled) AlertDialog(
         onDismissRequest = { confirmingBatchReset = null },
         title = { Text(stringResource(R.string.batch_apply_all)) },
@@ -324,6 +336,9 @@ internal fun ReviewScreen(
                     }
                 }
                 if (hasMargins) {
+                    OutlinedButton(onClick = { positionEditorFor = selected.id }, enabled = editEnabled && preview != null) {
+                        Text(stringResource(R.string.preview_position_open))
+                    }
                     Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
                         value = showOriginalOutline, role = Role.Checkbox,
                         onValueChange = { showOriginalOutline = it }),

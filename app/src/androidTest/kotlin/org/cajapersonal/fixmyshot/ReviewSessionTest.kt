@@ -99,6 +99,7 @@ class ReviewSessionTest {
                     background = BackgroundChoice.CustomRgb(0x123456), size = OutputSizeChoice.Exact(PixelSize(320, 400))))
                 .addImages(listOf(a, b)).editItem(a.id, ItemOverrides(metadata = ItemValue.Custom(MetadataPolicy.REMOVE_IDENTIFYING),
                     fit = ItemValue.Custom(FitMode.CROP), crop = ItemValue.Custom(CropFocus(0.4, 0.6, 2.0))))
+                .editItem(b.id, ItemOverrides(position = ItemValue.Custom(ContainPosition(1.0, 0.5))))
             val first = f.owner()
             instrumentation.runOnMainSync {
                 first.model.draft = draft; first.model.selectedId = b.id

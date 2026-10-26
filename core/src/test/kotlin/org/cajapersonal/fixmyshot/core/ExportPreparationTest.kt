@@ -27,6 +27,20 @@ class ExportPreparationTest {
         assertTrue(item.estimatedWorkingSetBytes > 0L)
     }
 
+    @Test fun manualContainPositionIsFrozenPerImageAndUndoRestoresCenter() {
+        val original = DraftSession().addImages(listOf(source()))
+        val moved = original.editItem("a", ItemOverrides(position = ItemValue.Custom(ContainPosition(1.0, 0.5))))
+        assertEquals(ContainPosition(), original.batch.position)
+        assertEquals(PixelPlacement(152, 0, 1344, 2992),
+            ExportPreparation.inspect(moved, 36, heap).candidates.single().placement)
+        assertEquals(PixelPlacement(76, 0, 1344, 2992),
+            ExportPreparation.inspect(moved.undo(), 36, heap).candidates.single().placement)
+        val other = moved.addImages(listOf(source("b").copy(sourceToken = "private-b")))
+        val recipes = ExportPreparation.inspect(other, 36, heap).candidates
+        assertEquals(152, recipes.first().placement.left)
+        assertEquals(76, recipes.last().placement.left)
+    }
+
     @Test fun exactHashRequiredAndInvalidDigestRejectedByDraft() {
         val missing = DraftSession().addImages(listOf(DraftImage("a", "private", PixelSize(20, 40), false)))
         assertTrue(PrivatePreparationBlock.SOURCE_FINGERPRINT_MISSING in

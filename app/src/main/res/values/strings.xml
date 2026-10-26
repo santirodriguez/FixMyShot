@@ -12,6 +12,17 @@
     <string name="preview_description">Preview of the selected image with planned margins</string>
     <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Output: %3$d × %4$d px</string>
     <string name="preview_original_outline">Outline original area (preview only, not exported)</string>
+    <string name="preview_position_open">Adjust position</string>
+    <string name="preview_position_title">Position within output</string>
+    <string name="preview_position_help">Drag to move the complete image inside the final canvas. Only the selected image changes; no pixels are cropped.</string>
+    <string name="preview_position_left">Left</string>
+    <string name="preview_position_right">Right</string>
+    <string name="preview_position_up">Up</string>
+    <string name="preview_position_down">Down</string>
+    <string name="preview_position_center">Center</string>
+    <string name="preview_position_apply">Apply position</string>
+    <string name="preview_position_cancel">Cancel</string>
+    <string name="preview_position_outline_note">Preview guide only. The outline is not exported.</string>
     <string name="preview_background_quick_heading">Compare margin backgrounds</string>
     <string name="preview_background_auto">Auto</string>
     <string name="preview_background_black">Black</string>

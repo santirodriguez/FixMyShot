@@ -35,6 +35,7 @@ data class EditSettings(
     val format: OutputFormat = OutputFormat.PNG,
     val size: OutputSizeChoice = OutputSizeChoice.PreservePixels,
     val metadata: MetadataPolicy = MetadataPolicy.REMOVE_IDENTIFYING,
+    val position: ContainPosition = ContainPosition(),
 )
 
 data class ItemOverrides(
@@ -44,10 +45,12 @@ data class ItemOverrides(
     val format: ItemValue<OutputFormat> = ItemValue.Inherit,
     val size: ItemValue<OutputSizeChoice> = ItemValue.Inherit,
     val metadata: ItemValue<MetadataPolicy> = ItemValue.Inherit,
+    val position: ItemValue<ContainPosition> = ItemValue.Inherit,
 ) {
     fun resolve(batch: EditSettings): EditSettings = EditSettings(
         fit.resolve(batch.fit), crop.resolve(batch.crop), background.resolve(batch.background),
         format.resolve(batch.format), size.resolve(batch.size), metadata.resolve(batch.metadata),
+        position.resolve(batch.position),
     )
 
     fun clear(fields: Set<EditableField>): ItemOverrides = copy(
@@ -57,12 +60,13 @@ data class ItemOverrides(
         format = if (EditableField.FORMAT in fields) ItemValue.Inherit else format,
         size = if (EditableField.SIZE in fields) ItemValue.Inherit else size,
         metadata = if (EditableField.METADATA in fields) ItemValue.Inherit else metadata,
+        position = if (EditableField.POSITION in fields) ItemValue.Inherit else position,
     )
 
     val hasCustomValues: Boolean get() = this != ItemOverrides()
 }
 
-enum class EditableField { FIT, CROP, BACKGROUND, FORMAT, SIZE, METADATA }
+enum class EditableField { FIT, CROP, BACKGROUND, FORMAT, SIZE, METADATA, POSITION }
 
 /** Original appearance; recognized wide-gamut SDR is converted, never relabelled as sRGB. */
 enum class SourceColor { SRGB, DISPLAY_P3, ADOBE_RGB }
@@ -248,7 +252,7 @@ data class DraftSession(
             if (image.orientedSize.pixels > 64_000_000L) flags += DraftReviewFlag.OVERSIZED_SOURCE
             val geometry = try {
                 if (settings.fit == FitMode.CONTAIN) {
-                    PlannedGeometry.Contained(selected.contain(image.orientedSize, settings.size))
+                    PlannedGeometry.Contained(selected.contain(image.orientedSize, settings.size).positioned(settings.position))
                 } else {
                     val exact = settings.size as? OutputSizeChoice.Exact
                     val crop = CropPlanner.plan(image.orientedSize, selected.cropRatio(image.orientedSize, settings.size),

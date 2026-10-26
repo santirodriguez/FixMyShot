@@ -80,13 +80,17 @@ internal class ExportDraftJournal(private val file: File) {
             "exact" -> OutputSizeChoice.Exact(PixelSize(value.getInt("width"), value.getInt("height")), value.getBoolean("enlarge"))
             else -> throw IOException("Unknown output size")
         }
+        private fun position(value: ContainPosition) = JSONObject().put("x", value.x).put("y", value.y)
+        private fun readPosition(value: JSONObject) = ContainPosition(value.getDouble("x"), value.getDouble("y"))
         private fun settings(value: EditSettings) = JSONObject().put("fit", value.fit.name)
             .put("crop", crop(value.crop)).put("background", background(value.background))
             .put("format", value.format.name).put("size", size(value.size)).put("metadata", value.metadata.name)
+            .put("position", position(value.position))
         private fun readSettings(value: JSONObject) = EditSettings(FitMode.valueOf(value.getString("fit")),
             readCrop(value.getJSONObject("crop")), readBackground(value.getJSONObject("background")),
             OutputFormat.valueOf(value.getString("format")), readSize(value.getJSONObject("size")),
-            MetadataPolicy.valueOf(value.getString("metadata")))
+            MetadataPolicy.valueOf(value.getString("metadata")),
+            if (value.has("position")) readPosition(value.getJSONObject("position")) else ContainPosition())
     
         private fun overrides(value: ItemOverrides): JSONObject {
             val result = JSONObject()
@@ -96,6 +100,7 @@ internal class ExportDraftJournal(private val file: File) {
             put("fit", value.fit) { it.name }; put("crop", value.crop, ::crop)
             put("background", value.background, ::background); put("format", value.format) { it.name }
             put("size", value.size, ::size); put("metadata", value.metadata) { it.name }
+            put("position", value.position, ::position)
             return result
         }
         private fun readOverrides(value: JSONObject): ItemOverrides {
@@ -107,7 +112,8 @@ internal class ExportDraftJournal(private val file: File) {
                 field("background") { readBackground(value.getJSONObject("background")) },
                 field("format") { OutputFormat.valueOf(value.getString("format")) },
                 field("size") { readSize(value.getJSONObject("size")) },
-                field("metadata") { MetadataPolicy.valueOf(value.getString("metadata")) })
+                field("metadata") { MetadataPolicy.valueOf(value.getString("metadata")) },
+                field("position") { readPosition(value.getJSONObject("position")) })
         }
     }
     private val atomic get() = AtomicFile(file)

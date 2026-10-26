@@ -12,6 +12,17 @@
     <string name="preview_description">Vista previa de la imagen seleccionada con los márgenes previstos</string>
     <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Resultado: %3$d × %4$d px</string>
     <string name="preview_original_outline">Mostrar el contorno original (solo en la vista previa)</string>
+    <string name="preview_position_open">Ajustar posición</string>
+    <string name="preview_position_title">Posición en la imagen final</string>
+    <string name="preview_position_help">Arrastrá para mover la captura completa dentro del lienzo. Solo cambia la imagen seleccionada; no se recorta contenido.</string>
+    <string name="preview_position_left">Izquierda</string>
+    <string name="preview_position_right">Derecha</string>
+    <string name="preview_position_up">Arriba</string>
+    <string name="preview_position_down">Abajo</string>
+    <string name="preview_position_center">Centrar</string>
+    <string name="preview_position_apply">Aplicar posición</string>
+    <string name="preview_position_cancel">Cancelar</string>
+    <string name="preview_position_outline_note">Guía solo para la vista previa. El contorno no se exporta.</string>
     <string name="preview_background_quick_heading">Comparar fondos de los márgenes</string>
     <string name="preview_background_auto">Auto</string>
     <string name="preview_background_black">Negro</string>

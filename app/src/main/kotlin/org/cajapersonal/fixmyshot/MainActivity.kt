@@ -40,6 +40,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.ItemValue
 import org.cajapersonal.fixmyshot.core.CropFocus
+import org.cajapersonal.fixmyshot.core.ContainPosition
 import org.cajapersonal.fixmyshot.core.CropPlanner
 import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.core.EditableField
@@ -277,6 +278,13 @@ class MainActivity : AppCompatActivity() {
                             } else model.draft.setBatch(model.draft.batch.copy(fit = value)))
                         },
                         onCrop = { updateCrop(it) },
+                        onPosition = position@{ value ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@position
+                            val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == item.id }
+                            if (plan?.geometry !is org.cajapersonal.fixmyshot.core.PlannedGeometry.Contained) return@position
+                            updateDraft(model.draft.editItem(item.id,
+                                item.overrides.copy(position = ItemValue.Custom(value))))
+                        },
                         onResetSelected = {
                             model.selectedId?.let { updateDraft(model.draft.resetItem(it)) }
                         },
