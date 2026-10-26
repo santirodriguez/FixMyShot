@@ -134,8 +134,8 @@ private fun CropOriginalFrame(
                 if (dw <= 0f || dh <= 0f) return@detectTransformGestures
                 val previous = currentFocus
                 currentCrop(CropFocus(
-                    (previous.x - pan.x / dw).coerceIn(0.0, 1.0),
-                    (previous.y - pan.y / dh).coerceIn(0.0, 1.0),
+                    (previous.x + pan.x / dw).coerceIn(0.0, 1.0),
+                    (previous.y + pan.y / dh).coerceIn(0.0, 1.0),
                     (previous.zoom * zoom).coerceIn(1.0, 64.0)))
             }
         }) {
