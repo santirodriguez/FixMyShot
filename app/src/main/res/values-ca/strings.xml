@@ -22,7 +22,7 @@
     <string name="preview_position_center">Centra</string>
     <string name="preview_position_apply">Aplica la posició</string>
     <string name="preview_position_cancel">Cancel·la</string>
-    <string name="preview_position_outline_note">Guia només per a la previsualització. El contorn no s'exporta.</string>
+    <string name="preview_position_outline_note">Guia només per a la previsualització. El contorn no s\'exporta.</string>
     <string name="preview_background_quick_heading">Compara els fons dels marges</string>
     <string name="preview_background_auto">Auto</string>
     <string name="preview_background_black">Negre</string>
