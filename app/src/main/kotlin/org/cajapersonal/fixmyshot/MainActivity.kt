@@ -282,8 +282,10 @@ class MainActivity : AppCompatActivity() {
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@position
                             val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == item.id }
                             if (plan?.geometry !is org.cajapersonal.fixmyshot.core.PlannedGeometry.Contained) return@position
+                            val override = if (value == model.draft.batch.position) ItemValue.Inherit
+                                else ItemValue.Custom(value)
                             updateDraft(model.draft.editItem(item.id,
-                                item.overrides.copy(position = ItemValue.Custom(value))))
+                                item.overrides.copy(position = override)))
                         },
                         onResetSelected = {
                             model.selectedId?.let { updateDraft(model.draft.resetItem(it)) }
