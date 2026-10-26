@@ -1,8 +1,8 @@
-Manual contain positioning: corrected source-bound validation checkpoint.
-Feature commit 0499cdedc451cba65c57b17554c483cd0114e632
-App and tests updated through 0b67c64614ec23a3781cbc70af899826c92b4fca
-Build Kotlin core tests, all resource translations, lint, app/test APKs and API36 emulator.
-Check 1344x2992 Play frame, optional per-image placement, legacy session restore and
-eight render tests with unchanged PNG/WebP output geometry and source integrity.
-No hardware acceptance, signer reuse, tag, merge or release publication.
+Visual crop editor validation checkpoint.
+Implementation baseline: 5f41bb8827adfe632431ad776c4ddbf204840abe
+Build resource checks, Kotlin unit tests, Android lint, debug/unsigned-release/test APKs,
+and API36 smoke with existing 8 ReviewRenderTest cases.
+Verify independent original sample, shaded excluded areas, staged Apply/Cancel,
+crop frames and sampled output from CropPlanner/ReviewBitmapRenderer without exporter changes.
+No app-signature custody, release, merge, production deployment or physical acceptance.
 profile=current

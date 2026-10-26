@@ -398,6 +398,9 @@ internal fun ReviewScreen(
                     Text(stringResource(R.string.crop_editor_open))
                 }
                 if (cropLoadingId == selected.id) Text(stringResource(R.string.preview_loading))
+                else if (cropSourceId == selected.id && cropSource == null) {
+                    Text(stringResource(R.string.preview_unavailable))
+                }
                 CropControls(selected, plan, editEnabled, onCrop)
             }
             if (selected != null && plan != null) {
