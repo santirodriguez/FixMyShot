@@ -1,7 +1,6 @@
-Review-only Google Play screenshot preview validation checkpoint (2026-10-25).
-App-source baseline: 0395a5e25e12fb8ead8d7c107bcc99cd3dd16f1f
-Build core tests, Android lint, debug/unsigned-release/test APKs and API36 emulator regressions.
-Verify 8 ReviewRenderTest cases and unchanged PNG/WebP export invariants.
-UI-only outline/dimensions and quick background selectors; no change to exported pixels.
-No Pixel 9 Pro XL acceptance or signing, merge, tag, release or publication.
+Manual screenshot contain-position validation checkpoint.
+Source implementation: 0499cdedc451cba65c57b17554c483cd0114e632
+Build core tests, lint, app APKs and Android API 36 smoke.
+Check centered and manually shifted pixels, frozen placement, journal recovery and renderer.
+No release publication or physical-device approval.
 profile=current
