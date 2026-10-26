@@ -1,8 +1,7 @@
-Visual crop editor validation checkpoint.
-Implementation baseline: 5f41bb8827adfe632431ad776c4ddbf204840abe
-Build resource checks, Kotlin unit tests, Android lint, debug/unsigned-release/test APKs,
-and API36 smoke with existing 8 ReviewRenderTest cases.
-Verify independent original sample, shaded excluded areas, staged Apply/Cancel,
-crop frames and sampled output from CropPlanner/ReviewBitmapRenderer without exporter changes.
-No app-signature custody, release, merge, production deployment or physical acceptance.
+WYSIWYG crop preview final source-bound validation checkpoint.
+Source commit: a09570ef43626f867d7a0742f4cc8accbcedfd2a
+Run Kotlin core checks, XML/localized resources, Android lint, debug/unsigned/test APKs
+and API36 instrumented regressions. Verify sampled crop output uses CropPlanner plan,
+frame shadows excluded original pixels, Apply/Cancel remain staged, 8 renderer tests pass.
+Do not infer physical crop UX acceptance or publish/merge/sign production artifacts.
 profile=current
