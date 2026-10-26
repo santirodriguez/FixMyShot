@@ -2,6 +2,7 @@ package org.cajapersonal.fixmyshot
 
 import android.content.ComponentCallbacks2
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -64,6 +65,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sources: ReviewSources
     @Volatile private var generation = 0L
     private val pendingThumbnails = mutableSetOf<String>()
+    @Volatile private var cropPreviewGeneration = 0L
+    private var cropPreviewImageId by mutableStateOf<String?>(null)
+    private var cropPreviewLoadingId by mutableStateOf<String?>(null)
+    private var cropPreviewSource by mutableStateOf<Bitmap?>(null)
 
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) addImages(uris)
@@ -175,6 +180,11 @@ class MainActivity : AppCompatActivity() {
                         onEditSelectedOnly = model::changeEditScope,
                         preview = model.preview,
                         thumbnails = model.thumbnails,
+                        cropSource = cropPreviewSource,
+                        cropSourceId = cropPreviewImageId,
+                        cropLoadingId = cropPreviewLoadingId,
+                        onOpenCropEditor = { requestCropEditor(it) },
+                        onCloseCropEditor = { closeCropEditor() },
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
                         importProgress = model.importProgress,
@@ -222,6 +232,7 @@ class MainActivity : AppCompatActivity() {
                         },
                         onSelect = selectImage@{ id ->
                             if (model.exportState.isLocked) return@selectImage
+                            closeCropEditor()
                             model.selectedId = id
                             model.checkpointDraft()
                             model.selectThumbnail(id)
@@ -337,6 +348,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateDraft(value: DraftSession) {
         if (model.isBusy || model.shareBusy || model.pendingImportCount != 0 ||
             model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
+        closeCropEditor()
         val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()
@@ -379,6 +391,42 @@ class MainActivity : AppCompatActivity() {
         catch (_: android.content.ActivityNotFoundException) {
             android.widget.Toast.makeText(this, R.string.link_unavailable, android.widget.Toast.LENGTH_SHORT).show()
         }
+    }
+
+    /** Decode a bounded ORIGINAL sample asynchronously; never reuse the already-cropped preview. */
+    private fun requestCropEditor(id: String) {
+        if (model.selectedId != id || model.isBusy || model.shareBusy ||
+            model.sessionRestoreBlocked || model.pendingImportCount != 0 || model.exportState.isLocked) return
+        val candidate = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
+        if (candidate?.geometry !is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) return
+        closeCropEditor()
+        val token = ++cropPreviewGeneration
+        cropPreviewLoadingId = id
+        thumbnailWorker.execute {
+            val sample = try { sources.decodeSample(id, maxLongSide = 1200) }
+            catch (_: IOException) { null }
+            catch (_: SecurityException) { null }
+            catch (_: IllegalArgumentException) { null }
+            main.post {
+                if (!isDestroyed && token == cropPreviewGeneration &&
+                    model.selectedId == id && model.draft.images.any { it.id == id } &&
+                    model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
+                        ?.geometry is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) {
+                    cropPreviewImageId = id
+                    cropPreviewSource = sample
+                    cropPreviewLoadingId = null
+                } else sample?.recycle()
+            }
+        }
+    }
+
+    private fun closeCropEditor() {
+        ++cropPreviewGeneration
+        cropPreviewLoadingId = null
+        cropPreviewImageId = null
+        val old = cropPreviewSource
+        cropPreviewSource = null
+        old?.recycle()
     }
 
     /** One bounded decode at a time; old UI snapshots remain valid after LRU eviction. */
@@ -489,6 +537,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        closeCropEditor()
         generation++
         worker.close()
         thumbnailWorker.shutdownNow()
