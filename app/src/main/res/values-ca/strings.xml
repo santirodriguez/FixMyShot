@@ -142,6 +142,15 @@
     <string name="import_waiting">Imatges pendents d’importar: %1$d</string>
     <string name="crop_mode">Retalla</string>
     <string name="crop_notice">El retall elimina contingut. Arrossega o fes servir dos dits a la previsualització, o els controls de sota. Aquests ajustos afecten la imatge seleccionada.</string>
+    <string name="crop_editor_open">Previsualitza i ajusta el retall</string>
+    <string name="crop_editor_title">Previsualització del retall</string>
+    <string name="crop_editor_help">Les zones ombrejades desapareixeran. Arrossega o fes servir dos dits sobre la imatge original per ajustar el marc.</string>
+    <string name="crop_editor_original">Original amb marc de retall</string>
+    <string name="crop_editor_result">Resultat del retall</string>
+    <string name="crop_editor_cancel">Cancel·la</string>
+    <string name="crop_editor_apply">Aplica el retall</string>
+    <string name="crop_editor_removed">Se suprimeixen %1$d px horitzontals i %2$d px verticals (amb el zoom actual).</string>
+    <string name="crop_editor_guide">Els contorns són només guies. El fitxer original no es modifica.</string>
     <string name="crop_zoom">Zoom: %1$d%%</string>
     <string name="crop_left">Mou a l’esquerra</string>
     <string name="crop_right">Mou a la dreta</string>

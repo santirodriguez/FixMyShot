@@ -142,6 +142,15 @@
     <string name="import_waiting">Imágenes en espera para importar: %1$d</string>
     <string name="crop_mode">Recortar</string>
     <string name="crop_notice">El recorte elimina contenido. Arrastrá o usá dos dedos en la vista previa, o los controles de abajo. Estos ajustes afectan a la imagen seleccionada.</string>
+    <string name="crop_editor_open">Previsualizar y ajustar recorte</string>
+    <string name="crop_editor_title">Vista previa del recorte</string>
+    <string name="crop_editor_help">Las zonas oscurecidas se eliminarán. Arrastrá o usá dos dedos sobre el original para ajustar el encuadre.</string>
+    <string name="crop_editor_original">Original con marco de recorte</string>
+    <string name="crop_editor_result">Resultado del recorte</string>
+    <string name="crop_editor_cancel">Cancelar</string>
+    <string name="crop_editor_apply">Aplicar recorte</string>
+    <string name="crop_editor_removed">Se eliminan: %1$d px horizontales y %2$d px verticales (con el zoom actual).</string>
+    <string name="crop_editor_guide">Los contornos son solo guías. El archivo original no se modifica.</string>
     <string name="crop_zoom">Zoom: %1$d%%</string>
     <string name="crop_left">Mover a la izquierda</string>
     <string name="crop_right">Mover a la derecha</string>

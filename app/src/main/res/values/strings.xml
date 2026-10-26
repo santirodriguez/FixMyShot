@@ -142,6 +142,15 @@
     <string name="import_waiting">Images waiting to be imported: %1$d</string>
     <string name="crop_mode">Crop</string>
     <string name="crop_notice">Crop removes content. Drag or pinch the preview, or use the controls below. These adjustments affect the selected image.</string>
+    <string name="crop_editor_open">Preview and adjust crop</string>
+    <string name="crop_editor_title">Crop preview</string>
+    <string name="crop_editor_help">The shaded areas will be removed. Drag or pinch the original to adjust the crop frame.</string>
+    <string name="crop_editor_original">Original with crop frame</string>
+    <string name="crop_editor_result">Result after crop</string>
+    <string name="crop_editor_cancel">Cancel</string>
+    <string name="crop_editor_apply">Apply crop</string>
+    <string name="crop_editor_removed">Removed from source: %1$d px horizontally, %2$d px vertically (at current zoom).</string>
+    <string name="crop_editor_guide">Outlines are preview-only. The original file is unchanged.</string>
     <string name="crop_zoom">Zoom: %1$d%%</string>
     <string name="crop_left">Move left</string>
     <string name="crop_right">Move right</string>

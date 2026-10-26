@@ -171,6 +171,21 @@ class ReviewRenderTest {
                 assertEquals(Color.BLUE, rendered.image.getPixel(0, 0))
                 assertEquals(Color.RED, rendered.image.getPixel(20, 20))
             } finally { rendered.image.recycle() }
+            source.eraseColor(Color.BLUE)
+            for (x in 0 until 40) for (y in 0 until 20) source.setPixel(x, y, Color.RED)
+            val movedFocus = org.cajapersonal.fixmyshot.core.CropFocus(0.5, 0.25)
+            val movedPlan = crop.copy(settings = crop.settings.copy(crop = movedFocus),
+                geometry = org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped(
+                    org.cajapersonal.fixmyshot.core.CropPlanner.plan(PixelSize(40, 80),
+                        crop.destination.cropRatio(PixelSize(40, 80)), movedFocus)))
+            val centeredPreview = ReviewBitmapRenderer.preview(source, PixelSize(40, 80), crop).image
+            val movedPreview = ReviewBitmapRenderer.preview(source, PixelSize(40, 80), movedPlan).image
+            try {
+                assertEquals(Color.BLUE, centeredPreview.getPixel(20, 1))
+                assertEquals(Color.RED, movedPreview.getPixel(20, 1))
+                assertEquals(40, movedPreview.height)
+                assertEquals(40, movedPreview.width)
+            } finally { centeredPreview.recycle(); movedPreview.recycle() }
         } finally { source.recycle() }
     }
 }
