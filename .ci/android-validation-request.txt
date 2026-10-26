@@ -1,6 +1,8 @@
-Manual screenshot contain-position validation checkpoint.
-Source implementation: 0499cdedc451cba65c57b17554c483cd0114e632
-Build core tests, lint, app APKs and Android API 36 smoke.
-Check centered and manually shifted pixels, frozen placement, journal recovery and renderer.
-No release publication or physical-device approval.
+Manual contain positioning: corrected source-bound validation checkpoint.
+Feature commit 0499cdedc451cba65c57b17554c483cd0114e632
+App and tests updated through 0b67c64614ec23a3781cbc70af899826c92b4fca
+Build Kotlin core tests, all resource translations, lint, app/test APKs and API36 emulator.
+Check 1344x2992 Play frame, optional per-image placement, legacy session restore and
+eight render tests with unchanged PNG/WebP output geometry and source integrity.
+No hardware acceptance, signer reuse, tag, merge or release publication.
 profile=current
