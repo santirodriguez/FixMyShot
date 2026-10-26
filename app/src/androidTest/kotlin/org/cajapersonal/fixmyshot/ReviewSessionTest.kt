@@ -117,6 +117,13 @@ class ReviewSessionTest {
             assertTrue(saved.draft.canUndo)
             assertFalse(f.journal.clearMatching(draft.setDestination(DestinationChoice.Custom.of(1, 1))))
             assertEquals(draft, f.journal.read()!!.draft)
+            // Old schema-1 documents omit position and still restore centered contain settings.
+            val oldDocument = ExportDraftJournal.encodeDraft(draft)
+            oldDocument.getJSONObject("batch").remove("position")
+            oldDocument.getJSONArray("images").getJSONObject(1).getJSONObject("overrides").remove("position")
+            val oldDraft = ExportDraftJournal.decodeDraft(oldDocument)
+            assertEquals(ContainPosition(), oldDraft.batch.position)
+            assertEquals(ItemValue.Inherit, oldDraft.images[1].overrides.position)
             f.close(first)
             val restored = f.owner().model
             assertEquals(draft, restored.draft)
