@@ -95,12 +95,14 @@ class ReviewRenderTest {
             assertEquals(Color.BLUE, bitmap.getPixel(150, 140))
             assertEquals(Color.WHITE, bitmap.getPixel(319, 319))
         } finally { bitmap.recycle() }
-        val moved = ReviewBitmapRenderer.preview(
-            Bitmap.createBitmap(40, 80, Bitmap.Config.ARGB_8888).also { it.eraseColor(Color.BLUE) },
-            PixelSize(40, 80),
-            plan(PixelSize(40, 80), EditSettings(background = BackgroundChoice.White,
-                position = ContainPosition(1.0, 0.0)), DestinationCatalog.PLAY_PHONE),
-            maxLongSide = 500).image
+        val movedSource = Bitmap.createBitmap(40, 80, Bitmap.Config.ARGB_8888)
+        val moved = try {
+            movedSource.eraseColor(Color.BLUE)
+            ReviewBitmapRenderer.preview(movedSource, PixelSize(40, 80),
+                plan(PixelSize(40, 80), EditSettings(background = BackgroundChoice.White,
+                    position = ContainPosition(1.0, 0.0)), DestinationCatalog.PLAY_PHONE),
+                maxLongSide = 500).image
+        } finally { movedSource.recycle() }
         try {
             assertEquals(Color.WHITE, moved.getPixel(0, 0))
             assertEquals(Color.BLUE, moved.getPixel(319, 0))
