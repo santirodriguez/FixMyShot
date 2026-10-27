@@ -155,7 +155,7 @@ internal fun ReviewScreen(
     var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
-    var showOriginalOutline by rememberSaveable { mutableStateOf(true) }
+    var showOriginalOutline by rememberSaveable(editorSessionKey) { mutableStateOf(false) }
     var positionEditorFor by remember { mutableStateOf<String?>(null) }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
@@ -312,6 +312,11 @@ internal fun ReviewScreen(
                     contained.rightMargin > 0 || contained.placement.top > 0 ||
                     contained.bottomMargin > 0)
                 if (output != null) {
+                    Text(stringResource(R.string.preview_canvas_heading),
+                        style = MaterialTheme.typography.titleSmall)
+                    Text(stringResource(if (cropped != null) R.string.preview_mode_crop
+                        else R.string.preview_mode_contain),
+                        style = MaterialTheme.typography.bodyMedium)
                     Text(stringResource(R.string.preview_dimensions_summary,
                         selected.orientedSize.width, selected.orientedSize.height,
                         output.width, output.height), style = MaterialTheme.typography.bodySmall)
@@ -325,19 +330,10 @@ internal fun ReviewScreen(
                     .cropGestures(selected, plan, editEnabled, onCrop),
                     contentAlignment = Alignment.Center) {
                     if (preview != null) {
-                        if (plan?.settings?.background == BackgroundChoice.Transparent) {
-                            Canvas(Modifier.fillMaxSize()) {
-                                val step = 22.dp.toPx()
-                                for (y in 0 until (size.height / step).toInt() + 1) {
-                                    for (x in 0 until (size.width / step).toInt() + 1) {
-                                        drawRect(if ((x + y) % 2 == 0) Color.LightGray else Color.White,
-                                            topLeft = Offset(x * step, y * step), size = Size(step, step))
-                                    }
-                                }
-                            }
-                        }
+                        PreviewEditorStage(preview, plan?.settings?.background == BackgroundChoice.Transparent)
                         Image(preview.asImageBitmap(), contentDescription = stringResource(R.string.preview_description),
                             modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                        PreviewCanvasBoundary(preview)
                         if (hasMargins && showOriginalOutline && contained != null) {
                             PreviewOriginalOutline(preview, contained)
                         }
@@ -346,10 +342,20 @@ internal fun ReviewScreen(
                             else R.string.preview_loading))
                     }
                 }
+                if (preview != null) {
+                    Text(stringResource(R.string.preview_editor_space_notice),
+                        style = MaterialTheme.typography.bodySmall)
+                    if (plan?.settings?.background == BackgroundChoice.Transparent) {
+                        Text(stringResource(R.string.preview_transparency_notice),
+                            style = MaterialTheme.typography.bodySmall)
+                    }
+                }
                 if (hasMargins) {
                     OutlinedButton(onClick = { positionEditorFor = selected.id }, enabled = editEnabled && preview != null) {
                         Text(stringResource(R.string.preview_position_open))
                     }
+                    Text(stringResource(R.string.preview_optional_guides),
+                        style = MaterialTheme.typography.bodySmall)
                     Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
                         value = showOriginalOutline, role = Role.Checkbox,
                         onValueChange = { showOriginalOutline = it }),
@@ -519,6 +525,64 @@ internal fun ReviewScreen(
     }
 }
 
+/** Exact ContentScale.Fit viewport of the final output bitmap, not the source rectangle. */
+internal fun previewOutputCanvasRect(previewSize: PixelSize, viewport: Size): Rect {
+    val scale = minOf(viewport.width / previewSize.width, viewport.height / previewSize.height)
+    val width = previewSize.width * scale
+    val height = previewSize.height * scale
+    val left = (viewport.width - width) / 2f
+    val top = (viewport.height - height) / 2f
+    return Rect(left, top, left + width, top + height)
+}
+
+/** Make the area outside the final output visibly different from image/padding pixels. */
+@Composable
+private fun PreviewEditorStage(preview: Bitmap, transparent: Boolean) {
+    val lineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.25f)
+    Canvas(Modifier.fillMaxSize()) {
+        val stripeGap = 22.dp.toPx()
+        val stroke = 1.dp.toPx()
+        var x = -size.height
+        while (x <= size.width) {
+            drawLine(lineColor, Offset(x, 0f), Offset(x + size.height, size.height), strokeWidth = stroke)
+            x += stripeGap
+        }
+        if (transparent) {
+            // The checkerboard belongs to the output bounds only; the exterior is editor space.
+            val bounds = previewOutputCanvasRect(PixelSize(preview.width, preview.height), size)
+            val step = 18.dp.toPx()
+            var y = bounds.top
+            var row = 0
+            while (y < bounds.bottom) {
+                var xx = bounds.left
+                var column = 0
+                while (xx < bounds.right) {
+                    drawRect(if ((row + column) % 2 == 0) Color.LightGray else Color.White,
+                        topLeft = Offset(xx, y),
+                        size = Size(minOf(step, bounds.right - xx), minOf(step, bounds.bottom - y)))
+                    xx += step
+                    column++
+                }
+                y += step
+                row++
+            }
+        }
+    }
+}
+
+/** Output-canvas boundary is a Compose-only guide, never written into the exported file. */
+@Composable
+private fun PreviewCanvasBoundary(preview: Bitmap) {
+    val lineColor = MaterialTheme.colorScheme.primary
+    Canvas(Modifier.fillMaxSize()) {
+        val bounds = previewOutputCanvasRect(PixelSize(preview.width, preview.height), size)
+        drawRect(Color.Black.copy(alpha = 0.9f), topLeft = bounds.topLeft,
+            size = bounds.size, style = Stroke(width = 3.dp.toPx()))
+        drawRect(lineColor, topLeft = bounds.topLeft,
+            size = bounds.size, style = Stroke(width = 1.4.dp.toPx()))
+    }
+}
+
 /** Drawn above the Compose preview only; never written into an export bitmap. */
 @Composable
 private fun PreviewOriginalOutline(preview: Bitmap, geometry: ContainGeometry) {
@@ -533,18 +597,14 @@ private fun PreviewOriginalOutline(preview: Bitmap, geometry: ContainGeometry) {
 
 /** Project immutable source placement onto the actual ContentScale.Fit viewport, including letterboxing. */
 internal fun previewOriginalContentRect(previewSize: PixelSize, viewport: Size, geometry: ContainGeometry): Rect {
-    val scale = minOf(viewport.width / previewSize.width, viewport.height / previewSize.height)
-    val displayWidth = previewSize.width * scale
-    val displayHeight = previewSize.height * scale
-    val displayLeft = (viewport.width - displayWidth) / 2f
-    val displayTop = (viewport.height - displayHeight) / 2f
+    val output = previewOutputCanvasRect(previewSize, viewport)
     val placement = geometry.placement
     val canvas = geometry.canvas
     return Rect(
-        displayLeft + displayWidth * placement.left / canvas.width,
-        displayTop + displayHeight * placement.top / canvas.height,
-        displayLeft + displayWidth * (placement.left + placement.width) / canvas.width,
-        displayTop + displayHeight * (placement.top + placement.height) / canvas.height,
+        output.left + output.width * placement.left / canvas.width,
+        output.top + output.height * placement.top / canvas.height,
+        output.left + output.width * (placement.left + placement.width) / canvas.width,
+        output.top + output.height * (placement.top + placement.height) / canvas.height,
     )
 }
 

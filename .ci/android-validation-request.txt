@@ -1,7 +1,9 @@
-WYSIWYG crop preview final source-bound validation checkpoint.
-Source commit: a09570ef43626f867d7a0742f4cc8accbcedfd2a
-Run Kotlin core checks, XML/localized resources, Android lint, debug/unsigned/test APKs
-and API36 instrumented regressions. Verify sampled crop output uses CropPlanner plan,
-frame shadows excluded original pixels, Apply/Cancel remain staged, 8 renderer tests pass.
-Do not infer physical crop UX acceptance or publish/merge/sign production artifacts.
+Review-stage WYSIWYG distinction validation (2026-10-27).
+Source base: 52ed38c9983d5adf4a95021de6df9ff70b3fc235
+Build Kotlin unit tests, Android lint, debug/unsigned/test APKs and API36 smoke.
+Preview-only changes: outline final output bounds, stripe external editor-only stage,
+checkerboard inside transparency canvas, label effective CONTAIN vs CROP, guide default OFF.
+Preserve real engine pixels, destination geometry, automatic background and output plans.
+Test stage/canvas pixel projections without increasing ReviewRenderTest case count.
+No release/signing/deploy or physical user acceptance.
 profile=current

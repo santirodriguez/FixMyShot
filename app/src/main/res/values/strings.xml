@@ -11,6 +11,12 @@
     <string name="batch_count">Images in batch: %1$d</string>
     <string name="preview_description">Preview of the selected image with planned margins</string>
     <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Output: %3$d × %4$d px</string>
+    <string name="preview_canvas_heading">Final output canvas</string>
+    <string name="preview_mode_contain">Mode: Keep all content. Margins inside the border are exported.</string>
+    <string name="preview_mode_crop">Mode: Crop. The framed canvas shows the result without excluded source pixels.</string>
+    <string name="preview_editor_space_notice">The striped area outside the border is editor space and is not exported.</string>
+    <string name="preview_optional_guides">Optional original-area guide (not exported)</string>
+    <string name="preview_transparency_notice">The checkerboard inside the border indicates transparency; it is not exported.</string>
     <string name="preview_original_outline">Outline original area (preview only, not exported)</string>
     <string name="preview_position_open">Adjust position</string>
     <string name="preview_position_title">Position within output</string>

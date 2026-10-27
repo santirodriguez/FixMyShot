@@ -11,6 +11,12 @@
     <string name="batch_count">Imágenes en el lote: %1$d</string>
     <string name="preview_description">Vista previa de la imagen seleccionada con los márgenes previstos</string>
     <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Resultado: %3$d × %4$d px</string>
+    <string name="preview_canvas_heading">Lienzo del archivo final</string>
+    <string name="preview_mode_contain">Modo: Conservar todo. Los márgenes dentro del borde se exportan.</string>
+    <string name="preview_mode_crop">Modo: Recortar. El lienzo enmarcado muestra el resultado sin el contenido descartado.</string>
+    <string name="preview_editor_space_notice">La zona rayada fuera del borde pertenece al editor y no se exporta.</string>
+    <string name="preview_optional_guides">Guía opcional del área original (no se exporta)</string>
+    <string name="preview_transparency_notice">El cuadriculado dentro del borde representa transparencia; no se exporta.</string>
     <string name="preview_original_outline">Mostrar el contorno original (solo en la vista previa)</string>
     <string name="preview_position_open">Ajustar posición</string>
     <string name="preview_position_title">Posición en la imagen final</string>

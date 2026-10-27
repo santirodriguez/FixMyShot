@@ -11,6 +11,12 @@
     <string name="batch_count">Imatges del lot: %1$d</string>
     <string name="preview_description">Previsualització de la imatge seleccionada amb els marges previstos</string>
     <string name="preview_dimensions_summary">Original: %1$d × %2$d px · Resultat: %3$d × %4$d px</string>
+    <string name="preview_canvas_heading">Llenç del fitxer final</string>
+    <string name="preview_mode_contain">Mode: Conserva tot el contingut. Els marges dins del contorn formen part del fitxer.</string>
+    <string name="preview_mode_crop">Mode: Retalla. El llenç emmarcat mostra el resultat sense el contingut descartat.</string>
+    <string name="preview_editor_space_notice">La zona ratllada exterior pertany a la interfície i no forma part del fitxer.</string>
+    <string name="preview_optional_guides">Guia opcional de la zona original (no es desa)</string>
+    <string name="preview_transparency_notice">El quadriculat dins del contorn indica transparència; no forma part del fitxer.</string>
     <string name="preview_original_outline">Mostra el contorn original (només a la previsualització)</string>
     <string name="preview_position_open">Ajusta la posició</string>
     <string name="preview_position_title">Posició dins del resultat</string>

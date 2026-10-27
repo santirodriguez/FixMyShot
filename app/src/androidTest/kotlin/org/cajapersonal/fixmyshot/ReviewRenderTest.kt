@@ -18,6 +18,7 @@ import org.cajapersonal.fixmyshot.core.PixelSize
 import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.LatestPreviewWorker
 import org.cajapersonal.fixmyshot.review.previewOriginalContentRect
+import org.cajapersonal.fixmyshot.review.previewOutputCanvasRect
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -142,7 +143,13 @@ class ReviewRenderTest {
         assertEquals(PixelSize(1496, 2992), geometry.canvas)
         assertEquals(76, geometry.placement.left)
         assertEquals(76, geometry.rightMargin)
+        val exported = previewOutputCanvasRect(PixelSize(600, 1200), Size(360f, 320f))
+        assertEquals(100f, exported.left, 0.001f)
+        assertEquals(260f, exported.right, 0.001f)
+        assertEquals(0f, exported.top, 0.001f)
+        assertEquals(320f, exported.bottom, 0.001f)
         val bounds = previewOriginalContentRect(PixelSize(600, 1200), Size(360f, 320f), geometry)
+        assertTrue(bounds.left > exported.left && bounds.right < exported.right)
         assertEquals(108.128f, bounds.left, 0.02f)
         assertEquals(251.872f, bounds.right, 0.02f)
         assertEquals(0f, bounds.top, 0.001f)
@@ -151,6 +158,11 @@ class ReviewRenderTest {
 
     @Test fun originalOutlineFollowsTopBottomMarginsWithCenteredFit() {
         val geometry = GeometryPlanner.preservePixelsAtRatio(PixelSize(80, 40), ExactRatio.of(1, 1))
+        val exported = previewOutputCanvasRect(PixelSize(400, 400), Size(240f, 320f))
+        assertEquals(0f, exported.left, 0.001f)
+        assertEquals(240f, exported.right, 0.001f)
+        assertEquals(40f, exported.top, 0.001f)
+        assertEquals(280f, exported.bottom, 0.001f)
         val bounds = previewOriginalContentRect(PixelSize(400, 400), Size(240f, 320f), geometry)
         assertEquals(0f, bounds.left, 0.001f)
         assertEquals(240f, bounds.right, 0.001f)
