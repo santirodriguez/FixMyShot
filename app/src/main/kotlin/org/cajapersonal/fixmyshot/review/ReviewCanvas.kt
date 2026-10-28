@@ -29,6 +29,7 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     enabled: Boolean, showOriginalOutline: Boolean, modifier: Modifier = Modifier,
     onCrop: (CropFocus) -> Unit, onPosition: (ContainPosition) -> Unit,
     onGestureFinished: () -> Unit,
+    onCropCommitted: (CropFocus) -> Unit,
 ) {
     val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
     val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
@@ -50,7 +51,7 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     val description = stringResource(R.string.preview_description)
     Canvas(modifier.background(MaterialTheme.colorScheme.surfaceVariant)
         .semantics { contentDescription = description }
-        .cropGestures(image, plan, enabled, onCrop, onGestureFinished)
+        .cropGestures(image, plan, enabled, onCrop, onCropCommitted)
         .pointerInput(image.id, enabled, plan.settings.fit) {
             if (!enabled || contained == null) return@pointerInput
             detectDragGestures(onDragEnd = { currentFinish() }, onDragCancel = { currentFinish() }) { change, drag ->
