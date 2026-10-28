@@ -14,4 +14,14 @@ Keep all original tests and acceptance requirements.
 Verify stable accessibility after mode switch, unambiguous confirmed discard,
 and an initial automatic canvas screenshot; retain all seven editor cases.
 Keep the opening Choose images action visible without scrolling on portrait phones.
+UX 2.1 approved checkpoint: optimize preview-local crop gestures and cache current geometry.
+Expose inspection-only trimmed-source guide, preserving exact final-frame geometry.
+Keep prior Automatic and source/export/privacy policy; opt-in solid RGB edge matte.
+Compact grouped Google Play/Instagram/TikTok/WhatsApp/Facebook layout selector.
+Keep all previous stable preset IDs and full Customize functionality.
+Check 84 core JVM cases (8 QuickTemplateTest), seven Android editor interactions,
+full API36 instrumented renderer/private PNG-WebP/import/export/recovery suites.
+Collect truthful synthetic screenshots for UI inspection; Pixel speed/fidelity still pending.
+Social entries are layout guidance, never uploader-format guarantees.
+No new dependency, permission, network, production signing, merge or release.
 profile=current

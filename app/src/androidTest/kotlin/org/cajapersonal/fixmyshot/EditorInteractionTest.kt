@@ -269,6 +269,11 @@ class EditorInteractionTest {
         assertEquals(PixelSize(1683, 2992), geometry.canvas)
         assertEquals(169, geometry.placement.left)
         assertEquals(170, geometry.rightMargin)
+        // The optional solid edge matte is an explicit per-image RGB override.
+        click(label(R.string.editor_background))
+        await { find(label(R.string.quick_background_edge)) != null }
+        click(label(R.string.quick_background_edge))
+        await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         val selected = model.draft
         click(label(R.string.quick_customize))
         await { find(label(R.string.editor_framing)) != null }
@@ -291,6 +296,10 @@ class EditorInteractionTest {
         assertTrue(bounds(label(R.string.preview_description)).height() > initial.height())
         click(label(R.string.quick_fill_crop))
         assertEquals(before, model.draft)
+        await { find(label(R.string.quick_crop_show_trim)) != null }
+        click(label(R.string.quick_crop_show_trim))
+        await { find(label(R.string.quick_crop_trim_accessibility)) != null }
+        click(label(R.string.quick_crop_show_result))
         capture()
         click(label(R.string.crop_editor_cancel))
         assertEquals(before, model.draft)
