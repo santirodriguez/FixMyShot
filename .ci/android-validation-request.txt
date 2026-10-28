@@ -11,4 +11,6 @@ Independent debug identity .automatic / FixMyShot Auto; production identity unch
 No codec/dependency/toolchain/permission/signing-key/merge/release changes.
 Compile follow-up: capture the parent height before entering the nested Column DSL.
 Keep all original tests and acceptance requirements.
+Verify stable accessibility after mode switch, unambiguous confirmed discard,
+and an initial automatic canvas screenshot; retain all seven editor cases.
 profile=current
