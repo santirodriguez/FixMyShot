@@ -467,7 +467,7 @@ internal fun ReviewScreen(
                         Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
                             if (preview != null) ReviewCanvas(preview, selected, live,
                                 editEnabled && tool == ReviewTool.FRAMING, showOriginalOutline, Modifier.fillMaxSize(),
-                                ::editCrop, { position = it }, ::finishGesture)
+                                ::editCrop, { position = it }, ::finishGesture, onCropCommitted = onCrop)
                             else Text(stringResource(if (previewUnavailable) R.string.preview_unavailable else R.string.preview_loading))
                         }
                     } else Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
