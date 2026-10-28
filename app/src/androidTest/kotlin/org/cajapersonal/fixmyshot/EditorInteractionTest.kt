@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
+import android.os.Build
 import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.InputDevice
@@ -32,6 +33,15 @@ class EditorInteractionTest {
         test.uiAutomation.waitForIdle(150, 5_000)
     }
 
+    private fun freshRoot(): AccessibilityNodeInfo? {
+        // API 34+ caches Compose semantics even after a frame changes; inspect a
+        // fresh accessibility tree rather than the pre-recomposition tab contents.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            test.uiAutomation.clearCache()
+        }
+        return test.uiAutomation.rootInActiveWindow
+    }
+
     private var caseName = "editor"
 
     private fun capture() {
@@ -42,7 +52,7 @@ class EditorInteractionTest {
             tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
             for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
         }
-        dump(test.uiAutomation.rootInActiveWindow)
+        dump(freshRoot())
         File(app.filesDir, "editor-$caseName.txt").writeText(tree.toString())
         val screenshot = test.uiAutomation.takeScreenshot() ?: return
         try { File(app.filesDir, "editor-framing.png").outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) } }
@@ -61,7 +71,7 @@ class EditorInteractionTest {
         }
     }
 
-    private fun find(label: String, root: AccessibilityNodeInfo? = test.uiAutomation.rootInActiveWindow): AccessibilityNodeInfo? {
+    private fun find(label: String, root: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
         if (root == null) return null
         if (root.isVisibleToUser && (root.text?.toString() == label || root.contentDescription?.toString() == label)) return root
         for (i in 0 until root.childCount) find(label, root.getChild(i))?.let { return it }
@@ -76,7 +86,7 @@ class EditorInteractionTest {
         settleUi()
     }
 
-    private fun toolPane(node: AccessibilityNodeInfo? = test.uiAutomation.rootInActiveWindow): AccessibilityNodeInfo? {
+    private fun toolPane(node: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
         if (node == null) return null
         val rect = Rect().also { node.getBoundsInScreen(it) }
         // Select the actual vertical controls viewport, not the horizontal tool strip.
