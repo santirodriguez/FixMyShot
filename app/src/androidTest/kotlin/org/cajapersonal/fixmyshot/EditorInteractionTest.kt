@@ -105,9 +105,9 @@ class EditorInteractionTest {
     private fun toolPane(node: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
         if (node == null) return null
         val rect = Rect().also { node.getBoundsInScreen(it) }
-        // Select the actual vertical controls viewport, not the horizontal tool strip.
-        if (node.isScrollable && rect.height() > rect.width() / 3 &&
-            node.actionList.any { it.id == AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id }) return node
+        // A viewport remains scrollable at the bottom even if SCROLL_DOWN is absent.
+        // Use orientation, not the available scroll direction, to find its container.
+        if (node.isScrollable && rect.height() > rect.width() / 3) return node
         for (i in 0 until node.childCount) toolPane(node.getChild(i))?.let { return it }
         return null
     }
@@ -116,10 +116,17 @@ class EditorInteractionTest {
     private fun reveal(label: String) {
         fun visibleInPane(): Boolean {
             val control = find(label) ?: return false
-            val pane = toolPane() ?: return false
             val controlRect = Rect().also { control.getBoundsInScreen(it) }
+            if (controlRect.width() <= 0 || controlRect.height() <= 0) return false
+            val pane = toolPane()
+            if (pane == null) {
+                // Fully visible non-scrollable controls should never require a scroll action.
+                val root = freshRoot() ?: return false
+                val windowRect = Rect().also { root.getBoundsInScreen(it) }
+                return windowRect.contains(controlRect) && control.isVisibleToUser
+            }
             val paneRect = Rect().also { pane.getBoundsInScreen(it) }
-            return controlRect.top >= paneRect.top && controlRect.bottom <= paneRect.bottom
+            return paneRect.contains(controlRect) && control.isVisibleToUser
         }
         if (visibleInPane()) return
         // An accessibility action may return false at either end; search both
@@ -287,7 +294,7 @@ class EditorInteractionTest {
         assertEquals(170, geometry.rightMargin)
         // The optional solid edge matte is an explicit per-image RGB override.
         click(label(R.string.editor_background))
-        await { find(label(R.string.quick_background_edge)) != null }
+        reveal(label(R.string.quick_background_edge))
         click(label(R.string.quick_background_edge))
         await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         val selected = model.draft
@@ -464,7 +471,9 @@ class EditorInteractionTest {
             pointer(MotionEvent.ACTION_DOWN, 0f)
             repeat(10) { step -> pointer(MotionEvent.ACTION_MOVE, -(step + 1) * 4f); SystemClock.sleep(16) }
             pointer(MotionEvent.ACTION_CANCEL, -40f)
-            settleUi()
+            // The renderer redraw may outlive an idle pointer/semantics queue; still
+            // require exact committed pixels with a bounded deadline, not a weaker diff.
+            await { rasterSignature() == committedRaster }
             assertEquals("Cancellation must not publish another crop", 1, publications.get())
             assertEquals("Cancellation restores the committed viewport", committedRaster, rasterSignature())
             capture()

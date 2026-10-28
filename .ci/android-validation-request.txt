@@ -10,4 +10,10 @@ Capture menus/dark Settings, actual pointer behavior and labelled synthetic fram
 No physical Pixel performance/fidelity acceptance is inferred from debug emulator results.
 Independent diagnostic .touch / FixMyShot Touch, no production identity/key changes.
 No dependency, codec, permission, network, merge or release change.
+Follow-up for Actions 40763922346: build + 89 core pass; API36 editor 6/10.
+Four real editor assertions failed: down-only scroll detection at bottom and
+clipped matte button, plus cancellation exact-raster check before frame redraw.
+Keep all ten real UI cases, exact pixels, and all previous render/export checks.
+Re-run current-profile build + API36 and inspect evidence before diagnostic APK.
+No export, schema, dependency, network, signing or production changes.
 profile=current
