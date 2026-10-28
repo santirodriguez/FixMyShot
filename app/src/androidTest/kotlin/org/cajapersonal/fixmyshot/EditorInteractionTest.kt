@@ -25,12 +25,33 @@ class EditorInteractionTest {
     private val test = InstrumentationRegistry.getInstrumentation()
     private val app = test.targetContext
 
+    private fun settleUi() {
+        test.waitForIdleSync()
+        test.uiAutomation.waitForIdle(150, 5_000)
+    }
+
+    private fun capture() {
+        val screenshot = test.uiAutomation.takeScreenshot() ?: return
+        try { File(app.filesDir, "editor-framing.png").outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) } }
+        finally { screenshot.recycle() }
+    }
+
     private fun await(condition: () -> Boolean) {
         val deadline = SystemClock.uptimeMillis() + 15_000
         while (!condition() && SystemClock.uptimeMillis() < deadline) {
             test.waitForIdleSync(); SystemClock.sleep(40)
         }
-        assertTrue("Editor did not settle", condition())
+        if (!condition()) {
+            capture()
+            fun dump(node: AccessibilityNodeInfo?, depth: Int = 0) {
+                if (node == null) return
+                val rect = Rect().also { node.getBoundsInScreen(it) }
+                println("EDITOR_NODE depth=$depth text=${node.text} description=${node.contentDescription} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
+                for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
+            }
+            dump(test.uiAutomation.rootInActiveWindow)
+            fail("Editor did not settle; synthetic UI captured")
+        }
     }
 
     private fun find(label: String, root: AccessibilityNodeInfo? = test.uiAutomation.rootInActiveWindow): AccessibilityNodeInfo? {
@@ -45,22 +66,23 @@ class EditorInteractionTest {
         var node = requireNotNull(find(label))
         while (!node.isClickable && node.parent != null) node = node.parent
         assertTrue("Control not clickable: $label", node.performAction(AccessibilityNodeInfo.ACTION_CLICK))
-        test.waitForIdleSync()
+        settleUi()
     }
 
     private fun scroll() {
         fun scrollable(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
             if (node == null) return null
             val rect = Rect().also { node.getBoundsInScreen(it) }
-            val preview = find(app.getString(R.string.preview_description))
-            val previewBounds = Rect().also { preview?.getBoundsInScreen(it) }
-            if (node.isScrollable && rect.top >= previewBounds.bottom - 8 && rect.height() > 100 &&
-                node.actionList.any { it.id == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD }) return node
+            // The active tool pane can be below OR beside the canvas. Exclude the
+            // horizontal tool/thumbnail rows by requiring a vertical scroll action.
+            if (node.isScrollable && rect.height() > 100 &&
+                node.actionList.any { it.id == AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id }) return node
             for (i in 0 until node.childCount) scrollable(node.getChild(i))?.let { return it }
             return null
         }
-        scrollable(test.uiAutomation.rootInActiveWindow)?.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)
-        test.waitForIdleSync(); SystemClock.sleep(100)
+        val node = requireNotNull(scrollable(test.uiAutomation.rootInActiveWindow)) { "No vertical tool pane" }
+        assertTrue(node.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id))
+        settleUi()
     }
 
     private fun bounds(label: String): Rect = Rect().also { requireNotNull(find(label)).getBoundsInScreen(it) }
@@ -95,6 +117,7 @@ class EditorInteractionTest {
             }
             await { model.preview != null && find(strings.getString(R.string.preview_description)) != null }
             try { block(scenario, model) { strings.getString(it) } }
+            catch (failure: Throwable) { capture(); throw failure }
             finally {
                 scenario.onActivity { model.draft = DraftSession(); model.selectedId = null; model.trimPreview() }
             }
@@ -108,6 +131,7 @@ class EditorInteractionTest {
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
+        settleUi()
         val sample = model.preview
         val before = model.draft
         val rect = bounds(label(R.string.preview_description))
@@ -136,6 +160,7 @@ class EditorInteractionTest {
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
+        settleUi()
         val previewLabel = label(R.string.preview_description)
         val initial = bounds(previewLabel)
         val zoomPlus = "+ ${label(R.string.crop_zoom_control)}"
@@ -147,9 +172,7 @@ class EditorInteractionTest {
         repeat(6) { if (find(down) == null) scroll() }
         click(down)
         assertEquals(initial, bounds(previewLabel))
-        val screenshot = test.uiAutomation.takeScreenshot()
-        try { File(app.filesDir, "editor-framing.png").outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) } }
-        finally { screenshot.recycle() }
+        capture()
         println("EDITOR_SAMPLE=${model.preview!!.width}x${model.preview!!.height}; synthetic interaction only; physical performance NOT_RUN")
     }
 }

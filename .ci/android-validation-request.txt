@@ -4,6 +4,7 @@ Fixed canvas, contextual tools, retained source sample and per-gesture commit;
 logarithmic zoom plus fine buttons. Isolated .editor debug identity.
 Run core/JVM, lint, APK builds and API36 including real editor interaction tests.
 Collector fixture updated for the two additional interaction cases.
-Restore the BackgroundChoice callback type import after screen cleanup.
+Synchronize editor accessibility/pointer tests with rendered UI after mode changes.
+Locate the vertical tools pane in either responsive orientation; capture failed UI.
 Capture synthetic editor UI; no physical performance/fidelity or release acceptance.
 profile=current
