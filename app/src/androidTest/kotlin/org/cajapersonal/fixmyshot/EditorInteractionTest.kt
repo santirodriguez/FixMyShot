@@ -51,7 +51,11 @@ class EditorInteractionTest {
     private fun scroll() {
         fun scrollable(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
             if (node == null) return null
-            if (node.isScrollable && node.actionList.any { it.id == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD }) return node
+            val rect = Rect().also { node.getBoundsInScreen(it) }
+            val preview = find(app.getString(R.string.preview_description))
+            val previewBounds = Rect().also { preview?.getBoundsInScreen(it) }
+            if (node.isScrollable && rect.top >= previewBounds.bottom - 8 && rect.height() > 100 &&
+                node.actionList.any { it.id == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD }) return node
             for (i in 0 until node.childCount) scrollable(node.getChild(i))?.let { return it }
             return null
         }

@@ -3,5 +3,6 @@ Base source 4aa497e427d1d09a1bf84ef7f942869b08c7fc65.
 Fixed canvas, contextual tools, retained source sample and per-gesture commit;
 logarithmic zoom plus fine buttons. Isolated .editor debug identity.
 Run core/JVM, lint, APK builds and API36 including real editor interaction tests.
+Collector fixture updated for the two additional interaction cases.
 Capture synthetic editor UI; no physical performance/fidelity or release acceptance.
 profile=current

@@ -472,7 +472,9 @@ class MainActivity : AppCompatActivity() {
         super.onTrimMemory(level)
         if (::model.isInitialized && level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
             model.clearThumbnails()
-            if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) model.trimPreview()
+            if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+                generation++; worker.cancelPending(); model.trimPreview()
+            }
         }
     }
 
