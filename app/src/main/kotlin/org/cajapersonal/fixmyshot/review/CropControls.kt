@@ -1,6 +1,11 @@
 package org.cajapersonal.fixmyshot.review
 
-import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculateCentroid
+import androidx.compose.foundation.gestures.calculateCentroidSize
+import androidx.compose.foundation.gestures.calculatePan
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +17,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.pointer.positionChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -29,6 +35,7 @@ import org.cajapersonal.fixmyshot.core.PlannedGeometry
 import org.cajapersonal.fixmyshot.core.PreviewPlan
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import kotlin.math.min
+import kotlin.math.abs
 import kotlin.math.roundToInt
 
 /** Accessible alternatives to the same normalized transform used by drag/pinch. */
@@ -107,33 +114,56 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
     val latestFinish by rememberUpdatedState(onFinished)
     return pointerInput(image?.id, enabled, plan?.settings?.fit) {
         if (!enabled || image == null || plan?.settings?.fit != FitMode.CROP) return@pointerInput
-        detectTransformGestures { centroid, pan, zoom, _ ->
-            val current = latestPlan ?: return@detectTransformGestures
-            val geometry = (current.geometry as? PlannedGeometry.Cropped)?.value ?: return@detectTransformGestures
-            val visible = geometry.visibleSource
-            val scale = min(size.width.toDouble() / geometry.output.width,
-                size.height.toDouble() / geometry.output.height)
-            val frameW = geometry.output.width * scale
-            val frameH = geometry.output.height * scale
-            if (frameW <= 0.0 || frameH <= 0.0) return@detectTransformGestures
-            val u = ((centroid.x - (size.width - frameW) / 2.0) / frameW).coerceIn(0.0, 1.0)
-            val v = ((centroid.y - (size.height - frameH) / 2.0) / frameH).coerceIn(0.0, 1.0)
-            val focus = current.settings.crop
-            val newZoom = (focus.zoom * zoom).coerceIn(1.0, 64.0)
-            val newWidth = visible.width * focus.zoom / newZoom
-            val newHeight = visible.height * focus.zoom / newZoom
-            val cx = visible.left + visible.width * u - (u - 0.5) * newWidth - pan.x / frameW * newWidth
-            val cy = visible.top + visible.height * v - (v - 0.5) * newHeight - pan.y / frameH * newHeight
-            latestCallback(CropFocus((cx / image.orientedSize.width).coerceIn(0.0, 1.0),
-                (cy / image.orientedSize.height).coerceIn(0.0, 1.0), newZoom))
-        }
-    }.pointerInput(image?.id, enabled, plan?.settings?.fit) {
-        if (!enabled || plan?.settings?.fit != FitMode.CROP) return@pointerInput
-        awaitPointerEventScope {
-            while (true) {
-                val event = awaitPointerEvent(PointerEventPass.Final)
-                if (event.changes.none { it.pressed }) latestFinish()
-            }
+        awaitEachGesture {
+            awaitFirstDown(requireUnconsumed = false)
+            val initial = latestPlan ?: return@awaitEachGesture
+            var focus = initial.settings.crop
+            var accumulatedPan = Offset.Zero
+            var accumulatedZoom = 1f
+            var dragging = false
+            var changed = false
+            do {
+                val event = awaitPointerEvent()
+                if (event.changes.any { it.isConsumed }) break
+                val pan = event.calculatePan()
+                val zoom = event.calculateZoom()
+                accumulatedPan += pan
+                accumulatedZoom *= zoom
+                if (!dragging) dragging = accumulatedPan.getDistance() > viewConfiguration.touchSlop ||
+                    abs(1f - accumulatedZoom) * event.calculateCentroidSize(useCurrent = false) > viewConfiguration.touchSlop
+                if (dragging && (pan != Offset.Zero || zoom != 1f)) {
+                    val current = latestPlan ?: initial
+                    val ratio = current.destination.cropRatio(image.orientedSize, current.settings.size)
+                    val exact = (current.settings.size as? OutputSizeChoice.Exact)?.canvas
+                    val geometry = CropPlanner.plan(image.orientedSize, ratio, focus, exactOutput = exact)
+                    val centroid = event.calculateCentroid(useCurrent = false)
+                    val visible = geometry.visibleSource
+                    val scale = min(size.width.toDouble() / geometry.output.width,
+                        size.height.toDouble() / geometry.output.height)
+                    val frameW = geometry.output.width * scale
+                    val frameH = geometry.output.height * scale
+                    if (frameW <= 0.0 || frameH <= 0.0) break
+                    val u = ((centroid.x - (size.width - frameW) / 2.0) / frameW).coerceIn(0.0, 1.0)
+                    val v = ((centroid.y - (size.height - frameH) / 2.0) / frameH).coerceIn(0.0, 1.0)
+                    val newZoom = (focus.zoom * zoom).coerceIn(1.0, 64.0)
+                    val newWidth = visible.width * focus.zoom / newZoom
+                    val newHeight = visible.height * focus.zoom / newZoom
+                    val cx = visible.left + visible.width * u - (u - 0.5) * newWidth - pan.x / frameW * newWidth
+                    val cy = visible.top + visible.height * v - (v - 0.5) * newHeight - pan.y / frameH * newHeight
+                    try {
+                        val next = CropPlanner.plan(image.orientedSize, ratio,
+                            CropFocus((cx / image.orientedSize.width).coerceIn(0.0, 1.0),
+                                (cy / image.orientedSize.height).coerceIn(0.0, 1.0), newZoom), exactOutput = exact)
+                        focus = CropFocus(next.normalizedCenterX, next.normalizedCenterY, newZoom)
+                        latestCallback(focus)
+                        changed = true
+                    } catch (_: IllegalArgumentException) { /* Retain the last valid crop. */ }
+                }
+                if (dragging) event.changes.forEach { if (it.positionChanged()) it.consume() }
+            } while (event.changes.any { it.pressed })
+            // One handler owns movement and release; no second pointer observer can
+            // miss the final event or commit an intermediate frame.
+            if (changed) { latestCallback(focus); latestFinish() }
         }
     }
 }

@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.os.SystemClock
 import android.view.MotionEvent
+import android.view.InputDevice
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.lifecycle.ViewModelProvider
 import androidx.test.core.app.ActivityScenario
@@ -12,6 +13,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import org.cajapersonal.fixmyshot.core.*
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
+import org.cajapersonal.fixmyshot.export.ReviewSessionJournal
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -30,10 +32,22 @@ class EditorInteractionTest {
         test.uiAutomation.waitForIdle(150, 5_000)
     }
 
+    private var caseName = "editor"
+
     private fun capture() {
+        val tree = StringBuilder()
+        fun dump(node: AccessibilityNodeInfo?, depth: Int = 0) {
+            if (node == null) return
+            val rect = Rect().also { node.getBoundsInScreen(it) }
+            tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
+            for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
+        }
+        dump(test.uiAutomation.rootInActiveWindow)
+        File(app.filesDir, "editor-$caseName.txt").writeText(tree.toString())
         val screenshot = test.uiAutomation.takeScreenshot() ?: return
         try { File(app.filesDir, "editor-framing.png").outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) } }
         finally { screenshot.recycle() }
+        File(app.filesDir, "editor-framing.png").copyTo(File(app.filesDir, "editor-$caseName.png"), overwrite = true)
     }
 
     private fun await(condition: () -> Boolean) {
@@ -43,13 +57,6 @@ class EditorInteractionTest {
         }
         if (!condition()) {
             capture()
-            fun dump(node: AccessibilityNodeInfo?, depth: Int = 0) {
-                if (node == null) return
-                val rect = Rect().also { node.getBoundsInScreen(it) }
-                println("EDITOR_NODE depth=$depth text=${node.text} description=${node.contentDescription} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
-                for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
-            }
-            dump(test.uiAutomation.rootInActiveWindow)
             fail("Editor did not settle; synthetic UI captured")
         }
     }
@@ -81,7 +88,7 @@ class EditorInteractionTest {
             return null
         }
         val node = requireNotNull(scrollable(test.uiAutomation.rootInActiveWindow)) { "No vertical tool pane" }
-        assertTrue(node.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id))
+        assertTrue(node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD))
         settleUi()
     }
 
@@ -105,7 +112,9 @@ class EditorInteractionTest {
         val hash = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it) }
         val journal = File(app.filesDir, "review-session.json")
         val before = journal.takeIf { it.exists() }?.readBytes()
-        ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+        val journalStore = ReviewSessionJournal(journal)
+        journalStore.clear()
+        try { ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             lateinit var model: ReviewViewModel
             lateinit var strings: android.content.res.Resources
             scenario.onActivity { model = ViewModelProvider(it)[ReviewViewModel::class.java]; strings = it.resources }
@@ -119,15 +128,19 @@ class EditorInteractionTest {
             try { block(scenario, model) { strings.getString(it) } }
             catch (failure: Throwable) { capture(); throw failure }
             finally {
-                scenario.onActivity { model.draft = DraftSession(); model.selectedId = null; model.trimPreview() }
+                scenario.onActivity { model.draft = DraftSession(); model.selectedId = null; model.trimPreview(); model.onDraftEdited() }
+                await { journalStore.read() == null }
             }
         }
-        if (before != null) journal.writeBytes(before) else journal.delete()
-        assertArrayEquals(bytes, file.readBytes())
-        file.delete()
+        } finally {
+            journalStore.clear()
+            if (before != null) journal.writeBytes(before)
+            try { assertArrayEquals(bytes, file.readBytes()) } finally { file.delete() }
+        }
     }
 
     @Test fun gesturesKeepTheSampleAndCommitOneUndoableEdit() = fixture { scenario, model, label ->
+        caseName = "gesture"
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
@@ -138,6 +151,7 @@ class EditorInteractionTest {
         val down = SystemClock.uptimeMillis()
         fun event(action: Int, x: Float, y: Float) {
             val e = MotionEvent.obtain(down, SystemClock.uptimeMillis(), action, x, y, 0)
+            e.source = InputDevice.SOURCE_TOUCHSCREEN
             try { test.sendPointerSync(e) } finally { e.recycle() }
         }
         val x = rect.exactCenterX()
@@ -157,13 +171,15 @@ class EditorInteractionTest {
     }
 
     @Test fun arrowsAndFineZoomDoNotScrollTheCanvasAway() = fixture { _, model, label ->
+        caseName = "arrows"
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
         settleUi()
         val previewLabel = label(R.string.preview_description)
         val initial = bounds(previewLabel)
-        val zoomPlus = "+ ${label(R.string.crop_zoom_control)}"
+        val zoomPlus = "+"
+        capture()
         repeat(6) { if (find(zoomPlus) == null) scroll() }
         click(zoomPlus)
         await { model.draft.images.single().overrides.resolve(model.draft.batch).crop.zoom > 1.0 }

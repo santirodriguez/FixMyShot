@@ -95,6 +95,10 @@ editor_result=$?
 cat evidence/editor-interaction-instrumentation.txt
 adb exec-out run-as "$package" cat files/editor-framing.png > evidence/editor-framing.png
 editor_capture_result=$?
+# Separate synthetic failure snapshots avoid one case hiding the previous case.
+for editor_file in editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png; do
+  adb exec-out run-as "$package" cat "files/$editor_file" > "evidence/$editor_file" 2>/dev/null || rm -f "evidence/$editor_file"
+done
 # Cache ownership/eviction is checked separately using only synthetic bitmaps.
 timeout 2m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.ReviewThumbnailCacheTest \
