@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ux_destination">Destination</string>
+    <string name="ux_destination_hint">Choose the app, then where the image will appear.</string>
+    <string name="ux_source_ratio">Original</string>
+    <string name="ux_flexible_ratio">Flexible</string>
+    <string name="ux_play_note">9:16 is a recommended presentation. Flexible keeps the smallest valid phone canvas. Play uses opaque PNG in FixMyShot.</string>
+    <string name="ux_social_note">Photo layout guidance, not upload certification. The receiving app may crop or recompress. This does not produce video.</string>
+    <string name="ux_tiktok_note">Photo layout only. TikTok’s posting API documents JPEG/WebP, not PNG; manual-app acceptance is unverified. Your format will not change automatically.</string>
+    <string name="ux_whatsapp_note">Status 9:16 is layout guidance. WhatsApp may reduce quality. Chat keeps the original aspect ratio, not a byte-identical original file.</string>
+    <string name="ux_pixel_steps">Fine arrows · 1 source pixel</string>
+    <string name="ux_matte_hint">Match edges saves a solid sampled color for this image. It never extends or invents content.</string>
+    <string name="ux_about">About FixMyShot</string>
+    <string name="ux_expanded">Expanded</string>
+    <string name="ux_collapsed">Collapsed</string>
+</resources>

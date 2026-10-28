@@ -24,6 +24,15 @@ import kotlin.math.pow
 internal object ReviewBitmapRenderer {
     data class Rendered(val image: Bitmap, val plannedOutput: PixelSize, val sampled: Boolean)
 
+    /** Owned by one live canvas; never shared across threads or export jobs. */
+    class DrawResources {
+        val sourceRect = Rect()
+        val targetRect = RectF()
+        val cropRect = RectF()
+        val transform = Matrix()
+        val paint = Paint()
+    }
+
     fun preview(sample: Bitmap, orientedSource: PixelSize, plan: PreviewPlan, maxLongSide: Int = 1200): Rendered {
         require(!sample.isRecycled && maxLongSide in 64..1600)
         require(sample.config == Bitmap.Config.ARGB_8888 && sample.colorSpace?.isSrgb == true) {
@@ -66,31 +75,34 @@ internal object ReviewBitmapRenderer {
     /** The live editor draws the same mapping without allocating a new bitmap per pointer event. */
     fun drawContent(canvas: Canvas, targetWidth: Int, targetHeight: Int, source: Bitmap,
         orientedSource: PixelSize, plannedOutput: PixelSize, placement: PixelPlacement,
-        crop: SourceRectangle? = null) {
+        crop: SourceRectangle? = null, resources: DrawResources = DrawResources()) {
+        val rect = resources.targetRect
         if (crop == null) {
-            val rect = RectF(
+            rect.set(
                 targetWidth.toFloat() * placement.left / plannedOutput.width,
                 targetHeight.toFloat() * placement.top / plannedOutput.height,
                 targetWidth.toFloat() * (placement.left + placement.width) / plannedOutput.width,
                 targetHeight.toFloat() * (placement.top + placement.height) / plannedOutput.height)
             val identity = rect.width() == source.width.toFloat() && rect.height() == source.height.toFloat() &&
                 rect.left == rect.left.toInt().toFloat() && rect.top == rect.top.toInt().toFloat()
-            canvas.drawBitmap(source, Rect(0, 0, source.width, source.height), rect,
-                Paint(if (identity) 0 else Paint.FILTER_BITMAP_FLAG))
+            resources.sourceRect.set(0, 0, source.width, source.height)
+            resources.paint.isFilterBitmap = !identity
+            canvas.drawBitmap(source, resources.sourceRect, rect, resources.paint)
         } else {
             require(crop.left + crop.width <= orientedSource.width + 1e-7 &&
                 crop.top + crop.height <= orientedSource.height + 1e-7)
             val scaleX = source.width.toDouble() / orientedSource.width
             val scaleY = source.height.toDouble() / orientedSource.height
-            val rect = RectF((crop.left * scaleX).toFloat(), (crop.top * scaleY).toFloat(),
+            val sourceCrop = resources.cropRect
+            sourceCrop.set((crop.left * scaleX).toFloat(), (crop.top * scaleY).toFloat(),
                 ((crop.left + crop.width) * scaleX).toFloat(),
                 ((crop.top + crop.height) * scaleY).toFloat())
-            val identity = rect.width() == targetWidth.toFloat() && rect.height() == targetHeight.toFloat() &&
-                rect.left == rect.left.toInt().toFloat() && rect.top == rect.top.toInt().toFloat()
-            val transform = Matrix().apply {
-                setRectToRect(rect, RectF(0f, 0f, targetWidth.toFloat(), targetHeight.toFloat()), Matrix.ScaleToFit.FILL)
-            }
-            canvas.drawBitmap(source, transform, Paint(if (identity) 0 else Paint.FILTER_BITMAP_FLAG))
+            val identity = sourceCrop.width() == targetWidth.toFloat() && sourceCrop.height() == targetHeight.toFloat() &&
+                sourceCrop.left == sourceCrop.left.toInt().toFloat() && sourceCrop.top == sourceCrop.top.toInt().toFloat()
+            rect.set(0f, 0f, targetWidth.toFloat(), targetHeight.toFloat())
+            resources.transform.setRectToRect(sourceCrop, rect, Matrix.ScaleToFit.FILL)
+            resources.paint.isFilterBitmap = !identity
+            canvas.drawBitmap(source, resources.transform, resources.paint)
         }
     }
 

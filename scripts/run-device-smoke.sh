@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.automatic
+package=org.cajapersonal.fixmyshot.touch
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -97,6 +97,7 @@ adb exec-out run-as "$package" cat files/editor-framing.png > evidence/editor-fr
 editor_capture_result=$?
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
 for editor_file in editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
+  editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
   editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
   editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
   adb exec-out run-as "$package" cat "files/$editor_file" > "evidence/$editor_file" 2>/dev/null || rm -f "evidence/$editor_file"
@@ -170,7 +171,7 @@ timeout 3m adb shell am instrument -w -r \
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
 set -e
-grep -q 'OK (7 tests)' evidence/editor-interaction-instrumentation.txt
+grep -q 'OK (10 tests)' evidence/editor-interaction-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt

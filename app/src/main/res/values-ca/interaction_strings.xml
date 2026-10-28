@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ux_destination">Destinació</string>
+    <string name="ux_destination_hint">Tria l’app i on es mostrarà la imatge.</string>
+    <string name="ux_source_ratio">Original</string>
+    <string name="ux_flexible_ratio">Flexible</string>
+    <string name="ux_play_note">9:16 és una presentació recomanada. Flexible afegeix només els marges necessaris. Per a Play, FixMyShot fa servir PNG sense transparència.</string>
+    <string name="ux_social_note">Guia de disseny per a fotos, no una garantia de publicació. L’app pot retallar o recomprimir. No genera vídeos.</string>
+    <string name="ux_tiktok_note">Només disseny per a fotos. L’API de TikTok documenta JPEG/WebP, no PNG; la càrrega manual no està verificada. El format no canvia automàticament.</string>
+    <string name="ux_whatsapp_note">Estat 9:16 és una guia visual. WhatsApp pot reduir la qualitat. Xat conserva la proporció original, no copia el fitxer original sense canvis.</string>
+    <string name="ux_pixel_steps">Fletxes precises · 1 píxel original</string>
+    <string name="ux_matte_hint">Igualar les vores desa un color sòlid d’aquesta imatge. No amplia ni inventa contingut.</string>
+    <string name="ux_about">Quant al FixMyShot</string>
+    <string name="ux_expanded">Desplegat</string>
+    <string name="ux_collapsed">Plegat</string>
+</resources>

@@ -56,3 +56,7 @@ https://developers.tiktok.com/docs/en/content-posting-api-media-transfer-guide ;
 https://faq.whatsapp.com/643144237275579/ .
 Do not infer physical responsiveness, Play listing permission, actual social posting compatibility,
 or production release approval from successful host/CI checks alone.
+
+## Menu and draw-phase refinement
+
+The subsequent [menu and interaction refinement](crop-interaction-and-destinations.md) preserves the stable UX2.1 IDs, matte semantics and excluded-source overview while moving transient crop reads entirely to the draw phase. Settings and destinations use coherent compact sheets. The isolated diagnostic package for that candidate is `.touch` / FixMyShot Touch; earlier `.automatic` APKs do not contain it. All existing privacy, fidelity, manual-device and release gates remain.

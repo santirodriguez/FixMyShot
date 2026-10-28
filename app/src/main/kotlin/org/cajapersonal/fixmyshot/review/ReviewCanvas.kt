@@ -45,24 +45,20 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     onGestureStarted: () -> Unit = {},
     onGestureCancelled: () -> Unit = {},
 ) {
-    // Frame-local edits redraw only this canvas; commit the draft only at pointer up.
-    var liveFocus by remember(image.id, plan.sessionRevision, plan.itemRevision, plan.settings.fit) {
-        mutableStateOf<CropFocus?>(null)
+    val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
+    val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
+    val baseOutput = contained?.canvas ?: cropped?.output ?: return
+    // Read these states ONLY in the draw lambda. Pointer moves must not recompose the screen,
+    // rebuild an immutable session, run export preflight or allocate an output bitmap.
+    var liveCrop by remember(image.id, sample, plan.sessionRevision, plan.itemRevision, plan.settings, enabled) {
+        mutableStateOf<CropMotion?>(null)
     }
-    val live = remember(plan, liveFocus) {
-        val focus = liveFocus
-        if (focus == null || plan.settings.fit != FitMode.CROP) plan else try {
-            val frame = CropPlanner.plan(image.orientedSize,
-                plan.destination.cropRatio(image.orientedSize, plan.settings.size), focus,
-                exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)
-            plan.copy(settings = plan.settings.copy(crop = focus), geometry = PlannedGeometry.Cropped(frame))
-        } catch (_: IllegalArgumentException) { plan }
+    var livePosition by remember(image.id, sample, plan.sessionRevision, plan.itemRevision, plan.settings, enabled) {
+        mutableStateOf<ContainPosition?>(null)
     }
-    val contained = (live.geometry as? PlannedGeometry.Contained)?.value
-    val cropped = (live.geometry as? PlannedGeometry.Cropped)?.value
-    val output = contained?.canvas ?: cropped?.output ?: return
-    val currentPlan by rememberUpdatedState(live)
-    val currentPosition by rememberUpdatedState(onPosition)
+    val drawResources = remember(sample) { ReviewBitmapRenderer.DrawResources() }
+    val cropPlacement = remember(baseOutput) { PixelPlacement(0, 0, baseOutput.width, baseOutput.height) }
+    val currentPlan by rememberUpdatedState(plan)
     val commitPosition by rememberUpdatedState(onPositionCommitted)
     val currentTap by rememberUpdatedState(onTap)
     val requestCrop by rememberUpdatedState(onContainZoom)
@@ -85,14 +81,10 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
             contentDescription = description
             if (enabled && onTap != null) onClick { onTap(); true }
         }
-        .cropGestures(image, live, enabled, { liveFocus = it }, { finished ->
-            liveFocus = null
-            onCropCommitted(finished)
-        }, onTap, onGestureStarted, {
-            liveFocus = null
-            onGestureCancelled()
-        })
-        .pointerInput(image.id, enabled, plan.settings.fit) {
+        .cropGestures(image, plan, enabled, onPreview = { liveCrop = it },
+            onFinished = { onCropCommitted(it); liveCrop = null }, onTap = onTap,
+            onStarted = onGestureStarted, onCancelled = { liveCrop = null; onGestureCancelled() })
+        .pointerInput(image.id, enabled, plan.sessionRevision, plan.itemRevision, plan.settings.fit) {
             if (!enabled || contained == null) return@pointerInput
             awaitEachGesture {
                 awaitFirstDown(requireUnconsumed = false)
@@ -122,19 +114,22 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
                             next = ContainPosition(
                                 if (spaceX > 0) (next.x + pan.x / bounds.width * geometry.canvas.width / spaceX).coerceIn(0.0, 1.0) else .5,
                                 if (spaceY > 0) (next.y + pan.y / bounds.height * geometry.canvas.height / spaceY).coerceIn(0.0, 1.0) else .5)
-                            currentPosition(next)
+                            livePosition = next
                         }
                         if (moved || cropRequested) event.changes.forEach { if (it.positionChanged()) it.consume() }
                     } while (event.changes.any { it.pressed })
                     if (!cancelled) {
                         completed = true
-                        if (cropRequested) { cancelGesture(); requestCrop() }
-                        else if (moved) commitPosition(next)
+                        if (cropRequested) { livePosition = null; cancelGesture(); requestCrop() }
+                        else if (moved) { commitPosition(next); livePosition = null }
                         else currentTap?.invoke()
                     }
-                } finally { if (!completed) cancelGesture() }
+                } finally { if (!completed) { livePosition = null; cancelGesture() } }
             }
         }) {
+        val drawnCrop = liveCrop?.geometry ?: cropped
+        val drawnContain = livePosition?.let { contained?.positioned(it) } ?: contained
+        val output = drawnContain?.canvas ?: drawnCrop?.output ?: baseOutput
         val bounds = previewOutputCanvasRect(output, size)
         val gap = 32f * density
         var x = -size.height
@@ -165,14 +160,14 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
                 canvas.translate(bounds.left, bounds.top)
                 canvas.scale(bounds.width / output.width, bounds.height / output.height)
                 ReviewBitmapRenderer.drawContent(canvas, output.width, output.height, sample,
-                    image.orientedSize, output, contained?.placement ?: PixelPlacement(0, 0, output.width, output.height),
-                    cropped?.visibleSource)
+                    image.orientedSize, output, drawnContain?.placement ?: cropPlacement,
+                    drawnCrop?.visibleSource, drawResources)
             } finally { canvas.restoreToCount(save) }
         }
         drawRect(Color.Black, bounds.topLeft, bounds.size, style = Stroke(3f * density))
         drawRect(border, bounds.topLeft, bounds.size, style = Stroke(1.4f * density))
         if (showOriginalOutline && contained != null) {
-            val source = previewOriginalContentRect(output, size, contained)
+            val source = previewOriginalContentRect(output, size, drawnContain ?: contained)
             drawRect(Color.Black, source.topLeft, source.size, style = Stroke(3f * density))
             drawRect(Color.White, source.topLeft, source.size, style = Stroke(density))
         }

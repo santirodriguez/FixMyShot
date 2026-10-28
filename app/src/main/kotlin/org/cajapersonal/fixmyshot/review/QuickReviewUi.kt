@@ -104,85 +104,10 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
     }
 }
 
-/** Visible selection stays one compact row; different publishing surfaces retain distinct stable IDs. */
-private val quickDestinationGroups = listOf(
-    "Google Play" to listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE),
-    "Instagram" to listOf(DestinationCatalog.INSTAGRAM_FEED, DestinationCatalog.INSTAGRAM_STORY,
-        DestinationCatalog.INSTAGRAM_SQUARE),
-    "TikTok" to listOf(DestinationCatalog.TIKTOK_PHOTO),
-    "WhatsApp" to listOf(DestinationCatalog.WHATSAPP_STATUS, DestinationCatalog.WHATSAPP_CHAT),
-    "Facebook" to listOf(DestinationCatalog.FACEBOOK_FEED, DestinationCatalog.FACEBOOK_SQUARE),
-    "Other" to listOf(DestinationCatalog.SOCIAL_PORTRAIT, DestinationCatalog.SOCIAL_STORY,
-        DestinationCatalog.SOCIAL_SQUARE),
-)
-
 @Composable
 internal fun QuickTemplateCards(destination: DestinationChoice, enabled: Boolean,
-    onSelect: (DestinationChoice) -> Unit, onCustomize: () -> Unit = {}) {
-    var expanded by rememberSaveable { mutableStateOf(false) }
-    val selectedId = (destination as? DestinationChoice.Preset)?.id
-    val selectedGroup = quickDestinationGroups.firstOrNull { selectedId in it.second }?.first
-    val selectedLabel = selectedId?.let { stringResource(quickTemplateLabel(it)) }
-        ?: stringResource(R.string.quick_customize)
-    val chooserLabel = stringResource(R.string.quick_choose_destination)
-    Box(Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
-        Column(Modifier.fillMaxWidth()) {
-            Surface(onClick = { expanded = true }, enabled = enabled,
-                shape = RoundedCornerShape(16.dp),
-                color = MaterialTheme.colorScheme.surfaceContainer,
-                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
-                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
-                    .semantics { contentDescription = chooserLabel }) {
-                Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(chooserLabel, style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        Text(listOfNotNull(selectedGroup?.takeUnless { it == "Other" }
-                            ?: if (selectedGroup == "Other") stringResource(R.string.quick_other_layouts)
-                               else null, selectedLabel).joinToString(" · "),
-                            style = MaterialTheme.typography.titleSmall)
-                    }
-                    Text("⌄", style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.primary)
-                }
-            }
-            if (selectedId == DestinationCatalog.TIKTOK_PHOTO ||
-                selectedId == DestinationCatalog.WHATSAPP_STATUS) {
-                Text(stringResource(if (selectedId == DestinationCatalog.TIKTOK_PHOTO)
-                    R.string.quick_tiktok_notice else R.string.quick_whatsapp_notice),
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp))
-            }
-        }
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false },
-            modifier = Modifier.heightIn(max = 500.dp)) {
-            quickDestinationGroups.forEach { (group, choices) ->
-                Text(if (group == "Other") stringResource(R.string.quick_other_layouts) else group,
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(start = 16.dp, top = 10.dp, bottom = 2.dp))
-                choices.forEach { id ->
-                    DropdownMenuItem(enabled = enabled,
-                        text = {
-                            Text(stringResource(quickTemplateLabel(id)),
-                                color = if (selectedId == id) MaterialTheme.colorScheme.primary
-                                    else MaterialTheme.colorScheme.onSurface)
-                        },
-                        onClick = { expanded = false; onSelect(DestinationChoice.Preset(id)) })
-                }
-            }
-            HorizontalDivider()
-            DropdownMenuItem(enabled = enabled, text = { Text(stringResource(R.string.quick_customize)) },
-                onClick = { expanded = false; onCustomize() })
-            Text(stringResource(R.string.quick_layout_guidance),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(16.dp))
-        }
-    }
-}
+    onSelect: (DestinationChoice) -> Unit, onCustomize: () -> Unit = {}) =
+    DestinationPicker(destination, enabled, onSelect, onCustomize)
 
 internal fun quickTemplateLabel(id: String): Int = when (id) {
     DestinationCatalog.PLAY_PORTRAIT -> R.string.quick_play_portrait
@@ -201,33 +126,42 @@ internal fun quickTemplateLabel(id: String): Int = when (id) {
     else -> R.string.quick_customize
 }
 
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 internal fun QuickFramingRow(fit: FitMode, enabled: Boolean, onFit: (FitMode) -> Unit,
     modifier: Modifier = Modifier) {
-    Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        FilterChip(selected = fit == FitMode.CONTAIN, onClick = { onFit(FitMode.CONTAIN) }, enabled = enabled,
-            label = { Text(stringResource(R.string.quick_keep_all)) }, modifier = Modifier.weight(1f))
-        FilterChip(selected = fit == FitMode.CROP, onClick = { onFit(FitMode.CROP) }, enabled = enabled,
-            label = { Text(stringResource(R.string.quick_fill_crop)) }, modifier = Modifier.weight(1f))
+    SingleChoiceSegmentedButtonRow(modifier.fillMaxWidth().padding(vertical = 6.dp)) {
+        listOf(FitMode.CONTAIN to R.string.quick_keep_all, FitMode.CROP to R.string.quick_fill_crop)
+            .forEachIndexed { index, (value, label) ->
+                SegmentedButton(selected = fit == value, onClick = { onFit(value) }, enabled = enabled,
+                    shape = SegmentedButtonDefaults.itemShape(index, 2),
+                    modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(label)) }
+            }
     }
 }
 
 @Composable
 internal fun QuickBackgroundRow(choice: BackgroundChoice, sample: Bitmap?, enabled: Boolean,
     onChange: (BackgroundChoice) -> Unit) {
-    // Save the sampled color as a concrete RGB override; no old Automatic plan is reinterpreted.
-    val edge = remember(sample) { sample?.let { BackgroundChoice.CustomRgb(ReviewBitmapRenderer.edgeMatteRgb(it)) } }
-    val choices = buildList {
-        if (edge != null) add(edge to R.string.quick_background_edge)
-        add(BackgroundChoice.Automatic to R.string.preview_background_auto)
-        add(BackgroundChoice.White to R.string.preview_background_white)
-        add(BackgroundChoice.Black to R.string.preview_background_black)
-    }
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        choices.forEach { (value, label) ->
-            FilterChip(selected = choice == value, onClick = { onChange(value) }, enabled = enabled,
-                label = { Text(stringResource(label), style = MaterialTheme.typography.labelSmall) },
-                modifier = Modifier.weight(1f))
+    val match = remember(sample) { sample?.takeUnless { it.isRecycled }?.let { BackgroundChoice.CustomRgb(ReviewBitmapRenderer.edgeMatteRgb(it)) } }
+    val choices = listOf(BackgroundChoice.Automatic to R.string.preview_background_auto,
+        BackgroundChoice.White to R.string.preview_background_white,
+        BackgroundChoice.Black to R.string.preview_background_black) +
+        listOfNotNull(match?.let { it to R.string.quick_background_edge })
+    Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)) {
+        Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            choices.chunked(2).forEach { row ->
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    row.forEach { (value, label) ->
+                        FilterChip(selected = choice == value, enabled = enabled, onClick = { onChange(value) },
+                            modifier = Modifier.weight(1f).heightIn(min = 48.dp),
+                            label = { Text(stringResource(label)) })
+                    }
+                }
+            }
+            Text(stringResource(R.string.ux_matte_hint), Modifier.padding(horizontal = 4.dp),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
@@ -294,7 +228,7 @@ internal fun CompareOriginalButton(comparing: Boolean, enabled: Boolean, onCompa
 @Composable
 internal fun QuickWorkspace(modifier: Modifier, stage: @Composable () -> Unit, tools: @Composable () -> Unit) {
     BoxWithConstraints(modifier) {
-        val toolsHeightLimit = maxHeight * .46f
+        val toolsHeightLimit = maxHeight * .40f
         if (maxWidth > maxHeight) Row(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1.5f).fillMaxHeight()) { stage() }
             Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())) { tools() }

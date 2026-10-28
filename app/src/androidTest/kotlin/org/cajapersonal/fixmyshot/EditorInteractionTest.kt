@@ -1,5 +1,21 @@
 package org.cajapersonal.fixmyshot
 
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import org.cajapersonal.fixmyshot.design.FixMyShotTheme
+import org.cajapersonal.fixmyshot.review.ReviewCanvas
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.Collections
+import android.os.Handler
+import android.os.HandlerThread
+import android.view.FrameMetrics
+import org.json.JSONObject
+import org.json.JSONArray
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Rect
@@ -357,5 +373,138 @@ class EditorInteractionTest {
         assertTrue("Start Choose images must remain visible without scrolling", window.contains(startAction))
         caseName = "start"
         capture()
+    }    @Test fun platformPickerAndMatchedMattePreserveTheOriginal() = fixture { _, model, label ->
+        caseName = "destinations"
+        val sample = model.preview
+        val before = model.draft
+        click(label(R.string.quick_choose_destination))
+        reveal("WhatsApp")
+        click("WhatsApp")
+        reveal(label(R.string.destination_whatsapp_chat))
+        capture()
+        click(label(R.string.destination_whatsapp_chat))
+        await { model.draft.destination == DestinationChoice.Preset(DestinationCatalog.WHATSAPP_CHAT) }
+        val plan = model.draft.plans(36).single()
+        assertEquals(PixelSize(1344, 2992), (plan.geometry as PlannedGeometry.Contained).value.canvas)
+        assertEquals(before.batch, model.draft.batch)
+        assertSame(sample, model.preview)
+        click(label(R.string.editor_background))
+        reveal(label(R.string.quick_background_edge))
+        click(label(R.string.quick_background_edge))
+        await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
+        assertEquals(before.batch, model.draft.batch)
+        assertSame(sample, model.preview)
+        caseName = "matched-matte"
+        capture()
     }
+
+    @Test fun cropMovesDrawWithoutPublishingOrRecomposingTheParent() = fixture { scenario, model, label ->
+        caseName = "crop-performance"
+        val source = model.draft.images.single()
+        val sample = requireNotNull(model.preview)
+        val baseline = model.draft.setBatch(model.draft.batch.copy(fit = FitMode.CROP,
+            crop = CropFocus(zoom = 1.2))).plans(36).single()
+        val compositions = AtomicInteger()
+        val publications = AtomicInteger()
+        val durations = Collections.synchronizedList(mutableListOf<Long>())
+        val metricThread = HandlerThread("editor-frame-evidence").apply { start() }
+        val listener = android.view.Window.OnFrameMetricsAvailableListener { _, metrics, _ ->
+            durations.add(metrics.getMetric(FrameMetrics.TOTAL_DURATION))
+        }
+        var metricWindow: android.view.Window? = null
+        try {
+            scenario.onActivity { activity ->
+                metricWindow = activity.window
+                activity.window.addOnFrameMetricsAvailableListener(listener, Handler(metricThread.looper))
+                activity.setContent {
+                    var focus by remember { mutableStateOf(baseline.settings.crop) }
+                    val plan = remember(focus) { baseline.copy(settings = baseline.settings.copy(crop = focus),
+                        geometry = PlannedGeometry.Cropped(CropPlanner.plan(source.orientedSize,
+                            baseline.destination.cropRatio(source.orientedSize), focus))) }
+                    SideEffect { compositions.incrementAndGet() }
+                    FixMyShotTheme(dark = false) {
+                        ReviewCanvas(sample, source, plan, true, false,
+                            Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing),
+                            onCrop = { publications.incrementAndGet(); focus = it }, onPosition = {}, onGestureFinished = {})
+                    }
+                }
+            }
+            await { find(label(R.string.preview_description)) != null && compositions.get() > 0 }
+            settleUi()
+            val rectangle = bounds(label(R.string.preview_description))
+            fun rasterSignature(): Long {
+                val bitmap = requireNotNull(test.uiAutomation.takeScreenshot())
+                try {
+                    var result = 7L
+                    for (y in rectangle.top + 10 until rectangle.bottom - 10 step 11) {
+                        result = result * 31 + bitmap.getPixel(rectangle.centerX(), y)
+                    }
+                    return result
+                } finally { bitmap.recycle() }
+            }
+            val before = rasterSignature()
+            val count = compositions.get()
+            var down = SystemClock.uptimeMillis()
+            fun pointer(action: Int, dy: Float) {
+                if (action == MotionEvent.ACTION_DOWN) down = SystemClock.uptimeMillis()
+                val event = MotionEvent.obtain(down, SystemClock.uptimeMillis(), action,
+                    rectangle.exactCenterX(), rectangle.exactCenterY() + dy, 0)
+                event.source = InputDevice.SOURCE_TOUCHSCREEN
+                try { test.sendPointerSync(event) } finally { event.recycle() }
+            }
+            pointer(MotionEvent.ACTION_DOWN, 0f)
+            repeat(20) { step -> pointer(MotionEvent.ACTION_MOVE, (step + 1) * 4f); SystemClock.sleep(16) }
+            test.waitForIdleSync()
+            assertEquals("Pointer movement must not publish transient crop values", 0, publications.get())
+            assertEquals("Draw-only movement must not recompose the parent", count, compositions.get())
+            assertNotEquals("The actual preview must move before pointer-up", before, rasterSignature())
+            pointer(MotionEvent.ACTION_UP, 80f)
+            await { publications.get() == 1 && compositions.get() > count }
+            val committedRaster = rasterSignature()
+            pointer(MotionEvent.ACTION_DOWN, 0f)
+            repeat(10) { step -> pointer(MotionEvent.ACTION_MOVE, -(step + 1) * 4f); SystemClock.sleep(16) }
+            pointer(MotionEvent.ACTION_CANCEL, -40f)
+            settleUi()
+            assertEquals("Cancellation must not publish another crop", 1, publications.get())
+            assertEquals("Cancellation restores the committed viewport", committedRaster, rasterSignature())
+            capture()
+        } finally {
+            scenario.onActivity { metricWindow?.removeOnFrameMetricsAvailableListener(listener) }
+            metricThread.quitSafely()
+            metricThread.join(2_000)
+            val times = synchronized(durations) { durations.toList().sorted() }
+            val report = JSONObject().put("scope", "SYNTHETIC_EMULATOR_DEBUG_NOT_PIXEL_ACCEPTANCE")
+                .put("parentCompositions", compositions.get()).put("cropPublications", publications.get())
+                .put("frameCount", times.size).put("totalDurationNs", JSONArray(times))
+                .put("physicalBaselineAvailable", false)
+            if (times.isNotEmpty()) report.put("p95TotalNs", times[((times.size - 1) * .95).toInt()])
+            File(app.filesDir, "editor-frame-metrics.json").writeText(report.toString(2))
+        }
+    }
+
+    @Test fun settingsSheetKeepsAppearanceLanguageAndHelpAccessible() = fixture { _, model, label ->
+        caseName = "settings-dark"
+        val before = model.draft
+        val sample = model.preview
+        click(label(R.string.quick_settings))
+        try {
+            await { find(label(R.string.settings_title)) != null }
+            click(label(R.string.theme_dark))
+            await { find(label(R.string.settings_language)) != null }
+            capture()
+            reveal(label(R.string.help_title))
+            click(label(R.string.help_title))
+            reveal(label(R.string.native_check_title))
+            assertNotNull(find(label(R.string.native_check_title)))
+            assertEquals(before, model.draft)
+            assertSame(sample, model.preview)
+        } finally {
+            reveal(label(R.string.theme_light))
+            click(label(R.string.theme_light))
+            click(label(R.string.close_action))
+        }
+        await { find(label(R.string.preview_description)) != null }
+        assertEquals(before, model.draft)
+    }
+
 }
