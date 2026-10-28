@@ -29,7 +29,7 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     enabled: Boolean, showOriginalOutline: Boolean, modifier: Modifier = Modifier,
     onCrop: (CropFocus) -> Unit, onPosition: (ContainPosition) -> Unit,
     onGestureFinished: () -> Unit,
-    onCropCommitted: (CropFocus) -> Unit,
+    onCropCommitted: (CropFocus) -> Unit = onCrop,
 ) {
     val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
     val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
