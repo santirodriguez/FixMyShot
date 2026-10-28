@@ -1,10 +1,12 @@
-Responsive editor interaction and clipping checkpoint after run 40715663944.
-Base: 8b24a4a3155379f9aa7ea72cc372be8a316c7eb4 (build SUCCESS, API36 two EditorInteractionTest failures).
-Scope: keep real crop gesture handling until release, clip canvas/tool panels,
-navigate accessible zoom and movement controls bidirectionally and use explicit labels.
-Preserve exactly one revision on release/one undo, retained original sample,
-full source and export geometry, 200-percent text and three locales.
-Run Kotlin/resources/lint, 8 renderer cases, Android API36 interaction tests,
-80 synthetic lossless output encodes and all original regression suites.
-No ignored assertions, no release/merge/signing/hardware PASS claim.
+Editor interaction targeted validation following run 40719371005.
+Base head: 1eefdb7afa76ecedb4b7f3da342458bf47b9bf98.
+Fix vertical tool-pane selection (exclude short horizontal tab strip).
+Process all crop pointer events through release and commit the final event-local
+CropFocus exactly once after transient updates, without changing source/export maths.
+Preserve clipped panels, 2% zoom control, one undoable revision, original sample,
+privacy/PNG defaults, and all existing test assertions.
+Require current Android build, JVM/lint, API36 EditorInteractionTest2/2,
+ReviewRenderTest8/8, import/settings and actual PNG/lossless WebP fixture tests.
+If failed, retain synthetic editor screenshots and accessibility trees.
+Never assert hardware acceptance or merge/release/production signing.
 profile=current
