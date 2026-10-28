@@ -172,6 +172,8 @@ class EditorInteractionTest {
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
+        await { model.draft.plans(Build.VERSION.SDK_INT).single().geometry is PlannedGeometry.Cropped }
+        await { find("+ ${label(R.string.crop_zoom_control)}") != null }
         settleUi()
         val sample = model.preview
         val before = model.draft
@@ -203,6 +205,8 @@ class EditorInteractionTest {
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
+        await { model.draft.plans(Build.VERSION.SDK_INT).single().geometry is PlannedGeometry.Cropped }
+        await { find("+ ${label(R.string.crop_zoom_control)}") != null }
         settleUi()
         val previewLabel = label(R.string.preview_description)
         val initial = bounds(previewLabel)
