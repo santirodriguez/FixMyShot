@@ -1324,3 +1324,11 @@ ordinary HEIC/AVIF export. Bind the returned report to this exact APK hash;
 record model/Android and actual results. Startup, gallery, source preservation,
 native codec, physical16KiB and all wider device gates remain PENDING until
 observed. The debug handoff grants no publisher/source/distribution approval.
+
+## Live editor redesign — accumulated validation requested (2026-10-28)
+
+Development branch release/0.1.0-editor starts at4aa497e427d1d09a1bf84ef7f942869b08c7fc65. The editor keeps a fixed canvas and independently scrollable active-tool pane, shares the original source sample across geometry edits/recreation, and replaces the former crop/position dialogs with live plan-driven drawing. Crop/slider gestures commit once on release; fine +/- zoom uses2% relative steps with a logarithmic slider. Advanced fields are contextual; batch overrides, original files, output geometry/formats/privacy/recovery are preserved. Debug package .editor/visible FixMyShot Editor installs separately; production ID/key untouched.
+
+Prepared evidence: three pure-JVM EditorZoomTest cases, two actual Compose accessibility/pointer EditorInteractionTest cases, existing8render regressions and full current-profile suites. The new cases assert retained sample identity, one gesture revision plus undo/recreation, a precise1.02x button step and stable canvas bounds during control scrolling; editor-framing.png contains only synthetic content. Existing renderer/transaction/private-output assertions remain unchanged.
+
+Local resource/XML/catalog/placeholder/manifest checks(278 matching keys), release-source checker and10release/10device-report host cases PASS; Bash syntax and diff whitespace PASS. Android compile/lint/JVM/new interaction/runtime checks are NOT RUN until the exact source-bound Actions checkpoint completes. No frame-time or allocation benchmark is claimed. Pixel9ProXL smoothness/visual/fidelity, TalkBack/large text/keyboard/manual languages, real-provider/other hardware and existing release gates remain OPEN.

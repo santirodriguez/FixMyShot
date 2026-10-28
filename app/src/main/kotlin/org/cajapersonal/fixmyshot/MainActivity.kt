@@ -48,7 +48,6 @@ import org.cajapersonal.fixmyshot.core.EditableField
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
 import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
-import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
 import org.cajapersonal.fixmyshot.review.ReviewSources
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
@@ -65,11 +64,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sources: ReviewSources
     @Volatile private var generation = 0L
     private val pendingThumbnails = mutableSetOf<String>()
-    @Volatile private var cropPreviewGeneration = 0L
-    private var cropPreviewImageId by mutableStateOf<String?>(null)
-    private var cropPreviewLoadingId by mutableStateOf<String?>(null)
-    private var cropPreviewSource by mutableStateOf<Bitmap?>(null)
-
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) addImages(uris)
     }
@@ -125,8 +119,9 @@ class MainActivity : AppCompatActivity() {
             LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked) {
                 model.drainImports(applicationContext)
             }
-            LaunchedEffect(model.draft.revision, model.selectedId) {
-                loadPreview()
+            val selectedSource = model.draft.images.firstOrNull { it.id == model.selectedId }
+            LaunchedEffect(selectedSource?.id, selectedSource?.contentSha256, model.previewEpoch) { loadPreview() }
+            LaunchedEffect(model.draft.images.map { it.id }) {
                 scheduleThumbnails(model.draft.images.map { it.id })
             }
             SideEffect {
@@ -178,13 +173,8 @@ class MainActivity : AppCompatActivity() {
                         editorSessionKey = model.editorSessionKey,
                         editSelectedOnly = model.editSelectedOnly,
                         onEditSelectedOnly = model::changeEditScope,
-                        preview = model.preview,
+                        preview = model.preview.takeIf { model.previewSourceKey == selectedSource?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" } },
                         thumbnails = model.thumbnails,
-                        cropSource = cropPreviewSource,
-                        cropSourceId = cropPreviewImageId,
-                        cropLoadingId = cropPreviewLoadingId,
-                        onOpenCropEditor = { requestCropEditor(it) },
-                        onCloseCropEditor = { closeCropEditor() },
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
                         importProgress = model.importProgress,
@@ -232,7 +222,6 @@ class MainActivity : AppCompatActivity() {
                         },
                         onSelect = selectImage@{ id ->
                             if (model.exportState.isLocked) return@selectImage
-                            closeCropEditor()
                             model.selectedId = id
                             model.checkpointDraft()
                             model.selectThumbnail(id)
@@ -348,7 +337,6 @@ class MainActivity : AppCompatActivity() {
     private fun updateDraft(value: DraftSession) {
         if (model.isBusy || model.shareBusy || model.pendingImportCount != 0 ||
             model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
-        closeCropEditor()
         val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()
@@ -393,42 +381,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** Decode a bounded ORIGINAL sample asynchronously; never reuse the already-cropped preview. */
-    private fun requestCropEditor(id: String) {
-        if (model.selectedId != id || model.isBusy || model.shareBusy ||
-            model.sessionRestoreBlocked || model.pendingImportCount != 0 || model.exportState.isLocked) return
-        val candidate = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-        if (candidate?.geometry !is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) return
-        closeCropEditor()
-        val token = ++cropPreviewGeneration
-        cropPreviewLoadingId = id
-        thumbnailWorker.execute {
-            val sample = try { sources.decodeSample(id, maxLongSide = 1200) }
-            catch (_: IOException) { null }
-            catch (_: SecurityException) { null }
-            catch (_: IllegalArgumentException) { null }
-            main.post {
-                if (!isDestroyed && token == cropPreviewGeneration &&
-                    model.selectedId == id && model.draft.images.any { it.id == id } &&
-                    model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-                        ?.geometry is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) {
-                    cropPreviewImageId = id
-                    cropPreviewSource = sample
-                    cropPreviewLoadingId = null
-                } else sample?.recycle()
-            }
-        }
-    }
-
-    private fun closeCropEditor() {
-        ++cropPreviewGeneration
-        cropPreviewLoadingId = null
-        cropPreviewImageId = null
-        val old = cropPreviewSource
-        cropPreviewSource = null
-        old?.recycle()
-    }
-
     /** One bounded decode at a time; old UI snapshots remain valid after LRU eviction. */
     private fun scheduleThumbnails(ids: List<String>) {
         for (id in ids.distinct()) {
@@ -456,38 +408,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadPreview() {
+        val image = model.draft.images.firstOrNull { it.id == model.selectedId }
+        val key = image?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" }
+        if (key != null && model.previewSourceKey == key && model.preview != null) return
         val token = ++generation
         worker.cancelPending()
-        val id = model.selectedId
-        val image = model.draft.images.firstOrNull { it.id == id }
-        val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-        model.preview = null
+        model.trimPreview()
         model.previewUnavailable = false
-        if (image == null || plan == null || plan.geometry == null) return
+        if (image == null) return
         worker.execute {
             if (token != generation) return@execute
-            var rendered: android.graphics.Bitmap? = null
-            try {
-                val source = sources.decodeSample(image.id)
-                try {
-                    if (token != generation) return@execute
-                    rendered = ReviewBitmapRenderer.preview(source, image.orientedSize, plan).image
-                } finally { source.recycle() }
-            } catch (_: IOException) {
-                // Display a generic localized error; never print source URIs or image names.
-            } catch (_: IllegalArgumentException) {
-                // Geometry or color is not currently previewable.
-            } catch (_: SecurityException) {
-                // A revoked provider grant cannot be assumed valid.
-            }
-            val candidate = rendered
-            if (token != generation) {
-                candidate?.recycle()
-                return@execute
-            }
+            val candidate = try { sources.decodeSample(image.id) }
+                catch (_: IOException) { null }
+                catch (_: IllegalArgumentException) { null }
+                catch (_: SecurityException) { null }
             main.post {
-                if (!isDestroyed && token == generation && model.selectedId == id &&
-                    model.draft.revision == plan.sessionRevision) {
+                val current = model.draft.images.firstOrNull { it.id == model.selectedId }
+                val currentKey = current?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" }
+                if (!isDestroyed && token == generation && currentKey == key) {
+                    model.previewSourceKey = key
                     model.preview = candidate
                     model.previewUnavailable = candidate == null
                 } else candidate?.recycle()
@@ -520,7 +459,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
-        if (::model.isInitialized) model.foregroundChanged(true)
+        if (::model.isInitialized) { model.foregroundChanged(true); model.previewEpoch++ }
         super.onStart()
     }
 
@@ -533,11 +472,11 @@ class MainActivity : AppCompatActivity() {
         super.onTrimMemory(level)
         if (::model.isInitialized && level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
             model.clearThumbnails()
+            if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) model.trimPreview()
         }
     }
 
     override fun onDestroy() {
-        closeCropEditor()
         generation++
         worker.close()
         thumbnailWorker.shutdownNow()

@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
 import org.cajapersonal.fixmyshot.core.CropFocus
 import org.cajapersonal.fixmyshot.core.CropPlanner
+import org.cajapersonal.fixmyshot.core.EditorZoom
 import org.cajapersonal.fixmyshot.core.DraftImage
 import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.FitMode
@@ -32,7 +34,7 @@ import kotlin.math.roundToInt
 /** Accessible alternatives to the same normalized transform used by drag/pinch. */
 @Composable
 internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean,
-    onCrop: (CropFocus) -> Unit) {
+    onCrop: (CropFocus) -> Unit, onFinished: () -> Unit = {}) {
     if (plan.settings.fit != FitMode.CROP) return
     val geometry = (plan.geometry as? PlannedGeometry.Cropped)?.value
     val focus = plan.settings.crop
@@ -47,41 +49,50 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
     val maxZoom = if (plan.settings.size is OutputSizeChoice.Exact) 64.0 else
         min(64.0, min(base.visibleSource.width / ratio.p, base.visibleSource.height / ratio.q)).coerceAtLeast(1.0)
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(stringResource(R.string.crop_notice))
         val zoomDescription = stringResource(R.string.crop_zoom, (focus.zoom * 100).roundToInt())
         val zoomLabel = stringResource(R.string.crop_zoom_control)
-        Text(zoomDescription)
-        if (maxZoom > 1.0) Slider(value = focus.zoom.toFloat().coerceIn(1f, maxZoom.toFloat()),
-            onValueChange = { onCrop(focus.copy(zoom = it.toDouble())) },
+        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            OutlinedButton(enabled = enabled && focus.zoom > 1.0, onClick = {
+                onCrop(focus.copy(zoom = EditorZoom.step(focus.zoom, -1, maxZoom))); onFinished()
+            }, modifier = Modifier.semantics { contentDescription = "− $zoomLabel" }) { Text("−") }
+            Text(zoomDescription, modifier = Modifier.weight(1f))
+            OutlinedButton(enabled = enabled && focus.zoom < maxZoom, onClick = {
+                onCrop(focus.copy(zoom = EditorZoom.step(focus.zoom, 1, maxZoom))); onFinished()
+            }, modifier = Modifier.semantics { contentDescription = "+ $zoomLabel" }) { Text("+") }
+        }
+        if (maxZoom > 1.0) Slider(value = EditorZoom.toSlider(focus.zoom, maxZoom).toFloat(),
+            onValueChange = { onCrop(focus.copy(zoom = EditorZoom.fromSlider(it.toDouble(), maxZoom))) },
+            onValueChangeFinished = onFinished,
             modifier = Modifier.semantics {
                 contentDescription = zoomLabel
                 stateDescription = zoomDescription
             },
-            valueRange = 1f..maxZoom.toFloat(), enabled = enabled)
+            valueRange = 0f..1f, enabled = enabled)
         val dx = (geometry?.visibleSource?.width ?: base.visibleSource.width) / image.orientedSize.width * 0.1
         val dy = (geometry?.visibleSource?.height ?: base.visibleSource.height) / image.orientedSize.height * 0.1
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(x = (focus.x - dx).coerceIn(0.0, 1.0))) }) {
+            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(x = (focus.x - dx).coerceIn(0.0, 1.0))); onFinished() }) {
                 Text(stringResource(R.string.crop_left))
             }
-            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(x = (focus.x + dx).coerceIn(0.0, 1.0))) }) {
+            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(x = (focus.x + dx).coerceIn(0.0, 1.0))); onFinished() }) {
                 Text(stringResource(R.string.crop_right))
             }
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(y = (focus.y - dy).coerceIn(0.0, 1.0))) }) {
+            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(y = (focus.y - dy).coerceIn(0.0, 1.0))); onFinished() }) {
                 Text(stringResource(R.string.crop_up))
             }
-            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(y = (focus.y + dy).coerceIn(0.0, 1.0))) }) {
+            OutlinedButton(modifier = Modifier.weight(1f), enabled = enabled, onClick = { onCrop(focus.copy(y = (focus.y + dy).coerceIn(0.0, 1.0))); onFinished() }) {
                 Text(stringResource(R.string.crop_down))
             }
         }
-        OutlinedButton(enabled = enabled, onClick = { onCrop(CropFocus()) }) {
+        OutlinedButton(enabled = enabled, onClick = { onCrop(CropFocus()); onFinished() }) {
             Text(stringResource(R.string.crop_reset))
         }
         if (geometry != null && DraftReviewFlag.CROP_FOCUS_REPOSITIONED in plan.reviewFlags) {
             OutlinedButton(enabled = enabled, onClick = {
-                onCrop(CropFocus(geometry.normalizedCenterX, geometry.normalizedCenterY, focus.zoom))
+                onCrop(CropFocus(geometry.normalizedCenterX, geometry.normalizedCenterY, focus.zoom)); onFinished()
             }) { Text(stringResource(R.string.crop_accept_position)) }
         }
     }
@@ -90,9 +101,10 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
 /** Coordinates account for the actual fitted preview frame rather than its letterbox. */
 @Composable
 internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabled: Boolean,
-    onCrop: (CropFocus) -> Unit): Modifier {
+    onCrop: (CropFocus) -> Unit, onFinished: () -> Unit = {}): Modifier {
     val latestPlan by rememberUpdatedState(plan)
     val latestCallback by rememberUpdatedState(onCrop)
+    val latestFinish by rememberUpdatedState(onFinished)
     return pointerInput(image?.id, enabled, plan?.settings?.fit) {
         if (!enabled || image == null || plan?.settings?.fit != FitMode.CROP) return@pointerInput
         detectTransformGestures { centroid, pan, zoom, _ ->
@@ -114,6 +126,14 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
             val cy = visible.top + visible.height * v - (v - 0.5) * newHeight - pan.y / frameH * newHeight
             latestCallback(CropFocus((cx / image.orientedSize.width).coerceIn(0.0, 1.0),
                 (cy / image.orientedSize.height).coerceIn(0.0, 1.0), newZoom))
+        }
+    }.pointerInput(image?.id, enabled, plan?.settings?.fit) {
+        if (!enabled || plan?.settings?.fit != FitMode.CROP) return@pointerInput
+        awaitPointerEventScope {
+            while (true) {
+                val event = awaitPointerEvent(PointerEventPass.Final)
+                if (event.changes.none { it.pressed }) latestFinish()
+            }
         }
     }
 }

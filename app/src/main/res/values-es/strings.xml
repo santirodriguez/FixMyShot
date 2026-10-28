@@ -267,4 +267,14 @@
     <string name="result_creation_uncertain">El destino puede haber creado una copia sin devolver su ubicación. Revisá el destino antes de dar por revisado este resultado; todavía no se puede reintentar esta imagen.</string>
     <string name="result_storage_shortage">El destino no tiene espacio suficiente para esta copia. Liberá espacio o elegí otro destino y reintentá la imagen que falló.</string>
     <string name="result_private_storage_shortage">No hay suficiente espacio en el dispositivo para preparar la exportación. Liberá espacio y reintentá la imagen que falló.</string>
+    <string name="editor_destination">Destino</string>
+    <string name="editor_framing">Encuadre</string>
+    <string name="editor_background">Fondo</string>
+    <string name="editor_export">Exportación</string>
+    <string name="editor_add">Agregar</string>
+    <string name="editor_summary">%1$s · %2$s · %3$d × %4$d px</string>
+    <string name="editor_metadata_removed">Datos identificatorios: se eliminan</string>
+    <string name="editor_metadata_kept">Datos identificatorios: se solicitó conservarlos</string>
+    <string name="editor_review_required">Revisá los ajustes antes de exportar</string>
+    <string name="editor_move_help">Arrastrá la imagen dentro del marco de salida o usá las flechas.</string>
 </resources>

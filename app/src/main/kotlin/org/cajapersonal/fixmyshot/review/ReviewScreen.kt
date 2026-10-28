@@ -3,20 +3,17 @@ package org.cajapersonal.fixmyshot.review
 import android.graphics.Bitmap
 import android.net.Uri
 import org.cajapersonal.fixmyshot.export.PendingMediaStoreRemoval
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,17 +22,13 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,12 +38,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -58,15 +49,11 @@ import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
-import org.cajapersonal.fixmyshot.core.BackgroundChoice
 import org.cajapersonal.fixmyshot.core.ContainGeometry
 import org.cajapersonal.fixmyshot.core.ContainPosition
-import org.cajapersonal.fixmyshot.core.DestinationCatalog
 import org.cajapersonal.fixmyshot.core.DestinationChoice
-import org.cajapersonal.fixmyshot.core.DraftReviewFlag
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.PixelSize
@@ -89,11 +76,6 @@ internal fun ReviewScreen(
     onEditSelectedOnly: (Boolean) -> Unit,
     preview: Bitmap?,
     thumbnails: Map<String, Bitmap>,
-    cropSource: Bitmap? = null,
-    cropSourceId: String? = null,
-    cropLoadingId: String? = null,
-    onOpenCropEditor: (String) -> Unit = {},
-    onCloseCropEditor: () -> Unit = {},
     busy: Boolean,
     invalidImports: Int,
     previewUnavailable: Boolean,
@@ -156,25 +138,37 @@ internal fun ReviewScreen(
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var showOriginalOutline by rememberSaveable(editorSessionKey) { mutableStateOf(false) }
-    var positionEditorFor by remember { mutableStateOf<String?>(null) }
+    var tool by rememberSaveable(editorSessionKey) { mutableStateOf(ReviewTool.DESTINATION) }
+    var crop by remember(selectedId, plan?.sessionRevision) { mutableStateOf(plan?.settings?.crop ?: CropFocus()) }
+    var position by remember(selectedId, plan?.sessionRevision) { mutableStateOf(plan?.settings?.position ?: ContainPosition()) }
+    fun editCrop(next: CropFocus) {
+        if (!editEnabled || selected == null || plan == null) return
+        try {
+            val geometry = org.cajapersonal.fixmyshot.core.CropPlanner.plan(selected.orientedSize,
+                plan.destination.cropRatio(selected.orientedSize, plan.settings.size), next,
+                exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)
+            crop = CropFocus(geometry.normalizedCenterX, geometry.normalizedCenterY, next.zoom)
+        } catch (_: IllegalArgumentException) { /* Keep the last valid frame. */ }
+    }
+    val stagedPlan = remember(plan, crop, position) {
+        if (plan == null || selected == null) plan else when (val geometry = plan.geometry) {
+            is PlannedGeometry.Contained -> plan.copy(settings = plan.settings.copy(position = position),
+                geometry = PlannedGeometry.Contained(geometry.value.positioned(position)))
+            is PlannedGeometry.Cropped -> plan.copy(settings = plan.settings.copy(crop = crop),
+                geometry = PlannedGeometry.Cropped(org.cajapersonal.fixmyshot.core.CropPlanner.plan(
+                    selected.orientedSize, plan.destination.cropRatio(selected.orientedSize, plan.settings.size), crop,
+                    exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)))
+            null -> plan
+        }
+    }
+    fun finishGesture() {
+        if (!editEnabled || plan == null) return
+        if (plan.geometry is PlannedGeometry.Cropped && crop != plan.settings.crop) onCrop(crop)
+        else if (plan.geometry is PlannedGeometry.Contained && position != plan.settings.position) onPosition(position)
+    }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
     val convertedCount = draft.images.count { it.sourceColor != SourceColor.SRGB }
     val batchResetDraft = confirmingBatchReset
-    if (selected != null && plan != null && cropSource != null &&
-        cropSourceId == selected.id && plan.geometry is PlannedGeometry.Cropped) {
-        CropPreviewEditor(image = selected, sample = cropSource, plan = plan, enabled = editEnabled,
-            onDismiss = onCloseCropEditor,
-            onApply = { proposed -> onCloseCropEditor(); onCrop(proposed) })
-    }
-    if (selected != null && plan != null && preview != null && positionEditorFor == selected.id) {
-        val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
-        if (contained != null && (contained.placement.left + contained.rightMargin > 0 ||
-                contained.placement.top + contained.bottomMargin > 0)) {
-            ContainPositionEditor(selected.id, preview, contained, plan.settings.position, editEnabled,
-                onDismiss = { positionEditorFor = null },
-                onApply = { onPosition(it); positionEditorFor = null })
-        }
-    }
     if (batchResetDraft != null && batchResetDraft == draft && editEnabled) AlertDialog(
         onDismissRequest = { confirmingBatchReset = null },
         title = { Text(stringResource(R.string.batch_apply_all)) },
@@ -230,14 +224,9 @@ internal fun ReviewScreen(
         } },
     )
 
-    Column(
-        modifier = Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)
-            .verticalScroll(rememberScrollState()).padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text(stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium)
-        Text(stringResource(R.string.tagline), style = MaterialTheme.typography.bodyMedium)
-        OutlinedButton(onClick = onSettings) { Text(stringResource(R.string.settings_title)) }
+    val panel: @Composable () -> Unit = {
+    Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(12.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)) {
         if (sessionRestored) Text(stringResource(R.string.session_restored), style = MaterialTheme.typography.bodySmall)
         if (sessionExpired) Text(stringResource(R.string.session_expired))
         if (sessionRestoreBlocked) {
@@ -251,7 +240,7 @@ internal fun ReviewScreen(
                 Text(stringResource(R.string.session_retry_save))
             }
         }
-        Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
+        if (draft.images.isEmpty()) Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
         if (importProgress != null) {
             Text(stringResource(R.string.import_progress, importProgress.processed, importProgress.total),
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
@@ -270,17 +259,14 @@ internal fun ReviewScreen(
         else if (invalidImports > 0) TextButton(onClick = onClearImportFeedback, enabled = !busy) {
             Text(stringResource(R.string.import_feedback_dismiss))
         }
-        if (draft.canUndo) OutlinedButton(onClick = onUndo, enabled = editEnabled) {
-            Text(stringResource(R.string.undo_last))
-        }
         if (draft.images.isEmpty()) {
             Text(stringResource(R.string.choose_prompt))
             Text(stringResource(R.string.preview_only_notice), style = MaterialTheme.typography.bodySmall)
         } else {
-            Text(stringResource(R.string.batch_count, draft.images.size), style = MaterialTheme.typography.titleMedium)
+            if (draft.images.size > 1) Text(stringResource(R.string.batch_count, draft.images.size), style = MaterialTheme.typography.titleMedium)
             // A lazy strip avoids composing 100 image controls at once.
             // Thumbnails depict originals, not scaled output or completed exports.
-            LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            if (draft.images.size > 1) LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 itemsIndexed(draft.images, key = { _, image -> image.id }) { index, image ->
                     val selectedThumbnail = image.id == selectedId
                     OutlinedButton(onClick = { onSelect(image.id) }, enabled = editEnabled,
@@ -304,110 +290,34 @@ internal fun ReviewScreen(
                     }
                 }
             }
-            if (selected != null) {
-                val contained = (plan?.geometry as? PlannedGeometry.Contained)?.value
-                val cropped = (plan?.geometry as? PlannedGeometry.Cropped)?.value
-                val output = contained?.canvas ?: cropped?.output
-                val hasMargins = contained != null && (contained.placement.left > 0 ||
-                    contained.rightMargin > 0 || contained.placement.top > 0 ||
-                    contained.bottomMargin > 0)
-                if (output != null) {
-                    Text(stringResource(R.string.preview_canvas_heading),
-                        style = MaterialTheme.typography.titleSmall)
-                    Text(stringResource(if (cropped != null) R.string.preview_mode_crop
-                        else R.string.preview_mode_contain),
-                        style = MaterialTheme.typography.bodyMedium)
-                    Text(stringResource(R.string.preview_dimensions_summary,
-                        selected.orientedSize.width, selected.orientedSize.height,
-                        output.width, output.height), style = MaterialTheme.typography.bodySmall)
-                    if (hasMargins && contained != null) {
-                        Text(stringResource(R.string.margin_details, contained.placement.left,
-                            contained.rightMargin, contained.placement.top, contained.bottomMargin),
-                            style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-                Box(Modifier.fillMaxWidth().height(320.dp).background(MaterialTheme.colorScheme.surfaceVariant)
-                    .cropGestures(selected, plan, editEnabled, onCrop),
-                    contentAlignment = Alignment.Center) {
-                    if (preview != null) {
-                        PreviewEditorStage(preview, plan?.settings?.background == BackgroundChoice.Transparent)
-                        Image(preview.asImageBitmap(), contentDescription = stringResource(R.string.preview_description),
-                            modifier = Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
-                        PreviewCanvasBoundary(preview)
-                        if (hasMargins && showOriginalOutline && contained != null) {
-                            PreviewOriginalOutline(preview, contained)
-                        }
-                    } else {
-                        Text(stringResource(if (previewUnavailable) R.string.preview_unavailable
-                            else R.string.preview_loading))
-                    }
-                }
-                if (preview != null) {
-                    Text(stringResource(R.string.preview_editor_space_notice),
-                        style = MaterialTheme.typography.bodySmall)
-                    if (plan?.settings?.background == BackgroundChoice.Transparent) {
-                        Text(stringResource(R.string.preview_transparency_notice),
-                            style = MaterialTheme.typography.bodySmall)
-                    }
-                }
-                if (hasMargins) {
-                    OutlinedButton(onClick = { positionEditorFor = selected.id }, enabled = editEnabled && preview != null) {
-                        Text(stringResource(R.string.preview_position_open))
-                    }
-                    Text(stringResource(R.string.preview_optional_guides),
-                        style = MaterialTheme.typography.bodySmall)
-                    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(
-                        value = showOriginalOutline, role = Role.Checkbox,
-                        onValueChange = { showOriginalOutline = it }),
-                        verticalAlignment = Alignment.CenterVertically) {
-                        Checkbox(checked = showOriginalOutline, onCheckedChange = null)
-                        Text(stringResource(R.string.preview_original_outline))
-                    }
-                    Text(stringResource(R.string.preview_background_quick_heading),
-                        style = MaterialTheme.typography.bodySmall)
-                    val quickBackground = if (editSelectedOnly) plan?.settings?.background else draft.batch.background
-                    FlowRow(Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        listOf(
-                            BackgroundChoice.Automatic to R.string.preview_background_auto,
-                            BackgroundChoice.Black to R.string.preview_background_black,
-                            BackgroundChoice.White to R.string.preview_background_white,
-                        ).forEach { (choice, label) ->
-                            FilterChip(selected = quickBackground == choice,
-                                onClick = { onBackground(choice, editSelectedOnly) },
-                                enabled = editEnabled && (!editSelectedOnly || plan != null),
-                                label = { Text(stringResource(label)) })
-                        }
-                    }
-                    Text(stringResource(if (editSelectedOnly) R.string.edit_scope_image
-                        else R.string.edit_scope_batch), style = MaterialTheme.typography.bodySmall)
-                }
-            }
             androidx.compose.runtime.key(editorSessionKey) {
                 ReviewControls(
-                    draft = draft, plan = plan, enabled = editEnabled,
+                    tool = tool, draft = draft, plan = stagedPlan, enabled = editEnabled,
                     selectedOnly = editSelectedOnly, onSelectedOnly = onEditSelectedOnly,
                     onDestination = onDestination, onFormat = onFormat, onBackground = onBackground,
                     onFit = onFit, onSize = onSize, onMetadata = onMetadata,
                 )
             }
-            if (customCount > 0) {
+            if (draft.images.size > 1 && customCount > 0 && tool == ReviewTool.EXPORT) {
                 Text(stringResource(R.string.batch_custom_count, customCount))
                 OutlinedButton(enabled = editEnabled, onClick = { confirmingBatchReset = draft }) {
                     Text(stringResource(R.string.batch_apply_all))
                 }
             }
-            if (selected != null && plan != null && plan.geometry is PlannedGeometry.Cropped) {
-                OutlinedButton(onClick = { onOpenCropEditor(selected.id) },
-                    enabled = editEnabled && cropLoadingId != selected.id) {
-                    Text(stringResource(R.string.crop_editor_open))
+            if (tool == ReviewTool.FRAMING && selected != null && stagedPlan != null) {
+                Text(stringResource(if (stagedPlan.geometry is PlannedGeometry.Cropped) R.string.crop_notice
+                    else R.string.editor_move_help), style = MaterialTheme.typography.bodySmall)
+                if (stagedPlan.geometry is PlannedGeometry.Cropped) {
+                    CropControls(selected, stagedPlan, editEnabled, ::editCrop, ::finishGesture)
+                } else {
+                    ContainPositionControls(stagedPlan, editEnabled, onPosition)
                 }
-                if (cropLoadingId == selected.id) Text(stringResource(R.string.preview_loading))
-                else if (cropSourceId == selected.id && cropSource == null) {
-                    Text(stringResource(R.string.preview_unavailable))
+                Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = showOriginalOutline,
+                    role = Role.Checkbox, onValueChange = { showOriginalOutline = it }),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(showOriginalOutline, onCheckedChange = null)
+                    Text(stringResource(R.string.preview_original_outline))
                 }
-                CropControls(selected, plan, editEnabled, onCrop)
             }
             if (selected != null && plan != null) {
                 if (selected.sourceColor != SourceColor.SRGB) Text(stringResource(R.string.color_conversion_details,
@@ -423,11 +333,11 @@ internal fun ReviewScreen(
                     Text(reviewFlagLabel(flag), color = MaterialTheme.colorScheme.error)
                 }
                 if (selected.overrides.hasCustomValues) Text(stringResource(R.string.custom_settings_label))
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (tool == ReviewTool.EXPORT) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(onClick = onResetSelected, enabled = editEnabled) { Text(stringResource(R.string.reset_image)) }
                     OutlinedButton(onClick = onRemove, enabled = editEnabled) { Text(stringResource(R.string.remove_image)) }
                 }
-                if (draft.images.size > 1) {
+                if (tool == ReviewTool.EXPORT && draft.images.size > 1) {
                     val position = draft.images.indexOfFirst { it.id == selectedId }
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedButton(enabled = editEnabled && position > 0, onClick = { onMoveSelected(-1) }) {
@@ -440,9 +350,6 @@ internal fun ReviewScreen(
                 }
                 if (convertedCount > 0) Text(stringResource(R.string.color_conversion_batch, convertedCount),
                     style = MaterialTheme.typography.bodySmall)
-                Button(onClick = onExport, enabled = editEnabled && canPrepareExport) {
-                    Text(stringResource(R.string.export_batch, draft.images.size))
-                }
                 Text(stringResource(if (api >= 29) R.string.export_destination_pictures
                     else R.string.export_destination_saf), style = MaterialTheme.typography.bodySmall)
                 if (exportState.phase == ExportUiPhase.IDLE) {
@@ -451,7 +358,7 @@ internal fun ReviewScreen(
                 }
             }
         }
-        if (draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = { confirmingDiscard = draft },
+        if (tool == ReviewTool.EXPORT && draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = { confirmingDiscard = draft },
             enabled = editEnabled && !shareBusy) {
             Text(stringResource(R.string.discard_session))
         }
@@ -523,6 +430,58 @@ internal fun ReviewScreen(
                 enabled = !busy && !shareBusy)
         }
     }
+    }
+    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleMedium,
+                modifier = Modifier.weight(1f))
+            TextButton(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.editor_add)) }
+            TextButton(onClick = onSettings) { Text(stringResource(R.string.settings_title)) }
+        }
+        if (draft.images.isNotEmpty()) {
+            LazyRow(Modifier.fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                itemsIndexed(ReviewTool.entries) { _, value ->
+                    FilterChip(selected = tool == value, enabled = true,
+                        onClick = { finishGesture(); tool = value }, label = { Text(stringResource(value.label)) })
+                }
+            }
+        }
+        ReviewWorkspace(Modifier.weight(1f), hasImage = selected != null,
+            stage = {
+                val live = stagedPlan
+                val contained = (live?.geometry as? PlannedGeometry.Contained)?.value
+                val cropped = (live?.geometry as? PlannedGeometry.Cropped)?.value
+                val output = contained?.canvas ?: cropped?.output
+                Column(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    if (selected != null && live != null && output != null) {
+                        Text(stringResource(R.string.editor_summary, formatLabel(live.settings.format),
+                            stringResource(if (live.settings.fit == FitMode.CONTAIN) R.string.preserve_content else R.string.crop_mode),
+                            output.width, output.height), style = MaterialTheme.typography.bodySmall)
+                        Text(stringResource(if (live.settings.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
+                            R.string.editor_metadata_removed else R.string.editor_metadata_kept),
+                            style = MaterialTheme.typography.bodySmall)
+                        if (plans.any { it.requiresReview }) Text(stringResource(R.string.editor_review_required),
+                            color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                        Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
+                            if (preview != null) ReviewCanvas(preview, selected, live,
+                                editEnabled && tool == ReviewTool.FRAMING, showOriginalOutline, Modifier.fillMaxSize(),
+                                ::editCrop, { position = it }, ::finishGesture)
+                            else Text(stringResource(if (previewUnavailable) R.string.preview_unavailable else R.string.preview_loading))
+                        }
+                    } else Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text(stringResource(R.string.preview_unavailable))
+                    }
+                }
+            }, controls = panel)
+        if (selected != null && plan != null) Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            if (draft.canUndo) TextButton(onClick = onUndo, enabled = editEnabled) { Text(stringResource(R.string.undo_last)) }
+            Button(onClick = { finishGesture(); onExport() }, enabled = editEnabled && canPrepareExport,
+                modifier = Modifier.weight(1f)) { Text(stringResource(R.string.export_batch, draft.images.size)) }
+        }
+    }
+
 }
 
 /** Exact ContentScale.Fit viewport of the final output bitmap, not the source rectangle. */
@@ -533,66 +492,6 @@ internal fun previewOutputCanvasRect(previewSize: PixelSize, viewport: Size): Re
     val left = (viewport.width - width) / 2f
     val top = (viewport.height - height) / 2f
     return Rect(left, top, left + width, top + height)
-}
-
-/** Make the area outside the final output visibly different from image/padding pixels. */
-@Composable
-private fun PreviewEditorStage(preview: Bitmap, transparent: Boolean) {
-    val lineColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.25f)
-    Canvas(Modifier.fillMaxSize()) {
-        val stripeGap = 22.dp.toPx()
-        val stroke = 1.dp.toPx()
-        var x = -size.height
-        while (x <= size.width) {
-            drawLine(lineColor, Offset(x, 0f), Offset(x + size.height, size.height), strokeWidth = stroke)
-            x += stripeGap
-        }
-        if (transparent) {
-            // The checkerboard belongs to the output bounds only; the exterior is editor space.
-            val bounds = previewOutputCanvasRect(PixelSize(preview.width, preview.height), size)
-            val step = 18.dp.toPx()
-            var y = bounds.top
-            var row = 0
-            while (y < bounds.bottom) {
-                var xx = bounds.left
-                var column = 0
-                while (xx < bounds.right) {
-                    drawRect(if ((row + column) % 2 == 0) Color.LightGray else Color.White,
-                        topLeft = Offset(xx, y),
-                        size = Size(minOf(step, bounds.right - xx), minOf(step, bounds.bottom - y)))
-                    xx += step
-                    column++
-                }
-                y += step
-                row++
-            }
-        }
-    }
-}
-
-/** Output-canvas boundary is a Compose-only guide, never written into the exported file. */
-@Composable
-private fun PreviewCanvasBoundary(preview: Bitmap) {
-    val lineColor = MaterialTheme.colorScheme.primary
-    Canvas(Modifier.fillMaxSize()) {
-        val bounds = previewOutputCanvasRect(PixelSize(preview.width, preview.height), size)
-        drawRect(Color.Black.copy(alpha = 0.9f), topLeft = bounds.topLeft,
-            size = bounds.size, style = Stroke(width = 3.dp.toPx()))
-        drawRect(lineColor, topLeft = bounds.topLeft,
-            size = bounds.size, style = Stroke(width = 1.4.dp.toPx()))
-    }
-}
-
-/** Drawn above the Compose preview only; never written into an export bitmap. */
-@Composable
-private fun PreviewOriginalOutline(preview: Bitmap, geometry: ContainGeometry) {
-    Canvas(Modifier.fillMaxSize()) {
-        val bounds = previewOriginalContentRect(PixelSize(preview.width, preview.height), size, geometry)
-        drawRect(Color.Black.copy(alpha = 0.8f), topLeft = bounds.topLeft,
-            size = bounds.size, style = Stroke(width = 3.dp.toPx()))
-        drawRect(Color.White, topLeft = bounds.topLeft,
-            size = bounds.size, style = Stroke(width = 1.dp.toPx()))
-    }
 }
 
 /** Project immutable source placement onto the actual ContentScale.Fit viewport, including letterboxing. */

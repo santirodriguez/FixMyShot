@@ -60,13 +60,19 @@ internal object ReviewBitmapRenderer {
     /** One mapping for sampled previews and original-resolution final output. */
     fun drawContent(target: Bitmap, source: Bitmap, orientedSource: PixelSize,
         plannedOutput: PixelSize, placement: PixelPlacement, crop: SourceRectangle? = null) {
-        val canvas = Canvas(target)
+        drawContent(Canvas(target), target.width, target.height, source, orientedSource, plannedOutput, placement, crop)
+    }
+
+    /** The live editor draws the same mapping without allocating a new bitmap per pointer event. */
+    fun drawContent(canvas: Canvas, targetWidth: Int, targetHeight: Int, source: Bitmap,
+        orientedSource: PixelSize, plannedOutput: PixelSize, placement: PixelPlacement,
+        crop: SourceRectangle? = null) {
         if (crop == null) {
             val rect = RectF(
-                target.width.toFloat() * placement.left / plannedOutput.width,
-                target.height.toFloat() * placement.top / plannedOutput.height,
-                target.width.toFloat() * (placement.left + placement.width) / plannedOutput.width,
-                target.height.toFloat() * (placement.top + placement.height) / plannedOutput.height)
+                targetWidth.toFloat() * placement.left / plannedOutput.width,
+                targetHeight.toFloat() * placement.top / plannedOutput.height,
+                targetWidth.toFloat() * (placement.left + placement.width) / plannedOutput.width,
+                targetHeight.toFloat() * (placement.top + placement.height) / plannedOutput.height)
             val identity = rect.width() == source.width.toFloat() && rect.height() == source.height.toFloat() &&
                 rect.left == rect.left.toInt().toFloat() && rect.top == rect.top.toInt().toFloat()
             canvas.drawBitmap(source, Rect(0, 0, source.width, source.height), rect,
@@ -79,10 +85,10 @@ internal object ReviewBitmapRenderer {
             val rect = RectF((crop.left * scaleX).toFloat(), (crop.top * scaleY).toFloat(),
                 ((crop.left + crop.width) * scaleX).toFloat(),
                 ((crop.top + crop.height) * scaleY).toFloat())
-            val identity = rect.width() == target.width.toFloat() && rect.height() == target.height.toFloat() &&
+            val identity = rect.width() == targetWidth.toFloat() && rect.height() == targetHeight.toFloat() &&
                 rect.left == rect.left.toInt().toFloat() && rect.top == rect.top.toInt().toFloat()
             val transform = Matrix().apply {
-                setRectToRect(rect, RectF(0f, 0f, target.width.toFloat(), target.height.toFloat()), Matrix.ScaleToFit.FILL)
+                setRectToRect(rect, RectF(0f, 0f, targetWidth.toFloat(), targetHeight.toFloat()), Matrix.ScaleToFit.FILL)
             }
             canvas.drawBitmap(source, transform, Paint(if (identity) 0 else Paint.FILTER_BITMAP_FLAG))
         }

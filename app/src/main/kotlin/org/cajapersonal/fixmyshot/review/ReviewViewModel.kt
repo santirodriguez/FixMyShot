@@ -63,7 +63,12 @@ internal class ReviewViewModel : ViewModel() {
         editSelectedOnly = false
         editorSessionKey = java.util.UUID.randomUUID().toString()
     }
+    // One bounded ORIGINAL sample, not a rendered output. Never used as export input.
     var preview by mutableStateOf<Bitmap?>(null)
+    var previewSourceKey: String? = null
+    var previewEpoch by mutableStateOf(0L)
+    fun trimPreview() { preview = null; previewSourceKey = null }
+
     var isBusy by mutableStateOf(false)
     var invalidImports by mutableStateOf(0)
     var latestImport by mutableStateOf<ImportReport?>(null)

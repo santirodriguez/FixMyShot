@@ -267,4 +267,14 @@
     <string name="result_creation_uncertain">La destinació pot haver creat una còpia sense retornar-ne la ubicació. Revisa-la abans de donar aquest resultat per revisat; encara no es pot tornar a intentar aquesta imatge.</string>
     <string name="result_storage_shortage">La destinació no té prou espai per a aquesta còpia. Allibera espai o tria una altra destinació i torna a intentar la imatge que ha fallat.</string>
     <string name="result_private_storage_shortage">No hi ha prou espai al dispositiu per preparar l’exportació. Allibera espai i torna a intentar la imatge que ha fallat.</string>
+    <string name="editor_destination">Destinació</string>
+    <string name="editor_framing">Enquadrament</string>
+    <string name="editor_background">Fons</string>
+    <string name="editor_export">Exportació</string>
+    <string name="editor_add">Afegeix</string>
+    <string name="editor_summary">%1$s · %2$s · %3$d × %4$d px</string>
+    <string name="editor_metadata_removed">Metadades identificatives: eliminades</string>
+    <string name="editor_metadata_kept">Metadades identificatives: se sol·licita conservar-les</string>
+    <string name="editor_review_required">Revisa els ajustos abans d’exportar</string>
+    <string name="editor_move_help">Arrossega la imatge dins del marc de sortida o fes servir les fletxes.</string>
 </resources>

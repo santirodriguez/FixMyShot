@@ -267,4 +267,14 @@
     <string name="result_creation_uncertain">The destination may have created a copy without returning its location. Check the destination before acknowledging this result; this item cannot be retried yet.</string>
     <string name="result_storage_shortage">The destination does not have enough free space for this copy. Free space or choose another destination, then retry the failed image.</string>
     <string name="result_private_storage_shortage">Not enough device storage to prepare the export. Free some space, then retry the failed image.</string>
+    <string name="editor_destination">Destination</string>
+    <string name="editor_framing">Framing</string>
+    <string name="editor_background">Background</string>
+    <string name="editor_export">Export</string>
+    <string name="editor_add">Add</string>
+    <string name="editor_summary">%1$s · %2$s · %3$d × %4$d px</string>
+    <string name="editor_metadata_removed">Identifying metadata: removed</string>
+    <string name="editor_metadata_kept">Identifying metadata: preservation requested</string>
+    <string name="editor_review_required">Review required before export</string>
+    <string name="editor_move_help">Drag the image inside the output frame, or use the arrows.</string>
 </resources>

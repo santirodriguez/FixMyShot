@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.debug
+package=org.cajapersonal.fixmyshot.editor
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -87,6 +87,14 @@ timeout 2m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/review-render-instrumentation.txt 2>&1
 review_result=$?
 cat evidence/review-render-instrumentation.txt
+# Real editor gestures and accessibility-tree visibility, using private synthetic sources only.
+timeout 3m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.EditorInteractionTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/editor-interaction-instrumentation.txt 2>&1
+editor_result=$?
+cat evidence/editor-interaction-instrumentation.txt
+adb exec-out run-as "$package" cat files/editor-framing.png > evidence/editor-framing.png
+editor_capture_result=$?
 # Cache ownership/eviction is checked separately using only synthetic bitmaps.
 timeout 2m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.ReviewThumbnailCacheTest \
@@ -156,6 +164,7 @@ timeout 3m adb shell am instrument -w -r \
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
 set -e
+grep -q 'OK (2 tests)' evidence/editor-interaction-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
@@ -174,7 +183,7 @@ python3 scripts/check-heic-layout.py evidence
 [[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 &&
    "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
-   "$review_result" -eq 0 && "$thumbnail_result" -eq 0 &&
+   "$review_result" -eq 0 && "$editor_result" -eq 0 && "$editor_capture_result" -eq 0 && "$thumbnail_result" -eq 0 &&
    "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 &&
    "$export_flow_result" -eq 0 && "$share_result" -eq 0 && "$import_settings_result" -eq 0 && "$batch_recovery_result" -eq 0 && "$batch_retry_result" -eq 0 ]]
 
