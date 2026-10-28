@@ -1,6 +1,7 @@
 package org.cajapersonal.fixmyshot.review
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -19,11 +20,11 @@ internal fun ReviewWorkspace(modifier: Modifier = Modifier, hasImage: Boolean,
     BoxWithConstraints(modifier.fillMaxWidth()) {
         if (!hasImage) controls()
         else if (maxWidth > maxHeight) Row(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(1f).fillMaxHeight()) { stage() }
-            Box(Modifier.weight(1f).fillMaxHeight()) { controls() }
+            Box(Modifier.weight(1f).fillMaxHeight().clipToBounds()) { stage() }
+            Box(Modifier.weight(1f).fillMaxHeight().clipToBounds()) { controls() }
         } else Column(Modifier.fillMaxSize()) {
-            Box(Modifier.weight(1f).fillMaxWidth()) { stage() }
-            Box(Modifier.weight(1f).fillMaxWidth()) { controls() }
+            Box(Modifier.weight(1f).fillMaxWidth().clipToBounds()) { stage() }
+            Box(Modifier.weight(1f).fillMaxWidth().clipToBounds()) { controls() }
         }
     }
 }

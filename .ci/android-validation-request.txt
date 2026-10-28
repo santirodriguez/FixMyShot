@@ -1,10 +1,10 @@
-Live editor redesign accumulated checkpoint (2026-10-28).
-Base source 4aa497e427d1d09a1bf84ef7f942869b08c7fc65.
-Fixed canvas, contextual tools, retained source sample and per-gesture commit;
-logarithmic zoom plus fine buttons. Isolated .editor debug identity.
-Run core/JVM, lint, APK builds and API36 including real editor interaction tests.
-Collector fixture updated for the two additional interaction cases.
-Use one crop gesture lifecycle for movement/release and retain event-local focus.
-Isolate synthetic editor journals even on failure; retain per-case UI evidence.
-Capture synthetic editor UI; no physical performance/fidelity or release acceptance.
+Responsive editor interaction and clipping checkpoint after run 40715663944.
+Base: 8b24a4a3155379f9aa7ea72cc372be8a316c7eb4 (build SUCCESS, API36 two EditorInteractionTest failures).
+Scope: keep real crop gesture handling until release, clip canvas/tool panels,
+navigate accessible zoom and movement controls bidirectionally and use explicit labels.
+Preserve exactly one revision on release/one undo, retained original sample,
+full source and export geometry, 200-percent text and three locales.
+Run Kotlin/resources/lint, 8 renderer cases, Android API36 interaction tests,
+80 synthetic lossless output encodes and all original regression suites.
+No ignored assertions, no release/merge/signing/hardware PASS claim.
 profile=current

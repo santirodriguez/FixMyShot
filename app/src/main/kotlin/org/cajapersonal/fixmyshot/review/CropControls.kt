@@ -124,7 +124,10 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
             var changed = false
             do {
                 val event = awaitPointerEvent()
-                if (event.changes.any { it.isConsumed }) break
+                // The preview has an independent pointer observer for contain mode.
+                // Once crop owns a drag, its consumed changes must not abort release
+                // processing; the final UP must still commit one undoable revision.
+                if (!dragging && event.changes.any { it.isConsumed }) break
                 val pan = event.calculatePan()
                 val zoom = event.calculateZoom()
                 accumulatedPan += pan

@@ -76,20 +76,38 @@ class EditorInteractionTest {
         settleUi()
     }
 
-    private fun scroll() {
-        fun scrollable(node: AccessibilityNodeInfo?): AccessibilityNodeInfo? {
-            if (node == null) return null
-            val rect = Rect().also { node.getBoundsInScreen(it) }
-            // The active tool pane can be below OR beside the canvas. Exclude the
-            // horizontal tool/thumbnail rows by requiring a vertical scroll action.
-            if (node.isScrollable && rect.height() > 100 &&
-                node.actionList.any { it.id == AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id }) return node
-            for (i in 0 until node.childCount) scrollable(node.getChild(i))?.let { return it }
-            return null
+    private fun toolPane(node: AccessibilityNodeInfo? = test.uiAutomation.rootInActiveWindow): AccessibilityNodeInfo? {
+        if (node == null) return null
+        val rect = Rect().also { node.getBoundsInScreen(it) }
+        // Select the actual vertical controls viewport, not the horizontal tool strip.
+        if (node.isScrollable && rect.height() > 100 &&
+            node.actionList.any { it.id == AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id }) return node
+        for (i in 0 until node.childCount) toolPane(node.getChild(i))?.let { return it }
+        return null
+    }
+
+    /** Find the accessible control inside the visible tool viewport, not above its clipped edge. */
+    private fun reveal(label: String) {
+        fun visibleInPane(): Boolean {
+            val control = find(label) ?: return false
+            val pane = toolPane() ?: return false
+            val controlRect = Rect().also { control.getBoundsInScreen(it) }
+            val paneRect = Rect().also { pane.getBoundsInScreen(it) }
+            return controlRect.top >= paneRect.top && controlRect.bottom <= paneRect.bottom
         }
-        val node = requireNotNull(scrollable(test.uiAutomation.rootInActiveWindow)) { "No vertical tool pane" }
-        assertTrue(node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD))
-        settleUi()
+        if (visibleInPane()) return
+        // An accessibility action may return false at either end; search both
+        // directions instead of asserting that every intermediate scroll can advance.
+        for (action in listOf(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD,
+                AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD)) {
+            repeat(10) {
+                if (visibleInPane()) return
+                val pane = requireNotNull(toolPane()) { "No vertical tool pane" }
+                if (!pane.performAction(action)) return@repeat
+                settleUi()
+            }
+        }
+        assertTrue("Cannot reveal accessible control: $label", visibleInPane())
     }
 
     private fun bounds(label: String): Rect = Rect().also { requireNotNull(find(label)).getBoundsInScreen(it) }
@@ -178,14 +196,13 @@ class EditorInteractionTest {
         settleUi()
         val previewLabel = label(R.string.preview_description)
         val initial = bounds(previewLabel)
-        val zoomPlus = "+"
-        capture()
-        repeat(6) { if (find(zoomPlus) == null) scroll() }
+        val zoomPlus = "+ ${label(R.string.crop_zoom_control)}"
+        reveal(zoomPlus)
         click(zoomPlus)
         await { model.draft.images.single().overrides.resolve(model.draft.batch).crop.zoom > 1.0 }
         assertEquals(1.02, model.draft.images.single().overrides.resolve(model.draft.batch).crop.zoom, 1e-8)
         val down = label(R.string.crop_down)
-        repeat(6) { if (find(down) == null) scroll() }
+        reveal(down)
         click(down)
         assertEquals(initial, bounds(previewLabel))
         capture()
