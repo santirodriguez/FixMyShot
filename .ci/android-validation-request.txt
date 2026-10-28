@@ -1,12 +1,13 @@
-Editor interaction targeted validation following run 40719371005.
-Base head: 1eefdb7afa76ecedb4b7f3da342458bf47b9bf98.
-Fix vertical tool-pane selection (exclude short horizontal tab strip).
-Process all crop pointer events through release and commit the final event-local
-CropFocus exactly once after transient updates, without changing source/export maths.
-Preserve clipped panels, 2% zoom control, one undoable revision, original sample,
-privacy/PNG defaults, and all existing test assertions.
-Require current Android build, JVM/lint, API36 EditorInteractionTest2/2,
-ReviewRenderTest8/8, import/settings and actual PNG/lossless WebP fixture tests.
-If failed, retain synthetic editor screenshots and accessibility trees.
-Never assert hardware acceptance or merge/release/production signing.
+Interactive editor source-bound validation after 40724173717 failure.
+Validated candidate before CI: 74076ed14ad17fbac42e2127d38a08843faf8dea.
+Fix Compose accessibility stale caching after selecting Crop (API34+ clearCache)
+and persist final event-local crop focus through the durable onCrop callback
+without a second gesture finish/duplicate edit.
+Assert the cropped plan and accessible zoom controls are actually ready
+before sending touch events; preserve 1 edit, 1 undo, +2% zoom, retained sample,
+canvas visibility and all existing regression checks.
+Run Android build, core/lint/locale, API36 EditorInteractionTest2/2,
+ReviewRenderTest8/8, import/settings21 and actual PNG/WebP fixture encodes.
+Retain synthetic screenshots and accessibility trees if tests fail.
+No renderer, exporter, geometry, source-byte, default, signer, release or merge changes.
 profile=current
