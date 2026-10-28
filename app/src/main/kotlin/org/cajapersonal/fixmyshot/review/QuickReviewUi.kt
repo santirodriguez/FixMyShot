@@ -62,13 +62,16 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
         val copy: @Composable () -> Unit = {
             Column(horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(18.dp)) {
-                Image(painterResource(R.drawable.brand_header), contentDescription = stringResource(R.string.app_name),
-                    modifier = Modifier.fillMaxWidth().heightIn(max = 100.dp).aspectRatio(3f), contentScale = ContentScale.Fit)
+                if (wide) Image(painterResource(R.drawable.brand_header),
+                    contentDescription = stringResource(R.string.app_name),
+                    modifier = Modifier.fillMaxWidth().heightIn(max = 100.dp).aspectRatio(3f),
+                    contentScale = ContentScale.Fit)
                 Text(stringResource(R.string.tagline), style = MaterialTheme.typography.headlineLarge,
                     textAlign = TextAlign.Center)
                 Text(stringResource(R.string.quick_start_detail), color = colors.onSurfaceVariant,
                     textAlign = TextAlign.Center)
-                Button(onClick = onChoose, enabled = enabled, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
+                if (wide) Button(onClick = onChoose, enabled = enabled,
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                     Text(stringResource(R.string.choose_images), style = MaterialTheme.typography.titleMedium)
                 }
                 if (canUndo) TextButton(onClick = onUndo, enabled = enabled) { Text(stringResource(R.string.undo_last)) }
@@ -82,10 +85,21 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
             horizontalArrangement = Arrangement.spacedBy(24.dp)) {
             Box(Modifier.weight(.8f)) { art() }
             Box(Modifier.weight(1f).verticalScroll(rememberScrollState())) { copy() }
-        } else Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(28.dp),
-            horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Box(Modifier.widthIn(max = 260.dp)) { art() }
-            copy()
+        } else Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+            // Keep the only primary action visible on short portrait screens. Artwork and
+            // secondary copy scroll independently; no first-use scrolling is required.
+            Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())
+                .padding(horizontal = 24.dp, vertical = 10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Box(Modifier.widthIn(max = 176.dp)) { art() }
+                copy()
+            }
+            Button(onClick = onChoose, enabled = enabled,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 8.dp)
+                    .heightIn(min = 56.dp)) {
+                Text(stringResource(R.string.choose_images), style = MaterialTheme.typography.titleMedium)
+            }
         }
     }
 }

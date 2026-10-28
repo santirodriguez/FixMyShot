@@ -4,7 +4,7 @@ The automatic workspace is the default presentation for new work, including imag
 
 ## Product contract
 
-- Start uses the existing canonical icon and header, with one Choose images action and no artificial splash delay. Light, dark and system themes remain available.
+- Start uses the existing canonical icon and header, with one Choose images action pinned within the portrait safe drawing area even on short screens; secondary artwork and copy scroll separately. No artificial splash delay. Light, dark and system themes remain available.
 - An untouched new import receives a visible layout recommendation: the last explicitly selected built-in template, or Play portrait for a portrait source and flexible Play otherwise. This is a recommendation, not recognition of the user's publication destination. Only the validated built-in template ID is remembered; every new session retains PNG, metadata removal and full-content defaults.
 - Template selection is one immutable undoable action. Batch settings and per-image overrides survive template and mode changes; incompatible explicit formats, alpha and dimensions remain conflicts. Play 9:16 and flexible Play keep different existing catalog IDs and geometry. Social cards remain layout guidance, not upload certification.
 - Automatic has a large directly editable final-output preview, compact templates and an export action. Crop is explicitly selected. Pinching in full-content mode asks before enabling crop. Moving full content only redistributes real margins; no content is stretched, cloned or reconstructed.

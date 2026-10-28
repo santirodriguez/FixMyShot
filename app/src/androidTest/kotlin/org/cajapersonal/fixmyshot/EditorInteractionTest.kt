@@ -341,6 +341,9 @@ class EditorInteractionTest {
         await { model.draft.images.isEmpty() }
         assertFalse(model.draft.canUndo)
         await { find(label(R.string.choose_images)) != null }
+        val startAction = bounds(label(R.string.choose_images))
+        val window = Rect().also { requireNotNull(freshRoot()).getBoundsInScreen(it) }
+        assertTrue("Start Choose images must remain visible without scrolling", window.contains(startAction))
         caseName = "start"
         capture()
     }

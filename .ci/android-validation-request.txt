@@ -13,4 +13,5 @@ Compile follow-up: capture the parent height before entering the nested Column D
 Keep all original tests and acceptance requirements.
 Verify stable accessibility after mode switch, unambiguous confirmed discard,
 and an initial automatic canvas screenshot; retain all seven editor cases.
+Keep the opening Choose images action visible without scrolling on portrait phones.
 profile=current
