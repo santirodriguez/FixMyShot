@@ -94,7 +94,35 @@ internal object ReviewBitmapRenderer {
         }
     }
 
-    /** The median linear edge luminance picks white or #121212 without cloning user pixels. */
+    /** A single, deterministic opaque RGB matte sampled from the source's vertical edges.
+     * It is stored as CustomRgb when selected, so existing Automatic drafts never change meaning.
+     * Pixel data are neither cloned nor extended; the output background stays uniform.
+     */
+    fun edgeMatteRgb(sample: Bitmap): Int {
+        require(!sample.isRecycled && sample.width > 0 && sample.height > 0)
+        val n = minOf(sample.height, 256)
+        val rs = IntArray(n * 2)
+        val gs = IntArray(n * 2)
+        val bs = IntArray(n * 2)
+        var count = 0
+        for (i in 0 until n) {
+            val y = if (n == 1) 0 else i * (sample.height - 1) / (n - 1)
+            for (x in intArrayOf(0, sample.width - 1)) {
+                val pixel = sample.getPixel(x, y)
+                if (Color.alpha(pixel) < 250) continue
+                rs[count] = Color.red(pixel); gs[count] = Color.green(pixel); bs[count] = Color.blue(pixel)
+                count++
+            }
+        }
+        if (count == 0) return 0x121212
+        val red = rs.copyOf(count).apply { sort() }[count / 2]
+        val green = gs.copyOf(count).apply { sort() }[count / 2]
+        val blue = bs.copyOf(count).apply { sort() }[count / 2]
+        return (red shl 16) or (green shl 8) or blue
+    }
+
+    /** The original automatic edge policy is retained for existing saved sessions. */
+
     fun automaticColor(image: Bitmap): Int {
         val values = ArrayList<Double>(512)
         val strideX = maxOf(1, image.width / 128)

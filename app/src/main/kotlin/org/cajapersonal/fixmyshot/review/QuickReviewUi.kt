@@ -160,13 +160,21 @@ internal fun QuickFramingRow(fit: FitMode, enabled: Boolean, onFit: (FitMode) ->
 }
 
 @Composable
-internal fun QuickBackgroundRow(choice: BackgroundChoice, enabled: Boolean, onChange: (BackgroundChoice) -> Unit) {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-        listOf(BackgroundChoice.Automatic to R.string.preview_background_auto,
-            BackgroundChoice.White to R.string.preview_background_white,
-            BackgroundChoice.Black to R.string.preview_background_black).forEach { (value, label) ->
+internal fun QuickBackgroundRow(choice: BackgroundChoice, sample: Bitmap?, enabled: Boolean,
+    onChange: (BackgroundChoice) -> Unit) {
+    // Save the sampled color as a concrete RGB override; no old Automatic plan is reinterpreted.
+    val edge = remember(sample) { sample?.let { BackgroundChoice.CustomRgb(ReviewBitmapRenderer.edgeMatteRgb(it)) } }
+    val choices = buildList {
+        if (edge != null) add(edge to R.string.quick_background_edge)
+        add(BackgroundChoice.Automatic to R.string.preview_background_auto)
+        add(BackgroundChoice.White to R.string.preview_background_white)
+        add(BackgroundChoice.Black to R.string.preview_background_black)
+    }
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+        choices.forEach { (value, label) ->
             FilterChip(selected = choice == value, onClick = { onChange(value) }, enabled = enabled,
-                label = { Text(stringResource(label)) }, modifier = Modifier.weight(1f))
+                label = { Text(stringResource(label), style = MaterialTheme.typography.labelSmall) },
+                modifier = Modifier.weight(1f))
         }
     }
 }

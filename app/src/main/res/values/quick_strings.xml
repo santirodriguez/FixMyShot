@@ -48,4 +48,5 @@
     <string name="quick_crop_show_trim">Show excluded area</string>
     <string name="quick_crop_show_result">Show final result</string>
     <string name="quick_crop_trim_accessibility">Original with excluded crop area shaded</string>
+    <string name="quick_background_edge">Match edges</string>
 </resources>

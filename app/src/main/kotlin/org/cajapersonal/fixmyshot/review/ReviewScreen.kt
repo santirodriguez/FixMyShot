@@ -583,7 +583,7 @@ internal fun ReviewScreen(
                             TextButton(onClick = { backgroundsOpen = !backgroundsOpen }) { Text(stringResource(R.string.editor_background)) }
                             TextButton(onClick = { finishGesture(); advanced = true }) { Text(stringResource(R.string.quick_customize)) }
                         }
-                        if (backgroundsOpen && quick != null) QuickBackgroundRow(quick.background, editEnabled) { onBackground(it, true) }
+                        if (backgroundsOpen && quick != null) QuickBackgroundRow(quick.background, preview, editEnabled) { onBackground(it, true) }
                         if (plans.any { it.requiresReview }) TextButton(onClick = { advanced = true; tool = ReviewTool.EXPORT }) {
                             Text(stringResource(R.string.editor_review_required), color = MaterialTheme.colorScheme.error)
                         }

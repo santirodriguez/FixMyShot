@@ -48,4 +48,5 @@
     <string name="quick_crop_show_trim">Ver área descartada</string>
     <string name="quick_crop_show_result">Ver resultado final</string>
     <string name="quick_crop_trim_accessibility">Original con el área excluida del recorte sombreada</string>
+    <string name="quick_background_edge">Integrado</string>
 </resources>

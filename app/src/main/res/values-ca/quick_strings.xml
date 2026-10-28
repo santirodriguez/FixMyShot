@@ -48,4 +48,5 @@
     <string name="quick_crop_show_trim">Veure l’àrea descartada</string>
     <string name="quick_crop_show_result">Veure el resultat final</string>
     <string name="quick_crop_trim_accessibility">Original amb l’àrea exclosa del retall ombrejada</string>
+    <string name="quick_background_edge">Integrat</string>
 </resources>
