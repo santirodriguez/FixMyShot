@@ -16,7 +16,7 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = ".editor" }
+        debug { applicationIdSuffix = ".automatic" }
         release { isMinifyEnabled = false }
     }
     buildFeatures { compose = true }
@@ -50,6 +50,9 @@ abstract class PrepareBrandingTask : DefaultTask() {
     @get:org.gradle.api.tasks.InputFile
     @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
     abstract val sourceIcon: org.gradle.api.file.RegularFileProperty
+    @get:org.gradle.api.tasks.InputFile
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
+    abstract val sourceHeader: org.gradle.api.file.RegularFileProperty
     @get:org.gradle.api.tasks.OutputDirectory
     abstract val outputDirectory: org.gradle.api.file.DirectoryProperty
 
@@ -58,6 +61,8 @@ abstract class PrepareBrandingTask : DefaultTask() {
         val target = outputDirectory.file("drawable-nodpi/brand_icon.png").get().asFile
         target.parentFile.mkdirs()
         sourceIcon.get().asFile.copyTo(target, overwrite = true)
+        sourceHeader.get().asFile.copyTo(outputDirectory.file("drawable-nodpi/brand_header.png").get().asFile,
+            overwrite = true)
     }
 }
 
@@ -90,6 +95,7 @@ androidComponents {
         val suffix = variant.name.replaceFirstChar { it.uppercase() }
         val branding = tasks.register<PrepareBrandingTask>("prepare${suffix}BrandingResources") {
             sourceIcon.set(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
+            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/header.png"))
             outputDirectory.set(layout.buildDirectory.dir("generated/branding/${variant.name}/res"))
         }
         val legal = tasks.register<PrepareLegalTask>("prepare${suffix}LegalAssets") {

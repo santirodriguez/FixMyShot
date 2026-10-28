@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Automatic-first workspace -->
+    <string name="quick_apply_frame">Apply framing</string>
+    <string name="quick_automatic">Automatic</string>
+    <string name="quick_contain_hint">Drag within the margins. The entire original stays visible.</string>
+    <string name="quick_crop_consent">Zooming the output can leave content outside the frame. Switch to crop? The original file is never changed.</string>
+    <string name="quick_crop_hint">Drag or pinch to frame. Content outside the border will not be exported.</string>
+    <string name="quick_crop_question">Enable cropping?</string>
+    <string name="quick_custom_count">Individual adjustments: %1$d</string>
+    <string name="quick_customize">Customize</string>
+    <string name="quick_details">Work details</string>
+    <string name="quick_discard">Discard</string>
+    <string name="quick_done">Done</string>
+    <string name="quick_edit_image">Edit framing</string>
+    <string name="quick_expand">Expand</string>
+    <string name="quick_export_png">Export PNG · %1$d</string>
+    <string name="quick_export_zoom">Crop zoom: %1$d%%</string>
+    <string name="quick_fill_crop">Fill / crop</string>
+    <string name="quick_focus_canvas">Expanded final-image preview</string>
+    <string name="quick_focus_title">Framing</string>
+    <string name="quick_hide_batch">Hide images · %1$d / %2$d</string>
+    <string name="quick_inspect">Inspect</string>
+    <string name="quick_inspect_hint">View-only zoom. Pinch to inspect; this does not change the exported image.</string>
+    <string name="quick_inspection_zoom">View only: %1$d%%</string>
+    <string name="quick_keep_all">Keep all</string>
+    <string name="quick_keep_editing">Keep editing</string>
+    <string name="quick_local_promise">On your device. Originals stay intact.</string>
+    <string name="quick_open_feedback">Import and session details</string>
+    <string name="quick_open_results">Review export results</string>
+    <string name="quick_original">Hold: original</string>
+    <string name="quick_play_flexible">Play flexible</string>
+    <string name="quick_play_portrait">Play 9:16</string>
+    <string name="quick_portrait">Portrait 4:5</string>
+    <string name="quick_precision">Fine controls</string>
+    <string name="quick_recenter">Recenter</string>
+    <string name="quick_remove_image">Remove image</string>
+    <string name="quick_result">Result</string>
+    <string name="quick_results">Export results</string>
+    <string name="quick_settings">Settings</string>
+    <string name="quick_share_hint">You can also share an image to FixMyShot from another app.</string>
+    <string name="quick_show_batch">Images · %1$d / %2$d</string>
+    <string name="quick_square">Square 1:1</string>
+    <string name="quick_start_detail">Choose a template. Make it yours. Export a fresh copy.</string>
+    <string name="quick_story">Stories 9:16</string>
+    <string name="quick_new_work">New work</string>
+</resources>

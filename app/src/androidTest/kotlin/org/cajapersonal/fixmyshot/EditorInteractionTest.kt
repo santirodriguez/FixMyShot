@@ -122,7 +122,7 @@ class EditorInteractionTest {
 
     private fun bounds(label: String): Rect = Rect().also { requireNotNull(find(label)).getBoundsInScreen(it) }
 
-    private fun fixture(block: (ActivityScenario<MainActivity>, ReviewViewModel, (Int) -> String) -> Unit) {
+    private fun fixture(allowPrivateCleanup: Boolean = false, block: (ActivityScenario<MainActivity>, ReviewViewModel, (Int) -> String) -> Unit) {
         val id = UUID.randomUUID().toString().replace("-", "")
         val file = File(app.cacheDir, "review-sources/$id.source").apply { parentFile!!.mkdirs() }
         val source = Bitmap.createBitmap(1344, 2992, Bitmap.Config.ARGB_8888)
@@ -163,12 +163,16 @@ class EditorInteractionTest {
         } finally {
             journalStore.clear()
             if (before != null) journal.writeBytes(before)
-            try { assertArrayEquals(bytes, file.readBytes()) } finally { file.delete() }
+            try {
+                if (file.exists()) assertArrayEquals(bytes, file.readBytes())
+                else assertTrue("Only an explicit discard may remove the private fixture", allowPrivateCleanup)
+            } finally { file.delete() }
         }
     }
 
     @Test fun gesturesKeepTheSampleAndCommitOneUndoableEdit() = fixture { scenario, model, label ->
         caseName = "gesture"
+        click(label(R.string.quick_customize))
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
@@ -202,6 +206,7 @@ class EditorInteractionTest {
 
     @Test fun arrowsAndFineZoomDoNotScrollTheCanvasAway() = fixture { _, model, label ->
         caseName = "arrows"
+        click(label(R.string.quick_customize))
         click(label(R.string.editor_framing))
         click(label(R.string.crop_mode))
         await { model.draft.batch.fit == FitMode.CROP }
@@ -221,5 +226,116 @@ class EditorInteractionTest {
         assertEquals(initial, bounds(previewLabel))
         capture()
         println("EDITOR_SAMPLE=${model.preview!!.width}x${model.preview!!.height}; synthetic interaction only; physical performance NOT_RUN")
+    }
+
+    private fun pinch(rect: Rect) {
+        val down = SystemClock.uptimeMillis()
+        val properties = Array(2) { index -> MotionEvent.PointerProperties().apply {
+            id = index; toolType = MotionEvent.TOOL_TYPE_FINGER
+        } }
+        fun send(action: Int, count: Int, spread: Float) {
+            val coordinates = Array(count) { index -> MotionEvent.PointerCoords().apply {
+                x = rect.exactCenterX() + (if (index == 0) -spread else spread)
+                y = rect.exactCenterY(); pressure = 1f; size = 1f
+            } }
+            val event = MotionEvent.obtain(down, SystemClock.uptimeMillis(), action, count,
+                properties, coordinates, 0, 0, 1f, 1f, 0, 0, InputDevice.SOURCE_TOUCHSCREEN, 0)
+            try { test.sendPointerSync(event) } finally { event.recycle() }
+        }
+        val start = minOf(30f, rect.width() / 8f)
+        send(MotionEvent.ACTION_DOWN, 1, start)
+        send(MotionEvent.ACTION_POINTER_DOWN or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT), 2, start)
+        for (step in 1..10) { send(MotionEvent.ACTION_MOVE, 2, start + step * 3); SystemClock.sleep(15) }
+        send(MotionEvent.ACTION_POINTER_UP or (1 shl MotionEvent.ACTION_POINTER_INDEX_SHIFT), 2, start + 30)
+        send(MotionEvent.ACTION_UP, 1, start + 30)
+        settleUi()
+    }
+
+    @Test fun quickTemplatesAndModeSwitchPreserveTheSameDraft() = fixture { scenario, model, label ->
+        caseName = "automatic"
+        assertNotNull(find(label(R.string.quick_customize)))
+        assertNull(find(label(R.string.editor_framing)))
+        val sample = model.preview
+        val before = model.draft
+        click(label(R.string.quick_play_portrait))
+        await { model.draft.destination == DestinationChoice.Preset(DestinationCatalog.PLAY_PORTRAIT) }
+        assertEquals(before.revision + 1, model.draft.revision)
+        val geometry = (model.draft.plans(36).single().geometry as PlannedGeometry.Contained).value
+        assertEquals(PixelSize(1683, 2992), geometry.canvas)
+        assertEquals(169, geometry.placement.left)
+        assertEquals(170, geometry.rightMargin)
+        val selected = model.draft
+        click(label(R.string.quick_customize))
+        assertNotNull(find(label(R.string.editor_framing)))
+        click(label(R.string.quick_automatic))
+        assertEquals(selected, model.draft)
+        assertSame(sample, model.preview)
+        scenario.recreate()
+        await { find(label(R.string.quick_customize)) != null }
+        assertEquals(selected, model.draft)
+        capture()
+    }
+
+    @Test fun expandedFramingIsLargerCancelableAndCommitsOnce() = fixture { _, model, label ->
+        caseName = "focus"
+        val initial = bounds(label(R.string.preview_description))
+        val before = model.draft
+        click(label(R.string.quick_expand))
+        await { find(label(R.string.quick_focus_canvas)) != null }
+        assertTrue(bounds(label(R.string.preview_description)).height() > initial.height())
+        click(label(R.string.quick_fill_crop))
+        assertEquals(before, model.draft)
+        capture()
+        click(label(R.string.crop_editor_cancel))
+        assertEquals(before, model.draft)
+        click(label(R.string.quick_expand))
+        click(label(R.string.quick_fill_crop))
+        click(label(R.string.quick_apply_frame))
+        await { model.draft.revision == before.revision + 1 }
+        assertEquals(FitMode.CROP, model.draft.images.single().overrides.resolve(model.draft.batch).fit)
+        click(label(R.string.undo_last))
+        assertEquals(before.images.single().overrides, model.draft.images.single().overrides)
+    }
+
+    @Test fun inspectionZoomDoesNotModifyTheExport() = fixture { _, model, label ->
+        caseName = "inspection"
+        val before = model.draft
+        click(label(R.string.quick_expand))
+        click(label(R.string.quick_inspect))
+        pinch(bounds(label(R.string.quick_focus_canvas)))
+        assertEquals(before, model.draft)
+        capture()
+        click(label(R.string.quick_apply_frame))
+        assertEquals(before, model.draft)
+    }
+
+    @Test fun containPinchRequiresExplicitCropConsent() = fixture { _, model, label ->
+        caseName = "crop-consent"
+        val before = model.draft
+        pinch(bounds(label(R.string.preview_description)))
+        await { find(label(R.string.quick_crop_question)) != null }
+        assertEquals(before, model.draft)
+        click(label(R.string.quick_keep_all))
+        assertEquals(before, model.draft)
+        pinch(bounds(label(R.string.preview_description)))
+        click(label(R.string.quick_fill_crop))
+        await { model.draft.images.single().overrides.resolve(model.draft.batch).fit == FitMode.CROP }
+        assertEquals(before.revision + 1, model.draft.revision)
+    }
+
+    @Test fun discardIsVisibleAndCancelKeepsTheWork() = fixture(allowPrivateCleanup = true) { _, model, label ->
+        caseName = "discard"
+        val before = model.draft
+        click(label(R.string.quick_discard))
+        click(label(R.string.quick_keep_editing))
+        assertEquals(before, model.draft)
+        click(label(R.string.quick_customize))
+        click(label(R.string.quick_discard))
+        click(label(R.string.discard_session))
+        await { model.draft.images.isEmpty() }
+        assertFalse(model.draft.canUndo)
+        await { find(label(R.string.choose_images)) != null }
+        caseName = "start"
+        capture()
     }
 }

@@ -46,6 +46,8 @@ import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
 /** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
     var draft by mutableStateOf(DraftSession())
+    var preferredTemplate: String? = null
+    var quickPreferencesReady by mutableStateOf(false)
     var selectedId by mutableStateOf<String?>(null)
     // Retained only with this ViewModel. Applied settings remain owned by the draft journal.
     var editorSessionKey by mutableStateOf(java.util.UUID.randomUUID().toString())
@@ -208,7 +210,12 @@ internal class ReviewViewModel : ViewModel() {
                     offered = wanted.size + stoppedQueuedImports)
                 invalidImports += report.problems.size
                 latestImport = report
-                val updated = draft.addImages(additions)
+                // Recommend only for an untouched new session, never a restored/custom draft.
+                val base = if (draft.revision == 0L && draft.images.isEmpty() && additions.isNotEmpty() &&
+                    draft.batch == org.cajapersonal.fixmyshot.core.EditSettings())
+                    draft.copy(destination = org.cajapersonal.fixmyshot.core.QuickTemplates.initial(additions, preferredTemplate))
+                else draft
+                val updated = base.addImages(additions)
                 val released = draft.workingSourceIds - updated.workingSourceIds
                 draft = updated
                 if (released.isNotEmpty()) releasePrivateSources(context.applicationContext, released)

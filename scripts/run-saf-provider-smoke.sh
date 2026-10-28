@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:?Expected source-bound build artifact directory}"
-package=org.cajapersonal.fixmyshot.editor
+package=org.cajapersonal.fixmyshot.automatic
 [[ "${GITHUB_ACTIONS:-}" == true ]] || { echo 'Dedicated disposable CI emulator only' >&2; exit 2; }
 [[ "$(adb shell getprop ro.kernel.qemu | tr -d '\r')" == 1 ]] || exit 2
 api="$(adb shell getprop ro.build.version.sdk | tr -d '\r')"

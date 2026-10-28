@@ -108,10 +108,14 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
 /** Coordinates account for the actual fitted preview frame rather than its letterbox. */
 @Composable
 internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabled: Boolean,
-    onCrop: (CropFocus) -> Unit, onFinished: (CropFocus) -> Unit): Modifier {
+    onCrop: (CropFocus) -> Unit, onFinished: (CropFocus) -> Unit, onTap: (() -> Unit)? = null,
+    onStarted: () -> Unit = {}, onCancelled: () -> Unit = {}): Modifier {
     val latestPlan by rememberUpdatedState(plan)
     val latestCallback by rememberUpdatedState(onCrop)
     val latestFinish by rememberUpdatedState(onFinished)
+    val latestTap by rememberUpdatedState(onTap)
+    val latestStart by rememberUpdatedState(onStarted)
+    val latestCancel by rememberUpdatedState(onCancelled)
     return pointerInput(image?.id, enabled, plan?.settings?.fit) {
         if (!enabled || image == null || plan?.settings?.fit != FitMode.CROP) return@pointerInput
         awaitEachGesture {
@@ -122,8 +126,13 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
             var accumulatedZoom = 1f
             var dragging = false
             var changed = false
+            var completed = false
+            var cancelled = false
+            latestStart()
+            try {
             do {
                 val event = awaitPointerEvent()
+                if (event.changes.any { it.isConsumed }) { cancelled = true; break }
                 // Keep receiving changes until pointer up; consume moves after slop.
                 val pan = event.calculatePan()
                 val zoom = event.calculateZoom()
@@ -162,7 +171,11 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
                 if (dragging) event.changes.forEach { if (it.positionChanged()) it.consume() }
             } while (event.changes.any { it.pressed })
             // Commit the event-local focus exactly once at pointer up.
-            if (changed) latestFinish(focus)
+            if (!cancelled) {
+                completed = true
+                if (changed) latestFinish(focus) else latestTap?.invoke()
+            }
+            } finally { if (!completed) latestCancel() }
         }
     }
 }

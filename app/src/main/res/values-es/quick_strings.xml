@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Automatic-first workspace -->
+    <string name="quick_apply_frame">Aplicar encuadre</string>
+    <string name="quick_automatic">Automático</string>
+    <string name="quick_contain_hint">Arrastrá dentro de los márgenes. Se conserva la imagen completa.</string>
+    <string name="quick_crop_consent">Ampliar el resultado puede dejar contenido fuera del marco. ¿Querés activar el recorte? El archivo original no cambia.</string>
+    <string name="quick_crop_hint">Arrastrá o usá dos dedos. El contenido fuera del borde no se exporta.</string>
+    <string name="quick_crop_question">¿Activar el recorte?</string>
+    <string name="quick_custom_count">Ajustes individuales: %1$d</string>
+    <string name="quick_customize">Personalizar</string>
+    <string name="quick_details">Detalles del trabajo</string>
+    <string name="quick_discard">Descartar</string>
+    <string name="quick_done">Listo</string>
+    <string name="quick_edit_image">Editar encuadre</string>
+    <string name="quick_expand">Ampliar</string>
+    <string name="quick_export_png">Exportar PNG · %1$d</string>
+    <string name="quick_export_zoom">Zoom de recorte: %1$d%%</string>
+    <string name="quick_fill_crop">Rellenar / recortar</string>
+    <string name="quick_focus_canvas">Vista ampliada del resultado final</string>
+    <string name="quick_focus_title">Encuadre</string>
+    <string name="quick_hide_batch">Ocultar imágenes · %1$d / %2$d</string>
+    <string name="quick_inspect">Inspeccionar</string>
+    <string name="quick_inspect_hint">Zoom solo de vista. Usá dos dedos para inspeccionar; no cambia la imagen exportada.</string>
+    <string name="quick_inspection_zoom">Solo vista: %1$d%%</string>
+    <string name="quick_keep_all">Sin recortar</string>
+    <string name="quick_keep_editing">Seguir editando</string>
+    <string name="quick_local_promise">En tu dispositivo. Los originales quedan intactos.</string>
+    <string name="quick_open_feedback">Ver importación y estado del trabajo</string>
+    <string name="quick_open_results">Revisar resultados de exportación</string>
+    <string name="quick_original">Mantener: original</string>
+    <string name="quick_play_flexible">Play flexible</string>
+    <string name="quick_play_portrait">Play 9:16</string>
+    <string name="quick_portrait">Vertical 4:5</string>
+    <string name="quick_precision">Ajuste fino</string>
+    <string name="quick_recenter">Recentrar</string>
+    <string name="quick_remove_image">Quitar imagen</string>
+    <string name="quick_result">Resultado</string>
+    <string name="quick_results">Resultados</string>
+    <string name="quick_settings">Ajustes</string>
+    <string name="quick_share_hint">También podés compartir una imagen con FixMyShot desde otra app.</string>
+    <string name="quick_show_batch">Imágenes · %1$d / %2$d</string>
+    <string name="quick_square">Cuadrado 1:1</string>
+    <string name="quick_start_detail">Elegí una plantilla, ajustá el encuadre y exportá una copia.</string>
+    <string name="quick_story">Historias 9:16</string>
+    <string name="quick_new_work">Nuevo trabajo</string>
+</resources>

@@ -3,7 +3,17 @@ package org.cajapersonal.fixmyshot.review
 import android.graphics.Bitmap
 import android.net.Uri
 import org.cajapersonal.fixmyshot.export.PendingMediaStoreRemoval
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Surface
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.layout.Arrangement
@@ -129,6 +139,8 @@ internal fun ReviewScreen(
     finishSessionOnReview: Boolean = false,
     importReport: ImportReport? = null,
     onClearImportFeedback: () -> Unit = {},
+    onTemplate: (DestinationChoice) -> Unit = onDestination,
+    onApplyFraming: (DraftSession, String, org.cajapersonal.fixmyshot.core.EditSettings) -> Unit = { _, _, _ -> },
 ) {
     val plans = remember(draft, api) { draft.plans(api) }
     val selected = draft.images.firstOrNull { it.id == selectedId }
@@ -138,6 +150,34 @@ internal fun ReviewScreen(
     var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
+    var advanced by rememberSaveable { mutableStateOf(false) }
+    val advancedState = rememberSaveableStateHolder()
+    var focusOpen by rememberSaveable { mutableStateOf(false) }
+    var focusId by rememberSaveable { mutableStateOf<String?>(null) }
+    var focusRevision by rememberSaveable { mutableStateOf(-1L) }
+    var infoOpen by rememberSaveable { mutableStateOf(false) }
+    var backgroundsOpen by rememberSaveable { mutableStateOf(false) }
+    var comparing by remember { mutableStateOf(false) }
+    var requestCrop by remember { mutableStateOf(false) }
+    var confirmingSavedDiscard by remember { mutableStateOf(false) }
+    val hasResults = exportState.phase !in setOf(ExportUiPhase.IDLE, ExportUiPhase.CHECKING_HISTORY) ||
+        exportState.previousJobs > 0 || exportState.canAcknowledge
+    val hasFeedback = importProgress != null || busy || pendingImports > 0 || invalidImports > 0 ||
+        importReport != null || importLimitExceeded || sessionRestored || sessionExpired || sessionSaveError || sessionRestoreBlocked
+    LaunchedEffect(exportState.phase) {
+        if (exportState.phase in setOf(ExportUiPhase.RUNNING, ExportUiPhase.COMPLETED, ExportUiPhase.BLOCKED,
+                ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.ERROR)) infoOpen = true
+    }
+    LaunchedEffect(draft.revision, selectedId, editEnabled) {
+        if (focusOpen && (focusRevision != draft.revision || focusId != selectedId || !editEnabled)) focusOpen = false
+        comparing = false
+    }
+    fun expandPreview() {
+        if (editEnabled && selected != null && preview != null) {
+            focusId = selected.id; focusRevision = draft.revision; focusOpen = true
+        }
+    }
+    BackHandler(enabled = advanced && !focusOpen && !infoOpen) { advanced = false }
     var showOriginalOutline by rememberSaveable(editorSessionKey) { mutableStateOf(false) }
     var tool by rememberSaveable(editorSessionKey) { mutableStateOf(ReviewTool.DESTINATION) }
     var crop by remember(selectedId, plan?.sessionRevision) { mutableStateOf(plan?.settings?.crop ?: CropFocus()) }
@@ -192,7 +232,7 @@ internal fun ReviewScreen(
             onDiscard(discardedDraft)
         }) { Text(stringResource(R.string.discard_session)) } },
         dismissButton = { TextButton(onClick = { confirmingDiscard = null }) {
-            Text(stringResource(R.string.export_keep_cancel))
+            Text(stringResource(R.string.quick_keep_editing))
         } },
     )
     val confirmationId = confirmingOutput
@@ -225,14 +265,14 @@ internal fun ReviewScreen(
         } },
     )
 
-    val panel: @Composable () -> Unit = {
+    val panel: @Composable (Boolean) -> Unit = { showTools ->
     Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
         if (sessionRestored) Text(stringResource(R.string.session_restored), style = MaterialTheme.typography.bodySmall)
         if (sessionExpired) Text(stringResource(R.string.session_expired))
         if (sessionRestoreBlocked) {
             Text(stringResource(R.string.session_restore_failed), color = MaterialTheme.colorScheme.error)
-            OutlinedButton(onClick = onDiscardUnavailableSession, enabled = !busy && !exportState.isLocked) {
+            OutlinedButton(onClick = { confirmingSavedDiscard = true }, enabled = !busy && !exportState.isLocked) {
                 Text(stringResource(R.string.session_discard_saved))
             }
         } else if (sessionSaveError) {
@@ -241,7 +281,7 @@ internal fun ReviewScreen(
                 Text(stringResource(R.string.session_retry_save))
             }
         }
-        if (draft.images.isEmpty()) Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
+        if (showTools && draft.images.isEmpty()) Button(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.choose_images)) }
         if (importProgress != null) {
             Text(stringResource(R.string.import_progress, importProgress.processed, importProgress.total),
                 modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
@@ -260,6 +300,7 @@ internal fun ReviewScreen(
         else if (invalidImports > 0) TextButton(onClick = onClearImportFeedback, enabled = !busy) {
             Text(stringResource(R.string.import_feedback_dismiss))
         }
+        if (showTools) {
         if (draft.images.isEmpty()) {
             Text(stringResource(R.string.choose_prompt))
             Text(stringResource(R.string.preview_only_notice), style = MaterialTheme.typography.bodySmall)
@@ -359,9 +400,6 @@ internal fun ReviewScreen(
                 }
             }
         }
-        if (tool == ReviewTool.EXPORT && draft.workingSourceIds.isNotEmpty()) OutlinedButton(onClick = { confirmingDiscard = draft },
-            enabled = editEnabled && !shareBusy) {
-            Text(stringResource(R.string.discard_session))
         }
         if (exportState.phase != ExportUiPhase.IDLE) ExportProgress(exportState, onCancelExport)
         if (exportState.phase == ExportUiPhase.BLOCKED) {
@@ -432,54 +470,141 @@ internal fun ReviewScreen(
         }
     }
     }
-    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(stringResource(R.string.app_name), style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier.weight(1f))
-            TextButton(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.editor_add)) }
-            TextButton(onClick = onSettings) { Text(stringResource(R.string.settings_title)) }
+    if (confirmingSavedDiscard && sessionRestoreBlocked) AlertDialog(
+        onDismissRequest = { confirmingSavedDiscard = false },
+        title = { Text(stringResource(R.string.quick_discard)) },
+        text = { Text(stringResource(R.string.discard_session_confirmation)) },
+        dismissButton = { TextButton(onClick = { confirmingSavedDiscard = false }) { Text(stringResource(R.string.quick_keep_editing)) } },
+        confirmButton = { TextButton(onClick = { confirmingSavedDiscard = false; onDiscardUnavailableSession() },
+            enabled = !busy && !exportState.isLocked) { Text(stringResource(R.string.quick_discard)) } },
+    )
+    if (requestCrop) CropConsentDialog(onCancel = { requestCrop = false }, onConfirm = {
+        requestCrop = false; onFit(FitMode.CROP, true)
+    })
+    if (focusOpen && focusId == selectedId && focusRevision == draft.revision && selected != null && preview != null && editEnabled) {
+        androidx.compose.runtime.key(editorSessionKey, selected.id, focusRevision) {
+            FocusEditor(draft, selected.id, preview, api, onApplyFraming,
+                onDismiss = { focusOpen = false }, onDiscard = { confirmingDiscard = draft })
         }
-        if (draft.images.isNotEmpty()) {
-            LazyRow(Modifier.fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                itemsIndexed(ReviewTool.entries) { _, value ->
-                    FilterChip(selected = tool == value, enabled = true,
-                        onClick = { finishGesture(); tool = value }, label = { Text(stringResource(value.label)) })
+    }
+    if (infoOpen) Dialog(onDismissRequest = { infoOpen = false },
+        properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+            Column(Modifier.fillMaxSize()) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(stringResource(if (hasResults) R.string.quick_results else R.string.quick_details),
+                        style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
+                    TextButton(onClick = { infoOpen = false }) { Text(stringResource(R.string.quick_done)) }
                 }
+                Box(Modifier.weight(1f)) { panel(false) }
             }
         }
-        ReviewWorkspace(Modifier.weight(1f), hasImage = selected != null,
-            stage = {
-                val live = stagedPlan
-                val contained = (live?.geometry as? PlannedGeometry.Contained)?.value
-                val cropped = (live?.geometry as? PlannedGeometry.Cropped)?.value
-                val output = contained?.canvas ?: cropped?.output
-                Column(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    if (selected != null && live != null && output != null) {
+    }
+    val stage: @Composable () -> Unit = {
+        val live = stagedPlan
+        val contained = (live?.geometry as? PlannedGeometry.Contained)?.value
+        val cropped = (live?.geometry as? PlannedGeometry.Cropped)?.value
+        val output = contained?.canvas ?: cropped?.output
+        Column(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            if (selected != null && live != null && output != null) {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
                         Text(stringResource(R.string.editor_summary, formatLabel(live.settings.format),
-                            stringResource(if (live.settings.fit == FitMode.CONTAIN) R.string.preserve_content else R.string.crop_mode),
-                            output.width, output.height), style = MaterialTheme.typography.bodySmall)
+                            stringResource(if (live.settings.fit == FitMode.CONTAIN) R.string.quick_keep_all else R.string.quick_fill_crop),
+                            output.width, output.height), style = MaterialTheme.typography.labelMedium)
                         Text(stringResource(if (live.settings.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
                             R.string.editor_metadata_removed else R.string.editor_metadata_kept),
-                            style = MaterialTheme.typography.bodySmall)
-                        if (plans.any { it.requiresReview }) Text(stringResource(R.string.editor_review_required),
-                            color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
-                        Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
-                            if (preview != null) ReviewCanvas(preview, selected, live,
-                                editEnabled && tool == ReviewTool.FRAMING, showOriginalOutline, Modifier.fillMaxSize(),
-                                ::editCrop, { position = it }, ::finishGesture, onCropCommitted = onCrop)
-                            else Text(stringResource(if (previewUnavailable) R.string.preview_unavailable else R.string.preview_loading))
-                        }
-                    } else Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(stringResource(R.string.preview_unavailable))
+                            style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    TextButton(onClick = ::expandPreview, enabled = editEnabled && preview != null) {
+                        Text(stringResource(R.string.quick_expand))
                     }
                 }
-            }, controls = panel)
-        if (selected != null && plan != null) Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp),
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            if (draft.canUndo) TextButton(onClick = onUndo, enabled = editEnabled) { Text(stringResource(R.string.undo_last)) }
-            Button(onClick = { finishGesture(); onExport() }, enabled = editEnabled && canPrepareExport,
-                modifier = Modifier.weight(1f)) { Text(stringResource(R.string.export_batch, draft.images.size)) }
+                Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
+                    if (comparing && preview != null) Image(preview.asImageBitmap(), stringResource(R.string.quick_original),
+                        Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                    else if (preview != null) ReviewCanvas(preview, selected, live,
+                        editEnabled && (!advanced || tool == ReviewTool.FRAMING), showOriginalOutline, Modifier.fillMaxSize(),
+                        ::editCrop, { position = it }, ::finishGesture, onCropCommitted = onCrop,
+                        onPositionCommitted = onPosition, onTap = ::expandPreview,
+                        onContainZoom = { requestCrop = true },
+                        onGestureCancelled = { crop = plan?.settings?.crop ?: CropFocus(); position = plan?.settings?.position ?: ContainPosition() })
+                    else Text(stringResource(if (previewUnavailable) R.string.preview_unavailable else R.string.preview_loading))
+                }
+            } else Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text(stringResource(if (selected == null) R.string.choose_prompt else R.string.crop_unavailable))
+            }
+        }
+    }
+    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp).heightIn(min = 52.dp),
+            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+            Image(painterResource(R.drawable.brand_header), stringResource(R.string.app_name),
+                modifier = Modifier.weight(1f).height(42.dp), contentScale = ContentScale.Fit)
+            if (draft.workingSourceIds.isNotEmpty() || sessionRestoreBlocked) TextButton(onClick = {
+                if (!editEnabled && !sessionRestoreBlocked) infoOpen = true
+                else if (sessionRestoreBlocked) confirmingSavedDiscard = true else confirmingDiscard = draft
+            }) { Text(stringResource(R.string.quick_discard)) }
+            TextButton(onClick = onSettings) { Text(stringResource(R.string.quick_settings)) }
+        }
+        if (hasResults || hasFeedback) TextButton(onClick = { infoOpen = true }, modifier = Modifier.fillMaxWidth()) {
+            Text(stringResource(if (hasResults) R.string.quick_open_results else R.string.quick_open_feedback))
+        }
+        if (busy || exportState.phase == ExportUiPhase.CHECKING_HISTORY) LinearProgressIndicator(Modifier.fillMaxWidth())
+        if (draft.images.isEmpty()) {
+            Box(Modifier.weight(1f)) { BrandStart(editEnabled, onChoose, draft.canUndo, onUndo) }
+        } else {
+            if (advanced) {
+                Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                    TextButton(onClick = { finishGesture(); advanced = false }) { Text(stringResource(R.string.quick_automatic)) }
+                    Text(stringResource(R.string.quick_customize), style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.weight(1f))
+                    TextButton(onClick = onChoose, enabled = editEnabled) { Text(stringResource(R.string.editor_add)) }
+                }
+                LazyRow(Modifier.fillMaxWidth().padding(horizontal = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    itemsIndexed(ReviewTool.entries) { _, value ->
+                        FilterChip(selected = tool == value, enabled = true,
+                            onClick = { finishGesture(); tool = value }, label = { Text(stringResource(value.label)) })
+                    }
+                }
+                ReviewWorkspace(Modifier.weight(1f), hasImage = selected != null, stage = stage, controls = {
+                    advancedState.SaveableStateProvider("advanced") { panel(true) }
+                })
+            } else {
+                if (draft.images.size > 1) QuickBatchStrip(draft, plans, selectedId, thumbnails, editEnabled, onSelect, onRemove)
+                QuickWorkspace(Modifier.weight(1f), stage = stage, tools = {
+                    QuickTemplateCards(draft.destination, editEnabled) { finishGesture(); onTemplate(it) }
+                    Column(Modifier.padding(horizontal = 12.dp)) {
+                        val quick = stagedPlan?.settings
+                        if (quick != null) QuickFramingRow(quick.fit, editEnabled, { onFit(it, true) })
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically) {
+                            CompareOriginalButton(comparing, preview != null && editEnabled) { comparing = it }
+                            TextButton(onClick = { backgroundsOpen = !backgroundsOpen }) { Text(stringResource(R.string.editor_background)) }
+                            TextButton(onClick = { finishGesture(); advanced = true }) { Text(stringResource(R.string.quick_customize)) }
+                        }
+                        if (backgroundsOpen && quick != null) QuickBackgroundRow(quick.background, editEnabled) { onBackground(it, true) }
+                        if (plans.any { it.requiresReview }) TextButton(onClick = { advanced = true; tool = ReviewTool.EXPORT }) {
+                            Text(stringResource(R.string.editor_review_required), color = MaterialTheme.colorScheme.error)
+                        }
+                        if (customCount > 0) Text(stringResource(R.string.quick_custom_count, customCount),
+                            style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                })
+            }
+            Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 6.dp),
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (draft.canUndo) TextButton(onClick = { crop = plan?.settings?.crop ?: CropFocus(); onUndo() }, enabled = editEnabled) {
+                    Text(stringResource(R.string.undo_last))
+                }
+                Button(onClick = { finishGesture(); onExport() }, enabled = editEnabled && canPrepareExport,
+                    modifier = Modifier.weight(1f).heightIn(min = 52.dp)) {
+                    val formats = plans.map { it.settings.format }.distinct()
+                    Text(if (formats.size == 1 && formats.single() == OutputFormat.PNG)
+                        stringResource(R.string.quick_export_png, draft.images.size)
+                        else stringResource(R.string.export_batch, draft.images.size))
+                }
+            }
         }
     }
 

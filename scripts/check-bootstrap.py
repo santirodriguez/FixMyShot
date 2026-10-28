@@ -12,8 +12,8 @@ def check() -> None:
     resources = ROOT / "app/src/main/res"
     baseline = None
     for qualifier in ("values", "values-es", "values-ca"):
-        strings = ET.parse(resources / qualifier / "strings.xml").getroot()
-        entries = list(strings)
+        entries = [entry for path in sorted((resources / qualifier).glob("*.xml"))
+                   for entry in ET.parse(path).getroot() if entry.tag == "string"]
         keys = [entry.attrib["name"] for entry in entries]
         assert len(keys) == len(set(keys)), f"Duplicate keys: {qualifier}"
         assert all("".join(entry.itertext()).strip() for entry in entries), qualifier
@@ -22,6 +22,9 @@ def check() -> None:
             baseline = signatures
         else:
             assert signatures == baseline, f"Missing keys or incompatible placeholders: {qualifier}"
+    used = {name for path in (ROOT / "app/src/main/kotlin").rglob("*.kt")
+            for name in re.findall(r"(?<!android\.)\bR\.string\.(\w+)", path.read_text(encoding="utf-8"))}
+    assert used <= baseline.keys(), f"Undefined resource references: {sorted(used - baseline.keys())}"
     for path in resources.rglob("*.xml"):
         ET.parse(path)
     locale_config = ET.parse(resources / "xml/supported_languages.xml").getroot()

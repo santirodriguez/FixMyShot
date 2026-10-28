@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Automatic-first workspace -->
+    <string name="quick_apply_frame">Aplicar enquadrament</string>
+    <string name="quick_automatic">Automàtic</string>
+    <string name="quick_contain_hint">Arrossega dins dels marges. Es conserva tota la imatge.</string>
+    <string name="quick_crop_consent">Ampliar el resultat pot deixar contingut fora del marc. Vols activar el retall? El fitxer original no canvia.</string>
+    <string name="quick_crop_hint">Arrossega o fes servir dos dits. El contingut fora de la vora no s’exporta.</string>
+    <string name="quick_crop_question">Vols activar el retall?</string>
+    <string name="quick_custom_count">Ajustos individuals: %1$d</string>
+    <string name="quick_customize">Personalitzar</string>
+    <string name="quick_details">Detalls del treball</string>
+    <string name="quick_discard">Descartar</string>
+    <string name="quick_done">Fet</string>
+    <string name="quick_edit_image">Editar enquadrament</string>
+    <string name="quick_expand">Ampliar</string>
+    <string name="quick_export_png">Exportar PNG · %1$d</string>
+    <string name="quick_export_zoom">Zoom de retall: %1$d%%</string>
+    <string name="quick_fill_crop">Omplir / retallar</string>
+    <string name="quick_focus_canvas">Vista ampliada del resultat final</string>
+    <string name="quick_focus_title">Enquadrament</string>
+    <string name="quick_hide_batch">Amagar imatges · %1$d / %2$d</string>
+    <string name="quick_inspect">Inspeccionar</string>
+    <string name="quick_inspect_hint">Zoom només de vista. Fes servir dos dits per inspeccionar; no canvia la imatge exportada.</string>
+    <string name="quick_inspection_zoom">Només vista: %1$d%%</string>
+    <string name="quick_keep_all">Sense retallar</string>
+    <string name="quick_keep_editing">Continuar editant</string>
+    <string name="quick_local_promise">Al teu dispositiu. Els originals queden intactes.</string>
+    <string name="quick_open_feedback">Veure la importació i l’estat del treball</string>
+    <string name="quick_open_results">Revisar els resultats de l’exportació</string>
+    <string name="quick_original">Mantén: original</string>
+    <string name="quick_play_flexible">Play flexible</string>
+    <string name="quick_play_portrait">Play 9:16</string>
+    <string name="quick_portrait">Vertical 4:5</string>
+    <string name="quick_precision">Ajust precís</string>
+    <string name="quick_recenter">Tornar a centrar</string>
+    <string name="quick_remove_image">Treure imatge</string>
+    <string name="quick_result">Resultat</string>
+    <string name="quick_results">Resultats</string>
+    <string name="quick_settings">Configuració</string>
+    <string name="quick_share_hint">També pots compartir una imatge amb FixMyShot des d’una altra app.</string>
+    <string name="quick_show_batch">Imatges · %1$d / %2$d</string>
+    <string name="quick_square">Quadrat 1:1</string>
+    <string name="quick_start_detail">Tria una plantilla, ajusta l’enquadrament i exporta’n una còpia.</string>
+    <string name="quick_story">Històries 9:16</string>
+    <string name="quick_new_work">Treball nou</string>
+</resources>

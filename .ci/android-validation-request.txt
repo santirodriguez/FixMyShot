@@ -1,13 +1,12 @@
-Interactive editor source-bound validation after 40724173717 failure.
-Validated candidate before CI: 74076ed14ad17fbac42e2127d38a08843faf8dea.
-Fix Compose accessibility stale caching after selecting Crop (API34+ clearCache)
-and persist final event-local crop focus through the durable onCrop callback
-without a second gesture finish/duplicate edit.
-Assert the cropped plan and accessible zoom controls are actually ready
-before sending touch events; preserve 1 edit, 1 undo, +2% zoom, retained sample,
-canvas visibility and all existing regression checks.
-Run Android build, core/lint/locale, API36 EditorInteractionTest2/2,
-ReviewRenderTest8/8, import/settings21 and actual PNG/WebP fixture encodes.
-Retain synthetic screenshots and accessibility trees if tests fail.
-No renderer, exporter, geometry, source-byte, default, signer, release or merge changes.
+Automatic-first UX checkpoint on the existing editor branch.
+Base source: 92c6b710b567d236a7d0b4f4b847e7289b62610b.
+Implement branded start, automatic templates, preserved Customize controls,
+large apply/cancel framing, view-only inspection, explicit crop consent,
+visible confirmed discard and the existing transactional export/recovery path.
+Six QuickTemplateTest core cases; seven real EditorInteractionTest cases,
+including the preceding gesture/undo/sample/fine-zoom assertions.
+Use existing complete current-profile renderer/private-output/import/export tests.
+Collect synthetic start/automatic/focus screenshots; physical acceptance remains open.
+Independent debug identity .automatic / FixMyShot Auto; production identity unchanged.
+No codec/dependency/toolchain/permission/signing-key/merge/release changes.
 profile=current

@@ -55,8 +55,10 @@ FixMyShot prepares screenshots for publication: choose a destination or ratio, r
 ## The workflow
 
 1. **Bring your images.** Use Android's picker or share static SDR JPEG, PNG or WebP from another app. Review up to **100 images**, with thumbnails and batch settings that keep individual exceptions.
-2. **Make it fit.** Choose a destination or ratio, review margins or an explicit crop, then check format, size, background and metadata choices. Conflicts need review before export.
+2. **Start simple; customize when needed.** Automatic shows a layout recommendation and a live result. Choose a template, optionally drag or crop, then export. Expand gives framing more room; Customize keeps the full set of format, size, background and metadata controls. Conflicts still need review before export.
 3. **Export and carry on.** Save separate copies, select individual successful outputs or all of them, and share deliberately. Each selected file is verified again before sharing.
+
+The development editor follows the [automatic-first workspace contract](docs/decisions/automatic-first-editor.md). Its new UI and physical-device acceptance are still under validation.
 
 ### A little less starting over
 

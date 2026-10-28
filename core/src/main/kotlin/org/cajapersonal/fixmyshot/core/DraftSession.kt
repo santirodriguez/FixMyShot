@@ -163,6 +163,26 @@ data class DraftSession(
         return if (value == destination) this else copy(destination = value, revision = nextRevision(), previous = snapshot())
     }
 
+    /** One user action and undo boundary; explicit item and batch choices are never erased. */
+    fun applyTemplate(value: DestinationChoice, restoreDefaults: Boolean = false): DraftSession {
+        DestinationCatalog.resolve(value)
+        val settings = if (restoreDefaults) EditSettings() else batch
+        return if (value == destination && settings == batch) this else copy(
+            destination = value, batch = settings, revision = nextRevision(), previous = snapshot(),
+        )
+    }
+
+    /** Commit a fullscreen framing edit once, keeping all unrelated fields and provenance. */
+    fun applyFraming(itemId: String, fit: FitMode, crop: CropFocus, position: ContainPosition): DraftSession {
+        val item = requireNotNull(images.find { it.id == itemId }) { "Unknown item" }
+        val effective = item.overrides.resolve(batch)
+        return editItem(itemId, item.overrides.copy(
+            fit = if (fit == effective.fit) item.overrides.fit else ItemValue.Custom(fit),
+            crop = if (crop == effective.crop) item.overrides.crop else ItemValue.Custom(crop),
+            position = if (position == effective.position) item.overrides.position else ItemValue.Custom(position),
+        ))
+    }
+
     fun setBatch(value: EditSettings): DraftSession = if (value == batch) this else
         copy(batch = value, revision = nextRevision(), previous = snapshot())
 
@@ -303,4 +323,3 @@ data class DraftSession(
         return output.width.toLong() * ratio.q == output.height.toLong() * ratio.p
     }
 }
-

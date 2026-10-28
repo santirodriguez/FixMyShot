@@ -10,6 +10,9 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.compose.runtime.key
+import kotlinx.coroutines.flow.first
+import org.cajapersonal.fixmyshot.design.FixMyShotTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
@@ -116,8 +119,13 @@ class MainActivity : AppCompatActivity() {
                 AppTheme.LIGHT -> false
                 AppTheme.DARK -> true
             }
-            LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked) {
-                model.drainImports(applicationContext)
+            LaunchedEffect(Unit) {
+                try { model.preferredTemplate = preferences.lastTemplate.first() }
+                catch (_: IOException) { model.preferredTemplate = null }
+                model.quickPreferencesReady = true
+            }
+            LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked, model.quickPreferencesReady) {
+                if (model.quickPreferencesReady) model.drainImports(applicationContext)
             }
             val selectedSource = model.draft.images.firstOrNull { it.id == model.selectedId }
             LaunchedEffect(selectedSource?.id, selectedSource?.contentSha256, model.previewEpoch) { loadPreview() }
@@ -128,7 +136,7 @@ class MainActivity : AppCompatActivity() {
                 WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = !dark
                 WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars = !dark
             }
-            MaterialTheme(colorScheme = if (dark) darkColorScheme() else lightColorScheme()) {
+            FixMyShotTheme(dark) {
                 if (settingsOpen) SettingsDialog(
                     theme = theme,
                     editable = !model.isBusy && !model.exportState.isLocked,
@@ -167,6 +175,7 @@ class MainActivity : AppCompatActivity() {
                     },
                 )
                 Surface(Modifier.fillMaxSize()) {
+                    key(model.editorSessionKey) {
                     ReviewScreen(
                         draft = model.draft,
                         selectedId = model.selectedId,
@@ -228,6 +237,18 @@ class MainActivity : AppCompatActivity() {
                             scheduleThumbnails(listOf(id))
                         },
                         onDestination = { value -> updateDraft(model.draft.setDestination(value)) },
+                        onTemplate = { value ->
+                            updateDraft(model.draft.applyTemplate(value))
+                            val id = (value as? org.cajapersonal.fixmyshot.core.DestinationChoice.Preset)?.id
+                            if (id != null && model.draft.destination == value) scope.launch {
+                                try { preferences.setTemplate(id); model.preferredTemplate = id }
+                                catch (_: IOException) { settingsError = true }
+                            }
+                        },
+                        onApplyFraming = { expected, id, settings ->
+                            if (model.draft == expected && model.selectedId == id) updateDraft(
+                                expected.applyFraming(id, settings.fit, settings.crop, settings.position))
+                        },
                         onFormat = format@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
                             if (onlySelected && item == null) return@format
@@ -294,6 +315,7 @@ class MainActivity : AppCompatActivity() {
                         onRemove = { removeSelected() },
                         onDiscard = { expected -> discardDraft(expected) },
                     )
+                    }
                 }
             }
         }
