@@ -219,12 +219,13 @@ internal fun CompareOriginalButton(comparing: Boolean, enabled: Boolean, onCompa
 @Composable
 internal fun QuickWorkspace(modifier: Modifier, stage: @Composable () -> Unit, tools: @Composable () -> Unit) {
     BoxWithConstraints(modifier) {
+        val toolsHeightLimit = maxHeight * .46f
         if (maxWidth > maxHeight) Row(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1.5f).fillMaxHeight()) { stage() }
             Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())) { tools() }
         } else Column(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f).fillMaxWidth()) { stage() }
-            Column(Modifier.fillMaxWidth().heightIn(max = maxHeight * .46f).verticalScroll(rememberScrollState())) { tools() }
+            Column(Modifier.fillMaxWidth().heightIn(max = toolsHeightLimit).verticalScroll(rememberScrollState())) { tools() }
         }
     }
 }

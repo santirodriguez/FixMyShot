@@ -9,4 +9,6 @@ Use existing complete current-profile renderer/private-output/import/export test
 Collect synthetic start/automatic/focus screenshots; physical acceptance remains open.
 Independent debug identity .automatic / FixMyShot Auto; production identity unchanged.
 No codec/dependency/toolchain/permission/signing-key/merge/release changes.
+Compile follow-up: capture the parent height before entering the nested Column DSL.
+Keep all original tests and acceptance requirements.
 profile=current
