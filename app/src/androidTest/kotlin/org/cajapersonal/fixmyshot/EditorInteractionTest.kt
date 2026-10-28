@@ -80,7 +80,7 @@ class EditorInteractionTest {
         if (node == null) return null
         val rect = Rect().also { node.getBoundsInScreen(it) }
         // Select the actual vertical controls viewport, not the horizontal tool strip.
-        if (node.isScrollable && rect.height() > 100 &&
+        if (node.isScrollable && rect.height() > rect.width() / 3 &&
             node.actionList.any { it.id == AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN.id }) return node
         for (i in 0 until node.childCount) toolPane(node.getChild(i))?.let { return it }
         return null
