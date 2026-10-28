@@ -46,6 +46,15 @@ object DestinationCatalog {
     const val SOCIAL_PORTRAIT = "social-portrait"
     const val SOCIAL_STORY = "social-story"
     const val CUSTOM_RATIO = "custom-ratio"
+    // Additive stable IDs: unlike shared aspect ratios, destinations keep separate labels/contracts.
+    const val INSTAGRAM_FEED = "instagram-feed"
+    const val INSTAGRAM_STORY = "instagram-story"
+    const val INSTAGRAM_SQUARE = "instagram-square"
+    const val TIKTOK_PHOTO = "tiktok-photo"
+    const val WHATSAPP_STATUS = "whatsapp-status"
+    const val WHATSAPP_CHAT = "whatsapp-chat"
+    const val FACEBOOK_FEED = "facebook-feed"
+    const val FACEBOOK_SQUARE = "facebook-square"
 
     val presets: List<DestinationPreset> = listOf(
         DestinationPreset(PLAY_PHONE, "preset_play_phone", DestinationEvidence.OFFICIAL_UPLOAD,
@@ -58,6 +67,22 @@ object DestinationCatalog {
             FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(4, 5)),
         DestinationPreset(SOCIAL_STORY, "preset_social_story", DestinationEvidence.LAYOUT_GUIDANCE,
             FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(9, 16)),
+        DestinationPreset(INSTAGRAM_FEED, "destination_instagram_feed", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(4, 5)),
+        DestinationPreset(INSTAGRAM_STORY, "destination_instagram_story", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(9, 16)),
+        DestinationPreset(INSTAGRAM_SQUARE, "destination_instagram_square", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(1, 1)),
+        DestinationPreset(TIKTOK_PHOTO, "destination_tiktok_photo", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(9, 16)),
+        DestinationPreset(WHATSAPP_STATUS, "destination_whatsapp_status", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(9, 16)),
+        DestinationPreset(WHATSAPP_CHAT, "destination_whatsapp_chat", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ratio = null),
+        DestinationPreset(FACEBOOK_FEED, "destination_facebook_feed", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(4, 5)),
+        DestinationPreset(FACEBOOK_SQUARE, "destination_facebook_square", DestinationEvidence.LAYOUT_GUIDANCE,
+            FormatPolicy.UNVERIFIED_UPLOAD, ExactRatio.of(1, 1)),
         DestinationPreset(CUSTOM_RATIO, "preset_custom_ratio", DestinationEvidence.USER_DEFINED,
             FormatPolicy.USER_SELECTED, ratio = null, requiresOpaque = false),
     )
@@ -81,6 +106,8 @@ object DestinationCatalog {
 data class ResolvedDestination(val preset: DestinationPreset, val ratio: ExactRatio?) {
     fun cropRatio(source: PixelSize, size: OutputSizeChoice = OutputSizeChoice.PreservePixels): ExactRatio =
         (size as? OutputSizeChoice.Exact)?.let { ExactRatio.of(it.canvas.width.toLong(), it.canvas.height.toLong()) } ?: ratio ?: when {
+        preset.id == DestinationCatalog.WHATSAPP_CHAT ->
+            ExactRatio.of(source.width.toLong(), source.height.toLong())
         source.height.toLong() > 2L * source.width -> ExactRatio.of(1, 2)
         source.width.toLong() > 2L * source.height -> ExactRatio.of(2, 1)
         else -> ExactRatio.of(source.width.toLong(), source.height.toLong())
@@ -90,6 +117,8 @@ data class ResolvedDestination(val preset: DestinationPreset, val ratio: ExactRa
         is OutputSizeChoice.Exact -> GeometryPlanner.exactCanvas(source, size.canvas, size.allowEnlargement)
         OutputSizeChoice.PreservePixels -> when (preset.id) {
             DestinationCatalog.PLAY_PHONE -> GeometryPlanner.playPhoneEnvelope(source)
+            DestinationCatalog.WHATSAPP_CHAT -> GeometryPlanner.preservePixelsAtRatio(
+                source, ExactRatio.of(source.width.toLong(), source.height.toLong()))
             else -> GeometryPlanner.preservePixelsAtRatio(
                 source, requireNotNull(ratio), minimumShortSide = preset.minimumShortSide,
             )

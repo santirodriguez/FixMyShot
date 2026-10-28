@@ -73,4 +73,36 @@ class QuickTemplateTest {
         val settings = portrait.overrides.resolve(before.batch)
         assertSame(before, before.applyFraming("p", settings.fit, settings.crop, settings.position))
     }
+    @Test fun platformSpecificLayoutsAreNotCollapsedBySharedRatio() {
+        val play = DestinationCatalog.resolve(DestinationChoice.Preset(DestinationCatalog.PLAY_PORTRAIT))
+        val instagram = DestinationCatalog.resolve(DestinationChoice.Preset(DestinationCatalog.INSTAGRAM_STORY))
+        val tiktok = DestinationCatalog.resolve(DestinationChoice.Preset(DestinationCatalog.TIKTOK_PHOTO))
+        val whatsapp = DestinationCatalog.resolve(DestinationChoice.Preset(DestinationCatalog.WHATSAPP_STATUS))
+        assertEquals(ExactRatio.of(9, 16), play.ratio)
+        assertEquals(play.ratio, instagram.ratio)
+        assertEquals(instagram.ratio, tiktok.ratio)
+        assertEquals(tiktok.ratio, whatsapp.ratio)
+        assertEquals(DestinationEvidence.OFFICIAL_RECOMMENDATION, play.preset.evidence)
+        assertEquals(DestinationEvidence.LAYOUT_GUIDANCE, tiktok.preset.evidence)
+        assertEquals(FormatPolicy.PNG_RGB_ONLY, play.preset.formatPolicy)
+        assertEquals(FormatPolicy.UNVERIFIED_UPLOAD, whatsapp.preset.formatPolicy)
+        assertEquals(13, QuickTemplates.ids.distinct().size)
+        assertEquals(DestinationCatalog.TIKTOK_PHOTO,
+            QuickTemplates.remembered(DestinationCatalog.TIKTOK_PHOTO)?.id)
+    }
+
+    @Test fun whatsappChatKeepsAnUntouchedSourceSizedCanvas() {
+        val draft = DraftSession(images = listOf(portrait)).applyTemplate(
+            DestinationChoice.Preset(DestinationCatalog.WHATSAPP_CHAT))
+        val plan = draft.plans(36).single()
+        val contain = (plan.geometry as PlannedGeometry.Contained).value
+        assertEquals(portrait.orientedSize, contain.canvas)
+        assertEquals(PixelPlacement(0, 0, 1344, 2992), contain.placement)
+        assertFalse(contain.resized)
+        assertTrue(plan.reviewFlags.isEmpty())
+        assertEquals(ExactRatio.of(1344, 2992), plan.destination.cropRatio(portrait.orientedSize))
+        assertEquals(OutputFormat.PNG, draft.batch.format)
+        assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, draft.batch.metadata)
+    }
+
 }
