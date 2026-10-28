@@ -108,7 +108,7 @@ internal fun CropControls(image: DraftImage, plan: PreviewPlan, enabled: Boolean
 /** Coordinates account for the actual fitted preview frame rather than its letterbox. */
 @Composable
 internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabled: Boolean,
-    onCrop: (CropFocus) -> Unit, onFinished: () -> Unit = {}): Modifier {
+    onCrop: (CropFocus) -> Unit, onFinished: (CropFocus) -> Unit): Modifier {
     val latestPlan by rememberUpdatedState(plan)
     val latestCallback by rememberUpdatedState(onCrop)
     val latestFinish by rememberUpdatedState(onFinished)
@@ -124,10 +124,7 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
             var changed = false
             do {
                 val event = awaitPointerEvent()
-                // The preview has an independent pointer observer for contain mode.
-                // Once crop owns a drag, its consumed changes must not abort release
-                // processing; the final UP must still commit one undoable revision.
-                if (!dragging && event.changes.any { it.isConsumed }) break
+                // Keep receiving changes until pointer up; consume moves after slop.
                 val pan = event.calculatePan()
                 val zoom = event.calculateZoom()
                 accumulatedPan += pan
@@ -164,9 +161,8 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
                 }
                 if (dragging) event.changes.forEach { if (it.positionChanged()) it.consume() }
             } while (event.changes.any { it.pressed })
-            // One handler owns movement and release; no second pointer observer can
-            // miss the final event or commit an intermediate frame.
-            if (changed) { latestCallback(focus); latestFinish() }
+            // Commit the event-local focus exactly once at pointer up.
+            if (changed) latestFinish(focus)
         }
     }
 }
