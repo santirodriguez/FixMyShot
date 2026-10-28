@@ -104,38 +104,82 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
     }
 }
 
+/** Visible selection stays one compact row; different publishing surfaces retain distinct stable IDs. */
+private val quickDestinationGroups = listOf(
+    "Google Play" to listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE),
+    "Instagram" to listOf(DestinationCatalog.INSTAGRAM_FEED, DestinationCatalog.INSTAGRAM_STORY,
+        DestinationCatalog.INSTAGRAM_SQUARE),
+    "TikTok" to listOf(DestinationCatalog.TIKTOK_PHOTO),
+    "WhatsApp" to listOf(DestinationCatalog.WHATSAPP_STATUS, DestinationCatalog.WHATSAPP_CHAT),
+    "Facebook" to listOf(DestinationCatalog.FACEBOOK_FEED, DestinationCatalog.FACEBOOK_SQUARE),
+    "Other" to listOf(DestinationCatalog.SOCIAL_PORTRAIT, DestinationCatalog.SOCIAL_STORY,
+        DestinationCatalog.SOCIAL_SQUARE),
+)
+
 @Composable
 internal fun QuickTemplateCards(destination: DestinationChoice, enabled: Boolean,
-    onSelect: (DestinationChoice) -> Unit) {
-    LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp)) {
-        items(QuickTemplates.ids, key = { it }) { id ->
-            val active = destination == DestinationChoice.Preset(id)
-            val label = stringResource(quickTemplateLabel(id))
-            val ratio = DestinationCatalog.resolve(DestinationChoice.Preset(id)).ratio
-            Surface(onClick = { onSelect(DestinationChoice.Preset(id)) }, enabled = enabled,
+    onSelect: (DestinationChoice) -> Unit, onCustomize: () -> Unit = {}) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    val selectedId = (destination as? DestinationChoice.Preset)?.id
+    val selectedGroup = quickDestinationGroups.firstOrNull { selectedId in it.second }?.first
+    val selectedLabel = selectedId?.let { stringResource(quickTemplateLabel(it)) }
+        ?: stringResource(R.string.quick_customize)
+    val chooserLabel = stringResource(R.string.quick_choose_destination)
+    Box(Modifier.fillMaxWidth().padding(horizontal = 12.dp)) {
+        Column(Modifier.fillMaxWidth()) {
+            Surface(onClick = { expanded = true }, enabled = enabled,
                 shape = RoundedCornerShape(16.dp),
-                border = BorderStroke(if (active) 2.dp else 1.dp,
-                    if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant),
-                color = if (active) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainer,
-                modifier = Modifier.width(128.dp).heightIn(min = 72.dp).semantics {
-                    selected = active; contentDescription = label
-                }) {
-                Row(Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    val accent = if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
-                    Canvas(Modifier.size(22.dp, 38.dp)) {
-                        val aspect = ratio?.let { it.p.toFloat() / it.q } ?: .5f
-                        val w = minOf(size.width, size.height * aspect)
-                        val h = w / aspect
-                        val origin = Offset((size.width - w) / 2, (size.height - h) / 2)
-                        drawRect(accent.copy(alpha = .12f), origin, Size(w, h))
-                        drawRect(accent, origin, Size(w, h), style = Stroke(1.5.dp.toPx()))
+                color = MaterialTheme.colorScheme.surfaceContainer,
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)
+                    .semantics { contentDescription = chooserLabel }) {
+                Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(chooserLabel, style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(listOfNotNull(selectedGroup?.takeUnless { it == "Other" }
+                            ?: if (selectedGroup == "Other") stringResource(R.string.quick_other_layouts)
+                               else null, selectedLabel).joinToString(" · "),
+                            style = MaterialTheme.typography.titleSmall)
                     }
-                    Text(label, style = MaterialTheme.typography.labelLarge,
-                        color = if (active) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface)
+                    Text("⌄", style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.primary)
                 }
             }
+            if (selectedId == DestinationCatalog.TIKTOK_PHOTO ||
+                selectedId == DestinationCatalog.WHATSAPP_STATUS) {
+                Text(stringResource(if (selectedId == DestinationCatalog.TIKTOK_PHOTO)
+                    R.string.quick_tiktok_notice else R.string.quick_whatsapp_notice),
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp))
+            }
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false },
+            modifier = Modifier.heightIn(max = 500.dp)) {
+            quickDestinationGroups.forEach { (group, choices) ->
+                Text(if (group == "Other") stringResource(R.string.quick_other_layouts) else group,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(start = 16.dp, top = 10.dp, bottom = 2.dp))
+                choices.forEach { id ->
+                    DropdownMenuItem(enabled = enabled,
+                        text = {
+                            Text(stringResource(quickTemplateLabel(id)),
+                                color = if (selectedId == id) MaterialTheme.colorScheme.primary
+                                    else MaterialTheme.colorScheme.onSurface)
+                        },
+                        onClick = { expanded = false; onSelect(DestinationChoice.Preset(id)) })
+                }
+            }
+            HorizontalDivider()
+            DropdownMenuItem(enabled = enabled, text = { Text(stringResource(R.string.quick_customize)) },
+                onClick = { expanded = false; onCustomize() })
+            Text(stringResource(R.string.quick_layout_guidance),
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(16.dp))
         }
     }
 }
@@ -143,9 +187,18 @@ internal fun QuickTemplateCards(destination: DestinationChoice, enabled: Boolean
 internal fun quickTemplateLabel(id: String): Int = when (id) {
     DestinationCatalog.PLAY_PORTRAIT -> R.string.quick_play_portrait
     DestinationCatalog.PLAY_PHONE -> R.string.quick_play_flexible
+    DestinationCatalog.INSTAGRAM_FEED -> R.string.destination_instagram_feed
+    DestinationCatalog.INSTAGRAM_STORY -> R.string.destination_instagram_story
+    DestinationCatalog.INSTAGRAM_SQUARE -> R.string.destination_instagram_square
+    DestinationCatalog.TIKTOK_PHOTO -> R.string.destination_tiktok_photo
+    DestinationCatalog.WHATSAPP_STATUS -> R.string.destination_whatsapp_status
+    DestinationCatalog.WHATSAPP_CHAT -> R.string.destination_whatsapp_chat
+    DestinationCatalog.FACEBOOK_FEED -> R.string.destination_facebook_feed
+    DestinationCatalog.FACEBOOK_SQUARE -> R.string.destination_facebook_square
     DestinationCatalog.SOCIAL_PORTRAIT -> R.string.quick_portrait
     DestinationCatalog.SOCIAL_STORY -> R.string.quick_story
-    else -> R.string.quick_square
+    DestinationCatalog.SOCIAL_SQUARE -> R.string.quick_square
+    else -> R.string.quick_customize
 }
 
 @Composable

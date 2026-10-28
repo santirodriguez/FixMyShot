@@ -49,4 +49,17 @@
     <string name="quick_crop_show_result">Veure el resultat final</string>
     <string name="quick_crop_trim_accessibility">Original amb l’àrea exclosa del retall ombrejada</string>
     <string name="quick_background_edge">Integrat</string>
+    <string name="quick_choose_destination">Tria la destinació</string>
+    <string name="quick_other_layouts">Altres formats</string>
+    <string name="quick_layout_guidance">Els formats socials són guies visuals, no garanties de publicació.</string>
+    <string name="quick_tiktok_notice">Només format visual: l’API de TikTok admet JPEG/WebP, no PNG.</string>
+    <string name="quick_whatsapp_notice">WhatsApp pot reduir la qualitat en publicar un estat.</string>
+    <string name="destination_instagram_feed">Publicació vertical · 4:5</string>
+    <string name="destination_instagram_story">Històries · 9:16</string>
+    <string name="destination_instagram_square">Quadrat · 1:1</string>
+    <string name="destination_tiktok_photo">Foto · 9:16</string>
+    <string name="destination_whatsapp_status">Estat · 9:16</string>
+    <string name="destination_whatsapp_chat">Foto de xat · proporció original</string>
+    <string name="destination_facebook_feed">Publicació vertical · 4:5</string>
+    <string name="destination_facebook_square">Quadrat · 1:1</string>
 </resources>

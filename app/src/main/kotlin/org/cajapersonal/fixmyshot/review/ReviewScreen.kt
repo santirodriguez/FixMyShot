@@ -573,7 +573,9 @@ internal fun ReviewScreen(
             } else {
                 if (draft.images.size > 1) QuickBatchStrip(draft, plans, selectedId, thumbnails, editEnabled, onSelect, onRemove)
                 QuickWorkspace(Modifier.weight(1f), stage = stage, tools = {
-                    QuickTemplateCards(draft.destination, editEnabled) { finishGesture(); onTemplate(it) }
+                    QuickTemplateCards(draft.destination, editEnabled,
+                        onSelect = { finishGesture(); onTemplate(it) },
+                        onCustomize = { finishGesture(); advanced = true; tool = ReviewTool.DESTINATION })
                     Column(Modifier.padding(horizontal = 12.dp)) {
                         val quick = stagedPlan?.settings
                         if (quick != null) QuickFramingRow(quick.fit, editEnabled, { onFit(it, true) })

@@ -26,3 +26,33 @@ The expanded preview still uses one bounded sample. It is not an export source o
 Focused core cases cover first-use recommendations, validated remembered IDs, atomic template undo, exact Pixel 1344x2992 -> 1683x2992 geometry with 169/170 side margins, preserved incompatible overrides, and no-op/fullscreen framing provenance. Android editor checks retain the prior two gesture/zoom cases and add automatic/mode switching, larger apply/cancel framing, inspection-only pinch, explicit crop consent and discoverable confirmed discard. Existing renderer, private PNG/WebP, import, transaction and recovery suites remain required in the accumulated API36 checkpoint.
 
 Host-only Kotlin checks do not establish an Android build. Build, lint, instrumentation, actual screenshots, TalkBack, 200% text, landscape, keyboard and physical Pixel responsiveness/fidelity each need their own evidence. Device smoothness and visual acceptance are not inferred from compilation or synthetic input. The hardware/native, other-device-family, 16 KiB, legacy-provider, publisher/provenance and final signing/distribution gates remain open.
+
+## UX 2.1 — crop responsiveness and destination clarity (implementation candidate)
+
+The touch editor keeps a gesture-local crop focus while a pointer is down. The canvas updates its
+sampled image without updating the draft, the full-screen preflight, other control composables,
+or the undo journal on each pointer event. A completed gesture commits once; a cancelled gesture
+drops its transient state. The exact CropPlanner remains the geometric authority. An optional
+full-source inspection marks the excluded rectangle and displays the percentage trimmed;
+it is never exported. Physical Pixel frame-time and full-resolution output comparison remain
+required before claiming responsiveness or image-fidelity acceptance.
+
+An explicitly selected **Match edges** background samples a median RGB value from the normalized
+preview's vertical source edges and stores that fixed value using the existing CustomRgb policy.
+The final exporter uses exactly that RGB; old Automatic drafts, frozen plans and retries retain
+their previous behavior. This is a solid matte, not cloned/blurred/fabricated content. It is
+initially opt-in pending comparison against actual Pixel source and resulting PNG margins.
+
+The compact destination picker groups distinct offline layout contracts by Google Play,
+Instagram, TikTok, WhatsApp and Facebook, followed by legacy generic layouts and Customize.
+Existing catalog IDs remain stable, so remembered templates and saved work are not silently
+reinterpreted. New social presets are layout guidance rather than upload certification. The
+TikTok Content Posting API lists JPEG/WebP for photos, so the TikTok layout does not claim the
+mandatory PNG default can be sent through that API. WhatsApp Status may compress media.
+Google Play's portrait recommendation stays separate from its general phone screenshot contract.
+
+Evidence: https://support.google.com/googleplay/android-developer/answer/9866151 ;
+https://developers.tiktok.com/docs/en/content-posting-api-media-transfer-guide ;
+https://faq.whatsapp.com/643144237275579/ .
+Do not infer physical responsiveness, Play listing permission, actual social posting compatibility,
+or production release approval from successful host/CI checks alone.

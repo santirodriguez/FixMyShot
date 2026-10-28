@@ -260,6 +260,8 @@ class EditorInteractionTest {
         caseName = "automatic"
         val sample = model.preview
         val before = model.draft
+        click(label(R.string.quick_choose_destination))
+        await { find(label(R.string.quick_play_portrait)) != null }
         click(label(R.string.quick_play_portrait))
         await { model.draft.destination == DestinationChoice.Preset(DestinationCatalog.PLAY_PORTRAIT) }
         assertEquals(before.revision + 1, model.draft.revision)
