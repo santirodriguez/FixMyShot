@@ -230,7 +230,7 @@ internal fun ReviewScreen(
         confirmButton = { TextButton(onClick = {
             confirmingDiscard = null
             onDiscard(discardedDraft)
-        }) { Text(stringResource(R.string.discard_session)) } },
+        }) { Text(stringResource(R.string.quick_discard)) } },
         dismissButton = { TextButton(onClick = { confirmingDiscard = null }) {
             Text(stringResource(R.string.quick_keep_editing))
         } },

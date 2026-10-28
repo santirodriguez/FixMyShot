@@ -97,8 +97,8 @@ adb exec-out run-as "$package" cat files/editor-framing.png > evidence/editor-fr
 editor_capture_result=$?
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
 for editor_file in editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
-  editor-automatic.png editor-focus.png editor-inspection.png editor-start.png \
-  editor-automatic.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
+  editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
+  editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
   adb exec-out run-as "$package" cat "files/$editor_file" > "evidence/$editor_file" 2>/dev/null || rm -f "evidence/$editor_file"
 done
 # Cache ownership/eviction is checked separately using only synthetic bitmaps.

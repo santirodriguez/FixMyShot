@@ -255,6 +255,9 @@ class EditorInteractionTest {
         caseName = "automatic"
         assertNotNull(find(label(R.string.quick_customize)))
         assertNull(find(label(R.string.editor_framing)))
+        caseName = "automatic-initial"
+        capture()
+        caseName = "automatic"
         val sample = model.preview
         val before = model.draft
         click(label(R.string.quick_play_portrait))
@@ -266,8 +269,9 @@ class EditorInteractionTest {
         assertEquals(170, geometry.rightMargin)
         val selected = model.draft
         click(label(R.string.quick_customize))
-        assertNotNull(find(label(R.string.editor_framing)))
+        await { find(label(R.string.editor_framing)) != null }
         click(label(R.string.quick_automatic))
+        await { find(label(R.string.quick_customize)) != null }
         assertEquals(selected, model.draft)
         assertSame(sample, model.preview)
         scenario.recreate()
@@ -330,8 +334,10 @@ class EditorInteractionTest {
         click(label(R.string.quick_keep_editing))
         assertEquals(before, model.draft)
         click(label(R.string.quick_customize))
+        await { find(label(R.string.editor_framing)) != null }
         click(label(R.string.quick_discard))
-        click(label(R.string.discard_session))
+        await { find(label(R.string.discard_session_confirmation)) != null }
+        click(label(R.string.quick_discard))
         await { model.draft.images.isEmpty() }
         assertFalse(model.draft.canUndo)
         await { find(label(R.string.choose_images)) != null }
