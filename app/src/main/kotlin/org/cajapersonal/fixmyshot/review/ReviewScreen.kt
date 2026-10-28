@@ -52,6 +52,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
 import org.cajapersonal.fixmyshot.core.ContainGeometry
+import org.cajapersonal.fixmyshot.core.BackgroundChoice
 import org.cajapersonal.fixmyshot.core.ContainPosition
 import org.cajapersonal.fixmyshot.core.DestinationChoice
 import org.cajapersonal.fixmyshot.core.DraftSession
