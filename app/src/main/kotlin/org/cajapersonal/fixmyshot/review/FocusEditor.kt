@@ -46,10 +46,35 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
     var precise by rememberSaveable { mutableStateOf(false) }
     var requestCrop by remember { mutableStateOf(false) }
     val fit = FitMode.valueOf(fitName)
-    val local = remember(draft, itemId, fit, x, y, zoom, px, py) {
-        draft.copy(images = listOf(image)).applyFraming(itemId, fit, CropFocus(x, y, zoom), ContainPosition(px, py))
+    // Freeze destination and codec review during touch edits: one preflight per dialog.
+    val basePlan = remember(draft, itemId, api) { draft.plans(api).first { it.itemId == itemId } }
+    val plan = remember(basePlan, fit, x, y, zoom, px, py) {
+        val settings = basePlan.settings.copy(fit = fit, crop = CropFocus(x, y, zoom),
+            position = ContainPosition(px, py))
+        val flags = (basePlan.reviewFlags - setOf(DraftReviewFlag.GEOMETRY_UNAVAILABLE,
+            DraftReviewFlag.CROP_FOCUS_REPOSITIONED, DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED)).toMutableSet()
+        val geometry = try {
+            if (fit == FitMode.CONTAIN) PlannedGeometry.Contained(
+                basePlan.destination.contain(image.orientedSize, settings.size).positioned(settings.position))
+            else {
+                val exact = settings.size as? OutputSizeChoice.Exact
+                val frame = CropPlanner.plan(image.orientedSize,
+                    basePlan.destination.cropRatio(image.orientedSize, settings.size),
+                    settings.crop, exactOutput = exact?.canvas)
+                if (frame.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
+                if (frame.enlarged && exact?.allowEnlargement != true)
+                    flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
+                PlannedGeometry.Cropped(frame)
+            }
+        } catch (_: IllegalArgumentException) {
+            flags += DraftReviewFlag.GEOMETRY_UNAVAILABLE
+            null
+        } catch (_: ArithmeticException) {
+            flags += DraftReviewFlag.GEOMETRY_UNAVAILABLE
+            null
+        }
+        basePlan.copy(settings = settings, geometry = geometry, reviewFlags = flags)
     }
-    val plan = remember(local, api) { local.plans(api).single() }
     fun changeCrop(value: CropFocus) {
         val next = try { CropPlanner.plan(image.orientedSize,
             plan.destination.cropRatio(image.orientedSize, plan.settings.size), value,

@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -43,10 +45,23 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     onGestureStarted: () -> Unit = {},
     onGestureCancelled: () -> Unit = {},
 ) {
-    val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
-    val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
+    // Frame-local edits redraw only this canvas; commit the draft only at pointer up.
+    var liveFocus by remember(image.id, plan.sessionRevision, plan.itemRevision, plan.settings.fit) {
+        mutableStateOf<CropFocus?>(null)
+    }
+    val live = remember(plan, liveFocus) {
+        val focus = liveFocus
+        if (focus == null || plan.settings.fit != FitMode.CROP) plan else try {
+            val frame = CropPlanner.plan(image.orientedSize,
+                plan.destination.cropRatio(image.orientedSize, plan.settings.size), focus,
+                exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)
+            plan.copy(settings = plan.settings.copy(crop = focus), geometry = PlannedGeometry.Cropped(frame))
+        } catch (_: IllegalArgumentException) { plan }
+    }
+    val contained = (live.geometry as? PlannedGeometry.Contained)?.value
+    val cropped = (live.geometry as? PlannedGeometry.Cropped)?.value
     val output = contained?.canvas ?: cropped?.output ?: return
-    val currentPlan by rememberUpdatedState(plan)
+    val currentPlan by rememberUpdatedState(live)
     val currentPosition by rememberUpdatedState(onPosition)
     val commitPosition by rememberUpdatedState(onPositionCommitted)
     val currentTap by rememberUpdatedState(onTap)
@@ -70,7 +85,13 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
             contentDescription = description
             if (enabled && onTap != null) onClick { onTap(); true }
         }
-        .cropGestures(image, plan, enabled, onCrop, onCropCommitted, onTap, onGestureStarted, onGestureCancelled)
+        .cropGestures(image, live, enabled, { liveFocus = it }, { finished ->
+            liveFocus = null
+            onCropCommitted(finished)
+        }, onTap, onGestureStarted, {
+            liveFocus = null
+            onGestureCancelled()
+        })
         .pointerInput(image.id, enabled, plan.settings.fit) {
             if (!enabled || contained == null) return@pointerInput
             awaitEachGesture {

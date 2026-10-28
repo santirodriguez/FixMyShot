@@ -122,6 +122,9 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
             awaitFirstDown(requireUnconsumed = false)
             val initial = latestPlan ?: return@awaitEachGesture
             var focus = initial.settings.crop
+            var geometry = (initial.geometry as? PlannedGeometry.Cropped)?.value ?: return@awaitEachGesture
+            val ratio = initial.destination.cropRatio(image.orientedSize, initial.settings.size)
+            val exact = (initial.settings.size as? OutputSizeChoice.Exact)?.canvas
             var accumulatedPan = Offset.Zero
             var accumulatedZoom = 1f
             var dragging = false
@@ -141,10 +144,7 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
                 if (!dragging) dragging = accumulatedPan.getDistance() > viewConfiguration.touchSlop ||
                     abs(1f - accumulatedZoom) * event.calculateCentroidSize(useCurrent = false) > viewConfiguration.touchSlop
                 if (dragging && (pan != Offset.Zero || zoom != 1f)) {
-                    val current = latestPlan ?: initial
-                    val ratio = current.destination.cropRatio(image.orientedSize, current.settings.size)
-                    val exact = (current.settings.size as? OutputSizeChoice.Exact)?.canvas
-                    val geometry = CropPlanner.plan(image.orientedSize, ratio, focus, exactOutput = exact)
+                    // Maintain exact geometry in the pointer stream without planning it twice.
                     val centroid = event.calculateCentroid(useCurrent = false)
                     val visible = geometry.visibleSource
                     val scale = min(size.width.toDouble() / geometry.output.width,
@@ -163,6 +163,7 @@ internal fun Modifier.cropGestures(image: DraftImage?, plan: PreviewPlan?, enabl
                         val next = CropPlanner.plan(image.orientedSize, ratio,
                             CropFocus((cx / image.orientedSize.width).coerceIn(0.0, 1.0),
                                 (cy / image.orientedSize.height).coerceIn(0.0, 1.0), newZoom), exactOutput = exact)
+                        geometry = next
                         focus = CropFocus(next.normalizedCenterX, next.normalizedCenterY, newZoom)
                         latestCallback(focus)
                         changed = true
