@@ -2,6 +2,7 @@ package org.cajapersonal.fixmyshot.review
 
 import android.graphics.Bitmap
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.*
@@ -13,6 +14,12 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
@@ -45,6 +52,7 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
     var comparing by remember { mutableStateOf(false) }
     var precise by rememberSaveable { mutableStateOf(false) }
     var requestCrop by remember { mutableStateOf(false) }
+    var showTrimmedArea by rememberSaveable { mutableStateOf(false) }
     val fit = FitMode.valueOf(fitName)
     // Freeze destination and codec review during touch edits: one preflight per dialog.
     val basePlan = remember(draft, itemId, api) { draft.plans(api).first { it.itemId == itemId } }
@@ -119,6 +127,10 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                         .semantics { contentDescription = description }) {
                         if (comparing) Image(sample.asImageBitmap(), stringResource(R.string.quick_original),
                             Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                        else if (showTrimmedArea && fit == FitMode.CROP &&
+                            plan.geometry is PlannedGeometry.Cropped)
+                            CropTrimOverview(sample, image.orientedSize,
+                                (plan.geometry as PlannedGeometry.Cropped).value, Modifier.fillMaxSize())
                         else if (plan.geometry != null) ReviewCanvas(sample, image, plan, !inspect, false,
                             Modifier.fillMaxSize().graphicsLayer {
                                 scaleX = if (inspect) viewScale else 1f; scaleY = if (inspect) viewScale else 1f
@@ -133,12 +145,26 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                 }
                 Column(Modifier.fillMaxWidth().heightIn(max = 240.dp).verticalScroll(rememberScrollState())
                     .padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    QuickFramingRow(fit, true, { fitName = it.name; inspect = false })
+                    QuickFramingRow(fit, true, { fitName = it.name; inspect = false; showTrimmedArea = false })
                     Text(stringResource(if (inspect) R.string.quick_inspect_hint else if (fit == FitMode.CROP)
                         R.string.quick_crop_hint else R.string.quick_contain_hint),
                         style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    val cropFrame = (plan.geometry as? PlannedGeometry.Cropped)?.value
+                    if (fit == FitMode.CROP && cropFrame != null) {
+                        val discarded = (100.0 * (1.0 - cropFrame.visibleSource.width *
+                            cropFrame.visibleSource.height / image.orientedSize.pixels)).roundToInt()
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Text(stringResource(R.string.quick_crop_trimmed, discarded),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.weight(1f))
+                            TextButton(onClick = { showTrimmedArea = !showTrimmedArea; inspect = false }) {
+                                Text(stringResource(if (showTrimmedArea) R.string.quick_crop_show_result
+                                    else R.string.quick_crop_show_trim))
+                            }
+                        }
+                    }
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        TextButton(onClick = { inspect = !inspect; viewScale = 1f; viewX = 0f; viewY = 0f }) {
+                        TextButton(onClick = { inspect = !inspect; showTrimmedArea = false; viewScale = 1f; viewX = 0f; viewY = 0f }) {
                             Text(stringResource(if (inspect) R.string.quick_edit_image else R.string.quick_inspect))
                         }
                         TextButton(onClick = ::reset) { Text(stringResource(R.string.quick_recenter)) }
@@ -158,8 +184,37 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                 else ContainPositionControls(plan, true) { px = it.x; py = it.y }
             } }, confirmButton = { TextButton(onClick = { precise = false }) { Text(stringResource(R.string.quick_done)) } })
         if (requestCrop) CropConsentDialog(onCancel = { requestCrop = false }, onConfirm = {
-            requestCrop = false; fitName = FitMode.CROP.name; inspect = false
+            requestCrop = false; fitName = FitMode.CROP.name; inspect = false; showTrimmedArea = false
         })
+    }
+}
+
+/** Inspection-only: shade the EXACT source rectangle excluded by the export crop.
+ * No screenshot bitmap is regenerated, and this guide never reaches the exporter.
+ */
+@Composable
+private fun CropTrimOverview(sample: Bitmap, source: PixelSize, frame: CropGeometry,
+    modifier: Modifier = Modifier) {
+    val description = stringResource(R.string.quick_crop_trim_accessibility)
+    Canvas(modifier.semantics { contentDescription = description }) {
+        val full = previewOutputCanvasRect(source, size)
+        drawIntoCanvas { output ->
+            output.nativeCanvas.drawBitmap(sample, null,
+                android.graphics.RectF(full.left, full.top, full.right, full.bottom),
+                android.graphics.Paint(android.graphics.Paint.FILTER_BITMAP_FLAG))
+        }
+        val crop = frame.visibleSource
+        val left = full.left + full.width * (crop.left / source.width).toFloat()
+        val top = full.top + full.height * (crop.top / source.height).toFloat()
+        val right = full.left + full.width * ((crop.left + crop.width) / source.width).toFloat()
+        val bottom = full.top + full.height * ((crop.top + crop.height) / source.height).toFloat()
+        val shade = Color.Black.copy(alpha = .68f)
+        drawRect(shade, Offset(full.left, full.top), Size(full.width, top - full.top))
+        drawRect(shade, Offset(full.left, bottom), Size(full.width, full.bottom - bottom))
+        drawRect(shade, Offset(full.left, top), Size(left - full.left, bottom - top))
+        drawRect(shade, Offset(right, top), Size(full.right - right, bottom - top))
+        drawRect(Color.White, Offset(left, top), Size(right - left, bottom - top),
+            style = Stroke(2f * density))
     }
 }
 

@@ -44,4 +44,8 @@
     <string name="quick_start_detail">Tria una plantilla, ajusta l’enquadrament i exporta’n una còpia.</string>
     <string name="quick_story">Històries 9:16</string>
     <string name="quick_new_work">Treball nou</string>
+    <string name="quick_crop_trimmed">Es retalla aprox. el %1$d%% de l’original</string>
+    <string name="quick_crop_show_trim">Veure l’àrea descartada</string>
+    <string name="quick_crop_show_result">Veure el resultat final</string>
+    <string name="quick_crop_trim_accessibility">Original amb l’àrea exclosa del retall ombrejada</string>
 </resources>

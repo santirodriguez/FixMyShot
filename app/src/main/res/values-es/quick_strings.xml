@@ -44,4 +44,8 @@
     <string name="quick_start_detail">Elegí una plantilla, ajustá el encuadre y exportá una copia.</string>
     <string name="quick_story">Historias 9:16</string>
     <string name="quick_new_work">Nuevo trabajo</string>
+    <string name="quick_crop_trimmed">Se recorta aprox. el %1$d%% del original</string>
+    <string name="quick_crop_show_trim">Ver área descartada</string>
+    <string name="quick_crop_show_result">Ver resultado final</string>
+    <string name="quick_crop_trim_accessibility">Original con el área excluida del recorte sombreada</string>
 </resources>
