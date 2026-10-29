@@ -130,7 +130,11 @@ import os, sys
 from pathlib import Path
 args = sys.argv[1:]
 if 'getconf' in args: sys.exit(127)
-if 'instrument' in args:
+if 'ro.kernel.qemu' in args:
+    print(os.environ.get('MOCK_QEMU', '1'))
+elif 'input' in args:
+    Path('wake-request').write_text('CI emulator only')
+elif 'instrument' in args:
     native = any(name in a for name in ('NativeCodecProbeTest', 'NativeGridDiagnosticTest', 'NativeHeicPixelLayoutTest') for a in args)
     thumbnail = any('ReviewThumbnailCacheTest' in a for a in args)
     private_output = any('PrivateOutputExecutorTest' in a for a in args)
@@ -175,7 +179,7 @@ elif 'cat' in args:
         sys.stdout.buffer.write(b'RIFF' if name.endswith('.webp') else b'\\x89PNG\\r\\n\\x1a\\n')
 ''')
         for p in bin_dir.iterdir(): p.chmod(0o755)
-        env = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ['PATH'])
+        env = dict(os.environ, PATH=str(bin_dir) + os.pathsep + os.environ['PATH'], GITHUB_ACTIONS='true')
         for bad, false_success, alpha in ((False, True, False), (True, True, False), (False, True, True)):
             current = dict(env)
             if bad: current['BAD_REPORT'] = '1'
@@ -197,6 +201,12 @@ elif 'cat' in args:
                 for variant in ('64x64-off', '65x67-off', '66x68-off', '66x68-on'):
                     self.assertFalse((self.root / f'evidence/g1-grid-{fmt}-{variant}.{fmt}').exists())
         self.assertIn('UNAVAILABLE', (self.root / 'evidence/page-size-shell.txt').read_text())
+        for overrides in ({'GITHUB_ACTIONS': 'false'}, {'MOCK_QEMU': '0'}):
+            (self.root / 'wake-request').unlink(missing_ok=True)
+            result = subprocess.run(['bash', str(SCRIPTS / 'run-device-smoke.sh')], cwd=self.root,
+                env=dict(env, **overrides), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=90)
+            self.assertEqual(2, result.returncode)
+            self.assertFalse((self.root / 'wake-request').exists())
 
 
 if __name__ == '__main__':

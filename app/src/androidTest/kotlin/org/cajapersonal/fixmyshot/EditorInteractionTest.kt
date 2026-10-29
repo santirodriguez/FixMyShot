@@ -158,6 +158,7 @@ class EditorInteractionTest {
     private fun bounds(label: String): Rect = Rect().also { requireNotNull(find(label)).getBoundsInScreen(it) }
 
     private fun fixture(allowPrivateCleanup: Boolean = false, block: (ActivityScenario<MainActivity>, ReviewViewModel, (Int) -> String) -> Unit) {
+        caseName = "setup"
         val id = UUID.randomUUID().toString().replace("-", "")
         val file = File(app.cacheDir, "review-sources/$id.source").apply { parentFile!!.mkdirs() }
         val source = Bitmap.createBitmap(1344, 2992, Bitmap.Config.ARGB_8888)
@@ -180,7 +181,19 @@ class EditorInteractionTest {
         try { ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             lateinit var model: ReviewViewModel
             lateinit var strings: android.content.res.Resources
-            scenario.onActivity { model = ViewModelProvider(it)[ReviewViewModel::class.java]; strings = it.resources }
+            scenario.onActivity {
+                // Only the instrumentation window stays awake; production behavior is unchanged.
+                it.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                if (Build.VERSION.SDK_INT >= 27) {
+                    it.setShowWhenLocked(true)
+                    it.setTurnScreenOn(true)
+                } else {
+                    @Suppress("DEPRECATION")
+                    it.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                        android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+                }
+                model = ViewModelProvider(it)[ReviewViewModel::class.java]; strings = it.resources
+            }
             await { model.exportState.phase != org.cajapersonal.fixmyshot.review.ExportUiPhase.CHECKING_HISTORY }
             scenario.onActivity {
                 model.draft = DraftSession().addImages(listOf(DraftImage(id, "synthetic-editor", PixelSize(1344, 2992), false,

@@ -88,6 +88,13 @@ timeout 2m adb shell am instrument -w -r \
 review_result=$?
 cat evidence/review-render-instrumentation.txt
 # Real editor gestures and accessibility-tree visibility, using private synthetic sources only.
+# Codec-only phases can outlast the emulator's display timeout. Establish an awake,
+# unlocked display before testing accessibility/pointers; never apply this to a phone.
+[[ "${GITHUB_ACTIONS:-}" == true && "$(adb shell getprop ro.kernel.qemu | tr -d '\r')" == 1 ]] || exit 2
+adb shell input keyevent KEYCODE_WAKEUP
+adb shell wm dismiss-keyguard
+adb shell dumpsys power > evidence/editor-power-before.txt
+adb shell dumpsys window windows > evidence/editor-window-before.txt
 timeout 3m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.EditorInteractionTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/editor-interaction-instrumentation.txt 2>&1
@@ -101,7 +108,7 @@ if [[ "$(od -An -tx1 -N8 evidence/editor-framing.png | tr -d ' \\n')" != "89504e
   editor_capture_result=1
 fi
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
-for editor_file in editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
+for editor_file in editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
   editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
   editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
   editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do

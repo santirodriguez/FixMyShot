@@ -1,9 +1,9 @@
-Build the isolated Continue editing diagnostic after accepted e71bfe90 validation.
-Debug-only applicationIdSuffix .ux22edit, name FixMyShot UX 2.2 Edit in en/es/ca.
-Keep the user's accepted .ux22 installation and its private state intact.
-Smoke and optional legacy-provider scripts must use the exact new diagnostic package.
-Runtime correction and tests are unchanged: core99/editor11/import-settings-session22.
-Run current-profile build/lint/API36 and verify source-bound APK/hash/signature before handoff.
-Production identity, version ledger, dependencies, permissions and signing plan unchanged.
-No merge, release, publication or production key operation.
+Correct failed 44ef46e5 UI setup while retaining the .ux22edit diagnostic.
+Build/lint passed; API36 UI fixture could not find its initial preview; other groups passed.
+Wake/unlock only the disposable CI emulator before accessibility/pointer tests.
+Keep instrumentation windows awake and capture setup/power/window evidence.
+Retain every existing assertion and count: core99/editor11/import-settings-session22.
+Runtime editor/export code, production permissions and identity remain unchanged.
+The agreed README/repository cleanup follows separately, without another emulator matrix.
+Verify exact-source artifacts and APK signature/manifest before diagnostic delivery.
 profile=current
