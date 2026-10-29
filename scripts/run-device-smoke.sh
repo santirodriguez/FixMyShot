@@ -108,7 +108,7 @@ if [[ "$(od -An -tx1 -N8 evidence/editor-framing.png | tr -d ' \\n')" != "89504e
   editor_capture_result=1
 fi
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
-for editor_file in editor-next-image.txt editor-next-image.png editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
+for editor_file in editor-next-image.txt editor-next-image.png editor-next-image-picker.txt editor-next-image-picker.png editor-next-image-cancelled.txt editor-next-image-cancelled.png editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
   editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
   editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
   editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do

@@ -65,7 +65,7 @@ class EditorInteractionTest {
         fun dump(node: AccessibilityNodeInfo?, depth: Int = 0) {
             if (node == null) return
             val rect = Rect().also { node.getBoundsInScreen(it) }
-            tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
+            tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} package=${node.packageName} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
             for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
         }
         dump(freshRoot())
@@ -148,11 +148,38 @@ class EditorInteractionTest {
                     SystemClock.sleep(40)
                     continue
                 }
-                if (!pane.performAction(action)) break
+                if (pane.actionList.none { it.id == action }) break
+                // Full-page accessibility jumps can leave a row clipped on both pages.
+                // Overlapping touch scrolls also exercise the same viewport as a real user.
+                val rect = Rect().also { pane.getBoundsInScreen(it) }
+                scrollToolPane(rect, towardStart = action == AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD)
                 settleUi()
             }
         }
         assertTrue("Cannot reveal accessible control: $label", visibleInPane())
+    }
+
+    private fun scrollToolPane(rect: Rect, towardStart: Boolean) {
+        val x = rect.left + rect.width() * .96f
+        val upper = rect.top + rect.height() * .26f
+        val lower = rect.top + rect.height() * .74f
+        val start = if (towardStart) upper else lower
+        val end = if (towardStart) lower else upper
+        val down = SystemClock.uptimeMillis()
+        fun send(action: Int, y: Float) {
+            val event = MotionEvent.obtain(down, SystemClock.uptimeMillis(), action, x, y, 0)
+            event.source = InputDevice.SOURCE_TOUCHSCREEN
+            try { test.sendPointerSync(event) } finally { event.recycle() }
+        }
+        send(MotionEvent.ACTION_DOWN, start)
+        for (step in 1..12) {
+            SystemClock.sleep(20)
+            send(MotionEvent.ACTION_MOVE, start + (end - start) * step / 12f)
+        }
+        // Stop before release so a fling cannot skip the overlapping portion.
+        SystemClock.sleep(120)
+        send(MotionEvent.ACTION_MOVE, end)
+        send(MotionEvent.ACTION_UP, end)
     }
 
     private fun bounds(label: String): Rect = Rect().also { requireNotNull(find(label)).getBoundsInScreen(it) }
@@ -274,13 +301,12 @@ class EditorInteractionTest {
             override fun publish(uri: android.net.Uri): Boolean = output != null
             override fun delete(uri: android.net.Uri): Boolean = throw AssertionError("Published output must remain intact")
         }
-        val filter = android.content.IntentFilter().apply {
-            addAction(android.provider.MediaStore.ACTION_PICK_IMAGES)
-            addAction(android.content.Intent.ACTION_OPEN_DOCUMENT)
-            addAction("androidx.activity.result.contract.action.PICK_IMAGES")
-        }
-        val monitor = test.addMonitor(filter,
-            android.app.Instrumentation.ActivityResult(android.app.Activity.RESULT_CANCELED, null), true)
+        val request = androidx.activity.result.PickVisualMediaRequest(
+            androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageOnly)
+        val pickerIntent = androidx.activity.result.contract.ActivityResultContracts.PickMultipleVisualMedia(100)
+            .createIntent(app, request)
+        val pickerPackage = requireNotNull(pickerIntent.resolveActivity(app.packageManager)).packageName
+        assertNotEquals(app.packageName, pickerPackage)
         try {
             scenario.onActivity {
                 model.onDraftEdited()
@@ -292,13 +318,27 @@ class EditorInteractionTest {
             await { find(label(R.string.quick_edit_another)) != null }
             assertTrue(bounds(label(R.string.quick_edit_another)).top < bounds(label(R.string.quick_view_saved)).top)
             capture()
+            caseName = "next-image-picker"
             click(label(R.string.quick_edit_another))
-            await { monitor.hits == 1 && model.draft.images.isEmpty() && !model.exportState.isLocked }
-            await { find(label(R.string.choose_images)) != null }
+            await { model.draft.images.isEmpty() && !model.exportState.isLocked &&
+                freshRoot()?.packageName?.toString() == pickerPackage }
+            capture()
+            caseName = "next-image-cancelled"
+            test.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+            await { freshRoot()?.packageName?.toString() == app.packageName &&
+                find(label(R.string.choose_images)) != null &&
+                scenario.state == androidx.lifecycle.Lifecycle.State.RESUMED }
+            capture()
             assertEquals(OutputFormat.PNG, model.draft.batch.format)
             assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
             assertArrayEquals(published, output)
-        } finally { test.removeMonitor(monitor) }
+        } finally {
+            // A failed assertion must not leave a system picker above the next test.
+            if (freshRoot()?.packageName?.toString() == pickerPackage) {
+                test.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+                test.waitForIdleSync()
+            }
+        }
     }
 
     @Test fun gesturesKeepTheSampleAndCommitOneUndoableEdit() = fixture { scenario, model, label ->
