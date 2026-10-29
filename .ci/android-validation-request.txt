@@ -1,11 +1,9 @@
-Fix Continue editing after the accepted UX 2.2 baseline c36dd19f.
-Use explicit durable result review without clearing the current draft, undo or sources.
-Preserve published output and unchanged-draft duplicate guards; refuse partial,
-uncertain, stale, running and busy continuation. Keep New work cleanup unchanged.
-Add real editor-button integration and session/journal/source regression coverage.
-Exercise running, partial and uncertain refusals through actual coordinator states;
-keep exportState privately owned by the ViewModel in the regression fixtures.
-Expected editor11 and import/settings/session22; retain all other current-profile cases.
-Run build, core tests, lint and API36; physical re-test and release gates remain separate.
-No dependency, codec, permission, production identity, signing, merge or release change.
+Build the isolated Continue editing diagnostic after accepted e71bfe90 validation.
+Debug-only applicationIdSuffix .ux22edit, name FixMyShot UX 2.2 Edit in en/es/ca.
+Keep the user's accepted .ux22 installation and its private state intact.
+Smoke and optional legacy-provider scripts must use the exact new diagnostic package.
+Runtime correction and tests are unchanged: core99/editor11/import-settings-session22.
+Run current-profile build/lint/API36 and verify source-bound APK/hash/signature before handoff.
+Production identity, version ledger, dependencies, permissions and signing plan unchanged.
+No merge, release, publication or production key operation.
 profile=current
