@@ -156,6 +156,7 @@ internal fun ReviewScreen(
     var focusId by rememberSaveable { mutableStateOf<String?>(null) }
     var focusRevision by rememberSaveable { mutableStateOf(-1L) }
     var infoOpen by rememberSaveable { mutableStateOf(false) }
+    var savedResultsOpen by rememberSaveable { mutableStateOf(false) }
     var backgroundsOpen by rememberSaveable { mutableStateOf(false) }
     var comparing by remember { mutableStateOf(false) }
     var requestCrop by remember { mutableStateOf(false) }
@@ -164,8 +165,12 @@ internal fun ReviewScreen(
         exportState.previousJobs > 0 || exportState.canAcknowledge
     val hasFeedback = importProgress != null || busy || pendingImports > 0 || invalidImports > 0 ||
         importReport != null || importLimitExceeded || sessionRestored || sessionExpired || sessionSaveError || sessionRestoreBlocked
-    LaunchedEffect(exportState.phase) {
-        if (exportState.phase in setOf(ExportUiPhase.RUNNING, ExportUiPhase.COMPLETED, ExportUiPhase.BLOCKED,
+    val fullySaved = exportState.phase == ExportUiPhase.COMPLETED &&
+        finishSessionOnReview && exportState.canAcknowledge &&
+        exportState.total > 0 && exportState.published == exportState.total
+    LaunchedEffect(exportState.phase, fullySaved) {
+        if (fullySaved) { savedResultsOpen = true; infoOpen = false }
+        else if (exportState.phase in setOf(ExportUiPhase.RUNNING, ExportUiPhase.COMPLETED, ExportUiPhase.BLOCKED,
                 ExportUiPhase.NEEDS_REVIEW, ExportUiPhase.CANCELLED, ExportUiPhase.PAUSED, ExportUiPhase.ERROR)) infoOpen = true
     }
     LaunchedEffect(draft.revision, selectedId, editEnabled) {
@@ -486,6 +491,16 @@ internal fun ReviewScreen(
             FocusEditor(draft, selected.id, preview, api, onApplyFraming,
                 onDismiss = { focusOpen = false }, onDiscard = { confirmingDiscard = draft })
         }
+    }
+    if (savedResultsOpen && fullySaved) {
+        val firstPublishedId = exportState.items.first { it.phase == BatchItemPhase.PUBLISHED }.itemId
+        QuickSavedResults(exportState.published, exportState.total,
+            enabled = !busy && !shareBusy && !exportState.outputBusy,
+            onView = { onOpenOutput(firstPublishedId) },
+            onShare = { onSelectAllShare(); onShare() },
+            onNewWork = { if (fullySaved) { savedResultsOpen = false; onReviewedPrevious() } },
+            onDetails = { savedResultsOpen = false; infoOpen = true },
+            onDismiss = { savedResultsOpen = false })
     }
     if (infoOpen) Dialog(onDismissRequest = { infoOpen = false },
         properties = DialogProperties(usePlatformDefaultWidth = false)) {

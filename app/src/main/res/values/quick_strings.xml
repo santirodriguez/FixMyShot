@@ -67,4 +67,10 @@
     <string name="quick_mixed_formats">Individual formats kept</string>
     <string name="quick_format_not_allowed"> · not allowed here</string>
     <string name="quick_export_format">Export %1$s · %2$d</string>
+    <string name="quick_saved_title">Saved successfully</string>
+    <string name="quick_saved_count">%1$d / %2$d images saved</string>
+    <string name="quick_saved_hint">Copies are ready. Your originals are unchanged.</string>
+    <string name="quick_result_details">Details</string>
+    <string name="quick_view_saved">View saved image</string>
+    <string name="quick_share_saved">Share saved images</string>
 </resources>
