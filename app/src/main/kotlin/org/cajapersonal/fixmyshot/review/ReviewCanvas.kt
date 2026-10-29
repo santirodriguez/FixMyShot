@@ -44,10 +44,13 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     onContainZoom: () -> Unit = {},
     onGestureStarted: () -> Unit = {},
     onGestureCancelled: () -> Unit = {},
+    onFrame: (FrameFocus) -> Unit = {},
+    onFrameCommitted: (FrameFocus) -> Unit = onFrame,
 ) {
     val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
     val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
-    val baseOutput = contained?.canvas ?: cropped?.output ?: return
+    val framed = (plan.geometry as? PlannedGeometry.Framed)?.value
+    val baseOutput = framed?.canvas ?: contained?.canvas ?: cropped?.output ?: return
     // Read these states ONLY in the draw lambda. Pointer moves must not recompose the screen,
     // rebuild an immutable session, run export preflight or allocate an output bitmap.
     var liveCrop by remember(image.id, sample, plan.sessionRevision, plan.itemRevision, plan.settings, enabled) {
@@ -55,6 +58,9 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
     }
     var livePosition by remember(image.id, sample, plan.sessionRevision, plan.itemRevision, plan.settings, enabled) {
         mutableStateOf<ContainPosition?>(null)
+    }
+    var liveFrame by remember(image.id, sample, plan.sessionRevision, plan.itemRevision, plan.settings, enabled) {
+        mutableStateOf<FrameMotion?>(null)
     }
     val drawResources = remember(sample) { ReviewBitmapRenderer.DrawResources() }
     val cropPlacement = remember(baseOutput) { PixelPlacement(0, 0, baseOutput.width, baseOutput.height) }
@@ -84,6 +90,9 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
         .cropGestures(image, plan, enabled, onPreview = { liveCrop = it },
             onFinished = { onCropCommitted(it); liveCrop = null }, onTap = onTap,
             onStarted = onGestureStarted, onCancelled = { liveCrop = null; onGestureCancelled() })
+        .frameGestures(image, plan, enabled, onPreview = { liveFrame = it },
+            onFinished = { onFrameCommitted(it); liveFrame = null }, onTap = onTap,
+            onStarted = onGestureStarted, onCancelled = { liveFrame = null; onGestureCancelled() })
         .pointerInput(image.id, enabled, plan.sessionRevision, plan.itemRevision, plan.settings.fit) {
             if (!enabled || contained == null) return@pointerInput
             awaitEachGesture {
@@ -129,7 +138,8 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
         }) {
         val drawnCrop = liveCrop?.geometry ?: cropped
         val drawnContain = livePosition?.let { contained?.positioned(it) } ?: contained
-        val output = drawnContain?.canvas ?: drawnCrop?.output ?: baseOutput
+        val drawnFrame = liveFrame?.geometry ?: framed
+        val output = drawnFrame?.canvas ?: drawnContain?.canvas ?: drawnCrop?.output ?: baseOutput
         val bounds = previewOutputCanvasRect(output, size)
         val gap = 32f * density
         var x = -size.height
@@ -160,7 +170,7 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
                 canvas.translate(bounds.left, bounds.top)
                 canvas.scale(bounds.width / output.width, bounds.height / output.height)
                 ReviewBitmapRenderer.drawContent(canvas, output.width, output.height, sample,
-                    image.orientedSize, output, drawnContain?.placement ?: cropPlacement,
+                    image.orientedSize, output, drawnFrame?.placement ?: drawnContain?.placement ?: cropPlacement,
                     drawnCrop?.visibleSource, drawResources)
             } finally { canvas.restoreToCount(save) }
         }
