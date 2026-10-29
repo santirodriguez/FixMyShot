@@ -33,6 +33,17 @@ data class FrameGeometry(
         placement.left.toLong() + placement.width < canvas.width ||
         placement.top.toLong() + placement.height < canvas.height
 
+    /** The exact original-source rectangle still visible after clipping to the output frame. */
+    fun visibleSource(): SourceRectangle {
+        val left = maxOf(0L, -placement.left.toLong()).toDouble()
+        val top = maxOf(0L, -placement.top.toLong()).toDouble()
+        val right = minOf(placement.width.toLong(),
+            canvas.width.toLong() - placement.left).toDouble()
+        val bottom = minOf(placement.height.toLong(),
+            canvas.height.toLong() - placement.top).toDouble()
+        return SourceRectangle(left, top, right - left, bottom - top)
+    }
+
     val trimmedFraction: Double get() {
         val visibleWidth = minOf(canvas.width.toLong(), placement.width.toLong())
         val visibleHeight = minOf(canvas.height.toLong(), placement.height.toLong())

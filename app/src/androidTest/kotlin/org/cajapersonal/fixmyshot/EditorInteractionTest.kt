@@ -340,7 +340,7 @@ class EditorInteractionTest {
         click(label(R.string.quick_fill_crop))
         click(label(R.string.quick_apply_frame))
         await { model.draft.revision == before.revision + 1 }
-        assertEquals(FitMode.CROP, model.draft.images.single().overrides.resolve(model.draft.batch).fit)
+        assertEquals(FitMode.FLEXIBLE, model.draft.images.single().overrides.resolve(model.draft.batch).fit)
         click(label(R.string.undo_last))
         assertEquals(before.images.single().overrides, model.draft.images.single().overrides)
     }
@@ -367,7 +367,7 @@ class EditorInteractionTest {
         assertEquals(before, model.draft)
         pinch(bounds(label(R.string.preview_description)))
         click(label(R.string.quick_fill_crop))
-        await { model.draft.images.single().overrides.resolve(model.draft.batch).fit == FitMode.CROP }
+        await { model.draft.images.single().overrides.resolve(model.draft.batch).fit == FitMode.FLEXIBLE }
         assertEquals(before.revision + 1, model.draft.revision)
     }
 

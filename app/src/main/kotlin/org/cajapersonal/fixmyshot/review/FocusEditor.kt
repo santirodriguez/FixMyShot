@@ -148,7 +148,11 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                         else if (showTrimmedArea && fit == FitMode.CROP &&
                             plan.geometry is PlannedGeometry.Cropped)
                             CropTrimOverview(sample, image.orientedSize,
-                                (plan.geometry as PlannedGeometry.Cropped).value, Modifier.fillMaxSize())
+                                (plan.geometry as PlannedGeometry.Cropped).value.visibleSource, Modifier.fillMaxSize())
+                        else if (showTrimmedArea && fit == FitMode.FLEXIBLE &&
+                            plan.geometry is PlannedGeometry.Framed)
+                            CropTrimOverview(sample, image.orientedSize,
+                                (plan.geometry as PlannedGeometry.Framed).value.visibleSource(), Modifier.fillMaxSize())
                         else if (plan.geometry != null) ReviewCanvas(sample, image, plan, !inspect, false,
                             Modifier.fillMaxSize().graphicsLayer {
                                 scaleX = if (inspect) viewScale else 1f; scaleY = if (inspect) viewScale else 1f
@@ -170,10 +174,17 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                         style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     val flexible = (plan.geometry as? PlannedGeometry.Framed)?.value
                     if (fit == FitMode.FLEXIBLE && flexible != null) {
-                        Text(stringResource(R.string.quick_crop_trimmed,
-                            (flexible.trimmedFraction * 100.0).roundToInt()),
-                            style = MaterialTheme.typography.labelSmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Text(stringResource(R.string.quick_crop_trimmed,
+                                (flexible.trimmedFraction * 100.0).roundToInt()),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.weight(1f))
+                            TextButton(onClick = { showTrimmedArea = !showTrimmedArea; inspect = false }) {
+                                Text(stringResource(if (showTrimmedArea) R.string.quick_crop_show_result
+                                    else R.string.quick_crop_show_trim))
+                            }
+                        }
                     }
                     val cropFrame = (plan.geometry as? PlannedGeometry.Cropped)?.value
                     if (fit == FitMode.CROP && cropFrame != null) {
@@ -223,7 +234,7 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
  * No screenshot bitmap is regenerated, and this guide never reaches the exporter.
  */
 @Composable
-private fun CropTrimOverview(sample: Bitmap, source: PixelSize, frame: CropGeometry,
+private fun CropTrimOverview(sample: Bitmap, source: PixelSize, crop: SourceRectangle,
     modifier: Modifier = Modifier) {
     val description = stringResource(R.string.quick_crop_trim_accessibility)
     Canvas(modifier.semantics { contentDescription = description }) {
@@ -233,7 +244,6 @@ private fun CropTrimOverview(sample: Bitmap, source: PixelSize, frame: CropGeome
                 android.graphics.RectF(full.left, full.top, full.right, full.bottom),
                 android.graphics.Paint(android.graphics.Paint.FILTER_BITMAP_FLAG))
         }
-        val crop = frame.visibleSource
         val left = full.left + full.width * (crop.left / source.width).toFloat()
         val top = full.top + full.height * (crop.top / source.height).toFloat()
         val right = full.left + full.width * ((crop.left + crop.width) / source.width).toFloat()
