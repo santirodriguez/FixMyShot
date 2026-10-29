@@ -120,6 +120,7 @@ internal fun ReviewScreen(
     onFit: (FitMode, Boolean) -> Unit = { _, _ -> },
     onCrop: (CropFocus) -> Unit = {},
     onPosition: (ContainPosition) -> Unit = {},
+    onFrame: (org.cajapersonal.fixmyshot.core.FrameFocus) -> Unit = {},
     onRetryExport: () -> Unit = {},
     onRestoreDraft: () -> Unit = {},
     onRefreshOutputs: () -> Unit = {},
@@ -189,6 +190,9 @@ internal fun ReviewScreen(
     var tool by rememberSaveable(editorSessionKey) { mutableStateOf(ReviewTool.DESTINATION) }
     var crop by remember(selectedId, plan?.sessionRevision) { mutableStateOf(plan?.settings?.crop ?: CropFocus()) }
     var position by remember(selectedId, plan?.sessionRevision) { mutableStateOf(plan?.settings?.position ?: ContainPosition()) }
+    var frame by remember(selectedId, plan?.sessionRevision) {
+        mutableStateOf(plan?.settings?.frame ?: org.cajapersonal.fixmyshot.core.FrameFocus())
+    }
     fun editCrop(next: CropFocus) {
         if (!editEnabled || selected == null || plan == null) return
         try {
@@ -206,12 +210,16 @@ internal fun ReviewScreen(
                 geometry = PlannedGeometry.Cropped(org.cajapersonal.fixmyshot.core.CropPlanner.plan(
                     selected.orientedSize, plan.destination.cropRatio(selected.orientedSize, plan.settings.size), crop,
                     exactOutput = (plan.settings.size as? OutputSizeChoice.Exact)?.canvas)))
+            is PlannedGeometry.Framed -> plan.copy(settings = plan.settings.copy(frame = frame),
+                geometry = PlannedGeometry.Framed(org.cajapersonal.fixmyshot.core.FramePlanner.plan(
+                    selected.orientedSize, plan.destination.cropRatio(selected.orientedSize, plan.settings.size), frame)))
             null -> plan
         }
     }
     fun finishGesture() {
         if (!editEnabled || plan == null) return
         if (plan.geometry is PlannedGeometry.Cropped && crop != plan.settings.crop) onCrop(crop)
+        else if (plan.geometry is PlannedGeometry.Framed && frame != plan.settings.frame) onFrame(frame)
         else if (plan.geometry is PlannedGeometry.Contained && position != plan.settings.position) onPosition(position)
     }
     val customCount = draft.images.count { it.overrides.hasCustomValues }
@@ -356,10 +364,11 @@ internal fun ReviewScreen(
             if (tool == ReviewTool.FRAMING && selected != null && stagedPlan != null) {
                 Text(stringResource(if (stagedPlan.geometry is PlannedGeometry.Cropped) R.string.crop_notice
                     else R.string.editor_move_help), style = MaterialTheme.typography.bodySmall)
-                if (stagedPlan.geometry is PlannedGeometry.Cropped) {
-                    CropControls(selected, stagedPlan, editEnabled, ::editCrop, ::finishGesture)
-                } else {
-                    ContainPositionControls(stagedPlan, editEnabled, onPosition)
+                when (stagedPlan.geometry) {
+                    is PlannedGeometry.Cropped -> CropControls(selected, stagedPlan, editEnabled, ::editCrop, ::finishGesture)
+                    is PlannedGeometry.Framed -> FlexibleFrameControls(frame, editEnabled) { frame = it; finishGesture() }
+                    is PlannedGeometry.Contained -> ContainPositionControls(stagedPlan, editEnabled, onPosition)
+                    null -> Unit
                 }
                 Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(value = showOriginalOutline,
                     role = Role.Checkbox, onValueChange = { showOriginalOutline = it }),
@@ -486,7 +495,7 @@ internal fun ReviewScreen(
             enabled = !busy && !exportState.isLocked) { Text(stringResource(R.string.quick_discard)) } },
     )
     if (requestCrop) CropConsentDialog(onCancel = { requestCrop = false }, onConfirm = {
-        requestCrop = false; onFit(FitMode.CROP, true)
+        requestCrop = false; onFit(FitMode.FLEXIBLE, true)
     })
     if (focusOpen && focusId == selectedId && focusRevision == draft.revision && selected != null && preview != null && editEnabled) {
         androidx.compose.runtime.key(editorSessionKey, selected.id, focusRevision) {
@@ -529,7 +538,8 @@ internal fun ReviewScreen(
         val live = stagedPlan
         val contained = (live?.geometry as? PlannedGeometry.Contained)?.value
         val cropped = (live?.geometry as? PlannedGeometry.Cropped)?.value
-        val output = contained?.canvas ?: cropped?.output
+        val framed = (live?.geometry as? PlannedGeometry.Framed)?.value
+        val output = framed?.canvas ?: contained?.canvas ?: cropped?.output
         Column(Modifier.fillMaxSize().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             if (selected != null && live != null && output != null) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -553,7 +563,12 @@ internal fun ReviewScreen(
                         ::editCrop, { position = it }, ::finishGesture, onCropCommitted = onCrop,
                         onPositionCommitted = onPosition, onTap = ::expandPreview,
                         onContainZoom = { requestCrop = true },
-                        onGestureCancelled = { crop = plan?.settings?.crop ?: CropFocus(); position = plan?.settings?.position ?: ContainPosition() })
+                        onFrame = { frame = it }, onFrameCommitted = onFrame,
+                        onGestureCancelled = {
+                            crop = plan?.settings?.crop ?: CropFocus()
+                            position = plan?.settings?.position ?: ContainPosition()
+                            frame = plan?.settings?.frame ?: org.cajapersonal.fixmyshot.core.FrameFocus()
+                        })
                     else Text(stringResource(if (previewUnavailable) R.string.preview_unavailable else R.string.preview_loading))
                 }
             } else Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {

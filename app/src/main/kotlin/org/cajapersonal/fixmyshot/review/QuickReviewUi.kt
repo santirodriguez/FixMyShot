@@ -132,9 +132,10 @@ internal fun quickTemplateLabel(id: String): Int = when (id) {
 internal fun QuickFramingRow(fit: FitMode, enabled: Boolean, onFit: (FitMode) -> Unit,
     modifier: Modifier = Modifier) {
     SingleChoiceSegmentedButtonRow(modifier.fillMaxWidth().padding(vertical = 6.dp)) {
-        listOf(FitMode.CONTAIN to R.string.quick_keep_all, FitMode.CROP to R.string.quick_fill_crop)
+        listOf(FitMode.CONTAIN to R.string.quick_keep_all, FitMode.FLEXIBLE to R.string.quick_fill_crop)
             .forEachIndexed { index, (value, label) ->
-                SegmentedButton(selected = fit == value, onClick = { onFit(value) }, enabled = enabled,
+                SegmentedButton(selected = if (value == FitMode.FLEXIBLE) fit != FitMode.CONTAIN else fit == value,
+                    onClick = { onFit(value) }, enabled = enabled,
                     shape = SegmentedButtonDefaults.itemShape(index, 2),
                     modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(label)) }
             }
@@ -192,6 +193,38 @@ internal fun QuickOutputFormat(format: OutputFormat, destination: DestinationCho
                     onClick = { expanded = false; onFormat(choice) })
             }
         }
+    }
+}
+
+/** Precision controls for the real output transform, including zoom below minimum fill. */
+@Composable
+internal fun FlexibleFrameControls(focus: FrameFocus, enabled: Boolean,
+    onChange: (FrameFocus) -> Unit) {
+    val zoom = stringResource(R.string.quick_export_zoom, (focus.zoom * 100.0).toInt())
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween) {
+        OutlinedButton(onClick = {
+            onChange(focus.copy(zoom = (focus.zoom / 1.02).coerceIn(.01, 64.0)))
+        }, enabled = enabled && focus.zoom > .01) { Text("−") }
+        Text(zoom, style = MaterialTheme.typography.labelMedium)
+        OutlinedButton(onClick = {
+            onChange(focus.copy(zoom = (focus.zoom * 1.02).coerceIn(.01, 64.0)))
+        }, enabled = enabled && focus.zoom < 64.0) { Text("+") }
+    }
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        OutlinedButton(onClick = { onChange(focus.copy(x = (focus.x - .01).coerceIn(0.0, 1.0))) },
+            enabled = enabled, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.crop_left)) }
+        OutlinedButton(onClick = { onChange(focus.copy(x = (focus.x + .01).coerceIn(0.0, 1.0))) },
+            enabled = enabled, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.crop_right)) }
+    }
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        OutlinedButton(onClick = { onChange(focus.copy(y = (focus.y - .01).coerceIn(0.0, 1.0))) },
+            enabled = enabled, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.crop_up)) }
+        OutlinedButton(onClick = { onChange(focus.copy(y = (focus.y + .01).coerceIn(0.0, 1.0))) },
+            enabled = enabled, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.crop_down)) }
+    }
+    TextButton(onClick = { onChange(FrameFocus()) }, enabled = enabled) {
+        Text(stringResource(R.string.quick_recenter))
     }
 }
 

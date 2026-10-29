@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity() {
                         },
                         onApplyFraming = { expected, id, settings ->
                             if (model.draft == expected && model.selectedId == id) updateDraft(
-                                expected.applyFraming(id, settings.fit, settings.crop, settings.position))
+                                expected.applyFraming(id, settings.fit, settings.crop, settings.position, settings.frame))
                         },
                         onFormat = format@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
@@ -311,6 +311,13 @@ class MainActivity : AppCompatActivity() {
                             } else model.draft.setBatch(model.draft.batch.copy(fit = value)))
                         },
                         onCrop = { updateCrop(it) },
+                        onFrame = flexible@{ value ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@flexible
+                            val effective = item.overrides.resolve(model.draft.batch)
+                            if (effective.fit != org.cajapersonal.fixmyshot.core.FitMode.FLEXIBLE) return@flexible
+                            updateDraft(model.draft.applyFraming(item.id, effective.fit,
+                                effective.crop, effective.position, value))
+                        },
                         onPosition = position@{ value ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@position
                             val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == item.id }
