@@ -129,14 +129,24 @@ class EditorInteractionTest {
             return paneRect.contains(controlRect) && control.isVisibleToUser
         }
         if (visibleInPane()) return
-        // An accessibility action may return false at either end; search both
-        // directions instead of asserting that every intermediate scroll can advance.
-        for (action in listOf(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD,
-                AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD)) {
-            repeat(10) {
+        // The destination sheet animates in: wait for a usable accessibility
+        // viewport instead of treating a transient missing node as a failed control.
+        await { visibleInPane() || toolPane() != null }
+        if (visibleInPane()) return
+        // Visit the start of the list first, THEN sweep forward through its
+        // entire content. A symmetric forward/backward sweep from the middle
+        // can return to the starting offset without ever reaching controls above it.
+        for (action in listOf(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD,
+                AccessibilityNodeInfo.ACTION_SCROLL_FORWARD)) {
+            for (step in 0 until 32) {
                 if (visibleInPane()) return
-                val pane = requireNotNull(toolPane()) { "No vertical tool pane" }
-                if (!pane.performAction(action)) return@repeat
+                val pane = toolPane()
+                if (pane == null) {
+                    test.waitForIdleSync()
+                    SystemClock.sleep(40)
+                    continue
+                }
+                if (!pane.performAction(action)) break
                 settleUi()
             }
         }
