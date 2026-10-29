@@ -244,6 +244,8 @@ class ReviewExportFlowTest {
             assertEquals(1, before.published)
             assertEquals(1, before.failed)
             assertTrue(before.retryReady)
+            instrumentation.runOnMainSync { first.continueEditing(app) }
+            assertEquals("Partial results must retain their recovery lock", before, first.exportState)
             val keptUri = before.items.first().uri
             instrumentation.runOnMainSync {
                 first.selectAllShareItems()
@@ -305,6 +307,9 @@ class ReviewExportFlowTest {
             }
             assertEquals(ExportUiPhase.NEEDS_REVIEW, waitForResult(model).phase)
             instrumentation.runOnMainSync {
+                val uncertain = model.exportState
+                model.continueEditing(app)
+                assertEquals("Pending publication cannot be acknowledged by Continue editing", uncertain, model.exportState)
                 assertFalse(model.canPrepareExport)
                 assertFalse("Uncertain output is never a fresh preparation retry", model.prepareExport())
             }

@@ -3,6 +3,8 @@ Use explicit durable result review without clearing the current draft, undo or s
 Preserve published output and unchanged-draft duplicate guards; refuse partial,
 uncertain, stale, running and busy continuation. Keep New work cleanup unchanged.
 Add real editor-button integration and session/journal/source regression coverage.
+Exercise running, partial and uncertain refusals through actual coordinator states;
+keep exportState privately owned by the ViewModel in the regression fixtures.
 Expected editor11 and import/settings/session22; retain all other current-profile cases.
 Run build, core tests, lint and API36; physical re-test and release gates remain separate.
 No dependency, codec, permission, production identity, signing, merge or release change.

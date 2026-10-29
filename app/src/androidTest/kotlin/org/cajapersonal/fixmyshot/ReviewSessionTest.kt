@@ -261,6 +261,9 @@ class ReviewSessionTest {
                 model.onDraftEdited()
                 assertTrue(model.prepareExport())
                 model.startPreparedExport(f.context, port)
+                val running = model.exportState
+                model.continueEditing(f.context)
+                assertEquals(running, model.exportState)
             }
             await { model.exportState.phase == ExportUiPhase.COMPLETED }
             val completed = model.exportState
@@ -268,18 +271,6 @@ class ReviewSessionTest {
             val editorKey = model.editorSessionKey
             val published = requireNotNull(output).copyOf()
             instrumentation.runOnMainSync {
-                for (blocked in listOf(
-                        completed.copy(phase = ExportUiPhase.RUNNING),
-                        completed.copy(canAcknowledge = false),
-                        completed.copy(outputBusy = true),
-                        completed.copy(items = completed.items.map { it.copy(phase = BatchItemPhase.NEEDS_REVIEW) }),
-                        completed.copy(items = completed.items.map { it.copy(phase = BatchItemPhase.FAILED) }))) {
-                    model.exportState = blocked
-                    model.continueEditing(f.context)
-                    assertEquals(blocked, model.exportState)
-                    assertEquals(draft, model.draft)
-                }
-                model.exportState = completed
                 model.draft = draft.setDestination(DestinationChoice.Custom.of(4, 5))
                 model.continueEditing(f.context)
                 assertEquals(completed, model.exportState)
