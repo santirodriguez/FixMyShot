@@ -33,3 +33,15 @@ Primary references, checked 2026-10-22:
 | `icon-192.png` | `177467ad972b84ae722e6f814ca82e893f2c500e3f4ed4b22aec7cb03097cf30` |
 | `icon-64.png` | `9276ce5ca20282ec77757c380e8149f69f80b8b7be4ca7b67263e38b4e7276c6` |
 | `header.png` | `92dc719ba303f0417c9c378a6dfe24f5d618f747e4cd005ed9e62d4d0d84d349` |
+
+## Development screenshots and support badge
+
+The README reuses the canonical `en-US/images/phoneScreenshots/1.png` (Start) and
+`2.png` (dark Settings) metadata images. These are unedited 1080×1920 PNG captures
+from the actual Android36 emulator build at `13b50c1827317fa208829fa50381d5111fbb32d1`,
+Actions40954636417, not reconstructed interface images or physical-device acceptance.
+Store publication still requires the final candidate screenshot review. Editor test
+patterns are retained as engineering evidence rather than promotional screenshots.
+
+`docs/assets/badges/donate.svg` is the repository's GPL-3.0-only support button, with
+accessible title/description and the existing author donation destination.

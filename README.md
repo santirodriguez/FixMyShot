@@ -5,6 +5,7 @@
 <h1 align="center">Screenshots, ready anywhere.</h1>
 
 <p align="center">
+  <strong>A simple Android app for framing screenshots before you share them.</strong><br />
   The screenshot is ready. The frame should be, too.
 </p>
 
@@ -15,6 +16,7 @@
 
 <p align="center">
   <a href="#pick-frame-share">How it works</a> ·
+  <a href="#screenshots">Screenshots</a> ·
   <a href="#on-your-phone">Installation</a> ·
   <a href="docs/FORMATS.md">Formats</a> ·
   <a href=".github/CONTRIBUTING.md">Contribute</a>
@@ -42,6 +44,15 @@ Batch settings work together with individual adjustments.
 
 Images are processed on your device. Identifying metadata is removed from new
 copies by default; visible content is still visible. [Privacy details](docs/PRIVACY.md).
+
+## Screenshots
+
+<p align="center">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot start screen with Choose images" width="46%" />
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="FixMyShot dark Settings with appearance and language choices" width="46%" />
+</p>
+
+<p align="center"><sub>Development preview · Start &amp; Settings</sub></p>
 
 ## On your phone
 
@@ -93,14 +104,21 @@ python3 scripts/check-release.py
 
 Translations, clearer flows and useful bug reports are welcome. Please use
 synthetic or carefully redacted examples. See the [changelog](CHANGELOG.md),
-[format notes](docs/FORMATS.md) and [release guide](docs/RELEASING.md).
+[format notes](docs/FORMATS.md), [release guide](docs/RELEASING.md)
+and [artwork provenance](docs/ARTWORK.md).
 
 </details>
 
 ---
 
-Made by [Santiago Rodriguez](https://santiagorodriguez.com).
-If this saves you some screenshot gymnastics, you can
-[support its development](https://santiagorodriguez.com/donate).
+## Made by a person
 
-<sub>[License](LICENSE) · [Third-party notices](THIRD_PARTY_NOTICES) · [Artwork](docs/ARTWORK.md)</sub>
+<p align="center">
+  Created by <a href="https://santiagorodriguez.com">Santiago Rodriguez</a>.
+</p>
+
+<p align="center">
+  <a href="https://santiagorodriguez.com/donate"><img src="docs/assets/badges/donate.svg" alt="Donate to support FixMyShot" height="46" /></a>
+</p>
+
+<p align="center"><sub>GNU GPL version 3 only · <a href="LICENSE">License</a> · <a href="THIRD_PARTY_NOTICES">Third-party notices</a></sub></p>
