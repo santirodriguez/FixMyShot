@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.touch
+package=org.cajapersonal.fixmyshot.ux22
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -93,15 +93,28 @@ timeout 3m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/editor-interaction-instrumentation.txt 2>&1
 editor_result=$?
 cat evidence/editor-interaction-instrumentation.txt
-adb exec-out run-as "$package" cat files/editor-framing.png > evidence/editor-framing.png
+# Freeze the actual Focus editor frame; the old global capture file was
+# overwritten by the last (Settings) test and mislabeled in the artifact.
+adb exec-out run-as "$package" cat files/editor-focus.png > evidence/editor-framing.png
 editor_capture_result=$?
+if [[ "$(od -An -tx1 -N8 evidence/editor-framing.png | tr -d ' \\n')" != "89504e470d0a1a0a" ]]; then
+  editor_capture_result=1
+fi
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
 for editor_file in editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
   editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
   editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
   editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
   adb exec-out run-as "$package" cat "files/$editor_file" > "evidence/$editor_file" 2>/dev/null || rm -f "evidence/$editor_file"
+  # Some optional cases do not produce a bitmap; refuse adb's textual cat
+  # error instead of preserving it under a .png filename as bogus evidence.
+  if [[ "$editor_file" == *.png && -e "evidence/$editor_file" ]] &&
+      [[ "$(od -An -tx1 -N8 "evidence/$editor_file" | tr -d ' \\n')" != "89504e470d0a1a0a" ]]; then
+    rm -f "evidence/$editor_file"
+  fi
 done
+test -s evidence/editor-focus.png
+test -s evidence/editor-settings-dark.png
 # Cache ownership/eviction is checked separately using only synthetic bitmaps.
 timeout 2m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.ReviewThumbnailCacheTest \

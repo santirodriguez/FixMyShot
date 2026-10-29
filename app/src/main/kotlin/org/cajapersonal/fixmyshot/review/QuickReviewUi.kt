@@ -200,7 +200,7 @@ internal fun QuickOutputFormat(format: OutputFormat, destination: DestinationCho
 @Composable
 internal fun FlexibleFrameControls(focus: FrameFocus, enabled: Boolean,
     onChange: (FrameFocus) -> Unit) {
-    val zoom = stringResource(R.string.quick_export_zoom, (focus.zoom * 100.0).toInt())
+    val zoom = stringResource(R.string.quick_frame_zoom, (focus.zoom * 100.0).toInt())
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween) {
         OutlinedButton(onClick = {

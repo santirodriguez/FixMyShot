@@ -73,4 +73,6 @@
     <string name="quick_result_details">Details</string>
     <string name="quick_view_saved">View saved image</string>
     <string name="quick_share_saved">Share saved images</string>
+    <string name="quick_frame_zoom">Frame zoom: %1$d%%</string>
+    <string name="quick_flexible_hint">Pinch inward to show more of the original or outward to crop. Only the area inside the frame is exported.</string>
 </resources>

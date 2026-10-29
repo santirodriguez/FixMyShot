@@ -126,8 +126,17 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                 }
                 Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(stringResource(if (inspect) R.string.quick_inspection_zoom else R.string.quick_export_zoom,
-                        if (inspect) (viewScale * 100).roundToInt() else (zoom * 100).roundToInt()),
+                    val zoomLabel = when {
+                        inspect -> R.string.quick_inspection_zoom
+                        fit == FitMode.FLEXIBLE -> R.string.quick_frame_zoom
+                        else -> R.string.quick_export_zoom
+                    }
+                    val percent = when {
+                        inspect -> (viewScale * 100).roundToInt()
+                        fit == FitMode.FLEXIBLE -> (frameZoom * 100).roundToInt()
+                        else -> (zoom * 100).roundToInt()
+                    }
+                    Text(stringResource(zoomLabel, percent),
                         style = MaterialTheme.typography.labelMedium)
                     CompareOriginalButton(comparing, true) { comparing = it }
                 }
@@ -169,9 +178,15 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                 Column(Modifier.fillMaxWidth().heightIn(max = 240.dp).verticalScroll(rememberScrollState())
                     .padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     QuickFramingRow(fit, true, { fitName = it.name; inspect = false; showTrimmedArea = false })
-                    Text(stringResource(if (inspect) R.string.quick_inspect_hint else if (fit == FitMode.CROP)
-                        R.string.quick_crop_hint else R.string.quick_contain_hint),
-                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    val framingHint = when {
+                        inspect -> R.string.quick_inspect_hint
+                        fit == FitMode.FLEXIBLE -> R.string.quick_flexible_hint
+                        fit == FitMode.CROP -> R.string.quick_crop_hint
+                        else -> R.string.quick_contain_hint
+                    }
+                    Text(stringResource(framingHint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant)
                     val flexible = (plan.geometry as? PlannedGeometry.Framed)?.value
                     if (fit == FitMode.FLEXIBLE && flexible != null) {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {

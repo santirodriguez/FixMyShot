@@ -73,4 +73,6 @@
     <string name="quick_result_details">Detalles</string>
     <string name="quick_view_saved">Ver imagen guardada</string>
     <string name="quick_share_saved">Compartir imágenes</string>
+    <string name="quick_frame_zoom">Zoom del encuadre: %1$d%%</string>
+    <string name="quick_flexible_hint">Juntá los dedos para mostrar más de la imagen o separalos para recortar. Solo se exporta el área dentro del marco.</string>
 </resources>

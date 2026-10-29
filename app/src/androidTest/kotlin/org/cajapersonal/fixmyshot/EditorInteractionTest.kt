@@ -71,9 +71,11 @@ class EditorInteractionTest {
         dump(freshRoot())
         File(app.filesDir, "editor-$caseName.txt").writeText(tree.toString())
         val screenshot = test.uiAutomation.takeScreenshot() ?: return
-        try { File(app.filesDir, "editor-framing.png").outputStream().use { screenshot.compress(Bitmap.CompressFormat.PNG, 100, it) } }
-        finally { screenshot.recycle() }
-        File(app.filesDir, "editor-framing.png").copyTo(File(app.filesDir, "editor-$caseName.png"), overwrite = true)
+        try {
+            File(app.filesDir, "editor-$caseName.png").outputStream().use {
+                check(screenshot.compress(Bitmap.CompressFormat.PNG, 100, it))
+            }
+        } finally { screenshot.recycle() }
     }
 
     private fun await(condition: () -> Boolean) {
@@ -329,6 +331,7 @@ class EditorInteractionTest {
         assertTrue(bounds(label(R.string.preview_description)).height() > initial.height())
         click(label(R.string.quick_fill_crop))
         assertEquals(before, model.draft)
+        await { find(label(R.string.quick_flexible_hint)) != null }
         await { find(label(R.string.quick_crop_show_trim)) != null }
         click(label(R.string.quick_crop_show_trim))
         await { find(label(R.string.quick_crop_trim_accessibility)) != null }

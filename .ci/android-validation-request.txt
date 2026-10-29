@@ -38,4 +38,11 @@ CropPlanner legitimately clamped it, generated a review flag and prevented
 the expected private recipe. Keep strict blocking semantics and use a centered,
 unchanged legacy crop x=.5,y=.5 to test the actual versioning invariant.
 Rerun complete build/lint/API36 current-source tests; no assertions skipped.
+After successful Actions40870087383 (build core99 + API36 UI10 and all smoke),
+correct diagnostic-only signing identity collision with previous Touch APK:
+debug applicationIdSuffix .ux22, display name FixMyShot UX 2.2,
+smoke and optional SAF scripts follow exact package. Production ID unchanged.
+Fix flexible zoom/trim UI copy (do not imply no crop), retain old Crop mode.
+Pin screenshots to named Focus/Settings captures and discard non-PNG errors.
+Re-run full current profile; no test skipped, no permission or release change.
 profile=current

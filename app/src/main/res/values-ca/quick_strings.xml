@@ -73,4 +73,6 @@
     <string name="quick_result_details">Detalls</string>
     <string name="quick_view_saved">Veure la imatge desada</string>
     <string name="quick_share_saved">Compartir imatges</string>
+    <string name="quick_frame_zoom">Zoom de l’enquadrament: %1$d%%</string>
+    <string name="quick_flexible_hint">Ajunta els dits per mostrar més imatge o separa’ls per retallar. Només s’exporta l’àrea dins del marc.</string>
 </resources>
