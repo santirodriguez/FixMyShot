@@ -48,6 +48,12 @@ internal object FrozenPlanFingerprint {
                 out.writeUTF("source-color-to-srgb-v1")
                 recipes.forEach { out.writeUTF(it.sourceColor.name) }
             }
+            // Only new flexible plans extend the version-2 digest; old planned hashes
+            // remain byte-for-byte identical for valid session/retry recovery.
+            if (recipes.any { it.flexibleFrame }) {
+                out.writeUTF("native-frame-clipping-v1")
+                recipes.forEach { out.writeBoolean(it.flexibleFrame) }
+            }
         }
         return digest.digest().joinToString("") { "%02x".format(it.toInt() and 255) }
     }

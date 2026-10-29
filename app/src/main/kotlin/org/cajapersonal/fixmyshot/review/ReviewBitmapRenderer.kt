@@ -40,7 +40,8 @@ internal object ReviewBitmapRenderer {
         }
         val contained = (plan.geometry as? PlannedGeometry.Contained)?.value
         val cropped = (plan.geometry as? PlannedGeometry.Cropped)?.value
-        val canvasSize = contained?.canvas ?: cropped?.output
+        val framed = (plan.geometry as? PlannedGeometry.Framed)?.value
+        val canvasSize = framed?.canvas ?: contained?.canvas ?: cropped?.output
             ?: throw IllegalArgumentException("Preview geometry unavailable")
         val outScale = min(1.0, maxLongSide.toDouble() / maxOf(canvasSize.width, canvasSize.height))
         val targetWidth = maxOf(1, round(canvasSize.width * outScale).toInt())
@@ -60,7 +61,7 @@ internal object ReviewBitmapRenderer {
         }
         image.eraseColor(background)
         drawContent(image, sample, orientedSource, canvasSize,
-            contained?.placement ?: PixelPlacement(0, 0, canvasSize.width, canvasSize.height),
+            framed?.placement ?: contained?.placement ?: PixelPlacement(0, 0, canvasSize.width, canvasSize.height),
             cropped?.visibleSource)
         return Rendered(image, canvasSize, sample.width != orientedSource.width ||
             sample.height != orientedSource.height || targetWidth != canvasSize.width || targetHeight != canvasSize.height)
