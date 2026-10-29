@@ -124,6 +124,7 @@ internal fun ReviewScreen(
     onRestoreDraft: () -> Unit = {},
     onRefreshOutputs: () -> Unit = {},
     onOpenOutput: (String) -> Unit = {},
+    onViewSaved: (String, (Bitmap?) -> Unit) -> Unit = { _, callback -> callback(null) },
     onConfirmOutput: (String) -> Unit = {},
     onRemovePendingOutput: (String) -> Unit = {},
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
@@ -157,6 +158,7 @@ internal fun ReviewScreen(
     var focusRevision by rememberSaveable { mutableStateOf(-1L) }
     var infoOpen by rememberSaveable { mutableStateOf(false) }
     var savedResultsOpen by rememberSaveable { mutableStateOf(false) }
+    var savedImage by remember { mutableStateOf<Bitmap?>(null) }
     var backgroundsOpen by rememberSaveable { mutableStateOf(false) }
     var comparing by remember { mutableStateOf(false) }
     var requestCrop by remember { mutableStateOf(false) }
@@ -496,11 +498,19 @@ internal fun ReviewScreen(
         val firstPublishedId = exportState.items.first { it.phase == BatchItemPhase.PUBLISHED }.itemId
         QuickSavedResults(exportState.published, exportState.total,
             enabled = !busy && !shareBusy && !exportState.outputBusy,
-            onView = { onOpenOutput(firstPublishedId) },
+            onView = {
+                onViewSaved(firstPublishedId) { image ->
+                    if (image != null) savedImage = image
+                    else onOpenOutput(firstPublishedId)
+                }
+            },
             onShare = { onSelectAllShare(); onShare() },
             onNewWork = { if (fullySaved) { savedResultsOpen = false; onReviewedPrevious() } },
             onDetails = { savedResultsOpen = false; infoOpen = true },
             onDismiss = { savedResultsOpen = false })
+    }
+    savedImage?.let { verified ->
+        SavedImageViewer(verified) { savedImage = null }
     }
     if (infoOpen) Dialog(onDismissRequest = { infoOpen = false },
         properties = DialogProperties(usePlatformDefaultWidth = false)) {

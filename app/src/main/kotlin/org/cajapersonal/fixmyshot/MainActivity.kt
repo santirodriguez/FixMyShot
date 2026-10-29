@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot
 import android.content.ComponentCallbacks2
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -207,6 +208,17 @@ class MainActivity : AppCompatActivity() {
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
                         finishSessionOnReview = model.canFinishSession,
                         onRefreshOutputs = { model.refreshOutputs(applicationContext) },
+                        onViewSaved = { id, onDecoded ->
+                            // Only decode an owned, validated published output after the journal verifier.
+                            model.openOutput(applicationContext, id) { ready ->
+                                val uri = ready?.data
+                                if (uri == null || isDestroyed) onDecoded(null)
+                                else thumbnailWorker.execute {
+                                    val image = try { decodeSavedForViewing(uri) } catch (_: Exception) { null }
+                                    main.post { if (!isDestroyed) onDecoded(image) else image?.recycle() }
+                                }
+                            }
+                        },
                         onOpenOutput = { id -> model.openOutput(applicationContext, id) { ready ->
                             if (ready != null && !isDestroyed) {
                                 try { startActivity(ready) }
@@ -498,6 +510,22 @@ class MainActivity : AppCompatActivity() {
                 generation++; worker.cancelPending(); model.trimPreview()
             }
         }
+    }
+
+    /** Never decode an output-sized bitmap just to let the user inspect a result. */
+    private fun decodeSavedForViewing(uri: Uri): Bitmap? {
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) }
+        val width = bounds.outWidth
+        val height = bounds.outHeight
+        if (width <= 0 || height <= 0 || width.toLong() * height > 24_000_000L) return null
+        var sample = 1
+        while (maxOf(width, height) / sample > 1600) sample *= 2
+        val options = BitmapFactory.Options().apply {
+            inSampleSize = sample
+            inPreferredConfig = Bitmap.Config.ARGB_8888
+        }
+        return contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
     }
 
     override fun onDestroy() {
