@@ -40,7 +40,7 @@ class FramePlannerTest {
 
     @Test fun pixelGridRemainsExactAndBoundedForManyZoomLevels() {
         repeat(2001) { index ->
-            val zoom = .01 + index * 64.0 / 2000.0
+            val zoom = .01 + index * (64.0 - .01) / 2000.0
             val state = FramePlanner.plan(PixelSize(1344, 2992), ratio, FrameFocus(zoom = zoom))
             assertEquals(0L, state.canvas.width.toLong() * ratio.q -
                 state.canvas.height.toLong() * ratio.p)

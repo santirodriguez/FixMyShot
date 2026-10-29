@@ -11,7 +11,7 @@ private fun <T> ItemValue<T>.resolve(batch: T): T = when (this) {
     is ItemValue.Custom -> value
 }
 
-enum class FitMode { CONTAIN, CROP }
+enum class FitMode { CONTAIN, CROP, FLEXIBLE }
 
 sealed interface OutputSizeChoice {
     data object PreservePixels : OutputSizeChoice
@@ -36,6 +36,8 @@ data class EditSettings(
     val size: OutputSizeChoice = OutputSizeChoice.PreservePixels,
     val metadata: MetadataPolicy = MetadataPolicy.REMOVE_IDENTIFYING,
     val position: ContainPosition = ContainPosition(),
+    /** Only consulted for FLEXIBLE; legacy CropFocus and its frozen plans are unchanged. */
+    val frame: FrameFocus = FrameFocus(),
 )
 
 data class ItemOverrides(
@@ -46,11 +48,12 @@ data class ItemOverrides(
     val size: ItemValue<OutputSizeChoice> = ItemValue.Inherit,
     val metadata: ItemValue<MetadataPolicy> = ItemValue.Inherit,
     val position: ItemValue<ContainPosition> = ItemValue.Inherit,
+    val frame: ItemValue<FrameFocus> = ItemValue.Inherit,
 ) {
     fun resolve(batch: EditSettings): EditSettings = EditSettings(
         fit.resolve(batch.fit), crop.resolve(batch.crop), background.resolve(batch.background),
         format.resolve(batch.format), size.resolve(batch.size), metadata.resolve(batch.metadata),
-        position.resolve(batch.position),
+        position.resolve(batch.position), frame.resolve(batch.frame),
     )
 
     fun clear(fields: Set<EditableField>): ItemOverrides = copy(
@@ -61,12 +64,13 @@ data class ItemOverrides(
         size = if (EditableField.SIZE in fields) ItemValue.Inherit else size,
         metadata = if (EditableField.METADATA in fields) ItemValue.Inherit else metadata,
         position = if (EditableField.POSITION in fields) ItemValue.Inherit else position,
+        frame = if (EditableField.FRAME in fields) ItemValue.Inherit else frame,
     )
 
     val hasCustomValues: Boolean get() = this != ItemOverrides()
 }
 
-enum class EditableField { FIT, CROP, BACKGROUND, FORMAT, SIZE, METADATA, POSITION }
+enum class EditableField { FIT, CROP, BACKGROUND, FORMAT, SIZE, METADATA, POSITION, FRAME }
 
 /** Original appearance; recognized wide-gamut SDR is converted, never relabelled as sRGB. */
 enum class SourceColor { SRGB, DISPLAY_P3, ADOBE_RGB }
@@ -105,6 +109,7 @@ enum class DraftReviewFlag {
 sealed interface PlannedGeometry {
     data class Contained(val value: ContainGeometry) : PlannedGeometry
     data class Cropped(val value: CropGeometry) : PlannedGeometry
+    data class Framed(val value: FrameGeometry) : PlannedGeometry
 }
 
 /** A deterministic preview proposal, NOT a validated export transaction or device codec probe. */
@@ -173,13 +178,16 @@ data class DraftSession(
     }
 
     /** Commit a fullscreen framing edit once, keeping all unrelated fields and provenance. */
-    fun applyFraming(itemId: String, fit: FitMode, crop: CropFocus, position: ContainPosition): DraftSession {
+    fun applyFraming(itemId: String, fit: FitMode, crop: CropFocus, position: ContainPosition,
+        frame: FrameFocus? = null): DraftSession {
         val item = requireNotNull(images.find { it.id == itemId }) { "Unknown item" }
         val effective = item.overrides.resolve(batch)
         return editItem(itemId, item.overrides.copy(
             fit = if (fit == effective.fit) item.overrides.fit else ItemValue.Custom(fit),
             crop = if (crop == effective.crop) item.overrides.crop else ItemValue.Custom(crop),
             position = if (position == effective.position) item.overrides.position else ItemValue.Custom(position),
+            frame = if (frame == null || frame == effective.frame) item.overrides.frame
+                else ItemValue.Custom(frame),
         ))
     }
 
@@ -271,15 +279,26 @@ data class DraftSession(
             }
             if (image.orientedSize.pixels > 64_000_000L) flags += DraftReviewFlag.OVERSIZED_SOURCE
             val geometry = try {
-                if (settings.fit == FitMode.CONTAIN) {
-                    PlannedGeometry.Contained(selected.contain(image.orientedSize, settings.size).positioned(settings.position))
-                } else {
-                    val exact = settings.size as? OutputSizeChoice.Exact
-                    val crop = CropPlanner.plan(image.orientedSize, selected.cropRatio(image.orientedSize, settings.size),
-                        settings.crop, exactOutput = exact?.canvas)
-                    if (crop.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
-                    if (crop.enlarged && exact?.allowEnlargement != true) flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
-                    PlannedGeometry.Cropped(crop)
+                when (settings.fit) {
+                    FitMode.CONTAIN -> PlannedGeometry.Contained(
+                        selected.contain(image.orientedSize, settings.size).positioned(settings.position))
+                    FitMode.CROP -> {
+                        val exact = settings.size as? OutputSizeChoice.Exact
+                        val crop = CropPlanner.plan(image.orientedSize,
+                            selected.cropRatio(image.orientedSize, settings.size),
+                            settings.crop, exactOutput = exact?.canvas)
+                        if (crop.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
+                        if (crop.enlarged && exact?.allowEnlargement != true)
+                            flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
+                        PlannedGeometry.Cropped(crop)
+                    }
+                    FitMode.FLEXIBLE -> {
+                        // Exact-size flexible framing needs a separately reviewed scaling contract.
+                        // Never silently stretch or replace the requested native-pixel output.
+                        require(settings.size == OutputSizeChoice.PreservePixels)
+                        PlannedGeometry.Framed(FramePlanner.plan(image.orientedSize,
+                            selected.cropRatio(image.orientedSize, settings.size), settings.frame))
+                    }
                 }
             } catch (_: IllegalArgumentException) {
                 flags += DraftReviewFlag.GEOMETRY_UNAVAILABLE
@@ -291,6 +310,7 @@ data class DraftSession(
             val visible = when (geometry) {
                 is PlannedGeometry.Contained -> geometry.value.canvas
                 is PlannedGeometry.Cropped -> (settings.size as? OutputSizeChoice.Exact)?.canvas ?: geometry.value.output
+                is PlannedGeometry.Framed -> geometry.value.canvas
                 null -> null
             }
             if (visible != null && !matchesDestination(visible, selected)) {
