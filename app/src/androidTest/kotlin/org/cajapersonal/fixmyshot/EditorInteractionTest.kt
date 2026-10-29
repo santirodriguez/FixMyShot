@@ -307,6 +307,16 @@ class EditorInteractionTest {
             .createIntent(app, request)
         val pickerPackage = requireNotNull(pickerIntent.resolveActivity(app.packageManager)).packageName
         assertNotEquals(app.packageName, pickerPackage)
+        // The current Google APIs image renders the Mainline picker in its own APK;
+        // its accessibility package need not equal the initial intent resolver's package.
+        // AOSP documents this separate picker at packages/providers/MediaProvider/photopicker/README.
+        val pickerPackages = setOf(pickerPackage, "com.google.android.photopicker", "com.android.photopicker")
+        fun pickerVisible(): Boolean = freshRoot()?.packageName?.toString()?.let { it in pickerPackages } == true
+        fun tracePicker(stage: String) {
+            println("EDITOR_NEXT_IMAGE stage=$stage resolver=$pickerPackage visible=${freshRoot()?.packageName} " +
+                "phase=${model.exportState.phase} locked=${model.exportState.isLocked} " +
+                "draftCount=${model.draft.images.size} lifecycle=${scenario.state}")
+        }
         try {
             scenario.onActivity {
                 model.onDraftEdited()
@@ -320,21 +330,27 @@ class EditorInteractionTest {
             capture()
             caseName = "next-image-picker"
             click(label(R.string.quick_edit_another))
-            await { model.draft.images.isEmpty() && !model.exportState.isLocked &&
-                freshRoot()?.packageName?.toString() == pickerPackage }
+            tracePicker("after-click")
+            await { model.draft.images.isEmpty() && !model.exportState.isLocked }
+            tracePicker("session-finished")
+            await { pickerVisible() }
+            tracePicker("picker-visible")
             capture()
             caseName = "next-image-cancelled"
             test.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+            tracePicker("after-back")
             await { freshRoot()?.packageName?.toString() == app.packageName &&
                 find(label(R.string.choose_images)) != null &&
                 scenario.state == androidx.lifecycle.Lifecycle.State.RESUMED }
+            tracePicker("cancelled-start")
             capture()
             assertEquals(OutputFormat.PNG, model.draft.batch.format)
             assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
             assertArrayEquals(published, output)
         } finally {
             // A failed assertion must not leave a system picker above the next test.
-            if (freshRoot()?.packageName?.toString() == pickerPackage) {
+            tracePicker("finally")
+            if (pickerVisible()) {
                 test.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
                 test.waitForIdleSync()
             }

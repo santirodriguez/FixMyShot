@@ -1,9 +1,9 @@
-Correct two demonstrated UI-test failures from Actions40961246747 at23460e1b.
-Build/lint and all non-editor groups passed, including session23 cleanup/duplicate protections.
-Actual capture proves next-image launched the real system picker; the ActivityMonitor did not intercept it.
-Exercise the real picker, verify its resolved package, cancel with Back and assert resumed clean Start.
-Capture successful results, actual picker and cancellation separately, including accessibility package names.
-Use overlapping bounded touch scrolls so full-page jumps cannot leave a target row clipped on both pages.
-Retain every assertion/count: core99/editor12/import-settings-session23 and existing other groups.
-Runtime code, .ux22next identity, output bytes, production permissions and signing remain unchanged.
+Correct the sole remaining next-image UI assertion from Actions40963409322 atcb676695.
+Build/lint, all other11 editor cases, session23 and all retained non-editor groups passed.
+Verified capture shows com.google.android.photopicker; it need not equal initial resolveActivity package.
+Recognize the resolved handler and explicit Google/AOSP Mainline picker packages, never arbitrary foreign UI.
+Separately assert finished session, actual picker visibility, Back cancellation and resumed clean Start.
+Preserve output-byte/default checks and exactly-one request/cleanup guards; add bounded stage diagnostics.
+Keep successful results/picker/cancel captures and the now-passing overlapping tool-pane scrolls.
+No runtime, package identity, permission, codec, signing or expected test-count change.
 profile=current
