@@ -232,6 +232,92 @@ class ReviewSessionTest {
         } finally { f.cleanup() }
     }
 
+    @Test fun continuingSuccessfulExportKeepsEditableStateAndRefusesUnsafeOrDuplicateContinuation() {
+        val f = Fixture()
+        try {
+            val a = f.image(); val b = f.image()
+            val model = f.owner().model
+            var output: ByteArray? = null
+            var creates = 0
+            var deletions = 0
+            val port = object : OwnedOutputPort {
+                override fun create(name: String, mime: String): Uri {
+                    creates++
+                    return Uri.parse("content://synthetic/continued-output-$creates")
+                }
+                override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+                    override fun close() { output = toByteArray(); super.close() }
+                }
+                override fun openRead(uri: Uri): InputStream? = output?.let(::ByteArrayInputStream)
+                override fun publish(uri: Uri): Boolean = output != null
+                override fun delete(uri: Uri): Boolean { deletions++; return false }
+            }
+            instrumentation.runOnMainSync {
+                model.draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+                    batch = EditSettings(format = OutputFormat.WEBP_LOSSLESS, metadata = MetadataPolicy.PRESERVE_ALLOWLIST))
+                    .addImages(listOf(a, b)).removeItem(b.id)
+                model.selectedId = a.id
+                model.changeEditScope(true)
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(f.context, port)
+            }
+            await { model.exportState.phase == ExportUiPhase.COMPLETED }
+            val completed = model.exportState
+            val draft = model.draft
+            val editorKey = model.editorSessionKey
+            val published = requireNotNull(output).copyOf()
+            instrumentation.runOnMainSync {
+                for (blocked in listOf(
+                        completed.copy(phase = ExportUiPhase.RUNNING),
+                        completed.copy(canAcknowledge = false),
+                        completed.copy(outputBusy = true),
+                        completed.copy(items = completed.items.map { it.copy(phase = BatchItemPhase.NEEDS_REVIEW) }),
+                        completed.copy(items = completed.items.map { it.copy(phase = BatchItemPhase.FAILED) }))) {
+                    model.exportState = blocked
+                    model.continueEditing(f.context)
+                    assertEquals(blocked, model.exportState)
+                    assertEquals(draft, model.draft)
+                }
+                model.exportState = completed
+                model.draft = draft.setDestination(DestinationChoice.Custom.of(4, 5))
+                model.continueEditing(f.context)
+                assertEquals(completed, model.exportState)
+                model.draft = draft
+                model.isBusy = true
+                model.continueEditing(f.context)
+                assertEquals(completed, model.exportState)
+                model.isBusy = false
+                model.continueEditing(f.context)
+                model.continueEditing(f.context) // A second tap cannot acknowledge another job.
+            }
+            await { model.exportState.phase == ExportUiPhase.IDLE }
+            assertFalse(model.exportState.isLocked)
+            assertFalse(model.exportState.outputError)
+            assertEquals(draft, model.draft)
+            assertEquals(draft, f.journal.read()!!.draft)
+            assertEquals(a.id, model.selectedId)
+            assertEquals(editorKey, model.editorSessionKey)
+            assertTrue(model.editSelectedOnly)
+            assertTrue(model.draft.canUndo)
+            for (image in listOf(a, b)) assertTrue(ReviewSources(f.context)
+                .matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
+            assertArrayEquals(published, output)
+            assertEquals(1, creates); assertEquals(0, deletions)
+            assertTrue(File(f.context.filesDir, "export-jobs").listFiles()!!.isEmpty())
+            instrumentation.runOnMainSync {
+                assertFalse("Continuing is not an unchanged export retry", model.prepareExport())
+                model.draft = model.draft.setBatch(model.draft.batch.copy(background = BackgroundChoice.Black))
+                model.onDraftEdited()
+                assertTrue(model.canPrepareExport)
+                assertTrue(model.prepareExport())
+                model.destinationCancelled()
+            }
+            assertEquals(1, creates)
+            assertArrayEquals(published, output)
+        } finally { f.cleanup() }
+    }
+
     @Test fun finishingSuccessfulSessionClearsCurrentUndoAndJournalButKeepsPublishedBytes() {
         val f = Fixture()
         try {

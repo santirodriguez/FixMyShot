@@ -13,6 +13,16 @@ The automatic workspace is the default presentation for new work, including imag
 - Discard is visible in the shared header and expanded editor. Confirmation describes private draft/undo removal while preserving originals and published exports. Locked or uncertain work routes to its existing result/recovery controls; it is not force-deleted. Removing one batch image remains distinct and undoable.
 - Export feedback has a dedicated results surface using the established verification, share, retry and acknowledgement handlers. No automatic retry, duplicate publication or recovery-policy change is introduced.
 
+### Returning to editing after a successful export
+
+Continue editing explicitly reviews a fully published, matching completed job while retaining the
+current draft, selection, per-image settings, undo sources and editor context. It releases the
+finished job lock through the existing durable acknowledgement/private-receipt cleanup path;
+published files are never changed. An unchanged draft remains ineligible for an immediate second
+export in the current session until an edit is made. New work still clears the completed draft.
+Partial, uncertain, stale, running or busy results cannot use this continuation action. Dismissing
+the result with Back only dismisses it and does not acknowledge or discard the job.
+
 ## Ownership and resource boundaries
 
 `QuickReviewUi.kt` owns the branded start, template cards, compact batch strip and automatic layout. `FocusEditor.kt` owns the isolated apply/cancel framing and inspection view. `ReviewScreen.kt` coordinates presentation and retains existing advanced/recovery controls. `ReviewCanvas.kt` and `CropControls.kt` share the retained-sample geometry path and commit actual event-local transforms once at gesture completion, discarding cancelled intermediates. `BrandTheme.kt` supplies appearance only; no brand color, border, inspection transform or artwork enters exported pixels.

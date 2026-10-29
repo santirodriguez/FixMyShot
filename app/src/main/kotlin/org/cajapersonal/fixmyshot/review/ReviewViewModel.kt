@@ -495,11 +495,19 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     /** Only an explicit UI action records that past outputs were reviewed. */
-    fun acknowledgePreviousExport(context: Context) {
+    fun acknowledgePreviousExport(context: Context) = reviewPreviousExport(context, keepDraft = false)
+
+    /** A completed result can be reviewed without discarding the editable draft or its undo sources. */
+    fun continueEditing(context: Context) {
+        if (exportState.phase != ExportUiPhase.COMPLETED || !canFinishSession || isBusy || sessionRestoreBlocked) return
+        reviewPreviousExport(context, keepDraft = true)
+    }
+
+    private fun reviewPreviousExport(context: Context, keepDraft: Boolean) {
         val token = reviewToken ?: return
         if (!exportState.canAcknowledge || activeToken != null || shareBusy || exportState.outputBusy ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
-        val finishSession = canFinishSession
+        val finishSession = canFinishSession && !keepDraft
         val finishingDraft = draft
         exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
             canAcknowledge = false)
@@ -525,9 +533,12 @@ internal class ReviewViewModel : ViewModel() {
                             val releasedUndo = cleaner.release(current, emptySet())
                             cleanupFailed = !releasedDraft || !releasedUndo || !cleaner.retirePublishedJob(token)
                         } catch (_: Exception) { cleanupFailed = true }
-                    } else if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
-                        !maintenance(app).releaseReviewedDraft(token, it)
-                    } ?: true
+                    } else if (saved) {
+                        cleanupFailed = currentAndSavedSources(app, current)?.let {
+                            !maintenance(app).releaseReviewedDraft(token, it)
+                        } ?: true
+                        if (keepDraft && !cleanupFailed) cleanupFailed = !maintenance(app).retirePublishedJob(token)
+                    }
                 }
                 scanHistory(app)
             } catch (_: Exception) { RecoveryItem(null, null, 1) }

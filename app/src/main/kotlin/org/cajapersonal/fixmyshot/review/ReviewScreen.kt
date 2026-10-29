@@ -126,6 +126,7 @@ internal fun ReviewScreen(
     onRefreshOutputs: () -> Unit = {},
     onOpenOutput: (String) -> Unit = {},
     onViewSaved: (String, (Bitmap?) -> Unit) -> Unit = { _, callback -> callback(null) },
+    onContinueEditing: () -> Unit = {},
     onConfirmOutput: (String) -> Unit = {},
     onRemovePendingOutput: (String) -> Unit = {},
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
@@ -516,6 +517,7 @@ internal fun ReviewScreen(
             onShare = { onSelectAllShare(); onShare() },
             onNewWork = { if (fullySaved) { savedResultsOpen = false; onReviewedPrevious() } },
             onDetails = { savedResultsOpen = false; infoOpen = true },
+            onContinueEditing = { if (fullySaved) onContinueEditing() },
             onDismiss = { savedResultsOpen = false })
     }
     savedImage?.let { verified ->

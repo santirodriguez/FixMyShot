@@ -184,14 +184,14 @@ timeout 3m adb shell am instrument -w -r \
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
 set -e
-grep -q 'OK (10 tests)' evidence/editor-interaction-instrumentation.txt
+grep -q 'OK (11 tests)' evidence/editor-interaction-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (12 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
-grep -q 'OK (21 tests)' evidence/import-settings-instrumentation.txt
+grep -q 'OK (22 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (7 tests)' evidence/batch-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt

@@ -205,6 +205,50 @@ class EditorInteractionTest {
         }
     }
 
+    @Test fun savedResultContinueButtonUnlocksTheSameEditorAndAllowsAnEdit() = fixture { scenario, model, label ->
+        caseName = "continue-editing"
+        var output: ByteArray? = null
+        var creates = 0
+        var deletions = 0
+        val port = object : org.cajapersonal.fixmyshot.export.OwnedOutputPort {
+            override fun create(name: String, mime: String): android.net.Uri {
+                creates++
+                return android.net.Uri.parse("content://synthetic/editor-result")
+            }
+            override fun openWrite(uri: android.net.Uri): java.io.OutputStream = object : java.io.ByteArrayOutputStream() {
+                override fun close() { output = toByteArray(); super.close() }
+            }
+            override fun openRead(uri: android.net.Uri): java.io.InputStream? = output?.let { java.io.ByteArrayInputStream(it) }
+            override fun publish(uri: android.net.Uri): Boolean = output != null
+            override fun delete(uri: android.net.Uri): Boolean { deletions++; return false }
+        }
+        val before = model.draft
+        val sample = model.preview
+        val editorKey = model.editorSessionKey
+        scenario.onActivity {
+            model.onDraftEdited()
+            assertTrue(model.prepareExport())
+            model.startPreparedExport(app, port)
+        }
+        await { model.exportState.phase == org.cajapersonal.fixmyshot.review.ExportUiPhase.COMPLETED }
+        val published = requireNotNull(output).copyOf()
+        assertTrue(model.exportState.isLocked)
+        click(label(R.string.quick_keep_editing))
+        await { !model.exportState.isLocked }
+        assertEquals(before, model.draft)
+        assertEquals(editorKey, model.editorSessionKey)
+        assertSame(sample, model.preview)
+        assertFalse(model.canPrepareExport)
+        click(label(R.string.quick_customize))
+        click(label(R.string.editor_framing))
+        click(label(R.string.crop_mode))
+        await { model.draft.batch.fit == FitMode.CROP }
+        assertTrue(model.canPrepareExport)
+        assertEquals(1, creates); assertEquals(0, deletions)
+        assertArrayEquals(published, output)
+        capture()
+    }
+
     @Test fun gesturesKeepTheSampleAndCommitOneUndoableEdit() = fixture { scenario, model, label ->
         caseName = "gesture"
         click(label(R.string.quick_customize))

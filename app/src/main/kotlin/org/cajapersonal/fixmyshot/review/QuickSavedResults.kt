@@ -12,13 +12,13 @@ import androidx.compose.ui.window.DialogProperties
 import org.cajapersonal.fixmyshot.R
 
 /** Only used for fully published, current-draft-matching export batches.
- * The explicit New work action acknowledges verified results through the existing journal path.
+ * Explicit New work / Continue editing actions review results through the existing journal path.
  * It cannot be shown for partial, uncertain or stale output.
  */
 @Composable
 internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean,
     onView: () -> Unit, onShare: () -> Unit, onNewWork: () -> Unit,
-    onDetails: () -> Unit, onDismiss: () -> Unit) {
+    onDetails: () -> Unit, onContinueEditing: () -> Unit, onDismiss: () -> Unit) {
     require(total > 0 && count == total)
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(
         usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
@@ -52,7 +52,9 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean,
                     modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                     Text(stringResource(R.string.quick_new_work))
                 }
-                TextButton(onClick = onDismiss) { Text(stringResource(R.string.quick_keep_editing)) }
+                TextButton(onClick = onContinueEditing, enabled = enabled) {
+                    Text(stringResource(R.string.quick_keep_editing))
+                }
             }
         }
     }

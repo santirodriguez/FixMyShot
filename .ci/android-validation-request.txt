@@ -1,48 +1,9 @@
-Refine UX 2.1 menus and draw-only crop interaction on source a6b80304.
-Preserve its stable platform IDs, edge-matte semantics and excluded-source overview.
-Fix the stale six-destination fixture with the exact 14-entry catalog contract.
-Pure crop motion: one exact planner call per pointer event, draw-only state,
-no parent callback/recomposition during moves, one commit on release, cancel restores.
-Reuse canvas matrix/paint/rect scratch; compare cached and ordinary renderer pixels.
-Polish destination/settings sheets, grouped matte choices, segmented framing and fine arrows.
-89 core tests and 10 real editor cases expected; retain all earlier assertions.
-Capture menus/dark Settings, actual pointer behavior and labelled synthetic frame metrics.
-No physical Pixel performance/fidelity acceptance is inferred from debug emulator results.
-Independent diagnostic .touch / FixMyShot Touch, no production identity/key changes.
-No dependency, codec, permission, network, merge or release change.
-Follow-up for Actions 40763922346: build + 89 core pass; API36 editor 6/10.
-Four real editor assertions failed: down-only scroll detection at bottom and
-clipped matte button, plus cancellation exact-raster check before frame redraw.
-Keep all ten real UI cases, exact pixels, and all previous render/export checks.
-Re-run current-profile build + API36 and inspect evidence before diagnostic APK.
-No export, schema, dependency, network, signing or production changes.
-Follow-up to exact Actions 40782315574: Android build and core89 PASS,
-API36 editor now 8/10. The previous crop cancellation raster now passes.
-Remaining: destination sheet opening can lack a viewport momentarily; Settings
-Light above expanded Help was missed by forward-first symmetric scroll search.
-Wait for accessible viewport, scan backward to top then forward across content.
-Retain exact bounds, 10 tests, native/export/privacy rendering assertions.
-No production sources changed. Need new full current-profile API36 result.
-Approved UX 2.2 accumulated checkpoint: neutral Original destination, source-bound
-flexible native-pixel framing (legacy CropPlanner+fingerprints unchanged), below-fill
-pinch/drag, matte, excluded-source warning, direct verified results/New work and
-bounded viewer, PNG/lossless-WebP quick controls, full-screen Settings and en/es/ca.
-Run ALL core JVM property/recovery tests, lint, build and current API36 smoke,
-including original screenshots, privacy, output transaction and localization.
-Source frozen and APK hash/signature/manifest checks required before handoff.
-No current-source build or physical Pixel acceptance assumed.
-Follow-up for Actions40869603599 at f32a359c: Kotlin/core compile PASS,
-99 core tests ran, 98 PASS, one FAIL in FlexibleDraftTest legacy fixture.
-The fixture chose intentionally off-center legacy crop x=.55,y=.3 at zoom1.1;
-CropPlanner legitimately clamped it, generated a review flag and prevented
-the expected private recipe. Keep strict blocking semantics and use a centered,
-unchanged legacy crop x=.5,y=.5 to test the actual versioning invariant.
-Rerun complete build/lint/API36 current-source tests; no assertions skipped.
-After successful Actions40870087383 (build core99 + API36 UI10 and all smoke),
-correct diagnostic-only signing identity collision with previous Touch APK:
-debug applicationIdSuffix .ux22, display name FixMyShot UX 2.2,
-smoke and optional SAF scripts follow exact package. Production ID unchanged.
-Fix flexible zoom/trim UI copy (do not imply no crop), retain old Crop mode.
-Pin screenshots to named Focus/Settings captures and discard non-PNG errors.
-Re-run full current profile; no test skipped, no permission or release change.
+Fix Continue editing after the accepted UX 2.2 baseline c36dd19f.
+Use explicit durable result review without clearing the current draft, undo or sources.
+Preserve published output and unchanged-draft duplicate guards; refuse partial,
+uncertain, stale, running and busy continuation. Keep New work cleanup unchanged.
+Add real editor-button integration and session/journal/source regression coverage.
+Expected editor11 and import/settings/session22; retain all other current-profile cases.
+Run build, core tests, lint and API36; physical re-test and release gates remain separate.
+No dependency, codec, permission, production identity, signing, merge or release change.
 profile=current

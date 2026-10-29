@@ -206,6 +206,7 @@ class MainActivity : AppCompatActivity() {
                         onRetryExport = { beginRetryExport() },
                         onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
+                        onContinueEditing = { model.continueEditing(applicationContext) },
                         finishSessionOnReview = model.canFinishSession,
                         onRefreshOutputs = { model.refreshOutputs(applicationContext) },
                         onViewSaved = { id, onDecoded ->
