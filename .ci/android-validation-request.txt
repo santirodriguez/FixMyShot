@@ -23,4 +23,12 @@ Light above expanded Help was missed by forward-first symmetric scroll search.
 Wait for accessible viewport, scan backward to top then forward across content.
 Retain exact bounds, 10 tests, native/export/privacy rendering assertions.
 No production sources changed. Need new full current-profile API36 result.
+Approved UX 2.2 accumulated checkpoint: neutral Original destination, source-bound
+flexible native-pixel framing (legacy CropPlanner+fingerprints unchanged), below-fill
+pinch/drag, matte, excluded-source warning, direct verified results/New work and
+bounded viewer, PNG/lossless-WebP quick controls, full-screen Settings and en/es/ca.
+Run ALL core JVM property/recovery tests, lint, build and current API36 smoke,
+including original screenshots, privacy, output transaction and localization.
+Source frozen and APK hash/signature/manifest checks required before handoff.
+No current-source build or physical Pixel acceptance assumed.
 profile=current
