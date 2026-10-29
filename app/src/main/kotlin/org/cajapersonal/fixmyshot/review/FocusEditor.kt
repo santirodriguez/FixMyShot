@@ -43,6 +43,9 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
     var x by rememberSaveable { mutableStateOf(original.crop.x) }
     var y by rememberSaveable { mutableStateOf(original.crop.y) }
     var zoom by rememberSaveable { mutableStateOf(original.crop.zoom) }
+    var frameX by rememberSaveable { mutableStateOf(original.frame.x) }
+    var frameY by rememberSaveable { mutableStateOf(original.frame.y) }
+    var frameZoom by rememberSaveable { mutableStateOf(original.frame.zoom) }
     var px by rememberSaveable { mutableStateOf(original.position.x) }
     var py by rememberSaveable { mutableStateOf(original.position.y) }
     var inspect by rememberSaveable { mutableStateOf(false) }
@@ -56,23 +59,30 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
     val fit = FitMode.valueOf(fitName)
     // Freeze destination and codec review during touch edits: one preflight per dialog.
     val basePlan = remember(draft, itemId, api) { draft.plans(api).first { it.itemId == itemId } }
-    val plan = remember(basePlan, fit, x, y, zoom, px, py) {
+    val plan = remember(basePlan, fit, x, y, zoom, frameX, frameY, frameZoom, px, py) {
         val settings = basePlan.settings.copy(fit = fit, crop = CropFocus(x, y, zoom),
-            position = ContainPosition(px, py))
+            position = ContainPosition(px, py), frame = FrameFocus(frameX, frameY, frameZoom))
         val flags = (basePlan.reviewFlags - setOf(DraftReviewFlag.GEOMETRY_UNAVAILABLE,
             DraftReviewFlag.CROP_FOCUS_REPOSITIONED, DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED)).toMutableSet()
         val geometry = try {
-            if (fit == FitMode.CONTAIN) PlannedGeometry.Contained(
-                basePlan.destination.contain(image.orientedSize, settings.size).positioned(settings.position))
-            else {
-                val exact = settings.size as? OutputSizeChoice.Exact
-                val frame = CropPlanner.plan(image.orientedSize,
-                    basePlan.destination.cropRatio(image.orientedSize, settings.size),
-                    settings.crop, exactOutput = exact?.canvas)
-                if (frame.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
-                if (frame.enlarged && exact?.allowEnlargement != true)
-                    flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
-                PlannedGeometry.Cropped(frame)
+            when (fit) {
+                FitMode.CONTAIN -> PlannedGeometry.Contained(
+                    basePlan.destination.contain(image.orientedSize, settings.size).positioned(settings.position))
+                FitMode.CROP -> {
+                    val exact = settings.size as? OutputSizeChoice.Exact
+                    val crop = CropPlanner.plan(image.orientedSize,
+                        basePlan.destination.cropRatio(image.orientedSize, settings.size),
+                        settings.crop, exactOutput = exact?.canvas)
+                    if (crop.focusWasClamped) flags += DraftReviewFlag.CROP_FOCUS_REPOSITIONED
+                    if (crop.enlarged && exact?.allowEnlargement != true)
+                        flags += DraftReviewFlag.CROP_ENLARGEMENT_REQUIRED
+                    PlannedGeometry.Cropped(crop)
+                }
+                FitMode.FLEXIBLE -> {
+                    require(settings.size == OutputSizeChoice.PreservePixels)
+                    PlannedGeometry.Framed(FramePlanner.plan(image.orientedSize,
+                        basePlan.destination.cropRatio(image.orientedSize, settings.size), settings.frame))
+                }
             }
         } catch (_: IllegalArgumentException) {
             flags += DraftReviewFlag.GEOMETRY_UNAVAILABLE
@@ -90,11 +100,19 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
             catch (_: IllegalArgumentException) { return }
         x = next.normalizedCenterX; y = next.normalizedCenterY; zoom = value.zoom
     }
-    fun reset() { x = .5; y = .5; zoom = 1.0; px = .5; py = .5; viewScale = 1f; viewX = 0f; viewY = 0f }
+    fun changeFrame(value: FrameFocus) {
+        frameX = value.x; frameY = value.y; frameZoom = value.zoom
+    }
+    fun reset() {
+        x = .5; y = .5; zoom = 1.0
+        frameX = .5; frameY = .5; frameZoom = 1.0
+        px = .5; py = .5; viewScale = 1f; viewX = 0f; viewY = 0f
+    }
     var gestureStart by remember { mutableStateOf(plan.settings) }
     fun cancelGesture() {
         x = gestureStart.crop.x; y = gestureStart.crop.y; zoom = gestureStart.crop.zoom
         px = gestureStart.position.x; py = gestureStart.position.y
+        frameX = gestureStart.frame.x; frameY = gestureStart.frame.y; frameZoom = gestureStart.frame.zoom
     }
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false,
         decorFitsSystemWindows = false)) {
@@ -138,6 +156,7 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                             }, onCrop = ::changeCrop, onPosition = { px = it.x; py = it.y },
                             onGestureFinished = {}, onCropCommitted = ::changeCrop,
                             onPositionCommitted = { px = it.x; py = it.y },
+                            onFrame = ::changeFrame, onFrameCommitted = ::changeFrame,
                             onContainZoom = { requestCrop = true }, onGestureStarted = { gestureStart = plan.settings },
                             onGestureCancelled = ::cancelGesture)
                         else Text(stringResource(R.string.crop_unavailable), Modifier.align(Alignment.Center))
@@ -149,6 +168,13 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
                     Text(stringResource(if (inspect) R.string.quick_inspect_hint else if (fit == FitMode.CROP)
                         R.string.quick_crop_hint else R.string.quick_contain_hint),
                         style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    val flexible = (plan.geometry as? PlannedGeometry.Framed)?.value
+                    if (fit == FitMode.FLEXIBLE && flexible != null) {
+                        Text(stringResource(R.string.quick_crop_trimmed,
+                            (flexible.trimmedFraction * 100.0).roundToInt()),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
                     val cropFrame = (plan.geometry as? PlannedGeometry.Cropped)?.value
                     if (fit == FitMode.CROP && cropFrame != null) {
                         val discarded = (100.0 * (1.0 - cropFrame.visibleSource.width *
@@ -180,11 +206,15 @@ internal fun FocusEditor(draft: DraftSession, itemId: String, sample: Bitmap, ap
         if (precise) AlertDialog(onDismissRequest = { precise = false },
             title = { Text(stringResource(R.string.quick_precision)) },
             text = { Column(Modifier.verticalScroll(rememberScrollState())) {
-                if (fit == FitMode.CROP) CropControls(image, plan, true, ::changeCrop)
-                else ContainPositionControls(plan, true) { px = it.x; py = it.y }
+                when (fit) {
+                    FitMode.CROP -> CropControls(image, plan, true, ::changeCrop)
+                    FitMode.FLEXIBLE -> FlexibleFrameControls(FrameFocus(frameX, frameY, frameZoom),
+                        true, ::changeFrame)
+                    FitMode.CONTAIN -> ContainPositionControls(plan, true) { px = it.x; py = it.y }
+                }
             } }, confirmButton = { TextButton(onClick = { precise = false }) { Text(stringResource(R.string.quick_done)) } })
         if (requestCrop) CropConsentDialog(onCancel = { requestCrop = false }, onConfirm = {
-            requestCrop = false; fitName = FitMode.CROP.name; inspect = false; showTrimmedArea = false
+            requestCrop = false; fitName = FitMode.FLEXIBLE.name; inspect = false; showTrimmedArea = false
         })
     }
 }
