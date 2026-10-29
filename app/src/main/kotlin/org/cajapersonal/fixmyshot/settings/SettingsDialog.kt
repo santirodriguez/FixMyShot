@@ -2,12 +2,10 @@ package org.cajapersonal.fixmyshot.settings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Surface
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.rememberModalBottomSheetState
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -47,7 +45,6 @@ internal object LanguageCatalog {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SettingsDialog(
     theme: AppTheme,
@@ -61,10 +58,12 @@ internal fun SettingsDialog(
     onDismiss: () -> Unit,
 ) {
     val locale = AppLanguages.selected(LocalContext.current)
-    ModalBottomSheet(onDismissRequest = onDismiss,
-        sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
-        containerColor = MaterialTheme.colorScheme.surface) {
-        Column(Modifier.fillMaxHeight(.9f).navigationBarsPadding()) {
+    // A single full-screen scroll owner avoids nested ModalBottomSheet drag and
+    // verticalScroll competing at the top/bottom of a long Settings page.
+    Dialog(onDismissRequest = onDismiss, properties = DialogProperties(
+        usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
+        Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface) {
+        Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.settings_title), style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.weight(1f))
@@ -112,6 +111,7 @@ internal fun SettingsDialog(
                     TextButton(onClick = { onLink("https://santiagorodriguez.com/donate") }) { Text(stringResource(R.string.about_donate)) }
                 }
             }
+        }
         }
     }
 }
