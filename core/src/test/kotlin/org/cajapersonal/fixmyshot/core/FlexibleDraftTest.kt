@@ -34,7 +34,7 @@ class FlexibleDraftTest {
 
     @Test fun legacyCropPlanStaysUnchangedAfterAddingFlexibleState() {
         val before = DraftSession(destination = DestinationChoice.Preset(DestinationCatalog.SOCIAL_STORY),
-            batch = EditSettings(fit = FitMode.CROP, crop = CropFocus(.55, .3, 1.1)),
+            batch = EditSettings(fit = FitMode.CROP, crop = CropFocus(.5, .5, 1.1)),
             images = listOf(source))
         val planned = before.plans(36).single()
         assertTrue(planned.geometry is PlannedGeometry.Cropped)

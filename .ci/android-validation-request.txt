@@ -31,4 +31,11 @@ Run ALL core JVM property/recovery tests, lint, build and current API36 smoke,
 including original screenshots, privacy, output transaction and localization.
 Source frozen and APK hash/signature/manifest checks required before handoff.
 No current-source build or physical Pixel acceptance assumed.
+Follow-up for Actions40869603599 at f32a359c: Kotlin/core compile PASS,
+99 core tests ran, 98 PASS, one FAIL in FlexibleDraftTest legacy fixture.
+The fixture chose intentionally off-center legacy crop x=.55,y=.3 at zoom1.1;
+CropPlanner legitimately clamped it, generated a review flag and prevented
+the expected private recipe. Keep strict blocking semantics and use a centered,
+unchanged legacy crop x=.5,y=.5 to test the actual versioning invariant.
+Rerun complete build/lint/API36 current-source tests; no assertions skipped.
 profile=current
