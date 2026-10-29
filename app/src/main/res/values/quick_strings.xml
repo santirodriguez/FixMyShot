@@ -63,4 +63,8 @@
     <string name="destination_facebook_feed">Feed portrait · 4:5</string>
     <string name="destination_facebook_square">Square · 1:1</string>
     <string name="quick_original_layout">Original · no platform</string>
+    <string name="quick_output_format">Format</string>
+    <string name="quick_mixed_formats">Individual formats kept</string>
+    <string name="quick_format_not_allowed"> · not allowed here</string>
+    <string name="quick_export_format">Export %1$s · %2$d</string>
 </resources>

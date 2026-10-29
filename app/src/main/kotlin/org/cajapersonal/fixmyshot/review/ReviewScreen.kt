@@ -585,6 +585,16 @@ internal fun ReviewScreen(
                             TextButton(onClick = { backgroundsOpen = !backgroundsOpen }) { Text(stringResource(R.string.editor_background)) }
                             TextButton(onClick = { finishGesture(); advanced = true }) { Text(stringResource(R.string.quick_customize)) }
                         }
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween) {
+                            QuickOutputFormat(draft.batch.format, draft.destination, editEnabled) {
+                                finishGesture(); onFormat(it, false)
+                            }
+                            if (plans.map { it.settings.format }.distinct().size > 1)
+                                Text(stringResource(R.string.quick_mixed_formats),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
                         if (backgroundsOpen && quick != null) QuickBackgroundRow(quick.background, preview, editEnabled) { onBackground(it, true) }
                         if (plans.any { it.requiresReview }) TextButton(onClick = { advanced = true; tool = ReviewTool.EXPORT }) {
                             Text(stringResource(R.string.editor_review_required), color = MaterialTheme.colorScheme.error)
@@ -602,8 +612,8 @@ internal fun ReviewScreen(
                 Button(onClick = { finishGesture(); onExport() }, enabled = editEnabled && canPrepareExport,
                     modifier = Modifier.weight(1f).heightIn(min = 52.dp)) {
                     val formats = plans.map { it.settings.format }.distinct()
-                    Text(if (formats.size == 1 && formats.single() == OutputFormat.PNG)
-                        stringResource(R.string.quick_export_png, draft.images.size)
+                    Text(if (formats.size == 1)
+                        stringResource(R.string.quick_export_format, formatLabel(formats.single()), draft.images.size)
                         else stringResource(R.string.export_batch, draft.images.size))
                 }
             }

@@ -167,6 +167,34 @@ internal fun QuickBackgroundRow(choice: BackgroundChoice, sample: Bitmap?, enabl
     }
 }
 
+/** Quick format selection is intentionally limited to independently available lossless outputs.
+ * Advanced formats/individual overrides remain in Customize; no implicit fallback.
+ */
+@Composable
+internal fun QuickOutputFormat(format: OutputFormat, destination: DestinationChoice,
+    enabled: Boolean, onFormat: (OutputFormat) -> Unit) {
+    var expanded by rememberSaveable { mutableStateOf(false) }
+    val constrained = DestinationCatalog.resolve(destination).preset.formatPolicy == FormatPolicy.PNG_RGB_ONLY
+    val label = stringResource(R.string.quick_output_format)
+    Box {
+        OutlinedButton(onClick = { expanded = true }, enabled = enabled,
+            modifier = Modifier.heightIn(min = 48.dp)) {
+            Text("$label: ${formatLabel(format)}")
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS).forEach { choice ->
+                DropdownMenuItem(
+                    enabled = enabled && (choice == OutputFormat.PNG || !constrained),
+                    text = {
+                        Text(formatLabel(choice) + if (choice == OutputFormat.WEBP_LOSSLESS && constrained)
+                            stringResource(R.string.quick_format_not_allowed) else "")
+                    },
+                    onClick = { expanded = false; onFormat(choice) })
+            }
+        }
+    }
+}
+
 /** Batch selection is compact; it never steals the touch canvas or changes another image's settings. */
 @Composable
 internal fun QuickBatchStrip(draft: DraftSession, plans: List<PreviewPlan>, selectedId: String?,
