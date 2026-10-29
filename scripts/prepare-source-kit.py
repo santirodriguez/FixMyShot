@@ -99,7 +99,7 @@ restore-source-snapshot.py with Python3/Git to verify every source file before
 restoring shallow Git identities. It refuses extra/missing/changed files and an
 existing .git. The original project commit is needed because AGP embeds it in
 the APK. This creates only local .git data in these two extracted directories;
-it does not contact a server or install software. Then follow project/CONTRIBUTING.md
+it does not contact a server or install software. Then follow project/.github/CONTRIBUTING.md
 with the source-pinned SDK/JDK/Gradle/NDK/CMake. Dependencies still require their
 reviewed repositories or existing verified caches. Do not claim an offline build.
 

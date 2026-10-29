@@ -34,7 +34,7 @@ The renderer refuses existing files and keeps the unpublished notice. It does no
 
 ## 02 · Build from one recoverable source
 
-Record the immutable candidate commit. Use a clean checkout and the exact tools/wrapper/locks/native pins in [CONTRIBUTING](../CONTRIBUTING.md). Preserve corresponding source, native dependency sources/notices and actual tool versions.
+Record the immutable candidate commit. Use a clean checkout and the exact tools/wrapper/locks/native pins in [CONTRIBUTING](../.github/CONTRIBUTING.md). Preserve corresponding source, native dependency sources/notices and actual tool versions.
 
 ```sh
 bash scripts/bootstrap-gradle.sh
