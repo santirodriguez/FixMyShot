@@ -8,8 +8,8 @@ class QuickTemplateTest {
         contentSha256 = "a".repeat(64))
 
     @Test fun firstRecommendationIsSafeAndRememberedTemplatesAreValidated() {
-        assertEquals(DestinationCatalog.PLAY_PORTRAIT, QuickTemplates.initial(listOf(portrait), null).id)
-        assertEquals(DestinationCatalog.PLAY_PHONE, QuickTemplates.initial(emptyList(), "not-a-template").id)
+        assertEquals(DestinationCatalog.ORIGINAL, QuickTemplates.initial(listOf(portrait), null).id)
+        assertEquals(DestinationCatalog.ORIGINAL, QuickTemplates.initial(emptyList(), "not-a-template").id)
         assertEquals(DestinationCatalog.SOCIAL_SQUARE,
             QuickTemplates.initial(listOf(portrait), DestinationCatalog.SOCIAL_SQUARE).id)
         assertNull(QuickTemplates.remembered(DestinationCatalog.CUSTOM_RATIO))
@@ -86,7 +86,7 @@ class QuickTemplateTest {
         assertEquals(DestinationEvidence.LAYOUT_GUIDANCE, tiktok.preset.evidence)
         assertEquals(FormatPolicy.PNG_RGB_ONLY, play.preset.formatPolicy)
         assertEquals(FormatPolicy.UNVERIFIED_UPLOAD, whatsapp.preset.formatPolicy)
-        assertEquals(13, QuickTemplates.ids.distinct().size)
+        assertEquals(14, QuickTemplates.ids.distinct().size)
         assertEquals(DestinationCatalog.TIKTOK_PHOTO,
             QuickTemplates.remembered(DestinationCatalog.TIKTOK_PHOTO)?.id)
     }
@@ -104,5 +104,23 @@ class QuickTemplateTest {
         assertEquals(OutputFormat.PNG, draft.batch.format)
         assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, draft.batch.metadata)
     }
+
+    @Test fun neutralOriginalKeepsAllPixelsForTallAndWideSources() {
+        listOf(PixelSize(1344, 2992), PixelSize(690, 1536), PixelSize(1920, 1080)).forEach { size ->
+            val item = portrait.copy(orientedSize = size)
+            val draft = DraftSession(images = listOf(item)).applyTemplate(QuickTemplates.initial(listOf(item), null))
+            val plan = draft.plans(36).single()
+            val result = (plan.geometry as PlannedGeometry.Contained).value
+            assertEquals(size, result.canvas)
+            assertEquals(PixelPlacement(0, 0, size.width, size.height), result.placement)
+            assertFalse(result.resized)
+            assertTrue(plan.reviewFlags.isEmpty())
+            assertEquals(ExactRatio.of(size.width.toLong(), size.height.toLong()),
+                plan.destination.cropRatio(size))
+            assertEquals(OutputFormat.PNG, draft.batch.format)
+            assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, draft.batch.metadata)
+        }
+    }
+
 
 }

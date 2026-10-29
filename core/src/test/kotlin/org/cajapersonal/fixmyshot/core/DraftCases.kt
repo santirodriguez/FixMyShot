@@ -10,11 +10,11 @@ fun draftCases(): List<Pair<String, () -> Unit>> {
     return listOf(
         "catalog IDs preserve all legacy entries and add distinct platform surfaces" to {
             check(DestinationCatalog.VERSION == 1)
-            check(DestinationCatalog.presets.map { it.id } == listOf("play-phone", "play-portrait",
+            check(DestinationCatalog.presets.map { it.id } == listOf("original", "play-phone", "play-portrait",
                 "social-square", "social-portrait", "social-story", "instagram-feed", "instagram-story",
                 "instagram-square", "tiktok-photo", "whatsapp-status", "whatsapp-chat",
                 "facebook-feed", "facebook-square", "custom-ratio"))
-            check(DestinationCatalog.presets.map { it.id }.distinct().size == 14)
+            check(DestinationCatalog.presets.map { it.id }.distinct().size == 15)
             expectFailure { DestinationCatalog.resolve(DestinationChoice.Preset("unknown")) }
             expectFailure { DestinationCatalog.resolve(DestinationChoice.Preset("custom-ratio")) }
         },

@@ -110,6 +110,7 @@ internal fun QuickTemplateCards(destination: DestinationChoice, enabled: Boolean
     DestinationPicker(destination, enabled, onSelect, onCustomize)
 
 internal fun quickTemplateLabel(id: String): Int = when (id) {
+    DestinationCatalog.ORIGINAL -> R.string.quick_original_layout
     DestinationCatalog.PLAY_PORTRAIT -> R.string.quick_play_portrait
     DestinationCatalog.PLAY_PHONE -> R.string.quick_play_flexible
     DestinationCatalog.INSTAGRAM_FEED -> R.string.destination_instagram_feed

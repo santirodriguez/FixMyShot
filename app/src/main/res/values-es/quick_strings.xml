@@ -62,4 +62,5 @@
     <string name="destination_whatsapp_chat">Foto de chat · proporción original</string>
     <string name="destination_facebook_feed">Publicación vertical · 4:5</string>
     <string name="destination_facebook_square">Cuadrado · 1:1</string>
+    <string name="quick_original_layout">Original · sin plataforma</string>
 </resources>

@@ -40,6 +40,8 @@ sealed interface DestinationChoice {
 
 object DestinationCatalog {
     const val VERSION = 1
+    // Neutral local layout: it makes no publishing-platform claim.
+    const val ORIGINAL = "original"
     const val PLAY_PHONE = "play-phone"
     const val PLAY_PORTRAIT = "play-portrait"
     const val SOCIAL_SQUARE = "social-square"
@@ -57,6 +59,8 @@ object DestinationCatalog {
     const val FACEBOOK_SQUARE = "facebook-square"
 
     val presets: List<DestinationPreset> = listOf(
+        DestinationPreset(ORIGINAL, "quick_original_layout", DestinationEvidence.USER_DEFINED,
+            FormatPolicy.USER_SELECTED, ratio = null, requiresOpaque = false),
         DestinationPreset(PLAY_PHONE, "preset_play_phone", DestinationEvidence.OFFICIAL_UPLOAD,
             FormatPolicy.PNG_RGB_ONLY, ratio = null, maximumLongSide = 3840),
         DestinationPreset(PLAY_PORTRAIT, "preset_play_portrait", DestinationEvidence.OFFICIAL_RECOMMENDATION,
@@ -106,7 +110,7 @@ object DestinationCatalog {
 data class ResolvedDestination(val preset: DestinationPreset, val ratio: ExactRatio?) {
     fun cropRatio(source: PixelSize, size: OutputSizeChoice = OutputSizeChoice.PreservePixels): ExactRatio =
         (size as? OutputSizeChoice.Exact)?.let { ExactRatio.of(it.canvas.width.toLong(), it.canvas.height.toLong()) } ?: ratio ?: when {
-        preset.id == DestinationCatalog.WHATSAPP_CHAT ->
+        preset.id == DestinationCatalog.WHATSAPP_CHAT || preset.id == DestinationCatalog.ORIGINAL ->
             ExactRatio.of(source.width.toLong(), source.height.toLong())
         source.height.toLong() > 2L * source.width -> ExactRatio.of(1, 2)
         source.width.toLong() > 2L * source.height -> ExactRatio.of(2, 1)
@@ -117,7 +121,8 @@ data class ResolvedDestination(val preset: DestinationPreset, val ratio: ExactRa
         is OutputSizeChoice.Exact -> GeometryPlanner.exactCanvas(source, size.canvas, size.allowEnlargement)
         OutputSizeChoice.PreservePixels -> when (preset.id) {
             DestinationCatalog.PLAY_PHONE -> GeometryPlanner.playPhoneEnvelope(source)
-            DestinationCatalog.WHATSAPP_CHAT -> GeometryPlanner.preservePixelsAtRatio(
+            DestinationCatalog.WHATSAPP_CHAT, DestinationCatalog.ORIGINAL ->
+                GeometryPlanner.preservePixelsAtRatio(
                 source, ExactRatio.of(source.width.toLong(), source.height.toLong()))
             else -> GeometryPlanner.preservePixelsAtRatio(
                 source, requireNotNull(ratio), minimumShortSide = preset.minimumShortSide,

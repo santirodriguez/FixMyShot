@@ -21,6 +21,7 @@ import org.cajapersonal.fixmyshot.core.*
 
 private data class DestinationGroup(val name: String, val ids: List<String>)
 private val destinationGroups = listOf(
+    DestinationGroup("Original", listOf(DestinationCatalog.ORIGINAL)),
     DestinationGroup("Google Play", listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE)),
     DestinationGroup("Instagram", listOf(DestinationCatalog.INSTAGRAM_FEED,
         DestinationCatalog.INSTAGRAM_STORY, DestinationCatalog.INSTAGRAM_SQUARE)),
@@ -148,7 +149,8 @@ internal fun destinationTitle(choice: DestinationChoice): String = when (choice)
     is DestinationChoice.Preset -> {
         val label = stringResource(quickTemplateLabel(choice.id))
         val platform = destinationGroups.firstOrNull { choice.id in it.ids }?.name
-        if (platform == null || platform == "Google Play") label else "$platform · $label"
+        if (choice.id == DestinationCatalog.ORIGINAL || platform == null || platform == "Google Play") label
+        else "$platform · $label"
     }
 }
 
@@ -156,6 +158,7 @@ internal fun destinationTitle(choice: DestinationChoice): String = when (choice)
 private fun destinationRatio(choice: DestinationChoice): String {
     val ratio = DestinationCatalog.resolve(choice).ratio
     return ratio?.let { "${it.p}:${it.q}" } ?: stringResource(
-        if ((choice as? DestinationChoice.Preset)?.id == DestinationCatalog.WHATSAPP_CHAT)
+        if ((choice as? DestinationChoice.Preset)?.id in
+            setOf(DestinationCatalog.WHATSAPP_CHAT, DestinationCatalog.ORIGINAL))
             R.string.ux_source_ratio else R.string.ux_flexible_ratio)
 }

@@ -2,7 +2,7 @@ package org.cajapersonal.fixmyshot.core
 
 /** Recommendations are layout choices, never inferred publication destinations. */
 object QuickTemplates {
-    val ids = listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE,
+    val ids = listOf(DestinationCatalog.ORIGINAL, DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE,
         DestinationCatalog.INSTAGRAM_FEED, DestinationCatalog.INSTAGRAM_STORY,
         DestinationCatalog.INSTAGRAM_SQUARE, DestinationCatalog.TIKTOK_PHOTO,
         DestinationCatalog.WHATSAPP_STATUS, DestinationCatalog.WHATSAPP_CHAT,
@@ -13,8 +13,8 @@ object QuickTemplates {
     fun remembered(id: String?): DestinationChoice.Preset? =
         id?.takeIf { it in ids }?.let { DestinationChoice.Preset(it) }
 
+    // Orientation alone is not evidence of a publishing destination.
+    // Explicitly selected, valid previous templates remain a useful convenience.
     fun initial(images: List<DraftImage>, preferred: String?): DestinationChoice.Preset =
-        remembered(preferred) ?: DestinationChoice.Preset(
-            if (images.firstOrNull()?.orientedSize?.let { it.height > it.width } == true)
-                DestinationCatalog.PLAY_PORTRAIT else DestinationCatalog.PLAY_PHONE)
+        remembered(preferred) ?: DestinationChoice.Preset(DestinationCatalog.ORIGINAL)
 }

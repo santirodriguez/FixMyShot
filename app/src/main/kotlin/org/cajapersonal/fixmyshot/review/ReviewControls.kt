@@ -189,6 +189,7 @@ private fun CustomRatioControl(destination: DestinationChoice, enabled: Boolean,
 private fun destinationLabel(choice: DestinationChoice): String = when (choice) {
     is DestinationChoice.Custom -> stringResource(R.string.destination_custom)
     is DestinationChoice.Preset -> when (choice.id) {
+        DestinationCatalog.ORIGINAL -> stringResource(R.string.quick_original_layout)
         DestinationCatalog.PLAY_PHONE -> stringResource(R.string.destination_play_phone)
         DestinationCatalog.PLAY_PORTRAIT -> stringResource(R.string.destination_play_portrait)
         DestinationCatalog.SOCIAL_SQUARE -> stringResource(R.string.destination_social_square)
