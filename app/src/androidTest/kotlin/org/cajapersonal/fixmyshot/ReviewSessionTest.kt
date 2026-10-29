@@ -316,6 +316,7 @@ class ReviewSessionTest {
             val owner = f.owner(); val model = owner.model
             var output: ByteArray? = null
             var deletions = 0
+            var pickerRequests = 0
             val port = object : OwnedOutputPort {
                 override fun create(name: String, mime: String): Uri = Uri.parse("content://synthetic/finished-output")
                 override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
@@ -335,14 +336,20 @@ class ReviewSessionTest {
                 assertTrue(model.editSelectedOnly)
                 assertTrue(model.prepareExport())
                 model.startPreparedExport(f.context, port)
+                model.startNextImage(f.context) { pickerRequests++ }
+                assertEquals(0, pickerRequests)
             }
             await { model.exportState.phase == ExportUiPhase.COMPLETED }
             assertEquals(1, model.exportState.published); assertTrue(model.canFinishSession)
             assertTrue(f.file.exists())
             val published = requireNotNull(output).copyOf()
             val previousEditorKey = model.editorSessionKey
-            instrumentation.runOnMainSync { model.acknowledgePreviousExport(f.context) }
+            instrumentation.runOnMainSync {
+                model.startNextImage(f.context) { pickerRequests++ }
+                model.startNextImage(f.context) { pickerRequests++ }
+            }
             await { model.exportState.phase == ExportUiPhase.IDLE }
+            assertEquals(1, pickerRequests)
             assertTrue(model.draft.workingSourceIds.isEmpty()); assertFalse(model.draft.canUndo)
             assertEquals(OutputFormat.PNG, model.draft.batch.format)
             assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
@@ -354,6 +361,42 @@ class ReviewSessionTest {
             assertTrue(File(f.context.filesDir, "export-jobs").listFiles()!!.isEmpty())
             assertTrue(File(f.context.filesDir, "export-jobs-retired").listFiles()!!.isEmpty())
             assertTrue(f.context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE).all.isEmpty())
+        } finally { f.cleanup() }
+    }
+
+    @Test fun nextImageDoesNotOpenThePickerWhenCompletedReceiptCleanupFails() {
+        val f = Fixture()
+        try {
+            val image = f.image()
+            val model = f.owner().model
+            var output: ByteArray? = null
+            var pickerRequests = 0
+            val port = object : OwnedOutputPort {
+                override fun create(name: String, mime: String): Uri = Uri.parse("content://synthetic/cleanup-guard")
+                override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+                    override fun close() { output = toByteArray(); super.close() }
+                }
+                override fun openRead(uri: Uri): InputStream? = output?.let(::ByteArrayInputStream)
+                override fun publish(uri: Uri): Boolean = output != null
+                override fun delete(uri: Uri): Boolean = throw AssertionError("Published output must remain intact")
+            }
+            instrumentation.runOnMainSync {
+                model.draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1)).addImages(listOf(image))
+                model.selectedId = image.id
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(f.context, port)
+            }
+            await { model.exportState.phase == ExportUiPhase.COMPLETED }
+            val published = requireNotNull(output).copyOf()
+            val folder = File(f.context.filesDir, "export-jobs").listFiles()!!.single()
+            File(folder, "unrecognized.txt").writeText("Preserve unknown private evidence")
+            instrumentation.runOnMainSync { model.startNextImage(f.context) { pickerRequests++ } }
+            await { model.exportState.phase != ExportUiPhase.CHECKING_HISTORY }
+            assertTrue(model.exportState.outputError)
+            assertEquals(0, pickerRequests)
+            assertArrayEquals(published, output)
+            assertTrue(File(folder, "unrecognized.txt").exists())
         } finally { f.cleanup() }
     }
 }

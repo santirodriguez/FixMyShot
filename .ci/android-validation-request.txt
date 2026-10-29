@@ -1,9 +1,9 @@
-Correct failed 44ef46e5 UI setup while retaining the .ux22edit diagnostic.
-Build/lint passed; API36 UI fixture could not find its initial preview; other groups passed.
-Wake/unlock only the disposable CI emulator before accessibility/pointer tests.
-Keep instrumentation windows awake and capture setup/power/window evidence.
-Retain every existing assertion and count: core99/editor11/import-settings-session22.
-Runtime editor/export code, production permissions and identity remain unchanged.
-The agreed README/repository cleanup follows separately, without another emulator matrix.
+Make the repeated image -> edit -> export -> next image cycle direct and discoverable.
+Put Edit another image first in successful results and open the existing system picker after guarded cleanup.
+Preserve Continue editing, saved output bytes, originals, recovery rules and fresh PNG/privacy defaults.
+Check double taps, running/partial/uncertain output, failed private cleanup and cancelled picker.
+Keep the disposable CI emulator awake for UI tests and retain existing coverage.
+Expected core99/editor12/import-settings-session23 plus existing renderer/export/recovery groups.
+Build/lint and API36 current profile; isolated .ux22next / FixMyShot Next diagnostic only.
 Verify exact-source artifacts and APK signature/manifest before diagnostic delivery.
 profile=current

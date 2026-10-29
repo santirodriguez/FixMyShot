@@ -44,6 +44,8 @@
     <string name="quick_start_detail">Choose a template. Make it yours. Export a fresh copy.</string>
     <string name="quick_story">Stories 9:16</string>
     <string name="quick_new_work">New work</string>
+    <string name="quick_edit_another">Edit another image</string>
+    <string name="quick_edit_another_hint">Your saved copies stay saved when you choose another image.</string>
     <string name="quick_crop_trimmed">About %1$d%% of the source is trimmed</string>
     <string name="quick_crop_show_trim">Show excluded area</string>
     <string name="quick_crop_show_result">Show final result</string>

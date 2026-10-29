@@ -497,13 +497,20 @@ internal class ReviewViewModel : ViewModel() {
     /** Only an explicit UI action records that past outputs were reviewed. */
     fun acknowledgePreviousExport(context: Context) = reviewPreviousExport(context, keepDraft = false)
 
+    /** Explicit next-image action; the picker can open only after successful, guarded session finish. */
+    fun startNextImage(context: Context, onReady: () -> Unit) {
+        if (exportState.phase != ExportUiPhase.COMPLETED || !canFinishSession || isBusy ||
+            sessionRestoreBlocked || pendingImportCount != 0) return
+        reviewPreviousExport(context, keepDraft = false, onFinished = onReady)
+    }
+
     /** A completed result can be reviewed without discarding the editable draft or its undo sources. */
     fun continueEditing(context: Context) {
         if (exportState.phase != ExportUiPhase.COMPLETED || !canFinishSession || isBusy || sessionRestoreBlocked) return
         reviewPreviousExport(context, keepDraft = true)
     }
 
-    private fun reviewPreviousExport(context: Context, keepDraft: Boolean) {
+    private fun reviewPreviousExport(context: Context, keepDraft: Boolean, onFinished: (() -> Unit)? = null) {
         val token = reviewToken ?: return
         if (!exportState.canAcknowledge || activeToken != null || shareBusy || exportState.outputBusy ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
@@ -563,6 +570,7 @@ internal class ReviewViewModel : ViewModel() {
                         }
                         showHistory(next, details)
                         if (cleanupFailed) exportState = exportState.copy(outputError = true)
+                        if (finishedSession && !cleanupFailed && next == null) onFinished?.invoke()
                     } else {
                         exportState = ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
                             previousJobs = 1)

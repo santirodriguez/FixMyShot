@@ -23,6 +23,20 @@ export in the current session until an edit is made. New work still clears the c
 Partial, uncertain, stale, running or busy results cannot use this continuation action. Dismissing
 the result with Back only dismisses it and does not acknowledge or discard the job.
 
+### Moving directly to the next image
+
+The fully successful results screen puts Edit another image first, above View and Share.
+It explains that saved copies remain available. The action finishes the matching session through
+the existing durable acknowledgement path, then opens the system image picker directly.
+Cancelling the picker leaves the clean Start screen. Continue editing remains available for
+further changes to the current image; Back still does not acknowledge the job.
+
+The picker is requested only after private cleanup succeeds and no other history needs review.
+Running, partial, uncertain, stale, importing or busy work cannot take this shortcut, and repeated
+taps cannot request multiple pickers. Published copies and originals remain untouched. The results
+body scrolls within the safe area for smaller screens and larger text. The isolated next diagnostic
+uses `.ux22next` / `FixMyShot Next`; production identity and signing are unchanged.
+
 ## Ownership and resource boundaries
 
 `QuickReviewUi.kt` owns the branded start, template cards, compact batch strip and automatic layout. `FocusEditor.kt` owns the isolated apply/cancel framing and inspection view. `ReviewScreen.kt` coordinates presentation and retains existing advanced/recovery controls. `ReviewCanvas.kt` and `CropControls.kt` share the retained-sample geometry path and commit actual event-local transforms once at gesture completion, discarding cancelled intermediates. `BrandTheme.kt` supplies appearance only; no brand color, border, inspection transform or artwork enters exported pixels.

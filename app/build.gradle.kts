@@ -16,7 +16,7 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = ".ux22edit" }
+        debug { applicationIdSuffix = ".ux22next" }
         release { isMinifyEnabled = false }
     }
     buildFeatures { compose = true }

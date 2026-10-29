@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.ux22edit
+package=org.cajapersonal.fixmyshot.ux22next
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -108,7 +108,7 @@ if [[ "$(od -An -tx1 -N8 evidence/editor-framing.png | tr -d ' \\n')" != "89504e
   editor_capture_result=1
 fi
 # Separate synthetic failure snapshots avoid one case hiding the previous case.
-for editor_file in editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
+for editor_file in editor-next-image.txt editor-next-image.png editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
   editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
   editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
   editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
@@ -191,14 +191,14 @@ timeout 3m adb shell am instrument -w -r \
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
 set -e
-grep -q 'OK (11 tests)' evidence/editor-interaction-instrumentation.txt
+grep -q 'OK (12 tests)' evidence/editor-interaction-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (12 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
-grep -q 'OK (22 tests)' evidence/import-settings-instrumentation.txt
+grep -q 'OK (23 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (7 tests)' evidence/batch-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt

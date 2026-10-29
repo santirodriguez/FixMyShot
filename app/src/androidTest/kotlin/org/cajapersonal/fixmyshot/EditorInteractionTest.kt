@@ -262,6 +262,45 @@ class EditorInteractionTest {
         capture()
     }
 
+    @Test fun savedResultOffersAnotherImageFirstAndOpensThePickerAfterCleanup() = fixture(allowPrivateCleanup = true) { scenario, model, label ->
+        caseName = "next-image"
+        var output: ByteArray? = null
+        val port = object : org.cajapersonal.fixmyshot.export.OwnedOutputPort {
+            override fun create(name: String, mime: String): android.net.Uri = android.net.Uri.parse("content://synthetic/next-image")
+            override fun openWrite(uri: android.net.Uri): java.io.OutputStream = object : java.io.ByteArrayOutputStream() {
+                override fun close() { output = toByteArray(); super.close() }
+            }
+            override fun openRead(uri: android.net.Uri): java.io.InputStream? = output?.let { java.io.ByteArrayInputStream(it) }
+            override fun publish(uri: android.net.Uri): Boolean = output != null
+            override fun delete(uri: android.net.Uri): Boolean = throw AssertionError("Published output must remain intact")
+        }
+        val filter = android.content.IntentFilter().apply {
+            addAction(android.provider.MediaStore.ACTION_PICK_IMAGES)
+            addAction(android.content.Intent.ACTION_OPEN_DOCUMENT)
+            addAction("androidx.activity.result.contract.action.PICK_IMAGES")
+        }
+        val monitor = test.addMonitor(filter,
+            android.app.Instrumentation.ActivityResult(android.app.Activity.RESULT_CANCELED, null), true)
+        try {
+            scenario.onActivity {
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(app, port)
+            }
+            await { model.exportState.phase == org.cajapersonal.fixmyshot.review.ExportUiPhase.COMPLETED }
+            val published = requireNotNull(output).copyOf()
+            await { find(label(R.string.quick_edit_another)) != null }
+            assertTrue(bounds(label(R.string.quick_edit_another)).top < bounds(label(R.string.quick_view_saved)).top)
+            capture()
+            click(label(R.string.quick_edit_another))
+            await { monitor.hits == 1 && model.draft.images.isEmpty() && !model.exportState.isLocked }
+            await { find(label(R.string.choose_images)) != null }
+            assertEquals(OutputFormat.PNG, model.draft.batch.format)
+            assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
+            assertArrayEquals(published, output)
+        } finally { test.removeMonitor(monitor) }
+    }
+
     @Test fun gesturesKeepTheSampleAndCommitOneUndoableEdit() = fixture { scenario, model, label ->
         caseName = "gesture"
         click(label(R.string.quick_customize))

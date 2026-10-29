@@ -127,6 +127,7 @@ internal fun ReviewScreen(
     onOpenOutput: (String) -> Unit = {},
     onViewSaved: (String, (Bitmap?) -> Unit) -> Unit = { _, callback -> callback(null) },
     onContinueEditing: () -> Unit = {},
+    onStartNextImage: () -> Unit = {},
     onConfirmOutput: (String) -> Unit = {},
     onRemovePendingOutput: (String) -> Unit = {},
     onSize: (OutputSizeChoice, Boolean) -> Unit = { _, _ -> },
@@ -508,6 +509,7 @@ internal fun ReviewScreen(
         val firstPublishedId = exportState.items.first { it.phase == BatchItemPhase.PUBLISHED }.itemId
         QuickSavedResults(exportState.published, exportState.total,
             enabled = !busy && !shareBusy && !exportState.outputBusy,
+            nextImageEnabled = pendingImports == 0 && !sessionRestoreBlocked,
             onView = {
                 onViewSaved(firstPublishedId) { image ->
                     if (image != null) savedImage = image
@@ -515,7 +517,7 @@ internal fun ReviewScreen(
                 }
             },
             onShare = { onSelectAllShare(); onShare() },
-            onNewWork = { if (fullySaved) { savedResultsOpen = false; onReviewedPrevious() } },
+            onNextImage = { if (fullySaved) onStartNextImage() },
             onDetails = { savedResultsOpen = false; infoOpen = true },
             onContinueEditing = { if (fullySaved) onContinueEditing() },
             onDismiss = { savedResultsOpen = false })

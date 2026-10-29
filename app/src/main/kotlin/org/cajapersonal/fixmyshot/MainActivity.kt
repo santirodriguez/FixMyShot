@@ -207,6 +207,9 @@ class MainActivity : AppCompatActivity() {
                         onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
                         onContinueEditing = { model.continueEditing(applicationContext) },
+                        onStartNextImage = {
+                            model.startNextImage(applicationContext) { chooseImages() }
+                        },
                         finishSessionOnReview = model.canFinishSession,
                         onRefreshOutputs = { model.refreshOutputs(applicationContext) },
                         onViewSaved = { id, onDecoded ->
@@ -239,9 +242,7 @@ class MainActivity : AppCompatActivity() {
                         importLimitExceeded = model.importLimitExceeded,
                         pendingImports = model.pendingImportCount,
                         onSettings = { settingsOpen = true },
-                        onChoose = {
-                            picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                        },
+                        onChoose = { chooseImages() },
                         onSelect = selectImage@{ id ->
                             if (model.exportState.isLocked) return@selectImage
                             model.selectedId = id
@@ -446,6 +447,13 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun chooseImages() {
+        if (!isDestroyed && !isFinishing &&
+            lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED)) {
+            picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
     }
 
