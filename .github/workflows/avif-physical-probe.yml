@@ -90,6 +90,8 @@ jobs:
           python3 scripts/avif-software/physical_package.py check-apk \
             evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
             evidence/physical-apk/native-receipt.json \
+            "$RUNNER_TEMP/physical-inputs/jniLibs" \
+            "$ANDROID_HOME/ndk/28.2.13676358/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objcopy" \
             > evidence/physical-apk/apk-review.json
           "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging \
             evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \

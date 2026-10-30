@@ -162,6 +162,14 @@ public final class ProbeActivity extends Activity {
         Uri uri = data.getData();
         if (requestCode == OPEN_IMAGE && !busy) {
             busy = true;
+            // A failed new selection must never leave an earlier screenshot runnable.
+            preview.setImageBitmap(null);
+            if (source != null) source.recycle();
+            if (reopened != null) reopened.recycle();
+            source = null;
+            reopened = null;
+            report = null;
+            clearPrivateOutput();
             refreshButtons();
             status.setText(R.string.loading);
             worker.execute(() -> {
@@ -368,15 +376,15 @@ public final class ProbeActivity extends Activity {
             for (int x = 0; x < WIDTH; x++) {
                 int a = left[x], b = right[x];
                 if (Color.alpha(a) != 255 || Color.alpha(b) != 255) alphaFailures++;
-                int[] diffs = {
-                    Math.abs(Color.red(a) - Color.red(b)),
-                    Math.abs(Color.green(a) - Color.green(b)),
-                    Math.abs(Color.blue(a) - Color.blue(b))
-                };
-                for (int error : diffs) {
-                    maxError = Math.max(maxError, error);
-                    sumSquares += (double) error * error;
-                }
+                // No per-pixel arrays: a 4 MP image must not create millions of objects.
+                int redError = Math.abs(Color.red(a) - Color.red(b));
+                int greenError = Math.abs(Color.green(a) - Color.green(b));
+                int blueError = Math.abs(Color.blue(a) - Color.blue(b));
+                maxError = Math.max(maxError,
+                        Math.max(redError, Math.max(greenError, blueError)));
+                sumSquares += (double) redError * redError
+                        + (double) greenError * greenError
+                        + (double) blueError * blueError;
             }
         }
         JSONObject quality = new JSONObject();

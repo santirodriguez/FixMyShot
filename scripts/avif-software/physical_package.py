@@ -5,7 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import struct
+import subprocess
+import tempfile
 import zipfile
 
 ABIS = ("arm64-v8a", "x86_64")
@@ -112,7 +115,9 @@ def inspect_elf(data):
     return loads
 
 
-def check_apk(apk, prepared):
+def check_apk(apk, prepared, raw_native_dir, llvm_objcopy):
+    if not llvm_objcopy.is_file() or llvm_objcopy.name != "llvm-objcopy":
+        raise ValueError("Pinned NDK llvm-objcopy required to verify packaged native bytes")
     required = {
         *(f"lib/{abi}/libavif_physical.so" for abi in ABIS),
         *(f"assets/legal/avif-software/{n}" for n in NOTICES),
@@ -150,10 +155,29 @@ def check_apk(apk, prepared):
                 detected[name] = {"sha256": sha(data), "size": len(data)}
         if not required.issubset(seen):
             raise ValueError(f"Missing expected APK inputs: {required - seen}")
+    # Android Gradle Plugin strips native shared objects before APK packaging.
+    # First authenticate the raw exact-source binary, then independently
+    # reproduce the NDK strip-unneeded transform byte-for-byte. Do not
+    # trust hashes alone or relax the 16KiB ELF/ZIP checks above.
     for abi in ABIS:
         native_name = f"lib/{abi}/libavif_physical.so"
-        if detected[native_name]["sha256"] != prepared["abi_binary_sha256"][abi]:
-            raise ValueError("Packaged native bytes differ from pinned input")
+        source = raw_native_dir / abi / "libavif_physical.so"
+        if not source.is_file() or source.is_symlink():
+            raise ValueError(f"Missing/unsafe pinned input for {abi}")
+        raw = source.read_bytes()
+        if sha(raw) != prepared["abi_binary_sha256"][abi]:
+            raise ValueError(f"Raw input source SHA mismatch: {abi}")
+        with tempfile.TemporaryDirectory(prefix="fixmyshot-avif-strip-") as tmp:
+            candidate = Path(tmp) / "libavif_physical.so"
+            shutil.copyfile(source, candidate)
+            subprocess.run([str(llvm_objcopy), "--strip-unneeded", str(candidate)],
+                           check=True, timeout=45, capture_output=True)
+            normalized = candidate.read_bytes()
+        expected_sha = sha(normalized)
+        if detected[native_name]["sha256"] != expected_sha:
+            raise ValueError(f"Packaged native bytes differ from pinned NDK-stripped source: {abi}")
+        detected[native_name]["original_source_sha256"] = sha(raw)
+        detected[native_name]["source_transform"] = "pinned NDK llvm-objcopy --strip-unneeded"
     for license_name in NOTICES:
         path = f"assets/legal/avif-software/{license_name}"
         if detected[path]["sha256"] != prepared["notice_sha256"][f"LICENSES/{license_name}"]:
@@ -176,12 +200,15 @@ def main():
     p = sub.add_parser("check-apk")
     p.add_argument("apk", type=Path)
     p.add_argument("prepared_receipt", type=Path)
+    p.add_argument("raw_native_directory", type=Path)
+    p.add_argument("llvm_objcopy", type=Path)
     args = parser.parse_args()
     if args.action == "prepare":
         outcome = prepare(args.source_artifacts, args.output, args.source_sha,
                           args.project_license)
     else:
-        outcome = check_apk(args.apk, json.loads(args.prepared_receipt.read_text()))
+        outcome = check_apk(args.apk, json.loads(args.prepared_receipt.read_text()),
+                            args.raw_native_directory, args.llvm_objcopy)
     print(json.dumps(outcome, indent=2))
 
 
