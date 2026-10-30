@@ -38,3 +38,12 @@ add_executable(avif_spike_cli avif_spike.c)
 target_compile_options(avif_spike_cli PRIVATE -Wall -Wextra -Werror)
 target_link_libraries(avif_spike_cli PRIVATE avif)
 target_link_options(avif_spike_cli PRIVATE "-Wl,-z,max-page-size=16384")
+
+# This JNI diagnostic is not linked to the production Android modules.
+option(FIXMYSHOT_AVIF_JNI_PROBE "Build synthetic-only diagnostic JNI library" OFF)
+if(FIXMYSHOT_AVIF_JNI_PROBE)
+    add_library(avif_probe SHARED avif_probe_jni.c)
+    target_compile_options(avif_probe PRIVATE -Wall -Wextra -Werror -fvisibility=hidden -ffunction-sections -fdata-sections)
+    target_link_libraries(avif_probe PRIVATE avif)
+    target_link_options(avif_probe PRIVATE "-Wl,-z,max-page-size=16384" "-Wl,--gc-sections" "-Wl,--no-undefined")
+endif()

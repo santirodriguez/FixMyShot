@@ -2,6 +2,21 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
+val avifProbeMode = providers.gradleProperty("fixmyshot.avifProbeMode").orNull ?: "off"
+check(avifProbeMode in setOf("off", "baseline", "native")) {
+    "Only off, baseline or native isolated AVIF probe modes are supported."
+}
+val avifProbeLibs = providers.gradleProperty("fixmyshot.avifProbeLibsDir").orNull
+val avifProbeNotices = providers.gradleProperty("fixmyshot.avifProbeNoticesDir").orNull
+if (avifProbeMode == "native") {
+    check(!avifProbeLibs.isNullOrBlank() && file(avifProbeLibs).isDirectory) {
+        "Opt-in JNI probe requires an existing source-built JNI library directory."
+    }
+    check(!avifProbeNotices.isNullOrBlank() && file(avifProbeNotices).isDirectory) {
+        "Opt-in JNI probe requires exact upstream license and patent notices."
+    }
+}
+
 android {
     namespace = "org.cajapersonal.fixmyshot"
     compileSdk = 36
@@ -16,8 +31,16 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = ".avifbytes" }
+        debug { applicationIdSuffix = if (avifProbeMode == "off") ".avifbytes" else ".avifprobe" }
         release { isMinifyEnabled = false }
+    }
+    // Opt-in debug-only inputs; ordinary debug and all release packages stay unchanged.
+    sourceSets {
+        if (avifProbeMode == "native") {
+            getByName("debug").jniLibs.srcDir(file(avifProbeLibs!!))
+            getByName("debug").assets.srcDir(file(avifProbeNotices!!))
+            getByName("androidTest").java.srcDir("src/avifProbeAndroidTest/java")
+        }
     }
     buildFeatures { compose = true }
     compileOptions {
