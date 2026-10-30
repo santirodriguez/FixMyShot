@@ -240,6 +240,17 @@
     <string name="result_interrupted">L’exportació s’ha interromput abans de confirmar una còpia desada. Revisa els resultats i utilitza l’opció de tornar a intentar les pendents si s’ofereix.</string>
     <string name="result_cancelled">Aquesta imatge s’ha cancel·lat. Les còpies desades es conserven intactes; torna a intentar les pendents només si s’ofereix aquesta acció.</string>
     <string name="result_retry_available">Inclosa a Torna a intentar les pendents. No es dupliquen les còpies ja desades.</string>
+    <string name="odd_check_title">Analitzar alineació AVIF</string>
+    <string name="odd_check_body">Compara cinc casos AVIF sintètics amb mides senars i alineades i la quadrícula activada o desactivada. No llegeix imatges personals ni publica fitxers. Els descodificadors poden compartir components. Aquesta prova numèrica no activa AVIF.</string>
+    <string name="odd_check_running">Comparant configuracions AVIF · %1$d/5</string>
+    <string name="odd_check_complete">Comparació acabada. La exportació AVIF continua sense estar disponible.</string>
+    <string name="odd_check_mode">%1$d × %2$d · quadrícula %3$s</string>
+    <string name="odd_check_grid_on">activada</string>
+    <string name="odd_check_grid_off">desactivada</string>
+    <string name="odd_check_measured">Descodificat per comparar. Aparença no aprovada.</string>
+    <string name="odd_check_share_note">Pots compartir el resum numèric. Inclou versions del dispositiu i de la app, hash de l\'APK i mesures sintètiques, però no fotos ni fitxers d\'imatge codificats.</string>
+    <string name="odd_check_share">Comparteix la comparació AVIF</string>
+    <string name="odd_check_start">Inicia comparació focalitzada</string>
     <string name="native_check_title">Comprovar HEIC i AVIF</string>
     <string name="native_check_body">Fa sis comprovacions amb imatges sintètiques, incloses dimensions senars i 1344×2992. No llegeix les imatges seleccionades ni desa res a la galeria. Cada intent sol·licita un temps límit de vuit segons; el còdec del dispositiu pot trigar més a respondre. Aquesta comprovació preliminar no activa l’exportació HEIC/AVIF.</string>
     <string name="native_check_start">Inicia la comprovació</string>

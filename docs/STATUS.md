@@ -34,6 +34,13 @@ The compiled source remains unreleased `0.1.0-alpha.1`/versionCode 1.
   unsigned rebuild and source-material bundle are verified **for e516aa89**, not an
   independent rebuilt release at the current editor HEAD.
 
+## Targeted AVIF geometry candidate
+
+A separate five-case AVIF alignment diagnostic is prepared with 65×67,
+66×68 and 96×68, controlled grid and numeric-only sharing. Build/CI and
+Pixel evidence remain independent pending checks; this does not enable
+native output, alter PNG/WebP or waive the prior accepted editor flow.
+
 ## Earlier source-bound evidence (preserved)
 
 The sections below preserve earlier technical baselines and exact receipts. They are

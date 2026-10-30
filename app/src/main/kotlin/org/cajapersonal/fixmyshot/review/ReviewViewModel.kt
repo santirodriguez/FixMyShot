@@ -42,6 +42,8 @@ import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.diagnostics.NativeCodecDiagnostic
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckReport
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifDiagnostic
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifReport
 
 /** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
@@ -274,6 +276,17 @@ internal class ReviewViewModel : ViewModel() {
     var nativeCheckShareError by mutableStateOf(false)
         private set
     private var nativeCheckCancel: AtomicBoolean? = null
+    var oddAvifRunning by mutableStateOf(false)
+        private set
+    var oddAvifStopping by mutableStateOf(false)
+        private set
+    var oddAvifProgress by mutableStateOf(0)
+        private set
+    var oddAvifReport by mutableStateOf<OddAvifReport?>(null)
+        private set
+    var oddAvifShareError by mutableStateOf(false)
+        private set
+    private var oddAvifCancel: AtomicBoolean? = null
 
     /** Explicit synthetic check, serialized with private export/session work and never auto-started. */
     fun startNativeCheck(context: Context) {
@@ -314,9 +327,49 @@ internal class ReviewViewModel : ViewModel() {
 
     fun nativeCheckShareUnavailable() { nativeCheckShareError = true }
 
+    /** Five synthetic odd/aligned AVIF attempts, serialized with all other private work. */
+    fun startOddAvifCheck(context: Context) {
+        if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
+        val app = context.applicationContext
+        val cancel = AtomicBoolean(false)
+        oddAvifCancel = cancel
+        oddAvifRunning = true
+        oddAvifStopping = false
+        oddAvifProgress = 0
+        oddAvifReport = null
+        oddAvifShareError = false
+        isBusy = true
+        exportWorker.execute {
+            val report = try {
+                OddAvifDiagnostic(File(app.cacheDir, "batch-candidates"), Runtime.getRuntime().maxMemory())
+                    .run(cancel) { count -> main.post {
+                        if (oddAvifCancel === cancel) oddAvifProgress = count
+                    } }.withAppIdentity(app, cancel)
+            } catch (_: Exception) { OddAvifReport(cancelled = cancel.get(), failed = true) }
+            main.post {
+                if (oddAvifCancel !== cancel) return@post
+                oddAvifReport = if (cancel.get()) report.copy(cancelled = true) else report
+                oddAvifProgress = report.samples.size
+                oddAvifCancel = null
+                oddAvifRunning = false
+                oddAvifStopping = false
+                isBusy = false
+            }
+        }
+    }
+
+    fun cancelOddAvifCheck() {
+        if (!oddAvifRunning) return
+        oddAvifCancel?.set(true)
+        oddAvifStopping = true
+    }
+
+    fun oddAvifShareUnavailable() { oddAvifShareError = true }
+
     fun foregroundChanged(visible: Boolean) {
         inForeground = visible
         if (!visible) cancelNativeCheck()
+        if (!visible) cancelOddAvifCheck()
         if (!visible && activeToken != null) {
             foregroundPause.set(true)
             exportState = exportState.copy(pauseRequested = true)
@@ -890,6 +943,7 @@ internal class ReviewViewModel : ViewModel() {
 
     override fun onCleared() {
         nativeCheckCancel?.set(true)
+        oddAvifCancel?.set(true)
         cancelJob?.set(true)
         importStop?.set(true)
         ++importGeneration

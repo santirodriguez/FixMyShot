@@ -25,6 +25,7 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
         request: EncodeRequest,
         cancelled: AtomicBoolean = AtomicBoolean(false),
         timeoutMillis: Long = 30_000,
+        gridEnabled: Boolean = true,
     ): EncodeResult {
         check(Looper.myLooper() != Looper.getMainLooper()) { "Encoding must run off the UI thread" }
         require(timeoutMillis in 1..120_000L)
@@ -56,7 +57,7 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
             when (route) {
                 CodecRoute.NATIVE_HEIC -> {
                     HeifWriter.Builder(file.absolutePath, request.size.width, request.size.height, HeifWriter.INPUT_MODE_BITMAP)
-                        .setMaxImages(1).setQuality(100).setGridEnabled(true).build().use { writer ->
+                        .setMaxImages(1).setQuality(100).setGridEnabled(gridEnabled).build().use { writer ->
                             writer.start()
                             writer.addBitmap(bitmap)
                             writer.stop(remainingMillis)
@@ -64,7 +65,7 @@ class NativeStillEncoder(private val privateDirectory: File, private val process
                 }
                 CodecRoute.NATIVE_AVIF -> {
                     AvifWriter.Builder(file.absolutePath, request.size.width, request.size.height, AvifWriter.INPUT_MODE_BITMAP)
-                        .setMaxImages(1).setQuality(100).setGridEnabled(true).build().use { writer ->
+                        .setMaxImages(1).setQuality(100).setGridEnabled(gridEnabled).build().use { writer ->
                             writer.start()
                             writer.addBitmap(bitmap)
                             writer.stop(remainingMillis)

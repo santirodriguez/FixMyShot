@@ -133,3 +133,39 @@ files and share explicitly on user action. Do not read user photos, publish
 diagnostic bitstreams in source control, repeat the completed six-case check
 or enable native export prematurely. PNG/WebP and previously accepted editor
 behavior stay unchanged.
+
+## Focused AVIF alignment diagnostic — implementation candidate
+
+A separate opt-in **Investigate AVIF alignment** button under Settings / Quick help
+runs five synthetic attempts rather than repeating the accepted six-case report:
+65×67 (grid on/off), 66×68 (edge padding, grid off/on), and 96×68 (aligned
+width, grid off). The original input fixture is 65×67 for all comparisons;
+the additional canvas is an experimental output geometry, never a normal
+export workaround or a promise to preserve the original output dimensions.
+
+The native writer's existing production calls continue to request grid on.
+The new optional argument permits grid off only for this diagnostic. Work is
+serialized on the same foreground worker, guarded by API34+, a request-level
+8-second timeout, cancellation, private candidate ownership, 8 KiB
+per-candidate size cap and deletion in all owned-output exit paths.
+It compares a fixed 65×67 ROI through BitmapFactory and ImageDecoder with
+software sRGB normalization. Both front ends may share the same platform
+codec, so two Android results are **not independent host decoding**.
+
+The numeric-only report includes device/build identity, grid/size, checked
+byte lengths, output SHA256 and pixel metrics, but **does not include encoded
+AVIF bytes, selected image data, paths or URIs**. Sharing requires a separate
+tap. scripts/check-odd-avif-report.py validates exact case order, bounded
+fields/metrics and the self-reported installed APK hash; these are not
+hardware attestation or G1/M02 release qualification. Its companion script
+has five synthetic host regression tests.
+
+The diagnostic debug package .avifodd / **FixMyShot AVIF Check** is isolated
+from previously accepted .ux22next / FixMyShot Next. Production identity,
+signing policy, native availability and PNG/WebP defaults remain unchanged.
+A fresh exact-source Android build and API36 regression checkpoint must pass
+before distributing this distinct diagnostic APK to the Pixel. The Pixel
+has not run this five-case test yet. Independent host decode of the
+**actual Pixel-generated AVIF bytes** remains a separate, still-missing
+primary evidence step; this narrowly scoped numeric report does not
+transfer those bytes or assign the encoder-versus-decoder root cause.

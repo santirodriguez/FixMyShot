@@ -1,9 +1,8 @@
-Correct the sole remaining next-image UI assertion from Actions40963409322 atcb676695.
-Build/lint, all other11 editor cases, session23 and all retained non-editor groups passed.
-Verified capture shows com.google.android.photopicker; it need not equal initial resolveActivity package.
-Recognize the resolved handler and explicit Google/AOSP Mainline picker packages, never arbitrary foreign UI.
-Separately assert finished session, actual picker visibility, Back cancellation and resumed clean Start.
-Preserve output-byte/default checks and exactly-one request/cleanup guards; add bounded stage diagnostics.
-Keep successful results/picker/cancel captures and the now-passing overlapping tool-pane scrolls.
-No runtime, package identity, permission, codec, signing or expected test-count change.
+Validate the isolated AVIF odd/aligned numeric diagnostic with three synthetic-only tests.
+Compare 65x67 grid on/off, 66x68 padded grid on/off and 96x68 aligned grid off.
+Preserve PNG/WebP export, editor workflow, output policy and format defaults.
+Require owned-candidate cleanup, typed refusal, cancellation and zero user-image input.
+Keep the debug APK isolated as .avifodd; do not overwrite earlier installed diagnostics.
+Verify localized English, Spanish and Catalan copy and the bounded report schema.
+No new network/storage permission, native library, production signing or release action.
 profile=current

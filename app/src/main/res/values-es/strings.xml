@@ -240,6 +240,17 @@
     <string name="result_interrupted">La exportación se interrumpió antes de confirmar una copia guardada. Revisá los resultados y usá el reintento de pendientes si se ofrece.</string>
     <string name="result_cancelled">Se canceló esta imagen. Las copias guardadas quedan intactas; reintentá las pendientes sólo si se ofrece esa acción.</string>
     <string name="result_retry_available">Incluida en Reintentar pendientes. No se duplican las copias ya guardadas.</string>
+    <string name="odd_check_title">Analizar alineación AVIF</string>
+    <string name="odd_check_body">Compara cinco casos AVIF sintéticos, con dimensiones impares y alineadas y cuadrícula activada o desactivada. No lee tus imágenes ni publica archivos. Los decodificadores de Android pueden compartir componentes. Esta prueba numérica no habilita AVIF.</string>
+    <string name="odd_check_running">Comparando configuraciones AVIF · %1$d/5</string>
+    <string name="odd_check_complete">Comparación terminada. La exportación AVIF sigue sin estar disponible.</string>
+    <string name="odd_check_mode">%1$d × %2$d · cuadrícula %3$s</string>
+    <string name="odd_check_grid_on">activada</string>
+    <string name="odd_check_grid_off">desactivada</string>
+    <string name="odd_check_measured">Decodificado para comparar. La apariencia no está aprobada.</string>
+    <string name="odd_check_share_note">Podés compartir el informe numérico. Incluye versiones del dispositivo y la app, hash del APK y mediciones sintéticas, pero no fotos ni archivos de imagen codificados.</string>
+    <string name="odd_check_share">Compartir comparación AVIF</string>
+    <string name="odd_check_start">Iniciar comparación puntual</string>
     <string name="native_check_title">Comprobar HEIC y AVIF</string>
     <string name="native_check_body">Hace seis comprobaciones con imágenes sintéticas, incluidas dimensiones impares y 1344×2992. No lee las imágenes seleccionadas ni guarda nada en la galería. Cada intento solicita un tiempo límite de ocho segundos; el códec del dispositivo puede tardar más en responder. Esta comprobación preliminar no habilita la exportación HEIC/AVIF.</string>
     <string name="native_check_start">Iniciar comprobación</string>

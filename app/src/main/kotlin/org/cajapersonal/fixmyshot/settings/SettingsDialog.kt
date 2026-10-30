@@ -55,6 +55,7 @@ internal fun SettingsDialog(
     onLanguage: (String) -> Unit,
     onLink: (String) -> Unit,
     onNativeCheck: () -> Unit,
+    onOddAvifCheck: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     val locale = AppLanguages.selected(LocalContext.current)
@@ -95,6 +96,7 @@ internal fun SettingsDialog(
                     Text(stringResource(R.string.metadata_preserve_warning))
                     Text(stringResource(R.string.metadata_supported_tags), style = MaterialTheme.typography.bodySmall)
                     TextButton(enabled = editable, onClick = onNativeCheck) { Text(stringResource(R.string.native_check_title)) }
+                    TextButton(enabled = editable, onClick = onOddAvifCheck) { Text(stringResource(R.string.odd_check_title)) }
                 }
                 SettingsDisclosure(stringResource(R.string.privacy_title)) { Text(stringResource(R.string.privacy_body)) }
                 SettingsDisclosure(stringResource(R.string.ux_about)) {

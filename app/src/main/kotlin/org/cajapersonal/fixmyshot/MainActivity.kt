@@ -30,6 +30,7 @@ import org.cajapersonal.fixmyshot.settings.AppLanguages
 import org.cajapersonal.fixmyshot.settings.AppTheme
 import org.cajapersonal.fixmyshot.settings.SettingsDialog
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckDialog
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifCheckDialog
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
@@ -114,6 +115,7 @@ class MainActivity : AppCompatActivity() {
             val scope = rememberCoroutineScope()
             var settingsOpen by rememberSaveable { mutableStateOf(false) }
             var nativeCheckOpen by rememberSaveable { mutableStateOf(false) }
+            var oddAvifOpen by rememberSaveable { mutableStateOf(false) }
             var settingsError by remember { mutableStateOf(false) }
             val dark = when (theme) {
                 AppTheme.SYSTEM -> isSystemInDarkTheme()
@@ -152,6 +154,7 @@ class MainActivity : AppCompatActivity() {
                     },
                     onLink = { url -> openLink(url) },
                     onNativeCheck = { settingsOpen = false; nativeCheckOpen = true },
+                    onOddAvifCheck = { settingsOpen = false; oddAvifOpen = true },
                     onDismiss = { settingsOpen = false },
                 )
                 if (nativeCheckOpen) NativeCheckDialog(
@@ -173,6 +176,30 @@ class MainActivity : AppCompatActivity() {
                     },
                     onDismiss = {
                         if (model.nativeCheckRunning) model.cancelNativeCheck() else nativeCheckOpen = false
+                    },
+                )
+                if (oddAvifOpen) OddAvifCheckDialog(
+                    running = model.oddAvifRunning, stopping = model.oddAvifStopping,
+                    canStart = !model.isBusy && !model.exportState.isLocked &&
+                        !model.shareBusy && model.pendingImportCount == 0,
+                    progress = model.oddAvifProgress, report = model.oddAvifReport,
+                    shareError = model.oddAvifShareError,
+                    onStart = { model.startOddAvifCheck(applicationContext) },
+                    onCancel = model::cancelOddAvifCheck,
+                    onShare = {
+                        val reportText = model.oddAvifReport?.toJson()
+                        if (reportText != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, reportText)
+                            }, getString(R.string.odd_check_share)))
+                        } catch (_: android.content.ActivityNotFoundException) {
+                            model.oddAvifShareUnavailable()
+                        } catch (_: SecurityException) { model.oddAvifShareUnavailable() }
+                    },
+                    onDismiss = {
+                        if (model.oddAvifRunning) model.cancelOddAvifCheck()
+                        else oddAvifOpen = false
                     },
                 )
                 Surface(Modifier.fillMaxSize()) {
