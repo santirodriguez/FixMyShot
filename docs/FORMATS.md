@@ -2,8 +2,7 @@
 
 Current `release/0.1.0-editor` source `d54eb9c7` has a working Automatic and Customize
 export flow using verified private PNG/lossless WebP candidates and guarded public
-MediaStore/explicit SAF publication. [Build, lint and API 36 instrumentation]
-(https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) passed at this exact source; the user accepted the separate
+MediaStore/explicit SAF publication. [Build, lint and API 36 instrumentation](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) passed at this exact source; the user accepted the separate
 next-image picker/cancel flow on a diagnostic APK. These results do not constitute
 full physical color/metadata/resource validation or a production release.
 **PNG remains the absolute new-session default.** WebP lossless is an explicit
