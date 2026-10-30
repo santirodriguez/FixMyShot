@@ -5,3 +5,5 @@ Report concurrent sampled PSS/native heap and real 1344x2992 sRGB visual fidelit
 Do not enable AVIF in normal exports, change app permissions or signing, merge, release or publish.
 
 Focused correction: verify Android Gradle Plugin stripped .so by reproducing the exact NDK llvm-objcopy --strip-unneeded transform from source-verified raw inputs, keep strict ZIP/ELF hashes, and prevent alloc-heavy RGB comparison and stale image selection. Recheck the same synthetic diagnostic only.
+
+Focused API36 runner readiness fix: require a real app-private JSON file, validate its contents before accepting it, and verify the synthetic AVIF is present. Preserve bounded polling, timeout logcat, all quality/PSS gates, isolated signing and unchanged normal exporter.
