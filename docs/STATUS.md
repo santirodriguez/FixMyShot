@@ -1,6 +1,24 @@
 # Completion status
 
-## Current candidate — 2026-10-29
+## Latest AVIF diagnostic checkpoint — 2026-10-30
+
+PR #1 at `508b8b95cf0712b4ca04929d145f09957353bfa7` remains **OPEN /
+DRAFT / unmerged**. [Exact-source CI 40989504238](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
+completed SUCCESS on its second attempt (build/lint/core99 and API36
+instrumented groups; optional API26/28 SAF SKIPPED / NOT RUN).
+The delivered isolated `FixMyShot AVIF Check` APK, SHA-256
+`665a3c3165470e26d7782c4af43e2bda87ca86c7112ee4c414b115c19a71f8d4`,
+was used for the distinct [five-case Pixel API37 alignment diagnostic](feasibility/native-device-check.md#pixel-9-pro-xl-focused-avif-alignment-result--2026-10-30).
+All **5/5** cases encoded/reopened but failed numeric fidelity; the
+worst 3×3 patch median-channel error was **129** in every case.
+Grid on/off yielded matching bitstreams at 65×67 and 66×68; padding
+to 66×68 and 96×68 did not repair the problem. This is **new device
+diagnostic evidence, not HEIC/AVIF export, independent decoder or
+release acceptance**. No more unchanged grid tests are indicated.
+Pixel-produced encoded bytes/independent host decode and the existing
+G1/M02, other-hardware, color, resource and release gates remain open.
+
+## Earlier accepted editor baseline — 2026-10-29
 
 The first functional Android implementation is on `release/0.1.0-editor` at
 [`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7),
@@ -34,12 +52,13 @@ The compiled source remains unreleased `0.1.0-alpha.1`/versionCode 1.
   unsigned rebuild and source-material bundle are verified **for e516aa89**, not an
   independent rebuilt release at the current editor HEAD.
 
-## Targeted AVIF geometry candidate
+## Focused AVIF geometry check — completed diagnostic, not format approval
 
-A separate five-case AVIF alignment diagnostic is prepared with 65×67,
-66×68 and 96×68, controlled grid and numeric-only sharing. Build/CI and
-Pixel evidence remain independent pending checks; this does not enable
-native output, alter PNG/WebP or waive the prior accepted editor flow.
+The separately signed `.avifodd` candidate has passed exact-head CI and
+one user-reported Pixel 9 Pro XL five-mode synthetic check. Results and
+identity receipts are owned by [native device evidence](feasibility/native-device-check.md).
+Ordinary export remains PNG/lossless WebP; HEIC/AVIF are not enabled.
+The accepted editor/picker exercise remains completed and must not be repeated.
 
 ## Earlier source-bound evidence (preserved)
 

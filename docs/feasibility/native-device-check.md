@@ -1,6 +1,6 @@
 # Optional on-device HEIC/AVIF check
 
-Status: **IMPLEMENTED; ONE PIXEL 9 PRO XL API37 SYNTHETIC REPORT RECEIVED; NATIVE FIDELITY/EXPORT STILL OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate user-shared physical Pixel synthetic-check results are recorded below. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
+Status: **IMPLEMENTED; TWO DISTINCT USER-REPORTED PIXEL 9 PRO XL API37 SYNTHETIC CHECKS COMPLETED; NATIVE FIDELITY/EXPORT STILL OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate user-shared physical Pixel synthetic-check results are recorded below. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
 
 ## Use and boundaries
 
@@ -163,9 +163,74 @@ has five synthetic host regression tests.
 The diagnostic debug package .avifodd / **FixMyShot AVIF Check** is isolated
 from previously accepted .ux22next / FixMyShot Next. Production identity,
 signing policy, native availability and PNG/WebP defaults remain unchanged.
-A fresh exact-source Android build and API36 regression checkpoint must pass
-before distributing this distinct diagnostic APK to the Pixel. The Pixel
-has not run this five-case test yet. Independent host decode of the
-**actual Pixel-generated AVIF bytes** remains a separate, still-missing
-primary evidence step; this narrowly scoped numeric report does not
-transfer those bytes or assign the encoder-versus-decoder root cause.
+The exact-source [Actions 40989504238](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
+passed on attempt 2 at diagnostic source `508b8b95` (build/lint/core99 and
+API36 instrumented groups, including the three new geometry diagnostic tests).
+The isolated `.avifodd` APK was independently checked and privately delivered.
+The user has now completed this five-case check on the Pixel; see the
+source-bound results below. Independent host decode of the **actual
+Pixel-generated AVIF bytes** remains separate and not yet possible from this
+numeric-only report. The experiment does not assign a writer/decoder root cause.
+
+## Pixel 9 Pro XL focused AVIF alignment result — 2026-10-30
+
+**Scope:** one user-shared `ODD_AVIF_NUMERIC_DIAGNOSTIC_V1` report,
+`schema=1`, Google Pixel 9 Pro XL, Android API **37**, app
+`0.1.0-alpha.1`/code 1. The report's *self-reported* base APK SHA-256
+`665a3c3165470e26d7782c4af43e2bda87ca86c7112ee4c414b115c19a71f8d4`
+matches the independently validated, delivered `FixMyShot AVIF Check`
+diagnostic built from `508b8b95cf0712b4ca04929d145f09957353bfa7`.
+This is not an Android device attestation. `cancelled=false`, `failed=false`.
+Its closed field set, ordered five-mode list, digest shapes and typed metric
+consistency were independently checked against
+`scripts/check-odd-avif-report.py`'s declared contract.
+
+| Encoded dimensions | Grid requested | Bytes | BitmapFactory PSNR | ImageDecoder PSNR | Max patch error (both) |
+|---|---|---:|---:|---:|---:|
+| 65×67 | On | 1,358 | 7.2468 dB | 7.2468 dB | **129** |
+| 65×67 | Off | 1,358 | 7.2468 dB | 7.2468 dB | **129** |
+| 66×68, padded | Off | 1,358 | 7.2397 dB | 7.2397 dB | **129** |
+| 66×68, padded | On | 1,358 | 7.2397 dB | 7.2397 dB | **129** |
+| 96×68, aligned/padded | Off | 1,358 | 9.2313 dB | 9.2313 dB | **129** |
+
+The two grid settings produced the **same entire AVIF bytes** for each
+same-dimension pair, as established by identical reported SHA-256 values:
+
+- 65×67 on/off:
+  `3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`.
+- 66×68 off/on:
+  `8bff434bbd2e5d0df937f2d342a28ef3fd773ea6084ed83a8024b36a424625c3`.
+- 96×68 off:
+  `6cbd8cb6569bac6f888db63cb1a659b2640aa6ad0386bad053ce1123949e9c67`.
+
+All five output sizes are exactly 1,358 bytes, but the three distinct
+digests show that the three geometries do **not** have identical
+bitstreams. All five were encoded, reopened and measured by both Android
+front ends; none met the `>=38 dB` PSNR and `<=2` patch-error numeric
+targets. BitmapFactory and ImageDecoder were bit-for-bit identical in
+reported *metrics*, not independently verified decoded pixel arrays; both
+may share a platform decoder.
+
+**Conclusion and scope:** toggling `setGridEnabled` did not alter these
+small outputs, and padding to even/aligned dimensions did not resolve the
+severe 129-level patch discrepancy. This rules out a simple grid-toggle
+or odd-dimension-only workaround *for the tested Pixel route*, **not**
+every alignment/color path. The persistent anomaly is compatible with
+several possibilities (native writer's bitmap/EGL-to-codec path, encoded
+color/range transfer, or Android decoder behavior); none is demonstrated
+as the root cause. HEIC has separate evidence; do not infer identical
+behavior for it. Ordinary HEIC/AVIF export remains **gated and unqualified**.
+
+**Next primary-evidence gate:** obtain **one** bounded synthetic
+Pixel-produced 65×67 AVIF bitstream (with its matching SHA-256 above),
+and optionally the 66×68 example, through a separately reviewed opt-in
+handoff; compare its encoded geometry/color properties and independently
+decoded 65×67 source ROI with the known fixture on the host. The existing
+diagnostic deliberately deletes candidates and reports *only* metrics,
+so it cannot provide these bytes retrospectively. Compare that evidence
+before considering an alternate AVIF input pipeline or the bounded
+software fallback already prescribed by G1. Do **not** repeat this
+five-case test, weaken targets, enable native output or start another
+full matrix solely for these unchanged results. M02 physical real-image
+and second-hardware acceptance, resource/16 KiB runtime, and distribution
+gates remain OPEN.

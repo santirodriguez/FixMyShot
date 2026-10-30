@@ -10,6 +10,16 @@ available choice subject to destination/alpha rules; HEIC and AVIF remain
 capability/format/device gated and unavailable for ordinary output, while JXL
 remains deferred. JPEG input is supported, not JPEG output.
 
+The latest [Pixel AVIF alignment evidence](feasibility/native-device-check.md#pixel-9-pro-xl-focused-avif-alignment-result--2026-10-30)
+records **5/5 small AVIF encode/reopen attempts but 0/5 passing numeric
+fidelity**, with patch median-channel error **129** in every case.
+Grid on/off produced identical bytes within both same-dimension pairs;
+even/aligned padding still failed. The diagnostic was built from
+`508b8b95` and its [API36 CI](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
+passed on attempt 2; independent host decoding of actual Pixel AVIF
+bytes and physical M02 acceptance remain OPEN. This finding does not
+apply to PNG/WebP and does not prove a failure of every HEIC configuration.
+
 ## Implemented routes and remaining qualification
 
 | Output | Implemented route | Current acceptance boundary |
