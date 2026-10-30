@@ -646,3 +646,85 @@ transitive source/license/publisher/patent audit, actual production
 APK decision, signing, merge and release gates remain **OPEN**.
 No earlier user-accepted Pixel diagnostic must be repeated.
 
+## Physical AVIF probe API36 decoder discrepancy — 2026-10-30
+
+**Scope and source:** new isolated debug diagnostic `avif-physical`,
+not the shipping FixMyShot app. Exact source
+`17db3c0e8d6e56dab32f792a626392fb21f49875`, isolated
+[Actions 41142660997](https://github.com/santirodriguez/FixMyShot/actions/runs/41142660997),
+attempt 1, completed **FAILURE**: both pinned native ABI jobs and
+source-verifying/signed/zero-permissions diagnostic APK packaging
+completed **SUCCESS**, but `api36-synthetic` failed its on-device
+pixel-fidelity gate. The previous missing-file/JSON false-positive
+was fixed; this run generated a **real** fixture and metrics receipt.
+The app was **not** run on a physical Pixel.
+
+The downloaded API36 evidence ZIP, artifact `13020286953`, SHA-256
+`61d2b5aeafff5523154e4e34df93dee0abbb9e565e8cf7a4c07feabbc90adc38`
+(8,227 bytes, five unique members, valid CRC), contains
+`fixture-1344x2992.avif` (6,092 bytes, SHA-256
+`a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2`)
+and a **valid** `report.json`. This is the exact AVIF byte identity
+previously obtained in the synthetic JNI experiment; the encoder
+output itself is reproducible. The file identifies 1344x2992
+YUV 4:4:4, full range, BT.709 matrix/primaries and sRGB transfer.
+
+| Source-bound measurement | Observed |
+|---|---:|
+| Emulator | Android API 36, x86_64, 4 KiB pages |
+| RGB-to-YUV conversion | 793.973 ms (one sample) |
+| `avifEncoderWrite` | 5,610.454 ms (one sample) |
+| Conversion + encode + file/sample wall time | 6,539.441 ms |
+| Concurrent Android PSS samples | 34, 0 failed |
+| Maximum **sampled** in-operation PSS | 150,167 KiB |
+| Maximum **sampled** native heap allocation | 225,153,648 bytes |
+| Whole-process cumulative `ru_maxrss` | 270,476 KiB |
+| Post-operation PSS | 60,636 KiB |
+
+**Sampling limit:** the concurrent `Debug.getPss()` samples are not a
+continuous instantaneous peak, do not isolate codec-only memory and
+may perturb encoding. One highly repetitive synthetic 4 MP fixture is
+neither a real-image benchmark nor a controlled cold/warm p95;
+none of these numbers establishes Pixel performance or acceptance.
+
+**Decoder divergence on the very same AVIF bytes:**
+
+| Decode/comparison path | RGB PSNR | Maximum absolute channel error |
+|---|---:|---:|
+| Independent FFmpeg 7.1.5 raw RGB against reconstructed source | **58.7403 dB** | **1** |
+| Android 36 `BitmapFactory.decodeFile` against original bitmap | **44.6782 dB** | **63** |
+
+The independent FFmpeg comparison traversed all **1344x2992x3**
+RGB components: maximum error **1**, mean squared error
+**0.08690536**, and no channel error above 1.
+The Android result reports MSE **2.21444454**, non-opaque
+pixels **0**, and correct geometry / `device_decode_status=OK`.
+The current synthetic API36 gate requires PSNR at least 38 dB
+**and** maximum absolute channel error no greater than 2.
+Therefore the actual run **FAILS** that latter gate and must not
+be presented as green merely because the independent encoder output
+is numerically faithful. This is an **observed difference between
+decode paths**, not yet a proven Android decoder defect or an
+acceptable visual result in third-party viewers.
+
+The exact source-bound APK artifact `13019741923` ZIP SHA-256
+`6bd8e2f850d65efa63e3b469229b38a6a5b02360929509e46ce2f36e12ee4f0c`
+contains the 8,866,209-byte debug-only APK with SHA-256
+`ec3b63f0af086b09bbe7ea110ee808e67efc93e9951f53fbe04a4451c972548b`.
+Its exact-source native SHA, stripped ELF/ZIP 16 KiB structure,
+upstream and project notices, package identity and zero requested
+permissions passed the package job. These properties do not
+qualify Android's viewer fidelity or release signing.
+
+**Next bounded diagnostic:** compare explicitly sRGB-targeted
+`BitmapFactory.Options` and `ImageDecoder` paths (and record
+pixel-error locations / affected color patches) on a source-matched
+disposable emulator run, without weakening the Android presentation
+gate. Use the existing genuine AVIF bytes and upstream source pins.
+Only if quality is demonstrated in the actual selected display path
+should a debug APK be offered for voluntary Pixel screenshot testing.
+Do not enable HEIC/AVIF in normal export or repeat earlier accepted
+user Pixel native-codec diagnostics. Physical Pixel/second hardware,
+real 1344x2992 image appearance, true peak PSS, hardware 16 KiB
+runtime, licensing/publisher/patent review, G1/M02, merge/signing
+and release remain **OPEN**.
