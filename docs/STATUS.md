@@ -1,5 +1,38 @@
 # Completion status
 
+## Current candidate — 2026-10-29
+
+The first functional Android implementation is on `release/0.1.0-editor` at
+[`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7),
+in [PR #1](https://github.com/santirodriguez/FixMyShot/pull/1) (**OPEN / DRAFT / not merged**).
+The compiled source remains unreleased `0.1.0-alpha.1`/versionCode 1.
+
+- **Implemented and automatically checked:** picker and Android share import, Automatic with an
+  Original/no-platform first-use default, explicit destination/format and flexible framing,
+  complete Customize/batch controls, verified PNG/lossless WebP transactional export,
+  guarded review/continue editing/next-image picker and private recovery. PNG and metadata
+  removal remain new-session defaults. The exact-head [API 36 run](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425)
+  passed build/lint, 99 core tests, 12 editor tests, 23 import/settings/session tests
+  and all other retained instrumentation groups. Legacy SAF was **SKIPPED / NOT RUN**.
+- **Accepted by the user:** the delivered isolated `FixMyShot Next` diagnostic and
+  consecutive-image/picker-cancellation phone exercise: “Hecho. Todo funciona bien.”
+  Earlier general UX 2.2 visual feedback was positive. This is not pixel-by-pixel,
+  performance, accessibility or native-codec acceptance.
+- **Still open:** physical Pixel output/color/metadata/matte and resource checks, a second
+  hardware family, native HEIC/AVIF capability/fidelity and any qualified fallback,
+  real-provider/process-death/100-item manual cases, manual locale/TalkBack/200% layouts,
+  16 KiB runtime, conditional legacy SAF, exact-final-source reproducibility/corresponding
+  source and publisher clearance, authentic final screenshots, production signing,
+  sequential upgrade/Obtainium, merge and publication. JXL is deferred for 0.1.0.
+- **Authority:** no production key creation/rotation, merge, tag, release, publication,
+  deployment or permission change is approved. The earlier same-source independent
+  unsigned rebuild and source-material bundle are verified **for e516aa89**, not an
+  independent rebuilt release at the current editor HEAD.
+
+## Earlier source-bound evidence (preserved)
+
+The sections below preserve earlier technical baselines and exact receipts. They are
+not claims that `5d568a7e`/`e516aa89` are the latest application implementation.
 This index links current evidence. The [full blueprint](blueprints/first-functional-release.md)
 and [compatibility amendment](decisions/compatibility-and-validation.md) still govern.
 
@@ -47,8 +80,8 @@ security gate and future-input/signing review remain open. No generated trust po
 
 ## The path to delivery
 
-These are acceptance tracks, not an unconditional serial barrier to a bounded
-functional device run. The blueprint records actual device acceptance before
+These are distinct remaining acceptance tracks, not a request to repeat the
+already accepted next-image phone exercise. The blueprint records actual device acceptance before
 final distribution acceptance. A diagnostic candidate may be exercised while
 publisher/source controls remain open; retain its exact source/artifact and
 all limits. This does not authorize distribution, signing, merge or publication,
@@ -62,7 +95,7 @@ or turn any pending control into PASS.
    The533pending files are one dependency-review backlog, not533
    product features. Further issuer attempts need a materially new primary
    anchor; recorded unavailable routes must not be retried automatically.
-2. **Complete real-device acceptance.** Pixel9ProXL and a second hardware family:
+2. **Complete the unverified real-device gates.** Pixel9ProXL and a second hardware family:
    HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers,
    batches/process death/storage pressure/gallery/receivers, accessibility,
    languages and16KiB runtime. These checks are postponed, not waived.

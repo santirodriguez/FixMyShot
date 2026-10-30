@@ -3,7 +3,7 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The current candidate is unreleased `0.1.0-alpha.1`, versionCode `1`. Production signing, install/upgrade and image/device gates remain open. Bounded unsigned reproducibility is verified for source `5d568a7e` and the subsequent guarded build `e516aa89`; see [current evidence](STATUS.md). This guide does not authorize signing, merge, tags or publication.
+> **Preparation, not publication.** The functional editor candidate is unreleased `0.1.0-alpha.1`/versionCode `1` at `d54eb9c7` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1), not the default branch. [Exact-head build/lint/API36 checks](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) and the user's next-image diagnostic exercise passed, **not** the physical codec/fidelity/accessibility or production distribution gates. Same-source unsigned reproducibility is proven only for the historical `5d568a7e`/`e516aa89` source baselines, **not** this HEAD. Production signing, new final-source rebuild and source-closure checks, sequential upgrades, final screenshots, merge, tags and publication remain open; see [status](STATUS.md). Nothing here authorizes a key, signature, merge or release.
 
 ## The release kit
 
@@ -17,7 +17,7 @@
 
 ## 01 · Keep the identity straight
 
-Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. Debug uses `.debug`; it cannot establish a production upgrade path. Keep FixMyShot's independent signing identity across updates.
+Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. Current isolated diagnostics use the `.ux22next` debug suffix (`FixMyShot Next`); earlier diagnostics used other separate suffixes, including `.debug`. None establishes the production upgrade path. Keep FixMyShot's independent signing identity across updates.
 
 `versionName` is SemVer without the tag's `v`; the checker supports plain/prerelease versions without build metadata. Tags later use `v0.1.0-alpha.1`, etc. `versionCode` starts at 1 and increases for every subsequently distributed production-ID APK, including prereleases. Never reuse a code for different distributed bytes. A changed public APK needs a new version/code, not a replacement asset under the old identity.
 
@@ -42,7 +42,7 @@ python3 scripts/check-release.py
 ./gradlew --no-daemon :core:test :app:lintDebug :app:assembleRelease
 ```
 
-The output `app/build/outputs/apk/release/app-release-unsigned.apk` is **unsigned**. Existing CI debug/test APKs are also not production releases. Independently rebuild the unsigned candidate in another clean environment and compare exact hashes. Reusing the same output/cache is not independent. Investigate differences before claiming reproducibility. Version locks and captured hashes alone do not authenticate dependencies.
+The output `app/build/outputs/apk/release/app-release-unsigned.apk` is **unsigned**. Existing CI debug/test APKs are also not production releases. The earlier e516aa89 byte-identical rebuild must not be substituted for an independent rebuild of the eventual **frozen final candidate**. At that gate, independently rebuild the same exact source in another clean environment and compare hashes. Reusing the same output/cache is not independent. Investigate differences before claiming reproducibility. Version locks and captured hashes alone do not authenticate dependencies.
 
 ## 02b · Compare one independent unsigned build
 
@@ -67,8 +67,10 @@ A fresh [GitHub-hosted VM](https://docs.github.com/en/actions/concepts/runners/g
 
 Use [prepare-source-kit.py](../scripts/prepare-source-kit.py) with existing local
 public Git objects, an explicit accepted source commit/tree and the exact
-libwebp repository. It performs no fetch, build, signing or upload. For the
-accepted guarded source:
+libwebp repository. It performs no fetch, build, signing or upload. The example below is specifically for the **historical e516aa89 guarded source**,
+not the current UX/editor head. Recreate the exact project-source kit only after
+freezing the actual distribution candidate; do not relabel this old kit as its source:
+
 
 ```sh
 python3 scripts/prepare-source-kit.py /path/to/FixMyShot /path/to/libwebp \
@@ -130,8 +132,9 @@ python3 scripts/prepare-source-material-bundle.py \
   /new/FixMyShot-source-materials-e516aa89.tar.gz /new/source-materials.json
 ```
 
-The [actual receipt](feasibility/evidence/source-material-bundle-e516aa89.json)
-records two identical assemblies and full1,282member validation. After extraction,
+The [historical e516aa89 receipt](feasibility/evidence/source-material-bundle-e516aa89.json)
+records two identical assemblies and full1,282member validation. It is not yet a
+corresponding-source asset for current `d54eb9c7` or a later final candidate. After extraction,
 run sha256sum -c MANIFEST.sha256; extract the nested original source kit separately
 and retain its Git restoration instructions. This is a source-material asset,
 not final corresponding-source or publisher approval. Review the [exact limits](feasibility/runtime-source-review.md)
@@ -182,7 +185,7 @@ For **Obtainium**, add `https://github.com/santirodriguez/FixMyShot`, enable pre
 
 ## 06 · The final handoff
 
-Before requesting separately authorized merge/tag/publication, reconcile exact source and signed bytes, applicable gates, independent rebuild, ledger, APK manifest, tag, GitHub prerelease flag and final assets/hashes. Scan README, changelog, About/version, authentic screenshots and notes for stale claims. Branding artwork is not an app screenshot. Do not claim the planned website or stores are live.
+Before requesting separately authorized merge/tag/publication, reconcile the **then-current** candidate source and signed bytes, applicable gates, independent same-source rebuild, corresponding-source closure, publisher evidence/explicit disposition, ledger, APK manifest, tag, GitHub prerelease flag and final assets/hashes. The diagnostic APK acceptance does not authorize production signing or release. Scan README, changelog, About/version, authentic screenshots and notes for stale claims. Branding artwork is not an app screenshot. Do not claim the planned website or stores are live.
 
 Initial functional 0.1.0 is a GitHub prerelease; public 1.0 remains the later stable milestone. F-Droid/Google Play submissions, website deployment and key operations have separate authority. This preparation does not publish, merge or sign anything.
 

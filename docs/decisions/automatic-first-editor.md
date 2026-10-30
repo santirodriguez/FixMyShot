@@ -5,9 +5,9 @@ The automatic workspace is the default presentation for new work, including imag
 ## Product contract
 
 - Start uses the existing canonical icon and header, with one Choose images action pinned within the portrait safe drawing area even on short screens; secondary artwork and copy scroll separately. No artificial splash delay. Light, dark and system themes remain available.
-- An untouched new import receives a visible layout recommendation: the last explicitly selected built-in template, or Play portrait for a portrait source and flexible Play otherwise. This is a recommendation, not recognition of the user's publication destination. Only the validated built-in template ID is remembered; every new session retains PNG, metadata removal and full-content defaults.
+- An untouched clean import starts with neutral Original / No platform, or a validated last explicitly selected destination when one exists. Orientation alone never assigns a publishing platform. Available destination suggestions are explicit choices; every new session retains PNG, metadata removal and full-content defaults.
 - Template selection is one immutable undoable action. Batch settings and per-image overrides survive template and mode changes; incompatible explicit formats, alpha and dimensions remain conflicts. Play 9:16 and flexible Play keep different existing catalog IDs and geometry. Social cards remain layout guidance, not upload certification.
-- Automatic has a large directly editable final-output preview, compact templates and an export action. Crop is explicitly selected. Pinching in full-content mode asks before enabling crop. Moving full content only redistributes real margins; no content is stretched, cloned or reconstructed.
+- Automatic has a large directly editable final-output preview, a compact destination picker, an explicit PNG/lossless WebP selector and an export action. Crop is explicitly selected. Pinching in full-content mode asks before enabling crop. Moving full content only redistributes real margins; no content is stretched, cloned or reconstructed.
 - Expand opens a screen-sized framing view with local numeric editing state. Apply commits fit/focus/position once; Cancel changes no draft or journal bytes. Activity recreation retains those small fields. A change to the selected source, draft revision or edit lock invalidates the overlay rather than applying stale state. Inspect is clearly labelled view-only zoom and never changes output geometry. Original comparison is also inspection-only.
 - Customize retains all previous tools, exact sizing, formats, metadata policy, backgrounds, scope selection, overrides, reorder, recovery and output actions. A SaveableStateHolder retains unfinished advanced text fields when returning to Automatic; session/source/scope keys remain authoritative. New work resets the presentation to Automatic, not the applied state of an existing restored draft.
 - Discard is visible in the shared header and expanded editor. Confirmation describes private draft/undo removal while preserving originals and published exports. Locked or uncertain work routes to its existing result/recovery controls; it is not force-deleted. Removing one batch image remains distinct and undoable.
@@ -43,7 +43,7 @@ uses `.ux22next` / `FixMyShot Next`; production identity and signing are unchang
 
 `DraftSession.applyTemplate` and `applyFraming` define atomic revisions and preserve unaffected provenance. `QuickTemplates` validates remembered IDs. AppPreferences stores the last template alongside the existing theme preference, without adding format, metadata or language preferences. The build copies the exact canonical `assets/branding/header.png` and shared icon into generated resources; original source artwork is unchanged. Locale strings are split into `quick_strings.xml` for en/es/ca, and the existing resource checker verifies all string XML files and actual Kotlin references.
 
-The expanded preview still uses one bounded sample. It is not an export source or proof of full-resolution fidelity. No codec, library, toolchain, permission, server, network or production signing change is included. The isolated development package is `.automatic` / FixMyShot Auto because CI debug signing is ephemeral; do not uninstall or overwrite earlier diagnostics to resolve a signature conflict.
+The expanded preview still uses one bounded sample. It is not an export source or proof of full-resolution fidelity. No codec, library, toolchain, permission, server, network or production signing change is included. The `.automatic` / FixMyShot Auto package was an earlier isolated diagnostic. The current accepted next-image diagnostic is `.ux22next` / FixMyShot Next. CI debug signing is ephemeral; do not uninstall or overwrite other diagnostic packages to resolve signer differences.
 
 ## Acceptance and known limits
 
@@ -84,3 +84,23 @@ or production release approval from successful host/CI checks alone.
 ## Menu and draw-phase refinement
 
 The subsequent [menu and interaction refinement](crop-interaction-and-destinations.md) preserves the stable UX2.1 IDs, matte semantics and excluded-source overview while moving transient crop reads entirely to the draw phase. Settings and destinations use coherent compact sheets. The isolated diagnostic package for that candidate is `.touch` / FixMyShot Touch; earlier `.automatic` APKs do not contain it. All existing privacy, fidelity, manual-device and release gates remain.
+
+## Current implementation and limited acceptance — 2026-10-29
+
+UX2.2 adds the neutral Original default, a versioned Flexible frame geometry
+that can reveal margins below minimum fill, the Automatic PNG/WebP choice,
+a bounded read-only in-app saved-image viewer, full-screen stable Settings
+and a first-class successful results surface. The subsequent next-image fix
+places **Edit another image** first and opens the system picker only after
+verified session retirement; Continue editing keeps current source/undo/draft.
+None changes the original CropFocus semantics or frozen output policy.
+
+[Exact-head CI](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at d54eb9c7 passed build/lint, core99,
+editor12, session/import/settings23 and the retained API36 groups.
+The user accepted the delivered `.ux22next` successive-image/picker-cancel
+phone flow and previously liked UX2.2 in general. Full-resolution color/matte
+and Pixel crop responsiveness, TalkBack/200%/landscape/locales, native codecs,
+providers/hardware, 16 KiB runtime and all production distribution gates
+remain independent and open. Earlier implementation-candidate paragraphs
+above are historical descriptions; they do not supersede this source-bound
+status or the complete blueprint.
