@@ -18,8 +18,13 @@ The compiled source remains unreleased `0.1.0-alpha.1`/versionCode 1.
   consecutive-image/picker-cancellation phone exercise: “Hecho. Todo funciona bien.”
   Earlier general UX 2.2 visual feedback was positive. This is not pixel-by-pixel,
   performance, accessibility or native-codec acceptance.
+- **Pixel native diagnostic received (not export acceptance):** the user-shared API37
+  [synthetic HEIC/AVIF report](feasibility/native-device-check.md#pixel-9-pro-xl-synthetic-result--2026-10-29)
+  matches the previously delivered diagnostic APK's reported SHA-256. All six cases
+  report encode/reopen, but **0/6** meet numeric fidelity targets; 65×67 AVIF has
+  PSNR 7.247 dB and patch median-channel error 129. No codec is enabled by this result.
 - **Still open:** physical Pixel output/color/metadata/matte and resource checks, a second
-  hardware family, native HEIC/AVIF capability/fidelity and any qualified fallback,
+  hardware family, native HEIC/AVIF output fidelity and any qualified fallback,
   real-provider/process-death/100-item manual cases, manual locale/TalkBack/200% layouts,
   16 KiB runtime, conditional legacy SAF, exact-final-source reproducibility/corresponding
   source and publisher clearance, authentic final screenshots, production signing,

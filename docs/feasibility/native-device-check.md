@@ -1,6 +1,6 @@
 # Optional on-device HEIC/AVIF check
 
-Status: **IMPLEMENTED; CURRENT API36 AUTOMATED VALIDATION PASSED, PHYSICAL NATIVE ACCEPTANCE OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate native-check report has not yet been supplied from actual hardware. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
+Status: **IMPLEMENTED; ONE PIXEL 9 PRO XL API37 SYNTHETIC REPORT RECEIVED; NATIVE FIDELITY/EXPORT STILL OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate user-shared physical Pixel synthetic-check results are recorded below. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
 
 ## Use and boundaries
 
@@ -20,11 +20,11 @@ Share report opens Android's text chooser only after a separate tap. Closed JSON
 
 ## Validation state
 
-Four NativeDiagnosticTest cases are prepared: independent exact/single-pixel/wrong-color numeric oracle; closed report/exception omission and existing non-native adapter refusal; cancellation/owned disguised-PNG rejection cleanup; zero-encode cancelled/low-budget cases plus own-APK identity. These use an injected encoder for policy/failure boundaries and do not establish native codec success. They join the grouped import/settings/session block, now18 (prior14+4); the separate native probe group remains unchanged. At that earlier checkpoint, the new Android integration was still NOT RUN. The later current-source API36 CI passed the native diagnostic/regression groups and the imported editor flow, but did not establish that native HEIC/AVIF works on physical hardware or satisfy G1/M02. The native user-device report and manual sharing are still NOT RUN.
+Four NativeDiagnosticTest cases are prepared: independent exact/single-pixel/wrong-color numeric oracle; closed report/exception omission and existing non-native adapter refusal; cancellation/owned disguised-PNG rejection cleanup; zero-encode cancelled/low-budget cases plus own-APK identity. These use an injected encoder for policy/failure boundaries and do not establish native codec success. They join the grouped import/settings/session block, now18 (prior14+4); the separate native probe group remains unchanged. At that earlier checkpoint, the new Android integration was still NOT RUN. The later current-source API36 CI passed the native diagnostic/regression groups and the imported editor flow, but did not establish that native HEIC/AVIF works on physical hardware or satisfy G1/M02. The native user-device report is now RECEIVED and structurally reviewed below. Actual source-bound gallery/viewer/share/independent pixel acceptance M02 remains NOT RUN.
 
 ## Current targeted physical handoff (not a repeat of the accepted edit flow)
 
-The isolated `FixMyShot Next` APK was already delivered for the next-image UI flow and the user accepted that flow. Its compiled source is `d54eb9c7`, SHA-256 `1b526d18191363657ea0d8eadbc7c8a6f61d5a930c4b41d4838ef312390c7743`, debug package `org.cajapersonal.fixmyshot.ux22next`. Do **not** uninstall earlier isolated diagnostics or assume production signing. With this same installed APK, run **Settings → Check HEIC and AVIF → Run check → Share report** once on the Pixel 9 Pro XL. Share the generated JSON text privately for analysis. No personal images are accessed by this synthetic diagnostic.
+The isolated `FixMyShot Next` APK was already delivered for the next-image UI flow and the user accepted that flow. Its compiled source is `d54eb9c7`, SHA-256 `1b526d18191363657ea0d8eadbc7c8a6f61d5a930c4b41d4838ef312390c7743`, debug package `org.cajapersonal.fixmyshot.ux22next`. Do **not** uninstall earlier isolated diagnostics or assume production signing. That same installed APK completed the **Settings → Check HEIC and AVIF → Run check → Share report** exercise on the Pixel 9 Pro XL. Do not repeat the unchanged six-case check on this device merely to obtain a duplicate report. No personal images are accessed by this synthetic diagnostic.
 
 The offline report checker validates the exact six-case order, typed result fields, independent numeric-target arithmetic, closed/no-URI JSON field set and the reported installed APK hash against an explicitly supplied expected digest. For this diagnostic:
 
@@ -37,3 +37,51 @@ python3 scripts/test-native-device-report.py
 A valid report is **only structurally and source-identity consistent as self-reported by the app**; the hash is not a remote attestation and a test harness cannot establish hardware truth. Each of the three sizes for each format remains separately available/unavailable and numerically qualified/unqualified. A missing/mismatched APK hash is not accepted as source-bound evidence. An encoded/reopened synthetic still is not sufficient for final pixel/color-profile, real screenshot, gallery/viewer/share, peak-memory, cold/warm latency, cancellation or other-hardware acceptance. Keep HEIC/AVIF export gated, do not silently fall back to PNG, and do not change the codec or release policy based only on this diagnostic.
 
 Pixel full-resolution fidelity is a **separate** remaining exercise: privately compare the original 1344×2992 non-sensitive screenshot with the actual exported PNG under explicit Keep all and, if relevant, a chosen 9:16 crop; inspect dimensions, all source UI content, margins, color/text edges, metadata and original-file immutability. Do not repeat the already accepted consecutive-image/picker-cancel test. A second hardware family, measured resources, 16 KiB runtime and manual accessibility/localization remain separate gates. The original [verification matrix](../blueprints/first-functional-release.md#16-verification-matrix) remains authoritative.
+
+## Pixel 9 Pro XL synthetic result — 2026-10-29
+
+User-shared JSON: `schema=1`, `SYNTHETIC_NATIVE_CHECK_V1`, Android API **37**,
+`Google / Pixel 9 Pro XL`, `0.1.0-alpha.1`/code 1, compiled app source
+`d54eb9c7`. Its self-reported base-APK SHA-256 matches the previously
+independently checked and delivered isolated diagnostic APK:
+`1b526d18191363657ea0d8eadbc7c8a6f61d5a930c4b41d4838ef312390c7743`.
+`cancelled=false`; `failed=false`. The closed report fields, six ordered cases,
+positive byte sizes, finite metrics and reported target flags were checked
+independently against the current validator's invariants. This is *not*
+hardware attestation or independent inspection of the encoded samples.
+
+| Format | Input | Returned bytes | One adapter attempt | RGB PSNR | Max 3×3 patch median-channel error | Numeric target |
+|---|---|---:|---:|---:|---:|---|
+| HEIC | 64×64 | 1,247 | 553 ms | 28.234 dB | 1 | NOT MET |
+| AVIF | 64×64 | 947 | 318 ms | 28.167 dB | 1 | NOT MET |
+| HEIC | 65×67 | 1,759 | 388 ms | 26.078 dB | 1 | NOT MET |
+| AVIF | 65×67 | 1,358 | 164 ms | 7.247 dB | **129** | NOT MET |
+| HEIC | 1344×2992 | 209,314 | 1,558 ms | 24.739 dB | 1 | NOT MET |
+| AVIF | 1344×2992 | 170,421 | 573 ms | 24.754 dB | 1 | NOT MET |
+
+**Result:** all **6/6** report `ENCODED_AND_REOPENED`, but **0/6** meet the
+synthetic numeric target (PSNR ≥38 dB and patch error ≤2). The unexpectedly
+large odd-size AVIF mismatch (**65×67**, PSNR 7.247 dB, patch error 129)
+needs targeted investigation; the report alone cannot assign the defect to
+the writer, container, platform decoder, color transfer or stride/alignment.
+The remaining five cases have patch error 1 but miss PSNR, plausibly related
+to sharp high-contrast fixture boundaries; **do not assert a root cause or
+general real-screenshot quality without independently examining output**.
+
+The G1 blueprint explicitly requires cause/visual review when a PSNR regression
+target is missed; PSNR alone does not automatically disqualify all lossy
+output. It separately prohibits allowing wrong transfer/range, corrupt
+output or visibly unacceptable text. Therefore the native paths remain
+**UNQUALIFIED/UNAVAILABLE for ordinary export**, and no transparent fallback
+or reduced assertion is authorized. M02's full independent decode/gallery/
+receiver/real-screenshot review, second hardware family, color-profile
+inspection, native/PSS/Java memory, cold/warm p95, cancellation and physical
+16 KiB runtime are still OPEN/NOT RUN. Single elapsed times are not p95.
+
+**Bounded next diagnosis:** inspect the *existing* grid/alignment experimental
+cases for unpadded 65×67, edge-padded 66×68 and grid on/off, then design
+a narrowly source-bound Pixel diagnostic that compares actual AVIF output
+pixels in independent decoders plus color/profile and visible geometry.
+Do not run another complete Android/legacy test matrix or ask the user to
+repeat this unchanged report. A different encoder, software fallback or
+format-scope change requires its own evidence and explicit decision.
