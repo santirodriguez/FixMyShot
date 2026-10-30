@@ -16,9 +16,29 @@ fidelity**, with patch median-channel error **129** in every case.
 Grid on/off produced identical bytes within both same-dimension pairs;
 even/aligned padding still failed. The diagnostic was built from
 `508b8b95` and its [API36 CI](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
-passed on attempt 2; independent host decoding of actual Pixel AVIF
-bytes and physical M02 acceptance remain OPEN. This finding does not
+passed on attempt 2. A separate `.avifbytes` handoff at
+`82a40bf2` subsequently recovered the exact **1,358-byte** Pixel
+file: [host decoder analysis](feasibility/native-device-check.md#pixel-6567-avif-independent-byte-level-decode--2026-10-30)
+shows a **128×67 AV1 decoded raster versus 65×67 `ispe`**,
+explaining the large horizontal distortion when presented as 65×67.
+Left-cropping the decoded raster recovers source-like colors but still
+misses the PSNR target; it is **not an authorized export fix**.
+Full physical M02 acceptance remains OPEN. This finding does not
 apply to PNG/WebP and does not prove a failure of every HEIC configuration.
+
+## Host correction feasibility (not a shipping format)
+
+A controlled `ispe=128×67` + `clap=65×67` remux of the original
+synthetic Pixel AVIF restored the intended 65×67 image in libheif
+but yielded 128×67 in Pillow and a parsing error in FFmpeg. It is
+**not** interoperable or approved for export. Host-only libavif
+4:4:4 quality-100 software output passed the small 65×67 numeric
+regression target (PSNR 55.74–56.50 dB, patch error 1 across three
+readers) and preserved exact dimensions; Android binary cost,
+device acceptance, real screenshot quality and 16 KiB remain
+**unmeasured**. See the [bounded geometry/fallback
+spike](feasibility/native-device-check.md#host-only-avif-correction-feasibility--2026-10-30).
+HEIC/AVIF remain gated and PNG/lossless WebP are unaffected.
 
 ## Implemented routes and remaining qualification
 

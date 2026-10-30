@@ -1,6 +1,20 @@
 # Completion status
 
-## Latest AVIF diagnostic checkpoint — 2026-10-30
+## AVIF geometry alternative spike — 2026-10-30
+
+The **host-only metadata/crop remux** of the verified 65×67 Pixel AVIF
+is not interoperable: libheif presented 65×67, Pillow returned 128×67
+and FFmpeg rejected this prototype. A separate Pillow/libavif 1.4.2
+**software 4:4:4** control yielded **65×67** through all three host
+readers with **55.74–56.50 dB** PSNR and patch error 1; the 4:2:0
+control missed 38 dB. One 1344×2992 host compression sample completed
+in 1.095 s in 4:4:4 but whole-process RSS (~268 MiB) includes
+Python/NumPy and is NOT Pixel memory/performance evidence.
+The [evidence owner](feasibility/native-device-check.md#host-only-avif-correction-feasibility--2026-10-30)
+retains exact modes and limits. No Android code changes, new APK,
+device test or production codec enablement. G1/M02 remain OPEN.
+
+## Earlier AVIF alignment checkpoint — 2026-10-30
 
 PR #1 at `508b8b95cf0712b4ca04929d145f09957353bfa7` remains **OPEN /
 DRAFT / unmerged**. [Exact-source CI 40989504238](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
@@ -18,14 +32,26 @@ release acceptance**. No more unchanged grid tests are indicated.
 Pixel-produced encoded bytes/independent host decode and the existing
 G1/M02, other-hardware, color, resource and release gates remain open.
 
-## Pending one-file AVIF sample diagnostic
+## Current AVIF byte-level finding — 2026-10-30
 
-A distinct `.avifbytes` synthetic-only 65×67 AVIF handoff candidate
-has been implemented for a future exact-source CI checkpoint. It is not
-a physical Pixel result, native format approval, or production output.
-The earlier five-case geometry test remains completed; the next
-unresolved evidence is actual Pixel compressed bytes for independent
-host decoding, with explicit opt-in sharing and no personal images.
+Latest editor diagnostic HEAD `82a40bf22a479c035ee608c3196f2ec616513be2`,
+PR #1 **OPEN/DRAFT/unmerged**, passed
+[exact-source CI 41107077558](https://github.com/santirodriguez/FixMyShot/actions/runs/41107077558)
+(build/lint/core99 and API36 131 instrumented tests; optional legacy SAF
+NOT RUN). The user completed the separate **single 65×67 Base64 AVIF
+handoff** on the Pixel 9 Pro XL/API37: 1,358 source-bound bytes, SHA-256
+`3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`.
+Host decoders exposed a **128×67 AV1 raster** despite a **65×67 AVIF
+`ispe`**: Android/Pillow 65×67 display was severely horizontally
+distorted (reported PSNR ~7.25 dB, patch error129), while the
+leftmost 65 columns from FFmpeg/libheif reconstructed the
+expected pattern (PSNR ~26.1–26.4 dB, patch error2–3).
+A one-field `ispe` experiment corroborates geometry handling as
+the dominant cause but **does not produce valid 65×67 export**.
+See [full exact-byte evidence](feasibility/native-device-check.md#pixel-6567-avif-independent-byte-level-decode--2026-10-30).
+The earlier five-case and six-case phone reports are complete.
+HEIC/AVIF remain gated; G1/M02, color/profile, second hardware,
+physical resources/16KiB, provenance and distribution are OPEN.
 
 ## Earlier accepted editor baseline — 2026-10-29
 

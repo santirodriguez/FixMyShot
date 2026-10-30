@@ -1,6 +1,6 @@
 # Optional on-device HEIC/AVIF check
 
-Status: **IMPLEMENTED; TWO DISTINCT USER-REPORTED PIXEL 9 PRO XL API37 SYNTHETIC CHECKS COMPLETED; NATIVE FIDELITY/EXPORT STILL OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate user-shared physical Pixel synthetic-check results are recorded below. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
+Status: **IMPLEMENTED; PIXEL 9 PRO XL API37 SYNTHETIC BITSTREAM DECODED ON HOST; AVIF GEOMETRY MISMATCH CONFIRMED; NATIVE FIDELITY/EXPORT STILL OPEN**. The full current-source UI/core/API36 CI checkpoint is [40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) at compiled commit `d54eb9c7`; the separate user-shared physical Pixel synthetic-check results are recorded below. The check gathers preliminary device evidence; it does not enable native export or close G1/M02. Existing HEIC/AVIF writer/API/fidelity/fallback requirements remain unchanged. No new native library or permission is introduced.
 
 ## Use and boundaries
 
@@ -264,15 +264,199 @@ SHA-256, AVIF `ftyp` brand and schema before writing any optional
 be treated as genuine AVIF unless an external decoder also reads and
 visually/quantitatively compares it. Three synthetic Android refusal/
 cleanup checks and five host JSON/byte-integrity tests are added to
-the explicit current API36 validation checkpoint. Until that
-exact-source CI succeeds and the isolated APK is checked, this is
-an **unverified implementation candidate** and no user retest is
-requested. After a qualified handoff, request only this new one-file
-Pixel capture; do not repeat the two completed diagnostic reports.
+the explicit current API36 validation checkpoint. Exact-source [Actions 41107077558](https://github.com/santirodriguez/FixMyShot/actions/runs/41107077558)
+passed build/lint, 99 core and 131 API36 instrumentation tests, with
+optional legacy SAF NOT RUN. The separately signed `.avifbytes` APK was
+verified and delivered; the user completed the single-sample Pixel
+handoff. Its actual bitstream has now been recovered and decoded on
+the host (results below). The two earlier phone diagnostic reports and
+this one-file capture are complete; do not request repeats.
 
-The expected comparison is against the previous **65×67 grid-on**
-digest `3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`.
-A different SHA from a new build/encoder run is evidence to inspect,
-not grounds to fabricate a match. Both the native pipeline and
-software fallback decisions remain subject to G1/M02 and independent
-color, visible-geometry, resource and other-device acceptance.
+The received AVIF is exactly the same **65×67 grid-on** sample
+(SHA-256 `3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`)
+seen in the previous alignment report; see the byte-level analysis below.
+Native pipeline alternatives and software fallback decisions remain
+subject to G1/M02, independently verified visible geometry, color,
+resources and second-hardware acceptance.
+
+## Pixel 65×67 AVIF independent byte-level decode — 2026-10-30
+
+**Primary evidence received:** user-shared `SYNTHETIC_AVIF_BYTES_V1`,
+`schema=1`, `format=AVIF`, Pixel 9 Pro XL / API37, app
+`0.1.0-alpha.1` / code1, `cancelled=false`, `reason=null`, sample
+65×67. The *self-reported* installed base APK SHA-256
+`7895202a5046058f3999f864ec2e6fa50dc1e948dd2c070b0e67f099e09b4b79`
+matches the separately checked `.avifbytes` APK built from `82a40bf22a479c035ee608c3196f2ec616513be2`
+([successful current-source CI 41107077558](https://github.com/santirodriguez/FixMyShot/actions/runs/41107077558)).
+The user also supplied fresh six-case and five-case numeric reports from the
+same app APK, reproducing the previously accepted findings; these were **not**
+new qualification runs. The Base64 was reconstructed as **1,358 bytes** and
+independently SHA-256 checked against both its report and previous odd-size
+grid-on sample: **`3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`**.
+These are source-bound receipts, not device attestation. No personal image
+content, installation path or original user photo was read. Do not commit
+raw Base64 or the diagnostic AVIF bitstream into the public repository.
+
+**Container versus encoded geometry:** AVIF `ftyp` and the primary image's
+`ispe` describe **65×67**; there is no `clap` clean-aperture property or
+`colr` color profile property in this tiny file. FFmpeg 7.1.5 (libdav1d)
+and libheif 1.19.8 expose a decoded AV1 raster of **128×67**, 4:2:0,
+with 63 additional right-hand columns that largely repeat the last source
+column. Pillow 12.3.0 / libavif 1.4.2 presents **65×67**, but its output
+is visibly *horizontally compressed*; the Android diagnostic reports a
+similarly compressed image. The differing host front ends may share
+low-level AV1 codec backends and do not constitute independent backend
+implementation proofs.
+
+An exact reconstruction of `NativeCodecDiagnostic.fixture(PixelSize(65,67))`
+was used to compute the repository's whole-image RGB PSNR and median-of-3×3
+per-channel color-patch error. For decoders exposing 128 columns, metrics
+are computed only on the *leftmost original 65×67 ROI*, an explicitly
+experimental crop, **not a compliant production presentation**.
+
+| Decoding/presentation of the same 1,358-byte AVIF | Dimensions exposed | RGB PSNR vs exact fixture | Max patch error |
+|---|---|---:|---:|
+| Android BitmapFactory and ImageDecoder (reported API37) | 65×67 | 7.2468 dB | **129** |
+| Pillow/libavif | 65×67 | **7.2819 dB** | **129** |
+| FFmpeg/libdav1d (left 65-column ROI) | 128×67 | **26.3742 dB** | **2** |
+| libheif (left 65-column ROI) | 128×67 | **26.0928 dB** | **3** |
+
+**Controlled metadata-only host experiment:** changing **only** the
+`ispe` width from 65 to 128 in a **temporary copy**, without changing
+compressed AV1 bytes, makes Pillow present 128×67; the leftmost
+65×67 ROI then yields **27.3023 dB** with essentially correct six
+solid-color patches (max patch error about 2). The temporary file has
+a different SHA-256 and is **never** approved as an export or proposed
+as a single-byte product fix: it would present the wrong dimensions.
+A user-visible image must preserve the agreed output geometry.
+
+**Interpretation:** the dramatic 129-level patch errors do **not** show
+that original colors were destroyed by encoding: the source-like colors
+are recoverable from the AV1 raster. There is a demonstrable
+**encoded-versus-presented geometry disagreement**, which explains the
+gross horizontal distortion. The exact conformance fault requires
+reconciling the AV1 bitstream's decoded upscaled width, `ispe`
+spatial-extents semantics, and any clean-aperture presentation rules
+(see the [AOM AVIF specification](https://aomediacodec.github.io/av1-avif/latest-approved.html)).
+Do **not** attribute the entire defect exclusively to either the
+AndroidX writer, the device codec, libavif or Android's decoder without
+that contract review. Missing explicit color property also requires
+its own color-management acceptance.
+
+**Still NOT qualified:** even the correct crop yields only 26–27 dB,
+below the blueprint's 38 dB synthetic regression target; G1 requires
+documented visual/cause review rather than a threshold waiver. Correct
+gallery/viewer/share dimensions and colors, independent real screenshot
+quality and metadata, second hardware, cancellation/resources,
+physical 16KiB runtime, publisher/source evidence, stable signing,
+and release authorization remain OPEN. Ordinary HEIC/AVIF are
+**disabled**; PNG/lossless WebP remain unchanged. No more reruns of
+the unchanged three Pixel synthetic checks are necessary.
+
+**Next bounded technical decision:** prototype a standards-consistent
+single-image 65×67 AVIF route with coherent encoded/presented dimensions,
+e.g. a validated native input/mux path or a licensed size-bounded software
+encoder, before involving personal photos. Compare against the same
+fixture and external 65×67 decoders and only then consider the larger
+G1/M02 hardware and performance gates. A malformed geometry must not be
+patched silently or presented as a faithful output.
+
+## Host-only AVIF correction feasibility — 2026-10-30
+
+**This is a follow-up engineering experiment on the previously verified
+synthetic Pixel AVIF bitstream, NOT a new phone test and NOT an exporter
+change.** Current runtime stays at `82a40bf2`, with [green
+CI 41107077558](https://github.com/santirodriguez/FixMyShot/actions/runs/41107077558).
+No HEIC/AVIF format was enabled or published. The file's SHA-256 remains
+`3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`
+(1,358 bytes).
+
+### Metadata-only native-bitstream remux experiment
+
+On a temporary host copy, retained the **exact AV1 `mdat` bytes and their
+file offsets** while updating the underlying `ispe` from 65×67 to
+**128×67** and associating a HEIF `clap` clean-aperture crop of **65×67**
+anchored to the left/top (horizontal offset **−31.5** relative to the
+128-wide image center). The added `clap` box/property association consumed
+41 bytes of the original `free` box so file length/encoded payload offsets
+remained unchanged. The resulting 1,358-byte test file has *different*
+SHA-256 `3693e60b5e39a01af4f250726d0665222a0599f91d13110e40b9d3fbaf9a5bab`.
+
+The host results **diverged**:
+
+| Host decoder | Test remux presentation | Interpretation |
+|---|---|---|
+| libheif 1.19.8 | 65×67, left-hand image visible, PSNR **26.0928 dB** | Applies the clean aperture |
+| Pillow 12.3.0/libavif 1.4.2 | **128×67** | Does not present a 65-pixel aperture in this path |
+| FFmpeg 7.1.5 | Rejected during header parsing | No decoded image from this prototype |
+
+This is a manually constructed, intentionally **unshipped** proof of concept.
+It does **not** establish AVIF conformance or interoperability; rejection
+may reflect the prototype's box arrangement or reader limitations. In
+particular, replacing only `ispe`, or adding `clap` without verifying
+independent-reader behavior, is NOT a safe product correction. Moreover
+even the correctly displayed 65×67 crop is below the 38 dB G1 regression
+target and still requires visual/color review. AVIF v1.2 §2.2.2–2.2.3
+defines `ispe` in terms of AV1 `UpscaledWidth`/`FrameHeight` and
+defines clean-aperture rules:
+https://aomediacodec.github.io/av1-avif/v1.2.0.html .
+
+### Software encoder reference (NOT an Android integration)
+
+An exact reconstruction of the repository's 65×67 RGB fixture was encoded
+on **Linux host only** using Pillow 12.3.0 / libavif 1.4.2,
+quality=100, speed=6, full range, with explicit chroma modes:
+
+| 65×67 software mode | Encoded size | Pillow PSNR / patch | FFmpeg PSNR / patch | libheif PSNR / patch |
+|---|---:|---:|---:|---:|
+| 4:2:0 | 479 B | 29.5502 dB / 1 | 27.2704 dB / 1 | 28.8866 dB / 1 |
+| 4:4:4 | 465 B | **55.7412 dB / 1** | **56.4998 dB / 1** | **56.4998 dB / 1** |
+
+All three host readers exposed **exactly 65×67**, and FFprobe showed
+`yuv420p` / `yuv444p` respectively with explicitly declared full range.
+This proves that a *software reference* can produce coherent small-image
+geometry and quality within G1 numeric thresholds in **4:4:4**. It
+does **not** prove that an Android build of the same libraries or every
+social/gallery destination supports 4:4:4.
+
+A single (not p95) host run with **four encoder threads** and the
+deterministic **1344×2992** screenshot-like fixture returned:
+
+| Mode | AVIF bytes | Single host encode | Whole-process peak RSS |
+|---|---:|---:|---:|
+| 4:2:0 | 9,078 | 0.973 s | 242,604 KiB |
+| 4:4:4 | 8,657 | 1.095 s | 267,844 KiB |
+
+The total RSS includes the **Python runtime and NumPy fixture**, so it
+is NOT attributable solely to libavif, nor comparable to Pixel's dynamic
+Java/native/PSS budget. The fixture is highly repetitive, not a real-world
+compression-size benchmark; cold/warm, p50/p95, device memory and other
+ABIs have **not** been measured. The 1344×2992 4:4:4 decode PSNR was
+55.73–56.49 dB across Pillow, FFmpeg and libheif (patch error 1).
+For 4:2:0 it ranged from 37.81 to 44.31 dB depending on reader; this
+decoder variation also needs color pipeline investigation.
+
+### Native YUV alternative: feasibility boundary
+
+AndroidX `AvifWriter.INPUT_MODE_BUFFER` exposes a direct
+`addYuvBuffer(ImageFormat.YUV_420_888, planarBytes)` route distinct
+from the existing EGL/bitmap path. Its current `EncoderBase`
+requires a tightly bounded `width*height*3/2` byte count and offers
+only 4:2:0 for ordinary 8-bit input. At **odd 65×67**, correctly sized
+4:2:0 chroma planes and this simple length rule do not trivially
+agree; at even sizes the geometry still depends on the device encoder.
+This mode was **read and assessed**, NOT run on the Pixel and NOT
+qualified as a 65×67 native fix. An experiment must not reinterpret
+the YUV byte array, silently pad/stretch/crop an exported image or
+claim that bypassing EGL alone proves conformance. Reference:
+https://developer.android.com/reference/androidx/heifwriter/AvifWriter .
+
+**Decision:** retain regular HEIC/AVIF gating. Reject the metadata-only
+remux as an export fix. For the next bounded implementation spike,
+prioritize pinning and measuring a **licensed libavif + AV1 software
+encoder** for Android ABIs, beginning with one synthetic 65×67 4:4:4
+candidate. Measure actual added compressed APK cost, native/PSS memory,
+time on Pixel and independently decoded pixels before considering
+a production route. A narrow direct-YUV native probe may be considered
+separately but has no positive Pixel evidence yet. Do not waive G1/M02,
+second hardware, metadata/color, source licensing or 16 KiB gates.
