@@ -85,3 +85,51 @@ pixels in independent decoders plus color/profile and visible geometry.
 Do not run another complete Android/legacy test matrix or ask the user to
 repeat this unchanged report. A different encoder, software fallback or
 format-scope change requires its own evidence and explicit decision.
+
+## Independent host control and next Pixel evidence boundary — 2026-10-29
+
+A bounded, non-Android control reconstructed the six-patch/high-contrast synthetic fixture
+from NativeCodecDiagnostic.fixture. Pillow 12.3.0 / libavif 1.4.2 encoded 65×67
+AVIF at quality 100 in explicit 4:2:0 and 4:4:4 modes. FFmpeg 7.1.5
+confirmed yuv420p and yuv444p, respectively. Reopened RGB results
+(PSNR against fixture, maximum 3×3 median-channel patch error):
+
+| 65×67 software control | Pillow | FFmpeg | libheif 1.19.8 |
+|---|---:|---:|---:|
+| AVIF 4:2:0 | 29.550 dB / 1 | 27.270 dB / 1 | 28.887 dB / 1 |
+| AVIF 4:4:4 | 55.741 dB / 1 | 56.500 dB / 1 | 56.500 dB / 1 |
+
+With the same Pillow/libavif 4:2:0 parameters, 64×64, 66×68 and
+1344×2992 returned 30.487, 29.623 and 37.811 dB respectively (all
+patch errors 1). These are host controls, NOT Pixel output, matched AndroidX
+codec settings or proof of independent decoder backend implementations.
+They show that extreme 7.247 dB / patch error 129 is not an unavoidable
+property of odd dimensions or nominal 4:2:0 chroma subsampling. An ordinary
+4:2:0 encode of sharp boundaries can miss the 38 dB project target; this
+requires G1 visual/cause review, not a silent relaxation or blanket exclusion.
+
+The original [API36 artifact 40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425)
+was retrieved: 2,279,411 bytes, SHA-256
+5b8535fc3a9e1f8e97c540190b1d2544a9fe69ae55cddd766eeebdef15bdb07e,
+68 distinct ZIP members and valid CRCs. Its grid report attempted six AVIF
+modes, ALL UNAVAILABLE / INVALID_OUTPUT on the emulator. Related HEIC
+66×68 and 96×68 observations are informative but cannot prove why
+physical Pixel AVIF is degraded. Repeating the same emulator matrix
+cannot replace actual Pixel bytes.
+
+Next missing primary evidence: the actual small synthetic Pixel-encoded AVIF
+for 65×67 at grid-on and grid-off, plus bounded 66×68 edge-padded and
+96×68 aligned controls. Compare container geometry/color properties,
+visible dimensions, the fixed 65×67 original-source ROI, Android's two
+decoder front-ends and separate host decoders. Android BitmapFactory and
+ImageDecoder may share an underlying implementation; agreement alone does
+not prove independent decoding. Current user-shared JSON cannot provide
+the compressed bytes (its candidates were safely deleted). The precise
+encoder-versus-decoder cause therefore remains UNKNOWN.
+
+A narrow opt-in diagnostic would need to generate ONLY deterministic synthetic
+content, bound private buffers and report size, remove temporary candidate
+files and share explicitly on user action. Do not read user photos, publish
+diagnostic bitstreams in source control, repeat the completed six-case check
+or enable native export prematurely. PNG/WebP and previously accepted editor
+behavior stay unchanged.
