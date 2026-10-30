@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
+import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -307,19 +308,74 @@ public final class ProbeActivity extends Activity {
                     }
                 }
                 result.put("trials", trialsJson);
-                Bitmap deviceDecode = BitmapFactory.decodeFile(encoded.getAbsolutePath());
-                if (deviceDecode == null) {
-                    result.put("device_decode_status", "UNAVAILABLE_OR_FAILED");
-                } else {
-                    if (deviceDecode.getWidth() != WIDTH || deviceDecode.getHeight() != HEIGHT) {
-                        result.put("device_decode_status", "WRONG_GEOMETRY");
-                        deviceDecode.recycle();
-                    } else {
-                        result.put("device_decode_status", "OK");
-                        result.put("quality", comparePixels(source, deviceDecode));
-                        reopened = deviceDecode;
+                // Compare three actual Android display paths on exactly the same bytes.
+                // Keep the original default route for preview; diagnostics do not
+                // silently select a more favorable decoder or lower its acceptance bar.
+                JSONArray decodeResults = new JSONArray();
+                for (String mode : new String[]{
+                        "bitmap_factory_default",
+                        "bitmap_factory_explicit_srgb",
+                        "image_decoder_srgb_software"}) {
+                    JSONObject outcome = new JSONObject();
+                    outcome.put("mode", mode);
+                    Bitmap decoded = null;
+                    try {
+                        if ("bitmap_factory_default".equals(mode)) {
+                            decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath());
+                        } else if ("bitmap_factory_explicit_srgb".equals(mode)) {
+                            BitmapFactory.Options options = new BitmapFactory.Options();
+                            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                            options.inPreferredColorSpace =
+                                    ColorSpace.get(ColorSpace.Named.SRGB);
+                            options.inScaled = false;
+                            decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath(), options);
+                        } else {
+                            decoded = ImageDecoder.decodeBitmap(
+                                    ImageDecoder.createSource(encoded),
+                                    (decoder, info, source) -> {
+                                        decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE);
+                                        decoder.setTargetColorSpace(
+                                                ColorSpace.get(ColorSpace.Named.SRGB));
+                                    });
+                        }
+                        if (decoded == null) {
+                            outcome.put("status", "UNAVAILABLE_OR_FAILED");
+                        } else {
+                            outcome.put("width", decoded.getWidth());
+                            outcome.put("height", decoded.getHeight());
+                            outcome.put("bitmap_config", String.valueOf(decoded.getConfig()));
+                            outcome.put("color_space", decoded.getColorSpace() == null
+                                    ? "UNKNOWN" : decoded.getColorSpace().getName());
+                            if (decoded.getWidth() != WIDTH || decoded.getHeight() != HEIGHT) {
+                                outcome.put("status", "WRONG_GEOMETRY");
+                            } else if (decoded.getColorSpace() == null
+                                    || !decoded.getColorSpace().isSrgb()) {
+                                outcome.put("status", "NOT_SRGB");
+                            } else {
+                                outcome.put("status", "OK");
+                                JSONObject quality = comparePixels(source, decoded);
+                                outcome.put("quality", quality);
+                                if ("bitmap_factory_default".equals(mode)) {
+                                    result.put("quality", quality);
+                                    reopened = decoded;
+                                    decoded = null; // Retain default-preview ownership.
+                                }
+                            }
+                        }
+                    } catch (Exception ex) {
+                        outcome.put("status", "DECODE_EXCEPTION");
+                        // No user input path, original pixels or image metadata in report.
+                        outcome.put("exception_type", ex.getClass().getSimpleName());
+                    } finally {
+                        if (decoded != null) decoded.recycle();
                     }
+                    decodeResults.put(outcome);
                 }
+                result.put("decoder_paths", decodeResults);
+                result.put("device_decode_status",
+                        decodeResults.getJSONObject(0).getString("status"));
+                result.put("comparison_scope", "three Android 8-bit sRGB display routes; "
+                        + "default preview retained; fidelity gate unchanged");
                 report = result;
                 if (synthetic) {
                     File privateReport = new File(getFilesDir(), "physical_ci_report.json");
@@ -361,6 +417,19 @@ public final class ProbeActivity extends Activity {
                 .append(" dB; max channel error: ")
                 .append(quality.optInt("max_channel_error"));
         }
+        JSONArray decoderPaths = json.optJSONArray("decoder_paths");
+        if (decoderPaths != null) {
+            for (int i = 0; i < decoderPaths.length(); i++) {
+                JSONObject path = decoderPaths.optJSONObject(i);
+                if (path == null) continue;
+                JSONObject q = path.optJSONObject("quality");
+                text.append("\n").append(path.optString("mode"))
+                        .append(": ").append(path.optString("status"));
+                if (q != null) text.append("; max channel error ")
+                        .append(q.optInt("max_channel_error"))
+                        .append("; pixels >2 ").append(q.optLong("pixels_error_gt_2"));
+            }
+        }
         text.append("\nThese are sampled maxima, not absolute peak PSS or production p95.");
         return text.toString();
     }
@@ -368,20 +437,36 @@ public final class ProbeActivity extends Activity {
     private static JSONObject comparePixels(Bitmap before, Bitmap after) throws Exception {
         int[] left = new int[WIDTH], right = new int[WIDTH];
         double sumSquares = 0;
-        int maxError = 0;
-        long alphaFailures = 0;
+        int maxError = 0, worstX = -1, worstY = -1;
+        long alphaFailures = 0, pixelsOver2 = 0, pixelsOver16 = 0;
+        long[] pixelErrorBins = new long[7]; // 0,1,2,3..7,8..15,16..31,32+
+        long[] channelOver2 = new long[3]; // RGB
+        long[][] errorGrid = new long[4][6]; // Four vertical by six horizontal zones.
         for (int y = 0; y < HEIGHT; y++) {
             before.getPixels(left, 0, WIDTH, 0, y, WIDTH, 1);
             after.getPixels(right, 0, WIDTH, 0, y, WIDTH, 1);
             for (int x = 0; x < WIDTH; x++) {
                 int a = left[x], b = right[x];
                 if (Color.alpha(a) != 255 || Color.alpha(b) != 255) alphaFailures++;
-                // No per-pixel arrays: a 4 MP image must not create millions of objects.
                 int redError = Math.abs(Color.red(a) - Color.red(b));
                 int greenError = Math.abs(Color.green(a) - Color.green(b));
                 int blueError = Math.abs(Color.blue(a) - Color.blue(b));
-                maxError = Math.max(maxError,
-                        Math.max(redError, Math.max(greenError, blueError)));
+                if (redError > 2) channelOver2[0]++;
+                if (greenError > 2) channelOver2[1]++;
+                if (blueError > 2) channelOver2[2]++;
+                int error = Math.max(redError, Math.max(greenError, blueError));
+                if (error > maxError) {
+                    maxError = error;
+                    worstX = x;
+                    worstY = y;
+                }
+                if (error > 2) {
+                    pixelsOver2++;
+                    errorGrid[y * 4 / HEIGHT][x * 6 / WIDTH]++;
+                }
+                if (error > 16) pixelsOver16++;
+                pixelErrorBins[error == 0 ? 0 : error == 1 ? 1 : error == 2 ? 2
+                        : error <= 7 ? 3 : error <= 15 ? 4 : error <= 31 ? 5 : 6]++;
                 sumSquares += (double) redError * redError
                         + (double) greenError * greenError
                         + (double) blueError * blueError;
@@ -394,7 +479,24 @@ public final class ProbeActivity extends Activity {
         quality.put("exact_rgb", mse == 0);
         quality.put("max_channel_error", maxError);
         quality.put("nonopaque_pixels", alphaFailures);
-        quality.put("comparison_scope", "Android display decode, 8-bit sRGB; visual review separate");
+        quality.put("pixels_error_gt_2", pixelsOver2);
+        quality.put("pixels_error_gt_16", pixelsOver16);
+        quality.put("worst_error_x", worstX);
+        quality.put("worst_error_y", worstY);
+        JSONArray binCounts = new JSONArray();
+        for (long count : pixelErrorBins) binCounts.put(count);
+        quality.put("max_channel_error_histogram_0_1_2_3to7_8to15_16to31_32plus", binCounts);
+        JSONArray channels = new JSONArray();
+        for (long count : channelOver2) channels.put(count);
+        quality.put("channel_error_gt_2_rgb", channels);
+        JSONArray grid = new JSONArray();
+        for (long[] row : errorGrid) {
+            JSONArray cells = new JSONArray();
+            for (long count : row) cells.put(count);
+            grid.put(cells);
+        }
+        quality.put("pixel_error_gt_2_grid_4x6", grid);
+        quality.put("comparison_scope", "Android display decoder sRGB 8-bit; visual review separate");
         return quality;
     }
 

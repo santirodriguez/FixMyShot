@@ -7,3 +7,5 @@ Do not enable AVIF in normal exports, change app permissions or signing, merge, 
 Focused correction: verify Android Gradle Plugin stripped .so by reproducing the exact NDK llvm-objcopy --strip-unneeded transform from source-verified raw inputs, keep strict ZIP/ELF hashes, and prevent alloc-heavy RGB comparison and stale image selection. Recheck the same synthetic diagnostic only.
 
 Focused API36 runner readiness fix: require a real app-private JSON file, validate its contents before accepting it, and verify the synthetic AVIF is present. Preserve bounded polling, timeout logcat, all quality/PSS gates, isolated signing and unchanged normal exporter.
+
+Isolated Android AVIF decode-path comparison only: on the exact same synthetic AVIF compare default BitmapFactory, explicit sRGB BitmapFactory.Options and sRGB-targeted software ImageDecoder. Record error counts, RGB histogram and coarse spatial error grid without source pixels; keep all existing presentation-fidelity limits and no Pixel handoff while any selected path fails. Preserve separate no-permission debug identity and source pins.

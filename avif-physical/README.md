@@ -59,10 +59,18 @@ no requirement to upload an original screenshot or APK to the repo.
   separately in JNI. Full wall time includes private file write and
   sampler contention. Three attempts on one screenshot are exploratory
   and are **not** an adequate cold/warm percentile study.
-- On-device `BitmapFactory` decoding compares exact dimensions,
-  decoded RGB PSNR and largest channel error against the original
-  in-memory sRGB image. This is a **device decode** comparison and
-  not a substitute for a separate host/viewer or human assessment.
+- The isolated decoder-matrix diagnostic compares the **same private AVIF bytes**
+  through default `BitmapFactory`, explicit sRGB `BitmapFactory.Options`, and
+  sRGB-targeted software `ImageDecoder`. It records each path's color space,
+  geometry, PSNR, max channel error, error histogram, worst pixel coordinate,
+  RGB per-channel error counts, and a 4×6 spatial distribution of errors >2.
+  Only aggregate metrics/coordinates are included; no user pixels or filenames
+  enter the JSON report. The user preview **remains** the original default
+  `BitmapFactory` result; a better alternate decode is diagnostic evidence,
+  not an automatic viewer switch or acceptance. CI retains the PSNR ≥38 dB
+  and max-channel-error ≤2 thresholds for the display routes. A red route
+  stays red until separately resolved. This is a **device decode** comparison
+  and not a substitute for independent host/viewer or human assessment.
   HDR, Display P3, alpha and EXIF-related appearance are deliberately
   not claimed in this narrow experiment.
 - Encoder output cap 16MiB; only width 1344 and height 2992, 8-bit
