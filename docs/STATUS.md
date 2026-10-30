@@ -18,6 +18,15 @@ release acceptance**. No more unchanged grid tests are indicated.
 Pixel-produced encoded bytes/independent host decode and the existing
 G1/M02, other-hardware, color, resource and release gates remain open.
 
+## Pending one-file AVIF sample diagnostic
+
+A distinct `.avifbytes` synthetic-only 65×67 AVIF handoff candidate
+has been implemented for a future exact-source CI checkpoint. It is not
+a physical Pixel result, native format approval, or production output.
+The earlier five-case geometry test remains completed; the next
+unresolved evidence is actual Pixel compressed bytes for independent
+host decoding, with explicit opt-in sharing and no personal images.
+
 ## Earlier accepted editor baseline — 2026-10-29
 
 The first functional Android implementation is on `release/0.1.0-editor` at

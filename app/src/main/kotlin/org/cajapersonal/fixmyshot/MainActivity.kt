@@ -184,8 +184,25 @@ class MainActivity : AppCompatActivity() {
                         !model.shareBusy && model.pendingImportCount == 0,
                     progress = model.oddAvifProgress, report = model.oddAvifReport,
                     shareError = model.oddAvifShareError,
+                    sampleRunning = model.avifSampleRunning,
+                    sampleStopping = model.avifSampleStopping,
+                    sample = model.avifSample,
+                    sampleShareError = model.avifSampleShareError,
                     onStart = { model.startOddAvifCheck(applicationContext) },
                     onCancel = model::cancelOddAvifCheck,
+                    onCaptureSample = { model.startAvifByteSample(applicationContext) },
+                    onCancelSample = model::cancelAvifByteSample,
+                    onShareSample = {
+                        val sampleText = model.avifSample?.takeIf { it.ready }?.toJson()
+                        if (sampleText != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, sampleText)
+                            }, getString(R.string.avif_sample_share)))
+                        } catch (_: android.content.ActivityNotFoundException) {
+                            model.avifByteShareUnavailable()
+                        } catch (_: SecurityException) { model.avifByteShareUnavailable() }
+                    },
                     onShare = {
                         val reportText = model.oddAvifReport?.toJson()
                         if (reportText != null) try {
@@ -198,8 +215,14 @@ class MainActivity : AppCompatActivity() {
                         } catch (_: SecurityException) { model.oddAvifShareUnavailable() }
                     },
                     onDismiss = {
-                        if (model.oddAvifRunning) model.cancelOddAvifCheck()
-                        else oddAvifOpen = false
+                        when {
+                            model.oddAvifRunning -> model.cancelOddAvifCheck()
+                            model.avifSampleRunning -> model.cancelAvifByteSample()
+                            else -> {
+                                model.clearAvifByteSample()
+                                oddAvifOpen = false
+                            }
+                        }
                     },
                 )
                 Surface(Modifier.fillMaxSize()) {

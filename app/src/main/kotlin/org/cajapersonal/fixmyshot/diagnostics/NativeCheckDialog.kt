@@ -80,7 +80,11 @@ internal fun NativeCheckDialog(
 internal fun OddAvifCheckDialog(
     running: Boolean, stopping: Boolean, canStart: Boolean, progress: Int,
     report: OddAvifReport?, shareError: Boolean,
-    onStart: () -> Unit, onCancel: () -> Unit, onShare: () -> Unit, onDismiss: () -> Unit,
+    sampleRunning: Boolean, sampleStopping: Boolean,
+    sample: AvifByteSample?, sampleShareError: Boolean,
+    onStart: () -> Unit, onCancel: () -> Unit, onShare: () -> Unit,
+    onCaptureSample: () -> Unit, onCancelSample: () -> Unit,
+    onShareSample: () -> Unit, onDismiss: () -> Unit,
 ) {
     AlertDialog(onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.odd_check_title)) },
@@ -114,13 +118,37 @@ internal fun OddAvifCheckDialog(
                     Text(stringResource(R.string.odd_check_share_note), style = MaterialTheme.typography.bodySmall)
                     TextButton(onClick = onShare) { Text(stringResource(R.string.odd_check_share)) }
                 }
-                if (shareError) Text(stringResource(R.string.native_check_share_error),
-                    color = MaterialTheme.colorScheme.error)
-                if (!running && !canStart) Text(stringResource(R.string.native_check_disabled))
+                Text(stringResource(R.string.avif_sample_note),
+                    style = MaterialTheme.typography.bodySmall)
+                if (sampleRunning) Text(stringResource(if (sampleStopping)
+                    R.string.native_check_stopping else R.string.avif_sample_running),
+                    modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite })
+                if (sample != null && !sampleRunning) {
+                    Text(stringResource(when {
+                        sample.ready -> R.string.avif_sample_ready
+                        sample.cancelled -> R.string.native_check_cancelled
+                        else -> R.string.avif_sample_failed
+                    }))
+                    if (sample.ready) TextButton(onClick = onShareSample) {
+                        Text(stringResource(R.string.avif_sample_share))
+                    }
+                }
+                if (!sampleRunning && !running) TextButton(enabled = canStart,
+                    onClick = onCaptureSample) {
+                    Text(stringResource(R.string.avif_sample_start))
+                }
+                if (shareError || sampleShareError)
+                    Text(stringResource(R.string.native_check_share_error),
+                        color = MaterialTheme.colorScheme.error)
+                if (!running && !sampleRunning && !canStart)
+                    Text(stringResource(R.string.native_check_disabled))
             }
         },
         confirmButton = {
-            if (running) TextButton(enabled = !stopping, onClick = onCancel) {
+            if (sampleRunning) TextButton(enabled = !sampleStopping,
+                onClick = onCancelSample) {
+                Text(stringResource(R.string.native_check_cancel))
+            } else if (running) TextButton(enabled = !stopping, onClick = onCancel) {
                 Text(stringResource(R.string.native_check_cancel))
             } else TextButton(enabled = canStart, onClick = onStart) {
                 Text(stringResource(R.string.odd_check_start))

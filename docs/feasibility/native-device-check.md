@@ -234,3 +234,45 @@ five-case test, weaken targets, enable native output or start another
 full matrix solely for these unchanged results. M02 physical real-image
 and second-hardware acceptance, resource/16 KiB runtime, and distribution
 gates remain OPEN.
+
+## One-file synthetic AVIF byte handoff — implementation candidate
+
+A new opt-in action inside the existing **Investigate AVIF alignment**
+dialog generates **one** deterministic **65×67** opaque-sRGB AVIF using
+the existing AndroidX `AvifWriter` bitmap route with grid enabled.
+This does **not** rerun the previously completed five-case alignment
+matrix and does not read selected photos, draft sources, gallery media or
+providers. Native export remains gated.
+
+The encoder retains its normal 8-second bound and regular candidate
+checks. The diagnostic additionally restricts the returned candidate
+to the owned private `native-still-*.avif` path, actual native AVIF route,
+valid `ftyp` AVIF brand and **8,192-byte maximum**. It encodes a
+SHA-256 and standard no-wrap Base64 into a closed JSON report, then
+deletes the temporary encoded file. The sample exists in ViewModel
+memory only while the dialog is open and is discarded on dismissal.
+Sharing requires an **independent explicit tap**, warns that the
+selected sharing app will receive the synthetic bytes and app/device
+metadata, and never transmits or publishes automatically. The debug
+identity `.avifbytes` / **FixMyShot AVIF Sample** is distinct from the
+accepted `.ux22next` and completed `.avifodd` diagnostics.
+
+The companion `scripts/check-avif-byte-sample.py` validates the
+source-bound APK digest, bounded Base64 length, exact decoded bytes,
+SHA-256, AVIF `ftyp` brand and schema before writing any optional
+`.avif` output for host-side independent decoding. The output cannot
+be treated as genuine AVIF unless an external decoder also reads and
+visually/quantitatively compares it. Three synthetic Android refusal/
+cleanup checks and five host JSON/byte-integrity tests are added to
+the explicit current API36 validation checkpoint. Until that
+exact-source CI succeeds and the isolated APK is checked, this is
+an **unverified implementation candidate** and no user retest is
+requested. After a qualified handoff, request only this new one-file
+Pixel capture; do not repeat the two completed diagnostic reports.
+
+The expected comparison is against the previous **65×67 grid-on**
+digest `3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`.
+A different SHA from a new build/encoder run is evidence to inspect,
+not grounds to fabricate a match. Both the native pipeline and
+software fallback decisions remain subject to G1/M02 and independent
+color, visible-geometry, resource and other-device acceptance.

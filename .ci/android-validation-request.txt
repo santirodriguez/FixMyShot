@@ -1,11 +1,8 @@
-Validate the isolated AVIF odd/aligned numeric diagnostic with three synthetic-only tests.
-Correct the host collector fixture from 23 to 26 expected import/settings test cases.
-Guard cleanup when an owned candidate returns a mismatched codec route, with a focused test.
-Compare 65x67 grid on/off, 66x68 padded grid on/off and 96x68 aligned grid off.
-Preserve PNG/WebP export, editor workflow, output policy and format defaults.
-Require owned-candidate cleanup, typed refusal, cancellation and zero user-image input.
-Keep the debug APK isolated as .avifodd; do not overwrite earlier installed diagnostics.
-Verify localized English, Spanish and Catalan copy and the bounded report schema.
-No new network/storage permission, native library, production signing or release action.
-Validate the API 34-only ImageDecoder path without changing minSdk 26.
+Validate one opt-in synthetic 65x67 AVIF Base64 handoff using a distinct debug APK.
+Validate base APK identity, sample SHA-256, encoded size, ftyp AVIF brand, and one synthetic-only file.
+Reject malformed samples; remove owned private files after capture/cancellation.
+Do not read personal photos, write to gallery, add permissions, alter production codecs or export defaults.
+Three focused Android test cases plus five host refusal tests; expected import/session group is 29.
+Use isolated .avifbytes debug ID, retaining all earlier diagnostic installs.
+Build/lint and the existing current API36 regression profile once for this new source.
 profile=current

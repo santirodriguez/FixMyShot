@@ -50,6 +50,7 @@ jobs:
           python3 scripts/test-native-probe.py
           python3 scripts/test-native-grid.py
           python3 scripts/test-odd-avif-report.py
+          python3 scripts/test-avif-byte-sample.py
           python3 scripts/test-heic-layout.py
           python3 scripts/test-saf-provider.py
       - name: Install pinned Android build packages

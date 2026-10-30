@@ -250,6 +250,12 @@
     <string name="odd_check_measured">Descodificat per comparar. Aparença no aprovada.</string>
     <string name="odd_check_share_note">Pots compartir el resum numèric. Inclou versions del dispositiu i de la app, hash de l\'APK i mesures sintètiques, però no fotos ni fitxers d\'imatge codificats.</string>
     <string name="odd_check_share">Comparteix la comparació AVIF</string>
+    <string name="avif_sample_note">Genera una sola mostra AVIF sintètica de 65×67. No llegeix imatges personals. Compartir el Base64 envia la mostra i dades del dispositiu i de l\'app a l\'aplicació que triïs; res no s\'envia automàticament. Això no activa l\'exportació AVIF.</string>
+    <string name="avif_sample_running">Codificant la mostra AVIF sintètica…</string>
+    <string name="avif_sample_ready">Mostra preparada. Comparteix-la només si vols; l\'exportació AVIF continua desactivada.</string>
+    <string name="avif_sample_failed">No s\'ha pogut generar una mostra AVIF sintètica verificada.</string>
+    <string name="avif_sample_start">Genera una mostra AVIF sintètica</string>
+    <string name="avif_sample_share">Comparteix l\'AVIF sintètic (Base64)</string>
     <string name="odd_check_start">Inicia comparació focalitzada</string>
     <string name="native_check_title">Comprovar HEIC i AVIF</string>
     <string name="native_check_body">Fa sis comprovacions amb imatges sintètiques, incloses dimensions senars i 1344×2992. No llegeix les imatges seleccionades ni desa res a la galeria. Cada intent sol·licita un temps límit de vuit segons; el còdec del dispositiu pot trigar més a respondre. Aquesta comprovació preliminar no activa l’exportació HEIC/AVIF.</string>

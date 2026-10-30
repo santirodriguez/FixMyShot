@@ -44,6 +44,8 @@ import org.cajapersonal.fixmyshot.diagnostics.NativeCheckReport
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
 import org.cajapersonal.fixmyshot.diagnostics.OddAvifDiagnostic
 import org.cajapersonal.fixmyshot.diagnostics.OddAvifReport
+import org.cajapersonal.fixmyshot.diagnostics.AvifByteSampler
+import org.cajapersonal.fixmyshot.diagnostics.AvifByteSample
 
 /** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
@@ -287,6 +289,15 @@ internal class ReviewViewModel : ViewModel() {
     var oddAvifShareError by mutableStateOf(false)
         private set
     private var oddAvifCancel: AtomicBoolean? = null
+    var avifSampleRunning by mutableStateOf(false)
+        private set
+    var avifSampleStopping by mutableStateOf(false)
+        private set
+    var avifSample by mutableStateOf<AvifByteSample?>(null)
+        private set
+    var avifSampleShareError by mutableStateOf(false)
+        private set
+    private var avifSampleCancel: AtomicBoolean? = null
 
     /** Explicit synthetic check, serialized with private export/session work and never auto-started. */
     fun startNativeCheck(context: Context) {
@@ -366,10 +377,53 @@ internal class ReviewViewModel : ViewModel() {
 
     fun oddAvifShareUnavailable() { oddAvifShareError = true }
 
+    /** One explicitly requested synthetic 65x67 file, never an import or draft source. */
+    fun startAvifByteSample(context: Context) {
+        if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
+        val app = context.applicationContext
+        val stop = AtomicBoolean(false)
+        avifSampleCancel = stop
+        avifSampleRunning = true
+        avifSampleStopping = false
+        avifSample = null
+        avifSampleShareError = false
+        isBusy = true
+        exportWorker.execute {
+            val outcome = try {
+                AvifByteSampler(File(app.cacheDir, "batch-candidates"),
+                    Runtime.getRuntime().maxMemory()).run(stop).withAppIdentity(app, stop)
+            } catch (_: Exception) { AvifByteSample(reason = "DIAGNOSTIC_FAILED") }
+            main.post {
+                if (avifSampleCancel !== stop) return@post
+                avifSample = outcome.takeUnless { stop.get() }
+                avifSampleCancel = null
+                avifSampleRunning = false
+                avifSampleStopping = false
+                isBusy = false
+            }
+        }
+    }
+
+    fun cancelAvifByteSample() {
+        if (!avifSampleRunning) return
+        avifSampleCancel?.set(true)
+        avifSampleStopping = true
+    }
+
+    /** Remove the one synthetic bitstream from the retained ViewModel after the dialog closes. */
+    fun clearAvifByteSample() {
+        cancelAvifByteSample()
+        avifSample = null
+        avifSampleShareError = false
+    }
+
+    fun avifByteShareUnavailable() { avifSampleShareError = true }
+
     fun foregroundChanged(visible: Boolean) {
         inForeground = visible
         if (!visible) cancelNativeCheck()
         if (!visible) cancelOddAvifCheck()
+        if (!visible) cancelAvifByteSample()
         if (!visible && activeToken != null) {
             foregroundPause.set(true)
             exportState = exportState.copy(pauseRequested = true)
@@ -944,6 +998,8 @@ internal class ReviewViewModel : ViewModel() {
     override fun onCleared() {
         nativeCheckCancel?.set(true)
         oddAvifCancel?.set(true)
+        avifSampleCancel?.set(true)
+        avifSample = null
         cancelJob?.set(true)
         importStop?.set(true)
         ++importGeneration

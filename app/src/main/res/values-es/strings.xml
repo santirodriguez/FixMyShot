@@ -250,6 +250,12 @@
     <string name="odd_check_measured">Decodificado para comparar. La apariencia no está aprobada.</string>
     <string name="odd_check_share_note">Podés compartir el informe numérico. Incluye versiones del dispositivo y la app, hash del APK y mediciones sintéticas, pero no fotos ni archivos de imagen codificados.</string>
     <string name="odd_check_share">Compartir comparación AVIF</string>
+    <string name="avif_sample_note">Genera una sola muestra AVIF sintética de 65×67. No lee tus imágenes. Compartir el Base64 envía la muestra y datos del dispositivo y la app a la aplicación que elijas; no se envía nada automáticamente. Esto no habilita la exportación AVIF.</string>
+    <string name="avif_sample_running">Codificando la muestra AVIF sintética…</string>
+    <string name="avif_sample_ready">Muestra lista. Compartila solo si querés; AVIF sigue deshabilitado para exportación.</string>
+    <string name="avif_sample_failed">No se pudo generar una muestra AVIF sintética verificada.</string>
+    <string name="avif_sample_start">Generar una muestra AVIF sintética</string>
+    <string name="avif_sample_share">Compartir AVIF sintético (Base64)</string>
     <string name="odd_check_start">Iniciar comparación puntual</string>
     <string name="native_check_title">Comprobar HEIC y AVIF</string>
     <string name="native_check_body">Hace seis comprobaciones con imágenes sintéticas, incluidas dimensiones impares y 1344×2992. No lee las imágenes seleccionadas ni guarda nada en la galería. Cada intento solicita un tiempo límite de ocho segundos; el códec del dispositivo puede tardar más en responder. Esta comprobación preliminar no habilita la exportación HEIC/AVIF.</string>

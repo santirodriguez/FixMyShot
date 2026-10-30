@@ -250,6 +250,12 @@
     <string name="odd_check_measured">Decoded for comparison. Appearance is not approved.</string>
     <string name="odd_check_share_note">Share the numeric report if you choose. It contains device and app versions, an APK hash and synthetic measurements, but no photo or encoded image bytes.</string>
     <string name="odd_check_share">Share AVIF comparison</string>
+    <string name="avif_sample_note">One new 65×67 synthetic AVIF sample only. It never reads your images. Sharing Base64 transfers the sample text and device/app details to the app you select; nothing is sent automatically. This does not enable AVIF export.</string>
+    <string name="avif_sample_running">Encoding the synthetic AVIF sample…</string>
+    <string name="avif_sample_ready">Sample ready. Share it only if you choose; AVIF export remains disabled.</string>
+    <string name="avif_sample_failed">Could not produce a verified synthetic AVIF sample.</string>
+    <string name="avif_sample_start">Generate one synthetic AVIF</string>
+    <string name="avif_sample_share">Share synthetic AVIF (Base64)</string>
     <string name="odd_check_start">Run focused comparison</string>
     <string name="native_check_title">Check HEIC and AVIF</string>
     <string name="native_check_body">Runs six checks with synthetic images, including odd dimensions and 1344×2992. Selected images are not read and nothing is saved to the gallery. Each attempt requests an eight-second timeout; a device codec may take longer to return. This preliminary check does not enable HEIC/AVIF export.</string>

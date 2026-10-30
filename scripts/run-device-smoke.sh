@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.avifodd
+package=org.cajapersonal.fixmyshot.avifbytes
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -168,7 +168,7 @@ share_result=$?
 cat evidence/share-intents-instrumentation.txt
 # Import/recreation, settings/sessions, typed feedback and offline native-check policy/metrics.
 timeout 3m adb shell am instrument -w -r \
-  -e class org.cajapersonal.fixmyshot.ImportSettingsFlowTest,org.cajapersonal.fixmyshot.ReviewSessionTest,org.cajapersonal.fixmyshot.ResultsFeedbackTest,org.cajapersonal.fixmyshot.NativeDiagnosticTest,org.cajapersonal.fixmyshot.OddAvifDiagnosticTest \
+  -e class org.cajapersonal.fixmyshot.ImportSettingsFlowTest,org.cajapersonal.fixmyshot.ReviewSessionTest,org.cajapersonal.fixmyshot.ResultsFeedbackTest,org.cajapersonal.fixmyshot.NativeDiagnosticTest,org.cajapersonal.fixmyshot.OddAvifDiagnosticTest,org.cajapersonal.fixmyshot.AvifByteSampleTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/import-settings-instrumentation.txt 2>&1
 import_settings_result=$?
 cat evidence/import-settings-instrumentation.txt
@@ -198,7 +198,7 @@ grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (12 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
-grep -q 'OK (26 tests)' evidence/import-settings-instrumentation.txt
+grep -q 'OK (29 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (7 tests)' evidence/batch-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt
