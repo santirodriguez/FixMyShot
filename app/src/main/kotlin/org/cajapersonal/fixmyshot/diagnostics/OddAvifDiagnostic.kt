@@ -123,8 +123,6 @@ internal class OddAvifDiagnostic(
             when (val result = encode(bitmap, request, cancel, mode.grid)) {
                 is EncodeResult.Failed -> return OddAvifSample(mode, result.reason.name)
                 is EncodeResult.Encoded -> {
-                    if (result.route != CodecRoute.NATIVE_AVIF)
-                        return OddAvifSample(mode, "WRONG_CODEC_ROUTE")
                     val file = result.file
                     val canonical = file.canonicalFile
                     if (canonical.parentFile != directory.canonicalFile ||
@@ -132,6 +130,8 @@ internal class OddAvifDiagnostic(
                         !file.name.startsWith("native-still-") || file.extension != "avif")
                         return OddAvifSample(mode, "UNOWNED_CANDIDATE")
                     owned = file
+                    if (result.route != CodecRoute.NATIVE_AVIF)
+                        return OddAvifSample(mode, "WRONG_CODEC_ROUTE")
                     if (cancel.get()) throw InterruptedIOException()
                     if (file.length() !in 16L..MAX_BYTES) return OddAvifSample(mode, "SIZE_LIMIT")
                     val bytes = file.readBytes()

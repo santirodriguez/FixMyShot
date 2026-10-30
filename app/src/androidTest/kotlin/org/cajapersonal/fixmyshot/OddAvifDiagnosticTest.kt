@@ -51,13 +51,14 @@ class OddAvifDiagnosticTest {
                 directory.mkdirs()
                 val candidate = File.createTempFile("native-still-", ".avif", directory)
                 candidate.outputStream().use { assertTrue(bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)) }
-                EncodeResult.Encoded(candidate, CodecRoute.NATIVE_AVIF, 1L)
+                EncodeResult.Encoded(candidate, if (calls == 1) CodecRoute.NATIVE_HEIC else CodecRoute.NATIVE_AVIF, 1L)
             }
             val report = checker.run(AtomicBoolean(false))
             if (Build.VERSION.SDK_INT >= 34) {
                 assertEquals(5, calls)
                 assertEquals(5, report.samples.size)
-                assertTrue(report.samples.all { it.reason == "INVALID_OUTPUT" })
+                assertEquals("WRONG_CODEC_ROUTE", report.samples.first().reason)
+                assertTrue(report.samples.drop(1).all { it.reason == "INVALID_OUTPUT" })
                 assertTrue(directory.listFiles().isNullOrEmpty())
             } else {
                 assertEquals(0, calls)
