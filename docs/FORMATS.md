@@ -1,5 +1,37 @@
 # Codec status
 
+## Isolated JNI software AVIF: diagnostic feasibility only — 2026-10-30
+
+[Exact-source Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
+at `a511232d` passed three JNI ABI builds, the matched-debug-APK
+size/diff check, and API36 synthetic JNI encoding. With opt-in
+`fixmyshot.avifProbeMode=native`, the three packaged
+`libavif_probe.so` libraries plus original notices increased a
+same-source diagnostic APK by **8,629,021 bytes (8.229 MiB)**,
+from 16,940,589 to 25,569,610 bytes. All 473 prior APK members
+had matching uncompressed bytes; 16 KiB ELF/ZIP alignment is
+structurally verified. This is **not** a shipping APK footprint.
+
+In API36 x86_64, 20 small and 5 large synthetic test encodes
+loaded the JNI successfully. The 1344x2992 encoder-only observed
+median/p95 were **8.963/12.269 seconds**; whole-process cumulative
+`ru_maxrss` reached **285,800 KiB**, but the maximum
+**98,948 KiB post-encode PSS** was not sampled during encoding.
+Independent host pixel decoding confirmed geometry and full-range
+YUV444 with RGB PSNR **58.6887/58.7403 dB** and max channel
+error **1** at 65x67 / 1344x2992, respectively. Patterns are
+synthetic and highly repetitive, not real screenshot acceptance.
+
+The [full JNI feasibility evidence](feasibility/native-device-check.md#isolated-jni-avif-diagnostic-apk-and-api-36-feasibility--2026-10-30)
+does **not** qualify Pixel or other hardware, physical 16 KiB
+runtime, actual peak PSS/cold-warm p95, realistic screenshot
+color/alpha/HDR/metadata, broad decoder interoperability,
+transitive licensing/patent clearance, or G1/M02. The earlier
+Pixel AndroidX AVIF geometry problem is not fixed; HEIC/AVIF
+remain **disabled for normal export**. PNG and lossless WebP,
+new-session defaults and production formats remain unchanged.
+
+
 ## Standalone Android software AVIF reference (not a shipping format)
 
 Pinned libavif 1.4.2 / libaom 3.15.2 compiled for all three shipping

@@ -531,3 +531,118 @@ gated and PNG/lossless WebP unchanged. The next proposed step is a
 **separately reviewed isolated JNI/package-cost and resource
 measurement**, with no production selector or default change.
 
+
+## Isolated JNI AVIF diagnostic APK and API 36 feasibility — 2026-10-30
+
+**Exact source:** `a511232d8dce0896cb98d352f45b16903df16df0` on
+`release/0.1.0-editor`, [isolated Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
+**SUCCESS** on attempt 1, all five jobs: three source-built JNI ABIs,
+same-source diagnostic APK comparison and API 36 x86_64 instrumentation.
+This experiment is opt-in via `fixmyshot.avifProbeMode`: no ordinary
+FixMyShot exporter, new format selection, production APK, app permission,
+signing identity, external file, release or publication was changed.
+The debug diagnostic identity is `org.cajapersonal.fixmyshot.avifprobe`.
+
+**Reproducibility/provenance scope:** libavif v1.4.2 source
+`c5240fc79fe5c2407e10afd35f5505ef6333ea49`; libaom v3.15.2
+source `af3dc9aadc793c1b00edc003e3fc19a44fdeb574`;
+NDK `28.2.13676358`. The source script checks exact Git commits
+before compiling. Original libavif/libaom LICENSE and libaom PATENTS
+files were captured with hashes and packaged into the diagnostic APK.
+These source and legal receipts do **not** complete patent, publisher,
+GPL interoperability, transitive-license or production-distribution
+clearance.
+
+| Artifact from exact run | GitHub artifact ID | ZIP SHA-256 |
+|---|---:|---|
+| `arm64-v8a` JNI | `13016110805` | `6d83f80ad555dfe6bd4130e5fe2d2bb69aa7b12ef5583c9a703c70da2bfedc9a` |
+| `armeabi-v7a` JNI | `13014812120` | `1d8943615964bc2eaa31be53bb50d4ba8027693101507646a6439552dad06b68` |
+| `x86_64` JNI | `13014612715` | `42173a1ba66553fb54e6e54fb0e553c9c5c70875857458788694ff15b677ca79` |
+| Diagnostic APK pair | `13016965577` | `7888d95555cf8755d686405cfdb3ebc5fd4e08097db99deb9510161e30617ab4` |
+| API36 JNI results | `13015802549` | `8af04b6f88775e1829f6c56f9bb2932a6acb8f0ab507fe567ad5dad10279a834` |
+
+All five downloaded ZIPs were verified against the provider digests;
+member uniqueness, safe paths and CRCs passed. Independent APK inspection
+verified the exact added payload and native structural alignment.
+
+### Actual equivalent diagnostic APK cost
+
+| Source-matched debug package | Exact size | SHA-256 |
+|---|---:|---|
+| Baseline without AVIF JNI | **16,940,589 bytes** | `3cc645b5a1ef56f67798200da8f78c1f7ff598ccc1d8b997d5ede7ee8252088e` |
+| With AVIF JNI | **25,569,610 bytes** | `f13a5c28c4db3c428cc1a5f8067f2d6b3cccae5c837a572d6d8abe695b0af0fe` |
+| Added size | **8,629,021 bytes** (**8.229 MiB**, +50.937%) | Same source, variant, debug identity |
+
+All **473 existing APK ZIP members have identical uncompressed bytes**
+between these two packages. The six additions are three source-built
+`libavif_probe.so` files and three license/patent files. The packaged
+JNI libraries are **2,973,176** (arm64), **2,516,908** (ARMv7)
+and **3,097,648** (x86_64) bytes; combined **8,587,732** bytes,
+stored uncompressed. The three added legal files total **27,432**
+uncompressed bytes. The difference includes ZIP packaging/alignment
+overhead. These are **actual diagnostic APK bytes**, not an extrapolated
+compressed CLI estimate or a production release APK optimization.
+
+All three packaged JNI ELFs each have three aligned/congruent
+`PT_LOAD` segments with `p_align >= 16384`. All three
+`ZIP_STORED` JNI member data offsets are divisible by 16,384;
+the existing APK members were also independently preserved.
+This is structural **16 KiB ELF/ZIP PASS**, not proof of runtime
+loading on a physical 16 KiB device; the tested emulator page size
+was **4096** bytes.
+
+### JNI runtime: API 36 x86_64 synthetic output
+
+The instrumented APK test finished **OK (1 test)** in 48.364 s.
+It loaded `libavif_probe.so` inside the diagnostic app process
+and ran **20 sequential 65x67** plus **5 sequential 1344x2992**
+deterministic synthetic encodes (not 25 independent cold starts).
+Times below measure `avifEncoderWrite` only, excluding fixture RGB
+construction/conversion, file output and external provider operations.
+P95 uses the nearest-rank statistic; five large iterations are
+insufficient for a robust production percentile.
+
+| API 36 x86_64 measure | 65x67 (n=20) | 1344x2992 (n=5) |
+|---|---:|---:|
+| Median encode | **64.423 ms** | **8,962.779 ms** |
+| Nearest-rank p95 | **130.076 ms** | **12,268.763 ms** |
+| First output size | **466 bytes** | **6,092 bytes** |
+| Maximum post-encode PSS | **94,257 KiB** | **98,948 KiB** |
+| Maximum cumulative process `ru_maxrss` | **201,952 KiB** | **285,800 KiB** |
+
+PSS is sampled **before and after** each encode, not during the
+operation; its maximum after value is **not peak encoding PSS**.
+`ru_maxrss` is a cumulative whole-process peak RSS, not
+codec-only memory or PSS. The large-source fixture is highly
+repetitive, and its small encoded size does not measure compression
+performance for a real screenshot. This experiment does not isolate
+cold versus warm starts or measure Pixel CPU/memory/throughput.
+
+Both **actual Android-generated** files were independently decoded
+with a separate host FFmpeg and compared pixel by pixel against the
+deterministic synthetic reference. FFprobe reported 65x67 and
+1344x2992 respectively, YUV 4:4:4 full range with BT.709 primaries
+and sRGB transfer. The small file is
+`9a88dd96dd1df5008aba8342fb8e70a9f3b51ccff0681ca1e40805d73c475fd9`
+SHA-256; the large file is
+`a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2`.
+RGB PSNR is **58.6887 dB** (small) / **58.7403 dB** (large);
+max 3x3 median patch-channel error **1**, max per-channel absolute
+error **1** for both. Thus these two synthetic output geometries
+and the numeric G1 fixture target pass without the Pixel AndroidX
+AV1 raster/ispe mismatch. This does not prove metadata, HDR,
+alpha, realistic colored text, gallery/receiver interoperation or
+all decoders/devices.
+
+**Decision and remaining gates:** the opt-in JNI/diagnostic APK
+cost and API 36 synthetic encoding feasibility experiment is
+**PASS in its explicitly bounded scope**. It is not production
+integration or delivery acceptance. Normal HEIC/AVIF export remains
+unavailable, PNG/lossless WebP remain unchanged, and the earlier
+Pixel native AndroidX AVIF geometry failure is not repaired.
+Physical Pixel and second-hardware real-photo/text/color checks,
+16 KiB **runtime**, controlled peak native/PSS and device p95,
+transitive source/license/publisher/patent audit, actual production
+APK decision, signing, merge and release gates remain **OPEN**.
+No earlier user-accepted Pixel diagnostic must be repeated.
+

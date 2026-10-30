@@ -1,5 +1,39 @@
 # Completion status
 
+## Isolated AVIF JNI APK cost and API 36 — verified 2026-10-30
+
+Pinned source-built libavif/libaom JNI completed
+[Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
+**SUCCESS** at exact source `a511232d8dce0896cb98d352f45b16903df16df0`:
+three ABI shared-library jobs, same-source/same-debug-package
+APKs, and x86_64 API 36 instrumented synthetic encoding.
+The real diagnostic APK delta is **8,629,021 B (8.229 MiB)**:
+16,940,589 B without JNI versus 25,569,610 B with JNI.
+All 473 preexisting ZIP members retain identical uncompressed bytes;
+three libraries and three original license/patent texts are the only additions.
+Packaged ELF/ZIP structural 16 KiB checks PASS.
+
+API 36 loaded the JNI and performed 20 small 65x67 / five
+1344x2992 sequential encodes. Encoder-only medians were **64.423 ms**
+and **8,962.779 ms**; nearest-rank p95 **130.076 ms** and
+**12,268.763 ms**, respectively. Maximum post-encode PSS
+was **94,257 / 98,948 KiB**, while whole-process cumulative
+`ru_maxrss` reached **201,952 / 285,800 KiB**.
+PSS was sampled outside the actual encoding window: it is
+**not peak PSS**, and no Pixel memory or p95 is established.
+Independent host decoding of Android outputs reproduced exact
+65x67 / 1344x2992 geometry, full-range YUV444, RGB PSNR
+**58.6887 / 58.7403 dB**, and maximum per-channel error **1**.
+
+The [full evidence and scope limits](feasibility/native-device-check.md#isolated-jni-avif-diagnostic-apk-and-api-36-feasibility--2026-10-30)
+separate this synthetic debug variant from ordinary exports.
+The diagnostic emulator uses 4 KiB pages; physical 16 KiB
+runtime, real-image/device fidelity, peak PSS, second hardware,
+publisher/patent/compliance review and G1/M02 remain **OPEN**.
+No AVIF or HEIC regular export, permission, signing, merge,
+release or production APK changed.
+
+
 ## Isolated Android software AVIF reference — verified 2026-10-30
 
 The source-pinned standalone libavif 1.4.2 / libaom 3.15.2 experiment
