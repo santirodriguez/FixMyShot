@@ -7,4 +7,5 @@ Require owned-candidate cleanup, typed refusal, cancellation and zero user-image
 Keep the debug APK isolated as .avifodd; do not overwrite earlier installed diagnostics.
 Verify localized English, Spanish and Catalan copy and the bounded report schema.
 No new network/storage permission, native library, production signing or release action.
+Validate the API 34-only ImageDecoder path without changing minSdk 26.
 profile=current

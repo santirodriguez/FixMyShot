@@ -115,6 +115,8 @@ internal class OddAvifDiagnostic(
         return OddAvifReport(samples, cancel.get(), failed)
     }
 
+    // This method is invoked only after run() returns early below API 34.
+    @android.annotation.TargetApi(34)
     private fun attempt(source: Bitmap, bitmap: Bitmap, mode: OddAvifMode,
                         cancel: AtomicBoolean): OddAvifSample {
         var owned: File? = null
