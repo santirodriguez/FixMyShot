@@ -47,3 +47,12 @@ if(FIXMYSHOT_AVIF_JNI_PROBE)
     target_link_libraries(avif_probe PRIVATE avif)
     target_link_options(avif_probe PRIVATE "-Wl,-z,max-page-size=16384" "-Wl,--gc-sections" "-Wl,--no-undefined")
 endif()
+
+# Separate opt-in physical-device diagnostic; never linked into production targets.
+option(FIXMYSHOT_AVIF_PHYSICAL_PROBE "Build opt-in bitmap AVIF physical diagnostic" OFF)
+if(FIXMYSHOT_AVIF_PHYSICAL_PROBE)
+    add_library(avif_physical SHARED avif_physical_jni.c)
+    target_compile_options(avif_physical PRIVATE -Wall -Wextra -Werror -fvisibility=hidden)
+    target_link_libraries(avif_physical PRIVATE avif jnigraphics)
+    target_link_options(avif_physical PRIVATE "-Wl,-z,max-page-size=16384" "-Wl,--no-undefined")
+endif()

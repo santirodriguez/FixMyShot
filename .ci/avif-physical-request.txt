@@ -1,0 +1,5 @@
+Build a one-time isolated physical software AVIF diagnostic APK.
+Only arm64-v8a for the Pixel and x86_64 for disposable emulator testing.
+User screenshots must remain local, selected manually through the system picker, and never enter CI or repository artifacts.
+Report concurrent sampled PSS/native heap and real 1344x2992 sRGB visual fidelity; no claim of exact peak or production p95.
+Do not enable AVIF in normal exports, change app permissions or signing, merge, release or publish.

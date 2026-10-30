@@ -1,0 +1,163 @@
+name: AVIF physical probe diagnostic APK (isolated)
+# No ordinary app build, user photos, persistent keys, or publication.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/avif-physical-request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: avif-physical-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  physical-abis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        abi: [arm64-v8a, x86_64]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate physical-only build script and report verifier
+        run: |
+          bash -n scripts/avif-software/build-android-physical.sh
+          bash -n scripts/avif-software/run-physical-emulator.sh
+          python3 -m py_compile scripts/avif-software/physical_package.py
+      - name: Install pinned NDK and CMake
+        run: bash scripts/setup-android.sh
+      - name: Cross-compile source-pinned physical diagnostic library
+        env:
+          ABI: ${{ matrix.abi }}
+        run: |
+          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/28.2.13676358"
+          bash scripts/avif-software/build-android-physical.sh "$RUNNER_TEMP/physical-$ABI" "$ABI"
+          mkdir -p "evidence/physical-$ABI"
+          cp -a "$RUNNER_TEMP/physical-$ABI/evidence/." "evidence/physical-$ABI/"
+      - name: Preserve exact source and original native notices
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-physical-${{ matrix.abi }}-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/physical-${{ matrix.abi }}/
+
+  physical-apk:
+    needs: physical-abis
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: avif-physical-*-${{ github.sha }}
+          path: ${{ runner.temp }}/physical-artifacts
+      - name: Verify pinned source inputs, ELF and notice receipts
+        run: |
+          mkdir -p evidence/physical-apk
+          python3 scripts/avif-software/physical_package.py prepare \
+            "$RUNNER_TEMP/physical-artifacts" "$RUNNER_TEMP/physical-inputs" "$GITHUB_SHA" LICENSE \
+            > evidence/physical-apk/native-receipt.json
+      - name: Install SDK and validate committed Gradle wrapper
+        run: |
+          bash scripts/setup-android.sh
+          bash scripts/bootstrap-gradle.sh
+      - name: Assemble only the isolated debug diagnostic module
+        run: |
+          ./gradlew --no-daemon :avif-physical:assembleDebug \
+            -Pfixmyshot.avifPhysicalProbe=true \
+            -Pfixmyshot.avifPhysicalLibsDir="$RUNNER_TEMP/physical-inputs/jniLibs" \
+            -Pfixmyshot.avifPhysicalNoticesDir="$RUNNER_TEMP/physical-inputs/assets"
+          cp avif-physical/build/outputs/apk/debug/avif-physical-debug.apk \
+            evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk
+      - name: Verify actual APK source, ELF/ZIP alignment and no new permissions
+        run: |
+          python3 scripts/avif-software/physical_package.py check-apk \
+            evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
+            evidence/physical-apk/native-receipt.json \
+            > evidence/physical-apk/apk-review.json
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging \
+            evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
+            > evidence/physical-apk/badging.txt
+          grep -q "package: name='org.cajapersonal.fixmyshot.avifphysical'" evidence/physical-apk/badging.txt
+          grep -q "sdkVersion:'31'" evidence/physical-apk/badging.txt
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump permissions \
+            evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
+            > evidence/physical-apk/permissions.txt
+          if grep -E 'uses-permission|permission: name=' evidence/physical-apk/permissions.txt; then
+            echo 'The physical diagnostic must not request any Android permissions' >&2
+            exit 1
+          fi
+          "$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose \
+            evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
+            > evidence/physical-apk/debug-signature-check.txt
+          sha256sum evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
+            > evidence/physical-apk/apk-sha256.txt
+          git diff --exit-code -- gradle.lockfile app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
+      - name: Preserve APK for private manual device handoff (debug signature, NOT release)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-physical-apk-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/physical-apk/
+
+  api36-synthetic:
+    needs: physical-apk
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: avif-physical-apk-${{ github.sha }}
+          path: candidate
+      - name: Install host-only FFmpeg for independent synthetic output check
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          mkdir -p evidence/physical-api36
+          ffprobe -version > evidence/physical-api36/ffprobe-version.txt
+      - name: Enable emulator virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run only built-in synthetic bitmap, never actual user files
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: 36
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: bash scripts/avif-software/run-physical-emulator.sh
+      - name: Preserve only synthetic output, report and device-model evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-physical-api36-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/physical-api36/
