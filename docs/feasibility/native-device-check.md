@@ -460,3 +460,74 @@ time on Pixel and independently decoded pixels before considering
 a production route. A narrow direct-YUV native probe may be considered
 separately but has no positive Pixel evidence yet. Do not waive G1/M02,
 second hardware, metadata/color, source licensing or 16 KiB gates.
+
+## Three-ABI Android software AVIF reference — successful synthetic CI — 2026-10-30
+
+**Scope:** standalone source-built **libavif v1.4.2**
+(`c5240fc79fe5c2407e10afd35f5505ef6333ea49`) with **libaom
+v3.15.2** (`af3dc9aadc793c1b00edc003e3fc19a44fdeb574`)
+and Android NDK `28.2.13676358`. Only the synthetic 65×67 opaque
+8-bit 4:4:4 encoder executable is included; no JPEG/HEIC experiment,
+JNI bridge, normal Android app dependency, end-user images, format
+enablement or production APK is part of this checkpoint.
+
+The initial [Actions 41131994290](https://github.com/santirodriguez/FixMyShot/actions/runs/41131994290)
+finished **FAILURE** because the Ubuntu runner lacked `ffprobe`
+during its host decode check. Its three ABI builds had succeeded and its
+emulator had already generated a valid AVIF, later decoded independently.
+The narrowly corrected workflow commit
+[`c15f882e`](https://github.com/santirodriguez/FixMyShot/commit/c15f882e5fd4606917485f02be686273c1d13e1d)
+changed only host verifier provisioning and the isolated request marker.
+
+[Corrected Actions 41132550109](https://github.com/santirodriguez/FixMyShot/actions/runs/41132550109)
+at exact source `c15f882e5fd4606917485f02be686273c1d13e1d`
+completed **SUCCESS on attempt 1** in all four jobs:
+
+| Job | Result | Receipt |
+|---|---|---|
+| `arm64-v8a` | SUCCESS | Artifact `13013204440`, ZIP SHA-256 `3ee216c704abe77c01095b2cf2dc6c96dec6668ebf711bd3006bd860f573375b` |
+| `armeabi-v7a` | SUCCESS | Artifact `13014095939`, ZIP SHA-256 `6bb4340eae3ec6dfa2523ebeb218dd54156b64e068b428a86dd2dea057914a9e` |
+| `x86_64` | SUCCESS | Artifact `13012564670`, ZIP SHA-256 `f988e9187b58a0ebf9f8779e98bb1e424a60771930edd17a7822b517ee96c7d4` |
+| API 36 x86_64 fixture | SUCCESS | Artifact `13012914384`, ZIP SHA-256 `10b4178a731e51e40b5e22450571801f3f1faed78f2ee8a2badd29e44e36d178` |
+
+The final API 36 ZIP was independently downloaded and verified against
+GitHub's declared SHA-256: **2,839 bytes, six distinct safe members,
+all ZIP CRCs valid**. Its actual `fixture-65x67.avif` is 466 bytes with
+SHA-256
+`9a88dd96dd1df5008aba8342fb8e70a9f3b51ccff0681ca1e40805d73c475fd9`,
+identical to the previously recovered Android-generated control.
+Host FFprobe reported **65×67**, `yuv444p` and full range; decoding
+the recovered bytes independently using **FFmpeg 7.1.5** and the
+repository's deterministic RGB fixture reproduced **PSNR 58.6887 dB**
+and **max 3×3 median patch-channel error 1**. The runner itself used
+FFmpeg/FFprobe **6.1.1-3ubuntu5** and recorded its versions in the ZIP.
+
+The single new `runtime.json` reports `status=0`,
+`encode_ns=18088442` (**18.088442 ms**, timed `avifEncoderWrite` call
+only, not source conversion/output write), `encoded_bytes=466`, and
+`ru_maxrss_kib=12736` (**12,736 KiB**, entire process, NOT PSS or
+codec-only memory). The emulator's `getconf PAGESIZE` was **4096**;
+this does not exercise runtime compatibility on 16 KiB hardware.
+All three CLI ELF builds previously passed structural 16 KiB
+`PT_LOAD` alignment/congruence checks, but no shipping `.so` or APK
+ZIP alignment/ABI load was tested.
+
+**Footprint boundary:** prior exact-ABI standalone executables totaled
+approximately **20.232 MiB** compressed; stripping debug sections on
+temporary local copies yielded approximately **5.479 MiB**. These are
+CLI-only estimates, **not** the incremental size of an integrated
+universal APK or a release configuration. The prior one-off emulator
+measurement (76.7 ms / 13,008 KiB) and this new one (18.09 ms /
+12,736 KiB) are not comparable cold/warm p50/p95 samples.
+
+**Still OPEN:** real packaged JNI/library delta, ABI loader behavior,
+Pixel/second-device physical 16 KiB runtime when applicable, PSS and
+cold/warm p50/p95 on 65×67 and 1344×2992, correct independent
+gallery/viewer/share presentation, realistic text/color fidelity,
+source/license/patent/provenance clearance and complete G1/M02. The
+software spike does **not** fix the earlier Pixel native
+AndroidX AVIF mismatch or qualify HEIC. Keep regular AVIF/HEIC export
+gated and PNG/lossless WebP unchanged. The next proposed step is a
+**separately reviewed isolated JNI/package-cost and resource
+measurement**, with no production selector or default change.
+

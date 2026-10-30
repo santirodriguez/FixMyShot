@@ -1,5 +1,25 @@
 # Completion status
 
+## Isolated Android software AVIF reference — verified 2026-10-30
+
+The source-pinned standalone libavif 1.4.2 / libaom 3.15.2 experiment
+was compiled for `arm64-v8a`, `armeabi-v7a` and `x86_64`. After
+correcting the runner's missing FFprobe dependency, exact-head
+[Actions 41132550109](https://github.com/santirodriguez/FixMyShot/actions/runs/41132550109)
+at `c15f882e5fd4606917485f02be686273c1d13e1d` completed
+**SUCCESS** in all four jobs (three ABI builds and API 36 x86_64 fixture).
+The actual emulator-produced 466-byte 65×67 AVIF was independently
+decoded on a separate FFmpeg 7.1.5 host: YUV 4:4:4/full range,
+RGB PSNR **58.6887 dB**, maximum patch error **1**.
+Single emulator encode-write time was **18.088442 ms** and entire-process
+`ru_maxrss` **12,736 KiB**; neither is a Pixel p95 or PSS measure.
+The emulator reported a 4 KiB page size; 16 KiB ELF properties are
+structural only. The [complete evidence and limits](feasibility/native-device-check.md#three-abi-android-software-avif-reference--successful-synthetic-ci--2026-10-30)
+remain separately recorded. **No JNI, APK integration, normal AVIF
+export, hardware acceptance, source-license clearance, signing or release**
+follows from this experiment. G1/M02 remain OPEN.
+
+
 ## AVIF geometry alternative spike — 2026-10-30
 
 The **host-only metadata/crop remux** of the verified 65×67 Pixel AVIF

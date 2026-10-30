@@ -1,5 +1,21 @@
 # Codec status
 
+## Standalone Android software AVIF reference (not a shipping format)
+
+Pinned libavif 1.4.2 / libaom 3.15.2 compiled for all three shipping
+ABI types as **standalone executables**, not an app JNI library.
+[Exact-head Actions 41132550109](https://github.com/santirodriguez/FixMyShot/actions/runs/41132550109)
+at `c15f882e` completed SUCCESS after installing FFmpeg/FFprobe on the
+runner. The API 36 x86_64 emulator produced a 466-byte 65×67 YUV 4:4:4
+full-range AVIF. Independent host decoding confirmed the unchanged
+65×67 geometry, **58.6887 dB** RGB PSNR and patch error **1**.
+This narrow synthetic success does **not** qualify Pixel hardware,
+actual shipping APK size, JNI/PSS, larger real screenshots, color
+management, recipient support, source-license/patent clearance or G1/M02.
+HEIC/AVIF remain unavailable for ordinary output; PNG and lossless WebP
+remain unchanged. See the [Android probe evidence](feasibility/native-device-check.md#three-abi-android-software-avif-reference--successful-synthetic-ci--2026-10-30).
+
+
 Current `release/0.1.0-editor` source `d54eb9c7` has a working Automatic and Customize
 export flow using verified private PNG/lossless WebP candidates and guarded public
 MediaStore/explicit SAF publication. [Build, lint and API 36 instrumentation](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) passed at this exact source; the user accepted the separate
