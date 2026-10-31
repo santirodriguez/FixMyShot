@@ -1030,3 +1030,158 @@ Physical 16KiB runtime, true instantaneous peak PSS, representative
 screenshot appearance, second hardware, source/license/patent clearance,
 G1/M02, signing, merge and release remain OPEN.
 
+## Isolated direct YUV444 software decoder comparison — 2026-10-31
+
+Source [50e77c66](https://github.com/santirodriguez/FixMyShot/commit/50e77c66bab7080b627188c46791e24fe82622ac)
+implements the approved comparison in the existing isolated probe:
+nine modified files plus one small historical size receipt. No normal
+application source, manifest, permissions, source pins or production export
+changed. The opt-in physical-probe CMake switch adds the existing pinned
+libaom decoder; ordinary standalone/JNI experiments retain decoder-OFF.
+
+Only the built-in synthetic emulator run adds libavif_aom_direct_444.
+The native method accepts only the probe-owned files/physical_ci_0.avif,
+one 1344x2992 8-bit opaque full-range YUV444 image with BT709/sRGB tags
+and no transforms, bounded to16MiB compressed input. It decodes using
+AVIF_CODEC_CHOICE_AOM and converts directly into a caller-owned bitmap
+with libavif's built-in RGB conversion, two threads maximum, releasing
+decoder/file/locked-pixel resources. It does not process selected real
+images, log user RGB, replace the default BitmapFactory preview or
+enable any normal format.
+
+The three original Android gates remain independently mandatory:
+PSNR>=38dB, maximum channel error<=2, opaque sRGB and correct dimensions.
+The fourth route reports its own pass/fail; it cannot approve the
+framework route, a Pixel APK handoff or an external receiver.
+
+Cost is compared with the exact previously verified encoder-only
+a615c8a6 diagnostic APK, source/run/artifact/APK/native hashes retained
+in scripts/avif-software/direct-decode-baseline.json, whose exact JSON
+bytes are pinned by the checker. It measures actual two-ABI diagnostic
+APK and packaged-native growth. APK differences include Java/report,
+JNI, ZIP alignment and signing overhead; they are not a pure decoder
+attribution, a same-source matched APK pair or a production3ABI budget.
+
+Decode wall time and concurrent sampled app-process PSS/native heap
+are recorded per route; direct native parse/decode and RGB conversion
+are timed separately. One sequential emulator decode is not p50/p95,
+a controlled cold/warm comparison, physical-device evidence or a true
+peak. Android codec-service allocations are excluded from app PSS;
+the direct route runs in-process, so these are not comparable complete
+device-memory totals.
+
+[Isolated Actions41160768239](https://github.com/santirodriguez/FixMyShot/actions/runs/41160768239)
+completed **FAILURE** on 2026-10-31T02:42:30Z at source50e77c66:
+ARM64/x86_64 native builds and APK/permission/alignment checks PASS;
+API36 synthetic collection completed, all three Android fidelity gates FAIL.
+The independent direct probe PASS does not make the run or release pass.
+
+| Route | PSNR dB | MSE RGB | Max channel error | Pixels >2 | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| BitmapFactory default | 44.67815553399034 | 2.214444537284611 | 63 | 7896 | FAIL |
+| BitmapFactory explicit sRGB | 44.67815553399034 | 2.214444537284611 | 63 | 7896 | FAIL |
+| ImageDecoder software sRGB | 44.67815553399034 | 2.214444537284611 | 63 | 7896 | FAIL |
+| Pinned libavif/libaom direct444 | 58.7403380424631 | 0.08690535873440285 | 1 | 0 | PASS, synthetic only |
+
+All four outputs are opaque 1344x2992 sRGB. Direct native status0,
+depth8, libavif pixel format1 (YUV444); parse/decode323.077ms,
+RGB conversion80.268ms, full measured decode443.032ms.
+Direct histogram [3307948,713300,0,0,0,0,0]; channel counts >2 [0,0,0],
+4x6 grid all zero. The Android histogram/channel/grid/worst-point
+remain exactly as recorded in the preceding discriminator section.
+
+All19 predefined points (one Android column represents all three
+identical system outputs); no selected real-image values were captured:
+
+| x,y | Source RGB | Each Android RGB | Direct444 RGB |
+| --- | --- | --- | --- |
+| 0,2243 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2244 | 20,100,220 | 19,101,220 | 20,101,220 |
+| 0,2245 | 20,100,220 | 19,101,220 | 20,101,220 |
+| 0,2250 | 20,100,220 | 56,96,157 | 20,101,220 |
+| 0,2251 | 255,255,255 | 219,255,255 | 255,255,255 |
+| 1,2250 | 20,100,220 | 56,96,157 | 20,101,220 |
+| 2,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 31,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 32,2250 | 20,100,220 | 56,96,157 | 20,101,220 |
+| 33,2250 | 20,100,220 | 56,96,157 | 20,101,220 |
+| 34,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 16,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2255 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2256 | 20,100,220 | 19,101,220 | 20,101,220 |
+| 0,2257 | 20,100,220 | 19,101,220 | 20,101,220 |
+| 0,2266 | 20,100,220 | 56,96,157 | 20,101,220 |
+| 0,2267 | 255,255,255 | 219,255,255 | 255,255,255 |
+| 100,100 | 64,64,64 | 64,64,64 | 64,64,64 |
+| 100,2000 | 255,255,255 | 255,255,255 | 255,255,255 |
+
+Independent review verified all76 recorded RGB values against source
+and prior models: Android matches the 2x2 chroma reduction plus libyuv
+F709 integer model at every point; direct444 matches the independent
+host RGB at every point. The AVIF is byte-identical to the preceding
+test (6092B, SHA256 a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2).
+Thus the container/encoder preserves the needed chroma and a direct444
+decode on this emulator avoids the system's visible blue/white edge
+loss. This is evidence for the previously localized framework
+444-to420 chroma-reduction mechanism; it does not identify a changed
+line in the exact installed framework binary or prove a defect in
+dav1d itself.
+
+Runtime codec logs again contain three c2.android.av1-dav1d.decoder
+selections, dav1d1.5.0-120-gc83cabaf and flexible420 format2135033992.
+The read-only selector property is empty/unavailable; it remains a
+hint, and the selector-hints JSON deliberately does not assert backend
+confirmation from the property. API36 fingerprint remains
+google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys;
+page size4096. No physical Pixel test took place.
+
+Single sequential emulator observations, NOT a performance ranking:
+
+| Route | Decode ms | App PSS before/after KiB | Sampled max app PSS KiB | Sampled max native heap B | Samples |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| bitmap_factory_default | 1312.163 | 59902 / 79014 | 90959 | 49531808 | 8 |
+| bitmap_factory_explicit_srgb | 1139.602 | 79968 / 94575 | 80052 | 65651536 | 7 |
+| image_decoder_srgb_software | 861.307 | 71811 / 87476 | 99995 | 89791888 | 5 |
+| libavif_aom_direct_444 | 443.032 | 71748 / 90503 | 214935 | 196468784 | 3 |
+
+All sample failures0. Direct cumulative process peak RSS323836KiB
+includes earlier encode/decodes, so it is not a decode-specific peak.
+App PSS excludes the framework codec service; the direct route adds
+in-process decoder allocations. Sequential state, different starting
+PSS,150ms sampling and3 direct samples preclude total-memory savings,
+true peak or cold/warm/p50/p95 conclusions.
+
+Actual two-ABI diagnostic APK9376881B (baseline8866209B):
++510672B (+5.76%). Packaged arm64 native3225320B (+251432B);
+x86_64 native3363296B (+264912B). APK SHA256
+a3e23f62b72f4da748ba5f1fba37dbc483e521f4dcf6f5d237866285743cb3c3.
+Independent original-APK comparison found the same ZIP entry set;
+only classes3.dex and the two native libraries changed. Manifest,
+resources and original license/patent notices are byte-identical.
+Both ABI source receipts confirm aom_decode=ON and unchanged source
+pins; original native artifact hashes match packaged-input receipts.
+This is a historical diagnostic delta, subject to the scope caveats above.
+
+Original Actions artifacts (7-day retention; source-bound ZIP SHA256,
+safe unique paths/CRC and supplied internal hashes independently checked):
+
+| Artifact | ID | ZIP bytes | ZIP SHA256 |
+| --- | ---: | ---: | --- |
+| arm64-v8a | 13027475265 | 6383523 | 420ae022562c032c102b85b92760021791133b1c299b45f5099bac922f47ee04 |
+| x86_64 | 13026703718 | 6336316 | 948e99d792b7bc72a8560aee08e85265593825b6b265f7585f246949a97d25f9 |
+| APK/cost/permissions | 13026484581 | 3812264 | ec55aa7450c5f1d6278977163a3dde5c3ea76b006ee4ab194e19a85312668145 |
+| API36 report/fixture/logs | 13026569673 | 18156 | 8b003dcfeac7645ff373fbcdf3bf3e0db29b1c1597e32348c7b400061809606d |
+
+Local validation: shell/Python/embedded-Python syntax; native syntax
+against the pinned libavif header (temporary JNI/Android stubs, not an
+Android runtime test); exact baseline replay yields zero size delta;
+altered baseline bytes and altered legal hashes are rejected. Official
+CI supplied both actual Android ABI builds and the emulator execution.
+
+
+Any passing direct result is limited to the built-in fixture and this
+pinned Android ABI/build. It does not repair the framework's chroma loss
+or establish Gallery/sharing/other hardware compatibility. Physical
+Pixel/second hardware, representative screenshots, true peak memory,
+physical16KiB runtime, source/license/patent/security review, G1/M02,
+production integration/signing/merge and release remain open.
