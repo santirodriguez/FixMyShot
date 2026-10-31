@@ -1185,3 +1185,170 @@ or establish Gallery/sharing/other hardware compatibility. Physical
 Pixel/second hardware, representative screenshots, true peak memory,
 physical16KiB runtime, source/license/patent/security review, G1/M02,
 production integration/signing/merge and release remain open.
+
+## Synthetic YUV420 versus YUV444 encoding comparison — 2026-10-31
+
+Implementation7cf26bbb4f1dfc7fdf6cd2672634a53b530d4881 adds a second encoding
+only for the integrated disposable-emulator fixture. The existing
+pinned libavif1.4.2/libaom3.15.2 sources, depth8, quality100, speed6,
+two threads, BT709 matrix/primaries, sRGB transfer and full range are
+shared; chroma subsampling is the variable. Selected real images
+retain their original444 encode/decode/cleanup behavior. The second
+native entry accepts only the fixed synthetic cache suffix. Both
+synthetic files remain private until emulator disposal.
+
+All three Android routes compare the same source to each actual file.
+The direct444 control remains separate. The default444 preview is
+retained. The runner independently checks both AVIF formats/tags with
+ffprobe and measures full-frame FFmpeg RGB fidelity plus nineteen fixed
+synthetic points. Real-image coordinate RGB remains excluded.
+
+Exactly five existing isolated files changed; no workflow, source pins,
+permissions, normal exporter or dependency graph changed. Complete tree
+review found745files and no mode/deletion/new-file changes. Local
+checks: shell/embedded-Python syntax; C syntax with pinned avif header
+and temporary Android/JNI stubs (decoder ON and OFF); prior report replay
+retained framework FAIL; altered synthetic source RGB rejected; 444
+mislabelled as420 rejected; new deterministic host source equals the
+existing full-frame fixture and original444 FFmpeg replay reproduces
+PSNR58.7403380424631,max1,0pixels>2. Actual Android compilation/runtime
+is separately reported below.
+
+[Actions41212246198](https://github.com/santirodriguez/FixMyShot/actions/runs/41212246198)
+completed **FAILURE**,2026-10-31T14:59:58Z. Both native ABI builds and
+actual APK checks PASS; the entire synthetic experiment and independent
+host decode completed. The final exit1 is the unchanged display-fidelity
+gate, not a compilation, timeout, collection or assertion failure.
+No runner correction or unchanged rerun is justified.
+
+| Actual encoding / decoder | PSNR dB | MSE RGB | Max channel error | Pixels >2 | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| YUV444 / each of three Android routes | 44.67815553399034 | 2.214444537284611 | 63 | 7896 | FAIL |
+| YUV420 / each of three Android routes | 44.67815553399034 | 2.214444537284611 | 63 | 7896 | FAIL |
+| YUV444 / direct libavif/libaom | 58.7403380424631 | 0.08690535873440285 | 1 | 0 | PASS, synthetic only |
+| YUV444 / independent FFmpeg | 58.7403380424631 | 0.08690535873440285 | 1 | 0 | PASS, host only |
+| YUV420 / independent FFmpeg | 44.33729373996912 | 2.3952507612893643 | 64 | 7896 | FAIL |
+
+All Android outputs have correct geometry, opaque pixels and sRGB.
+Both actual files have depth8/full-range BT709/sRGB tags; ffprobe
+confirms yuv444p and yuv420p respectively. The444 file remains6092B,
+SHA256a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2.
+The420 file is5986B,
+SHA2564699c9d0d86dbaed45a66fbce4caffa72048f40ace3981c8e681f0367a3cd032.
+
+**Plane-level discriminator:** independent FFmpeg raw-plane extraction
+from these exact AVIFs finds byte-identical Y planes. Every one of the
+1005312 U samples and1005312 V samples in420 equals the corresponding
+rounded2x2 mean of decoded444 chroma (sum+2,integer divide4); unequal
+sample count0 and maximum delta0 in both planes. Independently replayed
+full-frame RGB measurements match both host reports. This establishes
+actual chroma subsampling loss in the420 candidate, independently of
+Android's RGB conversion.
+
+All133 Android/direct coordinate samples were checked against the
+deterministic source; all six Android paths match the preceding420/F709
+model at all19 points, and all19 direct444 points match host444.
+The six Android routes have identical aggregate quality/histogram/grid
+and sampled RGB. No full Android RGB buffer was exported, so this is
+not a separately verified byte-for-byte full-frame equality claim.
+Runtime logs show six c2.android.av1-dav1d.decoder allocations. The
+selector remains a read-only hint, not backend proof by itself.
+
+New420 points (the Android column applies to all three420 routes and
+also matches the preceding444 Android observations):
+
+| x,y | Source RGB | Android420 RGB | Host420 RGB |
+| --- | --- | --- | --- |
+| 0,2243 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2244 | 20,100,220 | 19,101,220 | 19,100,220 |
+| 0,2245 | 20,100,220 | 19,101,220 | 19,100,220 |
+| 0,2250 | 20,100,220 | 56,96,157 | 55,95,156 |
+| 0,2251 | 255,255,255 | 219,255,255 | 218,255,255 |
+| 1,2250 | 20,100,220 | 56,96,157 | 55,95,156 |
+| 2,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 31,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 32,2250 | 20,100,220 | 56,96,157 | 55,95,156 |
+| 33,2250 | 20,100,220 | 56,96,157 | 55,95,156 |
+| 34,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 16,2250 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2255 | 255,255,255 | 255,255,255 | 255,255,255 |
+| 0,2256 | 20,100,220 | 19,101,220 | 19,100,220 |
+| 0,2257 | 20,100,220 | 19,101,220 | 19,100,220 |
+| 0,2266 | 20,100,220 | 56,96,157 | 55,95,156 |
+| 0,2267 | 255,255,255 | 219,255,255 | 218,255,255 |
+| 100,100 | 64,64,64 | 64,64,64 | 64,64,64 |
+| 100,2000 | 255,255,255 | 255,255,255 | 255,255,255 |
+
+The six Android rows retain histogram[3304000,709352,0,0,0,0,7896],
+channel counts>2 [7896,3948,3948], worst point(0,2250), and a4x6 grid
+with only the bottom row nonzero,1316per sixth. Direct444 retains
+histogram[3307948,713300,0,0,0,0,0], zero channels/grid counts>2.
+Host420 max-error histogram has only bins0:2968896,1:1044456,
+37:3948 and64:3948.
+
+Exploratory encode wall time444:21025.804ms,420:7048.330ms; sampled
+max app PSS238784/166015KiB respectively. Each was one sequential
+emulator execution, not a physical benchmark or p95 comparison.
+
+| Chroma / route | Decode ms | Sampled max app PSS KiB |
+| --- | ---: | ---: |
+| YUV444 / bitmap_factory_default | 1539.670 | 162243 |
+| YUV444 / bitmap_factory_explicit_srgb | 502.124 | 98556 |
+| YUV444 / image_decoder_srgb_software | 826.697 | 106034 |
+| YUV444 / libavif_aom_direct_444 | 587.412 | 233256 |
+| YUV420 / bitmap_factory_default | 603.729 | 96678 |
+| YUV420 / bitmap_factory_explicit_srgb | 519.867 | 102478 |
+| YUV420 / image_decoder_srgb_software | 260.672 | 86811 |
+
+App PSS excludes codec-service memory; sampling and prior allocations
+preclude whole-device memory savings/true peaks/performance rankings.
+Build identity/API36/page4096 match the preceding disposable emulator.
+
+The source-bound diagnostic APK is9377537B, SHA256
+68703d6feaaf3a9fb94441716f6d1bf4812d9e72507afc35fa6e97672405d018.
+It is +656B versus the prior direct444 diagnostic and +511328B versus
+the exact historical encoder-only APK. Packaged arm64/x86_64 libraries
+are3225512/3363952B. Independent comparison against the prior direct444
+APK found identical ZIP entry sets; only classes3.dex and the two native
+libraries differ. Manifest/resources/legal notice bytes are unchanged.
+Historical diagnostic package deltas do not establish production cost
+or pure chroma/decoder attribution. All ABI ZIP/CRC/hashes/internal
+receipts/JNI symbols/16KiB ELF alignment were checked; source pins and
+original legal notices match the prior run. Actual APK entries and
+native-input receipts were independently matched. No Android permissions
+were requested.
+
+
+Original source-bound artifacts,7-day retention (ZIP digests/CRC/safe
+unique paths/internal receipts verified; API3613files including both
+actual AVIFs, both matrices, host comparison and codec logs):
+
+| Artifact | ID | ZIP bytes | ZIP SHA256 |
+| --- | ---: | ---: | --- |
+| avif-physical-apk | 13047420101 | 3813436 | b452264485a7c85a7c0cba8b726428ecaae8d333b88674ee5936edd69637e100 |
+| avif-physical-x86_64 | 13047035943 | 6337330 | 3f4da1acbddfa6f26b72bc6447ec36846338e0eefb018facb778480303a3b282 |
+| avif-physical-api36 | 13046577176 | 29418 | d1f71d321c1bd9327e9a3371b3605b55486d90e50d4a3d97098d8f3010dbc860 |
+| avif-physical-arm64-v8a | 13046473638 | 6384355 | a01fc1c017e82ef9038d1ea57b107a99cbe6bac1b0213720fb857b1c6caf47a8 |
+
+**Disposition:** the bounded420-versus444 attempt is complete and both
+system-display candidates fail. Keeping444 preserves the chroma in the
+file but the measured framework path loses it; pre-encoding420 loses
+that chroma before any receiver and does not satisfy the screenshot
+gate even with independent decode. The64-versus63 host/Android error
+difference is RGB-conversion rounding, not recovery of missing chroma.
+This does not prove that all possible AVIF designs or devices fail, or
+that dav1d itself is defective.
+
+Do not weaken max-error<=2, call PSNR-only success, integrate the internal
+decoder as a receiver fix, or repeat the same experiment. The existing
+blueprint requires explicit scope resolution before shipping without
+desired AVIF. Recommended next decision: defer AVIF from0.1.0, retaining
+the evidence and PNG/lossless WebP path; **PROPOSED, NOT APPROVED**.
+HEIC and all other gates remain independent and unresolved where already
+recorded. Until scope resolution, normal AVIF and physical handoff remain
+blocked; no runtime change, Pixel test, release or merge occurred here.
+
+
+A passing alternative cannot clear a failed existing system gate.
+No physical test or Pixel handoff, receiver acceptance, production
+integration, merge or release is authorized by this experiment.
