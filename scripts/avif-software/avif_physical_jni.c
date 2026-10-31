@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/resource.h>
+#include <sys/stat.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -132,4 +133,98 @@ Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeBitmap(
     long rss = getrusage(RUSAGE_SELF, &usage) == 0 ? usage.ru_maxrss : -1;
     return result(env, code, (jlong)count, (jlong)convert_ns,
                   (jlong)encode_ns, (jlong)rss);
+}
+
+// Only the built-in emulator fixture is accepted. No selected user image path.
+JNIEXPORT jlongArray JNICALL
+Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_decodeSynthetic444(
+        JNIEnv *env, jclass owner, jobject bitmap, jstring input) {
+    (void)owner;
+    jlong values[8] = {20, 0, 0, 0, 0, 0, 0, -1};
+#ifdef FIXMYSHOT_AVIF_DIRECT_DECODE
+    AndroidBitmapInfo info;
+    if (!bitmap || !input ||
+        AndroidBitmap_getInfo(env, bitmap, &info) != ANDROID_BITMAP_RESULT_SUCCESS ||
+        info.width != WIDTH || info.height != HEIGHT ||
+        info.format != ANDROID_BITMAP_FORMAT_RGBA_8888 ||
+        info.stride < WIDTH * 4 || info.stride > WIDTH * 8) {
+        values[0] = 21;
+    } else {
+        const char *path = (*env)->GetStringUTFChars(env, input, NULL);
+        if (!path) return NULL;
+        const char suffix[] = "/files/physical_ci_0.avif";
+        size_t length = strlen(path);
+        struct stat st;
+        if (length > 640 || length < sizeof(suffix) - 1 || strstr(path, "..") ||
+            strcmp(path + length - (sizeof(suffix) - 1), suffix) != 0 ||
+            stat(path, &st) != 0 || !S_ISREG(st.st_mode) ||
+            st.st_size < 20 || st.st_size > MAX_AVIF_BYTES) {
+            values[0] = 22;
+        } else {
+            avifDecoder *decoder = avifDecoderCreate();
+            values[0] = 23;
+            if (decoder) {
+                decoder->codecChoice = AVIF_CODEC_CHOICE_AOM;
+                decoder->maxThreads = 2;
+                decoder->imageSizeLimit = WIDTH * HEIGHT;
+                decoder->imageDimensionLimit = HEIGHT;
+                decoder->imageCountLimit = 1;
+                decoder->allowProgressive = AVIF_FALSE;
+                decoder->ignoreExif = AVIF_TRUE;
+                decoder->ignoreXMP = AVIF_TRUE;
+                uint64_t start = now_ns();
+                avifResult rc = avifDecoderSetIOFile(decoder, path);
+                if (rc == AVIF_RESULT_OK) rc = avifDecoderParse(decoder);
+                if (rc == AVIF_RESULT_OK &&
+                    (decoder->imageCount != 1 || decoder->image->width != WIDTH ||
+                     decoder->image->height != HEIGHT || decoder->image->depth != 8)) {
+                    rc = AVIF_RESULT_INVALID_ARGUMENT;
+                }
+                if (rc == AVIF_RESULT_OK) rc = avifDecoderNextImage(decoder);
+                values[5] = (jlong)(now_ns() - start);
+                const avifImage *image = decoder->image;
+                values[0] = 24;
+                if (rc == AVIF_RESULT_OK && image->width == WIDTH && image->height == HEIGHT &&
+                    image->depth == 8 && image->yuvFormat == AVIF_PIXEL_FORMAT_YUV444 &&
+                    image->yuvRange == AVIF_RANGE_FULL && !image->alphaPlane &&
+                    image->colorPrimaries == AVIF_COLOR_PRIMARIES_BT709 &&
+                    image->transferCharacteristics == AVIF_TRANSFER_CHARACTERISTICS_SRGB &&
+                    image->matrixCoefficients == AVIF_MATRIX_COEFFICIENTS_BT709 &&
+                    image->transformFlags == 0) {
+                    values[1] = image->width;
+                    values[2] = image->height;
+                    values[3] = image->depth;
+                    values[4] = image->yuvFormat;
+                    void *pixels = NULL;
+                    values[0] = 25;
+                    if (AndroidBitmap_lockPixels(env, bitmap, &pixels) == ANDROID_BITMAP_RESULT_SUCCESS && pixels) {
+                        avifRGBImage rgb;
+                        avifRGBImageSetDefaults(&rgb, image);
+                        rgb.format = AVIF_RGB_FORMAT_RGBA;
+                        rgb.depth = 8;
+                        rgb.rowBytes = info.stride;
+                        rgb.pixels = (uint8_t *)pixels;
+                        rgb.avoidLibYUV = AVIF_TRUE;
+                        rgb.maxThreads = 2;
+                        start = now_ns();
+                        rc = avifImageYUVToRGB(image, &rgb);
+                        values[6] = (jlong)(now_ns() - start);
+                        values[0] = rc == AVIF_RESULT_OK ? 0 : 26;
+                        if (AndroidBitmap_unlockPixels(env, bitmap) != ANDROID_BITMAP_RESULT_SUCCESS) values[0] = 27;
+                    }
+                }
+                avifDecoderDestroy(decoder);
+            }
+        }
+        (*env)->ReleaseStringUTFChars(env, input, path);
+    }
+#else
+    (void)bitmap;
+    (void)input;
+#endif
+    struct rusage usage;
+    if (getrusage(RUSAGE_SELF, &usage) == 0) values[7] = usage.ru_maxrss;
+    jlongArray arr = (*env)->NewLongArray(env, 8);
+    if (arr) (*env)->SetLongArrayRegion(env, arr, 0, 8, values);
+    return arr;
 }

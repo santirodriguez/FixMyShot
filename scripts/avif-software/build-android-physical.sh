@@ -35,6 +35,7 @@ cmake -S "$(dirname "$(realpath "$0")")" -B "$output/build" -G Ninja \
     -DCMAKE_TOOLCHAIN_FILE="$ANDROID_NDK_ROOT/build/cmake/android.toolchain.cmake" \
     -DANDROID_ABI="$abi" -DANDROID_PLATFORM=android-31 \
     -DCMAKE_BUILD_TYPE=MinSizeRel -DFIXMYSHOT_AVIF_PHYSICAL_PROBE=ON \
+    -DFIXMYSHOT_AVIF_DIRECT_DECODE=ON \
     -DLIBAVIF_SOURCE_ROOT="$output/sources/libavif" \
     2>&1 | tee "$output/evidence/configure.log"
 cmake --build "$output/build" --target avif_physical --parallel 3 \
@@ -43,6 +44,6 @@ cp "$output/build/libavif_physical.so" "$output/evidence/libavif_physical.so"
 readelf="$ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf"
 "$readelf" -l -d "$output/evidence/libavif_physical.so" > "$output/evidence/elf.txt"
 (cd "$output/evidence" && sha256sum libavif_physical.so LICENSES/* > sha256.txt)
-printf 'libavif_sha=%s\nlibaom_sha=%s\nabi=%s\nndk=%s\n' \
+printf 'libavif_sha=%s\nlibaom_sha=%s\nabi=%s\nndk=%s\naom_decode=ON\n' \
     "$libavif_sha" "$libaom_sha" "$abi" 28.2.13676358 \
     > "$output/evidence/source-versions.txt"

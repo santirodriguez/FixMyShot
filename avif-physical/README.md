@@ -104,6 +104,40 @@ no requirement to upload an original screenshot or APK to the repo.
 
 ## Build boundary
 
+### Synthetic-only direct 4:4:4 comparison
+
+The opt-in physical probe build now compiles the already pinned libaom decoder
+as well as its encoder. Only the built-in emulator fixture adds a fourth route,
+`libavif_aom_direct_444`: libavif parses one bounded private AVIF, libaom decodes
+8-bit full-range YUV444, and libavif converts directly into a caller-owned
+sRGB bitmap without an intermediate YUV420 image. The native method refuses
+other dimensions, profiles/color tags, alpha, transforms and input paths.
+This is a narrow feasibility probe, not a general input decoder.
+
+Each route records decode wall time and concurrent sampled PSS/native heap;
+the direct route additionally separates parse/decode from RGB conversion.
+One sequential emulator sample per route is exploratory: earlier retained
+bitmaps, allocator caches and native libraries affect residency. It proves
+neither a cold/warm percentile nor an instantaneous peak or Pixel performance.
+PSS/native-heap samples cover only the app process. Framework codec-service
+allocations live elsewhere and are excluded, while the direct decoder runs
+in-process; these are not comparable whole-device memory totals.
+The default preview still uses BitmapFactory; real-image reports do not run
+the direct decoder or capture RGB values.
+
+The original three Android display gates remain independently mandatory.
+A passing direct route cannot turn those failures into green CI or approve
+Pixel installation. The package job reports exact two-ABI diagnostic size
+and native-library growth against the source-bound encoder-only baseline
+in `scripts/avif-software/direct-decode-baseline.json`. The APK difference
+includes Java/report, JNI, alignment and signature overhead; it is not a pure
+decoder delta or a production three-ABI APK measurement. Original upstream
+notices remain required. No cross-run workflow permission is added.
+
+An internal 4:4:4 decoder cannot qualify Gallery, sharing recipients, other
+Android hardware or generic Baseline AVIF interoperability. Those gates,
+real screenshots and production integration remain separate and open.
+
 The opt-in CI is triggered only by
 `.ci/avif-physical-request.txt`. It rebuilds
 `libavif_physical.so` from exact libavif/libaom Git pins for the

@@ -110,6 +110,11 @@ jobs:
             > evidence/physical-apk/debug-signature-check.txt
           sha256sum evidence/physical-apk/FixMyShot-AVIF-Physical-debug.apk \
             > evidence/physical-apk/apk-sha256.txt
+          python3 scripts/avif-software/physical_package.py compare-baseline \
+            evidence/physical-apk/apk-review.json \
+            scripts/avif-software/direct-decode-baseline.json \
+            evidence/physical-apk/native-receipt.json \
+            > evidence/physical-apk/direct444-cost.json
           git diff --exit-code -- gradle.lockfile app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
       - name: Preserve APK for private manual device handoff (debug signature, NOT release)
         if: always()

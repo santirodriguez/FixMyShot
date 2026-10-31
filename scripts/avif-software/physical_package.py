@@ -17,6 +17,7 @@ PINS = {
     "libavif_sha": "c5240fc79fe5c2407e10afd35f5505ef6333ea49",
     "libaom_sha": "af3dc9aadc793c1b00edc003e3fc19a44fdeb574",
     "ndk": "28.2.13676358",
+    "aom_decode": "ON",
 }
 
 
@@ -202,13 +203,49 @@ def main():
     p.add_argument("prepared_receipt", type=Path)
     p.add_argument("raw_native_directory", type=Path)
     p.add_argument("llvm_objcopy", type=Path)
+    p = sub.add_parser("compare-baseline")
+    p.add_argument("apk_review", type=Path)
+    p.add_argument("baseline", type=Path)
+    p.add_argument("prepared_receipt", type=Path)
     args = parser.parse_args()
     if args.action == "prepare":
         outcome = prepare(args.source_artifacts, args.output, args.source_sha,
                           args.project_license)
-    else:
+    elif args.action == "check-apk":
         outcome = check_apk(args.apk, json.loads(args.prepared_receipt.read_text()),
                             args.raw_native_directory, args.llvm_objcopy)
+    else:
+        if sha(args.baseline.read_bytes()) != "b7bc58da3598d871d953c992404048ebbf17d5bdbec7146502b74484eedd5373":
+            raise ValueError("Unreviewed baseline bytes")
+        current = json.loads(args.apk_review.read_text())
+        baseline = json.loads(args.baseline.read_text())
+        prepared = json.loads(args.prepared_receipt.read_text())
+        if (baseline["kind"] != "VERIFIED_HISTORICAL_ENCODER_ONLY_DIAGNOSTIC_BASELINE"
+                or baseline["source_sha"] != "a615c8a6e79f961958d0270c1689552bb4bce8f4"
+                or baseline["apk_sha256"] != "613de84f53a563ad05e4daaeeb2593629d8edd46a0f8501de7a9ccf92b81a592"
+                or current["kind"] != "ISOLATED_AVIF_PHYSICAL_APK__NOT_RELEASE"):
+            raise ValueError("Unexpected size-comparison identity")
+        for name, digest in baseline["notice_sha256"].items():
+            if current["entries_checked"][name]["sha256"] != digest:
+                raise ValueError("Legal assets changed from encoder-only baseline")
+        outcome = {
+            "kind": "ISOLATED_DIRECT444_COST_NOT_PRODUCTION",
+            "source_sha": prepared["repository_commit"],
+            "baseline": baseline,
+            "current_apk_bytes": current["apk_bytes"],
+            "current_apk_sha256": current["apk_sha256"],
+            "apk_delta_bytes": current["apk_bytes"] - baseline["apk_bytes"],
+            "native": {},
+            "scope": "Two-ABI diagnostic change versus exact historical encoder-only APK; includes JNI, Java/report, ZIP alignment and signature overhead; not pure decoder attribution or production APK cost",
+            "receiver_compatibility_verified": False,
+        }
+        for abi in ABIS:
+            row = current["entries_checked"][f"lib/{abi}/libavif_physical.so"]
+            previous = baseline["native"][abi]
+            outcome["native"][abi] = {"packaged_bytes": row["size"],
+                                      "packaged_sha256": row["sha256"],
+                                      "encoder_only_bytes": previous["size"],
+                                      "delta_bytes": row["size"] - previous["size"]}
     print(json.dumps(outcome, indent=2))
 
 

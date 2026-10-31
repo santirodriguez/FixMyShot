@@ -71,6 +71,7 @@ public final class ProbeActivity extends Activity {
 
     static { System.loadLibrary("avif_physical"); }
     private static native long[] encodeBitmap(Bitmap pixels, String privatePath);
+    private static native long[] decodeSynthetic444(Bitmap target, String privatePath);
 
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
     private Bitmap source;
@@ -344,31 +345,68 @@ public final class ProbeActivity extends Activity {
                 // Keep the original default route for preview; diagnostics do not
                 // silently select a more favorable decoder or lower its acceptance bar.
                 JSONArray decodeResults = new JSONArray();
-                for (String mode : new String[]{
+                String[] androidModes = {
                         "bitmap_factory_default",
                         "bitmap_factory_explicit_srgb",
-                        "image_decoder_srgb_software"}) {
+                        "image_decoder_srgb_software"};
+                String[] comparisonModes = synthetic ? new String[]{
+                        androidModes[0], androidModes[1], androidModes[2],
+                        "libavif_aom_direct_444"} : androidModes;
+                for (String mode : comparisonModes) {
                     JSONObject outcome = new JSONObject();
                     outcome.put("mode", mode);
                     Bitmap decoded = null;
                     try {
-                        if ("bitmap_factory_default".equals(mode)) {
-                            decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath());
-                        } else if ("bitmap_factory_explicit_srgb".equals(mode)) {
-                            BitmapFactory.Options options = new BitmapFactory.Options();
-                            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                            options.inPreferredColorSpace =
-                                    ColorSpace.get(ColorSpace.Named.SRGB);
-                            options.inScaled = false;
-                            decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath(), options);
-                        } else {
-                            decoded = ImageDecoder.decodeBitmap(
-                                    ImageDecoder.createSource(encoded),
-                                    (decoder, info, source) -> {
-                                        decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE);
-                                        decoder.setTargetColorSpace(
-                                                ColorSpace.get(ColorSpace.Named.SRGB));
-                                    });
+                        long decodeStart = SystemClock.elapsedRealtimeNanos();
+                        outcome.put("pss_before_kib", Debug.getPss());
+                        SampleMeter decodeMeter = new SampleMeter();
+                        decodeMeter.start();
+                        try {
+                            if ("bitmap_factory_default".equals(mode)) {
+                                decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath());
+                            } else if ("bitmap_factory_explicit_srgb".equals(mode)) {
+                                BitmapFactory.Options options = new BitmapFactory.Options();
+                                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                options.inPreferredColorSpace =
+                                        ColorSpace.get(ColorSpace.Named.SRGB);
+                                options.inScaled = false;
+                                decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath(), options);
+                            } else if ("image_decoder_srgb_software".equals(mode)) {
+                                decoded = ImageDecoder.decodeBitmap(
+                                        ImageDecoder.createSource(encoded),
+                                        (decoder, info, source) -> {
+                                            decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE);
+                                            decoder.setTargetColorSpace(
+                                                    ColorSpace.get(ColorSpace.Named.SRGB));
+                                        });
+                            } else {
+                                if (!synthetic) throw new IllegalStateException("Synthetic probe only");
+                                decoded = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888,
+                                        false, ColorSpace.get(ColorSpace.Named.SRGB));
+                                long[] values = decodeSynthetic444(decoded, encoded.getAbsolutePath());
+                                if (values == null || values.length != 8) {
+                                    throw new IllegalStateException("Invalid direct decoder result");
+                                }
+                                JSONObject direct = new JSONObject();
+                                direct.put("status_code", values[0]);
+                                direct.put("decoded_width", values[1]);
+                                direct.put("decoded_height", values[2]);
+                                direct.put("decoded_depth", values[3]);
+                                direct.put("libavif_pixel_format", values[4]);
+                                direct.put("parse_decode_ns", values[5]);
+                                direct.put("yuv_to_rgb_ns", values[6]);
+                                direct.put("process_cumulative_peak_rss_kib", values[7]);
+                                direct.put("codec", "pinned_libaom_decoder_libavif_builtin_rgb");
+                                outcome.put("direct_444", direct);
+                                if (values[0] != 0 || values[1] != WIDTH || values[2] != HEIGHT
+                                        || values[3] != 8 || values[4] != 1) {
+                                    throw new IllegalStateException("Direct decoder rejected fixture");
+                                }
+                            }
+                        } finally {
+                            outcome.put("decode_wall_ns", SystemClock.elapsedRealtimeNanos() - decodeStart);
+                            outcome.put("concurrent_decode_memory", decodeMeter.finish());
+                            outcome.put("pss_after_kib", Debug.getPss());
                         }
                         if (decoded == null) {
                             outcome.put("status", "UNAVAILABLE_OR_FAILED");
@@ -412,7 +450,9 @@ public final class ProbeActivity extends Activity {
                 result.put("device_decode_status",
                         decodeResults.getJSONObject(0).getString("status"));
                 result.put("comparison_scope", "three Android 8-bit sRGB display routes; "
-                        + "default preview retained; fidelity gate unchanged");
+                        + "synthetic-only direct444 comparator; default preview and Android gate unchanged");
+                result.put("decode_memory_scope", "app process only; framework codec-service memory excluded; "
+                        + "sequential single-run samples are not whole-device peaks or cold/warm percentiles");
                 report = result;
                 if (synthetic) {
                     File privateReport = new File(getFilesDir(), "physical_ci_report.json");

@@ -103,6 +103,7 @@ expected_modes=[
     'bitmap_factory_default',
     'bitmap_factory_explicit_srgb',
     'image_decoder_srgb_software',
+    'libavif_aom_direct_444',
 ]
 modes=report['decoder_paths']
 assert isinstance(modes,list) and [m['mode'] for m in modes]==expected_modes, modes
@@ -136,6 +137,17 @@ for mode in modes:
                     'worst_error_y':q['worst_error_y'],
                     'histogram':bins,'grid_4x6':grid,
                     'channel_error_gt_2_rgb':q['channel_error_gt_2_rgb']})
+        assert mode['decode_wall_ns'] > 0,mode
+        row['decode_wall_ns']=mode['decode_wall_ns']
+        row['pss_before_kib']=mode['pss_before_kib']
+        row['pss_after_kib']=mode['pss_after_kib']
+        row['concurrent_decode_memory']=mode['concurrent_decode_memory']
+        if mode['mode']=='libavif_aom_direct_444':
+            direct=mode['direct_444']
+            assert (direct['status_code'],direct['decoded_width'],direct['decoded_height'],
+                    direct['decoded_depth'],direct['libavif_pixel_format'])==(0,1344,2992,8,1),direct
+            assert direct['parse_decode_ns']>0 and direct['yuv_to_rgb_ns']>0,direct
+            row['direct_444']=direct
         # The only image in this CI is the built-in synthetic fixture.
         # Verify each RGB sample against its deterministic Java generator.
         expected_positions=[
@@ -193,7 +205,9 @@ for mode in modes:
 assert report['device_decode_status']==modes[0]['status']
 if modes[0]['status']=='OK':
     assert report['quality']==modes[0]['quality'], 'Default preview quality changed'
-summary['all_display_paths_pass']=all(r['pass'] for r in summary['paths'])
+summary['all_display_paths_pass']=all(r['pass'] for r in summary['paths'][:3])
+summary['direct_444_probe_pass']=summary['paths'][3]['pass']
+summary['production_approved']=False
 summary['pixel_approval_for_physical_handoff']=False  # no physical test was executed
 out=Path('evidence/physical-api36/decoder-comparison.json')
 out.write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n')
@@ -223,6 +237,8 @@ python3 - <<'PY'
 import json
 from pathlib import Path
 result=json.loads(Path('evidence/physical-api36/decoder-comparison.json').read_text())
+if not result['direct_444_probe_pass']:
+    raise SystemExit('Direct444 comparison FAILED; Android gate remains independently mandatory')
 if not result['all_display_paths_pass']:
     raise SystemExit('Android display decoder gate FAILED; comparative metrics preserved as CI artifact')
 print('All three Android decoder paths passed the unchanged fidelity thresholds')
