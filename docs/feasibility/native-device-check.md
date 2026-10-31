@@ -772,17 +772,16 @@ each of the six horizontal regions contains exactly 1,316 such
 pixels, and the first worst coordinate is (0,2250). Pixels with
 max error >2 are **0.19636%** of the fixture.
 
-**Strong fixture-boundary correlation (not a full Android error mask):**
-the Java source fixture draws blue 2-pixel-wide strokes at
-`x % 32 <= 1` below `y=2244`, active while `y % 16 <= 10`.
-There are 84 stroke columns, and 94 relevant vertical transition
-rows: the first bottom-quarter row 2244, 46 rows with `y%16=0` and
-47 rows with `y%16=10`. This predicts **84 × 94 = 7,896**
-boundary pixels and **14 × 94 = 1,316** per horizontal sixth;
-these precisely match the Android aggregate counts and grid.
-The evidence tightly localizes an edge-related discrepancy.
-It does **not** record the full per-pixel Android mask, so exact
-pixel-for-pixel membership is still inferred.
+**Initial edge-localization correlation (superseded row hypothesis):**
+the Java fixture draws blue two-pixel-wide strokes at x%32<=1 below
+y=2244 while y%16<=10. The aggregate count is consistent with 84
+stroke columns times 94 rows = 7,896, or 1,316 per horizontal sixth.
+Aggregate counts alone do not identify those rows. The previously
+suggested top-edge/blue-start assignment was an unverified inference
+and is superseded by the RGB discriminator/reconstruction below:
+sampled blue-start rows 2244/2256 have error at most 1; the model's
+affected rows are blue-end/white-next pairs y%16=10/11. No full
+Android error mask was captured.
 
 **Independent RGB reproduction:** decoded the *exact artifact bytes*
 through FFmpeg into 12,063,744 raw RGB24 channel bytes, reconstructed
@@ -814,3 +813,220 @@ while that route is red. Physical Pixel and second hardware, true
 memory peak, physical 16KiB execution, representative screenshot
 text/appearance, receiver behavior, source/license/patent approval,
 G1/M02, signing, merge and release remain **OPEN**.
+
+## API36 RGB discriminator and chroma-reduction reconstruction — 2026-10-30
+
+The narrowly approved diagnostic commit is
+[795ec6f2](https://github.com/santirodriguez/FixMyShot/commit/795ec6f26a69fd3f325a7c2e0e023929f50dd336):
+exactly four modified paths, no file or mode changes outside the probe.
+The normal GitHub tree/commit/ref operations succeeded; the earlier
+tree-creation block is resolved without an alternate write surface.
+[Actions 41157489912](https://github.com/santirodriguez/FixMyShot/actions/runs/41157489912)
+owns the new compiled-source evidence.
+
+Attempt 1 is **FAILURE**: ARM64 and x86_64 native builds and diagnostic
+APK packaging **SUCCESS**, API36 report collection **FAILURE**.
+Artifact 13025971559 (2,838 bytes; SHA256
+3252f5770a8e32af1bf05a3ef6ec13505dfdf590748a5f70bee24beaf4ceab10)
+contains a genuine synthetic report but no AVIF file or selector hints.
+Both BitmapFactory routes completed and retained 19 RGB points each;
+ImageDecoder returned FileNotFoundException. The runner then stopped at
+the nonempty-private-fixture check. The private file's disappearance is
+observed; its cause is **not established**. A single API36-only job retry
+reuses the unchanged compiled APK; successful ABI/APK jobs are not rerun.
+
+Both successful routes retain PSNR 44.67815553399034 dB, maximum
+channel error 63 and 7,896 pixels above 2, so Android fidelity is **FAIL**.
+Every one of their 19 actual RGB points equals the reconstruction below.
+At (0,2250), source (20,100,220) -> Android (56,96,157);
+at (0,2251), source white -> Android (219,255,255).
+At (0,2244)/(0,2256), source blue -> (19,101,220), max error 1.
+The adjacent white columns (2,2250), (31,2250), (34,2250) stay white.
+The affected modeled rows are the 47 blue-end/white-next pairs,
+y%16=10 and y%16=11, starting 2250/2251, across 84 blue-stroke
+columns. Their 47*2*84=7,896 count supersedes the prior *inferred*
+top-edge/blue-start membership; the aggregate count itself was correct.
+Only 19 actual Android coordinates were captured, not its full error mask.
+
+The two successful routes returned the following identical grouped samples
+(all 19 fixed coordinates accounted for):
+
+| Coordinates (x,y) | Source RGB | Android RGB |
+|---|---|---|
+| (0,2244), (0,2245), (0,2256), (0,2257) | (20,100,220) | (19,101,220) |
+| (0,2250), (1,2250), (32,2250), (33,2250), (0,2266) | (20,100,220) | (56,96,157) |
+| (0,2251), (0,2267) | (255,255,255) | (219,255,255) |
+| (0,2243), (2,2250), (31,2250), (34,2250), (16,2250), (0,2255), (100,2000) | (255,255,255) | (255,255,255) |
+| (100,100) | (64,64,64) | (64,64,64) |
+
+Attempt-1 report SHA256:
+f7ea7b3c2d00290f9715c9bf4479783993cc2cce6a2942f08ea083039180b0d7
+(18,902 bytes), JSON source/delta/coordinate checks PASS locally.
+Its single emulator encode was 22.329 s plus 0.149 s conversion;
+109 concurrent samples recorded max observed PSS 250,053 KiB and
+max observed native heap 414,273,824 bytes. These are noisy emulator
+measurements, not a Pixel percentile or true instantaneous peak.
+
+The single unchanged-APK retry (attempt 2) also ended FAILURE:
+artifact 13025538696, ZIP 2,715 bytes, SHA256
+36279976e8093d4b5d49f968b447ff1a549bed2776969427eef4c45558057923.
+Default BitmapFactory again recorded the identical 19 samples and quality;
+the explicit route now returned unavailable and ImageDecoder again
+FileNotFoundException. No third blind retry was made.
+
+Focused follow-up
+[a615c8a6](https://github.com/santirodriguez/FixMyShot/commit/a615c8a6e79f961958d0270c1689552bb4bce8f4)
+changes the same four probe paths only: atomically retain the built-in
+synthetic AVIF in app-private files rather than evictable cache,
+keep synthetic evidence through Activity teardown until AVD disposal,
+capture read-only properties before launch and fixed codec-tag logcat
+before extraction. The native encoder and real-user-image cache/cleanup
+remain unchanged. This addresses an observed evidence-lifetime failure;
+it does not claim that cache eviction or Activity teardown was traced
+as the deleting actor. All display-fidelity gates stay strict.
+
+[Actions 41158416408](https://github.com/santirodriguez/FixMyShot/actions/runs/41158416408)
+at a615c8a6 completed **FAILURE**, specifically at the retained
+Android display-fidelity gate. Both source-pinned ABI builds and APK
+packaging **SUCCESS**. Evidence retention/collection now completed:
+all three Android routes returned correct-size opaque sRGB bitmaps and
+**all 57 captured source/decoded/delta samples match the chroma420 model
+exactly**. Every route retains PSNR 44.67815553399034 dB, max channel
+error 63, 7,896 pixels above 2 and identical histogram/grid.
+
+**Runtime backend evidence:** fixed-tag logcat records three AV1 component
+allocations/creations of **c2.android.av1-dav1d.decoder**, all in client
+PID 2054, with input width 1344, height 2992, and output color-format
+2135033992 (YUV420Flexible). C2SoftDav1dDec logs dav1d
+1.5.0-120-gc83cabaf. This is direct component-selection evidence during
+the three fixture decodes, stronger than the property hint; it is not
+a trace of every internal conversion instruction. Unrelated Vorbis/HEVC
+boot logs in the same fixed-tag capture are not fixture evidence.
+The read-only media.avif.crabbyavif property was empty/unavailable;
+its JSON correctly keeps actual_decoder_backend_confirmed=false because
+that *property capture alone* proves no backend. Emulator fingerprint:
+google/sdk_gphone64_x86_64/emu64xa:16/BE2A.250530.026.F3/13894323:userdebug/dev-keys,
+SDK36, 4096-byte runtime pages.
+
+**Original API36 artifact:** ID 13026425746, ZIP 16,687 bytes, SHA256
+37bf7b4ac27fc0de31d20755ab686cf715b450b9fa782f5febc28faced80f61b;
+10 unique safe entries, CRC PASS, all four SHA256SUMS entries verified.
+Actual AVIF 6,092 bytes, SHA256
+a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2,
+byte-identical to the earlier exact artifact. Independent decoding of
+these **newly recovered bytes** again gives PSNR58.7403380dB/max1.
+Report SHA256 80356382090b59c4515ecec0090b04fd6bccc11cc6a103da8d10e4a677f09924;
+decoder matrix 743af27ef1c911ed8a342d9547222939ddd3b533066e9baa4f55ceae4687b652;
+selector hints d49ed16aa36f6031a476651e94d12a6b32f79290ed1a384067403d4fee99194a;
+backend log 2ad96a4ca85c3e227215ff3d08e1655f5932832f4fa2b705624fdb6e18b3a8d2.
+The one emulator encode took6.370s plus0.365s conversion;
+37 concurrent samples saw max PSS141,661KiB and native heap224,987,056B.
+These are sampled emulator observations, not physical peaks or Pixel p95.
+
+The exact APK artifact 13026490043
+is 3,529,120 bytes, ZIP SHA256
+699e95a497b4d12fb9742595bc27dc352c8dd46a1e29875fade7d504d5f88e5d.
+Its source receipt binds a615c8a6; APK 8,866,209 bytes, SHA256
+613de84f53a563ad05e4daaeeb2593629d8edd46a0f8501de7a9ccf92b81a592.
+ZIP CRC/unique entries, APK/native/notice hashes and ELF/ZIP 16KiB
+structure were independently checked; zero permissions and the
+ephemeral debug v2 signature passed the CI package gate. This is
+not a physical 16KiB test, a production signature or a Pixel handoff.
+
+
+
+### Independent mechanism reconstruction
+
+The original synthetic AVIF from Actions 41144625226 was recovered from
+artifact 13020496137 and checked against its official ZIP SHA256
+0345c5312e94d4b21087fb877d18b825db3bfa0e4341428c324f2bbff51a6b2e.
+Its exact 6,092-byte AVIF retains SHA256
+a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2.
+Independent FFmpeg 6.1.1-3ubuntu5 extraction of its original full-range YUV444 planes
+and RGB24 output reproduces PSNR 58.7403380 dB, maximum error 1.
+
+A host reconstruction changes **only the decoded chroma sampling**:
+round each 2x2 U/V block average to the nearest integer, repeat that
+sample over its 2x2 output block, retain every decoded Y sample,
+and convert to RGB with libyuv's full-range BT709 integer coefficients.
+Against the exact Java source fixture, this reproduces **every recorded
+aggregate** from the prior Android run: MSE 2.214444537284611,
+PSNR 44.67815553399034 dB, maximum error 63,
+histogram [3304000,709352,0,0,0,0,7896],
+RGB counts above 2 [7896,3948,3948], and the full 4x6 error grid.
+The control retaining YUV444 with the *same integer converter*
+has PSNR 60.1581555 dB, maximum error 1, zero pixels above 2.
+The loss is therefore reproducible by chroma reduction alone;
+changing an RGB color-space preference cannot recover the discarded chroma.
+
+For the blue-end/white-next pair, the decoded full-resolution chroma
+is U/V=(197,82) on blue and (128,128) on white. The rounded 2x2
+reduction shares U/V=(163,105). Applying the cited integer conversion
+with Y=92 on blue yields (56,96,157), while Y=255 on white yields
+(219,255,255). This supplies a concrete pixel-level discriminator,
+rather than merely correlating error locations with an edge.
+
+Reproduction after extracting yuv444p with FFmpeg into three HxW planes
+and reconstructing the exact Java expected fixture, using NumPy:
+
+~~~python
+p = decoded_yuv444.astype(np.int32)
+def half_then_repeat(c):
+    half = (c[::2, ::2] + c[::2, 1::2] +
+            c[1::2, ::2] + c[1::2, 1::2] + 2) // 4
+    return half.repeat(2, axis=0).repeat(2, axis=1)
+y = p[0]
+u = half_then_repeat(p[1]) - 128
+v = half_then_repeat(p[2]) - 128
+luma = ((y * 257 * 16320) >> 16) + 32
+rgb = np.clip(np.stack(((luma + 101*v) >> 6,
+                       (luma - 12*u - 30*v) >> 6,
+                       (luma + 119*u) >> 6), axis=2), 0, 255)
+~~~
+
+Primary implementation references inspected on this date:
+[Skia registration](https://android.googlesource.com/platform/external/skia/+/refs/heads/main/src/codec/SkCodec.cpp)
+(blob 8cc94f0858a517080ff434bb77adfff2f3ebe58c) conditionally registers
+CrabbyAVIF and otherwise documents the HEIF route;
+[AOSP dav1d adapter](https://android.googlesource.com/platform/frameworks/av/+/refs/heads/main/media/codec2/components/dav1d/C2SoftDav1dDec.cpp)
+(blob 44a8dd1748064a062ea3256a227c2d4d20670f58) routes 8-bit output
+through a YV12 conversion;
+[AOSP conversion helper](https://android.googlesource.com/platform/frameworks/av/+/refs/heads/main/media/codec2/components/base/SimpleC2Component.cpp)
+(blob 7b51afe8d478737ce72a324455df35ac06a32d80) maps I444 to I420;
+[libyuv integer conversion](https://chromium.googlesource.com/libyuv/libyuv/+/refs/heads/main/source/row_common.cc)
+(blob 951d3c92739e8006f4f47f6390895b0c8e462d91) defines the F709
+coefficients used above. These inspected upstream snapshots are
+mechanism evidence, **not a trace of the emulator's actual loaded backend**.
+
+### Profile and interoperability limit
+
+FFprobe identifies the recovered synthetic file as AV1 **High**,
+8-bit YUV444/full-range BT709 with sRGB transfer.
+[AVIF section 8.2](https://aomediacodec.github.io/av1-avif/latest-approved.html#avif-baseline-profile)
+limits the Baseline profile to AV1 Main, whereas section 8.3 permits
+High for Advanced images. [Android 16 CDD section 5.1.5](https://source.android.com/docs/compatibility/16/android-16-cdd#5_1_5_image_decoding)
+requires AVIF Baseline decoding. Accordingly, generic Android AVIF
+availability cannot establish preservation of this High/YUV444 input.
+The observed chroma loss is not by itself proof of a CDD violation.
+A future app-local decoder preserving 4:4:4 would still leave external
+Gallery/share receivers as separate compatibility gates; changing the
+encoder to 4:2:0 would retain the demonstrated information loss.
+
+### Interpretation and acceptance boundary
+
+The captured Android RGB values and every aggregate have a complete
+numerical explanation: decoded 4:4:4 chroma reduced to 4:2:0, followed by
+full-range BT709 integer conversion. This is a **reproduced mechanism**. The additional runtime logs above
+identify the selected C2 dav1d component for the fixture decodes; the
+upstream source review and exact reconstruction explain its chroma-loss
+behavior without claiming a trace of every binary instruction or
+the exact Skia registration implementation. A property value alone
+is not backend proof. The independent good
+decoder/control results do not turn the Android display gate green.
+
+Normal PNG/lossless WebP export is unchanged. Keep HEIC/AVIF normal
+export and Pixel APK handoff blocked; no phone was tested in this work.
+Physical 16KiB runtime, true instantaneous peak PSS, representative
+screenshot appearance, second hardware, source/license/patent clearance,
+G1/M02, signing, merge and release remain OPEN.
+
