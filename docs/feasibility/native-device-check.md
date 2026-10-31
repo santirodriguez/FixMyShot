@@ -728,3 +728,89 @@ user Pixel native-codec diagnostics. Physical Pixel/second hardware,
 real 1344x2992 image appearance, true peak PSS, hardware 16 KiB
 runtime, licensing/publisher/patent review, G1/M02, merge/signing
 and release remain **OPEN**.
+
+## API36 three-decoder edge localization — 2026-10-30
+
+**Exact-source run:** [Actions 41144625226](https://github.com/santirodriguez/FixMyShot/actions/runs/41144625226) at
+`f63619b3db0565a8b38ffb068c7c74b2bb058273`, attempt 1:
+pinned ARM64 and x86_64 native builds **SUCCESS**, source/notice/ELF/ZIP/
+debug APK packaging **SUCCESS**, API36 synthetic decoder fidelity **FAILURE**.
+No physical device was used; the separate `avif-physical` app remains
+diagnostic only, not the shipping exporter.
+
+**Independently verified downloaded artifacts:** API36 artifact ID
+`13020496137`, ZIP 9,916 bytes, SHA-256
+`0345c5312e94d4b21087fb877d18b825db3bfa0e4341428c324f2bbff51a6b2e`,
+eight unique safe members, CRC PASS; its three SHA256SUMS receipt entries
+match after normalizing the original CI directory prefix.
+`decoder-comparison.json` SHA-256
+`21e6b333c3b9630d525541ef987f23afc0e69c956a81bee85bcd1f4ffb706503`.
+Actual synthetic `fixture-1344x2992.avif`: 6,092 bytes, SHA-256
+`a310682eaa8c56d27b0b6c104bd85e8af741a38426165dc1381c3b106a2c66f2`,
+identical to the previous JNI synthetic AVIF. Independent `ffprobe`
+reports 1344×2992, YUV444 8-bit, full range.
+APK artifact ID `13020655122`, ZIP 3,527,889 bytes, SHA-256
+`75e1171814e10bd250c88b08f036c9f216c8a3e3ce4ecd47be942a450d3a1f3d`;
+debug APK 8,866,209 bytes SHA-256
+`b6a2550ca5776e074cec7cde16125ba59ab940505ccddfdbe7bc1cacb63edd3b`.
+The APK is **not approved for Pixel installation**.
+
+All three Android API36 paths returned 1344×2992 opaque ARGB_8888
+with sRGB profile and **exactly identical** RGB comparison results:
+
+| Android decoder entry point | PSNR | Maximum channel error | Pixels with max error >2 | Gate |
+|---|---:|---:|---:|---|
+| `BitmapFactory` default | 44.6781555 dB | 63 | 7,896 | FAIL |
+| Explicit sRGB `BitmapFactory.Options` | 44.6781555 dB | 63 | 7,896 | FAIL |
+| Software sRGB `ImageDecoder` | 44.6781555 dB | 63 | 7,896 | FAIL |
+
+Of 4,021,248 pixels, each path records 3,304,000 exact pixels,
+709,352 with max channel error **1**, and 7,896 with max channel error
+**at least 32**. No pixels have max error 2–31. Channel counts >2:
+R=7,896, G=3,948, B=3,948. All >2 errors are in the bottom quarter;
+each of the six horizontal regions contains exactly 1,316 such
+pixels, and the first worst coordinate is (0,2250). Pixels with
+max error >2 are **0.19636%** of the fixture.
+
+**Strong fixture-boundary correlation (not a full Android error mask):**
+the Java source fixture draws blue 2-pixel-wide strokes at
+`x % 32 <= 1` below `y=2244`, active while `y % 16 <= 10`.
+There are 84 stroke columns, and 94 relevant vertical transition
+rows: the first bottom-quarter row 2244, 46 rows with `y%16=0` and
+47 rows with `y%16=10`. This predicts **84 × 94 = 7,896**
+boundary pixels and **14 × 94 = 1,316** per horizontal sixth;
+these precisely match the Android aggregate counts and grid.
+The evidence tightly localizes an edge-related discrepancy.
+It does **not** record the full per-pixel Android mask, so exact
+pixel-for-pixel membership is still inferred.
+
+**Independent RGB reproduction:** decoded the *exact artifact bytes*
+through FFmpeg into 12,063,744 raw RGB24 channel bytes, reconstructed
+the source image from the exact Java fixture formula and compared
+every byte. MSE **0.0869053587**, PSNR **58.7403380 dB**, absolute
+max channel error **1**, zero pixels with error >2.
+At (0,2250), expected (20,100,220), FFmpeg output (20,101,220);
+the adjacent white pixel at (0,2251) stays (255,255,255).
+This supports accurate *bitstream* reproduction even at the sharp edge.
+
+**Interpretation and limit:** all three Android Java entry points
+produced the same discrepancy. They may share an underlying framework
+AVIF decoder; [Skia decoder registration](https://android.googlesource.com/platform/external/skia/+/refs/heads/main/src/codec/SkCodec.cpp)
+shows Android can select AVIF decoder implementations through the
+framework. The actual API36 emulator backend/feature property was
+**not captured**. A chroma reconstruction, edge filtering or color
+conversion difference at narrow colored stroke boundaries is
+plausible but **not demonstrated**; this does not establish an Android
+framework defect, receiver behavior or real Pixel appearance.
+
+**Next narrow deciding diagnostic:** synthetic-only capture of a few
+source/decoded RGB triples at known stroke boundary/interior
+coordinates, plus the active framework AVIF decoder selection where
+available, to distinguish filtering from profile/range handling.
+Do **not** export selected user images or log arbitrary user pixels.
+Maintain the existing PSNR>=38/max channel error<=2 display gate,
+and do not automatically switch previews or hand off the debug APK
+while that route is red. Physical Pixel and second hardware, true
+memory peak, physical 16KiB execution, representative screenshot
+text/appearance, receiver behavior, source/license/patent approval,
+G1/M02, signing, merge and release remain **OPEN**.
