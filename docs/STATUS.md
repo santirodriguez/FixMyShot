@@ -1,5 +1,29 @@
 # Completion status
 
+## AVIF deferral approved; HEIC remains open — 2026-10-31
+
+The user approved **deferring AVIF from0.1.0** after the completed
+[Actions41212246198](https://github.com/santirodriguez/FixMyShot/actions/runs/41212246198)
+chroma comparison. Its FAILURE remains the verified diagnostic result:
+all three Android routes on both444 and420 have max-channel error63;
+host420 has64; direct/host444 has1. The existing limit2 is unchanged.
+The [scope amendment](decisions/compatibility-and-validation.md#approved-avif-scope-amendment--2026-10-31)
+qualifies only the AVIF release requirement, preserving all measured
+evidence and the immutable blueprint. AVIF is removed from new selections;
+old drafts remain readable/unavailable without silent conversion.
+
+HEIC is not deferred or qualified by this change. The completed Pixel
+native report measured HEIC PSNR28.234/26.078/24.739dB at64x64/65x67/
+1344x2992, patch median error1, with no independently reopened original
+HEIC bytes. Do not repeat that unchanged six-case check. The next useful
+HEIC evidence is a separately bounded synthetic encoded-byte comparison,
+not an inference from AVIF or an unapproved production fallback.
+
+PNG/lossless WebP and accepted next-image UX remain intact. Other
+physical/resource/source/distribution gates still apply; this is not
+functional-release or signing/merge/publication approval. No new physical
+test is claimed. The older feasibility entries below remain historical.
+
 ## Isolated AVIF JNI APK cost and API 36 — verified 2026-10-30
 
 Pinned source-built libavif/libaom JNI completed

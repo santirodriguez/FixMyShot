@@ -1,5 +1,21 @@
 # Codec status
 
+## Current0.1.0 scope — 2026-10-31
+
+**AVIF is deferred from0.1.0 by explicit scope approval.** It is removed
+from new format selections. Existing AVIF draft identities remain readable
+and explicitly unavailable, with no automatic format substitution.
+PNG remains the new-session default; lossless WebP is the implemented
+alternative. HEIC remains separately gated and is not deferred by this
+decision. JXL retains its earlier deferral.
+
+The [approved amendment](decisions/compatibility-and-validation.md#approved-avif-scope-amendment--2026-10-31)
+qualifies the immutable blueprint. The [completed chroma comparison](feasibility/native-device-check.md#synthetic-yuv420-versus-yuv444-encoding-comparison--2026-10-31)
+remains FAILURE: Android max63 for both444/420; independent host420 max64,
+against the unchanged limit2. Internal direct444 success cannot qualify
+Gallery/sharing. The diagnostic results below are historical feasibility,
+not current normal-format availability or release approval.
+
 ## Isolated JNI software AVIF: diagnostic feasibility only — 2026-10-30
 
 [Exact-source Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
@@ -55,8 +71,8 @@ next-image picker/cancel flow on a diagnostic APK. These results do not constitu
 full physical color/metadata/resource validation or a production release.
 **PNG remains the absolute new-session default.** WebP lossless is an explicit
 available choice subject to destination/alpha rules; HEIC and AVIF remain
-capability/format/device gated and unavailable for ordinary output, while JXL
-remains deferred. JPEG input is supported, not JPEG output.
+unavailable for ordinary output: HEIC awaits independent qualification;
+AVIF and JXL are deferred from0.1.0. JPEG input is supported, not JPEG output.
 
 The latest [Pixel AVIF alignment evidence](feasibility/native-device-check.md#pixel-9-pro-xl-focused-avif-alignment-result--2026-10-30)
 records **5/5 small AVIF encode/reopen attempts but 0/5 passing numeric
@@ -95,7 +111,7 @@ HEIC/AVIF remain gated and PNG/lossless WebP are unaffected.
 | PNG | Android PNG encoder on API 26+ | Synthetic instrumentation asserts opaque RGB / alpha RGBA, container CRCs, independent reopen and exact normalized pixels. Runtime/device results must come from the matching CI/device report. |
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
 | HEIC | Native AndroidX `HeifWriter` candidate from API 29; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; only a successfully encoded/reopened sample proves a particular configuration. Pixel and second-family acceptance remain mandatory. |
-| AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
+| AVIF | Deferred for0.1.0; not offered for new selections | Existing drafts stay readable/unavailable. Native and software diagnostics are retained as failed/unqualified evidence; the approved scope amendment does not enable any production route. |
 | JXL | Deferred for v0.1.0; not offered in the format menu | The pinned three-ABI reference build succeeded, but qualified shipping cost/fidelity/runtime evidence is absent. See [the measured deferral decision](decisions/jxl-first-delivery.md). No codec failure or optimized-APK budget overrun is inferred. |
 
 Current Photo Picker/share intake accepts supported static SDR JPEG, PNG and WebP sources. The normal image export path now includes private full-resolution encoding, strict candidate verification, journalled public publication, results, sharing and guarded recovery. It is a functional implementation with bounded automated acceptance, **not** an approved production distribution or an assertion of full physical output fidelity. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.

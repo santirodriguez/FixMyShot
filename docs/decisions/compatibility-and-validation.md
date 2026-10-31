@@ -1,5 +1,41 @@
 # Compatibility and validation scope — 2026-10-22
 
+## Approved AVIF scope amendment — 2026-10-31
+
+Decision: **DEFER AVIF for0.1.0**, explicitly approved by the user after
+the bounded native/software and420-versus444 investigation. This qualifies
+the AVIF portion of blueprint §§4/8/15/16,R20,A04 and G1/M02 only.
+The immutable blueprint remains preserved; this amendment does not
+defer HEIC or weaken any remaining output/privacy/transactional gate.
+
+[Actions41212246198](https://github.com/santirodriguez/FixMyShot/actions/runs/41212246198)
+completed FAILURE: all three Android routes on both444/420 gave
+maximum channel error63 and7896pixels>2; independent host420 gave
+maximum64. Direct/host444 retained maximum1, which cannot qualify
+external receivers. Full [evidence](../feasibility/native-device-check.md#synthetic-yuv420-versus-yuv444-encoding-comparison--2026-10-31)
+and unsuccessful measurements remain valid, not waived or relabeled PASS.
+
+Remove AVIF from new format selections, retaining its enum, localized
+label, serialized draft identity and diagnostic code. Restored AVIF drafts
+remain explicitly unavailable under the existing FORMAT_NOT_READY gate;
+never rewrite them to PNG/WebP, retry with a different format or alter
+session fingerprints. PNG remains the new-session default. The existing
+PNG/lossless WebP routes remain in scope; JXL keeps its separate deferral.
+No software AVIF decoder/library enters normal export.
+
+AVIF-specific production integration, physical handoff and qualification
+leave the0.1.0 critical path. No new date/version for AVIF is promised.
+Reconsider it only with a bounded proposal addressing exact output and
+receiver fidelity, source/license/security review, actual shipping package
+cost, physical memory/latency and applicable ABI/16KiB acceptance.
+A future diagnostic pass alone does not reinstate shipping support.
+
+HEIC remains a desired0.1.0 output with its independent unresolved
+G1/M02 qualification. Its completed Pixel six-case report is retained;
+do not repeat those unchanged tests or infer HEIC behavior from AVIF.
+No final-release readiness, signing, merge, publication or physical-test
+approval follows from this amendment.
+
 Product direction now prioritizes complete useful functionality in coherent implementation batches. Backward compatibility is welcome when it remains straightforward. It must not require disproportionate complexity or repeated narrow debugging at the expense of the current Android experience.
 
 This qualifies the original blueprint's strict legacy requirements (R22; API26 portions of A09, G3/G4 and M03). The existing minSdk26 and permission-free SAF path remain for now. No new legacy storage-write permission or default-Pictures adapter is planned solely to satisfy the original API26–28 requirement. Legacy-only failures are known limitations and may justify raising minSdk in a later focused decision; they are not hidden or silently described as supported. Current-device privacy, source integrity, truthful formats and transactional output requirements remain unchanged.
@@ -31,7 +67,7 @@ decoder. The immutable blueprint and JXL disposition remain unchanged.
 | Android display route | Correct dimensions, opaque sRGB, PSNR >=38dB and maximum channel error <=2 on the synthetic gate | FAIL in all three measured API36 routes: PSNR44.6781555, max63,7896pixels>2 |
 | Direct software route | The same fidelity gate plus shipping dependency, resource and lifecycle qualification | Synthetic fidelity PASS only: PSNR58.7403380, max1; production qualification OPEN |
 | Storage and receiving application | Actual saved bytes, gallery/compatible-viewer reopen and share through real URI grants on the named device/application | NOT RUN for this software candidate; no inference from internal preview |
-| First functional delivery | Existing G1/M02, representative physical devices and all independent release gates | BLOCKED for AVIF; no scope deferral is implied |
+| First functional delivery | Approved AVIF scope amendment below; remaining G1/M02 and independent release gates | AVIF deferred from0.1.0; HEIC and other mandatory gates remain OPEN |
 
 Full measurements and original artifact receipts:
 [native device evidence](../feasibility/native-device-check.md#isolated-direct-yuv444-software-decoder-comparison--2026-10-31),
@@ -98,16 +134,14 @@ decoded444, with unchanged Y. See the [complete evidence](../feasibility/native-
 This supersedes the earlier proposed experiment, not its unchanged
 fidelity thresholds. No runner defect or unchanged rerun is indicated.
 
-The bounded attempt has therefore reached the scope-decision boundary.
-Recommendation: defer AVIF from0.1.0 while preserving the evidence and
-PNG/lossless WebP path. **PROPOSED, NOT APPROVED**: no deferral is enacted
-by this document. HEIC and every other release gate remain independent.
+The user approved deferring AVIF from0.1.0 on2026-10-31 after reviewing
+this bounded failure evidence. The scope amendment at the top of this
+document governs that decision. HEIC and every other release gate remain
+independent.
 Do not repeat the same experiment, change emulator properties, integrate
 an internal decoder as an external-receiver fix, or hand off the Pixel
 APK under this failed evidence.
 
-If no candidate meets both fidelity and receiver requirements within the
-bounded attempt, present an explicit first-delivery scope decision.
-Shipping without the desired AVIF feature or lowering the quality bar
-requires separate scope resolution. It must not be inferred from this
-contract, the JXL deferral, or an internal decoder's successful result.
+The explicit scope resolution now permits0.1.0 without AVIF. It does not
+lower the quality bar or qualify a failed codec. Future AVIF integration
+requires a new bounded decision and the retained fidelity/receiver gates.
