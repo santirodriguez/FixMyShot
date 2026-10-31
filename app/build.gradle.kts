@@ -2,6 +2,21 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
 }
+val avifProbeMode = providers.gradleProperty("fixmyshot.avifProbeMode").orNull ?: "off"
+check(avifProbeMode in setOf("off", "baseline", "native")) {
+    "Only off, baseline or native isolated AVIF probe modes are supported."
+}
+val avifProbeLibs = providers.gradleProperty("fixmyshot.avifProbeLibsDir").orNull
+val avifProbeNotices = providers.gradleProperty("fixmyshot.avifProbeNoticesDir").orNull
+if (avifProbeMode == "native") {
+    check(!avifProbeLibs.isNullOrBlank() && file(avifProbeLibs).isDirectory) {
+        "Opt-in JNI probe requires an existing source-built JNI library directory."
+    }
+    check(!avifProbeNotices.isNullOrBlank() && file(avifProbeNotices).isDirectory) {
+        "Opt-in JNI probe requires exact upstream license and patent notices."
+    }
+}
+
 android {
     namespace = "org.cajapersonal.fixmyshot"
     compileSdk = 36
@@ -16,8 +31,16 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = ".debug" }
+        debug { applicationIdSuffix = if (avifProbeMode == "off") ".heicbytes" else ".avifprobe" }
         release { isMinifyEnabled = false }
+    }
+    // Opt-in debug-only inputs; ordinary debug and all release packages stay unchanged.
+    sourceSets {
+        if (avifProbeMode == "native") {
+            getByName("debug").jniLibs.srcDir(file(avifProbeLibs!!))
+            getByName("debug").assets.srcDir(file(avifProbeNotices!!))
+            getByName("androidTest").java.srcDir("src/avifProbeAndroidTest/java")
+        }
     }
     buildFeatures { compose = true }
     compileOptions {
@@ -50,6 +73,9 @@ abstract class PrepareBrandingTask : DefaultTask() {
     @get:org.gradle.api.tasks.InputFile
     @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
     abstract val sourceIcon: org.gradle.api.file.RegularFileProperty
+    @get:org.gradle.api.tasks.InputFile
+    @get:org.gradle.api.tasks.PathSensitive(org.gradle.api.tasks.PathSensitivity.NONE)
+    abstract val sourceHeader: org.gradle.api.file.RegularFileProperty
     @get:org.gradle.api.tasks.OutputDirectory
     abstract val outputDirectory: org.gradle.api.file.DirectoryProperty
 
@@ -58,6 +84,8 @@ abstract class PrepareBrandingTask : DefaultTask() {
         val target = outputDirectory.file("drawable-nodpi/brand_icon.png").get().asFile
         target.parentFile.mkdirs()
         sourceIcon.get().asFile.copyTo(target, overwrite = true)
+        sourceHeader.get().asFile.copyTo(outputDirectory.file("drawable-nodpi/brand_header.png").get().asFile,
+            overwrite = true)
     }
 }
 
@@ -90,6 +118,7 @@ androidComponents {
         val suffix = variant.name.replaceFirstChar { it.uppercase() }
         val branding = tasks.register<PrepareBrandingTask>("prepare${suffix}BrandingResources") {
             sourceIcon.set(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
+            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/header.png"))
             outputDirectory.set(layout.buildDirectory.dir("generated/branding/${variant.name}/res"))
         }
         val legal = tasks.register<PrepareLegalTask>("prepare${suffix}LegalAssets") {

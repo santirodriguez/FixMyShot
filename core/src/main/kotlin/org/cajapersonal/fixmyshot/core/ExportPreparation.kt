@@ -31,6 +31,8 @@ data class PrivateOutputRecipe(
     val estimatedWorkingSetBytes: Long,
     val crop: SourceRectangle? = null,
     val sourceColor: SourceColor = SourceColor.SRGB,
+    /** Explicitly opt into controlled off-frame placement; old recipes remain false. */
+    val flexibleFrame: Boolean = false,
 ) {
     val needsBackgroundResolution: Boolean get() = background == BackgroundChoice.Automatic
 }
@@ -67,6 +69,7 @@ object ExportPreparation {
             val canvas = when (geometry) {
                 is PlannedGeometry.Contained -> geometry.value.canvas
                 is PlannedGeometry.Cropped -> geometry.value.output
+                is PlannedGeometry.Framed -> geometry.value.canvas
                 null -> null
             }
             if (canvas == null) blocks += PrivatePreparationBlock.CONTAIN_RENDER_ONLY
@@ -111,6 +114,7 @@ object ExportPreparation {
                 val output = requireNotNull(canvas)
                 val contained = (geometry as? PlannedGeometry.Contained)?.value
                 val crop = (geometry as? PlannedGeometry.Cropped)?.value
+                val frame = (geometry as? PlannedGeometry.Framed)?.value
                 PrivateOutputRecipe(
                     sourceId = image.id,
                     sourceSha256 = requireNotNull(hash),
@@ -121,8 +125,10 @@ object ExportPreparation {
                     catalogVersion = preview.catalogVersion,
                     destinationId = preview.destination.preset.id,
                     canvas = output,
-                    placement = contained?.placement ?: PixelPlacement(0, 0, output.width, output.height),
+                    placement = frame?.placement ?: contained?.placement
+                        ?: PixelPlacement(0, 0, output.width, output.height),
                     crop = crop?.visibleSource,
+                    flexibleFrame = frame != null,
                     background = preview.settings.background,
                     codecRoute = requireNotNull(route),
                     request = requireNotNull(request),

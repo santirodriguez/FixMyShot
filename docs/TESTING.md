@@ -1,6 +1,48 @@
 # Testing and evidence
 
-Latest accepted application checkpoint: **5d568a7e**, normal Actions
+## Current functional checkpoint — 2026-10-29
+
+Current draft PR #1 compiled HEAD: [`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7)
+on `release/0.1.0-editor`; target `release/0.1.0`; **OPEN / DRAFT / not merged**.
+[Android bootstrap 40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) completed **SUCCESS**:
+build/lint and core 99/99 (zero failures/errors/skips), API36 editor 12/12,
+import/settings/session 23/23, and the other retained instrumentation groups,
+including renderer 8, private-output 20, transaction 12, export-flow 5,
+share 4, batch 7, retry 8, recovery 16 and thumbnail 3. The optional
+API26/28 SAF-provider job was **SKIPPED / NOT RUN**, not accepted.
+
+Independent checks recorded the exact-source artifacts:
+`bootstrap` ID `12938547270`, 45,873,108 B,
+SHA-256 `a05d2b3ba747f917768609d75b7898ff3fcaad81fc60d20752ca46c4fbdb2544`;
+`smoke-api-36` ID `12937952691`, 2,279,411 B,
+SHA-256 `5b8535fc3a9e1f8e97c540190b1d2544a9fe69ae55cddd766eeebdef15bdb07e`.
+Official digests, unique ZIP entries, CRC, compiled source receipts and APK
+receipts were independently reconciled; the source archive matched 707 project
+files. The isolated `FixMyShot-Next-d54eb9c7.apk` (debug package `.ux22next`)
+is 16,896,841 B, SHA-256
+`1b526d18191363657ea0d8eadbc7c8a6f61d5a930c4b41d4838ef312390c7743`.
+Its RSA-SHA256 v2 signed contents and binary manifest were verified:
+minSdk26/target36, no Internet or broad-storage permission, backup disabled.
+This is **ephemeral diagnostic signing**, not a production key.
+
+Automated UI evidence includes real system-picker visibility, Back cancellation
+to a clean Start, saved-copy preservation and PNG/privacy defaults. The user
+ran the requested consecutive-image and picker-cancellation test on the
+delivered diagnostic and confirmed: “Hecho. Todo funciona bien.” That is
+user-reported **functional acceptance of this flow**; earlier general UX2.2
+visual feedback was positive. Neither statement verifies full-resolution Pixel
+color/matte, frame-time/jank, native HEIC/AVIF, second hardware, 16 KiB runtime,
+manual languages/accessibility, provider failures, final source/provenance,
+production signing or Obtainium upgrades. Do **not** repeat the accepted
+phone exercise or the unchanged source's green test matrix merely for this
+documentation synchronization.
+
+## Historical source-bound receipts
+
+Entries below retain the state and limitations of their own recorded commits.
+They are not the current application HEAD or substitutes for the checkpoint above.
+
+Earlier bounded build/reproducibility baseline: **5d568a7e**, normal Actions
 [40196478234](https://github.com/santirodriguez/FixMyShot/actions/runs/40196478234)
 and exact-source independent rebuild
 [40197042011](https://github.com/santirodriguez/FixMyShot/actions/runs/40197042011).
@@ -1324,3 +1366,13 @@ ordinary HEIC/AVIF export. Bind the returned report to this exact APK hash;
 record model/Android and actual results. Startup, gallery, source preservation,
 native codec, physical16KiB and all wider device gates remain PENDING until
 observed. The debug handoff grants no publisher/source/distribution approval.
+
+## Live editor redesign — accumulated validation requested (2026-10-28)
+
+Development branch release/0.1.0-editor starts at4aa497e427d1d09a1bf84ef7f942869b08c7fc65. The editor keeps a fixed canvas and independently scrollable active-tool pane, shares the original source sample across geometry edits/recreation, and replaces the former crop/position dialogs with live plan-driven drawing. Crop/slider gestures commit once on release; fine +/- zoom uses2% relative steps with a logarithmic slider. Advanced fields are contextual; batch overrides, original files, output geometry/formats/privacy/recovery are preserved. Debug package .editor/visible FixMyShot Editor installs separately; production ID/key untouched.
+
+Prepared evidence: three pure-JVM EditorZoomTest cases, two actual Compose accessibility/pointer EditorInteractionTest cases, existing8render regressions and full current-profile suites. The new cases assert retained sample identity, one gesture revision plus undo/recreation, a precise1.02x button step and stable canvas bounds during control scrolling; editor-framing.png contains only synthetic content. Existing renderer/transaction/private-output assertions remain unchanged.
+
+Local resource/XML/catalog/placeholder/manifest checks(278 matching keys), release-source checker and10release/10device-report host cases PASS; Bash syntax and diff whitespace PASS. Android compile/lint/JVM/new interaction/runtime checks are NOT RUN until the exact source-bound Actions checkpoint completes. No frame-time or allocation benchmark is claimed. Pixel9ProXL smoothness/visual/fidelity, TalkBack/large text/keyboard/manual languages, real-provider/other hardware and existing release gates remain OPEN.
+
+First checkpoint932dae34 / Actions40702874741 failed in the host collector fixture before Android compilation: the mock did not yet emit the new two-test EditorInteractionTest result. Its success result fell through to the old four-test default, so the new strict two-test guard correctly refused it. Update the mock's explicit editor classification; no product assertion or count is relaxed. New Android build/runtime acceptance remains pending.

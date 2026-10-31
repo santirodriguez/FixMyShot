@@ -38,14 +38,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.diagnostics.NativeCodecDiagnostic
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckReport
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckSample
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifDiagnostic
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifReport
+import org.cajapersonal.fixmyshot.diagnostics.AvifByteSampler
+import org.cajapersonal.fixmyshot.diagnostics.AvifByteSample
 
 /** Owns the active draft and explicit, journal-backed export recovery across recreation. */
 internal class ReviewViewModel : ViewModel() {
     var draft by mutableStateOf(DraftSession())
+    var preferredTemplate: String? = null
+    var quickPreferencesReady by mutableStateOf(false)
     var selectedId by mutableStateOf<String?>(null)
     // Retained only with this ViewModel. Applied settings remain owned by the draft journal.
     var editorSessionKey by mutableStateOf(java.util.UUID.randomUUID().toString())
@@ -63,7 +70,12 @@ internal class ReviewViewModel : ViewModel() {
         editSelectedOnly = false
         editorSessionKey = java.util.UUID.randomUUID().toString()
     }
+    // One bounded ORIGINAL sample, not a rendered output. Never used as export input.
     var preview by mutableStateOf<Bitmap?>(null)
+    var previewSourceKey: String? = null
+    var previewEpoch by mutableStateOf(0L)
+    fun trimPreview() { preview = null; previewSourceKey = null }
+
     var isBusy by mutableStateOf(false)
     var invalidImports by mutableStateOf(0)
     var latestImport by mutableStateOf<ImportReport?>(null)
@@ -203,7 +215,12 @@ internal class ReviewViewModel : ViewModel() {
                     offered = wanted.size + stoppedQueuedImports)
                 invalidImports += report.problems.size
                 latestImport = report
-                val updated = draft.addImages(additions)
+                // Recommend only for an untouched new session, never a restored/custom draft.
+                val base = if (draft.revision == 0L && draft.images.isEmpty() && additions.isNotEmpty() &&
+                    draft.batch == org.cajapersonal.fixmyshot.core.EditSettings())
+                    draft.copy(destination = org.cajapersonal.fixmyshot.core.QuickTemplates.initial(additions, preferredTemplate))
+                else draft
+                val updated = base.addImages(additions)
                 val released = draft.workingSourceIds - updated.workingSourceIds
                 draft = updated
                 if (released.isNotEmpty()) releasePrivateSources(context.applicationContext, released)
@@ -262,6 +279,26 @@ internal class ReviewViewModel : ViewModel() {
     var nativeCheckShareError by mutableStateOf(false)
         private set
     private var nativeCheckCancel: AtomicBoolean? = null
+    var oddAvifRunning by mutableStateOf(false)
+        private set
+    var oddAvifStopping by mutableStateOf(false)
+        private set
+    var oddAvifProgress by mutableStateOf(0)
+        private set
+    var oddAvifReport by mutableStateOf<OddAvifReport?>(null)
+        private set
+    var oddAvifShareError by mutableStateOf(false)
+        private set
+    private var oddAvifCancel: AtomicBoolean? = null
+    var avifSampleRunning by mutableStateOf(false)
+        private set
+    var avifSampleStopping by mutableStateOf(false)
+        private set
+    var avifSample by mutableStateOf<AvifByteSample?>(null)
+        private set
+    var avifSampleShareError by mutableStateOf(false)
+        private set
+    private var avifSampleCancel: AtomicBoolean? = null
 
     /** Explicit synthetic check, serialized with private export/session work and never auto-started. */
     fun startNativeCheck(context: Context) {
@@ -302,9 +339,93 @@ internal class ReviewViewModel : ViewModel() {
 
     fun nativeCheckShareUnavailable() { nativeCheckShareError = true }
 
+    /** Five synthetic odd/aligned AVIF attempts, serialized with all other private work. */
+    fun startOddAvifCheck(context: Context) {
+        if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
+        val app = context.applicationContext
+        val cancel = AtomicBoolean(false)
+        oddAvifCancel = cancel
+        oddAvifRunning = true
+        oddAvifStopping = false
+        oddAvifProgress = 0
+        oddAvifReport = null
+        oddAvifShareError = false
+        isBusy = true
+        exportWorker.execute {
+            val report = try {
+                OddAvifDiagnostic(File(app.cacheDir, "batch-candidates"), Runtime.getRuntime().maxMemory())
+                    .run(cancel) { count -> main.post {
+                        if (oddAvifCancel === cancel) oddAvifProgress = count
+                    } }.withAppIdentity(app, cancel)
+            } catch (_: Exception) { OddAvifReport(cancelled = cancel.get(), failed = true) }
+            main.post {
+                if (oddAvifCancel !== cancel) return@post
+                oddAvifReport = if (cancel.get()) report.copy(cancelled = true) else report
+                oddAvifProgress = report.samples.size
+                oddAvifCancel = null
+                oddAvifRunning = false
+                oddAvifStopping = false
+                isBusy = false
+            }
+        }
+    }
+
+    fun cancelOddAvifCheck() {
+        if (!oddAvifRunning) return
+        oddAvifCancel?.set(true)
+        oddAvifStopping = true
+    }
+
+    fun oddAvifShareUnavailable() { oddAvifShareError = true }
+
+    /** One explicitly requested synthetic 65x67 file, never an import or draft source. */
+    fun startAvifByteSample(context: Context, format: OutputFormat = OutputFormat.AVIF) {
+        require(format in setOf(OutputFormat.AVIF, OutputFormat.HEIC))
+        if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
+        val app = context.applicationContext
+        val stop = AtomicBoolean(false)
+        avifSampleCancel = stop
+        avifSampleRunning = true
+        avifSampleStopping = false
+        avifSample = null
+        avifSampleShareError = false
+        isBusy = true
+        exportWorker.execute {
+            val outcome = try {
+                AvifByteSampler(File(app.cacheDir, "batch-candidates"),
+                    Runtime.getRuntime().maxMemory()).run(stop, format).withAppIdentity(app, stop)
+            } catch (_: Exception) { AvifByteSample(format = format, reason = "DIAGNOSTIC_FAILED") }
+            main.post {
+                if (avifSampleCancel !== stop) return@post
+                avifSample = outcome.takeUnless { stop.get() }
+                avifSampleCancel = null
+                avifSampleRunning = false
+                avifSampleStopping = false
+                isBusy = false
+            }
+        }
+    }
+
+    fun cancelAvifByteSample() {
+        if (!avifSampleRunning) return
+        avifSampleCancel?.set(true)
+        avifSampleStopping = true
+    }
+
+    /** Remove the one synthetic bitstream from the retained ViewModel after the dialog closes. */
+    fun clearAvifByteSample() {
+        cancelAvifByteSample()
+        avifSample = null
+        avifSampleShareError = false
+    }
+
+    fun avifByteShareUnavailable() { avifSampleShareError = true }
+
     fun foregroundChanged(visible: Boolean) {
         inForeground = visible
         if (!visible) cancelNativeCheck()
+        if (!visible) cancelOddAvifCheck()
+        if (!visible) cancelAvifByteSample()
         if (!visible && activeToken != null) {
             foregroundPause.set(true)
             exportState = exportState.copy(pauseRequested = true)
@@ -483,11 +604,26 @@ internal class ReviewViewModel : ViewModel() {
     }
 
     /** Only an explicit UI action records that past outputs were reviewed. */
-    fun acknowledgePreviousExport(context: Context) {
+    fun acknowledgePreviousExport(context: Context) = reviewPreviousExport(context, keepDraft = false)
+
+    /** Explicit next-image action; the picker can open only after successful, guarded session finish. */
+    fun startNextImage(context: Context, onReady: () -> Unit) {
+        if (exportState.phase != ExportUiPhase.COMPLETED || !canFinishSession || isBusy ||
+            sessionRestoreBlocked || pendingImportCount != 0) return
+        reviewPreviousExport(context, keepDraft = false, onFinished = onReady)
+    }
+
+    /** A completed result can be reviewed without discarding the editable draft or its undo sources. */
+    fun continueEditing(context: Context) {
+        if (exportState.phase != ExportUiPhase.COMPLETED || !canFinishSession || isBusy || sessionRestoreBlocked) return
+        reviewPreviousExport(context, keepDraft = true)
+    }
+
+    private fun reviewPreviousExport(context: Context, keepDraft: Boolean, onFinished: (() -> Unit)? = null) {
         val token = reviewToken ?: return
         if (!exportState.canAcknowledge || activeToken != null || shareBusy || exportState.outputBusy ||
             exportState.phase == ExportUiPhase.CHECKING_HISTORY) return
-        val finishSession = canFinishSession
+        val finishSession = canFinishSession && !keepDraft
         val finishingDraft = draft
         exportState = exportState.copy(phase = ExportUiPhase.CHECKING_HISTORY,
             canAcknowledge = false)
@@ -513,9 +649,12 @@ internal class ReviewViewModel : ViewModel() {
                             val releasedUndo = cleaner.release(current, emptySet())
                             cleanupFailed = !releasedDraft || !releasedUndo || !cleaner.retirePublishedJob(token)
                         } catch (_: Exception) { cleanupFailed = true }
-                    } else if (saved) cleanupFailed = currentAndSavedSources(app, current)?.let {
-                        !maintenance(app).releaseReviewedDraft(token, it)
-                    } ?: true
+                    } else if (saved) {
+                        cleanupFailed = currentAndSavedSources(app, current)?.let {
+                            !maintenance(app).releaseReviewedDraft(token, it)
+                        } ?: true
+                        if (keepDraft && !cleanupFailed) cleanupFailed = !maintenance(app).retirePublishedJob(token)
+                    }
                 }
                 scanHistory(app)
             } catch (_: Exception) { RecoveryItem(null, null, 1) }
@@ -540,6 +679,7 @@ internal class ReviewViewModel : ViewModel() {
                         }
                         showHistory(next, details)
                         if (cleanupFailed) exportState = exportState.copy(outputError = true)
+                        if (finishedSession && !cleanupFailed && next == null) onFinished?.invoke()
                     } else {
                         exportState = ReviewExportState(ExportUiPhase.NEEDS_REVIEW,
                             previousJobs = 1)
@@ -859,6 +999,9 @@ internal class ReviewViewModel : ViewModel() {
 
     override fun onCleared() {
         nativeCheckCancel?.set(true)
+        oddAvifCancel?.set(true)
+        avifSampleCancel?.set(true)
+        avifSample = null
         cancelJob?.set(true)
         importStop?.set(true)
         ++importGeneration

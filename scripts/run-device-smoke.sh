@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 candidate="${1:-.}"
-package=org.cajapersonal.fixmyshot.debug
+package=org.cajapersonal.fixmyshot.heicbytes
 mkdir -p evidence
 source_sha="$(git rev-parse HEAD)"
 printf '%s\n' "$source_sha" > evidence/source-sha.txt
@@ -87,6 +87,41 @@ timeout 2m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/review-render-instrumentation.txt 2>&1
 review_result=$?
 cat evidence/review-render-instrumentation.txt
+# Real editor gestures and accessibility-tree visibility, using private synthetic sources only.
+# Codec-only phases can outlast the emulator's display timeout. Establish an awake,
+# unlocked display before testing accessibility/pointers; never apply this to a phone.
+[[ "${GITHUB_ACTIONS:-}" == true && "$(adb shell getprop ro.kernel.qemu | tr -d '\r')" == 1 ]] || exit 2
+adb shell input keyevent KEYCODE_WAKEUP
+adb shell wm dismiss-keyguard
+adb shell dumpsys power > evidence/editor-power-before.txt
+adb shell dumpsys window windows > evidence/editor-window-before.txt
+timeout 3m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.EditorInteractionTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/editor-interaction-instrumentation.txt 2>&1
+editor_result=$?
+cat evidence/editor-interaction-instrumentation.txt
+# Freeze the actual Focus editor frame; the old global capture file was
+# overwritten by the last (Settings) test and mislabeled in the artifact.
+adb exec-out run-as "$package" cat files/editor-focus.png > evidence/editor-framing.png
+editor_capture_result=$?
+if [[ "$(od -An -tx1 -N8 evidence/editor-framing.png | tr -d ' \\n')" != "89504e470d0a1a0a" ]]; then
+  editor_capture_result=1
+fi
+# Separate synthetic failure snapshots avoid one case hiding the previous case.
+for editor_file in editor-next-image.txt editor-next-image.png editor-next-image-picker.txt editor-next-image-picker.png editor-next-image-cancelled.txt editor-next-image-cancelled.png editor-setup.txt editor-setup.png editor-arrows.txt editor-arrows.png editor-gesture.txt editor-gesture.png \
+  editor-settings-dark.png editor-settings-dark.txt editor-frame-metrics.json editor-destinations.png editor-destinations.txt editor-matched-matte.png editor-matched-matte.txt editor-crop-performance.png editor-crop-performance.txt \
+  editor-automatic.png editor-automatic-initial.png editor-focus.png editor-inspection.png editor-start.png \
+  editor-automatic.txt editor-automatic-initial.txt editor-focus.txt editor-inspection.txt editor-start.txt; do
+  adb exec-out run-as "$package" cat "files/$editor_file" > "evidence/$editor_file" 2>/dev/null || rm -f "evidence/$editor_file"
+  # Some optional cases do not produce a bitmap; refuse adb's textual cat
+  # error instead of preserving it under a .png filename as bogus evidence.
+  if [[ "$editor_file" == *.png && -e "evidence/$editor_file" ]] &&
+      [[ "$(od -An -tx1 -N8 "evidence/$editor_file" | tr -d ' \\n')" != "89504e470d0a1a0a" ]]; then
+    rm -f "evidence/$editor_file"
+  fi
+done
+test -s evidence/editor-focus.png
+test -s evidence/editor-settings-dark.png
 # Cache ownership/eviction is checked separately using only synthetic bitmaps.
 timeout 2m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.ReviewThumbnailCacheTest \
@@ -133,7 +168,7 @@ share_result=$?
 cat evidence/share-intents-instrumentation.txt
 # Import/recreation, settings/sessions, typed feedback and offline native-check policy/metrics.
 timeout 3m adb shell am instrument -w -r \
-  -e class org.cajapersonal.fixmyshot.ImportSettingsFlowTest,org.cajapersonal.fixmyshot.ReviewSessionTest,org.cajapersonal.fixmyshot.ResultsFeedbackTest,org.cajapersonal.fixmyshot.NativeDiagnosticTest \
+  -e class org.cajapersonal.fixmyshot.ImportSettingsFlowTest,org.cajapersonal.fixmyshot.ReviewSessionTest,org.cajapersonal.fixmyshot.ResultsFeedbackTest,org.cajapersonal.fixmyshot.NativeDiagnosticTest,org.cajapersonal.fixmyshot.OddAvifDiagnosticTest,org.cajapersonal.fixmyshot.AvifByteSampleTest,org.cajapersonal.fixmyshot.HeicByteSampleTest \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/import-settings-instrumentation.txt 2>&1
 import_settings_result=$?
 cat evidence/import-settings-instrumentation.txt
@@ -156,13 +191,14 @@ timeout 3m adb shell am instrument -w -r \
 batch_recovery_result=$?
 cat evidence/batch-recovery-instrumentation.txt
 set -e
+grep -q 'OK (12 tests)' evidence/editor-interaction-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/review-render-instrumentation.txt
 grep -q 'OK (3 tests)' evidence/thumbnail-instrumentation.txt
 grep -q 'OK (20 tests)' evidence/private-output-instrumentation.txt
 grep -q 'OK (12 tests)' evidence/transaction-instrumentation.txt
 grep -q 'OK (5 tests)' evidence/export-flow-instrumentation.txt
 grep -q 'OK (4 tests)' evidence/share-intents-instrumentation.txt
-grep -q 'OK (21 tests)' evidence/import-settings-instrumentation.txt
+grep -q 'OK (33 tests)' evidence/import-settings-instrumentation.txt
 grep -q 'OK (7 tests)' evidence/batch-instrumentation.txt
 grep -q 'OK (8 tests)' evidence/batch-retry-instrumentation.txt
 grep -q 'OK (16 tests)' evidence/batch-recovery-instrumentation.txt
@@ -174,7 +210,7 @@ python3 scripts/check-heic-layout.py evidence
 [[ "$result" -eq 0 && "$native_result" -eq 0 && "$native_report_result" -eq 0 &&
    "$grid_result" -eq 0 && "$grid_report_result" -eq 0 &&
    "$layout_result" -eq 0 && "$layout_report_result" -eq 0 &&
-   "$review_result" -eq 0 && "$thumbnail_result" -eq 0 &&
+   "$review_result" -eq 0 && "$editor_result" -eq 0 && "$editor_capture_result" -eq 0 && "$thumbnail_result" -eq 0 &&
    "$private_result" -eq 0 && "$transaction_result" -eq 0 && "$batch_result" -eq 0 &&
    "$export_flow_result" -eq 0 && "$share_result" -eq 0 && "$import_settings_result" -eq 0 && "$batch_recovery_result" -eq 0 && "$batch_retry_result" -eq 0 ]]
 

@@ -1,0 +1,161 @@
+name: AVIF JNI and diagnostic APK delta (isolated)
+# Only an opt-in experiment. Normal app formats and signing remain untouched.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/avif-jni-request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: avif-jni-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-abis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        abi: [arm64-v8a, armeabi-v7a, x86_64]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate isolated scripts
+        run: |
+          bash -n scripts/avif-software/build-android-jni.sh
+          bash -n scripts/avif-software/run-android-jni.sh
+          python3 -m py_compile scripts/avif-software/apk_delta.py
+      - name: Install pinned Android NDK and CMake
+        run: bash scripts/setup-android.sh
+      - name: Compile source-pinned synthetic-only JNI
+        env:
+          ABI: ${{ matrix.abi }}
+        run: |
+          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/28.2.13676358"
+          bash scripts/avif-software/build-android-jni.sh "$RUNNER_TEMP/avif-jni-$ABI" "$ABI"
+          mkdir -p "evidence/avif-jni-$ABI"
+          cp -a "$RUNNER_TEMP/avif-jni-$ABI/evidence/." "evidence/avif-jni-$ABI/"
+      - name: Preserve JNI ELF and exact upstream notices
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-jni-${{ matrix.abi }}-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/avif-jni-${{ matrix.abi }}/
+  package-comparison:
+    needs: native-abis
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: avif-jni-*-${{ github.sha }}
+          path: ${{ runner.temp }}/avif-jni-artifacts
+          merge-multiple: false
+      - name: Validate pinned inputs, license and patent notices before APK packaging
+        run: |
+          python3 scripts/avif-software/apk_delta.py prepare \
+            "$RUNNER_TEMP/avif-jni-artifacts" "$RUNNER_TEMP/avif-jni-inputs" "$GITHUB_SHA" \
+            > evidence-avif-inputs.json
+      - name: Install pinned SDK and validate Gradle wrapper
+        run: |
+          bash scripts/setup-android.sh
+          bash scripts/bootstrap-gradle.sh
+      - name: Build same-source diagnostic baseline without new JNI
+        run: |
+          mkdir -p evidence/avif-jni
+          git rev-parse HEAD > evidence/avif-jni/source-sha.txt
+          cp evidence-avif-inputs.json evidence/avif-jni/compiled-inputs.json
+          ./gradlew --no-daemon :app:assembleDebug -Pfixmyshot.avifProbeMode=baseline
+          cp app/build/outputs/apk/debug/app-debug.apk evidence/avif-jni/apk-baseline.apk
+      - name: Build opt-in JNI diagnostic APK and test-only instrumentation
+        run: |
+          ./gradlew --no-daemon :app:clean :app:assembleDebug :app:assembleDebugAndroidTest \
+            -Pfixmyshot.avifProbeMode=native \
+            -Pfixmyshot.avifProbeLibsDir="$RUNNER_TEMP/avif-jni-inputs/jniLibs" \
+            -Pfixmyshot.avifProbeNoticesDir="$RUNNER_TEMP/avif-jni-inputs/assets"
+          cp app/build/outputs/apk/debug/app-debug.apk evidence/avif-jni/apk-native.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+            evidence/avif-jni/apk-native-test.apk
+      - name: Verify true APK-byte delta, unchanged existing entries, legal assets and 16KiB alignment
+        run: |
+          python3 scripts/avif-software/apk_delta.py compare \
+            evidence/avif-jni/apk-baseline.apk evidence/avif-jni/apk-native.apk \
+            > evidence/avif-jni/apk-delta.json
+          python3 scripts/check-apk.py evidence/avif-jni/apk-native.apk \
+            > evidence/avif-jni/apk-native-alignment.json
+          python3 scripts/check-apk-legal.py evidence/avif-jni/apk-native.apk \
+            > evidence/avif-jni/apk-native-legal.json
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging evidence/avif-jni/apk-baseline.apk \
+            | grep -F "package: name='org.cajapersonal.fixmyshot.avifprobe'" \
+            > evidence/avif-jni/baseline-package.txt
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging evidence/avif-jni/apk-native.apk \
+            | grep -F "package: name='org.cajapersonal.fixmyshot.avifprobe'" \
+            > evidence/avif-jni/native-package.txt
+          sha256sum evidence/avif-jni/*.apk > evidence/avif-jni/apk-sha256.txt
+          git diff --exit-code -- app/gradle.lockfile codec-native/gradle.lockfile core/gradle.lockfile
+      - name: Preserve exact before/after APKs and real delta
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-jni-apk-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/avif-jni/
+  api36-jni:
+    needs: package-comparison
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: avif-jni-apk-${{ github.sha }}
+          path: candidate
+      - name: Install host FFmpeg/FFprobe for independent synthetic decode
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          mkdir -p evidence/avif-jni-runtime
+          ffprobe -version > evidence/avif-jni-runtime/ffprobe-version.txt
+      - name: Enable emulator virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run only synthetic APK-loaded JNI/PSS and decoder checks
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: 36
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: bash scripts/avif-software/run-android-jni.sh
+      - name: Preserve bounded synthetic bytes and PSS evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-jni-api36-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/avif-jni-runtime/

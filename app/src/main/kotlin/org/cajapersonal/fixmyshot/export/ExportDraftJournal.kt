@@ -55,6 +55,8 @@ internal class ExportDraftJournal(private val file: File) {
 
         private fun crop(value: CropFocus) = JSONObject().put("x", value.x).put("y", value.y).put("zoom", value.zoom)
         private fun readCrop(value: JSONObject) = CropFocus(value.getDouble("x"), value.getDouble("y"), value.getDouble("zoom"))
+        private fun frame(value: FrameFocus) = JSONObject().put("x", value.x).put("y", value.y).put("zoom", value.zoom)
+        private fun readFrame(value: JSONObject) = FrameFocus(value.getDouble("x"), value.getDouble("y"), value.getDouble("zoom"))
         private fun background(value: BackgroundChoice): JSONObject = when (value) {
             BackgroundChoice.Automatic -> JSONObject().put("kind", "automatic")
             BackgroundChoice.White -> JSONObject().put("kind", "white")
@@ -86,11 +88,13 @@ internal class ExportDraftJournal(private val file: File) {
             .put("crop", crop(value.crop)).put("background", background(value.background))
             .put("format", value.format.name).put("size", size(value.size)).put("metadata", value.metadata.name)
             .put("position", position(value.position))
+            .put("frame", frame(value.frame))
         private fun readSettings(value: JSONObject) = EditSettings(FitMode.valueOf(value.getString("fit")),
             readCrop(value.getJSONObject("crop")), readBackground(value.getJSONObject("background")),
             OutputFormat.valueOf(value.getString("format")), readSize(value.getJSONObject("size")),
             MetadataPolicy.valueOf(value.getString("metadata")),
-            if (value.has("position")) readPosition(value.getJSONObject("position")) else ContainPosition())
+            if (value.has("position")) readPosition(value.getJSONObject("position")) else ContainPosition(),
+            if (value.has("frame")) readFrame(value.getJSONObject("frame")) else FrameFocus())
     
         private fun overrides(value: ItemOverrides): JSONObject {
             val result = JSONObject()
@@ -101,6 +105,7 @@ internal class ExportDraftJournal(private val file: File) {
             put("background", value.background, ::background); put("format", value.format) { it.name }
             put("size", value.size, ::size); put("metadata", value.metadata) { it.name }
             put("position", value.position, ::position)
+            put("frame", value.frame, ::frame)
             return result
         }
         private fun readOverrides(value: JSONObject): ItemOverrides {
@@ -113,7 +118,8 @@ internal class ExportDraftJournal(private val file: File) {
                 field("format") { OutputFormat.valueOf(value.getString("format")) },
                 field("size") { readSize(value.getJSONObject("size")) },
                 field("metadata") { MetadataPolicy.valueOf(value.getString("metadata")) },
-                field("position") { readPosition(value.getJSONObject("position")) })
+                field("position") { readPosition(value.getJSONObject("position")) },
+                field("frame") { readFrame(value.getJSONObject("frame")) })
         }
     }
     private val atomic get() = AtomicFile(file)

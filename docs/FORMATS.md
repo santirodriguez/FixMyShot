@@ -1,32 +1,136 @@
 # Codec status
 
-## Initial Phase 1 slice
+## Current0.1.0 scope — 2026-10-31
+
+**AVIF is deferred from0.1.0 by explicit scope approval.** It is removed
+from new format selections. Existing AVIF draft identities remain readable
+and explicitly unavailable, with no automatic format substitution.
+PNG remains the new-session default; lossless WebP is the implemented
+alternative. HEIC remains separately gated and is not deferred by this
+decision. JXL retains its earlier deferral.
+
+The [approved amendment](decisions/compatibility-and-validation.md#approved-avif-scope-amendment--2026-10-31)
+qualifies the immutable blueprint. The [completed chroma comparison](feasibility/native-device-check.md#synthetic-yuv420-versus-yuv444-encoding-comparison--2026-10-31)
+remains FAILURE: Android max63 for both444/420; independent host420 max64,
+against the unchanged limit2. Internal direct444 success cannot qualify
+Gallery/sharing. The diagnostic results below are historical feasibility,
+not current normal-format availability or release approval.
+
+## Isolated JNI software AVIF: diagnostic feasibility only — 2026-10-30
+
+[Exact-source Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
+at `a511232d` passed three JNI ABI builds, the matched-debug-APK
+size/diff check, and API36 synthetic JNI encoding. With opt-in
+`fixmyshot.avifProbeMode=native`, the three packaged
+`libavif_probe.so` libraries plus original notices increased a
+same-source diagnostic APK by **8,629,021 bytes (8.229 MiB)**,
+from 16,940,589 to 25,569,610 bytes. All 473 prior APK members
+had matching uncompressed bytes; 16 KiB ELF/ZIP alignment is
+structurally verified. This is **not** a shipping APK footprint.
+
+In API36 x86_64, 20 small and 5 large synthetic test encodes
+loaded the JNI successfully. The 1344x2992 encoder-only observed
+median/p95 were **8.963/12.269 seconds**; whole-process cumulative
+`ru_maxrss` reached **285,800 KiB**, but the maximum
+**98,948 KiB post-encode PSS** was not sampled during encoding.
+Independent host pixel decoding confirmed geometry and full-range
+YUV444 with RGB PSNR **58.6887/58.7403 dB** and max channel
+error **1** at 65x67 / 1344x2992, respectively. Patterns are
+synthetic and highly repetitive, not real screenshot acceptance.
+
+The [full JNI feasibility evidence](feasibility/native-device-check.md#isolated-jni-avif-diagnostic-apk-and-api-36-feasibility--2026-10-30)
+does **not** qualify Pixel or other hardware, physical 16 KiB
+runtime, actual peak PSS/cold-warm p95, realistic screenshot
+color/alpha/HDR/metadata, broad decoder interoperability,
+transitive licensing/patent clearance, or G1/M02. The earlier
+Pixel AndroidX AVIF geometry problem is not fixed; HEIC/AVIF
+remain **disabled for normal export**. PNG and lossless WebP,
+new-session defaults and production formats remain unchanged.
+
+
+## Standalone Android software AVIF reference (not a shipping format)
+
+Pinned libavif 1.4.2 / libaom 3.15.2 compiled for all three shipping
+ABI types as **standalone executables**, not an app JNI library.
+[Exact-head Actions 41132550109](https://github.com/santirodriguez/FixMyShot/actions/runs/41132550109)
+at `c15f882e` completed SUCCESS after installing FFmpeg/FFprobe on the
+runner. The API 36 x86_64 emulator produced a 466-byte 65×67 YUV 4:4:4
+full-range AVIF. Independent host decoding confirmed the unchanged
+65×67 geometry, **58.6887 dB** RGB PSNR and patch error **1**.
+This narrow synthetic success does **not** qualify Pixel hardware,
+actual shipping APK size, JNI/PSS, larger real screenshots, color
+management, recipient support, source-license/patent clearance or G1/M02.
+HEIC/AVIF remain unavailable for ordinary output; PNG and lossless WebP
+remain unchanged. See the [Android probe evidence](feasibility/native-device-check.md#three-abi-android-software-avif-reference--successful-synthetic-ci--2026-10-30).
+
+
+Current `release/0.1.0-editor` source `d54eb9c7` has a working Automatic and Customize
+export flow using verified private PNG/lossless WebP candidates and guarded public
+MediaStore/explicit SAF publication. [Build, lint and API 36 instrumentation](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) passed at this exact source; the user accepted the separate
+next-image picker/cancel flow on a diagnostic APK. These results do not constitute
+full physical color/metadata/resource validation or a production release.
+**PNG remains the absolute new-session default.** WebP lossless is an explicit
+available choice subject to destination/alpha rules; HEIC and AVIF remain
+unavailable for ordinary output: HEIC awaits independent qualification;
+AVIF and JXL are deferred from0.1.0. JPEG input is supported, not JPEG output.
+
+The latest [Pixel AVIF alignment evidence](feasibility/native-device-check.md#pixel-9-pro-xl-focused-avif-alignment-result--2026-10-30)
+records **5/5 small AVIF encode/reopen attempts but 0/5 passing numeric
+fidelity**, with patch median-channel error **129** in every case.
+Grid on/off produced identical bytes within both same-dimension pairs;
+even/aligned padding still failed. The diagnostic was built from
+`508b8b95` and its [API36 CI](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
+passed on attempt 2. A separate `.avifbytes` handoff at
+`82a40bf2` subsequently recovered the exact **1,358-byte** Pixel
+file: [host decoder analysis](feasibility/native-device-check.md#pixel-6567-avif-independent-byte-level-decode--2026-10-30)
+shows a **128×67 AV1 decoded raster versus 65×67 `ispe`**,
+explaining the large horizontal distortion when presented as 65×67.
+Left-cropping the decoded raster recovers source-like colors but still
+misses the PSNR target; it is **not an authorized export fix**.
+Full physical M02 acceptance remains OPEN. This finding does not
+apply to PNG/WebP and does not prove a failure of every HEIC configuration.
+
+## Host correction feasibility (not a shipping format)
+
+A controlled `ispe=128×67` + `clap=65×67` remux of the original
+synthetic Pixel AVIF restored the intended 65×67 image in libheif
+but yielded 128×67 in Pillow and a parsing error in FFmpeg. It is
+**not** interoperable or approved for export. Host-only libavif
+4:4:4 quality-100 software output passed the small 65×67 numeric
+regression target (PSNR 55.74–56.50 dB, patch error 1 across three
+readers) and preserved exact dimensions; Android binary cost,
+device acceptance, real screenshot quality and 16 KiB remain
+**unmeasured**. See the [bounded geometry/fallback
+spike](feasibility/native-device-check.md#host-only-avif-correction-feasibility--2026-10-30).
+HEIC/AVIF remain gated and PNG/lossless WebP are unaffected.
+
+## Implemented routes and remaining qualification
 
 | Output | Implemented route | Current acceptance boundary |
 |---|---|---|
 | PNG | Android PNG encoder on API 26+ | Synthetic instrumentation asserts opaque RGB / alpha RGBA, container CRCs, independent reopen and exact normalized pixels. Runtime/device results must come from the matching CI/device report. |
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
 | HEIC | Native AndroidX `HeifWriter` candidate from API 29; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; only a successfully encoded/reopened sample proves a particular configuration. Pixel and second-family acceptance remain mandatory. |
-| AVIF | Native AndroidX `AvifWriter` candidate from API 34; actual device probe required | Opaque sRGB, quality-100 **lossy** encoding; not promised without a verified output. Pixel and second-family acceptance remain mandatory. |
+| AVIF | Deferred for0.1.0; not offered for new selections | Existing drafts stay readable/unavailable. Native and software diagnostics are retained as failed/unqualified evidence; the approved scope amendment does not enable any production route. |
 | JXL | Deferred for v0.1.0; not offered in the format menu | The pinned three-ABI reference build succeeded, but qualified shipping cost/fidelity/runtime evidence is absent. See [the measured deferral decision](decisions/jxl-first-delivery.md). No codec failure or optimized-APK budget overrun is inferred. |
 
-A bounded Photo Picker import/review path accepts supported static SDR JPEG, PNG and WebP sources. That is not yet a full production export pipeline; JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
+Current Photo Picker/share intake accepts supported static SDR JPEG, PNG and WebP sources. The normal image export path now includes private full-resolution encoding, strict candidate verification, journalled public publication, results, sharing and guarded recovery. It is a functional implementation with bounded automated acceptance, **not** an approved production distribution or an assertion of full physical output fidelity. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
 
 ## Adapter limits
 
-The installed Settings dialog has an optional synthetic [HEIC/AVIF device check](feasibility/native-device-check.md). It attempts the existing native adapter on64×64,65×67 and1344×2992 opaque rasters, independently checks returned containers/dimensions and reports decoded sRGB pixel/patch metrics. This is one preliminary attempt per case, not native export enablement, p95/peak-memory or hardware/appearance approval. No original image or public output is involved. Synthetic API36 regression is recorded in TESTING.md; the required physical-device runs remain pending.
+The installed Settings dialog has an optional synthetic [HEIC/AVIF device check](feasibility/native-device-check.md). It attempts the existing native adapter on64×64,65×67 and1344×2992 opaque rasters, independently checks returned containers/dimensions and reports decoded sRGB pixel/patch metrics. This is one preliminary attempt per case, not native export enablement, p95/peak-memory or hardware/appearance approval. No original image or public output is involved. Synthetic API36 regression is recorded in TESTING.md; the first physical Pixel API37 synthetic report now exists: all six HEIC/AVIF cases encoded/reopened but none met the numeric fidelity target, with a particularly severe 65×67 AVIF result (PSNR 7.247 dB / patch error 129). See the [source-bound device owner](feasibility/native-device-check.md#pixel-9-pro-xl-synthetic-result--2026-10-29). Full real-image, independent decoder, other-hardware and manual export acceptance remains pending.
 
 Inputs must already be ARGB_8888, SDR sRGB, oriented and within 24 megapixels plus the lower dynamic memory budget. WebP also enforces its 16,383-pixel side limit. These checks do not promise support for every in-range image. Working-set estimates are provisional; Java/native/PSS peak measurements are still required.
 
 The low-level PNG/WebP encoder receives pixels only, not source EXIF/XMP. The source-aware private export pipeline can subsequently write the explicit preservation allowlist described below. Semi-transparent edge/color fidelity, all EXIF orientations, HDR handling and payload-preserving no-op exports remain later acceptance work. The current synthetic alpha fixtures cover transparent/opaque edges, not the full semi-transparent color contract.
 
-The immutable PNG/WebP preflight binds staged source SHA-256, geometry, per-item/session revisions, format, metadata policy and provisional memory estimates; the private executor rehashes staged source bytes before and after encoding, decodes original oriented SDR pixels (not a preview), applies the contained geometry, freezes the automatic edge background and invokes LosslessEncoder. Its generated PNG/WebP candidates must pass strict chunk/signature/dimension/metadata allowlists and bounded decoder reopening; failure removes the candidate. This is NOT a public export transaction or proof of complete metadata/color fidelity. The experimental API29+ owned MediaStore adapter implements IS_PENDING publication, app-private atomic single-item checkpoints, copy digest validation and conservative indeterminate outcomes; the explicit development Export action now invokes it. A synthetic test may create and immediately delete its own gallery item. The development branch now wires an experimental explicit Export button to per-item MediaStore29+ or user-chosen SAF output, with serialized private encoding and localized progress/results; the exact-source build/API26/API36 synthetic export/share checks passed at 3df5262 (see docs/TESTING.md). Two 100-item real-codec exercises with simulated provider faults passed at639c5cad,acc925044 and521e08cb. Real-provider mixed batches/process-kill, folder grant durability, physical gallery and receiver acceptance remain open. A separately gated internal SAF tree-output adapter permits only an explicitly selected folder, never silently labels it Pictures/FixMyShot, and records that a SAF document can be visible while bytes are still being written. The API26–28 folder picker and persisted read/write grant check are wired, but actual selected-folder/provider and grant-recovery tests remain NOT RUN. Under the current compatibility amendment, legacy default-Pictures support and a new storage permission are not required solely for API26–28; see decisions/compatibility-and-validation.md. Legacy provider results remain scoped historical evidence, not current full acceptance. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
+The immutable PNG/WebP preflight binds staged source SHA-256, geometry, per-item/session revisions, format, metadata policy and provisional memory estimates; the private executor rehashes staged source bytes before and after encoding, decodes original oriented SDR pixels (not a preview), applies the contained geometry, freezes the automatic edge background and invokes LosslessEncoder. Its generated PNG/WebP candidates must pass strict chunk/signature/dimension/metadata allowlists and bounded decoder reopening; failure removes the candidate. Private candidate verification **by itself** is not a public transaction or proof of complete metadata/color fidelity. The implemented output coordinator adds API29+ owned MediaStore IS_PENDING publication or an explicitly chosen SAF folder, app-private atomic checkpoints, copy digest validation, conservative indeterminate outcomes and localized results/retry/sharing. Synthetic tests may create and delete their own gallery items. Earlier exact-source export/share checks passed at 3df5262, with current API36 regressions passing at d54eb9c7 (see [TESTING](TESTING.md)). Two 100-item real-codec exercises with simulated provider faults passed at639c5cad,acc925044 and521e08cb. Real-provider mixed batches/process-kill, folder grant durability, physical gallery and receiver acceptance remain open. A separately gated internal SAF tree-output adapter permits only an explicitly selected folder, never silently labels it Pictures/FixMyShot, and records that a SAF document can be visible while bytes are still being written. The API26–28 folder picker and persisted read/write grant checks are wired. Historical API28 real-provider success and API26 invalid WebP-candidate evidence are recorded in TESTING; the latest current-profile run skips the optional legacy-provider job. Neither historical success nor skipping establishes current-source, cross-provider or physical legacy acceptance. Under the current compatibility amendment, legacy default-Pictures support and a new storage permission are not required solely for API26–28; see decisions/compatibility-and-validation.md. Legacy provider results remain scoped historical evidence, not current full acceptance. PNG/platform WebP cancellation is checked at output writes and after encode, not guaranteed instantaneous within platform code. Native WebP also checks progress and scanline preparation. Timeout tests and measured cancellation latency remain open.
 
 ## Native writer candidate
 
 The AndroidX 1.2.0-rc01 writer AAR declares `minSdk 29`; FixMyShot keeps app `minSdk 26`. The app uses the manifest merger's exact-package `tools:overrideLibrary="androidx.heifwriter"` only because native HEIC paths are entered at API 29+ and AVIF paths at API 34+, and no library writer code may be invoked on lower APIs. This exception is a **build-time compatibility mechanism, not evidence of runtime safety**; API36 encoding probes remain in normal validation. The compatibility amendment makes API26 best effort and its extended diagnostics opt-in; an old-device failure must be reported and investigated without weakening current-device checks or substituting formats. Any minSdk change requires its own focused decision.
 
-`NativeStillEncoder` uses `androidx.heifwriter:heifwriter:1.2.0-rc01`, a release candidate selected after comparison with stable 1.1.0: the 1.2 line contains material color-aspect and AVIF encoding fixes. It runs only off the main thread, accepts normalized opaque ARGB_8888 SDR sRGB pixels, refuses unsupported API/alpha/metadata policy/resource requests, uses AndroidX bitmap-input writers with quality 100 and a single still, and verifies ISO BMFF brand and platform reopened dimensions/MIME before retaining a candidate. A valid container brand and readable image dimensions are not sufficient: the adapter must also decode actual pixels (with bounded sampling for large inputs) before retaining an output. A decoder failure returns `INVALID_OUTPUT` and deletes the candidate, rather than counting it as native capability. From source `fab2c362`, the bounded verification tries BitmapFactory first and ImageDecoder (API 28+, only through the API29/34 native route) if necessary; both failing still rejects the file. This is a diagnostic decode alternative, not a declaration that the emulator or any device supports these formats. Exact-source Actions run 39609785200 passed its build/API26/API36 instrumentation and preserved lossless output, but both native 65x67 HEIC/AVIF probes on the API36 emulator still reported INVALID_OUTPUT. The alternative therefore remains experimental and does not justify exposing the formats as available. The later bounded geometry probe on API 36 (Actions 39618903599, source 986aee43) generated and independently reopened exactly one 64×64 HEIC file, but the 65×67 HEIC case and both AVIF sizes remained INVALID_OUTPUT. That tiny 8-bit 4:2:0 HEIC lacked an explicit color profile, and independent decoders measured roughly 20 dB RGB PSNR on the high-frequency synthetic pattern. Encoder component advertisements under video MIME are not proof of still-image functionality. This is a source-bound diagnostic success, not color/fidelity acceptance or general HEIC support; see docs/TESTING.md. Device-specific output and appearance still require independent validation. `NativeCodecProbeTest` now compares even 64×64 with odd 65×67 synthetic opaque input for each native format, retaining outputs only after pixel decode and real container checks. It records the platform's advertised HEVC/AV1/still-image codec components separately from the four actual encode results. Empty codec inventory entries and real encoding failures remain distinct; either way, no device capability is promised without actual readable output. These routes are not yet exposed through an import/edit/export UI. Native writer cancellation is cooperative at boundaries and mid-encode latency remains an open G1 gate. **Quality 100 does not mean lossless.**
+`NativeStillEncoder` uses `androidx.heifwriter:heifwriter:1.2.0-rc01`, a release candidate selected after comparison with stable 1.1.0: the 1.2 line contains material color-aspect and AVIF encoding fixes. It runs only off the main thread, accepts normalized opaque ARGB_8888 SDR sRGB pixels, refuses unsupported API/alpha/metadata policy/resource requests, uses AndroidX bitmap-input writers with quality 100 and a single still, and verifies ISO BMFF brand and platform reopened dimensions/MIME before retaining a candidate. A valid container brand and readable image dimensions are not sufficient: the adapter must also decode actual pixels (with bounded sampling for large inputs) before retaining an output. A decoder failure returns `INVALID_OUTPUT` and deletes the candidate, rather than counting it as native capability. From source `fab2c362`, the bounded verification tries BitmapFactory first and ImageDecoder (API 28+, only through the API29/34 native route) if necessary; both failing still rejects the file. This is a diagnostic decode alternative, not a declaration that the emulator or any device supports these formats. Exact-source Actions run 39609785200 passed its build/API26/API36 instrumentation and preserved lossless output, but both native 65x67 HEIC/AVIF probes on the API36 emulator still reported INVALID_OUTPUT. The alternative therefore remains experimental and does not justify exposing the formats as available. The later bounded geometry probe on API 36 (Actions 39618903599, source 986aee43) generated and independently reopened exactly one 64×64 HEIC file, but the 65×67 HEIC case and both AVIF sizes remained INVALID_OUTPUT. That tiny 8-bit 4:2:0 HEIC lacked an explicit color profile, and independent decoders measured roughly 20 dB RGB PSNR on the high-frequency synthetic pattern. Encoder component advertisements under video MIME are not proof of still-image functionality. This is a source-bound diagnostic success, not color/fidelity acceptance or general HEIC support; see docs/TESTING.md. Device-specific output and appearance still require independent validation. `NativeCodecProbeTest` now compares even 64×64 with odd 65×67 synthetic opaque input for each native format, retaining outputs only after pixel decode and real container checks. It records the platform's advertised HEVC/AV1/still-image codec components separately from the four actual encode results. Empty codec inventory entries and real encoding failures remain distinct; either way, no device capability is promised without actual readable output. Native routes remain disabled for ordinary output until the actual capability/fidelity/destination gates pass; the Settings diagnostic is not a selector or promise of native output. Native writer cancellation is cooperative at boundaries and mid-encode latency remains an open G1 gate. **Quality 100 does not mean lossless.**
 
 The separate `NativeGridDiagnosticTest` (source `28aa20b8`) explores grid-disabled odd/even writes plus 66x68 edge-replicated padding of 65x67. Its grid-on setting is a request, not proof that AndroidX actually tiled a small image. AndroidX HeifEncoder/AvifEncoder use 512-pixel grid thresholds and may auto-disable small-grid requests or force tiling for a size unsupported by the underlying HEVC/AV1 video codec. Width alignment without tiles may be to 32/64-pixel codec blocks; test output must preserve visible dimensions. Successful diagnostics report decoded dimensions, synthetic RGB PSNR and channel-error medians, while explicitly marking actual embedded ICC/nclx color tag inspection as **not performed**. These are test-only encodes; no padded geometry, experimental grid mode or uncalibrated color result is promoted into the product writer. The initial grid run compiled and passed API 36, but failed API 26 test-class discovery because a direct ImageDecoder API 28+ reference was unavailable to JUnit reflection on Android 8. A separate API-gated decoder helper was committed in `fa6dd24`, and exact-source Actions run `39631701532` subsequently passed build and both API 26/API 36 emulators, including eight correct API 26 typed native rejections and unchanged API 36 diagnostic results. The API 36 experimental results show 64x64 HEIC and edge-padded 66x68 HEIC outputs, while unpadded 65x67 HEIC and all AVIF attempts failed. The 66x68 outputs were byte-identical between grid requests and had low synthetic ROI PSNR; **neither means reliable color/grid support or an acceptable 65x67 export**. See the exact source-bound evidence in `docs/TESTING.md`. Neither HEIC nor AVIF is yet generally enabled.
 
@@ -78,11 +182,34 @@ A transparent-background choice may still render a completely opaque image with 
 
 This makes previously rejected fully opaque WebP plans eligible without changing their rendered pixels or any existing successful frozen plan; fingerprint semantics are unchanged. The boundary case includes a partially transparent last pixel outside the first scan tile, cancellation, strict rejection without proof and transactional publication/readback with proof. It passed scoped API36 execution ata047cfe6 and639c5cad; broader appearance/device acceptance remains open.
 
-## Explicit visual crop editing
+## Current Automatic and flexible framing
 
-For `FitMode.CROP`, a dedicated, optional **Preview and adjust crop** dialog displays an orientation-corrected bounded sample of the entire original with a framed crop region and dimmed excluded pixels. The same `CropPlanner` geometry produces a separate sampled output-only preview through `ReviewBitmapRenderer`; the guide overlay is not exported. Pan, pinch, existing accessible zoom/directional controls and Reset affect only local dialog state until Apply; Cancel leaves the draft unchanged. Saved source bytes remain intact. The preview is sampled and cannot prove full-resolution pixel equivalence without source/output comparison. Crop is never the default: CONTAIN and its existing manual-position mode retain all content. For a 1344×2992 original on Google Play phone, the initially centered crop is 1344×2688, excluding 152 px at each vertical edge; the chosen visible region and any zoom affect exact output geometry. Old session records and frozen export plans continue to use the same CropFocus and source geometry.
+On a clean session the neutral **Original / No platform** destination preserves the
+source ratio; a previous explicitly selected valid destination may be remembered, but
+image orientation never guesses a publishing platform. Automatic offers an explicit
+PNG/WebP lossless format choice, destination guidance and large preview, with full
+Customize and batch exceptions retained. An export retains source copies and shows
+a guarded successful-results screen with **Edit another image** as its first action,
+plus View, Share and Continue editing. The next-image picker opens only after
+matching successful output/private-session retirement; cancellation returns to Start.
+
+The versioned Flexible frame uses geometry independent of legacy CropFocus to
+zoom below minimum fill, revealing a real solid background without stretching,
+cloning or reconstructing pixels. Keep all retains the entire source, and crop is
+explicit. A 1344×2992 source in 9:16 Keep all yields 1683×2992 with 169/170
+side margins; a source trimmed to 9:16 instead loses about 20% of its height.
+Source-normalized bounded preview samples are never the final export pixels.
+Real Pixel full-resolution output/matte/color comparison and responsiveness
+remain open despite passing synthetic geometry/editor tests.
+
+## Live framing editor
+
+The review workspace keeps one output canvas beside or above its independently scrollable tool pane. Destination, Framing, Background and Export are separate tools. Custom ratio, RGB and exact-size fields appear only on request; effective format, metadata policy and dimensions remain above the canvas. The single-image path hides batch selection/reset clutter. Batch inheritance and per-image overrides are unchanged.
+
+Framing uses a retained, orientation/color-normalized original sample, bounded to 1500px and keyed by source ID/fingerprint/appearance. Source changes invalidate it; geometry, background and format edits do not decode again. Activity recreation retains the sample; hidden-UI memory trimming releases it for reload on return. It is never an export source. The live canvas calls the same content mapping as the bitmap renderer, without constructing a new output bitmap per gesture. A crop gesture/slider updates a transient selected-image transform, committing one undoable draft edit when released. Pointer cancellation may leave the last committed draft; transient coordinates are not journalled. Direct crop/position controls and Reset remain accessible alternatives. The former two-preview dialogs are replaced by this single workspace.
+
+Zoom has a logarithmic slider and 2% relative +/- steps, retains the existing supported range and never silently enlarges the final output. Crop remains explicit; preserve-content mode retains the entire original. For an explicitly selected flexible Google Play phone contract, a centered fill crop is 1344×2688 and contain is 1496×2992 with 76px on each side; the separate 9:16 portrait option has different geometry. Neither Play option is the default destination for a first clean session. Exact-size and destination conflicts remain subject to normal export preflight.
 
 ## Final-output review preview
 
-The ordinary review preview always renders the existing sampled output bitmap at its full planned canvas ratio. A fitted export-boundary overlay and a striped **editor-only** surrounding stage distinguish destination padding *inside* the output from the space *outside* it. On transparent outputs, the transparency checkerboard is limited to the fitted output canvas. The preview explicitly names the effective CONTAIN versus CROP mode. The optional original-source outline defaults to off for a new editor session and, like the output boundary, never becomes part of the encoded file. The PNG/WebP renderer, destination rules, source fidelity and centered-preservation default remain unchanged. Review dimensions/margins and full-resolution pixel acceptance still require comparison against the actual exported file.
-
+The canvas has the exact current plan ratio. A fitted border and striped editor-only exterior distinguish exported destination padding from the surrounding workspace; a transparency checker appears only within transparent output bounds. The optional source outline is off by default and never exported. Render coordinates come from the same CropPlanner/ContainGeometry and content mapping as final export. Sampling limits preview detail; geometry equivalence does not prove full-resolution pixel fidelity or physical smoothness. Compare actual exported files and review the exact candidate on the Pixel before visual acceptance.

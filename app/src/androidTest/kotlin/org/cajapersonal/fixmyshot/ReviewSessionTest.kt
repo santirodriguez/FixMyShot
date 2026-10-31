@@ -232,6 +232,83 @@ class ReviewSessionTest {
         } finally { f.cleanup() }
     }
 
+    @Test fun continuingSuccessfulExportKeepsEditableStateAndRefusesUnsafeOrDuplicateContinuation() {
+        val f = Fixture()
+        try {
+            val a = f.image(); val b = f.image()
+            val model = f.owner().model
+            var output: ByteArray? = null
+            var creates = 0
+            var deletions = 0
+            val port = object : OwnedOutputPort {
+                override fun create(name: String, mime: String): Uri {
+                    creates++
+                    return Uri.parse("content://synthetic/continued-output-$creates")
+                }
+                override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+                    override fun close() { output = toByteArray(); super.close() }
+                }
+                override fun openRead(uri: Uri): InputStream? = output?.let(::ByteArrayInputStream)
+                override fun publish(uri: Uri): Boolean = output != null
+                override fun delete(uri: Uri): Boolean { deletions++; return false }
+            }
+            instrumentation.runOnMainSync {
+                model.draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
+                    batch = EditSettings(format = OutputFormat.WEBP_LOSSLESS, metadata = MetadataPolicy.PRESERVE_ALLOWLIST))
+                    .addImages(listOf(a, b)).removeItem(b.id)
+                model.selectedId = a.id
+                model.changeEditScope(true)
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(f.context, port)
+                val running = model.exportState
+                model.continueEditing(f.context)
+                assertEquals(running, model.exportState)
+            }
+            await { model.exportState.phase == ExportUiPhase.COMPLETED }
+            val completed = model.exportState
+            val draft = model.draft
+            val editorKey = model.editorSessionKey
+            val published = requireNotNull(output).copyOf()
+            instrumentation.runOnMainSync {
+                model.draft = draft.setDestination(DestinationChoice.Custom.of(4, 5))
+                model.continueEditing(f.context)
+                assertEquals(completed, model.exportState)
+                model.draft = draft
+                model.isBusy = true
+                model.continueEditing(f.context)
+                assertEquals(completed, model.exportState)
+                model.isBusy = false
+                model.continueEditing(f.context)
+                model.continueEditing(f.context) // A second tap cannot acknowledge another job.
+            }
+            await { model.exportState.phase == ExportUiPhase.IDLE }
+            assertFalse(model.exportState.isLocked)
+            assertFalse(model.exportState.outputError)
+            assertEquals(draft, model.draft)
+            assertEquals(draft, f.journal.read()!!.draft)
+            assertEquals(a.id, model.selectedId)
+            assertEquals(editorKey, model.editorSessionKey)
+            assertTrue(model.editSelectedOnly)
+            assertTrue(model.draft.canUndo)
+            for (image in listOf(a, b)) assertTrue(ReviewSources(f.context)
+                .matchesFingerprint(image.id, requireNotNull(image.contentSha256)))
+            assertArrayEquals(published, output)
+            assertEquals(1, creates); assertEquals(0, deletions)
+            assertTrue(File(f.context.filesDir, "export-jobs").listFiles()!!.isEmpty())
+            instrumentation.runOnMainSync {
+                assertFalse("Continuing is not an unchanged export retry", model.prepareExport())
+                model.draft = model.draft.setBatch(model.draft.batch.copy(background = BackgroundChoice.Black))
+                model.onDraftEdited()
+                assertTrue(model.canPrepareExport)
+                assertTrue(model.prepareExport())
+                model.destinationCancelled()
+            }
+            assertEquals(1, creates)
+            assertArrayEquals(published, output)
+        } finally { f.cleanup() }
+    }
+
     @Test fun finishingSuccessfulSessionClearsCurrentUndoAndJournalButKeepsPublishedBytes() {
         val f = Fixture()
         try {
@@ -239,6 +316,7 @@ class ReviewSessionTest {
             val owner = f.owner(); val model = owner.model
             var output: ByteArray? = null
             var deletions = 0
+            var pickerRequests = 0
             val port = object : OwnedOutputPort {
                 override fun create(name: String, mime: String): Uri = Uri.parse("content://synthetic/finished-output")
                 override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
@@ -258,14 +336,20 @@ class ReviewSessionTest {
                 assertTrue(model.editSelectedOnly)
                 assertTrue(model.prepareExport())
                 model.startPreparedExport(f.context, port)
+                model.startNextImage(f.context) { pickerRequests++ }
+                assertEquals(0, pickerRequests)
             }
             await { model.exportState.phase == ExportUiPhase.COMPLETED }
             assertEquals(1, model.exportState.published); assertTrue(model.canFinishSession)
             assertTrue(f.file.exists())
             val published = requireNotNull(output).copyOf()
             val previousEditorKey = model.editorSessionKey
-            instrumentation.runOnMainSync { model.acknowledgePreviousExport(f.context) }
+            instrumentation.runOnMainSync {
+                model.startNextImage(f.context) { pickerRequests++ }
+                model.startNextImage(f.context) { pickerRequests++ }
+            }
             await { model.exportState.phase == ExportUiPhase.IDLE }
+            assertEquals(1, pickerRequests)
             assertTrue(model.draft.workingSourceIds.isEmpty()); assertFalse(model.draft.canUndo)
             assertEquals(OutputFormat.PNG, model.draft.batch.format)
             assertEquals(MetadataPolicy.REMOVE_IDENTIFYING, model.draft.batch.metadata)
@@ -277,6 +361,42 @@ class ReviewSessionTest {
             assertTrue(File(f.context.filesDir, "export-jobs").listFiles()!!.isEmpty())
             assertTrue(File(f.context.filesDir, "export-jobs-retired").listFiles()!!.isEmpty())
             assertTrue(f.context.getSharedPreferences("export-reviewed", Context.MODE_PRIVATE).all.isEmpty())
+        } finally { f.cleanup() }
+    }
+
+    @Test fun nextImageDoesNotOpenThePickerWhenCompletedReceiptCleanupFails() {
+        val f = Fixture()
+        try {
+            val image = f.image()
+            val model = f.owner().model
+            var output: ByteArray? = null
+            var pickerRequests = 0
+            val port = object : OwnedOutputPort {
+                override fun create(name: String, mime: String): Uri = Uri.parse("content://synthetic/cleanup-guard")
+                override fun openWrite(uri: Uri): OutputStream = object : ByteArrayOutputStream() {
+                    override fun close() { output = toByteArray(); super.close() }
+                }
+                override fun openRead(uri: Uri): InputStream? = output?.let(::ByteArrayInputStream)
+                override fun publish(uri: Uri): Boolean = output != null
+                override fun delete(uri: Uri): Boolean = throw AssertionError("Published output must remain intact")
+            }
+            instrumentation.runOnMainSync {
+                model.draft = DraftSession(destination = DestinationChoice.Custom.of(1, 1)).addImages(listOf(image))
+                model.selectedId = image.id
+                model.onDraftEdited()
+                assertTrue(model.prepareExport())
+                model.startPreparedExport(f.context, port)
+            }
+            await { model.exportState.phase == ExportUiPhase.COMPLETED }
+            val published = requireNotNull(output).copyOf()
+            val folder = File(f.context.filesDir, "export-jobs").listFiles()!!.single()
+            File(folder, "unrecognized.txt").writeText("Preserve unknown private evidence")
+            instrumentation.runOnMainSync { model.startNextImage(f.context) { pickerRequests++ } }
+            await { model.exportState.phase != ExportUiPhase.CHECKING_HISTORY }
+            assertTrue(model.exportState.outputError)
+            assertEquals(0, pickerRequests)
+            assertArrayEquals(published, output)
+            assertTrue(File(folder, "unrecognized.txt").exists())
         } finally { f.cleanup() }
     }
 }

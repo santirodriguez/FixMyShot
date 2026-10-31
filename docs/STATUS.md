@@ -1,5 +1,182 @@
 # Completion status
 
+## AVIF deferral approved; HEIC remains open — 2026-10-31
+
+The user approved **deferring AVIF from0.1.0** after the completed
+[Actions41212246198](https://github.com/santirodriguez/FixMyShot/actions/runs/41212246198)
+chroma comparison. Its FAILURE remains the verified diagnostic result:
+all three Android routes on both444 and420 have max-channel error63;
+host420 has64; direct/host444 has1. The existing limit2 is unchanged.
+The [scope amendment](decisions/compatibility-and-validation.md#approved-avif-scope-amendment--2026-10-31)
+qualifies only the AVIF release requirement, preserving all measured
+evidence and the immutable blueprint. AVIF is removed from new selections;
+old drafts remain readable/unavailable without silent conversion.
+
+HEIC is not deferred or qualified by this change. The completed Pixel
+native report measured HEIC PSNR28.234/26.078/24.739dB at64x64/65x67/
+1344x2992, patch median error1, with no independently reopened original
+HEIC bytes. Do not repeat that unchanged six-case check. The next useful
+HEIC evidence is a separately bounded synthetic encoded-byte comparison,
+not an inference from AVIF or an unapproved production fallback.
+
+PNG/lossless WebP and accepted next-image UX remain intact. Other
+physical/resource/source/distribution gates still apply; this is not
+functional-release or signing/merge/publication approval. No new physical
+test is claimed. The older feasibility entries below remain historical.
+
+## Isolated AVIF JNI APK cost and API 36 — verified 2026-10-30
+
+Pinned source-built libavif/libaom JNI completed
+[Actions 41134727668](https://github.com/santirodriguez/FixMyShot/actions/runs/41134727668)
+**SUCCESS** at exact source `a511232d8dce0896cb98d352f45b16903df16df0`:
+three ABI shared-library jobs, same-source/same-debug-package
+APKs, and x86_64 API 36 instrumented synthetic encoding.
+The real diagnostic APK delta is **8,629,021 B (8.229 MiB)**:
+16,940,589 B without JNI versus 25,569,610 B with JNI.
+All 473 preexisting ZIP members retain identical uncompressed bytes;
+three libraries and three original license/patent texts are the only additions.
+Packaged ELF/ZIP structural 16 KiB checks PASS.
+
+API 36 loaded the JNI and performed 20 small 65x67 / five
+1344x2992 sequential encodes. Encoder-only medians were **64.423 ms**
+and **8,962.779 ms**; nearest-rank p95 **130.076 ms** and
+**12,268.763 ms**, respectively. Maximum post-encode PSS
+was **94,257 / 98,948 KiB**, while whole-process cumulative
+`ru_maxrss` reached **201,952 / 285,800 KiB**.
+PSS was sampled outside the actual encoding window: it is
+**not peak PSS**, and no Pixel memory or p95 is established.
+Independent host decoding of Android outputs reproduced exact
+65x67 / 1344x2992 geometry, full-range YUV444, RGB PSNR
+**58.6887 / 58.7403 dB**, and maximum per-channel error **1**.
+
+The [full evidence and scope limits](feasibility/native-device-check.md#isolated-jni-avif-diagnostic-apk-and-api-36-feasibility--2026-10-30)
+separate this synthetic debug variant from ordinary exports.
+The diagnostic emulator uses 4 KiB pages; physical 16 KiB
+runtime, real-image/device fidelity, peak PSS, second hardware,
+publisher/patent/compliance review and G1/M02 remain **OPEN**.
+No AVIF or HEIC regular export, permission, signing, merge,
+release or production APK changed.
+
+
+## Isolated Android software AVIF reference — verified 2026-10-30
+
+The source-pinned standalone libavif 1.4.2 / libaom 3.15.2 experiment
+was compiled for `arm64-v8a`, `armeabi-v7a` and `x86_64`. After
+correcting the runner's missing FFprobe dependency, exact-head
+[Actions 41132550109](https://github.com/santirodriguez/FixMyShot/actions/runs/41132550109)
+at `c15f882e5fd4606917485f02be686273c1d13e1d` completed
+**SUCCESS** in all four jobs (three ABI builds and API 36 x86_64 fixture).
+The actual emulator-produced 466-byte 65×67 AVIF was independently
+decoded on a separate FFmpeg 7.1.5 host: YUV 4:4:4/full range,
+RGB PSNR **58.6887 dB**, maximum patch error **1**.
+Single emulator encode-write time was **18.088442 ms** and entire-process
+`ru_maxrss` **12,736 KiB**; neither is a Pixel p95 or PSS measure.
+The emulator reported a 4 KiB page size; 16 KiB ELF properties are
+structural only. The [complete evidence and limits](feasibility/native-device-check.md#three-abi-android-software-avif-reference--successful-synthetic-ci--2026-10-30)
+remain separately recorded. **No JNI, APK integration, normal AVIF
+export, hardware acceptance, source-license clearance, signing or release**
+follows from this experiment. G1/M02 remain OPEN.
+
+
+## AVIF geometry alternative spike — 2026-10-30
+
+The **host-only metadata/crop remux** of the verified 65×67 Pixel AVIF
+is not interoperable: libheif presented 65×67, Pillow returned 128×67
+and FFmpeg rejected this prototype. A separate Pillow/libavif 1.4.2
+**software 4:4:4** control yielded **65×67** through all three host
+readers with **55.74–56.50 dB** PSNR and patch error 1; the 4:2:0
+control missed 38 dB. One 1344×2992 host compression sample completed
+in 1.095 s in 4:4:4 but whole-process RSS (~268 MiB) includes
+Python/NumPy and is NOT Pixel memory/performance evidence.
+The [evidence owner](feasibility/native-device-check.md#host-only-avif-correction-feasibility--2026-10-30)
+retains exact modes and limits. No Android code changes, new APK,
+device test or production codec enablement. G1/M02 remain OPEN.
+
+## Earlier AVIF alignment checkpoint — 2026-10-30
+
+PR #1 at `508b8b95cf0712b4ca04929d145f09957353bfa7` remains **OPEN /
+DRAFT / unmerged**. [Exact-source CI 40989504238](https://github.com/santirodriguez/FixMyShot/actions/runs/40989504238)
+completed SUCCESS on its second attempt (build/lint/core99 and API36
+instrumented groups; optional API26/28 SAF SKIPPED / NOT RUN).
+The delivered isolated `FixMyShot AVIF Check` APK, SHA-256
+`665a3c3165470e26d7782c4af43e2bda87ca86c7112ee4c414b115c19a71f8d4`,
+was used for the distinct [five-case Pixel API37 alignment diagnostic](feasibility/native-device-check.md#pixel-9-pro-xl-focused-avif-alignment-result--2026-10-30).
+All **5/5** cases encoded/reopened but failed numeric fidelity; the
+worst 3×3 patch median-channel error was **129** in every case.
+Grid on/off yielded matching bitstreams at 65×67 and 66×68; padding
+to 66×68 and 96×68 did not repair the problem. This is **new device
+diagnostic evidence, not HEIC/AVIF export, independent decoder or
+release acceptance**. No more unchanged grid tests are indicated.
+Pixel-produced encoded bytes/independent host decode and the existing
+G1/M02, other-hardware, color, resource and release gates remain open.
+
+## Current AVIF byte-level finding — 2026-10-30
+
+Latest editor diagnostic HEAD `82a40bf22a479c035ee608c3196f2ec616513be2`,
+PR #1 **OPEN/DRAFT/unmerged**, passed
+[exact-source CI 41107077558](https://github.com/santirodriguez/FixMyShot/actions/runs/41107077558)
+(build/lint/core99 and API36 131 instrumented tests; optional legacy SAF
+NOT RUN). The user completed the separate **single 65×67 Base64 AVIF
+handoff** on the Pixel 9 Pro XL/API37: 1,358 source-bound bytes, SHA-256
+`3bd7556515d9b5532faef95059e2e20afa4bbc263969f1ffbe5321ae2f51f19c`.
+Host decoders exposed a **128×67 AV1 raster** despite a **65×67 AVIF
+`ispe`**: Android/Pillow 65×67 display was severely horizontally
+distorted (reported PSNR ~7.25 dB, patch error129), while the
+leftmost 65 columns from FFmpeg/libheif reconstructed the
+expected pattern (PSNR ~26.1–26.4 dB, patch error2–3).
+A one-field `ispe` experiment corroborates geometry handling as
+the dominant cause but **does not produce valid 65×67 export**.
+See [full exact-byte evidence](feasibility/native-device-check.md#pixel-6567-avif-independent-byte-level-decode--2026-10-30).
+The earlier five-case and six-case phone reports are complete.
+HEIC/AVIF remain gated; G1/M02, color/profile, second hardware,
+physical resources/16KiB, provenance and distribution are OPEN.
+
+## Earlier accepted editor baseline — 2026-10-29
+
+The first functional Android implementation is on `release/0.1.0-editor` at
+[`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7),
+in [PR #1](https://github.com/santirodriguez/FixMyShot/pull/1) (**OPEN / DRAFT / not merged**).
+The compiled source remains unreleased `0.1.0-alpha.1`/versionCode 1.
+
+- **Implemented and automatically checked:** picker and Android share import, Automatic with an
+  Original/no-platform first-use default, explicit destination/format and flexible framing,
+  complete Customize/batch controls, verified PNG/lossless WebP transactional export,
+  guarded review/continue editing/next-image picker and private recovery. PNG and metadata
+  removal remain new-session defaults. The exact-head [API 36 run](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425)
+  passed build/lint, 99 core tests, 12 editor tests, 23 import/settings/session tests
+  and all other retained instrumentation groups. Legacy SAF was **SKIPPED / NOT RUN**.
+- **Accepted by the user:** the delivered isolated `FixMyShot Next` diagnostic and
+  consecutive-image/picker-cancellation phone exercise: “Hecho. Todo funciona bien.”
+  Earlier general UX 2.2 visual feedback was positive. This is not pixel-by-pixel,
+  performance, accessibility or native-codec acceptance.
+- **Pixel native diagnostic received (not export acceptance):** the user-shared API37
+  [synthetic HEIC/AVIF report](feasibility/native-device-check.md#pixel-9-pro-xl-synthetic-result--2026-10-29)
+  matches the previously delivered diagnostic APK's reported SHA-256. All six cases
+  report encode/reopen, but **0/6** meet numeric fidelity targets; 65×67 AVIF has
+  PSNR 7.247 dB and patch median-channel error 129. No codec is enabled by this result.
+- **Still open:** physical Pixel output/color/metadata/matte and resource checks, a second
+  hardware family, native HEIC/AVIF output fidelity and any qualified fallback,
+  real-provider/process-death/100-item manual cases, manual locale/TalkBack/200% layouts,
+  16 KiB runtime, conditional legacy SAF, exact-final-source reproducibility/corresponding
+  source and publisher clearance, authentic final screenshots, production signing,
+  sequential upgrade/Obtainium, merge and publication. JXL is deferred for 0.1.0.
+- **Authority:** no production key creation/rotation, merge, tag, release, publication,
+  deployment or permission change is approved. The earlier same-source independent
+  unsigned rebuild and source-material bundle are verified **for e516aa89**, not an
+  independent rebuilt release at the current editor HEAD.
+
+## Focused AVIF geometry check — completed diagnostic, not format approval
+
+The separately signed `.avifodd` candidate has passed exact-head CI and
+one user-reported Pixel 9 Pro XL five-mode synthetic check. Results and
+identity receipts are owned by [native device evidence](feasibility/native-device-check.md).
+Ordinary export remains PNG/lossless WebP; HEIC/AVIF are not enabled.
+The accepted editor/picker exercise remains completed and must not be repeated.
+
+## Earlier source-bound evidence (preserved)
+
+The sections below preserve earlier technical baselines and exact receipts. They are
+not claims that `5d568a7e`/`e516aa89` are the latest application implementation.
 This index links current evidence. The [full blueprint](blueprints/first-functional-release.md)
 and [compatibility amendment](decisions/compatibility-and-validation.md) still govern.
 
@@ -47,8 +224,8 @@ security gate and future-input/signing review remain open. No generated trust po
 
 ## The path to delivery
 
-These are acceptance tracks, not an unconditional serial barrier to a bounded
-functional device run. The blueprint records actual device acceptance before
+These are distinct remaining acceptance tracks, not a request to repeat the
+already accepted next-image phone exercise. The blueprint records actual device acceptance before
 final distribution acceptance. A diagnostic candidate may be exercised while
 publisher/source controls remain open; retain its exact source/artifact and
 all limits. This does not authorize distribution, signing, merge or publication,
@@ -62,7 +239,7 @@ or turn any pending control into PASS.
    The533pending files are one dependency-review backlog, not533
    product features. Further issuer attempts need a materially new primary
    anchor; recorded unavailable routes must not be retried automatically.
-2. **Complete real-device acceptance.** Pixel9ProXL and a second hardware family:
+2. **Complete the unverified real-device gates.** Pixel9ProXL and a second hardware family:
    HEIC/AVIF geometry/fidelity/color/resources/cancellation/fallback, providers,
    batches/process death/storage pressure/gallery/receivers, accessibility,
    languages and16KiB runtime. These checks are postponed, not waived.

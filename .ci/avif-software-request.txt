@@ -1,0 +1,5 @@
+One source-bound standalone libavif/libaom 65x67 YUV444 feasibility checkpoint.
+The main Android app and its default formats, permissions and shipping APK remain unchanged.
+Run three ABI cross-compilations and synthetic-only API36 emulator decode quality.
+Do not infer production APK delta, Pixel runtime performance, source publisher clearance or release approval.
+Host decode gate: install Ubuntu FFmpeg/FFprobe and save exact tool versions before exercising the fixture.

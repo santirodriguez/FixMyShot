@@ -1,9 +1,7 @@
-Review-stage WYSIWYG distinction validation (2026-10-27).
-Source base: 52ed38c9983d5adf4a95021de6df9ff70b3fc235
-Build Kotlin unit tests, Android lint, debug/unsigned/test APKs and API36 smoke.
-Preview-only changes: outline final output bounds, stripe external editor-only stage,
-checkerboard inside transparency canvas, label effective CONTAIN vs CROP, guide default OFF.
-Preserve real engine pixels, destination geometry, automatic background and output plans.
-Test stage/canvas pixel projections without increasing ReviewRenderTest case count.
-No release/signing/deploy or physical user acceptance.
+Validate one opt-in synthetic 65x67 HEIC compressed-byte capture, separate from accepted six-case checks.
+Reuse the bounded native sampler; preserve AVIF deferral, PNG defaults, production HEIC gate and all earlier diagnostics.
+Check closed report schema, explicit HEIC format/brand/route, APK/file hashes, cancellation and private cleanup.
+Use .heicbytes / FixMyShot HEIC Sample; never overwrite earlier diagnostic identities.
+Run the existing current build/lint/API36 regression once for this substantive batch; no physical test is claimed.
+Repair the host fake-adb import/settings fixture count to33; preserve strict malformed-report refusal.
 profile=current

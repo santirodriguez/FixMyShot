@@ -1,0 +1,105 @@
+name: AVIF software source feasibility (isolated)
+# Does not alter the app's build or authorize distribution.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/avif-software-request.txt']
+permissions:
+  contents: read
+concurrency:
+  group: avif-reference-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  android-abis:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        abi: [arm64-v8a, armeabi-v7a, x86_64]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate script syntax and host checker
+        run: |
+          bash -n scripts/avif-software/build-android.sh
+          python3 -m py_compile scripts/avif-software/check_fixture.py
+      - name: Install fixed Android NDK
+        run: bash scripts/setup-android.sh
+      - name: Cross-compile one fixed 65x67 YUV444 encoder probe
+        env:
+          ABI: ${{ matrix.abi }}
+        run: |
+          export ANDROID_NDK_ROOT="$ANDROID_HOME/ndk/28.2.13676358"
+          bash scripts/avif-software/build-android.sh "$RUNNER_TEMP/avif-reference-${ABI}" "$ABI"
+          mkdir -p "evidence/avif-software-${ABI}"
+          cp "$RUNNER_TEMP/avif-reference-${ABI}/evidence/"* "evidence/avif-software-${ABI}/"
+      - name: Preserve source-bound compiled evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-software-${{ matrix.abi }}-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/avif-software-${{ matrix.abi }}/
+  api36-fixture:
+    needs: android-abis
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: avif-software-x86_64-${{ github.sha }}
+          path: candidate
+      - name: Verify exact compiled artifact hash
+        run: |
+          cd candidate
+          sha256sum -c sha256.txt
+      - name: Install FFmpeg/FFprobe for host-only AVIF verification
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends ffmpeg
+          mkdir -p evidence/avif-software
+          ffmpeg -version > evidence/avif-software/ffmpeg-version.txt
+          ffprobe -version > evidence/avif-software/ffprobe-version.txt
+      - name: Enable emulator virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Encode the synthetic 65x67 AVIF in API 36 emulator
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: 36
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: |
+            mkdir -p evidence/avif-software
+            adb push candidate/avif_spike_cli /data/local/tmp/avif_spike_cli
+            adb shell chmod 700 /data/local/tmp/avif_spike_cli
+            adb shell /data/local/tmp/avif_spike_cli /data/local/tmp/fixture-65x67.avif > evidence/avif-software/runtime.json
+            adb pull /data/local/tmp/fixture-65x67.avif evidence/avif-software/fixture-65x67.avif
+            python3 scripts/avif-software/check_fixture.py evidence/avif-software/fixture-65x67.avif > evidence/avif-software/decode-quality.json
+            adb shell getconf PAGESIZE > evidence/avif-software/emulator-page-size.txt
+      - name: Preserve reference runtime evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: avif-software-api36-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: warn
+          path: evidence/avif-software/

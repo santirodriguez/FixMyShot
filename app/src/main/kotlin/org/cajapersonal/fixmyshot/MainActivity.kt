@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot
 import android.content.ComponentCallbacks2
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,9 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.compose.runtime.key
+import kotlinx.coroutines.flow.first
+import org.cajapersonal.fixmyshot.design.FixMyShotTheme
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
@@ -26,6 +30,9 @@ import org.cajapersonal.fixmyshot.settings.AppLanguages
 import org.cajapersonal.fixmyshot.settings.AppTheme
 import org.cajapersonal.fixmyshot.settings.SettingsDialog
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckDialog
+import org.cajapersonal.fixmyshot.diagnostics.OddAvifCheckDialog
+import org.cajapersonal.fixmyshot.diagnostics.HeicByteSampleDialog
+import org.cajapersonal.fixmyshot.core.OutputFormat
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.PickVisualMediaRequest
@@ -48,7 +55,6 @@ import org.cajapersonal.fixmyshot.core.EditableField
 import org.cajapersonal.fixmyshot.core.OutputSizeChoice
 import org.cajapersonal.fixmyshot.export.MediaStore29Port
 import org.cajapersonal.fixmyshot.export.SafTreeOutputPort
-import org.cajapersonal.fixmyshot.review.ReviewBitmapRenderer
 import org.cajapersonal.fixmyshot.review.ReviewScreen
 import org.cajapersonal.fixmyshot.review.ReviewSources
 import org.cajapersonal.fixmyshot.review.ReviewViewModel
@@ -65,11 +71,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sources: ReviewSources
     @Volatile private var generation = 0L
     private val pendingThumbnails = mutableSetOf<String>()
-    @Volatile private var cropPreviewGeneration = 0L
-    private var cropPreviewImageId by mutableStateOf<String?>(null)
-    private var cropPreviewLoadingId by mutableStateOf<String?>(null)
-    private var cropPreviewSource by mutableStateOf<Bitmap?>(null)
-
     private val picker = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) addImages(uris)
     }
@@ -116,24 +117,32 @@ class MainActivity : AppCompatActivity() {
             val scope = rememberCoroutineScope()
             var settingsOpen by rememberSaveable { mutableStateOf(false) }
             var nativeCheckOpen by rememberSaveable { mutableStateOf(false) }
+            var oddAvifOpen by rememberSaveable { mutableStateOf(false) }
+            var heicSampleOpen by rememberSaveable { mutableStateOf(false) }
             var settingsError by remember { mutableStateOf(false) }
             val dark = when (theme) {
                 AppTheme.SYSTEM -> isSystemInDarkTheme()
                 AppTheme.LIGHT -> false
                 AppTheme.DARK -> true
             }
-            LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked) {
-                model.drainImports(applicationContext)
+            LaunchedEffect(Unit) {
+                try { model.preferredTemplate = preferences.lastTemplate.first() }
+                catch (_: IOException) { model.preferredTemplate = null }
+                model.quickPreferencesReady = true
             }
-            LaunchedEffect(model.draft.revision, model.selectedId) {
-                loadPreview()
+            LaunchedEffect(model.pendingImportCount, model.isBusy, model.exportState.isLocked, model.quickPreferencesReady) {
+                if (model.quickPreferencesReady) model.drainImports(applicationContext)
+            }
+            val selectedSource = model.draft.images.firstOrNull { it.id == model.selectedId }
+            LaunchedEffect(selectedSource?.id, selectedSource?.contentSha256, model.previewEpoch) { loadPreview() }
+            LaunchedEffect(model.draft.images.map { it.id }) {
                 scheduleThumbnails(model.draft.images.map { it.id })
             }
             SideEffect {
                 WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = !dark
                 WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars = !dark
             }
-            MaterialTheme(colorScheme = if (dark) darkColorScheme() else lightColorScheme()) {
+            FixMyShotTheme(dark) {
                 if (settingsOpen) SettingsDialog(
                     theme = theme,
                     editable = !model.isBusy && !model.exportState.isLocked,
@@ -148,7 +157,36 @@ class MainActivity : AppCompatActivity() {
                     },
                     onLink = { url -> openLink(url) },
                     onNativeCheck = { settingsOpen = false; nativeCheckOpen = true },
+                    onOddAvifCheck = { settingsOpen = false; oddAvifOpen = true },
+                    onHeicSample = {
+                        model.clearAvifByteSample()
+                        settingsOpen = false
+                        heicSampleOpen = true
+                    },
                     onDismiss = { settingsOpen = false },
+                )
+                if (heicSampleOpen) HeicByteSampleDialog(
+                    running = model.avifSampleRunning, stopping = model.avifSampleStopping,
+                    canStart = !model.isBusy && !model.exportState.isLocked &&
+                        !model.shareBusy && model.pendingImportCount == 0,
+                    sample = model.avifSample?.takeIf { it.format == OutputFormat.HEIC },
+                    shareError = model.avifSampleShareError,
+                    onStart = { model.startAvifByteSample(applicationContext, OutputFormat.HEIC) },
+                    onCancel = model::cancelAvifByteSample,
+                    onShare = {
+                        val text = model.avifSample?.takeIf { it.ready && it.format == OutputFormat.HEIC }?.toJson()
+                        if (text != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, text)
+                            }, getString(R.string.heic_sample_share)))
+                        } catch (_: android.content.ActivityNotFoundException) { model.avifByteShareUnavailable() }
+                        catch (_: SecurityException) { model.avifByteShareUnavailable() }
+                    },
+                    onDismiss = {
+                        if (model.avifSampleRunning) model.cancelAvifByteSample()
+                        else { model.clearAvifByteSample(); heicSampleOpen = false }
+                    },
                 )
                 if (nativeCheckOpen) NativeCheckDialog(
                     running = model.nativeCheckRunning, stopping = model.nativeCheckStopping,
@@ -171,20 +209,63 @@ class MainActivity : AppCompatActivity() {
                         if (model.nativeCheckRunning) model.cancelNativeCheck() else nativeCheckOpen = false
                     },
                 )
+                if (oddAvifOpen) OddAvifCheckDialog(
+                    running = model.oddAvifRunning, stopping = model.oddAvifStopping,
+                    canStart = !model.isBusy && !model.exportState.isLocked &&
+                        !model.shareBusy && model.pendingImportCount == 0,
+                    progress = model.oddAvifProgress, report = model.oddAvifReport,
+                    shareError = model.oddAvifShareError,
+                    sampleRunning = model.avifSampleRunning,
+                    sampleStopping = model.avifSampleStopping,
+                    sample = model.avifSample,
+                    sampleShareError = model.avifSampleShareError,
+                    onStart = { model.startOddAvifCheck(applicationContext) },
+                    onCancel = model::cancelOddAvifCheck,
+                    onCaptureSample = { model.startAvifByteSample(applicationContext) },
+                    onCancelSample = model::cancelAvifByteSample,
+                    onShareSample = {
+                        val sampleText = model.avifSample?.takeIf { it.ready }?.toJson()
+                        if (sampleText != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, sampleText)
+                            }, getString(R.string.avif_sample_share)))
+                        } catch (_: android.content.ActivityNotFoundException) {
+                            model.avifByteShareUnavailable()
+                        } catch (_: SecurityException) { model.avifByteShareUnavailable() }
+                    },
+                    onShare = {
+                        val reportText = model.oddAvifReport?.toJson()
+                        if (reportText != null) try {
+                            startActivity(Intent.createChooser(Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(Intent.EXTRA_TEXT, reportText)
+                            }, getString(R.string.odd_check_share)))
+                        } catch (_: android.content.ActivityNotFoundException) {
+                            model.oddAvifShareUnavailable()
+                        } catch (_: SecurityException) { model.oddAvifShareUnavailable() }
+                    },
+                    onDismiss = {
+                        when {
+                            model.oddAvifRunning -> model.cancelOddAvifCheck()
+                            model.avifSampleRunning -> model.cancelAvifByteSample()
+                            else -> {
+                                model.clearAvifByteSample()
+                                oddAvifOpen = false
+                            }
+                        }
+                    },
+                )
                 Surface(Modifier.fillMaxSize()) {
+                    key(model.editorSessionKey) {
                     ReviewScreen(
                         draft = model.draft,
                         selectedId = model.selectedId,
                         editorSessionKey = model.editorSessionKey,
                         editSelectedOnly = model.editSelectedOnly,
                         onEditSelectedOnly = model::changeEditScope,
-                        preview = model.preview,
+                        preview = model.preview.takeIf { model.previewSourceKey == selectedSource?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" } },
                         thumbnails = model.thumbnails,
-                        cropSource = cropPreviewSource,
-                        cropSourceId = cropPreviewImageId,
-                        cropLoadingId = cropPreviewLoadingId,
-                        onOpenCropEditor = { requestCropEditor(it) },
-                        onCloseCropEditor = { closeCropEditor() },
                         busy = model.isBusy,
                         invalidImports = model.invalidImports,
                         importProgress = model.importProgress,
@@ -206,8 +287,23 @@ class MainActivity : AppCompatActivity() {
                         onRetryExport = { beginRetryExport() },
                         onRestoreDraft = { model.restorePreviousDraft() },
                         onReviewedPrevious = { model.acknowledgePreviousExport(applicationContext) },
+                        onContinueEditing = { model.continueEditing(applicationContext) },
+                        onStartNextImage = {
+                            model.startNextImage(applicationContext) { chooseImages() }
+                        },
                         finishSessionOnReview = model.canFinishSession,
                         onRefreshOutputs = { model.refreshOutputs(applicationContext) },
+                        onViewSaved = { id, onDecoded ->
+                            // Only decode an owned, validated published output after the journal verifier.
+                            model.openOutput(applicationContext, id) { ready ->
+                                val uri = ready?.data
+                                if (uri == null || isDestroyed) onDecoded(null)
+                                else thumbnailWorker.execute {
+                                    val image = try { decodeSavedForViewing(uri) } catch (_: Exception) { null }
+                                    main.post { if (!isDestroyed) onDecoded(image) else image?.recycle() }
+                                }
+                            }
+                        },
                         onOpenOutput = { id -> model.openOutput(applicationContext, id) { ready ->
                             if (ready != null && !isDestroyed) {
                                 try { startActivity(ready) }
@@ -227,18 +323,27 @@ class MainActivity : AppCompatActivity() {
                         importLimitExceeded = model.importLimitExceeded,
                         pendingImports = model.pendingImportCount,
                         onSettings = { settingsOpen = true },
-                        onChoose = {
-                            picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                        },
+                        onChoose = { chooseImages() },
                         onSelect = selectImage@{ id ->
                             if (model.exportState.isLocked) return@selectImage
-                            closeCropEditor()
                             model.selectedId = id
                             model.checkpointDraft()
                             model.selectThumbnail(id)
                             scheduleThumbnails(listOf(id))
                         },
                         onDestination = { value -> updateDraft(model.draft.setDestination(value)) },
+                        onTemplate = { value ->
+                            updateDraft(model.draft.applyTemplate(value))
+                            val id = (value as? org.cajapersonal.fixmyshot.core.DestinationChoice.Preset)?.id
+                            if (id != null && model.draft.destination == value) scope.launch {
+                                try { preferences.setTemplate(id); model.preferredTemplate = id }
+                                catch (_: IOException) { settingsError = true }
+                            }
+                        },
+                        onApplyFraming = { expected, id, settings ->
+                            if (model.draft == expected && model.selectedId == id) updateDraft(
+                                expected.applyFraming(id, settings.fit, settings.crop, settings.position, settings.frame))
+                        },
                         onFormat = format@{ value, onlySelected ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId }
                             if (onlySelected && item == null) return@format
@@ -289,6 +394,13 @@ class MainActivity : AppCompatActivity() {
                             } else model.draft.setBatch(model.draft.batch.copy(fit = value)))
                         },
                         onCrop = { updateCrop(it) },
+                        onFrame = flexible@{ value ->
+                            val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@flexible
+                            val effective = item.overrides.resolve(model.draft.batch)
+                            if (effective.fit != org.cajapersonal.fixmyshot.core.FitMode.FLEXIBLE) return@flexible
+                            updateDraft(model.draft.applyFraming(item.id, effective.fit,
+                                effective.crop, effective.position, value))
+                        },
                         onPosition = position@{ value ->
                             val item = model.draft.images.firstOrNull { it.id == model.selectedId } ?: return@position
                             val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == item.id }
@@ -305,6 +417,7 @@ class MainActivity : AppCompatActivity() {
                         onRemove = { removeSelected() },
                         onDiscard = { expected -> discardDraft(expected) },
                     )
+                    }
                 }
             }
         }
@@ -348,7 +461,6 @@ class MainActivity : AppCompatActivity() {
     private fun updateDraft(value: DraftSession) {
         if (model.isBusy || model.shareBusy || model.pendingImportCount != 0 ||
             model.exportState.isLocked || model.sessionRestoreBlocked || value == model.draft) return
-        closeCropEditor()
         val released = model.draft.workingSourceIds - value.workingSourceIds
         model.draft = value
         model.onDraftEdited()
@@ -393,42 +505,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** Decode a bounded ORIGINAL sample asynchronously; never reuse the already-cropped preview. */
-    private fun requestCropEditor(id: String) {
-        if (model.selectedId != id || model.isBusy || model.shareBusy ||
-            model.sessionRestoreBlocked || model.pendingImportCount != 0 || model.exportState.isLocked) return
-        val candidate = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-        if (candidate?.geometry !is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) return
-        closeCropEditor()
-        val token = ++cropPreviewGeneration
-        cropPreviewLoadingId = id
-        thumbnailWorker.execute {
-            val sample = try { sources.decodeSample(id, maxLongSide = 1200) }
-            catch (_: IOException) { null }
-            catch (_: SecurityException) { null }
-            catch (_: IllegalArgumentException) { null }
-            main.post {
-                if (!isDestroyed && token == cropPreviewGeneration &&
-                    model.selectedId == id && model.draft.images.any { it.id == id } &&
-                    model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-                        ?.geometry is org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped) {
-                    cropPreviewImageId = id
-                    cropPreviewSource = sample
-                    cropPreviewLoadingId = null
-                } else sample?.recycle()
-            }
-        }
-    }
-
-    private fun closeCropEditor() {
-        ++cropPreviewGeneration
-        cropPreviewLoadingId = null
-        cropPreviewImageId = null
-        val old = cropPreviewSource
-        cropPreviewSource = null
-        old?.recycle()
-    }
-
     /** One bounded decode at a time; old UI snapshots remain valid after LRU eviction. */
     private fun scheduleThumbnails(ids: List<String>) {
         for (id in ids.distinct()) {
@@ -455,39 +531,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun chooseImages() {
+        if (!isDestroyed && !isFinishing &&
+            lifecycle.currentState.isAtLeast(androidx.lifecycle.Lifecycle.State.RESUMED)) {
+            picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
+    }
+
     private fun loadPreview() {
+        val image = model.draft.images.firstOrNull { it.id == model.selectedId }
+        val key = image?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" }
+        if (key != null && model.previewSourceKey == key && model.preview != null) return
         val token = ++generation
         worker.cancelPending()
-        val id = model.selectedId
-        val image = model.draft.images.firstOrNull { it.id == id }
-        val plan = model.draft.plans(Build.VERSION.SDK_INT).firstOrNull { it.itemId == id }
-        model.preview = null
+        model.trimPreview()
         model.previewUnavailable = false
-        if (image == null || plan == null || plan.geometry == null) return
+        if (image == null) return
         worker.execute {
             if (token != generation) return@execute
-            var rendered: android.graphics.Bitmap? = null
-            try {
-                val source = sources.decodeSample(image.id)
-                try {
-                    if (token != generation) return@execute
-                    rendered = ReviewBitmapRenderer.preview(source, image.orientedSize, plan).image
-                } finally { source.recycle() }
-            } catch (_: IOException) {
-                // Display a generic localized error; never print source URIs or image names.
-            } catch (_: IllegalArgumentException) {
-                // Geometry or color is not currently previewable.
-            } catch (_: SecurityException) {
-                // A revoked provider grant cannot be assumed valid.
-            }
-            val candidate = rendered
-            if (token != generation) {
-                candidate?.recycle()
-                return@execute
-            }
+            val candidate = try { sources.decodeSample(image.id) }
+                catch (_: IOException) { null }
+                catch (_: IllegalArgumentException) { null }
+                catch (_: SecurityException) { null }
             main.post {
-                if (!isDestroyed && token == generation && model.selectedId == id &&
-                    model.draft.revision == plan.sessionRevision) {
+                val current = model.draft.images.firstOrNull { it.id == model.selectedId }
+                val currentKey = current?.let { "${it.id}:${it.contentSha256}:${it.orientedSize}:${it.sourceColor}" }
+                if (!isDestroyed && token == generation && currentKey == key) {
+                    model.previewSourceKey = key
                     model.preview = candidate
                     model.previewUnavailable = candidate == null
                 } else candidate?.recycle()
@@ -520,7 +590,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onStart() {
-        if (::model.isInitialized) model.foregroundChanged(true)
+        if (::model.isInitialized) { model.foregroundChanged(true); model.previewEpoch++ }
         super.onStart()
     }
 
@@ -533,11 +603,29 @@ class MainActivity : AppCompatActivity() {
         super.onTrimMemory(level)
         if (::model.isInitialized && level >= ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW) {
             model.clearThumbnails()
+            if (level >= ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+                generation++; worker.cancelPending(); model.trimPreview()
+            }
         }
     }
 
+    /** Never decode an output-sized bitmap just to let the user inspect a result. */
+    private fun decodeSavedForViewing(uri: Uri): Bitmap? {
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) }
+        val width = bounds.outWidth
+        val height = bounds.outHeight
+        if (width <= 0 || height <= 0 || width.toLong() * height > 24_000_000L) return null
+        var sample = 1
+        while (maxOf(width, height) / sample > 1600) sample *= 2
+        val options = BitmapFactory.Options().apply {
+            inSampleSize = sample
+            inPreferredConfig = Bitmap.Config.ARGB_8888
+        }
+        return contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
+    }
+
     override fun onDestroy() {
-        closeCropEditor()
         generation++
         worker.close()
         thumbnailWorker.shutdownNow()
