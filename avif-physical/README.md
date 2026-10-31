@@ -87,7 +87,13 @@ no requirement to upload an original screenshot or APK to the repo.
   this disposable debug APK clears its app-private candidates.
 - The synthetic CI mode accepts only an explicitly launched
   `synthetic_ci` extra on a recognized emulator. It generates its
-  own in-memory fixture and uploads **no real user image**.
+  own in-memory fixture and uploads **no real user image**. After encoding,
+  only this synthetic fixture moves atomically from cache to app-private files
+  and remains there until emulator disposal, so cache eviction or Activity
+  teardown cannot invalidate later decoders or evidence collection. Selected
+  user images keep the existing cache/cleanup behavior. Read-only selector hints
+  are captured before launch, and fixed codec-tag logcat is retained only from
+  the disposable synthetic emulator; neither is definitive backend proof alone.
 - Packaging includes the exact upstream license/patent notices and
   project GPL text, but does **not** constitute finished license,
   provenance, patent or distribution review.

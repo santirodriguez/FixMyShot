@@ -3,6 +3,32 @@
 set -euo pipefail
 mkdir -p evidence/physical-api36
 pkg='org.cajapersonal.fixmyshot.avifphysical'
+# Read-only selector hints from this disposable emulator; not proof of the backend used.
+python3 - <<'PY'
+import json
+import subprocess
+from pathlib import Path
+
+def prop(name):
+    result = subprocess.run(['adb', 'shell', 'getprop', name],
+                            capture_output=True, text=True, timeout=20)
+    if result.returncode != 0:
+        return {'status':'read_failed', 'value':''}
+    value = result.stdout.strip()
+    return {'status': 'set' if value else 'empty_or_unavailable', 'value': value}
+
+data = {
+    'kind': 'EMULATOR_AVIF_BACKEND_HINTS_NOT_PROOF',
+    'read_only': True,
+    'actual_decoder_backend_confirmed': False,
+    'selector_property': 'media.avif.crabbyavif',
+    'selector': prop('media.avif.crabbyavif'),
+    'emulator_build_fingerprint': prop('ro.build.fingerprint'),
+    'sdk': prop('ro.build.version.sdk')
+}
+Path('evidence/physical-api36/emulator-selector-hints.json').write_text(
+    json.dumps(data, indent=2, sort_keys=True) + '\n')
+PY
 adb install -r candidate/FixMyShot-AVIF-Physical-debug.apk
 adb shell am start -n "$pkg/.ProbeActivity" --ez synthetic_ci true \
     > evidence/physical-api36/activity-start.txt
@@ -45,41 +71,19 @@ if [[ "$report_ready" -ne 1 ]]; then
         evidence/physical-api36/timeout-logcat.txt | tail -n 30 >&2 || true
     exit 1
 fi
-if ! adb shell run-as "$pkg" test -s cache/physical_ci_0.avif \
+# Fixed-tag logs from this disposable synthetic emulator only.
+adb logcat -d -v threadtime -s CCodec:V CCodecConfig:V Codec2Client:V \
+    C2SoftDav1dDec:V C2SoftGav1Dec:V HeifDecoderImpl:V Skia:V \
+    > evidence/physical-api36/decoder-backend-logcat.txt || true
+if ! adb shell run-as "$pkg" test -s files/physical_ci_0.avif \
     >/dev/null 2>&1; then
     echo 'No nonempty app-private synthetic AVIF fixture' >&2
     exit 1
 fi
-adb exec-out run-as "$pkg" cat cache/physical_ci_0.avif \
+adb exec-out run-as "$pkg" cat files/physical_ci_0.avif \
     > evidence/physical-api36/fixture-1344x2992.avif
 test -s evidence/physical-api36/fixture-1344x2992.avif
 adb shell getconf PAGESIZE > evidence/physical-api36/page-size.txt
-# Read-only selector hints from this disposable emulator; not proof of the backend used.
-python3 - <<'PY'
-import json
-import subprocess
-from pathlib import Path
-
-def prop(name):
-    result = subprocess.run(['adb', 'shell', 'getprop', name],
-                            capture_output=True, text=True, timeout=20)
-    if result.returncode != 0:
-        return {'status':'read_failed', 'value':''}
-    value = result.stdout.strip()
-    return {'status': 'set' if value else 'empty_or_unavailable', 'value': value}
-
-data = {
-    'kind': 'EMULATOR_AVIF_BACKEND_HINTS_NOT_PROOF',
-    'read_only': True,
-    'actual_decoder_backend_confirmed': False,
-    'selector_property': 'media.avif.crabbyavif',
-    'selector': prop('media.avif.crabbyavif'),
-    'emulator_build_fingerprint': prop('ro.build.fingerprint'),
-    'sdk': prop('ro.build.version.sdk')
-}
-Path('evidence/physical-api36/emulator-selector-hints.json').write_text(
-    json.dumps(data, indent=2, sort_keys=True) + '\n')
-PY
 # Record every decoder's result and error locations before enforcing fidelity.
 # A red Android path remains red even if independent host decode looks better.
 python3 - <<'PY'

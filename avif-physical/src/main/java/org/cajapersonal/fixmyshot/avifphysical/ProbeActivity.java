@@ -324,7 +324,17 @@ public final class ProbeActivity extends Activity {
                     measure.put("concurrent_memory", sample);
                     trialsJson.put(measure);
                     if (i == 0) {
-                        encoded = path;
+                        if (synthetic) {
+                            // Keep the deterministic CI fixture out of evictable cache.
+                            // Real user-selected screenshots retain their existing cache policy.
+                            File retained = new File(getFilesDir(), "physical_ci_0.avif");
+                            if (retained.exists() || !path.renameTo(retained)) {
+                                throw new IllegalStateException("Cannot retain synthetic CI fixture");
+                            }
+                            encoded = retained;
+                        } else {
+                            encoded = path;
+                        }
                     } else if (!path.delete()) {
                         throw new IllegalStateException("Cannot remove private trial output");
                     }
@@ -584,7 +594,8 @@ public final class ProbeActivity extends Activity {
         super.onDestroy();
         worker.shutdown();
         // Only this probe's own cache file; never touch any imported document.
-        if (!busy) clearPrivateOutput();
+        // Disposable-emulator evidence lives until run-as extraction / AVD disposal.
+        if (!busy && !synthetic) clearPrivateOutput();
     }
 
     private static Bitmap syntheticFixture() {
