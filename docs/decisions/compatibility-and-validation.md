@@ -89,15 +89,22 @@ receivers unqualified. Keep normal AVIF disabled and the physical
 handoff hold in force. Preserve the passing isolated decoder as evidence;
 do not integrate it merely to make the fidelity check green.
 
-Do not repeat the unchanged444 experiment or switch an emulator property
-to seek a passing result. The next useful bounded investigation is a
-synthetic-only receiver-oriented encoding comparison using the existing
-pinned encoder: native-compatible420 against444, with identical source,
-color tags and unchanged thresholds, judged through the three original
-Android paths and independent decode. Its purpose is to test whether
-a framework-compatible candidate can meet screenshot fidelity, not to
-relax that fidelity. Any implementation/CI run must remain isolated and
-source-bound; no Pixel handoff follows automatically.
+The bounded synthetic420-versus444 comparison is now complete at
+runtime7cf26bbb / [Actions41212246198](https://github.com/santirodriguez/FixMyShot/actions/runs/41212246198).
+Both encodings FAIL the three Android routes (maximum63,7896pixels>2).
+Independent host420 also FAILs (maximum64); host/direct444 remains
+maximum1. The exact decoded420 U/V planes equal rounded2x2 means of
+decoded444, with unchanged Y. See the [complete evidence](../feasibility/native-device-check.md#synthetic-yuv420-versus-yuv444-encoding-comparison--2026-10-31).
+This supersedes the earlier proposed experiment, not its unchanged
+fidelity thresholds. No runner defect or unchanged rerun is indicated.
+
+The bounded attempt has therefore reached the scope-decision boundary.
+Recommendation: defer AVIF from0.1.0 while preserving the evidence and
+PNG/lossless WebP path. **PROPOSED, NOT APPROVED**: no deferral is enacted
+by this document. HEIC and every other release gate remain independent.
+Do not repeat the same experiment, change emulator properties, integrate
+an internal decoder as an external-receiver fix, or hand off the Pixel
+APK under this failed evidence.
 
 If no candidate meets both fidelity and receiver requirements within the
 bounded attempt, present an explicit first-delivery scope decision.
