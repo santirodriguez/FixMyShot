@@ -64,8 +64,14 @@ no requirement to upload an original screenshot or APK to the repo.
   sRGB-targeted software `ImageDecoder`. It records each path's color space,
   geometry, PSNR, max channel error, error histogram, worst pixel coordinate,
   RGB per-channel error counts, and a 4×6 spatial distribution of errors >2.
-  Only aggregate metrics/coordinates are included; no user pixels or filenames
-  enter the JSON report. The user preview **remains** the original default
+  When a real PNG is selected, only aggregate metrics/coordinates enter the
+  JSON report: **no original or decoded user RGB samples or filenames**.
+  **Only for the built-in synthetic CI fixture**, 19 fixed edge/interior points
+  also record source/decoded RGB triples and deltas for each successful
+  Android display path. The emulator CI additionally captures the read-only
+  `media.avif.crabbyavif` property and build fingerprint as **hints**, not
+  proof of the decoder implementation actually used.
+  The user preview **remains** the original default
   `BitmapFactory` result; a better alternate decode is diagnostic evidence,
   not an automatic viewer switch or acceptance. CI retains the PSNR ≥38 dB
   and max-channel-error ≤2 thresholds for the display routes. A red route

@@ -46,6 +46,28 @@ public final class ProbeActivity extends Activity {
     private static final int HEIGHT = 2992;
     private static final int REAL_TRIALS = 3;
     private static final long SAMPLE_INTERVAL_MS = 150;
+    // Constant positions in the built-in synthetic fixture; never capture user RGB.
+    private static final int[][] SYNTHETIC_EDGE_POINTS = {
+        {0, 2243},
+        {0, 2244},
+        {0, 2245},
+        {0, 2250},
+        {0, 2251},
+        {1, 2250},
+        {2, 2250},
+        {31, 2250},
+        {32, 2250},
+        {33, 2250},
+        {34, 2250},
+        {16, 2250},
+        {0, 2255},
+        {0, 2256},
+        {0, 2257},
+        {0, 2266},
+        {0, 2267},
+        {100, 100},
+        {100, 2000}
+    };
 
     static { System.loadLibrary("avif_physical"); }
     private static native long[] encodeBitmap(Bitmap pixels, String privatePath);
@@ -355,6 +377,11 @@ public final class ProbeActivity extends Activity {
                                 outcome.put("status", "OK");
                                 JSONObject quality = comparePixels(source, decoded);
                                 outcome.put("quality", quality);
+                                if (synthetic) {
+                                    // The normal user-selected image path NEVER records pixels.
+                                    outcome.put("synthetic_rgb_points",
+                                            sampleSyntheticEdgePoints(source, decoded));
+                                }
                                 if ("bitmap_factory_default".equals(mode)) {
                                     result.put("quality", quality);
                                     reopened = decoded;
@@ -432,6 +459,32 @@ public final class ProbeActivity extends Activity {
         }
         text.append("\nThese are sampled maxima, not absolute peak PSS or production p95.");
         return text.toString();
+    }
+
+    private static JSONArray sampleSyntheticEdgePoints(Bitmap expected, Bitmap decoded)
+            throws Exception {
+        JSONArray samples = new JSONArray();
+        for (int[] position : SYNTHETIC_EDGE_POINTS) {
+            int x = position[0];
+            int y = position[1];
+            int a = expected.getPixel(x, y);
+            int b = decoded.getPixel(x, y);
+            int dr = Color.red(b) - Color.red(a);
+            int dg = Color.green(b) - Color.green(a);
+            int db = Color.blue(b) - Color.blue(a);
+            JSONObject sample = new JSONObject();
+            sample.put("x", x);
+            sample.put("y", y);
+            sample.put("source_rgb", new JSONArray().put(Color.red(a))
+                    .put(Color.green(a)).put(Color.blue(a)));
+            sample.put("decoded_rgb", new JSONArray().put(Color.red(b))
+                    .put(Color.green(b)).put(Color.blue(b)));
+            sample.put("delta_rgb", new JSONArray().put(dr).put(dg).put(db));
+            sample.put("max_abs_channel_error",
+                    Math.max(Math.abs(dr), Math.max(Math.abs(dg), Math.abs(db))));
+            samples.put(sample);
+        }
+        return samples;
     }
 
     private static JSONObject comparePixels(Bitmap before, Bitmap after) throws Exception {

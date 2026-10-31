@@ -54,6 +54,32 @@ adb exec-out run-as "$pkg" cat cache/physical_ci_0.avif \
     > evidence/physical-api36/fixture-1344x2992.avif
 test -s evidence/physical-api36/fixture-1344x2992.avif
 adb shell getconf PAGESIZE > evidence/physical-api36/page-size.txt
+# Read-only selector hints from this disposable emulator; not proof of the backend used.
+python3 - <<'PY'
+import json
+import subprocess
+from pathlib import Path
+
+def prop(name):
+    result = subprocess.run(['adb', 'shell', 'getprop', name],
+                            capture_output=True, text=True, timeout=20)
+    if result.returncode != 0:
+        return {'status':'read_failed', 'value':''}
+    value = result.stdout.strip()
+    return {'status': 'set' if value else 'empty_or_unavailable', 'value': value}
+
+data = {
+    'kind': 'EMULATOR_AVIF_BACKEND_HINTS_NOT_PROOF',
+    'read_only': True,
+    'actual_decoder_backend_confirmed': False,
+    'selector_property': 'media.avif.crabbyavif',
+    'selector': prop('media.avif.crabbyavif'),
+    'emulator_build_fingerprint': prop('ro.build.fingerprint'),
+    'sdk': prop('ro.build.version.sdk')
+}
+Path('evidence/physical-api36/emulator-selector-hints.json').write_text(
+    json.dumps(data, indent=2, sort_keys=True) + '\n')
+PY
 # Record every decoder's result and error locations before enforcing fidelity.
 # A red Android path remains red even if independent host decode looks better.
 python3 - <<'PY'
@@ -106,6 +132,54 @@ for mode in modes:
                     'worst_error_y':q['worst_error_y'],
                     'histogram':bins,'grid_4x6':grid,
                     'channel_error_gt_2_rgb':q['channel_error_gt_2_rgb']})
+        # The only image in this CI is the built-in synthetic fixture.
+        # Verify each RGB sample against its deterministic Java generator.
+        expected_positions=[
+            (0,2243),
+            (0,2244),
+            (0,2245),
+            (0,2250),
+            (0,2251),
+            (1,2250),
+            (2,2250),
+            (31,2250),
+            (32,2250),
+            (33,2250),
+            (34,2250),
+            (16,2250),
+            (0,2255),
+            (0,2256),
+            (0,2257),
+            (0,2266),
+            (0,2267),
+            (100,100),
+            (100,2000),
+        ]
+        samples=mode['synthetic_rgb_points']
+        assert isinstance(samples,list) and len(samples)==len(expected_positions),mode
+        def source_rgb(x,y):
+            if y < 2992 // 2:
+                colors=[(64,64,64),(128,128,128),(192,192,192),
+                        (192,64,64),(64,192,64),(64,64,192)]
+                return colors[x*6//1344]
+            if y < 2992*3//4:
+                grey=255 if (y%16==0 or x%32==0) else 18
+                return (grey,grey,grey)
+            if x%32<=1 and y%16<=10:
+                return (20,100,220)
+            return (255,255,255)
+        for item,(x,y) in zip(samples,expected_positions):
+            assert (item['x'],item['y'])==(x,y),item
+            src=source_rgb(x,y)
+            actual=item['source_rgb']
+            decoded=item['decoded_rgb']
+            delta=item['delta_rgb']
+            assert tuple(actual)==src,item
+            assert len(decoded)==3 and all(type(v) is int and 0<=v<=255
+                                           for v in decoded),item
+            assert delta==[v-u for u,v in zip(actual,decoded)],item
+            assert item['max_abs_channel_error']==max(abs(v) for v in delta),item
+        row['synthetic_rgb_points']=samples
         row['pass']=(q['psnr_db']>=38.0 and q['max_channel_error']<=2
                      and q['nonopaque_pixels']==0 and
                      q['pixels_error_gt_2']==0)
@@ -137,6 +211,7 @@ PY
 sha256sum evidence/physical-api36/fixture-1344x2992.avif \
     evidence/physical-api36/report.json \
     evidence/physical-api36/decoder-comparison.json \
+    evidence/physical-api36/emulator-selector-hints.json \
     > evidence/physical-api36/sha256.txt
 # This diagnostic is intentionally strict: do NOT turn a receiver/display
 # discrepancy into green CI merely because another decoder passes.
