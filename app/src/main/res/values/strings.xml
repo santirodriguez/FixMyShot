@@ -294,4 +294,11 @@
     <string name="editor_metadata_kept">Identifying metadata: preservation requested</string>
     <string name="editor_review_required">Review required before export</string>
     <string name="editor_move_help">Drag the image inside the output frame, or use the arrows.</string>
+    <string name="heic_sample_title">Capture one HEIC sample</string>
+    <string name="heic_sample_note">Generate one 65×67 synthetic HEIC. It never reads your images or repeats the six-case check. Sharing Base64 sends the sample and device/app details to the app you choose; nothing is sent automatically. The file is private and removed after capture. This does not enable HEIC export.</string>
+    <string name="heic_sample_running">Encoding the synthetic HEIC sample…</string>
+    <string name="heic_sample_ready">Sample ready. Share it only if you choose; HEIC export remains disabled.</string>
+    <string name="heic_sample_failed">Could not produce a verified synthetic HEIC sample.</string>
+    <string name="heic_sample_start">Generate one synthetic HEIC</string>
+    <string name="heic_sample_share">Share synthetic HEIC (Base64)</string>
 </resources>

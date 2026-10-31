@@ -1352,3 +1352,38 @@ blocked; no runtime change, Pixel test, release or merge occurred here.
 A passing alternative cannot clear a failed existing system gate.
 No physical test or Pixel handoff, receiver acceptance, production
 integration, merge or release is authorized by this experiment.
+
+## Bounded synthetic HEIC byte capture — prepared 2026-10-31
+
+The separately approved HEIC investigation reuses the bounded native
+byte sampler with an explicit HEIC format,65x67 integrated fixture,
+eight-second writer timeout request and8192-byte compressed limit.
+AVIF remains the existing action's default and stays deferred from0.1.0.
+The new Settings/Help action captures one HEIC sample, not the accepted
+six-case numeric check. Ordinary HEIC export remains unavailable.
+
+The candidate must match the native HEIC route, a HEIC-specific brand
+and its owned private path. The actual bytes are hashed and the private
+candidate removed after capture; cancellation suppresses shared bytes.
+The ViewModel-only result is cleared on dismissal. Sharing Base64 and
+device/app/APK identity requires a separate explicit chooser action.
+No selected image, gallery/provider write, permission or dependency is
+introduced. The distinct debug identity .heicbytes / FixMyShot HEIC Sample
+preserves earlier diagnostic installs; production identity/version remain.
+
+The closed JSON kind is SYNTHETIC_HEIC_BYTES_V1,formatHEIC. Validate with
+scripts/check-avif-byte-sample.py --format HEIC --expected-apk-sha256
+before extracting a new.heic file. The old AVIF checker default is
+preserved. Wrong/cross-format brands,API<29,changed hashes,extra private
+fields and cancelled reports are rejected. Self-reported APK identity
+is operational binding, not attestation or export qualification.
+
+Local host refusal/integrity tests:8PASS, including the earlier5AVIF
+cases. Shell syntax and all7new locale keys/en-es-ca XML checks PASS.
+Four new Android fake-encoder tests cover typed HEIC receipt/cleanup,
+wrong route/brand, cancellation, size limit and unowned-file preservation;
+they are not native encoder or physical-fidelity evidence. Existing
+current-profile CI must compile/run them; the import/settings group
+increases29to33. Actual APK/run/source receipts and any later Pixel
+sample must be verified separately. No physical run or handoff occurred
+when preparing this implementation.

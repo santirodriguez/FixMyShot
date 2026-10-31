@@ -294,4 +294,11 @@
     <string name="editor_metadata_kept">Metadades identificatives: se sol·licita conservar-les</string>
     <string name="editor_review_required">Revisa els ajustos abans d’exportar</string>
     <string name="editor_move_help">Arrossega la imatge dins del marc de sortida o fes servir les fletxes.</string>
+    <string name="heic_sample_title">Captura una mostra HEIC</string>
+    <string name="heic_sample_note">Genera un HEIC sintètic de 65×67. No llegeix imatges personals ni repeteix les sis comprovacions anteriors. Compartir el Base64 envia la mostra i dades del dispositiu i de l’app a l’aplicació que triïs; res no s’envia automàticament. El fitxer és privat i s’elimina després de capturar-lo. Això no activa l’exportació HEIC.</string>
+    <string name="heic_sample_running">Codificant la mostra HEIC sintètica…</string>
+    <string name="heic_sample_ready">Mostra preparada. Comparteix-la només si vols; l’exportació HEIC continua desactivada.</string>
+    <string name="heic_sample_failed">No s’ha pogut generar una mostra HEIC sintètica verificada.</string>
+    <string name="heic_sample_start">Genera una mostra HEIC sintètica</string>
+    <string name="heic_sample_share">Comparteix l’HEIC sintètic (Base64)</string>
 </resources>

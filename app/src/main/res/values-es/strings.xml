@@ -294,4 +294,11 @@
     <string name="editor_metadata_kept">Datos identificatorios: se solicitó conservarlos</string>
     <string name="editor_review_required">Revisá los ajustes antes de exportar</string>
     <string name="editor_move_help">Arrastrá la imagen dentro del marco de salida o usá las flechas.</string>
+    <string name="heic_sample_title">Capturar una muestra HEIC</string>
+    <string name="heic_sample_note">Genera un HEIC sintético de 65×67. No lee tus imágenes ni repite las seis comprobaciones anteriores. Compartir el Base64 envía la muestra y datos del dispositivo y la app a la aplicación que elijas; no se envía nada automáticamente. El archivo es privado y se elimina después de capturarlo. Esto no habilita la exportación HEIC.</string>
+    <string name="heic_sample_running">Codificando la muestra HEIC sintética…</string>
+    <string name="heic_sample_ready">Muestra lista. Compartila solo si querés; HEIC sigue deshabilitado para exportación.</string>
+    <string name="heic_sample_failed">No se pudo generar una muestra HEIC sintética verificada.</string>
+    <string name="heic_sample_start">Generar una muestra HEIC sintética</string>
+    <string name="heic_sample_share">Compartir HEIC sintético (Base64)</string>
 </resources>

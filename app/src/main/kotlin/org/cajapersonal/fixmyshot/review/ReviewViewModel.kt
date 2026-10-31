@@ -38,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import org.cajapersonal.fixmyshot.core.OutputFormat
 import org.cajapersonal.fixmyshot.core.DraftSession
 import org.cajapersonal.fixmyshot.diagnostics.NativeCodecDiagnostic
 import org.cajapersonal.fixmyshot.diagnostics.NativeCheckReport
@@ -378,7 +379,8 @@ internal class ReviewViewModel : ViewModel() {
     fun oddAvifShareUnavailable() { oddAvifShareError = true }
 
     /** One explicitly requested synthetic 65x67 file, never an import or draft source. */
-    fun startAvifByteSample(context: Context) {
+    fun startAvifByteSample(context: Context, format: OutputFormat = OutputFormat.AVIF) {
+        require(format in setOf(OutputFormat.AVIF, OutputFormat.HEIC))
         if (isBusy || exportState.isLocked || shareBusy || pendingImportCount > 0 || !inForeground) return
         val app = context.applicationContext
         val stop = AtomicBoolean(false)
@@ -391,8 +393,8 @@ internal class ReviewViewModel : ViewModel() {
         exportWorker.execute {
             val outcome = try {
                 AvifByteSampler(File(app.cacheDir, "batch-candidates"),
-                    Runtime.getRuntime().maxMemory()).run(stop).withAppIdentity(app, stop)
-            } catch (_: Exception) { AvifByteSample(reason = "DIAGNOSTIC_FAILED") }
+                    Runtime.getRuntime().maxMemory()).run(stop, format).withAppIdentity(app, stop)
+            } catch (_: Exception) { AvifByteSample(format = format, reason = "DIAGNOSTIC_FAILED") }
             main.post {
                 if (avifSampleCancel !== stop) return@post
                 avifSample = outcome.takeUnless { stop.get() }

@@ -57,6 +57,7 @@ internal fun SettingsDialog(
     onNativeCheck: () -> Unit,
     onOddAvifCheck: () -> Unit,
     onDismiss: () -> Unit,
+    onHeicSample: () -> Unit = {},
 ) {
     val locale = AppLanguages.selected(LocalContext.current)
     // A single full-screen scroll owner avoids nested ModalBottomSheet drag and
@@ -95,6 +96,7 @@ internal fun SettingsDialog(
                     Text(stringResource(R.string.help_body))
                     Text(stringResource(R.string.metadata_preserve_warning))
                     Text(stringResource(R.string.metadata_supported_tags), style = MaterialTheme.typography.bodySmall)
+                    TextButton(enabled = editable, onClick = onHeicSample) { Text(stringResource(R.string.heic_sample_title)) }
                     TextButton(enabled = editable, onClick = onNativeCheck) { Text(stringResource(R.string.native_check_title)) }
                     TextButton(enabled = editable, onClick = onOddAvifCheck) { Text(stringResource(R.string.odd_check_title)) }
                 }

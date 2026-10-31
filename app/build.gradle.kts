@@ -31,7 +31,7 @@ android {
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
     buildTypes {
-        debug { applicationIdSuffix = if (avifProbeMode == "off") ".avifbytes" else ".avifprobe" }
+        debug { applicationIdSuffix = if (avifProbeMode == "off") ".heicbytes" else ".avifprobe" }
         release { isMinifyEnabled = false }
     }
     // Opt-in debug-only inputs; ordinary debug and all release packages stay unchanged.

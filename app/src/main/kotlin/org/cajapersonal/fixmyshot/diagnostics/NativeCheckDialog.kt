@@ -157,3 +157,43 @@ internal fun OddAvifCheckDialog(
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close_action)) } },
     )
 }
+
+/** Independent single HEIC sample action; never starts the six-case device check. */
+@Composable
+internal fun HeicByteSampleDialog(
+    running: Boolean, stopping: Boolean, canStart: Boolean,
+    sample: AvifByteSample?, shareError: Boolean,
+    onStart: () -> Unit, onCancel: () -> Unit, onShare: () -> Unit, onDismiss: () -> Unit,
+) {
+    AlertDialog(onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.heic_sample_title)) },
+        text = {
+            Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(stringResource(R.string.heic_sample_note))
+                if (running) Text(stringResource(if (stopping) R.string.native_check_stopping
+                    else R.string.heic_sample_running), modifier = Modifier.semantics {
+                    liveRegion = LiveRegionMode.Polite
+                })
+                if (sample != null && !running) {
+                    Text(stringResource(if (sample.ready) R.string.heic_sample_ready
+                        else R.string.heic_sample_failed))
+                    if (sample.ready) TextButton(onClick = onShare) {
+                        Text(stringResource(R.string.heic_sample_share))
+                    }
+                }
+                if (shareError) Text(stringResource(R.string.native_check_share_error),
+                    color = MaterialTheme.colorScheme.error)
+                if (!running && !canStart) Text(stringResource(R.string.native_check_disabled))
+            }
+        },
+        confirmButton = {
+            if (running) TextButton(enabled = !stopping, onClick = onCancel) {
+                Text(stringResource(R.string.native_check_cancel))
+            } else TextButton(enabled = canStart, onClick = onStart) {
+                Text(stringResource(R.string.heic_sample_start))
+            }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.close_action)) } },
+    )
+}

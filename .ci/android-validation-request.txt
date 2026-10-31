@@ -1,8 +1,6 @@
-Validate one opt-in synthetic 65x67 AVIF Base64 handoff using a distinct debug APK.
-Validate base APK identity, sample SHA-256, encoded size, ftyp AVIF brand, and one synthetic-only file.
-Reject malformed samples; remove owned private files after capture/cancellation.
-Do not read personal photos, write to gallery, add permissions, alter production codecs or export defaults.
-Three focused Android test cases plus five host refusal tests; expected import/session group is 29.
-Use isolated .avifbytes debug ID, retaining all earlier diagnostic installs.
-Build/lint and the existing current API36 regression profile once for this new source.
+Validate one opt-in synthetic 65x67 HEIC compressed-byte capture, separate from accepted six-case checks.
+Reuse the bounded native sampler; preserve AVIF deferral, PNG defaults, production HEIC gate and all earlier diagnostics.
+Check closed report schema, explicit HEIC format/brand/route, APK/file hashes, cancellation and private cleanup.
+Use .heicbytes / FixMyShot HEIC Sample; never overwrite earlier diagnostic identities.
+Run the existing current build/lint/API36 regression once for this substantive batch; no physical test is claimed.
 profile=current

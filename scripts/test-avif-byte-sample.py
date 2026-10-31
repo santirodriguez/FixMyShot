@@ -73,5 +73,35 @@ class Checks(unittest.TestCase):
             with self.assertRaises(ValueError): checker.read(out)
 
 
+class HeicChecks(unittest.TestCase):
+    @staticmethod
+    def sample(raw=b"\x00\x00\x00\x14ftypheic\x00\x00\x00\x00mif1"):
+        data=report()
+        data.update(kind="SYNTHETIC_HEIC_BYTES_V1", format="HEIC", api=29,
+                    encoded_bytes=len(raw), encoded_sha256=hashlib.sha256(raw).hexdigest(),
+                    encoded_base64=base64.b64encode(raw).decode("ascii"))
+        return data,raw
+
+    def test_heic_requires_explicit_format_and_matching_kind(self):
+        data,raw=self.sample()
+        self.assertEqual(checker.validate(data,APK,"HEIC"),raw)
+        with self.assertRaises(ValueError): checker.validate(data,APK)
+        with self.assertRaises(ValueError): checker.validate(report(),APK,"HEIC")
+        data["api"]=28
+        with self.assertRaises(ValueError): checker.validate(data,APK,"HEIC")
+
+    def test_heic_rejects_avif_generic_and_malformed_brands(self):
+        for raw in (RAW,b"\x00\x00\x00\x14ftypmif1\x00\x00\x00\x00mif1",
+                    b"\x00\x00\x00\x13ftypheic\x00\x00\x00\x00mif1"):
+            data,_=self.sample(raw)
+            with self.assertRaises(ValueError): checker.validate(data,APK,"HEIC")
+
+    def test_heic_rejects_digest_private_fields_and_cancel(self):
+        for field,value in (("encoded_sha256","b"*64),("source_uri","content://private"),
+                            ("cancelled",True),("encoded_bytes",8193)):
+            data,_=self.sample();data[field]=value
+            with self.assertRaises(ValueError): checker.validate(data,APK,"HEIC")
+
+
 if __name__ == "__main__":
     unittest.main()

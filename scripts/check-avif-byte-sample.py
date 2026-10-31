@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify a one-off synthetic AVIF Base64 handoff and extract bytes for host decoding."""
+"""Verify a one-off synthetic AVIF/HEIC Base64 handoff and extract bytes for host decoding."""
 import argparse
 import base64
 import binascii
@@ -37,15 +37,16 @@ def read(path):
                       parse_constant=lambda _: (_ for _ in ()).throw(ValueError("Non-finite JSON constant")))
 
 
-def validate(document, expected_apk):
+def validate(document, expected_apk, format="AVIF"):
+    require(format in ("AVIF", "HEIC"), "Unsupported diagnostic format")
     require(type(document) is dict and set(document) == FIELDS, "Unexpected report fields")
     require(type(document["schema"]) is int and document["schema"] == 1, "Invalid schema")
-    require(document["kind"] == "SYNTHETIC_AVIF_BYTES_V1", "Wrong diagnostic kind")
+    require(document["kind"] == f"SYNTHETIC_{format}_BYTES_V1", "Wrong diagnostic kind")
     require(document["acceptance"] == "DIAGNOSTIC_ONLY__NOT_EXPORT_QUALIFICATION", "Wrong scope")
-    require(document["format"] == "AVIF", "Wrong format")
+    require(document["format"] == format, "Wrong format")
     for name, expected in (("source_width", 65), ("source_height", 67)):
         require(type(document[name]) is int and document[name] == expected, "Wrong fixture geometry")
-    require(type(document["api"]) is int and document["api"] >= 34, "Wrong API")
+    require(type(document["api"]) is int and document["api"] >= (29 if format == "HEIC" else 34), "Wrong API")
     require(type(document["version_code"]) is int and document["version_code"] >= 1, "Wrong app code")
     for name in ("manufacturer", "model", "app_version"):
         value = document[name]
@@ -70,12 +71,14 @@ def validate(document, expected_apk):
         raise ValueError("Invalid Base64") from exc
     require(len(raw) == size and hashlib.sha256(raw).hexdigest() == digest,
             "Decoded bytes do not match encoded-size/digest receipts")
-    require(len(raw) >= 20 and raw[4:8] == b"ftyp", "Missing AVIF ftyp header")
+    require(len(raw) >= 20 and raw[4:8] == b"ftyp", "Missing still-image ftyp header")
     box = int.from_bytes(raw[:4], "big")
     require(20 <= box <= min(len(raw), 4096) and box % 4 == 0,
             "Malformed ftyp box")
     brands = [raw[8:12]] + [raw[i:i+4] for i in range(16, box, 4)]
-    require(b"avif" in brands, "No AVIF brand")
+    heic = {b"heic", b"heix", b"hevc", b"hevx", b"heim", b"heis"}
+    require(b"avif" in brands if format == "AVIF" else
+            b"avif" not in brands and bool(set(brands) & heic), "Wrong still-image brand")
     return raw
 
 
@@ -83,18 +86,19 @@ def main():
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("report", type=Path)
     cli.add_argument("--expected-apk-sha256", required=True)
-    cli.add_argument("--output", type=Path, help="Write verified synthetic bytes to a new .avif file")
+    cli.add_argument("--format", choices=("AVIF", "HEIC"), default="AVIF")
+    cli.add_argument("--output", type=Path, help="Write verified synthetic bytes to a new file matching --format")
     args = cli.parse_args()
     try:
-        raw = validate(read(args.report), args.expected_apk_sha256)
+        raw = validate(read(args.report), args.expected_apk_sha256, args.format)
         if args.output is not None:
-            require(args.output.suffix.lower() == ".avif", "Output must end in .avif")
+            require(args.output.suffix.lower() == "." + args.format.lower(), "Output extension must match format")
             with args.output.open("xb") as file:
                 file.write(raw)
     except (ValueError, OSError, TypeError, UnicodeError) as exc:
-        print(f"INVALID_SYNTHETIC_AVIF: {exc}", file=sys.stderr)
+        print(f"INVALID_SYNTHETIC_{args.format}: {exc}", file=sys.stderr)
         return 1
-    print(f"VERIFIED_SYNTHETIC_AVIF: {len(raw)} bytes, SHA-256 {hashlib.sha256(raw).hexdigest()}")
+    print(f"VERIFIED_SYNTHETIC_{args.format}: {len(raw)} bytes, SHA-256 {hashlib.sha256(raw).hexdigest()}")
     print("EXPORT_QUALIFIED: NO; compare independent host decoder and visible color/geometry")
     return 0
 
