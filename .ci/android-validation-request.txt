@@ -3,4 +3,5 @@ Reuse the bounded native sampler; preserve AVIF deferral, PNG defaults, producti
 Check closed report schema, explicit HEIC format/brand/route, APK/file hashes, cancellation and private cleanup.
 Use .heicbytes / FixMyShot HEIC Sample; never overwrite earlier diagnostic identities.
 Run the existing current build/lint/API36 regression once for this substantive batch; no physical test is claimed.
+Repair the host fake-adb import/settings fixture count to33; preserve strict malformed-report refusal.
 profile=current
