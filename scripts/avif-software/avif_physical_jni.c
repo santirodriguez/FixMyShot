@@ -46,10 +46,8 @@ static int write_new_private_file(const char *path, const uint8_t *bytes, size_t
     return error;
 }
 
-JNIEXPORT jlongArray JNICALL
-Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeBitmap(
-        JNIEnv *env, jclass owner, jobject bitmap, jstring destination) {
-    (void)owner;
+static jlongArray encode_bitmap(
+        JNIEnv *env, jobject bitmap, jstring destination, avifPixelFormat format) {
     if (!bitmap || !destination) return result(env, 1, 0, 0, 0, -1);
     AndroidBitmapInfo info;
     if (AndroidBitmap_getInfo(env, bitmap, &info) != ANDROID_BITMAP_RESULT_SUCCESS ||
@@ -67,10 +65,19 @@ Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeBitmap(
         return result(env, 3, 0, 0, 0, -1);
     }
 
+    if (format == AVIF_PIXEL_FORMAT_YUV420) {
+        const char suffix[] = "/cache/physical_ci_420.avif";
+        size_t length = strlen(path);
+        if (length < sizeof(suffix) - 1 ||
+            strcmp(path + length - (sizeof(suffix) - 1), suffix) != 0) {
+            (*env)->ReleaseStringUTFChars(env, destination, path);
+            return result(env, 3, 0, 0, 0, -1);
+        }
+    }
     int code = 0;
     uint64_t convert_ns = 0, encode_ns = 0;
     size_t count = 0;
-    avifImage *image = avifImageCreate(WIDTH, HEIGHT, 8, AVIF_PIXEL_FORMAT_YUV444);
+    avifImage *image = avifImageCreate(WIDTH, HEIGHT, 8, format);
     if (!image) code = 4;
     if (!code) {
         image->yuvRange = AVIF_RANGE_FULL;
@@ -133,6 +140,21 @@ Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeBitmap(
     long rss = getrusage(RUSAGE_SELF, &usage) == 0 ? usage.ru_maxrss : -1;
     return result(env, code, (jlong)count, (jlong)convert_ns,
                   (jlong)encode_ns, (jlong)rss);
+}
+
+JNIEXPORT jlongArray JNICALL
+Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeBitmap(
+        JNIEnv *env, jclass owner, jobject bitmap, jstring destination) {
+    (void)owner;
+    return encode_bitmap(env, bitmap, destination, AVIF_PIXEL_FORMAT_YUV444);
+}
+
+// Synthetic-only path; never wired to selected screenshots or normal export.
+JNIEXPORT jlongArray JNICALL
+Java_org_cajapersonal_fixmyshot_avifphysical_ProbeActivity_encodeSynthetic420(
+        JNIEnv *env, jclass owner, jobject bitmap, jstring destination) {
+    (void)owner;
+    return encode_bitmap(env, bitmap, destination, AVIF_PIXEL_FORMAT_YUV420);
 }
 
 // Only the built-in emulator fixture is accepted. No selected user image path.

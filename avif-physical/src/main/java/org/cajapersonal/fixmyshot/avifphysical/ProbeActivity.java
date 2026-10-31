@@ -71,6 +71,7 @@ public final class ProbeActivity extends Activity {
 
     static { System.loadLibrary("avif_physical"); }
     private static native long[] encodeBitmap(Bitmap pixels, String privatePath);
+    private static native long[] encodeSynthetic420(Bitmap pixels, String privatePath);
     private static native long[] decodeSynthetic444(Bitmap target, String privatePath);
 
     private final ExecutorService worker = Executors.newSingleThreadExecutor();
@@ -280,6 +281,8 @@ public final class ProbeActivity extends Activity {
                 result.put("input_kind", synthetic ? "synthetic_ci" : "consented_png_screenshot");
                 result.put("input_size", "1344x2992");
                 result.put("codec", "pinned_libavif_1.4.2_libaom_3.15.2");
+                result.put("encoder_settings", "quality100/speed6/threads2/depth8/full-range/BT709/sRGB");
+                result.put("chroma_format", "YUV444");
                 result.put("original_image_in_report", false);
                 result.put("pss_sampling", "Debug.getPss sampled concurrently; maximum observed, NOT true peak");
                 result.put("pss_interval_target_ms", SAMPLE_INTERVAL_MS);
@@ -344,108 +347,11 @@ public final class ProbeActivity extends Activity {
                 // Compare three actual Android display paths on exactly the same bytes.
                 // Keep the original default route for preview; diagnostics do not
                 // silently select a more favorable decoder or lower its acceptance bar.
-                JSONArray decodeResults = new JSONArray();
-                String[] androidModes = {
-                        "bitmap_factory_default",
-                        "bitmap_factory_explicit_srgb",
-                        "image_decoder_srgb_software"};
-                String[] comparisonModes = synthetic ? new String[]{
-                        androidModes[0], androidModes[1], androidModes[2],
-                        "libavif_aom_direct_444"} : androidModes;
-                for (String mode : comparisonModes) {
-                    JSONObject outcome = new JSONObject();
-                    outcome.put("mode", mode);
-                    Bitmap decoded = null;
-                    try {
-                        long decodeStart = SystemClock.elapsedRealtimeNanos();
-                        outcome.put("pss_before_kib", Debug.getPss());
-                        SampleMeter decodeMeter = new SampleMeter();
-                        decodeMeter.start();
-                        try {
-                            if ("bitmap_factory_default".equals(mode)) {
-                                decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath());
-                            } else if ("bitmap_factory_explicit_srgb".equals(mode)) {
-                                BitmapFactory.Options options = new BitmapFactory.Options();
-                                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-                                options.inPreferredColorSpace =
-                                        ColorSpace.get(ColorSpace.Named.SRGB);
-                                options.inScaled = false;
-                                decoded = BitmapFactory.decodeFile(encoded.getAbsolutePath(), options);
-                            } else if ("image_decoder_srgb_software".equals(mode)) {
-                                decoded = ImageDecoder.decodeBitmap(
-                                        ImageDecoder.createSource(encoded),
-                                        (decoder, info, source) -> {
-                                            decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE);
-                                            decoder.setTargetColorSpace(
-                                                    ColorSpace.get(ColorSpace.Named.SRGB));
-                                        });
-                            } else {
-                                if (!synthetic) throw new IllegalStateException("Synthetic probe only");
-                                decoded = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888,
-                                        false, ColorSpace.get(ColorSpace.Named.SRGB));
-                                long[] values = decodeSynthetic444(decoded, encoded.getAbsolutePath());
-                                if (values == null || values.length != 8) {
-                                    throw new IllegalStateException("Invalid direct decoder result");
-                                }
-                                JSONObject direct = new JSONObject();
-                                direct.put("status_code", values[0]);
-                                direct.put("decoded_width", values[1]);
-                                direct.put("decoded_height", values[2]);
-                                direct.put("decoded_depth", values[3]);
-                                direct.put("libavif_pixel_format", values[4]);
-                                direct.put("parse_decode_ns", values[5]);
-                                direct.put("yuv_to_rgb_ns", values[6]);
-                                direct.put("process_cumulative_peak_rss_kib", values[7]);
-                                direct.put("codec", "pinned_libaom_decoder_libavif_builtin_rgb");
-                                outcome.put("direct_444", direct);
-                                if (values[0] != 0 || values[1] != WIDTH || values[2] != HEIGHT
-                                        || values[3] != 8 || values[4] != 1) {
-                                    throw new IllegalStateException("Direct decoder rejected fixture");
-                                }
-                            }
-                        } finally {
-                            outcome.put("decode_wall_ns", SystemClock.elapsedRealtimeNanos() - decodeStart);
-                            outcome.put("concurrent_decode_memory", decodeMeter.finish());
-                            outcome.put("pss_after_kib", Debug.getPss());
-                        }
-                        if (decoded == null) {
-                            outcome.put("status", "UNAVAILABLE_OR_FAILED");
-                        } else {
-                            outcome.put("width", decoded.getWidth());
-                            outcome.put("height", decoded.getHeight());
-                            outcome.put("bitmap_config", String.valueOf(decoded.getConfig()));
-                            outcome.put("color_space", decoded.getColorSpace() == null
-                                    ? "UNKNOWN" : decoded.getColorSpace().getName());
-                            if (decoded.getWidth() != WIDTH || decoded.getHeight() != HEIGHT) {
-                                outcome.put("status", "WRONG_GEOMETRY");
-                            } else if (decoded.getColorSpace() == null
-                                    || !decoded.getColorSpace().isSrgb()) {
-                                outcome.put("status", "NOT_SRGB");
-                            } else {
-                                outcome.put("status", "OK");
-                                JSONObject quality = comparePixels(source, decoded);
-                                outcome.put("quality", quality);
-                                if (synthetic) {
-                                    // The normal user-selected image path NEVER records pixels.
-                                    outcome.put("synthetic_rgb_points",
-                                            sampleSyntheticEdgePoints(source, decoded));
-                                }
-                                if ("bitmap_factory_default".equals(mode)) {
-                                    result.put("quality", quality);
-                                    reopened = decoded;
-                                    decoded = null; // Retain default-preview ownership.
-                                }
-                            }
-                        }
-                    } catch (Exception ex) {
-                        outcome.put("status", "DECODE_EXCEPTION");
-                        // No user input path, original pixels or image metadata in report.
-                        outcome.put("exception_type", ex.getClass().getSimpleName());
-                    } finally {
-                        if (decoded != null) decoded.recycle();
-                    }
-                    decodeResults.put(outcome);
+                JSONArray decodeResults = compareEncoded(encoded, true, true);
+                if (decodeResults.getJSONObject(0).has("quality")) {
+                    result.put("quality", decodeResults.getJSONObject(0).getJSONObject("quality"));
                 }
+                if (synthetic) result.put("chroma420", compareSynthetic420());
                 result.put("decoder_paths", decodeResults);
                 result.put("device_decode_status",
                         decodeResults.getJSONObject(0).getString("status"));
@@ -474,6 +380,164 @@ public final class ProbeActivity extends Activity {
                 showError(e);
             }
         });
+    }
+
+    private JSONArray compareEncoded(File input, boolean includeDirect, boolean retainPreview)
+            throws Exception {
+        JSONArray decodeResults = new JSONArray();
+        String[] androidModes = {
+                "bitmap_factory_default",
+                "bitmap_factory_explicit_srgb",
+                "image_decoder_srgb_software"};
+        String[] comparisonModes = synthetic && includeDirect ? new String[]{
+                androidModes[0], androidModes[1], androidModes[2],
+                "libavif_aom_direct_444"} : androidModes;
+        for (String mode : comparisonModes) {
+            JSONObject outcome = new JSONObject();
+            outcome.put("mode", mode);
+            Bitmap decoded = null;
+            try {
+                long decodeStart = SystemClock.elapsedRealtimeNanos();
+                outcome.put("pss_before_kib", Debug.getPss());
+                SampleMeter decodeMeter = new SampleMeter();
+                decodeMeter.start();
+                try {
+                    if ("bitmap_factory_default".equals(mode)) {
+                        decoded = BitmapFactory.decodeFile(input.getAbsolutePath());
+                    } else if ("bitmap_factory_explicit_srgb".equals(mode)) {
+                        BitmapFactory.Options options = new BitmapFactory.Options();
+                        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                        options.inPreferredColorSpace =
+                                ColorSpace.get(ColorSpace.Named.SRGB);
+                        options.inScaled = false;
+                        decoded = BitmapFactory.decodeFile(input.getAbsolutePath(), options);
+                    } else if ("image_decoder_srgb_software".equals(mode)) {
+                        decoded = ImageDecoder.decodeBitmap(
+                                ImageDecoder.createSource(input),
+                                (decoder, info, source) -> {
+                                    decoder.setAllocator(ImageDecoder.ALLOCATOR_SOFTWARE);
+                                    decoder.setTargetColorSpace(
+                                            ColorSpace.get(ColorSpace.Named.SRGB));
+                                });
+                    } else {
+                        if (!synthetic) throw new IllegalStateException("Synthetic probe only");
+                        decoded = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888,
+                                false, ColorSpace.get(ColorSpace.Named.SRGB));
+                        long[] values = decodeSynthetic444(decoded, input.getAbsolutePath());
+                        if (values == null || values.length != 8) {
+                            throw new IllegalStateException("Invalid direct decoder result");
+                        }
+                        JSONObject direct = new JSONObject();
+                        direct.put("status_code", values[0]);
+                        direct.put("decoded_width", values[1]);
+                        direct.put("decoded_height", values[2]);
+                        direct.put("decoded_depth", values[3]);
+                        direct.put("libavif_pixel_format", values[4]);
+                        direct.put("parse_decode_ns", values[5]);
+                        direct.put("yuv_to_rgb_ns", values[6]);
+                        direct.put("process_cumulative_peak_rss_kib", values[7]);
+                        direct.put("codec", "pinned_libaom_decoder_libavif_builtin_rgb");
+                        outcome.put("direct_444", direct);
+                        if (values[0] != 0 || values[1] != WIDTH || values[2] != HEIGHT
+                                || values[3] != 8 || values[4] != 1) {
+                            throw new IllegalStateException("Direct decoder rejected fixture");
+                        }
+                    }
+                } finally {
+                    outcome.put("decode_wall_ns", SystemClock.elapsedRealtimeNanos() - decodeStart);
+                    outcome.put("concurrent_decode_memory", decodeMeter.finish());
+                    outcome.put("pss_after_kib", Debug.getPss());
+                }
+                if (decoded == null) {
+                    outcome.put("status", "UNAVAILABLE_OR_FAILED");
+                } else {
+                    outcome.put("width", decoded.getWidth());
+                    outcome.put("height", decoded.getHeight());
+                    outcome.put("bitmap_config", String.valueOf(decoded.getConfig()));
+                    outcome.put("color_space", decoded.getColorSpace() == null
+                            ? "UNKNOWN" : decoded.getColorSpace().getName());
+                    if (decoded.getWidth() != WIDTH || decoded.getHeight() != HEIGHT) {
+                        outcome.put("status", "WRONG_GEOMETRY");
+                    } else if (decoded.getColorSpace() == null
+                            || !decoded.getColorSpace().isSrgb()) {
+                        outcome.put("status", "NOT_SRGB");
+                    } else {
+                        outcome.put("status", "OK");
+                        JSONObject quality = comparePixels(source, decoded);
+                        outcome.put("quality", quality);
+                        if (synthetic) {
+                            // The normal user-selected image path NEVER records pixels.
+                            outcome.put("synthetic_rgb_points",
+                                    sampleSyntheticEdgePoints(source, decoded));
+                        }
+                        if (retainPreview && "bitmap_factory_default".equals(mode)) {
+                            reopened = decoded;
+                            decoded = null; // Retain default-preview ownership.
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                outcome.put("status", "DECODE_EXCEPTION");
+                // No user input path, original pixels or image metadata in report.
+                outcome.put("exception_type", ex.getClass().getSimpleName());
+            } finally {
+                if (decoded != null) decoded.recycle();
+            }
+            decodeResults.put(outcome);
+        }
+        return decodeResults;
+    }
+
+    private JSONObject compareSynthetic420() throws Exception {
+        if (!synthetic) throw new IllegalStateException("Synthetic probe only");
+        File path = new File(getCacheDir(), "physical_ci_420.avif");
+        File retained = new File(getFilesDir(), "physical_ci_420.avif");
+        if (path.exists() || retained.exists()) throw new IllegalStateException("Existing synthetic420 output");
+        SampleMeter meter = new SampleMeter();
+        long before = Debug.getPss();
+        meter.start();
+        long start = SystemClock.elapsedRealtimeNanos();
+        long[] values;
+        JSONObject sample;
+        long wall;
+        try {
+            values = encodeSynthetic420(source, path.getAbsolutePath());
+        } finally {
+            wall = SystemClock.elapsedRealtimeNanos() - start;
+            sample = meter.finish();
+        }
+        if (values == null || values.length != 5 || values[0] != 0
+                || values[1] <= 20 || values[1] != path.length()) {
+            path.delete();
+            throw new IllegalStateException("Synthetic420 encode failure");
+        }
+        if (!path.renameTo(retained)) throw new IllegalStateException("Cannot retain synthetic420");
+        JSONObject measure = new JSONObject();
+        measure.put("iteration", 1);
+        measure.put("total_wall_ns", wall);
+        measure.put("convert_ns", values[2]);
+        measure.put("encode_ns", values[3]);
+        measure.put("output_bytes", values[1]);
+        measure.put("process_peak_rss_kib", values[4]);
+        measure.put("pss_before_kib", before);
+        measure.put("pss_after_kib", Debug.getPss());
+        measure.put("concurrent_memory", sample);
+        JSONObject result = new JSONObject();
+        result.put("kind", "ISOLATED_PHYSICAL_AVIF_R1__NOT_PRODUCTION");
+        result.put("input_kind", "synthetic_ci");
+        result.put("input_size", "1344x2992");
+        result.put("original_image_in_report", false);
+        result.put("chroma_format", "YUV420");
+        result.put("quality_setting", 100);
+        result.put("encoder_settings", "quality100/speed6/threads2/depth8/full-range/BT709/sRGB");
+        result.put("trials", new JSONArray().put(measure));
+        JSONArray paths = compareEncoded(retained, false, false);
+        result.put("decoder_paths", paths);
+        result.put("device_decode_status", paths.getJSONObject(0).getString("status"));
+        if (paths.getJSONObject(0).has("quality")) {
+            result.put("quality", paths.getJSONObject(0).getJSONObject("quality"));
+        }
+        return result;
     }
 
     private static String summarize(JSONObject json) {

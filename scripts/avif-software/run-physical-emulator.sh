@@ -83,138 +83,148 @@ fi
 adb exec-out run-as "$pkg" cat files/physical_ci_0.avif \
     > evidence/physical-api36/fixture-1344x2992.avif
 test -s evidence/physical-api36/fixture-1344x2992.avif
+adb shell run-as "$pkg" test -s files/physical_ci_420.avif
+adb exec-out run-as "$pkg" cat files/physical_ci_420.avif \
+    > evidence/physical-api36/fixture-420-1344x2992.avif
+test -s evidence/physical-api36/fixture-420-1344x2992.avif
 adb shell getconf PAGESIZE > evidence/physical-api36/page-size.txt
 # Record every decoder's result and error locations before enforcing fidelity.
 # A red Android path remains red even if independent host decode looks better.
 python3 - <<'PY'
 import json
 from pathlib import Path
+def verify(report, direct444, name):
+    assert report['kind']=='ISOLATED_PHYSICAL_AVIF_R1__NOT_PRODUCTION'
+    assert report['input_kind']=='synthetic_ci'
+    assert report['input_size']=='1344x2992'
+    assert report['original_image_in_report'] is False
+    assert len(report['trials'])==1
+    trial=report['trials'][0]
+    assert trial['encode_ns']>0 and trial['output_bytes']>20, trial
+    assert trial['concurrent_memory']['valid_samples']>=1, trial
+    assert trial['concurrent_memory']['max_pss_kib']>0, trial
+    expected_modes=[
+        'bitmap_factory_default',
+        'bitmap_factory_explicit_srgb',
+        'image_decoder_srgb_software',
+        *(['libavif_aom_direct_444'] if direct444 else []),
+    ]
+    modes=report['decoder_paths']
+    assert isinstance(modes,list) and [m['mode'] for m in modes]==expected_modes, modes
+    summary={'kind':'ISOLATED_ANDROID_AVIF_DECODER_MATRIX_NOT_PRODUCTION',
+             'source':name,
+             'display_fidelity_gate':'PSNR>=38, max per-channel error<=2, opaque and sRGB',
+             'paths':[], 'all_display_paths_pass':False}
+    for mode in modes:
+        assert mode['status'] in (
+            'OK','WRONG_GEOMETRY','NOT_SRGB','UNAVAILABLE_OR_FAILED','DECODE_EXCEPTION'),mode
+        row={'mode':mode['mode'], 'status':mode['status'], 'pass':False}
+        if mode['status']=='OK':
+            assert (mode['width'],mode['height'])==(1344,2992),mode
+            q=mode['quality']
+            pixels=1344*2992
+            bins=q['max_channel_error_histogram_0_1_2_3to7_8to15_16to31_32plus']
+            assert len(bins)==7 and all(isinstance(i,int) and i>=0 for i in bins),q
+            assert sum(bins)==pixels,q
+            assert sum(bins[3:])==q['pixels_error_gt_2'],q
+            assert bins[6]<=q['pixels_error_gt_16']<=bins[5]+bins[6],q
+            grid=q['pixel_error_gt_2_grid_4x6']
+            assert len(grid)==4 and all(len(row)==6 for row in grid),q
+            assert sum(sum(row) for row in grid)==q['pixels_error_gt_2'],q
+            assert len(q['channel_error_gt_2_rgb'])==3,q
+            assert 0 <= q['max_channel_error'] <= 255,q
+            row.update({'color_space':mode['color_space'],'psnr_db':q['psnr_db'],
+                        'max_channel_error':q['max_channel_error'],
+                        'pixels_error_gt_2':q['pixels_error_gt_2'],
+                        'pixels_error_gt_16':q['pixels_error_gt_16'],
+                        'worst_error_x':q['worst_error_x'],
+                        'worst_error_y':q['worst_error_y'],
+                        'histogram':bins,'grid_4x6':grid,
+                        'channel_error_gt_2_rgb':q['channel_error_gt_2_rgb']})
+            assert mode['decode_wall_ns'] > 0,mode
+            row['decode_wall_ns']=mode['decode_wall_ns']
+            row['pss_before_kib']=mode['pss_before_kib']
+            row['pss_after_kib']=mode['pss_after_kib']
+            row['concurrent_decode_memory']=mode['concurrent_decode_memory']
+            if mode['mode']=='libavif_aom_direct_444':
+                direct=mode['direct_444']
+                assert (direct['status_code'],direct['decoded_width'],direct['decoded_height'],
+                        direct['decoded_depth'],direct['libavif_pixel_format'])==(0,1344,2992,8,1),direct
+                assert direct['parse_decode_ns']>0 and direct['yuv_to_rgb_ns']>0,direct
+                row['direct_444']=direct
+            # The only image in this CI is the built-in synthetic fixture.
+            # Verify each RGB sample against its deterministic Java generator.
+            expected_positions=[
+                (0,2243),
+                (0,2244),
+                (0,2245),
+                (0,2250),
+                (0,2251),
+                (1,2250),
+                (2,2250),
+                (31,2250),
+                (32,2250),
+                (33,2250),
+                (34,2250),
+                (16,2250),
+                (0,2255),
+                (0,2256),
+                (0,2257),
+                (0,2266),
+                (0,2267),
+                (100,100),
+                (100,2000),
+            ]
+            samples=mode['synthetic_rgb_points']
+            assert isinstance(samples,list) and len(samples)==len(expected_positions),mode
+            def source_rgb(x,y):
+                if y < 2992 // 2:
+                    colors=[(64,64,64),(128,128,128),(192,192,192),
+                            (192,64,64),(64,192,64),(64,64,192)]
+                    return colors[x*6//1344]
+                if y < 2992*3//4:
+                    grey=255 if (y%16==0 or x%32==0) else 18
+                    return (grey,grey,grey)
+                if x%32<=1 and y%16<=10:
+                    return (20,100,220)
+                return (255,255,255)
+            for item,(x,y) in zip(samples,expected_positions):
+                assert (item['x'],item['y'])==(x,y),item
+                src=source_rgb(x,y)
+                actual=item['source_rgb']
+                decoded=item['decoded_rgb']
+                delta=item['delta_rgb']
+                assert tuple(actual)==src,item
+                assert len(decoded)==3 and all(type(v) is int and 0<=v<=255
+                                               for v in decoded),item
+                assert delta==[v-u for u,v in zip(actual,decoded)],item
+                assert item['max_abs_channel_error']==max(abs(v) for v in delta),item
+            row['synthetic_rgb_points']=samples
+            row['pass']=(q['psnr_db']>=38.0 and q['max_channel_error']<=2
+                         and q['nonopaque_pixels']==0 and
+                         q['pixels_error_gt_2']==0)
+        else:
+            row['failure_class']=mode.get('exception_type',mode['status'])
+        summary['paths'].append(row)
+    assert report['device_decode_status']==modes[0]['status']
+    if modes[0]['status']=='OK':
+        assert report['quality']==modes[0]['quality'], 'Default preview quality changed'
+    summary['all_display_paths_pass']=all(r['pass'] for r in summary['paths'][:3])
+    if direct444: summary['direct_444_probe_pass']=summary['paths'][3]['pass']
+    summary['production_approved']=False
+    summary['pixel_approval_for_physical_handoff']=False  # no physical test was executed
+    out=Path('evidence/physical-api36') / name
+    out.write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n')
+    for r in summary['paths']:
+        print('Decoder:',r['mode'],'status=',r['status'],'gate_pass=',r['pass'],
+              'max_error=',r.get('max_channel_error'),
+              'pixels_gt2=',r.get('pixels_error_gt_2'))
 report=json.loads(Path('evidence/physical-api36/report.json').read_text())
-assert report['kind']=='ISOLATED_PHYSICAL_AVIF_R1__NOT_PRODUCTION'
-assert report['input_kind']=='synthetic_ci'
-assert report['input_size']=='1344x2992'
-assert report['original_image_in_report'] is False
-assert len(report['trials'])==1
-trial=report['trials'][0]
-assert trial['encode_ns']>0 and trial['output_bytes']>20, trial
-assert trial['concurrent_memory']['valid_samples']>=1, trial
-assert trial['concurrent_memory']['max_pss_kib']>0, trial
-expected_modes=[
-    'bitmap_factory_default',
-    'bitmap_factory_explicit_srgb',
-    'image_decoder_srgb_software',
-    'libavif_aom_direct_444',
-]
-modes=report['decoder_paths']
-assert isinstance(modes,list) and [m['mode'] for m in modes]==expected_modes, modes
-summary={'kind':'ISOLATED_ANDROID_AVIF_DECODER_MATRIX_NOT_PRODUCTION',
-         'source':'single shared synthetic AVIF file',
-         'display_fidelity_gate':'PSNR>=38, max per-channel error<=2, opaque and sRGB',
-         'paths':[], 'all_display_paths_pass':False}
-for mode in modes:
-    assert mode['status'] in (
-        'OK','WRONG_GEOMETRY','NOT_SRGB','UNAVAILABLE_OR_FAILED','DECODE_EXCEPTION'),mode
-    row={'mode':mode['mode'], 'status':mode['status'], 'pass':False}
-    if mode['status']=='OK':
-        assert (mode['width'],mode['height'])==(1344,2992),mode
-        q=mode['quality']
-        pixels=1344*2992
-        bins=q['max_channel_error_histogram_0_1_2_3to7_8to15_16to31_32plus']
-        assert len(bins)==7 and all(isinstance(i,int) and i>=0 for i in bins),q
-        assert sum(bins)==pixels,q
-        assert sum(bins[3:])==q['pixels_error_gt_2'],q
-        assert bins[6]<=q['pixels_error_gt_16']<=bins[5]+bins[6],q
-        grid=q['pixel_error_gt_2_grid_4x6']
-        assert len(grid)==4 and all(len(row)==6 for row in grid),q
-        assert sum(sum(row) for row in grid)==q['pixels_error_gt_2'],q
-        assert len(q['channel_error_gt_2_rgb'])==3,q
-        assert 0 <= q['max_channel_error'] <= 255,q
-        row.update({'color_space':mode['color_space'],'psnr_db':q['psnr_db'],
-                    'max_channel_error':q['max_channel_error'],
-                    'pixels_error_gt_2':q['pixels_error_gt_2'],
-                    'pixels_error_gt_16':q['pixels_error_gt_16'],
-                    'worst_error_x':q['worst_error_x'],
-                    'worst_error_y':q['worst_error_y'],
-                    'histogram':bins,'grid_4x6':grid,
-                    'channel_error_gt_2_rgb':q['channel_error_gt_2_rgb']})
-        assert mode['decode_wall_ns'] > 0,mode
-        row['decode_wall_ns']=mode['decode_wall_ns']
-        row['pss_before_kib']=mode['pss_before_kib']
-        row['pss_after_kib']=mode['pss_after_kib']
-        row['concurrent_decode_memory']=mode['concurrent_decode_memory']
-        if mode['mode']=='libavif_aom_direct_444':
-            direct=mode['direct_444']
-            assert (direct['status_code'],direct['decoded_width'],direct['decoded_height'],
-                    direct['decoded_depth'],direct['libavif_pixel_format'])==(0,1344,2992,8,1),direct
-            assert direct['parse_decode_ns']>0 and direct['yuv_to_rgb_ns']>0,direct
-            row['direct_444']=direct
-        # The only image in this CI is the built-in synthetic fixture.
-        # Verify each RGB sample against its deterministic Java generator.
-        expected_positions=[
-            (0,2243),
-            (0,2244),
-            (0,2245),
-            (0,2250),
-            (0,2251),
-            (1,2250),
-            (2,2250),
-            (31,2250),
-            (32,2250),
-            (33,2250),
-            (34,2250),
-            (16,2250),
-            (0,2255),
-            (0,2256),
-            (0,2257),
-            (0,2266),
-            (0,2267),
-            (100,100),
-            (100,2000),
-        ]
-        samples=mode['synthetic_rgb_points']
-        assert isinstance(samples,list) and len(samples)==len(expected_positions),mode
-        def source_rgb(x,y):
-            if y < 2992 // 2:
-                colors=[(64,64,64),(128,128,128),(192,192,192),
-                        (192,64,64),(64,192,64),(64,64,192)]
-                return colors[x*6//1344]
-            if y < 2992*3//4:
-                grey=255 if (y%16==0 or x%32==0) else 18
-                return (grey,grey,grey)
-            if x%32<=1 and y%16<=10:
-                return (20,100,220)
-            return (255,255,255)
-        for item,(x,y) in zip(samples,expected_positions):
-            assert (item['x'],item['y'])==(x,y),item
-            src=source_rgb(x,y)
-            actual=item['source_rgb']
-            decoded=item['decoded_rgb']
-            delta=item['delta_rgb']
-            assert tuple(actual)==src,item
-            assert len(decoded)==3 and all(type(v) is int and 0<=v<=255
-                                           for v in decoded),item
-            assert delta==[v-u for u,v in zip(actual,decoded)],item
-            assert item['max_abs_channel_error']==max(abs(v) for v in delta),item
-        row['synthetic_rgb_points']=samples
-        row['pass']=(q['psnr_db']>=38.0 and q['max_channel_error']<=2
-                     and q['nonopaque_pixels']==0 and
-                     q['pixels_error_gt_2']==0)
-    else:
-        row['failure_class']=mode.get('exception_type',mode['status'])
-    summary['paths'].append(row)
-assert report['device_decode_status']==modes[0]['status']
-if modes[0]['status']=='OK':
-    assert report['quality']==modes[0]['quality'], 'Default preview quality changed'
-summary['all_display_paths_pass']=all(r['pass'] for r in summary['paths'][:3])
-summary['direct_444_probe_pass']=summary['paths'][3]['pass']
-summary['production_approved']=False
-summary['pixel_approval_for_physical_handoff']=False  # no physical test was executed
-out=Path('evidence/physical-api36/decoder-comparison.json')
-out.write_text(json.dumps(summary,sort_keys=True,indent=2)+'\n')
-for r in summary['paths']:
-    print('Decoder:',r['mode'],'status=',r['status'],'gate_pass=',r['pass'],
-          'max_error=',r.get('max_channel_error'),
-          'pixels_gt2=',r.get('pixels_error_gt_2'))
+verify(report, True, 'decoder-comparison.json')
+assert report['chroma_format']=='YUV444'
+assert report['chroma420']['chroma_format']=='YUV420'
+assert report['encoder_settings']==report['chroma420']['encoder_settings']
+verify(report['chroma420'], False, 'decoder-comparison-420.json')
 PY
 ffprobe -v error -select_streams v:0 -show_entries stream=width,height,pix_fmt,color_range \
     -of json evidence/physical-api36/fixture-1344x2992.avif \
@@ -226,7 +236,64 @@ data=json.loads(Path('evidence/physical-api36/host-decode.json').read_text())['s
 assert (data['width'],data['height'])==(1344,2992),data
 assert data['pix_fmt']=='yuv444p' and data['color_range']=='pc',data
 PY
-sha256sum evidence/physical-api36/fixture-1344x2992.avif \
+python3 - <<'HOST_RGB'
+import json
+import math
+import subprocess
+from pathlib import Path
+root=Path('evidence/physical-api36')
+report=json.loads((root/'report.json').read_text())
+colors=[(64,64,64),(128,128,128),(192,192,192),
+        (192,64,64),(64,192,64),(64,64,192)]
+source=bytearray()
+for y in range(2992):
+    for x in range(1344):
+        if y < 1496: rgb=colors[x*6//1344]
+        elif y < 2244:
+            grey=255 if y%16==0 or x%32==0 else 18
+            rgb=(grey,grey,grey)
+        elif x%32<=1 and y%16<=10: rgb=(20,100,220)
+        else: rgb=(255,255,255)
+        source.extend(rgb)
+rows=[]
+for chroma,name,group,fmt in [
+        ('YUV444','fixture-1344x2992.avif',report,'yuv444p'),
+        ('YUV420','fixture-420-1344x2992.avif',report['chroma420'],'yuv420p')]:
+    path=root/name
+    probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-select_streams','v:0',
+        '-show_entries','stream=width,height,pix_fmt,color_range,color_space,color_transfer,color_primaries',
+        '-of','json',str(path)],timeout=60))['streams'][0]
+    assert (probe['width'],probe['height'],probe['pix_fmt'],probe['color_range'])==(1344,2992,fmt,'pc'),probe
+    assert (probe['color_space'],probe['color_transfer'],probe['color_primaries'])==('bt709','iec61966-2-1','bt709'),probe
+    decoded=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-frames:v','1',
+        '-threads','2','-f','rawvideo','-pix_fmt','rgb24','pipe:1'],timeout=90)
+    assert len(decoded)==len(source)
+    squared=0;maximum=0;affected=0;histogram=[0]*256
+    for i in range(0,len(source),3):
+        errors=[abs(decoded[i+c]-source[i+c]) for c in range(3)]
+        peak=max(errors);histogram[peak]+=1
+        squared+=sum(v*v for v in errors)
+        maximum=max(maximum,peak);affected+=peak>2
+    mse=squared/len(source)
+    points=[]
+    for item in group['decoder_paths'][0]['synthetic_rgb_points']:
+        x,y=item['x'],item['y'];i=(y*1344+x)*3
+        points.append({'x':x,'y':y,'source_rgb':list(source[i:i+3]),'decoded_rgb':list(decoded[i:i+3])})
+    row={'chroma':chroma,'probe':probe,'mse_rgb':mse,
+         'psnr_db':10*math.log10(255*255/mse) if mse else None,
+         'max_channel_error':maximum,'pixels_error_gt_2':affected,
+         'max_channel_error_histogram':histogram,'synthetic_rgb_points':points,
+         'fidelity_pass':maximum<=2 and (mse==0 or 10*math.log10(255*255/mse)>=38)}
+    rows.append(row)
+    print('Independent host:',chroma,'max_error=',maximum,'pixels_gt2=',affected)
+(root/'host-chroma-comparison.json').write_text(json.dumps(
+    {'kind':'SYNTHETIC_HOST_CHROMA_COMPARISON_NOT_ANDROID_ACCEPTANCE','paths':rows,
+     'production_approved':False},indent=2)+'\n')
+HOST_RGB
+sha256sum evidence/physical-api36/host-chroma-comparison.json \
+    evidence/physical-api36/fixture-420-1344x2992.avif \
+    evidence/physical-api36/decoder-comparison-420.json \
+    evidence/physical-api36/fixture-1344x2992.avif \
     evidence/physical-api36/report.json \
     evidence/physical-api36/decoder-comparison.json \
     evidence/physical-api36/emulator-selector-hints.json \
@@ -237,9 +304,13 @@ python3 - <<'PY'
 import json
 from pathlib import Path
 result=json.loads(Path('evidence/physical-api36/decoder-comparison.json').read_text())
+candidate=json.loads(Path('evidence/physical-api36/decoder-comparison-420.json').read_text())
+print('Synthetic420 Android candidate fidelity pass:',candidate['all_display_paths_pass'])
 if not result['direct_444_probe_pass']:
     raise SystemExit('Direct444 comparison FAILED; Android gate remains independently mandatory')
 if not result['all_display_paths_pass']:
     raise SystemExit('Android display decoder gate FAILED; comparative metrics preserved as CI artifact')
-print('All three Android decoder paths passed the unchanged fidelity thresholds')
+if not candidate['all_display_paths_pass']:
+    raise SystemExit('Synthetic420 candidate FAILED unchanged Android fidelity thresholds')
+print('Both chroma candidates passed the unchanged Android fidelity thresholds')
 PY

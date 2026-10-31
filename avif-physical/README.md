@@ -155,3 +155,21 @@ three properties:
 
 No :app dependency, release variant, source-owned user photo, producer
 signing material, public distribution or external mutation is authorized.
+
+### Synthetic chroma comparison
+
+The disposable emulator also encodes the same built-in fixture as YUV420
+with the same pinned codec, quality100/speed6/two-thread settings and
+full-range BT709/sRGB tags. This runs only inside the synthetic branch;
+selected real images retain the original YUV444 path. The second private
+fixture is retained until emulator disposal, with a separate three-route
+Android matrix, encode/decode measurements and nineteen RGB points.
+The default preview and original direct444 comparator are unchanged.
+
+The runner verifies both chroma formats/tags and independently decodes
+both actual AVIFs using host FFmpeg, recording full-frame fidelity and
+synthetic points in host-chroma-comparison.json. Each candidate must meet
+the original PSNR>=38dB/max-channel-error<=2/opaque/sRGB requirements.
+A passing alternative never clears a failed system route or approves
+physical handoff, external receivers or production integration. Size and
+memory reports remain exploratory diagnostic measurements.
