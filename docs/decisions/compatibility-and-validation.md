@@ -15,3 +15,92 @@ Physical-device/manual acceptance remains pending. The change in compatibility p
 Prioritize useful functional completion across larger groups of changes. A development turn or small completed block does not require a new CI run. Commit reviewed implementation, use proportionate local checks and accumulate work for an explicit larger validation checkpoint. Do not repeatedly rerun the emulator matrix to chase secondary or unstable diagnostic details. A concrete unresolved build, source-integrity, privacy or output-corruption problem still blocks dependent acceptance; deferred diagnostic failures must remain visible and must not be called passing.
 
 The repeated automatic-locale-switch diagnostic is deferred and opt-in while ordinary import/recreation and resource completeness remain in normal coverage. This does not remove the three languages or establish language-switch/manual acceptance. Native diagnostic tuning, legacy-only issues and cosmetic receipt bookkeeping are secondary to working import/edit/export behavior. Do not silently reduce the final functional-release requirements; record what remains open and verify it at the appropriate larger acceptance checkpoint.
+
+## AVIF receiver compatibility contract — 2026-10-31
+
+This resolves how to apply the existing blueprint §§8/10/16,
+A04/A05/A09/A13 and M02 to the measured AVIF discrepancy. It does not
+defer AVIF, waive HEIC, change thresholds or authorize a shipping
+decoder. The immutable blueprint and JXL disposition remain unchanged.
+
+### Independent acceptance results
+
+| Boundary | Required evidence | Current result |
+| --- | --- | --- |
+| Encoded file | Actual bytes, truthful MIME/extension, dimensions, color/metadata policy and independent decode | The built-in 6092B fixture independently decodes correctly; not general encoder acceptance |
+| Android display route | Correct dimensions, opaque sRGB, PSNR >=38dB and maximum channel error <=2 on the synthetic gate | FAIL in all three measured API36 routes: PSNR44.6781555, max63,7896pixels>2 |
+| Direct software route | The same fidelity gate plus shipping dependency, resource and lifecycle qualification | Synthetic fidelity PASS only: PSNR58.7403380, max1; production qualification OPEN |
+| Storage and receiving application | Actual saved bytes, gallery/compatible-viewer reopen and share through real URI grants on the named device/application | NOT RUN for this software candidate; no inference from internal preview |
+| First functional delivery | Existing G1/M02, representative physical devices and all independent release gates | BLOCKED for AVIF; no scope deferral is implied |
+
+Full measurements and original artifact receipts:
+[native device evidence](../feasibility/native-device-check.md#isolated-direct-yuv444-software-decoder-comparison--2026-10-31),
+runtime50e77c66, [Actions41160768239](https://github.com/santirodriguez/FixMyShot/actions/runs/41160768239).
+Its terminal FAILURE remains valid. Successful FFmpeg or direct decoding
+does not override the failed Android route.
+
+### Bounded receiver acceptance
+
+Apply M02 to the Pixel 9 Pro XL and one other hardware family once a
+candidate is eligible for the separately controlled physical handoff.
+Record the installed OS/build and actual gallery/viewer package/version;
+do not assume that an application name or API level identifies its
+decoder. No universal Android/gallery/social-app compatibility claim
+is made. The blueprint permits a compatible external viewer and an
+explicit gallery limitation; it does not require every receiver to pass.
+
+For each candidate, bind one receipt to source commit, APK hash,
+output-file hash, encoder settings/chroma/color tags, dimensions and
+the selected destination. Test separately:
+
+1. Save a copy using the existing transaction rules. Verify read-back
+   bytes and actual visibility/indexing. Saving, indexing and rendering
+   are separate outcomes.
+2. Open the saved URI in the named gallery or compatible external viewer.
+   Inspect text, blue/white transitions, color and odd-size edges. A
+   chooser launch or thumbnail alone is not a full-image fidelity pass.
+3. Share the same output using actual temporary read grants. Record the
+   chosen receiver and whether it opens the image. If the receiver
+   transcodes it, distinguish received/transformed bytes and their
+   appearance from the original saved AVIF. Do not upload private images
+   or require account login merely to manufacture evidence.
+
+Quantitative RGB sampling remains restricted to the integrated synthetic
+fixture. Representative user screenshots require authorized visual
+review and aggregate measurements only; no coordinate RGB logs, source
+images or identifying metadata enter public receipts. An unavailable
+receiver or absent physical evidence is NOT RUN; a visible failure stays
+FAIL. A failed receiver cannot be relabeled passing because a different
+receiver works. Report supported combinations and the specific limitation.
+
+Keep unsupported choices explicit and offer the existing PNG/lossless
+WebP alternative for a new user choice; never silently transcode, rename
+an output or change a draft's selected format. Gallery limitations may
+use the blueprint's explicit SAF/compatible-viewer path, with truthful
+MIME and clear destination disclosure. This is an acceptance contract,
+not new UI implementation or an automatic production fallback.
+
+### Disposition and next engineering decision
+
+The current YUV444 file is unsuitable for claiming compatibility with
+the measured API36 framework path. Adding an internal software decoder
+would repair only the application's own decode, leaving external
+receivers unqualified. Keep normal AVIF disabled and the physical
+handoff hold in force. Preserve the passing isolated decoder as evidence;
+do not integrate it merely to make the fidelity check green.
+
+Do not repeat the unchanged444 experiment or switch an emulator property
+to seek a passing result. The next useful bounded investigation is a
+synthetic-only receiver-oriented encoding comparison using the existing
+pinned encoder: native-compatible420 against444, with identical source,
+color tags and unchanged thresholds, judged through the three original
+Android paths and independent decode. Its purpose is to test whether
+a framework-compatible candidate can meet screenshot fidelity, not to
+relax that fidelity. Any implementation/CI run must remain isolated and
+source-bound; no Pixel handoff follows automatically.
+
+If no candidate meets both fidelity and receiver requirements within the
+bounded attempt, present an explicit first-delivery scope decision.
+Shipping without the desired AVIF feature or lowering the quality bar
+requires separate scope resolution. It must not be inferred from this
+contract, the JXL deferral, or an internal decoder's successful result.
