@@ -1,8 +1,6 @@
-Validate one opt-in synthetic 65x67 HEIC compressed-byte capture, separate from accepted six-case checks.
-Reuse the bounded native sampler; preserve AVIF deferral, PNG defaults, production HEIC gate and all earlier diagnostics.
-Check closed report schema, explicit HEIC format/brand/route, APK/file hashes, cancellation and private cleanup.
-Use .heicbytes / FixMyShot HEIC Sample; never overwrite earlier diagnostic identities.
-Run the existing current build/lint/API36 regression once for this substantive batch; no physical test is claimed.
-Repair the host fake-adb import/settings fixture count to33; preserve strict malformed-report refusal.
-CI-only heap recovery: fixed emulator serial, restoration on stop failure, one guarded reconnect, stage and command receipts. Keep512m/runtime/report gates.
+Validate approved HEIC deferral for0.1.0: normal new-output choices are PNG and lossless WebP.
+Customize omits HEIC/AVIF/JXL; preserve enum labels, serialized draft identities and FORMAT_NOT_READY refusal without substitution.
+Keep diagnostic code and failed Pixel/host evidence; no codec implementation, dependency, permission or import change.
+Run existing build/lint/core tests and current API36 regressions once for this batch; do not repeat physical codec diagnostics.
+Retain PNG default, batch/per-image behavior, metadata/source integrity and transactional/recovery guards.
 profile=current

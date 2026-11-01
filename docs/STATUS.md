@@ -1,5 +1,41 @@
 # Completion status
 
+## HEIC deferral approved; delivery focuses on PNG/WebP — 2026-11-01
+
+The user approved **deferring HEIC from0.1.0**, alongside AVIF and JXL.
+The [HEIC scope amendment](decisions/compatibility-and-validation.md#approved-heic-scope-amendment--2026-11-01)
+qualifies the immutable blueprint's HEIC requirement and fallback
+obligation for this delivery. Normal new-format choices are PNG and
+lossless WebP; PNG remains the default. Restored HEIC drafts stay
+readable and explicitly unavailable, without silent conversion.
+Existing diagnostics, codec identities and original evidence remain.
+
+The [Pixel compressed-byte diagnosis](feasibility/native-device-check.md#pixel-heic-compressed-byte-diagnosis--verified-2026-11-01)
+is complete: the original HEIC independently decodes at26.087/26.067dB,
+below38dB. Encoded chroma explains dominant edge loss; the precise
+component remains unresolved. Those failures are not waived or fixed.
+No more HEIC/AVIF/JXL investigation or repeated accepted phone checks
+are required to finish this scoped delivery.
+
+The bounded runtime change only removes HEIC from the Customize
+format menu; Automatic already offers PNG/WebP. The normal export
+preflight still rejects deferred formats. No encoder, dependency,
+permission, schema, metadata policy or input capability changes.
+
+Latest completed runtime CI before this change:
+[41311422265](https://github.com/santirodriguez/FixMyShot/actions/runs/41311422265)
+SUCCESS at7eaae5e6. The current-profile validation requested with this
+batch must be checked separately; it is not yet a PASS.
+
+Remaining work focuses on applicable PNG/WebP real-device full-output
+fidelity/metadata/geometry, resource/performance and receiver evidence,
+accessibility/localization and recovery acceptance, plus source/license/
+dependency authenticity and distribution readiness. Reconcile existing
+accepted evidence before requesting new checks. Signing, merge,
+publication and deployment remain separately controlled. Deferral is
+not a functional-release readiness claim. Older entries below preserve
+the scope and evidence applicable at their dates.
+
 ## AVIF deferral approved; HEIC remains open — 2026-10-31
 
 The user approved **deferring AVIF from0.1.0** after the completed

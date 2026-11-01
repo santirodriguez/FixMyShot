@@ -1,5 +1,45 @@
 # Compatibility and validation scope — 2026-10-22
 
+## Approved HEIC scope amendment — 2026-11-01
+
+Decision: **DEFER HEIC for0.1.0**, explicitly approved by the user after
+the Pixel compressed-byte diagnosis and review of the remaining effort.
+This qualifies the HEIC portion of blueprint §§4/8/15/16,R20,A04 and
+G1/M02, including its native fallback obligation for this delivery only.
+The immutable blueprint is preserved. This amendment supersedes the
+earlier statements below that HEIC remained mandatory for0.1.0;
+AVIF and JXL keep their separately approved deferrals.
+
+Normal0.1.0 output choices are PNG and lossless WebP. Remove HEIC from
+new selections, retain its enum/localized label/serialized draft identity
+and diagnostic code. Restored HEIC drafts remain explicitly unavailable
+through FORMAT_NOT_READY; never substitute another format, automatically
+retry, rewrite fingerprints or discard per-image overrides. PNG remains
+the new-session default. Input support is unchanged.
+
+The original1759-byte Pixel synthetic HEIC, SHA256
+186b542d19e7c826a34f937bd7041ed84cb6c4f7f42130c240d66c760420696c,
+and independent [diagnosis](../feasibility/native-device-check.md#pixel-heic-compressed-byte-diagnosis--verified-2026-11-01)
+remain failed/unqualified evidence: libheif PSNR26.087161dB and FFmpeg
+26.067455dB versus target38, with patch-median errors1/2 meeting limit2.
+Encoded chroma matches even/top-left sampling; the precise encoder
+component is unresolved. Deferral is not a correction or fidelity PASS.
+
+HEIC-specific implementation, alternative-input/fallback investigation
+and physical qualification leave the0.1.0 critical path. Do not repeat
+accepted synthetic phone tests or add a software HEIC dependency to
+complete this delivery. No return date or future-version promise is made.
+Reconsider only through a bounded scoped decision with corrected output,
+independent decode, applicable device/receiver/resource/size/metadata
+qualification and source/license/security review. A diagnostic success
+alone cannot enable normal HEIC.
+
+PNG/lossless WebP fidelity, metadata/source integrity, privacy,
+transactional publication/recovery, applicable performance/device,
+accessibility/localization and source/distribution gates remain intact.
+This scope change does not establish release readiness or authorize
+merge, signing, release, deployment, credential or permission changes.
+
 ## Approved AVIF scope amendment — 2026-10-31
 
 Decision: **DEFER AVIF for0.1.0**, explicitly approved by the user after

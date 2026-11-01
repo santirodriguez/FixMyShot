@@ -114,7 +114,7 @@ internal fun ReviewControls(
                             Text(formatLabel(effective.format))
                         }
                         DropdownMenu(expanded = chooseFormat, onDismissRequest = { chooseFormat = false }) {
-                            OutputFormat.entries.filter { it != OutputFormat.JXL && it != OutputFormat.AVIF }.forEach { format ->
+                            listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS).forEach { format ->
                                 DropdownMenuItem(enabled = settingsEnabled, text = { Text(formatLabel(format)) },
                                     onClick = { chooseFormat = false; onFormat(format, selectedOnly) })
                             }

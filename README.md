@@ -80,9 +80,11 @@ artifact and update details.
 <details>
 <summary><strong>Development status</strong></summary>
 
-PNG and lossless WebP are implemented. Real-device fidelity and accessibility,
-native HEIC/AVIF qualification, broader recovery scenarios and signed distribution
-still have acceptance work ahead. JPEG XL is [deferred for v0.1.0](docs/decisions/jxl-first-delivery.md).
+PNG and lossless WebP are implemented. HEIC and AVIF are
+[deferred from v0.1.0](docs/decisions/compatibility-and-validation.md), alongside
+[JPEG XL](docs/decisions/jxl-first-delivery.md). Real-device fidelity and
+accessibility, broader recovery scenarios and signed distribution still have
+acceptance work ahead.
 
 The [status page](docs/STATUS.md) tracks the remaining work;
 [testing evidence](docs/TESTING.md) records exact commits and limitations.
