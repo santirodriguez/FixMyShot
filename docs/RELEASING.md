@@ -3,7 +3,7 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The functional editor candidate is unreleased `0.1.0-alpha.1`/versionCode `1` at `d54eb9c7` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1), not the default branch. [Exact-head build/lint/API36 checks](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) and the user's next-image diagnostic exercise passed, **not** the physical codec/fidelity/accessibility or production distribution gates. Same-source unsigned reproducibility is proven only for the historical `5d568a7e`/`e516aa89` source baselines, **not** this HEAD. Production signing, new final-source rebuild and source-closure checks, sequential upgrades, final screenshots, merge, tags and publication remain open; see [status](STATUS.md). Nothing here authorizes a key, signature, merge or release.
+> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. Physical final acceptance, final-source closure/rebuild, stable signing custody, sequential upgrades, final screenshots, merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The historical `5d568a7e`/`e516aa89` rebuilds do not prove this candidate. Nothing here authorizes a key, signature, merge or release.
 
 ## The release kit
 
@@ -17,7 +17,7 @@
 
 ## 01 · Keep the identity straight
 
-Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. Current isolated diagnostics use the `.ux22next` debug suffix (`FixMyShot Next`); earlier diagnostics used other separate suffixes, including `.debug`. None establishes the production upgrade path. Keep FixMyShot's independent signing identity across updates.
+Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. The verified current debug diagnostic uses the `.heicbytes` suffix (`FixMyShot HEIC Sample`), a retained diagnostic identity rather than a claim of HEIC output support. Earlier diagnostics used separate suffixes such as `.ux22next` (`FixMyShot Next`) and `.debug`. None establishes the production upgrade path. Keep FixMyShot's independent signing identity across updates.
 
 `versionName` is SemVer without the tag's `v`; the checker supports plain/prerelease versions without build metadata. Tags later use `v0.1.0-alpha.1`, etc. `versionCode` starts at 1 and increases for every subsequently distributed production-ID APK, including prereleases. Never reuse a code for different distributed bytes. A changed public APK needs a new version/code, not a replacement asset under the old identity.
 
@@ -134,7 +134,7 @@ python3 scripts/prepare-source-material-bundle.py \
 
 The [historical e516aa89 receipt](feasibility/evidence/source-material-bundle-e516aa89.json)
 records two identical assemblies and full1,282member validation. It is not yet a
-corresponding-source asset for current `d54eb9c7` or a later final candidate. After extraction,
+corresponding-source asset for the eventual frozen distribution candidate. After extraction,
 run sha256sum -c MANIFEST.sha256; extract the nested original source kit separately
 and retain its Git restoration instructions. This is a source-material asset,
 not final corresponding-source or publisher approval. Review the [exact limits](feasibility/runtime-source-review.md)

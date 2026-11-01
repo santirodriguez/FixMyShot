@@ -1,5 +1,41 @@
 # Completion status
 
+## Current automated validation PASS; final delivery gates remain — 2026-11-01
+
+[Actions41338068328](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328)
+at runtime7cbed17de44f4bc4ff31b62270ace3bd5a51b492 completed SUCCESS:
+build/lint/core99,API36 instrumented135tests including editor12 PASS.
+Optional legacySAF skipped/NOT RUN. The [exact artifact/APK/source
+receipt](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01)
+records independent original-byte checks and limits. No new runtime
+change or CI rerun is needed for this documentation reconciliation.
+
+HEIC/AVIF/JXL0.1.0 deferrals are approved and implemented. Normal new
+output choices are PNG/lossless WebP, PNG default. Deferred drafts stay
+readable and unavailable without substitution. All80synthetic lossless
+encodes PASS; independently decoded1344x2992 PNG/WebP agree exactly.
+Prior failed measurements remain failed and physical acceptance is separate.
+
+Three remaining delivery blocks:
+1. Complete only missing final PNG/WebP physical full-output fidelity,
+   applicable resource/receiver/device and accessibility evidence,
+   reusing accepted UX/import/share/next-image results.
+2. Freeze final distribution source, finish the applicable source/
+   dependency/license review and regenerate final source materials plus
+   exact-source independent unsigned rebuild. Do not recreate old kits
+   or repeat known-unavailable publisher captures automatically.
+3. Separately authorize stable signing custody, verify signed APK/
+   sequential upgrade/Obtainium, and finalize accepted screenshots/docs
+   before any separately authorized merge/tag/publication.
+
+The actual unsigned release APK is12340030bytes,version0.1.0-alpha.1/code1,
+production ID,not debuggable,no Internet/dangerous runtime permission,
+nine native libraries/three ABIs with structural16KiB alignment and
+eight exact canonical legal assets. This is not a signed/installable
+public delivery or complete physical/source/legal/reproducibility approval.
+PR remains OPEN/DRAFT/unmerged; no signing,merge,release or deployment.
+Entries below preserve earlier attempts and status at their dates.
+
 ## HEIC-deferral CI: mode-switch observation failure — 2026-11-01
 
 [Actions41324448154](https://github.com/santirodriguez/FixMyShot/actions/runs/41324448154)

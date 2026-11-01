@@ -1,5 +1,66 @@
 # Testing and evidence
 
+## Current PNG/WebP automated acceptance — 2026-11-01
+
+[Actions41338068328](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328)
+at runtime7cbed17de44f4bc4ff31b62270ace3bd5a51b492 completed SUCCESS:
+build/lint/core99 and API36 instrumented135tests PASS. Editor12,
+renderer8,thumbnail3,private20,transaction12,export-flow5,share4,
+import/settings33,batch7,retry8,recovery16,codec-smoke4 and three
+separate native diagnostic tests. Optional legacySAF SKIPPED/NOT RUN.
+The editor mode-switch follow-up passed; the earlier ed81e7fb run's
+134/135 FAILURE remains valid historical evidence, not retroactive PASS.
+
+Original downloaded artifacts passed ZIP digest/size/CRC/unique safe
+paths and their source receipts:
+- Bootstrap13095978797,46072914B,SHA25657dea88ff891ebc49df65a1ec1b3deec6cbdaa6df4285d61382579fc899c756c.
+- Smoke13096009495,2423800B,SHA256b8e0e53ce5be79853c7fe82d24ad44ea33dbde88221f31cd09c8286228a8a1be.
+
+The748-file source archive independently reconstructs Git tree
+32723ea9cbaac3b1db3f6f891cb368bf8b11aa18 exactly. Original JVM XML
+totals99tests,0failures,0errors,0skipped. All80lossless synthetic
+encodes report pixel PASS. Independent host decoding of the retained
+1344x2992 PNG/WebP yields identical RGBA/maxdifference0. This is
+synthetic emulator evidence, not physical color/peak PSS/process-cold
+performance or actual16KiB runtime acceptance; actual page size4096.
+
+All three APK hashes/lengths were independently checked:
+| APK | Bytes | SHA256 |
+| --- | ---: | --- |
+| Debug |16945453|da680e59cd303dcbccae27bc69bda2c1faecb317816d1f801193ebd0ec35f790|
+| Instrumentation |666548|c1f2022cca2be919b21415a7668194d660b834cc94934b7badc1fa7aaf54f92b|
+| Unsigned release |12340030|1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42|
+
+Actual binary manifests confirm release package org.cajapersonal.fixmyshot,
+0.1.0-alpha.1/code1,min26/target36,not debuggable; debug package has
+.heicbytes suffix and debuggable=true. Each requests only its AndroidX
+package-local signature-protected DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION,
+with no Internet/dangerous runtime permission. No new signature/key or
+production install/upgrade acceptance follows from inspecting these bytes.
+
+Independent exact-source APK checks PASS: nine native libraries across
+arm64-v8a,armeabi-v7a,x86_64 with ELF/ZIP16KiB alignment; all eight
+canonical legal assets byte-match their archived sources in debug and
+release. These checks do not establish whole license/source/publisher
+clearance or runtime16KiB support. HEIC/AVIF/JXL remain deferred from0.1.0.
+
+### Remaining delivery acceptance
+
+1. Reuse the user's accepted import/edit/export/share/next-image UX checks.
+   Complete only missing evidence for final full-size PNG/WebP appearance,
+   geometry/metadata, applicable resource/receiver/device and accessibility
+   requirements; do not restart the accepted codec investigations.
+2. Freeze the actual distribution source before regenerating corresponding
+   source materials and running its independent unsigned rebuild. The
+   e516aa89 assets/rebuild are historical. Current dependency evidence is
+   still a reviewed subset, not active complete publisher verification;
+   no automatic repeated unavailable-signature/source-copy searches.
+3. Establish/authorize stable FixMyShot signing custody separately, then
+   verify exact signed bytes, sequential same-certificate install/update,
+   Obtainium flow and truthful final screenshots/docs before authorized
+   merge/tag/publication. No key/signature/release/deployment occurred here.
+
+
 ## Current functional checkpoint — 2026-10-29
 
 Current draft PR #1 compiled HEAD: [`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7)
