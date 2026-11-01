@@ -1387,3 +1387,48 @@ current-profile CI must compile/run them; the import/settings group
 increases29to33. Actual APK/run/source receipts and any later Pixel
 sample must be verified separately. No physical run or handoff occurred
 when preparing this implementation.
+
+
+## HEIC byte-capture diagnostic — automated validation and private handoff 2026-11-01
+
+[Actions41311422265](https://github.com/santirodriguez/FixMyShot/actions/runs/41311422265)
+at source7eaae5e6673825a7c0f6a28ac74d96fbde8ceefb completed SUCCESS:
+build/lint/core99 and API36 instrumentation PASS; optional API26/28
+provider jobs SKIPPED/NOT RUN. The import/settings group has33passing
+tests, including all4new HEIC fake-encoder cases. Other grouped counts:
+editor12,renderer8,thumbnail3,private20,transaction12,export-flow5,
+share4,batch7,retry8,recovery16; main codec smoke4 plus3separate native
+diagnostic tests also PASS. These are emulator/diagnostic assertions,
+not physical HEIC fidelity acceptance.
+
+The guarded heap preparation completed every recorded stage with
+heap/growthlimit512m. In-app Runtime.maxMemory is536870912B,
+memoryClass512MiB,page size4096. No reconnect branch was exercised in
+this successful live run; local tests cover that branch. This resolves
+the current automated-validation block but does not prove the precise
+cause of the earlier emulator disconnects or physical16KiB acceptance.
+
+Original artifacts,source receipt/APK hashes,unique safe ZIP paths/CRC
+and canonical APK legal bytes were independently checked:
+- Bootstrap13085800715,46064898B,ZIP SHA256ae7b60f7fffd7719de4be4b46788c3a04f5b8f8b65a24fec5dba2029ee5adfb2.
+- Smoke13085691458,2381161B,ZIP SHA256a1e8dce3af5af7e92e2cc7bdcbb187ce9e2a5252a42155bacfbfb278caa7cf7a.
+
+Actual debug APK16945453B,SHA256
+8922c41a065f7deb089d08ad696a33049ed0e954090b5e7061ab22c4b8169417:
+org.cajapersonal.fixmyshot.heicbytes,FixMyShot HEIC Sample,
+0.1.0-alpha.1/code1,min26/target36. Manifest/resources and all
+uncompressed APK members match the prior independently inspected2f3198f2
+candidate; signing bytes may differ. Only the AndroidX package-local
+signature-protected dynamic-receiver permission is requested; no Internet
+or dangerous runtime permission. Actual native/ZIP structural16KiB and
+canonical notice checks PASS, not complete license/source clearance.
+
+The ready diagnostic APK is provided privately for one new65x67 synthetic
+HEIC compressed-byte capture. Open Settings/Help/Capture one HEIC sample,
+generate one sample,then explicitly share its Base64 report. This does
+not repeat the old six-case check or read any selected/user image.
+Validate SYNTHETIC_HEIC_BYTES_V1 using --format HEIC and the exact APK
+hash above before independent HEVC/container/color/geometry analysis.
+No new Pixel report or physical run exists at this checkpoint. Ordinary
+HEIC remains gated; AVIF0.1.0 deferral and all unrelated release gates
+remain intact. No production signing,merge or release occurred.
