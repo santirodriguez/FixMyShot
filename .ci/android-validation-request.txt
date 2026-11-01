@@ -1,6 +1,6 @@
-Validate approved HEIC deferral for0.1.0: normal new-output choices are PNG and lossless WebP.
-Customize omits HEIC/AVIF/JXL; preserve enum labels, serialized draft identities and FORMAT_NOT_READY refusal without substitution.
-Keep diagnostic code and failed Pixel/host evidence; no codec implementation, dependency, permission or import change.
-Run existing build/lint/core tests and current API36 regressions once for this batch; do not repeat physical codec diagnostics.
-Retain PNG default, batch/per-image behavior, metadata/source integrity and transactional/recovery guards.
+Validate approved HEIC deferral and the bounded editor mode-switch instrumentation correction.
+Previous Actions41324448154: build passed, API36 134/135; only quickTemplatesAndModeSwitchPreserveTheSameDraft timed out.
+Original capture already showed Automatic/Customize; reveal the visible viewport control before mode/recreation assertions.
+Retain draft equality, preview identity, all export/source/privacy/recovery guards and unchanged timeouts.
+No application, codec, schema, dependency, permission or physical-test change.
 profile=current

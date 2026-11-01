@@ -465,11 +465,18 @@ class EditorInteractionTest {
         click(label(R.string.quick_customize))
         await { find(label(R.string.editor_framing)) != null }
         click(label(R.string.quick_automatic))
+        // The two modes reuse a scrolling tool viewport. Reveal the actual
+        // Automatic control before checking semantics; Customize is also a
+        // heading in the advanced mode and cannot alone identify the mode.
+        reveal(label(R.string.quick_customize))
         await { find(label(R.string.quick_customize)) != null }
+        assertNull(find(label(R.string.quick_automatic)))
         assertEquals(selected, model.draft)
         assertSame(sample, model.preview)
         scenario.recreate()
+        reveal(label(R.string.quick_customize))
         await { find(label(R.string.quick_customize)) != null }
+        assertNull(find(label(R.string.quick_automatic)))
         assertEquals(selected, model.draft)
         capture()
     }

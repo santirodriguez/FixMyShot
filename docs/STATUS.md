@@ -1,5 +1,29 @@
 # Completion status
 
+## HEIC-deferral CI: mode-switch observation failure — 2026-11-01
+
+[Actions41324448154](https://github.com/santirodriguez/FixMyShot/actions/runs/41324448154)
+at ed81e7fb completed FAILURE. Build/lint/core tests passed; API36
+instrumentation passed134/135 tests, with editor11/12. Only
+quickTemplatesAndModeSwitchPreserveTheSameDraft timed out waiting for
+Customize after switching back to Automatic. Optional legacySAF was
+SKIPPED/NOT RUN. This is not an export/color/HEIC fidelity failure.
+
+Original smoke artifact13091345767,2371886bytes, ZIP SHA256
+1c891781a0fbba2b8aeb335dff6876c610d32c85b9115f9185866709f77c6ac5
+was downloaded and checked for digest, CRC and unique safe paths.
+Its failure screenshot and accessibility tree already show Automatic
+and Customize; they do not demonstrate a persistent mode-switch bug.
+The precise transient accessibility/viewport timing cause is not proven.
+
+The focused instrumentation change reveals Customize within the existing
+scrolling tool viewport after mode switch and recreation, then checks
+that the advanced-mode Automatic action is absent. Draft equality,
+preview object identity and recreation assertions remain. No increased
+timeout, removed assertion, runtime change or codec retest is introduced.
+Current-profile CI must validate the candidate; this adjustment is not
+yet a runtime PASS. HEIC/AVIF/JXL stay deferred, PNG/WebP unchanged.
+
 ## HEIC deferral approved; delivery focuses on PNG/WebP — 2026-11-01
 
 The user approved **deferring HEIC from0.1.0**, alongside AVIF and JXL.
