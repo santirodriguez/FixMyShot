@@ -1,0 +1,474 @@
+{
+  "schema": 1,
+  "scope": "SYNTHETIC_HEIC_DIAGNOSTIC_ONLY__NOT_EXPORT_QUALIFICATION",
+  "sample_sha256": "186b542d19e7c826a34f937bd7041ed84cb6c4f7f42130c240d66c760420696c",
+  "sample_bytes": 1759,
+  "reference_rgb_sha256": "efe98daa41f875b2ed6d851720089082e63ea79f88faa313e924dfe9d11a348b",
+  "reference_width": 65,
+  "reference_height": 67,
+  "tools": {
+    "libheif": "1.23.2",
+    "libde265": "1.1.1",
+    "ffmpeg": "6.1.1-3ubuntu5"
+  },
+  "geometry": {
+    "grid_width": 65,
+    "grid_height": 67,
+    "rows": 1,
+    "columns": 1,
+    "hevc_tile_width": 512,
+    "hevc_tile_height": 512,
+    "roi": [
+      0,
+      0,
+      65,
+      67
+    ],
+    "colr_box": false,
+    "clap_box": false,
+    "hevc_pixel_format": "yuvj420p",
+    "range": "full",
+    "matrix": "smpte170m",
+    "primaries": "smpte170m",
+    "transfer": "bt709",
+    "chroma_location": "left"
+  },
+  "decoders": {
+    "libheif": {
+      "psnr_db": 26.0871612510093,
+      "maximum_channel_error": 190,
+      "pixels_with_channel_error_gt_2": 121,
+      "squared_error_sum": 2091576,
+      "patch_median_channel_error_max": 1,
+      "patch_medians_rgb": [
+        [
+          64,
+          64,
+          64
+        ],
+        [
+          128,
+          128,
+          128
+        ],
+        [
+          192,
+          192,
+          192
+        ],
+        [
+          192,
+          64,
+          63
+        ],
+        [
+          63,
+          192,
+          63
+        ],
+        [
+          63,
+          64,
+          192
+        ]
+      ],
+      "numeric_targets_met": false,
+      "points": [
+        {
+          "x": 32,
+          "y": 16,
+          "source_rgb": [
+            192,
+            192,
+            192
+          ],
+          "decoded_rgb": [
+            192,
+            192,
+            192
+          ]
+        },
+        {
+          "x": 33,
+          "y": 16,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "x": 34,
+          "y": 16,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            192,
+            64,
+            63
+          ]
+        },
+        {
+          "x": 54,
+          "y": 16,
+          "source_rgb": [
+            64,
+            192,
+            64
+          ],
+          "decoded_rgb": [
+            63,
+            192,
+            63
+          ]
+        },
+        {
+          "x": 55,
+          "y": 16,
+          "source_rgb": [
+            64,
+            64,
+            192
+          ],
+          "decoded_rgb": [
+            2,
+            131,
+            2
+          ]
+        },
+        {
+          "x": 56,
+          "y": 16,
+          "source_rgb": [
+            64,
+            64,
+            192
+          ],
+          "decoded_rgb": [
+            63,
+            64,
+            192
+          ]
+        },
+        {
+          "x": 34,
+          "y": 32,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            192,
+            63,
+            65
+          ]
+        },
+        {
+          "x": 34,
+          "y": 33,
+          "source_rgb": [
+            18,
+            18,
+            18
+          ],
+          "decoded_rgb": [
+            108,
+            0,
+            0
+          ]
+        },
+        {
+          "x": 34,
+          "y": 34,
+          "source_rgb": [
+            18,
+            18,
+            18
+          ],
+          "decoded_rgb": [
+            18,
+            18,
+            18
+          ]
+        },
+        {
+          "x": 0,
+          "y": 58,
+          "source_rgb": [
+            20,
+            100,
+            220
+          ],
+          "decoded_rgb": [
+            19,
+            100,
+            218
+          ]
+        },
+        {
+          "x": 0,
+          "y": 59,
+          "source_rgb": [
+            255,
+            255,
+            255
+          ],
+          "decoded_rgb": [
+            185,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 60,
+          "source_rgb": [
+            255,
+            255,
+            255
+          ],
+          "decoded_rgb": [
+            255,
+            255,
+            255
+          ]
+        }
+      ],
+      "squared_error_fraction_odd_color_boundaries_and_row33": 0.9873430370208875
+    },
+    "ffmpeg": {
+      "psnr_db": 26.067455325614493,
+      "maximum_channel_error": 191,
+      "pixels_with_channel_error_gt_2": 143,
+      "squared_error_sum": 2101088,
+      "patch_median_channel_error_max": 2,
+      "patch_medians_rgb": [
+        [
+          64,
+          64,
+          64
+        ],
+        [
+          128,
+          128,
+          128
+        ],
+        [
+          192,
+          192,
+          192
+        ],
+        [
+          191,
+          63,
+          63
+        ],
+        [
+          63,
+          191,
+          62
+        ],
+        [
+          62,
+          62,
+          191
+        ]
+      ],
+      "numeric_targets_met": false,
+      "points": [
+        {
+          "x": 32,
+          "y": 16,
+          "source_rgb": [
+            192,
+            192,
+            192
+          ],
+          "decoded_rgb": [
+            192,
+            192,
+            192
+          ]
+        },
+        {
+          "x": 33,
+          "y": 16,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            102,
+            102,
+            102
+          ]
+        },
+        {
+          "x": 34,
+          "y": 16,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            191,
+            63,
+            63
+          ]
+        },
+        {
+          "x": 54,
+          "y": 16,
+          "source_rgb": [
+            64,
+            192,
+            64
+          ],
+          "decoded_rgb": [
+            63,
+            191,
+            62
+          ]
+        },
+        {
+          "x": 55,
+          "y": 16,
+          "source_rgb": [
+            64,
+            64,
+            192
+          ],
+          "decoded_rgb": [
+            2,
+            130,
+            1
+          ]
+        },
+        {
+          "x": 56,
+          "y": 16,
+          "source_rgb": [
+            64,
+            64,
+            192
+          ],
+          "decoded_rgb": [
+            62,
+            62,
+            191
+          ]
+        },
+        {
+          "x": 34,
+          "y": 32,
+          "source_rgb": [
+            192,
+            64,
+            64
+          ],
+          "decoded_rgb": [
+            191,
+            63,
+            64
+          ]
+        },
+        {
+          "x": 34,
+          "y": 33,
+          "source_rgb": [
+            18,
+            18,
+            18
+          ],
+          "decoded_rgb": [
+            107,
+            0,
+            0
+          ]
+        },
+        {
+          "x": 34,
+          "y": 34,
+          "source_rgb": [
+            18,
+            18,
+            18
+          ],
+          "decoded_rgb": [
+            18,
+            18,
+            18
+          ]
+        },
+        {
+          "x": 0,
+          "y": 58,
+          "source_rgb": [
+            20,
+            100,
+            220
+          ],
+          "decoded_rgb": [
+            18,
+            98,
+            218
+          ]
+        },
+        {
+          "x": 0,
+          "y": 59,
+          "source_rgb": [
+            255,
+            255,
+            255
+          ],
+          "decoded_rgb": [
+            184,
+            255,
+            255
+          ]
+        },
+        {
+          "x": 0,
+          "y": 60,
+          "source_rgb": [
+            255,
+            255,
+            255
+          ],
+          "decoded_rgb": [
+            255,
+            254,
+            255
+          ]
+        }
+      ]
+    }
+  },
+  "chroma_models": {
+    "scope": "Only complete 2x2 blocks in visible 64x66 region; round BT.601 full-range expected U/V to nearest integer; excludes padded tile pixels and odd right/bottom edges. This distinguishes file chroma from RGB upsampling, not the precise encoder component.",
+    "even_top_left": {
+      "sample_count": 2112,
+      "mean_absolute_error": 0.09232954545454546,
+      "maximum_absolute_error": 2,
+      "samples_with_error_le_2": 2112
+    },
+    "mean_2x2": {
+      "sample_count": 2112,
+      "mean_absolute_error": 1.3768939393939394,
+      "maximum_absolute_error": 54,
+      "samples_with_error_le_2": 2012
+    }
+  }
+}

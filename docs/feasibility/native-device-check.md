@@ -1432,3 +1432,144 @@ hash above before independent HEVC/container/color/geometry analysis.
 No new Pixel report or physical run exists at this checkpoint. Ordinary
 HEIC remains gated; AVIF0.1.0 deferral and all unrelated release gates
 remain intact. No production signing,merge or release occurred.
+
+
+## Pixel HEIC compressed-byte diagnosis — verified 2026-11-01
+
+The user supplied a new synthetic HEIC report from Google Pixel 9 Pro XL,
+API37, app0.1.0-alpha.1/code1. The installed APK receipt matches the
+previously delivered .heicbytes diagnostic SHA256
+8922c41a065f7deb089d08ad696a33049ed0e954090b5e7061ab22c4b8169417.
+This is a user-supplied physical-device capture, not a new agent-operated
+Pixel test or remote attestation. The capture was not cancelled and has
+no reported failure. No real selected image was involved.
+
+The closed-schema checker passed with --format HEIC and the expected
+APK digest. The original [synthetic HEIC](evidence/pixel-heic-65x67.heic)
+is1759bytes, SHA256
+186b542d19e7c826a34f937bd7041ed84cb6c4f7f42130c240d66c760420696c.
+[Machine-readable measurements](evidence/pixel-heic-65x67-analysis.json)
+retain decoder metrics, sampled RGB and chroma-model errors.
+
+### Geometry and independent decoding
+
+The ftyp brands are heic/mif1/heic. The primary grid is65x67, one row and
+one column, referencing a512x512 HEVC tile. The grid's visible extent
+is the top-left65x67 of that tile. libheif directly returns65x67 without
+rescaling; this sample does not reproduce the prior native AVIF
+128-wide raster/65-wide display mismatch. There are no clap or colr
+boxes; the HEVC stream itself signals full-range8-bit420, matrix and
+primaries smpte170m, transfer bt709, chroma_location left. These are
+observed metadata, not a claim of full container/spec conformance.
+
+Host1: libheif1.23.2, libde2651.1.1, heif-convert sample.heic libheif.png.
+Host2: FFmpeg6.1.1-3ubuntu5 native HEVC decoder, extracted length-prefixed
+NAL payload converted to Annex B, including hvcC parameter sets.
+This FFmpeg build cannot directly demux the HEIC; its direct-open
+failure is retained as a tool limitation, not a damaged-file diagnosis.
+Decode the512x512 tile and take only the grid-specified0,0,65,67 ROI
+for comparison. This is explicit grid reconstruction, not an arbitrary
+crop selected to improve metrics; no scaling or metadata repair.
+
+Reference: NativeCodecDiagnostic.fixture(PixelSize(65,67)), current
+source7eaae5e6, RGB8 bytes SHA256
+efe98daa41f875b2ed6d851720089082e63ea79f88faa313e924dfe9d11a348b.
+The full4355pixels/13065channels are compared without a color transform
+of the source. Existing HEIC targets remain PSNR>=38dB and maximum
+3x3 patch-median channel error<=2; the additional global maximum and
+count>2 below are diagnostics, not a new HEIC acceptance contract.
+
+| Reader | PSNR dB | Patch-median max error | Global channel max | Pixels with a channel error>2 |
+| --- | ---: | ---: | ---: | ---: |
+| libheif/libde265 |26.087161251|1|190|121|
+| FFmpeg native HEVC, grid ROI |26.067455326|2|191|143|
+| Earlier Pixel six-case report,65x67 |26.078 approximately|1|not reported|not reported|
+
+Both host readers fail PSNR38 while meeting the patch-median target.
+The earlier Pixel row is a separate earlier capture, not a new RGB
+measurement on this exact file. Near agreement supports an encoded
+loss rather than an Android-only RGB decoder failure; it does not
+establish bitwise equality with Android.
+
+### Encoded chroma explains the large edge errors
+
+Selected host libheif pixels, zero-based coordinates:
+
+| Coordinate | Integrated source RGB | libheif RGB |
+| --- | --- | --- |
+|33,16|192,64,64|102,102,102|
+|34,16|192,64,64|192,64,63|
+|55,16|64,64,192|2,131,2|
+|56,16|64,64,192|63,64,192|
+|34,33|18,18,18|108,0,0|
+|0,59|255,255,255|185,255,255|
+
+Inspect decoded native Y/U/V before any host RGB conversion. Atx33,y16,
+Y is102 but U/V are128/128, the neutral chroma of the evenx32 pixel.
+Atx55,y16, chroma comes from the green evenx54 pixel. Atx34,y33 the
+neutral dark row retains the preceding even red row's chroma. Atx0,y59,
+Y is255 but U/V remain201/78 from the blue eveny58 row. Consequently
+one pixel of red is grey, blue takes the neighboring green chroma,
+and a white pixel becomes cyan. The dominant errors are already
+represented in encoded chroma, not just RGB reconstruction.
+
+Quantitative discriminator: compute expected full-range BT.601 U/V
+from source RGB using U=-0.168736R-0.331264G+0.5B+128 and
+V=0.5R-0.418688G-0.081312B+128, rounded to nearest integer. Compare
+the decoded U/V to (a) each2x2 block's top-left source sample and
+(b) its2x2 mean. Restrict to complete blocks in visible64x66; exclude
+the padded tile and the odd right/bottom edges.
+
+All2112 decoded chroma values are within2 of model(a), mean absolute
+error0.092329545, maximum2. Model(b) gives mean error1.376893939,
+maximum54. This strongly identifies even/top-left chroma decimation
+in the captured encoding path rather than proper2x2 averaging.
+The two odd color-transition columnsx33/x55 in the top33rows plus
+row33 account for98.7343037% of libheif's total squared RGB error.
+
+This is a concrete mechanism evidenced in this file. It does not
+identify which AndroidX/GPU/platform/codec component performed the
+sampling or prove all HEIC encoders behave this way. The adapter uses
+AndroidX HeifWriter INPUT_MODE_BITMAP,quality100,grid enabled. Quality100
+did not preserve these chroma edges. The file has no actual codec-name
+receipt; do not guess a vendor implementation.
+
+For reproduction, parse hvcC at203,size115 (payload211..317):
+23-byte configuration header, then numOfArrays arrays, each with
+one-byte NAL type, two-byte NAL count and two-byte lengths. Prefix
+each parameter NAL with00000001. The iloc HEVC extent is offset839,
+length920; split its four-byte-length-prefixed NAL units and prefix
+each with00000001. Extracted extent NAL types32/33/34/19 have lengths
+24/35/10/835. Decode to PNG and native full-range YUV420 using:
+
+```sh
+heif-convert sample.heic libheif.png
+ffprobe -v error -show_streams sample.h265
+ffmpeg -v error -i sample.h265 -frames:v 1 ffmpeg.png
+ffmpeg -v error -i sample.h265 -frames:v 1 -pix_fmt yuvj420p -f rawvideo fullrange.yuv
+```
+
+Y occupies262144bytes; U and V occupy65536each, strides512/256/256.
+The machine-readable measurements retain source and decoded RGB points.
+
+### Disposition
+
+HEIC remains **NOT QUALIFIED**. This capture explains a major
+subtarget-PSNR mechanism but does not supply the required final visible
+review, performance/memory/receiver/size-matrix evidence or waive gates.
+Do not enable normal HEIC, infer AVIF acceptance, or repeat the accepted
+six-case Pixel tests. AVIF0.1.0 deferral remains approved and separate.
+
+Recommended bounded next decision: diagnose whether the bitmap/surface
+input path can be replaced with explicit, correctly filtered YUV input
+using the existing AndroidX/platform stack, first reviewing capability,
+odd-size handling and color metadata. Keep the same fixture and compare
+encoded planes before requesting another physical run. Source review
+alone cannot establish that an alternative works on this Pixel.
+No replacement implementation or new phone test is claimed here.
+
+This evidence-only commit changes no runtime, exporter, permission,
+dependency, CI request or APK. Latest executed runtime CI remains
+[41311422265](https://github.com/santirodriguez/FixMyShot/actions/runs/41311422265)
+SUCCESS at7eaae5e6; it is not new CI on the evidence commit. PR stays
+OPEN/DRAFT/unmerged; no merge, release or production signing.
