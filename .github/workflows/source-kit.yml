@@ -3,14 +3,65 @@ name: Exact source materials
 on:
   push:
     branches: ['release/**']
-    paths: ['.ci/source-kit-request.json', '.github/workflows/source-kit.yml', 'scripts/prepare-source-kit.py', 'scripts/test-source-kit.py', 'scripts/prepare-source-material-bundle.py']
+    paths: ['.ci/source-material-operation.json', '.ci/source-kit-request.json', '.github/workflows/source-kit.yml', 'scripts/prepare-source-kit.py', 'scripts/test-source-kit.py', 'scripts/prepare-source-material-bundle.py', 'scripts/compare-repackaged-implementation.py', 'scripts/test-repackaged-implementation.py']
 permissions:
   contents: read
 concurrency:
   group: source-kit-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  request:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    outputs:
+      operation: ${{ steps.mode.outputs.operation }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - id: mode
+        name: Validate explicit source-material operation
+        run: |
+          python3 scripts/check-independent-rebuild.py request .ci/source-kit-request.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          request = json.loads(Path('.ci/source-kit-request.json').read_text())
+          mode_path = Path('.ci/source-material-operation.json')
+          mode = json.loads(mode_path.read_text()) if mode_path.exists() else {
+              'schema': 1, 'operation': 'source-materials', 'source_commit': request['source_commit']}
+          if set(mode) != {'schema', 'operation', 'source_commit'} or mode['schema'] != 1 or mode['source_commit'] != request['source_commit']:
+              raise ValueError('Operation is not bound to the accepted source request')
+          operation = mode['operation']
+          if operation not in ('source-materials', 'n01-implementation'):
+              raise ValueError('Unsupported source-material operation')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('operation=' + operation + '\n')
+          PY
+  n01-implementation:
+    needs: request
+    if: needs.request.outputs.operation == 'n01-implementation'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Compare only exact N01 source and frozen implementation
+        run: |
+          python3 scripts/test-repackaged-implementation.py
+          python3 scripts/compare-repackaged-implementation.py evidence --jdk "$JAVA_HOME_17_X64"
+      - name: Preserve original inputs, disassemblies and negative differences
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: n01-implementation-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/
   source-kit:
+    needs: request
+    if: needs.request.outputs.operation == 'source-materials'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
