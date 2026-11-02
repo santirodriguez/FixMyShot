@@ -1,5 +1,27 @@
 # Completion status
 
+## Technical source preparation complete; issuer disposition remains — 2026-11-02
+
+The unchanged7cbed17d runtime has passed99core/135API36 instrumented
+tests, accepted maintainer PNG/WebP manual confirmation, an independent
+full-byte unsigned rebuild, and now exact source-material staging.
+[Actions41373814270](https://github.com/santirodriguez/FixMyShot/actions/runs/41373814270)
+and [original-byte receipt](feasibility/evidence/source-materials-7cbed17d.json)
+verify the34104279-byte/1282-member archive: exact748project/343WebP
+sources,94published companions,mapped Protobuf and1074AAR inputs.
+The PAX kit preserves long paths and restores/regenerates identically.
+
+This closes preparation of those technical materials. It does not
+authenticate the two remaining runtime binaries or nine runtime metadata
+files;522other frozen files also remain unreviewed under the current
+issuer policy. [The proposed bounded-alpha assurance choice](decisions/dependency-assurance-alpha-proposal.md)
+is explicitly NOT ADOPTED. Existing source/license/preferred-form and
+separate resource/device/accessibility limits, stable signing/upgrade/
+Obtainium and final screenshots/publication requirements remain distinct.
+No signing,merge,release,deployment,policy relaxation or new phone test.
+Do not repeat accepted UX, four-file or deferred-codec checks.
+Earlier entries preserve status at their respective dates.
+
 ## Independent runtime rebuild PASS; exact sources being staged — 2026-11-02 UTC
 
 [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)

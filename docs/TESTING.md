@@ -1,5 +1,18 @@
 # Testing and evidence
 
+## Current source-material validation PASS — 2026-11-02
+
+Source kit41372832634 and complete source-material staging41373814270
+passed for compiled7cbed17d. Actual original ZIPs and all archive members,
+source/Git-blob/mode identities, nested kit and94published companions
+were independently checked. See the [current source review](feasibility/runtime-source-review.md#current-runtime-sources-prepared-and-verified--2026-11-02)
+and its machine-readable receipts. First kit41372427458 failed on two
+long AIDL names under USTAR; the PAX correction retains all original
+paths/bytes and has7passing packer regressions, plus6capture tests.
+The unchanged app already passed99core/135instrumented tests and exact
+unsigned byte reproduction. No new Android or phone tests were required.
+This is technical source staging, not a publisher/license/source verdict.
+
 ## Exact-runtime independent unsigned rebuild PASS — 2026-11-02 UTC
 
 [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)

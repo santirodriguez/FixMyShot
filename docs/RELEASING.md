@@ -72,9 +72,7 @@ branch. It checks out the requested exact project and official pinned
 WebP commit with read-only, non-persisted checkout credentials. It
 generates twice, checks every manifest member, restores original Git
 identities offline and regenerates a third identical archive. It
-does not build/sign/publish an APK. The initial request targets the
-accepted7cbed17d runtime; inspect the terminal job and original artifact
-before claiming that new source kit prepared. An Actions artifact is
+does not build/sign/publish an APK. The accepted7cbed17d kit is now verified in Actions41372832634. Use the bundled root PAX producer/helper from control185b465e rather than the older USTAR producer inside the unchanged compiled project snapshot. An Actions artifact is
 temporary staging, not a public release/source download or complete
 other-runtime/build-tool source mirror.
 
@@ -130,6 +128,16 @@ the remaining gates and publication authority apply.
 
 ## 02d · Assemble the staged runtime source materials
 
+Current7cbed17d materials are prepared and independently verified in
+[Actions41373814270](https://github.com/santirodriguez/FixMyShot/actions/runs/41373814270).
+The [receipt](feasibility/evidence/source-materials-7cbed17d.json) binds
+the34104279-byte/1282-member archive to the exact nested project/WebP
+kit,94companions,mapped Protobuf and1074original AAR inputs. Its two
+generations and all members matched; previously captured input pins,
+runtime lock and catalog were preserved. No publisher/source/license
+clearance or publication follows. The current assembler pins7cbed;
+historical e516 assets require their historical producer, not relabeling.
+
 [The source-material assembler](../scripts/prepare-source-material-bundle.py)
 combines the exact existing project/WebP kit,94published companions, mapped
 upstream Protobuf, original AAR resource/manifest/rule inputs and committed
@@ -137,12 +145,12 @@ supplemental source/review evidence. It performs no network, build or signing.
 
 ```sh
 python3 scripts/prepare-source-material-bundle.py \
-  /stage/FixMyShot-source-e516aa89.tar.gz /stage/runtime-source-companions-e516 \
+  /stage/FixMyShot-source-7cbed17d.tar.gz /stage/runtime-source-companions-e516 \
   /stage/runtime-frozen-binaries-e516 \
   docs/feasibility/evidence/runtime-source-companions-e516aa89 \
   docs/feasibility/evidence/runtime-source-closure-e516aa89 \
   /stage/protobuf-javalite-4.28.2-sources.jar \
-  /new/FixMyShot-source-materials-e516aa89.tar.gz /new/source-materials.json
+  /new/FixMyShot-source-materials-7cbed17d.tar.gz /new/source-materials.json
 ```
 
 The [historical e516aa89 receipt](feasibility/evidence/source-material-bundle-e516aa89.json)

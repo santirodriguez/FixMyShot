@@ -57,9 +57,9 @@ retain their recorded scope.
 
 [Independent unsigned rebuild 41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
 passed for that exact runtime: the actual rebuilt unsigned APK and original
-12340030-byte APK are fully byte-identical. Exact project/libwebp source-kit
-preparation is requested separately; this is not complete source/publisher
-or signed distribution acceptance.
+12340030-byte APK are fully byte-identical. Exact project/libwebp kit and source-material stage are verified in
+[Actions41373814270](https://github.com/santirodriguez/FixMyShot/actions/runs/41373814270).
+This is not complete publisher/source/license or signed distribution acceptance.
 Applicable remaining device/resource/accessibility/recovery coverage,
 dependency/source/license disposition, final source materials, stable signing,
 signed install/upgrade/Obtainium and truthful final screenshots still require
