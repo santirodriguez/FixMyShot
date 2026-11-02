@@ -1,0 +1,82 @@
+name: Sign approved APK candidate
+on:
+  push:
+    branches: ['release/0.1.0-editor']
+    paths: ['.ci/signing-candidate-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: fixmyshot-candidate-signing
+  cancel-in-progress: false
+jobs:
+  request:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      enabled: ${{ steps.request.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - id: request
+        name: Validate explicit signing request
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          def unique(pairs):
+              result = {}
+              for key, value in pairs:
+                  if key in result: raise ValueError("Duplicate request field")
+                  result[key] = value
+              return result
+          request = json.loads(Path(".ci/signing-candidate-request.json").read_text(), object_pairs_hook=unique)
+          if set(request) != {"schema", "state", "request_id"} or type(request["schema"]) is not int or request["schema"] != 1:
+              raise ValueError("Unsupported signing request")
+          if request["state"] not in ("PREPARED", "SIGN_CANDIDATE"):
+              raise ValueError("Unsupported signing state")
+          if not isinstance(request["request_id"], str) or not request["request_id"].strip():
+              raise ValueError("Missing request identity")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("enabled=" + str(request["state"] == "SIGN_CANDIDATE").lower() + "\n")
+          PY
+  sign:
+    needs: request
+    if: needs.request.outputs.enabled == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: fixmyshot-signing
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download the original approved unsigned candidate
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: bootstrap-7cbed17de44f4bc4ff31b62270ace3bd5a51b492
+          run-id: 41338068328
+          github-token: ${{ github.token }}
+          path: candidate-input
+      - name: Prepare pinned signing tools
+        run: |
+          test -n "$ANDROID_HOME"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;36.0.0'
+      - name: Sign and verify the exact candidate
+        env:
+          FIXMYSHOT_KEYSTORE_BASE64: ${{ secrets.FIXMYSHOT_APP_KEYSTORE_BASE64 }}
+          FIXMYSHOT_KEYSTORE_PASSWORD: ${{ secrets.FIXMYSHOT_APP_KEYSTORE_PASSWORD }}
+        run: bash scripts/sign-approved-candidate.sh
+      - name: Publish the explicitly authorized public candidate artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: FixMyShot-0.1.0-alpha.1-signed-${{ github.run_id }}
+          path: candidate-output/
+          if-no-files-found: error
+          retention-days: 7

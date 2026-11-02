@@ -39,6 +39,46 @@ the public certificate, verify actual signed APK/manifest/alignment, and complet
 fresh install, sequential same-certificate upgrade and Obtainium evidence.
 A later public release needs separate authority.
 
+## Request-triggered candidate signing automation — prepared
+
+The signing workflow in [.github/workflows/sign-candidate.yml](../.github/workflows/sign-candidate.yml)
+runs only on pushes changing [.ci/signing-candidate-request.json](../.ci/signing-candidate-request.json)
+on `release/0.1.0-editor`. This supports preparation before a default-branch merge.
+The committed request is `PREPARED`: only the request job runs; the signing job,
+environment and secrets are skipped. Changing the state to `SIGN_CANDIDATE`
+requires explicit authority to sign this exact candidate. Use a fresh request ID.
+Rerunning an authorized signing run signs the same bound candidate again.
+
+Before activation, the repository owner must configure the `fixmyshot-signing`
+Environment with access restricted to the exact release branch, and add:
+- `FIXMYSHOT_APP_KEYSTORE_BASE64`: the app-signing PKCS12 encoded as Base64.
+- `FIXMYSHOT_APP_KEYSTORE_PASSWORD`: its password (also the PKCS12 key password).
+
+Base64 is an encoding, not encryption. Store these values only as Actions secrets;
+never commit them or paste them into chat. The Play upload key is not used here.
+The connector cannot provision these settings; their existence is not established
+by this workflow. A missing secret fails the signing step.
+
+The implementation pins the original run41338068328 artifact and exact unsigned
+APK size/hash, package/version and expected public signer certificate. It uses
+Build Tools36.0.0, signs a copy, verifies the actual signature from API26,
+ZIP alignment and package identity, then uploads only the signed APK, checksums,
+public signature report and non-secret receipt. No downloaded artifact script is
+executed. Temporary key material is removed on normal/error shell exit.
+
+The signed Actions artifact is publicly downloadable and retained for seven days.
+The maintainer approved that visibility; this is not a GitHub release/tag or
+functional-release acceptance. Installation, upgrades, Obtainium and the remaining
+manual matrix keep their own status. No signing execution has occurred at
+preparation time. The original unsigned artifact currently expires2026-11-08;
+expiry must fail without a silent rebuild or input substitution.
+
+The older bounded plan below is retained as preparation history. Local key
+creation has since been completed and the app certificate fingerprint is pinned
+by the signing script; independent backup completion remains unverified.
+Actual signing execution, environment provisioning and repository merge remain
+separate consequential steps.
+
 ## Bounded private-candidate signing plan — not authorized
 
 Status: **PREPARED / CUSTODY UNRESOLVED / NOT AUTHORIZED**.
