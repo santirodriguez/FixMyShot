@@ -1,5 +1,5 @@
 {
   "schema": 1,
-  "state": "PREPARED",
-  "request_id": "alpha.1-signing-preparation-2026-11-02"
+  "state": "SIGN_CANDIDATE",
+  "request_id": "alpha.1-authorized-signing-2026-11-02"
 }
