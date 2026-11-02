@@ -19,7 +19,7 @@ MAPPINGS = (('com/google/flatbuffers', 'androidx/emoji2/text/flatbuffer'),
 CP_OPS = {'ldc', 'ldc_w', 'ldc2_w', 'getstatic', 'putstatic', 'getfield',
           'putfield', 'invokevirtual', 'invokespecial', 'invokestatic',
           'invokeinterface', 'new', 'anewarray', 'checkcast', 'instanceof',
-          'multianewarray'}
+          'multianewarray', 'invokedynamic'}
 
 
 def sha(raw):
@@ -32,7 +32,7 @@ def mapped(text):
     return text
 
 
-def normalize(text):
+def normalize(text, bootstrap_verified=False):
     """Only declared relocation, resolved operand indices and SourceFile heading.
     Preserve offsets, opcodes, literals, handlers, members and method order.
     This intentionally reports differences when compiler layout changes.
@@ -44,8 +44,8 @@ def normalize(text):
         match = re.fullmatch(r'(\s*\d+:\s+)([a-z][a-z0-9_]*)(.*)', line)
         if match:
             prefix, opcode, operand = match.groups()
-            if opcode == 'invokedynamic':
-                raise ValueError('Dynamic bootstrap comparison is unsupported')
+            if (opcode == 'invokedynamic' or '// Dynamic ' in operand) and not bootstrap_verified:
+                raise ValueError('Dynamic bootstrap comparison requires resolved attributes')
             if '#' in operand.split('//', 1)[0]:
                 if opcode not in CP_OPS or '//' not in operand:
                     raise ValueError('Unresolved or unsupported constant operand')
@@ -58,10 +58,13 @@ def normalize(text):
     return '\n'.join(lines).strip() + '\n'
 
 
-def compare(left, right):
-    a, b = normalize(left), normalize(right)
+def compare(left, right, left_bootstrap=None, right_bootstrap=None):
+    a = normalize(left, bool(left_bootstrap))
+    b = normalize(right, bool(right_bootstrap))
     return {
-        'normalized_disassembly_identical': a == b,
+        'normalized_disassembly_identical': a == b and left_bootstrap == right_bootstrap,
+        'bootstrap_methods_identical': left_bootstrap == right_bootstrap,
+        'original_bootstrap': left_bootstrap, 'frozen_bootstrap': right_bootstrap,
         'original_normalized_sha256': sha(a.encode()),
         'frozen_normalized_sha256': sha(b.encode()),
         'instructions_and_exception_tables_compared': True,
@@ -69,6 +72,95 @@ def compare(left, right):
         'debug_annotations_other_attributes_compared': False,
         'formal_semantic_or_full_binary_source_equivalence': False,
     }
+
+
+
+def bootstrap_methods(raw):
+    """Resolve actual BootstrapMethods, including method handles and arguments.
+    Fail closed on recursive/dynamic constants; no external implementation runs.
+    """
+    import struct
+    pos = 8
+    if len(raw) < 10 or raw[:4] != b'\xca\xfe\xba\xbe':
+        raise ValueError('Invalid bootstrap class')
+    def take(n):
+        nonlocal pos
+        if n < 0 or pos+n > len(raw):
+            raise ValueError('Truncated bootstrap class')
+        value = raw[pos:pos+n]
+        pos += n
+        return value
+    def u2():
+        return struct.unpack('>H', take(2))[0]
+    def u4():
+        return struct.unpack('>I', take(4))[0]
+    cp = [None]*u2()
+    i = 1
+    while i < len(cp):
+        tag = take(1)[0]
+        if tag == 1:
+            cp[i] = (tag, mapped(take(u2()).decode('utf-8')))
+        elif tag in (3, 4, 5, 6):
+            cp[i] = (tag, take(8 if tag in (5, 6) else 4).hex())
+        elif tag in (7, 8, 16, 19, 20):
+            cp[i] = (tag, u2())
+        elif tag in (9, 10, 11, 12, 17, 18):
+            cp[i] = (tag, u2(), u2())
+        elif tag == 15:
+            cp[i] = (tag, take(1)[0], u2())
+        else:
+            raise ValueError('Unsupported bootstrap constant')
+        i += 2 if tag in (5, 6) else 1
+    def resolve(index, stack=()):
+        if not 0 < index < len(cp) or cp[index] is None or index in stack or len(stack) > 24:
+            raise ValueError('Invalid bootstrap reference')
+        tag, *values = cp[index]
+        if tag in (1, 3, 4, 5, 6):
+            return (tag, *values)
+        if tag == 15:
+            if not 1 <= values[0] <= 9:
+                raise ValueError('Invalid method handle kind')
+            return (tag, values[0], resolve(values[1], stack+(index,)))
+        if tag in (17, 18):
+            raise ValueError('Dynamic bootstrap argument needs separate resolution')
+        return (tag, *(resolve(v, stack+(index,)) for v in values))
+    def attrs():
+        entries = []
+        for _ in range(u2()):
+            name = resolve(u2())
+            if name[0] != 1:
+                raise ValueError('Non-UTF8 attribute name')
+            entries.append((name[1], take(u4())))
+        return entries
+    take(6)
+    take(u2()*2)
+    for _ in range(2):
+        for _ in range(u2()):
+            take(6)
+            attrs()
+    entries = [value for name, value in attrs() if name == 'BootstrapMethods']
+    if pos != len(raw) or len(entries) > 1:
+        raise ValueError('Trailing class or duplicate bootstrap attribute')
+    if not entries:
+        return []
+    data = entries[0]
+    offset = 0
+    def read():
+        nonlocal offset
+        if offset+2 > len(data):
+            raise ValueError('Truncated BootstrapMethods')
+        value = struct.unpack_from('>H', data, offset)[0]
+        offset += 2
+        return value
+    rows = []
+    for _ in range(read()):
+        method = resolve(read())
+        if method[0] != 15:
+            raise ValueError('Bootstrap target is not a method handle')
+        rows.append({'method': method, 'arguments': [resolve(read()) for _ in range(read())]})
+    if offset != len(data):
+        raise ValueError('Trailing BootstrapMethods bytes')
+    return rows
 
 
 def classes(raw):
@@ -148,7 +240,7 @@ def main():
         raise ValueError('N01 requires the existing JDK17 toolchain')
     (out/'javac-version.txt').write_text(version.stdout+version.stderr)
     built = out/'compiled'
-    result = subprocess.run([str(javac), '--release', '7', '-proc:none', '-encoding', 'UTF-8',
+    result = subprocess.run([str(javac), '--release', '8', '-proc:none', '-encoding', 'UTF-8',
                              '-g', '-d', str(built), *map(str, source_paths)],
                             capture_output=True, text=True, timeout=90)
     (out/'javac.txt').write_text(result.stdout+result.stderr)
@@ -178,17 +270,24 @@ def main():
         return (label, name), result.stdout
     with ThreadPoolExecutor(max_workers=4) as pool:
         dumps = dict(pool.map(disassemble, jobs))
+    raw_classes = {}
+    for label, jar in (('published', out/'flatbuffers.jar'), ('frozen', out/'frozen.jar')):
+        with zipfile.ZipFile(jar) as archive:
+            for name in classes(jar.read_bytes()):
+                raw_classes[label, name] = archive.read(name+'.class')
+    for name in compiled_names:
+        raw_classes['compiled', name] = (built/(name+'.class')).read_bytes()
     rows = []
     for label, names in (('published', original_names), ('compiled', compiled_names)):
         for name in names:
             target = mapped(name)
             left, right = dumps[label, name], dumps['frozen', target]
-            row = {'comparison': label+'_to_frozen', 'original': name, 'frozen': target, **compare(left, right)}
+            row = {'comparison': label+'_to_frozen', 'original': name, 'frozen': target, **compare(left, right, bootstrap_methods(raw_classes[label, name]), bootstrap_methods(raw_classes['frozen', target]))}
             rows.append(row)
             if not row['normalized_disassembly_identical']:
                 path = out/'differences'/label/(name+'.diff')
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text(''.join(difflib.unified_diff(normalize(left).splitlines(True), normalize(right).splitlines(True),
+                path.write_text(''.join(difflib.unified_diff(normalize(left, bool(row['original_bootstrap'])).splitlines(True), normalize(right, bool(row['frozen_bootstrap'])).splitlines(True),
                                                            fromfile=label+'/'+name, tofile='frozen/'+target)))
     report = {
         'schema': 1, 'scope': 'N01_INSTRUCTION_COMPARISON_WITH_EXPLICIT_RELOCATION_AND_RESOLVED_CP_INDICES_ONLY',
@@ -198,6 +297,7 @@ def main():
         'original_source_files': source_receipts, 'rows': rows,
         'published_classes': 45, 'compiled_source_classes': 49, 'frozen_classes': 49,
         'exact_historical_noto_build_checkout_proved': False,
+        'bootstrap_methods_and_arguments_compared': True,
         'annotations_debug_other_attributes_compared': False,
         'formal_semantic_equivalence_or_final_source_clearance': False,
         'new_android_build_phone_test_signing_or_publication': False,

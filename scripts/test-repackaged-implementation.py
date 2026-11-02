@@ -3,6 +3,7 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import struct
 
 spec = importlib.util.spec_from_file_location('implementation', Path(__file__).with_name('compare-repackaged-implementation.py'))
 m = importlib.util.module_from_spec(spec)
@@ -21,6 +22,23 @@ public class com.google.flatbuffers.Foo {
            0     5     5   Class java/lang/RuntimeException
 }
 '''
+
+
+
+def bootstrap_fixture(target='metafactory', argument=7, duplicate=False):
+    def utf8(value):
+        raw = value.encode()
+        return b'\x01'+struct.pack('>H', len(raw))+raw
+    pool = [utf8('p/Foo'), b'\x07\x00\x01', utf8('java/lang/Object'), b'\x07\x00\x03',
+            utf8('BootstrapMethods'), utf8('java/lang/invoke/LambdaMetafactory'), b'\x07\x00\x06',
+            utf8(target), utf8('()V'), b'\x0c\x00\x08\x00\x09',
+            b'\x0a\x00\x07\x00\x0a', b'\x0f\x06\x00\x0b',
+            b'\x03'+struct.pack('>I', argument)]
+    table = struct.pack('>4H', 1, 12, 1, 13)
+    attr = struct.pack('>HI', 5, len(table))+table
+    header = b'\xca\xfe\xba\xbe\x00\x00\x00\x34'+struct.pack('>H', len(pool)+1)
+    body = struct.pack('>7H', 0x21, 2, 4, 0, 0, 0, 2 if duplicate else 1)
+    return header+b''.join(pool)+body+attr*(2 if duplicate else 1)
 
 
 class Comparison(unittest.TestCase):
@@ -47,6 +65,19 @@ class Comparison(unittest.TestCase):
         before = '0: multianewarray #4, 2 // class "[[I"'
         self.assertEqual(m.normalize(before), m.normalize(before.replace('#4', '#9')))
         self.assertNotEqual(m.normalize(before), m.normalize(before.replace(', 2', ', 3')))
+
+
+    def test_bootstrap_target_and_arguments_not_hidden(self):
+        text = '0: invokedynamic #7 // InvokeDynamic #0:run:()Ljava/lang/Runnable;'
+        a = m.bootstrap_methods(bootstrap_fixture())
+        self.assertTrue(m.compare(text, text.replace('#7 //', '#9 //'), a, a)['normalized_disassembly_identical'])
+        for raw in (bootstrap_fixture(target='other'), bootstrap_fixture(argument=8)):
+            self.assertFalse(m.compare(text, text, a, m.bootstrap_methods(raw))['normalized_disassembly_identical'])
+
+    def test_bootstrap_duplicate_and_truncation_fail_closed(self):
+        for raw in (bootstrap_fixture(duplicate=True), bootstrap_fixture()[:-1], bootstrap_fixture()+b'extra'):
+            with self.assertRaises(ValueError):
+                m.bootstrap_methods(raw)
 
 
 if __name__ == '__main__':
