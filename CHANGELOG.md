@@ -12,6 +12,7 @@ Real changes. No imaginary release history.
 - Make Original / No platform the neutral clean-session destination, with explicit offline destination suggestions and a versioned Flexible frame for carefully showing margins below fill.
 - Bring the PNG/lossless WebP choice into Automatic without changing the new-session PNG default; retain the full Customize and batch editor.
 - Start new sessions with PNG and identifying-metadata removal; export separate PNG or lossless WebP copies.
+- Defer HEIC, AVIF and JPEG XL outputs from 0.1.0; preserve existing draft identities with explicit unavailable-format feedback and no automatic replacement.
 - Add bounded recognized SDR P3/Adobe RGB normalization, orientation handling, payload-preserving no-op paths and an explicit metadata allowlist.
 
 ### Keep the work moving
@@ -46,4 +47,21 @@ Real changes. No imaginary release history.
 
 ### Still open
 
-This is unfinished development, not a published application release. The exact-source d54eb9c7 build/lint/core99/API36 matrix passes, including editor12, session23, the next-image picker/cancel flow and the previously accepted PNG/WebP/recovery/sharing suites. The user accepted that flow on the isolated diagnostic; it does not waive wider physical acceptance. Earlier scoped API36 runs also passed two 100-item real-codec cases with simulated provider faults. The revised stored-alpha/render oracle passed the bounded API 36 matrix; wider color/alpha qualification remains open. Broader appearance, native HEIC/AVIF hardware/fidelity/fallback, real-provider/process-kill/low-space, physical accessibility/locale, dependency authentication, reproducibility, signing and install/upgrade remain open. JPEG XL is deferred for v0.1.0. See [TESTING](docs/TESTING.md) and [FORMATS](docs/FORMATS.md) for evidence and limits.
+This is an unpublished development candidate. Executable source 7cbed17d passed
+[build/lint/99 core tests and 135 API 36 instrumented tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328),
+including 12 editor tests and the next-image picker/cancel regression. The maintainer
+accepted the requested PNG/WebP manual output review; no new real-image
+pixel/PSNR/metadata measurements are inferred. Earlier accepted next-image UX,
+two 100-item real-codec/simulated-provider cases and stored-alpha/render evidence
+retain their recorded scope.
+
+[Independent unsigned rebuild 41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
+is requested for that exact runtime against the verified original APK; no
+reproducibility PASS is claimed until the actual comparison is inspected.
+Applicable remaining device/resource/accessibility/recovery coverage,
+dependency/source/license disposition, final source materials, stable signing,
+signed install/upgrade/Obtainium and truthful final screenshots still require
+their acceptance. HEIC/AVIF/JXL implementation and qualification are deferred
+from 0.1.0 and are outside this delivery's remaining critical path.
+See [TESTING](docs/TESTING.md), [STATUS](docs/STATUS.md) and
+[FORMATS](docs/FORMATS.md) for evidence, explicit scope and limits.
