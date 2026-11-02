@@ -1,5 +1,31 @@
 # Completion status
 
+## Manual PNG/WebP confirmation accepted; independent rebuild requested — 2026-11-01
+
+The maintainer accepted the requested four-file output comparison by
+personal confirmation and asked to continue. It is closed as reported
+manual acceptance, without an upload or another equivalent request.
+No independent real-image pixel/PSNR/metadata measurement or new
+agent-run phone test is claimed. See the [evidence clarification](decisions/compatibility-and-validation.md#accepted-manual-pngwebp-confirmation--2026-11-01).
+
+Current runtime7cbed17d remains unchanged, with CI41338068328
+SUCCESS/core99/API36 instrumented135. HEIC/AVIF/JXL stay deferred;
+new output choices PNG/lossless WebP, PNG default. The existing
+independent-rebuild request now pins that exact runtime/tree,
+verified original bootstrap ZIP and unsigned APK12340030B/SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+Its clean-build comparison is pending, not a new emulator/phone matrix
+or acceptance of a future changed distribution source.
+
+[Candidate release notes](releases/0.1.0-alpha.1.md) are prepared without
+dead download/tag links or claims of signing/publication. The candidate
+version/code remain0.1.0-alpha.1/1, with no production distribution.
+Remaining source/license/dependency disposition and final-frozen source
+materials, applicable resource/device/accessibility requirements and
+separately controlled signing/upgrade/Obtainium/publication steps remain
+distinct. Reuse accepted manual/UX evidence; do not restart it.
+Earlier sections below retain the status applicable at their dates.
+
 ## Current automated validation PASS; final delivery gates remain — 2026-11-01
 
 [Actions41338068328](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328)

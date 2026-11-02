@@ -1,5 +1,37 @@
 # Compatibility and validation scope — 2026-10-22
 
+## Accepted manual PNG/WebP confirmation — 2026-11-01
+
+The maintainer explicitly accepted the requested final PNG/WebP output
+comparison by personal confirmation and instructed development to continue.
+That confirmation closes the previously requested four-file handoff
+(original screenshot, Original PNG, Original lossless WebP and9:16
+Keep-all PNG). Do not require those files again or restart the same
+review under a different name.
+
+For this bounded comparison, reported satisfactory manual behavior is
+accepted instead of newly collected real-image pixel/metadata measurements.
+Record the result as **MAINTAINER_REPORTED_MANUAL_ACCEPTANCE**, not an
+agent-operated physical test, independent file inspection or measured
+physical PSNR/channel-error/metadata result. No new files were supplied.
+Existing automated/synthetic thresholds and failed codec evidence remain.
+
+The prior exact-APK Pixel report binds the installed .heicbytes diagnostic
+to source7eaae5e6. Comparing that source to validated runtime7cbed17d
+shows only the deferred-format menu and editor test changed among Kotlin
+files; PNG/WebP import/render/metadata/export code is unchanged. This
+supports reuse of the accepted path, not a production signing/install/
+upgrade or every-device/resource/accessibility acceptance claim.
+
+Proceed with non-signing delivery preparation and one existing-workflow
+independent rebuild of pinned runtime7cbed17d against the verified
+CI41338068328 unsigned APK. The comparison must use the exact same
+source; keep its control/documentation commit separate. It is not a
+rebuild of a future changed source/tag. If distribution inputs later
+change, establish that actual baseline before claiming final reproducibility.
+No unchanged physical check, new credential, signing, merge or publication
+is authorized or required by this confirmation.
+
 ## Approved HEIC scope amendment — 2026-11-01
 
 Decision: **DEFER HEIC for0.1.0**, explicitly approved by the user after

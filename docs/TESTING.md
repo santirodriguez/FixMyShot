@@ -1,5 +1,18 @@
 # Testing and evidence
 
+## PNG/WebP manual confirmation accepted — 2026-11-01
+
+The maintainer confirmed the requested output comparison was satisfactory
+and directed continuation. Result: MAINTAINER_REPORTED_MANUAL_ACCEPTANCE.
+No four-file upload or repeated equivalent comparison is required.
+No new source/output files or agent-operated phone test were supplied;
+physical pixel/PSNR/metadata measurements are not inferred.
+The [scope clarification](decisions/compatibility-and-validation.md#accepted-manual-pngwebp-confirmation--2026-11-01)
+governs this evidence method. Earlier independently measured synthetic
+results and limitations below remain accurate. Runtime7cbed17d is pinned
+for one clean independent unsigned rebuild against CI41338068328;
+that pending result must be inspected separately, never inferred here.
+
 ## Current PNG/WebP automated acceptance — 2026-11-01
 
 [Actions41338068328](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328)
