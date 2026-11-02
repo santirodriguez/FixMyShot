@@ -49,7 +49,7 @@
     "same_certificate_upgrade": "NOT_RUN",
     "obtainium_install_and_update": "NOT_RUN",
     "remaining_limitations": [
-      "Source inventory/declared-license compatibility/canonical notice checks complete. Final corresponding-source clearance retains N01: Noto/Emoji2 generation/relocation correspondence. No binary/source equivalence claimed.",
+      "Exact-candidate source/license engineering review complete and N01 closed by bounded implementation correspondence. Final signed source-asset co-location/release reconciliation pending; exact historical Noto checkout/full class-byte/debug/annotation equivalence not claimed.",
       "Other applicable device/resource/accessibility requirements and final truthful screenshots remain distinct.",
       "HEIC/AVIF/JXL outputs deferred from 0.1.0; original failed evidence retained.",
       "Stable signing custody, signed APK inspection, fresh install, sequential upgrade and Obtainium are not accepted by this unsigned draft.",
@@ -60,14 +60,16 @@
       "declared_license_compatibility": "NO_INCOMPATIBILITY_IDENTIFIED",
       "actual_canonical_legal_assets": "PASS_8",
       "source_material_stage": "COMPLETE",
-      "remaining_source_hold": "N01_NOTO_EMOJI2_GENERATION_RELOCATION_CORRESPONDENCE",
-      "final_corresponding_source_approved": false
+      "remaining_source_hold": null,
+      "final_corresponding_source_approved": false,
+      "engineering_source_material_coverage_accepted": true,
+      "n01_closure_receipt": "../feasibility/evidence/n01-implementation-7cbed17d/review.json"
     }
   },
   "compiled_tree": "32723ea9cbaac3b1db3f6f891cb368bf8b11aa18",
   "unsigned_apk_bytes": 12340030,
   "assurance_exception": "0.1.0-alpha.1-assurance.json",
-  "corresponding_source_status": "TECHNICAL_MATERIALS_VERIFIED_FINAL_CLEARANCE_OPEN",
+  "corresponding_source_status": "ENGINEERING_REVIEW_ACCEPTED_FINAL_DISTRIBUTION_HANDOFF_PENDING",
   "source_materials": {
     "receipt": "../feasibility/evidence/source-materials-7cbed17d.json",
     "workflow_run": 41373814270,

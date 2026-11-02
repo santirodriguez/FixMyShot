@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "scope": "BOUNDED_EXACT_ALPHA_LICENSE_AND_SOURCE_DISPOSITION",
-  "status": "REVIEW_COMPLETE_WITH_SOURCE_CORRESPONDENCE_HOLD_N01",
+  "status": "SOURCE_LICENSE_ENGINEERING_REVIEW_COMPLETE_N01_CLOSED",
   "reviewed_on": "2026-11-02",
   "compiled_source": "7cbed17de44f4bc4ff31b62270ace3bd5a51b492",
   "unsigned_apk_bytes": 12340030,
@@ -44,19 +44,7 @@
     "original_preferred_editing_form_for_every_resource_proved": false
   },
   "source_material_stage": "COMPLETE_PREVIOUSLY_ACCEPTED",
-  "remaining_source_holds": [
-    {
-      "id": "N01",
-      "coordinate": "androidx.emoji2:emoji2:1.4.0",
-      "scope": "Correspondence of historical Noto generation and relocation material to the frozen bundled implementation",
-      "already_complete": "FlatBuffers 1.12 version/material identification: 45 matching declaration layouts, complete frozen constant subset, schema and generated Java staged",
-      "not_proved": [
-        "Exact external Noto build checkout",
-        "Implementation correspondence beyond declarations and constant sets"
-      ],
-      "next_discriminating_evidence": "Establish primary release external-source/generation context or compare the relevant generated/relocated implementation with the frozen classes; no repeat of unchanged declaration/source captures."
-    }
-  ],
+  "remaining_source_holds": [],
   "final_corresponding_source_approved": false,
   "upstream_binary_source_equivalence_proved": false,
   "complete_offline_toolchain_required_by_this_review": false,
@@ -70,5 +58,22 @@
     "https://www.apache.org/licenses/LICENSE-2.0",
     "https://www.gnu.org/licenses/gpl-3.0.html"
   ],
-  "gpl_source_of_text": "Exact compiled project LICENSE; direct canonical GNU HTML retrieval unavailable during this review"
+  "gpl_source_of_text": "Exact compiled project LICENSE; direct canonical GNU HTML retrieval unavailable during this review",
+  "closed_source_holds": [
+    {
+      "id": "N01",
+      "coordinate": "androidx.emoji2:emoji2:1.4.0",
+      "scope": "Correspondence of historical Noto generation and relocation material to the frozen bundled implementation",
+      "already_complete": "FlatBuffers 1.12 version/material identification: 45 matching declaration layouts, complete frozen constant subset, schema and generated Java staged",
+      "not_proved": [
+        "Exact external Noto build checkout",
+        "Implementation correspondence beyond declarations and constant sets"
+      ],
+      "next_discriminating_evidence": "Establish primary release external-source/generation context or compare the relevant generated/relocated implementation with the frozen classes; no repeat of unchanged declaration/source captures.",
+      "status": "CLOSED_BY_BOUNDED_IMPLEMENTATION_CORRESPONDENCE",
+      "closure_receipt": "n01-implementation-7cbed17d/review.json"
+    }
+  ],
+  "engineering_source_material_coverage_accepted_for_exact_candidate": true,
+  "final_distribution_handoff": "PENDING_SEPARATE_SIGNED_ASSET_SOURCE_COLOCATION_AND_RELEASE_RECONCILIATION"
 }

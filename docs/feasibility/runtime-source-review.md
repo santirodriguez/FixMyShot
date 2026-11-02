@@ -1,6 +1,24 @@
 # Published runtime source material
 
-## Source review narrowed to one correspondence hold — 2026-11-02
+## N01 closed; exact-candidate source engineering review complete — 2026-11-02
+
+The [implementation review](runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02)
+compiles the26retained original Java files into all49frozen repackaged classes.
+Their actual declarations/instructions and lambda bootstrap references correspond;
+the4Noto-generated classes match strictly. The4remaining presentation differences
+in the original90/94report are ldc width/byte-label changes and a pretty constructor
+parameter display difference, resolved without removing behavior. The full
+[receipt and both reports](evidence/n01-implementation-7cbed17d/review.json)
+preserve raw negatives, original hashes and precise limits.
+
+N01 is closed. The exact7cbed17d candidate's bounded engineering source/license
+review is complete; no new source bundle or Android test is required. Exact
+historical Noto checkout, full class/debug/annotation equivalence and formal
+semantic equivalence remain unproved and are not claimed. Final signed asset/
+source co-location and separately authorized distribution handoff remain pending.
+Issuer-risk OptionB and all325reviewed/533pending classifications are unchanged.
+
+## Source review narrowed to one correspondence hold — 2026-11-02 (before implementation comparison)
 
 The [current disposition](runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
 closes the declared-license compatibility and current canonical notice-byte

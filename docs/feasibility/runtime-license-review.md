@@ -1,6 +1,61 @@
 # Runtime license declarations and embedded notices
 
-## Exact-alpha license and source disposition — 2026-11-02
+## N01 closed by implementation correspondence — 2026-11-02
+
+[Actions41517838551](https://github.com/santirodriguez/FixMyShot/actions/runs/41517838551)
+completed the isolated comparison at controld5a9030e. The
+[original-artifact receipt](evidence/n01-implementation-7cbed17d/review.json)
+and full original/reviewed reports retain the evidence, including negative results.
+All229original artifact members and input hashes were independently verified.
+
+The26unchanged Java source files compile to all49classes in Emoji2's
+repackaged implementation. All actual class layouts (121fields/513methods),
+available instruction listings and lambda bootstrap handles/arguments correspond
+after the two declared namespace relocations and the bounded representation
+review below. All4Noto-generated classes match the strict disassembly comparison.
+This closes the specific N01 material-correspondence hold; it does not identify
+the original historical build checkout.
+
+The initial disassembly report remains90/94, **DIFFERENCES_REQUIRE_REVIEW**.
+The4differences were inspected, not discarded:
+- Published FlatBufferBuilder/FlexBuffersBuilder and compiled FlatBufferBuilder
+  use ldc versus ldc_w after constant-pool rewriting. Mapping byte positions to
+  actual instruction ordinals preserves every branch/switch destination, operand
+  and literal; no instruction is removed.
+- javap displays the compiled Table$1 synthetic constructor without its
+  synthetic parameters. Both actual JVM descriptors are
+  (Landroidx/emoji2/text/flatbuffer/Table;Ljava/nio/ByteBuffer;)V. Actual member
+  names/flags/descriptors are checked before normalizing the pretty argument list.
+  Its instructions are unchanged.
+
+The offline reviewer passes94/94 bounded correspondence checks, retaining all90
+strict matches. Seven collection and five presentation-review tests pass,
+including wrong branch targets, literals/whitespace, opcodes, descriptors,
+bootstrap targets/arguments and invalid listings. An actual compiled-member
+mutation is refused by the pinned original manifest before review.
+The first run41517192700 failed before comparison because Java7 rejects the
+actual lambda. Both original binaries are major52/Java8; the corrected build uses
+the existing JDK17 with --release8 and -proc:none. That failure is preserved.
+
+The exact candidate's engineering source/license review is now complete with
+the recorded limits. The prepared source-material archive remains unchanged.
+Do not reopen N01 merely because class bytes, debug/annotation/other attributes,
+formal semantic equivalence or the exact historical checkout were not proved.
+Those broader claims are not made. The original0/45raw-byte result and all
+publisher classifications remain unchanged; OptionB is still issuer-only.
+Final signed asset/source co-location and release handoff remain pending under
+separate authority, alongside the other applicable delivery controls. This
+comparison builds no APK and claims no new phone test, signing or publication.
+
+To replay only the offline review, extract the exact original artifact to a
+fresh directory and run:
+`python3 scripts/review-repackaged-instructions.py <original-artifact-directory> <new-review.json>`.
+It verifies the pinned original manifest/report and refuses changed members.
+The source workflow's explicit operation remains n01-implementation; a future
+source-material generation must explicitly select source-materials in
+.ci/source-material-operation.json. No unchanged regeneration is needed now.
+
+## Exact-alpha license and source disposition — 2026-11-02 (before N01 comparison)
 
 Reviewed candidate: executable7cbed17de44f4bc4ff31b62270ace3bd5a51b492,
 unsigned12,340,030-byte APK SHA256

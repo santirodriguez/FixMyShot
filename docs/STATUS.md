@@ -1,6 +1,23 @@
 # Completion status
 
-## License checks closed; one source-correspondence hold remains — 2026-11-02
+## N01 closed; source/license engineering review complete — 2026-11-02
+
+The [bounded implementation review](feasibility/runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02)
+closes N01 using all49compiled/frozen classes (121fields/513methods), including
+strict matches for all4Noto-generated classes and resolved lambda bootstraps.
+[Actions41517838551](https://github.com/santirodriguez/FixMyShot/actions/runs/41517838551)
+SUCCESS collected the original evidence. Its90/94strict result is retained;
+offline review accounts for the4ldc-width/label/synthetic-display differences,
+yielding94/94bounded correspondence checks. Twelve focused tests pass.
+
+The exact candidate's source/license engineering review is complete with recorded
+limits. Source archives, runtime7cbed17d and the unsignedAPK remain unchanged;
+no Android/phone retest or source-kit regeneration. Final signed asset/source
+handoff, applicable remaining delivery acceptance and separate signing/install/
+upgrade/Obtainium/publication controls persist. N01 is not an open gate.
+Earlier sections retain their status at the time.
+
+## License checks closed; one source-correspondence hold remained — 2026-11-02 (before implementation comparison)
 
 The [bounded review](feasibility/runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
 finds no declared runtime/native license incompatibility, rechecks all8canonical
