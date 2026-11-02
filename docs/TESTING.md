@@ -1,5 +1,72 @@
 # Testing and evidence
 
+## Current delivery reconciliation — 2026-11-02
+
+Executable source remains7cbed17de44f4bc4ff31b62270ace3bd5a51b492.
+The unsigned12,340,030-byte APK remains SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+Control/documentation HEADs are not substituted for that compiled source.
+The current unsigned [BUILD-INFO draft](releases/0.1.0-alpha.1-unsigned-build-info.json)
+binds this reconciliation to the existing evidence.
+
+### Accepted evidence — reuse it
+
+- Ordinary CI41338068328: build/lint/core99 and API36instrumented135PASS,
+  including all80synthetic lossless encodes. Structural16KiB alignment and
+  eight canonical legal assets pass; actual emulator pages were4096bytes.
+- Exact-source independent rebuild41369848088: every unsigned APK byte identical.
+  Current kit41372832634/materials41373814270 and their original archive/member
+  checks remain accepted. No unchanged regeneration/rebuild is needed.
+- Source/license engineering review is complete; [N01 is closed](feasibility/runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02).
+  The approved [exact-alpha issuer-risk disposition](decisions/dependency-assurance-alpha-proposal.md)
+  retains325reviewed/533pending classifications; no repeated issuer capture.
+- General UX2.2, consecutive-image/picker cancellation and the requested
+  PNG/WebP four-file comparison are accepted by maintainer report. Do not ask
+  for those exercises/files again. This is not new agent-operated Pixel
+  testing or independent real-image pixel/metadata measurement.
+
+### Manual/delivery matrix — preserve the actual boundary
+
+| Blueprint check | Current disposition | Only unresolved scope |
+| --- | --- | --- |
+| M01 | Requested PNG/WebP comparison accepted as MAINTAINER_REPORTED_MANUAL_ACCEPTANCE | Do not infer every §7worked example or quantitative physical color metric from that bounded confirmation |
+| M02 | HEIC/AVIF/JXL outputs deferred for0.1.0 by explicit amendments | No codec investigation or physical qualification is required for those deferred outputs in this delivery; original failures remain |
+| M03 | Current automated storage paths pass; legacySAF skipped/NOT_RUN under the best-effort amendment | Actual16KiB runtime remains NOT_RUN; retain the legacy limitation without demanding a new legacy-only adapter or unchanged matrix. Alignment is not runtime |
+| M04 | Automated batch/retry/recovery/transaction groups pass; ordinary batch UX accepted | Full100-item mixed cancellation/process-kill/low-space/provider exercise is not recorded as completed |
+| M05 | Packaged en/es/ca resources and automatic completeness checks pass | Exhaustive human wording/offline/system-manual language-switch review remains NOT_RUN |
+| M06 | Automated editor/semantics/recreation coverage passes | Full TalkBack/200%text/landscape/input-accessibility manual exercise remains NOT_RUN |
+| M07 | Synthetic lossless/orientation/metadata evidence and bounded manual output acceptance retained | Wider independent inspector checks of identifying-field removal/allowed opt-out/color-alpha-HDR cases remain unverified where not recorded |
+| M08 | No authorized social upload-preview exercise | Keep layout-guidance claims; under blueprint§16 this is a documented limit, not a reason to publish a post or a universal template-release blocker |
+| M09 | No signed production candidate, established public cert, install/upgrade or Obtainium acceptance | Requires stable custody, actual signed bytes, two increasing versionCodes and an authorized source from which Obtainium can fetch assets |
+| M10 | Actual tracked Start/dark-Settings PNGs visually inspected; authentic historical development captures | Their source is13b50c18, not a new7cbed17d capture. Final candidate images/current docs/About/notes acceptance remains open; do not fabricate or silently replace captures |
+
+This is a reconciliation, not a waiver or an assertion that every missing
+exercise must be restarted. Reuse accepted scope and group only genuinely
+missing manual checks in a later authorized candidate session. M01/M05/M06/M07
+and other applicable functional requirements are not all closed; G3/G4/G5
+remain partial/open. G6 has accepted unsigned build/source evidence but lacks
+signed delivery/upgrade acceptance. G7 is the later public-stable milestone.
+No current functional-publication readiness is claimed.
+
+### Signing and update dependencies
+
+The [bounded signing plan](RELEASING.md#bounded-private-candidate-signing-plan--not-authorized)
+is prepared, not authorized. No repository-established production certificate
+or published release was found; this does not prove no external key exists.
+Resolve existing identity/custody before any new key or signature operation.
+
+M09 cannot be established with only the frozen code1APK: a second increasing-code
+signed candidate is a different artifact. It needs its own source/version/input
+review and applicable assurance disposition; the current artifact-specific B
+exception does not automatically cover it. An equal-code reinstall/debug package
+is not the required sequential upgrade. Actual GitHub-backed Obtainium tracking
+also needs accessible release assets; there are no releases currently and no
+publication authority. Preserve M09 as NOT_RUN, not an implicit deferral or a
+reason to publish automatically.
+
+Earlier entries below preserve the status at their respective checkpoints.
+
+
 ## Current source-material validation PASS — 2026-11-02
 
 Source kit41372832634 and complete source-material staging41373814270
@@ -102,21 +169,14 @@ canonical legal assets byte-match their archived sources in debug and
 release. These checks do not establish whole license/source/publisher
 clearance or runtime16KiB support. HEIC/AVIF/JXL remain deferred from0.1.0.
 
-### Remaining delivery acceptance
+### Remaining delivery acceptance (reconciled 2026-11-02)
 
-1. Reuse the user's accepted import/edit/export/share/next-image UX checks.
-   Complete only missing evidence for final full-size PNG/WebP appearance,
-   geometry/metadata, applicable resource/receiver/device and accessibility
-   requirements; do not restart the accepted codec investigations.
-2. Freeze the actual distribution source before regenerating corresponding
-   source materials and running its independent unsigned rebuild. The
-   e516aa89 assets/rebuild are historical. Current dependency evidence is
-   still a reviewed subset, not active complete publisher verification;
-   no automatic repeated unavailable-signature/source-copy searches.
-3. Establish/authorize stable FixMyShot signing custody separately, then
-   verify exact signed bytes, sequential same-certificate install/update,
-   Obtainium flow and truthful final screenshots/docs before authorized
-   merge/tag/publication. No key/signature/release/deployment occurred here.
+The current matrix above supersedes this entry's former pending rebuild/source/
+four-file wording. Those exact-source checks and the bounded manual comparison
+are accepted; N01 is closed. Complete only the listed unresolved applicable
+manual/resource/accessibility scope. Stable signing/custody, signed inspection,
+sequential upgrade/Obtainium and exact final assets require their distinct evidence
+and authority. No new keys, signatures, publication or physical test occurred.
 
 
 ## Current functional checkpoint — 2026-10-29

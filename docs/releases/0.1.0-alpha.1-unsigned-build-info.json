@@ -64,6 +64,53 @@
       "final_corresponding_source_approved": false,
       "engineering_source_material_coverage_accepted": true,
       "n01_closure_receipt": "../feasibility/evidence/n01-implementation-7cbed17d/review.json"
+    },
+    "delivery_reconciliation": {
+      "status": "NOT_READY_FOR_FUNCTIONAL_PUBLICATION",
+      "owner": "../TESTING.md#current-delivery-reconciliation--2026-11-02",
+      "accepted_manual_scope": "General UX2.2, consecutive-image/picker flow and requested PNG/WebP four-file review remain closed by maintainer report",
+      "unresolved_manual_scope": [
+        "M03 actual16KiB runtime; skipped legacy SAF retained as a best-effort limitation, not a new mandatory retrofit",
+        "M04 full100-item mixed/process-kill/low-space/provider exercise",
+        "M05 exhaustive human/offline locale review",
+        "M06 full TalkBack/200%text/landscape/input-accessibility exercise",
+        "M07 wider independent inspector/privacy/color-alpha-HDR cases where unverified",
+        "M10 final exact-candidate images/current public assets"
+      ],
+      "conditional_social_scope": "M08 remains layout-guidance-only; no social publication requested",
+      "sequential_upgrade": "M09_NOT_RUN_REQUIRES_TWO_INCREASING_CODE_SIGNED_CANDIDATES_AND_AUTHORIZED_OBTAINIUM_SOURCE"
+    },
+    "signing_preparation": {
+      "status": "PREPARED_NOT_AUTHORIZED_CUSTODY_UNRESOLVED",
+      "plan": "../RELEASING.md#bounded-private-candidate-signing-plan--not-authorized",
+      "repository_established_public_certificate": null,
+      "external_key_existence": "UNKNOWN_NOT_INFERRED_FROM_REPOSITORY",
+      "approved_private_key_access_channel": "NOT_ESTABLISHED",
+      "key_created": false,
+      "repository_secrets_or_permissions_changed": false,
+      "exact_frozen_unsigned_artifact_only": true,
+      "second_candidate_or_publication_authorized": false
+    },
+    "current_tracked_screenshot_inspection": {
+      "owner": "../ARTWORK.md#current-tracked-screenshot-inspection--2026-11-02",
+      "actual_bytes_viewed": true,
+      "capture_source": "13b50c1827317fa208829fa50381d5111fbb32d1",
+      "recaptured_from_executable_source": false,
+      "final_M10_approved": false,
+      "files": [
+        {
+          "path": "fastlane/metadata/android/en-US/images/phoneScreenshots/1.png",
+          "bytes": 501606,
+          "git_blob": "5a4f9214806648ffaf89342578623b026ae9c056",
+          "sha256": "1840199c8d6e6d88300097298e016cd393c1e924f8713f2c02d1ca40820b3da8"
+        },
+        {
+          "path": "fastlane/metadata/android/en-US/images/phoneScreenshots/2.png",
+          "bytes": 95035,
+          "git_blob": "5783c08185e193913565787332357805a86c1442",
+          "sha256": "9f6081c5ee460aad5d1eeadbde766a734aaf206476d38deace2923107e28caea"
+        }
+      ]
     }
   },
   "compiled_tree": "32723ea9cbaac3b1db3f6f891cb368bf8b11aa18",

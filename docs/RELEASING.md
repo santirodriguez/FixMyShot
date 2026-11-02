@@ -3,7 +3,7 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. Physical final acceptance, final-source closure/rebuild, stable signing custody, sequential upgrades, final screenshots, merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The exact `7cbed17d` unsigned runtime now has a verified byte-identical independent rebuild in [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088); this does not prove a future changed distribution source or signed bytes. Nothing here authorizes a key, signature, merge or release.
+> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. The exact-source independent rebuild and bounded source/license engineering review are complete. Applicable remaining manual acceptance, stable signing custody, sequential upgrades, final screenshots and separately authorized merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The exact `7cbed17d` unsigned runtime now has a verified byte-identical independent rebuild in [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088); this does not prove a future changed distribution source or signed bytes. Nothing here authorizes a key, signature, merge or release.
 
 ## Approved assurance exception and unsigned receipt
 
@@ -38,6 +38,67 @@ and explicit signing authority, sign only the bound unsigned bytes, then record
 the public certificate, verify actual signed APK/manifest/alignment, and complete
 fresh install, sequential same-certificate upgrade and Obtainium evidence.
 A later public release needs separate authority.
+
+## Bounded private-candidate signing plan — not authorized
+
+Status: **PREPARED / CUSTODY UNRESOLVED / NOT AUTHORIZED**.
+This is a reviewable scope for a later explicit decision, not permission to
+create a key, write repository secrets, sign, install, hand off or publish.
+
+| Binding | Exact prepared target |
+| --- | --- |
+| Application | org.cajapersonal.fixmyshot |
+| Version |0.1.0-alpha.1, versionCode1 |
+| Compiled source/tree |7cbed17de44f4bc4ff31b62270ace3bd5a51b492 /32723ea9cbaac3b1db3f6f891cb368bf8b11aa18 |
+| Unsigned APK |12,340,030bytes; SHA2561e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42 |
+| Baseline/reproduction |CI41338068328 / independent41369848088, full-byte identity |
+| Source materials |Existing34104279-byte archivec9124e8d3d1e966d3b4dbfd1b1eb0fa8a88c7b51af655ce8a438ab9cbd5f48fa; N01closed |
+| Intended output after future authority |One privately staged FixMyShot-0.1.0-alpha.1-universal.apk and non-secret verification receipt |
+
+Before requesting execution, establish whether an independently held FixMyShot
+identity already exists. If so, reuse its verified public certificate and approved
+private custody; do not replace it. If not, a new FixMyShot-only long-lived
+identity and independent encrypted backup need explicit authority and an approved
+custody/access channel. Repository evidence establishes neither an existing key
+nor its absence. No secret, keystore, password or recovery material belongs in
+chat, source, public logs, build evidence or these receipts. This work does not
+provision a private-key channel or ask the maintainer to install/run local tools.
+
+The later authorized operation would:
+
+1. Verify the exact original unsigned hash/size and preserve those bytes.
+2. Use the established FixMyShot identity through its approved custody channel;
+   record only the public certificate fingerprint.
+3. Sign one output copy with the existing pinned Android SDK tooling, without
+   rebuilding the app or changing ID/version/permissions/defaults/codecs.
+4. Verify the actual signature, manifest/versions/permissions and ELF/ZIP alignment;
+   update non-secret BUILD-INFO from actual signed bytes. Never alter signed bytes.
+5. Stage the output privately for separately authorized acceptance. Installation/
+   handoff, repository secrets/permissions, a second candidate, merge/tag/release,
+   store upload and website deployment are not silently included.
+
+Signing a validation candidate does not close the remaining [manual matrix](TESTING.md#current-delivery-reconciliation--2026-11-02)
+or establish functional-release readiness. All pending acceptance must retain
+its actual status. A Go for preparation is not execution authority.
+
+### Sequential upgrade and Obtainium dependency
+
+Only code1is frozen. M09 requires two same-ID/same-certificate candidates with
+increasing codes. A future code2or other changed artifact requires a separate
+concrete version/source/input review, build evidence and applicable assurance
+decision; the exact code1B exception is not inherited. Do not change the planned
+ledger, manufacture an older candidate or call an equal-code reinstall an upgrade.
+
+The GitHub source in Obtainium reads release information/assets. No release
+currently exists, so authentic install/update tracking cannot be established from
+the unsigned CI artifact alone. Preserve it as NOT_RUN until a separately
+authorized channel and suitable candidates exist. Any proposal to change M09's
+first-release timing or requirement needs an explicit governing amendment;
+none is adopted by this plan. This dependency does not authorize publication.
+
+Primary references checked2026-11-02:
+[Android signing/custody](https://developer.android.com/studio/publish/app-signing)
+and [Obtainium GitHub source](https://wiki.obtainium.imranr.dev/sources/#github).
 
 ## The release kit
 

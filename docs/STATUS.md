@@ -1,5 +1,33 @@
 # Completion status
 
+## Delivery evidence reconciled; private signing scope prepared — 2026-11-02
+
+The [current delivery matrix](TESTING.md#current-delivery-reconciliation--2026-11-02)
+reuses accepted automated/manual evidence and closes stale rebuild/source/four-file
+pending wording. Source/license engineering and N01 remain complete; runtime7cbed17d
+and the exact unsignedAPK/source assets are unchanged. No new CI or device exercise.
+
+Remaining functional scope includes actual16KiB runtime (legacy SAF remains best effort),
+full100-item failure exercise, human locale/accessibility and broader independent
+inspector cases. M08 remains layout-guidance-only under the blueprint; no social
+post is requested. Final candidate screenshots and M09 signed install/sequential
+upgrade/Obtainium remain open. This is not full functional-publication readiness.
+
+Both tracked1080x1920RGB screenshots were visually inspected and matched to the
+current Git blobs. They remain authentic13b50c18development captures, not newly
+captured7cbed17d screenshots. README already labels them honestly; no replacement
+or fabricated current-build claim was made. [Artwork evidence](ARTWORK.md#current-tracked-screenshot-inspection--2026-11-02)
+records exact bytes and the visible-panel source comparison.
+
+A [bounded private signing plan](RELEASING.md#bounded-private-candidate-signing-plan--not-authorized)
+pins one exactalpha1/code1unsignedAPK. Existing external key existence/custody is
+unknown; no public production certificate or release is established in GitHub.
+No private-key channel is provisioned. The plan is PREPARED, NOT AUTHORIZED.
+M09 needs a second increasing-code signed candidate and an authorized accessible
+Obtainium source; it cannot be claimed from the lone frozen code1CI artifact.
+No version/code/key/secrets/permissions/signing/merge/tag/release change is made.
+
+
 ## N01 closed; source/license engineering review complete — 2026-11-02
 
 The [bounded implementation review](feasibility/runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02)

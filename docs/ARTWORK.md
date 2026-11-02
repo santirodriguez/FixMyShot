@@ -45,3 +45,28 @@ patterns are retained as engineering evidence rather than promotional screenshot
 
 `docs/assets/badges/donate.svg` is the repository's GPL-3.0-only support button, with
 accessible title/description and the existing author donation destination.
+
+## Current tracked screenshot inspection — 2026-11-02
+
+The actual current tracked image bytes were opened and visually inspected.
+Their Git blob hashes match the inspected candidate tree; both are1080x1920,
+8-bit RGB PNG without alpha. No image was replaced or edited.
+
+| Image | Git blob | SHA256 | Observed content |
+| --- | --- | --- | --- |
+|1.png |5a4f9214806648ffaf89342578623b026ae9c056 |1840199c8d6e6d88300097298e016cd393c1e924f8713f2c02d1ca40820b3da8 |Light Start, original supplied branding, tagline and Choose images |
+|2.png |5783c08185e193913565787332357805a86c1442 |9f6081c5ee460aad5d1eeadbde766a734aaf206476d38deace2923107e28caea |Dark Settings, theme/language choices and closed Help/Privacy disclosures |
+
+They remain authentic development captures from13b50c18. Source comparison
+13b50c18..7cbed17d shows the Settings additions are inside the closed Help
+disclosure and callback wiring; that supports consistency of the visible panel,
+not a claim that these files were captured from7cbed17d. Start callback changes
+likewise do not constitute a new capture. No visible version label was repainted.
+The dark Settings capture also has low-contrast status-bar icons; it is historical
+image evidence, not proof of a current runtime defect.
+
+README already labels these images Development preview and makes no public
+download claim. Preserve that honest wording and the accepted captures.
+M10's final exact-candidate/locale/public-asset review remains open; source
+consistency, hashes and format alone do not close it. F-Droid/Play image export,
+additional marketing images and store submissions remain future work.
