@@ -1,7 +1,10 @@
-# Candidate-only dependency assurance decision — not adopted
+# Approved candidate-only dependency assurance decision
 
-Status: **PROPOSED / NOT APPROVED**. Preparing this document changes no
-trust record, Gradle policy, build input, release gate or publication authority.
+Status: **OPTION B APPROVED — 2026-11-02**. The maintainer explicitly chose
+“B. Sigamos” after reviewing this proposal. This records acceptance of residual
+issuer risk for the exact candidate below; proof classifications, active Gradle
+verification, build inputs and separate signing/publication authority do not change.
+The proposal filename is retained to preserve existing references.
 
 ## Current bounded facts
 
@@ -22,7 +25,7 @@ expose no independent binary assets in the inspected GitHub release
 metadata; their release text/Maven links do not authenticate the JAR bytes.
 No new acceptable issuer anchor was established.
 
-## Option A — keep the current rule (default)
+## Option A — retained rule for every other artifact
 
 Keep the issuer/distribution gate open until materially new credible
 primary evidence exists. Do not repeat completed captures or reinterpret
@@ -32,13 +35,13 @@ readiness is not claimed.
 
 ## Option B — explicitly accept residual issuer risk for this exact alpha
 
-Only by a separate explicit maintainer decision, accept the missing
+The explicit maintainer decision accepts the missing
 publisher corroboration for the exact frozen input set and exact
 0.1.0-alpha.1 / version code 1 unsigned APK above. Keep all 325 proofs and all 533
 pending identities accurately classified; do not relabel them authenticated.
-The exception would be artifact-specific, not namespace/key trust, not
+The exception is artifact-specific, not namespace/key trust, not
 permission to download changed same-version bytes, and not approval of
-a future source/version/hash. It would not enable a new active Gradle
+a future source/version/hash. It does not enable a new active Gradle
 verification policy; any such implementation needs separate review.
 
 Supporting evidence is the locked inputs, existing critical/runtime
@@ -53,4 +56,9 @@ signing custody, signed APK inspection, sequential upgrade/Obtainium,
 truthful screenshots, or separate merge/release/deployment authority.
 It does not authorize credentials, signing or publication.
 
-Until an explicit choice is recorded, Option A remains in force.
+Option B now applies only to the exact source/version/unsigned APK and frozen
+inputs above. Any changed binding requires a new decision; Option A remains the
+rule elsewhere. The machine-readable [assurance receipt](../releases/0.1.0-alpha.1-assurance.json)
+pins the inventory/proof-record fingerprints, runtime lock and component catalog.
+The [unsigned BUILD-INFO draft](../releases/0.1.0-alpha.1-unsigned-build-info.json)
+records verified preparation and explicitly unperformed signing/install steps.

@@ -1,6 +1,24 @@
 # Completion status
 
-## Technical source preparation complete; issuer disposition remains — 2026-11-02
+## Exact-alpha issuer-risk exception approved; unsigned delivery receipt prepared — 2026-11-02
+
+The maintainer explicitly chose Option B. The [approved decision](decisions/dependency-assurance-alpha-proposal.md)
+and [binding receipt](releases/0.1.0-alpha.1-assurance.json) apply only to
+0.1.0-alpha.1/code 1, compiled7cbed17d and the exact unsigned APK/input set.
+All325reviewed/533pending classifications remain unchanged. Further issuer
+capture is not required for that exact exception; no active Gradle verification
+or broader publisher trust is introduced. The [unsigned BUILD-INFO draft](releases/0.1.0-alpha.1-unsigned-build-info.json)
+now records original tools, APK/source identity, CI, rebuild and source assets.
+Its signed fields remain null/NOT_RUN. No new build or phone test is needed for
+this documentation-only decision.
+
+Source/license/preferred-form disposition and other applicable device/resource/
+accessibility requirements, final screenshots, stable signing custody, signed
+inspection, sequential upgrade/Obtainium and separate publication authority remain.
+No key/signing/merge/release/deployment is authorized. Earlier entries below
+preserve their status at the time; the former NOT ADOPTED choice is superseded.
+
+## Technical source preparation complete; issuer disposition remained — 2026-11-02 (before approval)
 
 The unchanged7cbed17d runtime has passed99core/135API36 instrumented
 tests, accepted maintainer PNG/WebP manual confirmation, an independent

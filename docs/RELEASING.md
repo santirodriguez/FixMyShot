@@ -5,6 +5,32 @@
 > [!IMPORTANT]
 > **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. Physical final acceptance, final-source closure/rebuild, stable signing custody, sequential upgrades, final screenshots, merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The exact `7cbed17d` unsigned runtime now has a verified byte-identical independent rebuild in [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088); this does not prove a future changed distribution source or signed bytes. Nothing here authorizes a key, signature, merge or release.
 
+## Approved assurance exception and unsigned receipt
+
+The maintainer approved [Option B](decisions/dependency-assurance-alpha-proposal.md)
+only for the exact alpha/input set/APK bound in the
+[assurance receipt](releases/0.1.0-alpha.1-assurance.json). All325reviewed and
+533pending identities retain their labels; no broader publisher trust or active
+Gradle verification is introduced. Do not reopen completed issuer captures for
+this exact exception. Changed bindings require a new decision.
+
+The [unsigned BUILD-INFO draft](releases/0.1.0-alpha.1-unsigned-build-info.json)
+is populated from original CI evidence, the independent byte-identical rebuild
+and verified source-material receipts. It is not final public BUILD-INFO.json.
+Final source/license/preferred-form disposition, applicable remaining device/
+resource/accessibility requirements and truthful screenshots still need their
+own disposition; this decision does not waive them.
+
+No production signing identity is established by the repository evidence.
+Before any separately authorized key/signing operation, resolve whether an
+existing FixMyShot identity must be reused and how its stable custody/backup
+is maintained. Do not infer that an external key does not exist. Never put keys
+or passwords in chat, source, artifacts or receipts. After applicable preparation
+and explicit signing authority, sign only the bound unsigned bytes, then record
+the public certificate, verify actual signed APK/manifest/alignment, and complete
+fresh install, sequential same-certificate upgrade and Obtainium evidence.
+A later public release needs separate authority.
+
 ## The release kit
 
 | Owner | Purpose |

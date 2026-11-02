@@ -1,5 +1,26 @@
 # Compatibility and validation scope — 2026-10-22
 
+## Approved exact-alpha issuer-assurance exception — 2026-11-02
+
+The maintainer explicitly chose Option B in the [bounded assurance decision](dependency-assurance-alpha-proposal.md).
+This qualifies the remaining issuer-corroboration gate only for version
+0.1.0-alpha.1/code 1, executable source 7cbed17de44f4bc4ff31b62270ace3bd5a51b492 and
+the 12,340,030-byte unsigned APK SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42, using the exact frozen inputs.
+
+All 325 reviewed proofs and 533 pending identities retain their classifications.
+No new publisher anchor, binary/source equivalence, namespace/key trust or
+active Gradle verification is established. Changed source/version/input/APK
+invalidates this exception. The [receipt](../releases/0.1.0-alpha.1-assurance.json)
+binds the decision to the existing evidence. The immutable blueprint is preserved.
+
+This removes the requirement to find further issuer corroboration for that
+specific alpha before proceeding with remaining preparation. It does not waive
+source/license/preferred-form disposition, other applicable device/resource/
+accessibility gates, stable signing custody, signed inspection, sequential
+upgrade/Obtainium, truthful screenshots or separate merge/release/deployment
+authority. No key, signing or publication operation is authorized.
+
 ## Accepted manual PNG/WebP confirmation — 2026-11-01
 
 The maintainer explicitly accepted the requested final PNG/WebP output

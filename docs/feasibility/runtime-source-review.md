@@ -34,8 +34,10 @@ complete offline build or final corresponding-source clearance.
 The [remaining issuer partition](google-source-copy-review.md#exact-remaining-runtime-partition)
 still has two runtime binaries plus nine runtime metadata files pending,
 with522other frozen files pending. Proof counts and inactive verification
-policy are unchanged. A separately proposed assurance exception, if any,
-is not adopted merely by preparing these materials. No signing,
+policy are unchanged. The maintainer subsequently approved the
+[exact-alpha issuer-risk exception](../decisions/dependency-assurance-alpha-proposal.md)
+on2026-11-02; it does not approve source/license/preferred-form disposition
+or reclassify pending issuer identities. No signing,
 publication or new phone test occurred. Actions assets are temporary
 staging; receipts and deterministic pinned producers preserve recovery.
 

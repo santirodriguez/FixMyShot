@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "status": "UNSIGNED_CANDIDATE_NOT_RELEASED",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.1",
+  "version_code": 1,
+  "git_tag": null,
+  "source_commit": "7cbed17de44f4bc4ff31b62270ace3bd5a51b492",
+  "corresponding_source_url": null,
+  "unsigned_apk_sha256": "1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42",
+  "signed_apk": {
+    "filename": null,
+    "bytes": null,
+    "sha256": null,
+    "certificate_sha256": null,
+    "manifest_inspection": "NOT_RUN",
+    "signature_verification": "NOT_RUN",
+    "elf_zip_16k_alignment": "NOT_RUN"
+  },
+  "actual_toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9 (original CI java-version/gradle-version)",
+    "android_sdk": "platforms;android-36 (setup pin); command-line sdkmanager 12.0 (original CI)",
+    "build_tools": "36.0.0 (setup pin; original build passed)",
+    "gradle": "9.4.1 (original CI gradle-version)",
+    "agp": "9.2.1 (compiled-source version catalog)",
+    "kotlin": "2.4.21 (compiled-source plugin catalog; Gradle embedded Kotlin is 2.3.0)",
+    "ndk": "28.2.13676358 (setup pin; original native build passed)",
+    "cmake": "3.22.1 (setup pin; original SDK install log)",
+    "native_source_and_license_receipt": "../feasibility/native-source-review.md"
+  },
+  "verification": {
+    "source_bound_automated_evidence": {
+      "workflow_run": 41338068328,
+      "core_tests": 99,
+      "api36_instrumented_tests": 135,
+      "status": "PASS",
+      "baseline_artifact_id": 13095978797,
+      "baseline_zip_sha256": "57dea88ff891ebc49df65a1ec1b3deec6cbdaa6df4285d61382579fc899c756c"
+    },
+    "dependency_authentication": "325_REVIEWED_533_PENDING_EXACT_ALPHA_RESIDUAL_RISK_ACCEPTED",
+    "independent_unsigned_rebuild": {
+      "workflow_run": 41369848088,
+      "status": "PASS_FULL_BYTE_IDENTITY",
+      "apk_bytes": 12340030,
+      "apk_sha256": "1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42"
+    },
+    "device_and_fidelity_evidence": "MAINTAINER_REPORTED_MANUAL_ACCEPTANCE for the requested PNG/WebP comparison; no new independent physical pixel/PSNR/metadata result",
+    "fresh_install": "SIGNED_PRODUCTION_CANDIDATE_NOT_RUN",
+    "same_certificate_upgrade": "NOT_RUN",
+    "obtainium_install_and_update": "NOT_RUN",
+    "remaining_limitations": [
+      "Final source/license/preferred-form disposition remains open; staged source is not publisher proof or binary/source equivalence.",
+      "Other applicable device/resource/accessibility requirements and final truthful screenshots remain distinct.",
+      "HEIC/AVIF/JXL outputs deferred from 0.1.0; original failed evidence retained.",
+      "Stable signing custody, signed APK inspection, fresh install, sequential upgrade and Obtainium are not accepted by this unsigned draft.",
+      "No key, production signing, merge, tag, release or deployment authorized."
+    ]
+  },
+  "compiled_tree": "32723ea9cbaac3b1db3f6f891cb368bf8b11aa18",
+  "unsigned_apk_bytes": 12340030,
+  "assurance_exception": "0.1.0-alpha.1-assurance.json",
+  "corresponding_source_status": "TECHNICAL_MATERIALS_VERIFIED_FINAL_CLEARANCE_OPEN",
+  "source_materials": {
+    "receipt": "../feasibility/evidence/source-materials-7cbed17d.json",
+    "workflow_run": 41373814270,
+    "artifact_id": 13110605926,
+    "archive_bytes": 34104279,
+    "archive_sha256": "c9124e8d3d1e966d3b4dbfd1b1eb0fa8a88c7b51af655ce8a438ab9cbd5f48fa",
+    "source_kit_receipt": "../feasibility/evidence/source-kit-7cbed17d.json"
+  }
+}
