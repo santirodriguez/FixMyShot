@@ -3,7 +3,7 @@ name: Exact source kit
 on:
   push:
     branches: ['release/**']
-    paths: ['.ci/source-kit-request.json']
+    paths: ['.ci/source-kit-request.json', '.github/workflows/source-kit.yml', 'scripts/prepare-source-kit.py', 'scripts/test-source-kit.py']
 permissions:
   contents: read
 concurrency:
@@ -48,8 +48,8 @@ jobs:
         run: |
           mkdir evidence restore-check
           cp controller/.ci/source-kit-request.json evidence/request.json
-          python3 project/scripts/prepare-source-kit.py project upstream/libwebp evidence/FixMyShot-source.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/source-kit.json
-          python3 project/scripts/prepare-source-kit.py project upstream/libwebp evidence/repeat.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/repeat.json
+          python3 controller/scripts/prepare-source-kit.py project upstream/libwebp evidence/FixMyShot-source.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/source-kit.json
+          python3 controller/scripts/prepare-source-kit.py project upstream/libwebp evidence/repeat.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/repeat.json
           cmp evidence/FixMyShot-source.tar.gz evidence/repeat.tar.gz
           tar -xzf evidence/FixMyShot-source.tar.gz -C restore-check
           (cd restore-check && sha256sum -c MANIFEST.sha256 > ../evidence/member-checksums.txt)

@@ -3,11 +3,14 @@
 import hashlib
 import importlib.util
 import json
+import io
 from pathlib import Path
 import shutil
 import subprocess
+import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec=importlib.util.spec_from_file_location('kit',Path(__file__).with_name('prepare-source-kit.py'))
 m=importlib.util.module_from_spec(spec)
@@ -91,6 +94,45 @@ class SourceKit(unittest.TestCase):
         commit=m.git(self.repo,'rev-parse','HEAD').decode().strip()
         tree=m.git(self.repo,'rev-parse','HEAD^{tree}').decode().strip()
         with self.assertRaises(ValueError):m.sources(self.repo,commit,tree)
+
+    def test_long_source_name_survives_deterministic_archive_and_offline_regeneration(self):
+        name='generated-'+('callback_'*16)+'.aidl'
+        original=b'long generated source name; preserve every byte\n'
+        (self.repo/name).write_bytes(original)
+        m.git(self.repo,'add',name)
+        m.git(self.repo,'-c','user.name=Source fixture','-c','user.email=fixture@example.invalid',
+              'commit','--quiet','-m','Long source-name fixture')
+        commit=m.git(self.repo,'rev-parse','HEAD').decode().strip()
+        tree=m.git(self.repo,'rev-parse','HEAD^{tree}').decode().strip()
+        webp=self.base/'webp'
+        webp.mkdir()
+        m.git(webp,'init','--quiet')
+        for i in range(342):(webp/f'f{i:03}').write_bytes(b'x')
+        (webp/'source').write_bytes(b'0'*(8073794-342))
+        m.git(webp,'add','--all')
+        m.git(webp,'-c','user.name=Source fixture','-c','user.email=fixture@example.invalid',
+              'commit','--quiet','-m','Full-count source fixture')
+        webp_commit=m.git(webp,'rev-parse','HEAD').decode().strip()
+        webp_tree=m.git(webp,'rev-parse','HEAD^{tree}').decode().strip()
+        with patch.object(m,'WEBP_COMMIT',webp_commit),patch.object(m,'WEBP_TREE',webp_tree):
+            first,report=m.package(self.repo,commit,tree,webp)
+            second,_=m.package(self.repo,commit,tree,webp)
+            self.assertEqual(first,second)
+            self.assertEqual(report['archive_format'],'POSIX_PAX')
+            restored=self.base/'kit'
+            restored.mkdir()
+            with tarfile.open(fileobj=io.BytesIO(first),mode='r:gz') as archive:
+                member=archive.getmember('project/'+name)
+                self.assertEqual(archive.extractfile(member).read(),original)
+                self.assertEqual(member.mode,0o644)
+                archive.extractall(restored,filter='data')
+            manifest=json.loads((restored/'PINNED-SOURCES.json').read_text())
+            for label,record in manifest['repositories'].items():
+                m.snapshot.restore(restored/record['directory'],record,
+                    (restored/'source-control'/f'{label}.commit').read_bytes())
+            third,_=m.package(restored/'project',commit,tree,restored/'upstream/libwebp')
+            self.assertEqual(first,third)
+            self.assertEqual((restored/'project'/name).read_bytes(),original)
 
 
 if __name__=='__main__':
