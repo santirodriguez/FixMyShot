@@ -3,7 +3,7 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. Physical final acceptance, final-source closure/rebuild, stable signing custody, sequential upgrades, final screenshots, merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The historical `5d568a7e`/`e516aa89` rebuilds do not prove this candidate. Nothing here authorizes a key, signature, merge or release.
+> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. Physical final acceptance, final-source closure/rebuild, stable signing custody, sequential upgrades, final screenshots, merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The exact `7cbed17d` unsigned runtime now has a verified byte-identical independent rebuild in [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088); this does not prove a future changed distribution source or signed bytes. Nothing here authorizes a key, signature, merge or release.
 
 ## The release kit
 
@@ -64,6 +64,19 @@ byte comparator for another clean build of that same source.
 A fresh [GitHub-hosted VM](https://docs.github.com/en/actions/concepts/runners/github-hosted-runners) and an empty cache are execution properties, not dependency/publisher authentication. Even identical APK bytes leave strict dependency verification, physical acceptance and signing gates open. This same-environment byte comparison also does not prove portability to every build host.
 
 ## 02c · Stage recoverable project and native sources
+
+The explicit [source-kit workflow](../.github/workflows/source-kit.yml)
+reuses this existing offline packer when
+[its pinned request](../.ci/source-kit-request.json) changes on a release
+branch. It checks out the requested exact project and official pinned
+WebP commit with read-only, non-persisted checkout credentials. It
+generates twice, checks every manifest member, restores original Git
+identities offline and regenerates a third identical archive. It
+does not build/sign/publish an APK. The initial request targets the
+accepted7cbed17d runtime; inspect the terminal job and original artifact
+before claiming that new source kit prepared. An Actions artifact is
+temporary staging, not a public release/source download or complete
+other-runtime/build-tool source mirror.
 
 Use [prepare-source-kit.py](../scripts/prepare-source-kit.py) with existing local
 public Git objects, an explicit accepted source commit/tree and the exact

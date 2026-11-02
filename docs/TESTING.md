@@ -1,5 +1,37 @@
 # Testing and evidence
 
+## Exact-runtime independent unsigned rebuild PASS — 2026-11-02 UTC
+
+[Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
+completed SUCCESS, control556b1d1b8a478def4dcfc5589468960df9a16871,
+compiled source7cbed17de44f4bc4ff31b62270ace3bd5a51b492/tree
+32723ea9cbaac3b1db3f6f891cb368bf8b11aa18. The existing workflow
+proved pristine exact checkout, empty Gradle/project outputs and
+--no-build-cache/--rerun-tasks; logs preserve those checks. Core XML:
+99tests,0failures,0errors,0skipped. No emulator or signing ran.
+
+Original artifact13108034320,47705316bytes,ZIP SHA256
+9ed14965e7183a547cff25f3cab4582328983940d6579cab5e7c133e35007719,
+was independently downloaded and verified for size/digest/CRC/unique
+safe paths. Its comparison JSON records byte_identical=true and the
+correct control/source/baseline identities. The actual rebuilt unsigned
+APK was compared directly with the original CI41338068328 APK:
+all12340030bytes identical, SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+This accepts reproducibility of that exact runtime, not a future changed
+distribution source, complete publisher/source clearance or signed bytes.
+The rebuild report's physical_acceptance=NOT_RUN describes that job;
+the separate maintainer-reported manual acceptance remains recorded.
+
+An explicit source-kit job now reuses the existing deterministic packer
+for that exact project and full pinned libwebp sources. It performs
+two generations, per-member checks, offline Git-identity restoration
+and a third regeneration before accepting equal bytes. It builds/signs/
+publishes no APK and does not mirror all other dependencies or establish
+complete corresponding-source clearance. Inspect its original final
+artifact separately; no source-kit PASS is inferred from workflow creation.
+
+
 ## PNG/WebP manual confirmation accepted — 2026-11-01
 
 The maintainer confirmed the requested output comparison was satisfactory

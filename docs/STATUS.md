@@ -1,5 +1,33 @@
 # Completion status
 
+## Independent runtime rebuild PASS; exact sources being staged — 2026-11-02 UTC
+
+[Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
+completed SUCCESS for compiled7cbed17d. The independently downloaded
+original archive and actual unsigned APK were inspected; all12340030
+APK bytes match the original baseline exactly. Core99passed.
+The [full receipt](TESTING.md#exact-runtime-independent-unsigned-rebuild-pass--2026-11-02-utc)
+keeps compiled/control identities, archive/APK hashes, fresh-cache proof
+and limits. This closes that exact-runtime comparison.
+
+The PNG/WebP four-file review remains closed by accepted maintainer
+confirmation; no upload or repeat request. Ordinary CI41338068328
+core99/API36 instrumented135 and the HEIC/AVIF/JXL deferrals stand.
+
+The new explicit source-kit request reuses the existing offline packer
+on GitHub-hosted checkout of exact project7cbed17d and libwebp4fa21912.
+Only source preparation is requested: no APK build, dependency change,
+signing or public release. Two generations plus restored regeneration
+must agree and every source member/hash/Git identity must validate.
+Actual job/artifact acceptance remains pending until inspected.
+
+Remaining work is exact candidate source-material completeness/disposition
+and applicable dependency/license review, remaining separate device/
+resource/accessibility requirements and controlled signing/upgrade/
+Obtainium/final screenshots/publication. A source kit alone is not full
+corresponding-source or publisher approval. Historical sections below
+retain their scoped results and must not restart accepted tests.
+
 ## Manual PNG/WebP confirmation accepted; independent rebuild requested — 2026-11-01
 
 The maintainer accepted the requested four-file output comparison by

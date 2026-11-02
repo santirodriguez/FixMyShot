@@ -56,8 +56,10 @@ two 100-item real-codec/simulated-provider cases and stored-alpha/render evidenc
 retain their recorded scope.
 
 [Independent unsigned rebuild 41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
-is requested for that exact runtime against the verified original APK; no
-reproducibility PASS is claimed until the actual comparison is inspected.
+passed for that exact runtime: the actual rebuilt unsigned APK and original
+12340030-byte APK are fully byte-identical. Exact project/libwebp source-kit
+preparation is requested separately; this is not complete source/publisher
+or signed distribution acceptance.
 Applicable remaining device/resource/accessibility/recovery coverage,
 dependency/source/license disposition, final source materials, stable signing,
 signed install/upgrade/Obtainium and truthful final screenshots still require

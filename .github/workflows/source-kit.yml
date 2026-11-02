@@ -1,0 +1,83 @@
+name: Exact source kit
+# Explicit source-material preparation; no APK build, signing or publication.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/source-kit-request.json']
+permissions:
+  contents: read
+concurrency:
+  group: source-kit-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source-kit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: controller
+          persist-credentials: false
+      - name: Validate explicit source and accepted baseline
+        id: request
+        run: |
+          python3 controller/scripts/check-independent-rebuild.py request controller/.ci/source-kit-request.json --github-output "$GITHUB_OUTPUT"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          request = json.loads(Path('controller/.ci/source-kit-request.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('source_tree=' + request['source_tree'] + '\n')
+          PY
+          python3 controller/scripts/test-source-kit.py
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ steps.request.outputs.source_commit }}
+          path: project
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: webmproject/libwebp
+          ref: 4fa21912338357f89e4fd51cf2368325b59e9bd9
+          path: upstream/libwebp
+          persist-credentials: false
+      - name: Generate twice from exact Git objects and restore offline
+        env:
+          SOURCE_COMMIT: ${{ steps.request.outputs.source_commit }}
+          SOURCE_TREE: ${{ steps.request.outputs.source_tree }}
+        run: |
+          mkdir evidence restore-check
+          cp controller/.ci/source-kit-request.json evidence/request.json
+          python3 project/scripts/prepare-source-kit.py project upstream/libwebp evidence/FixMyShot-source.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/source-kit.json
+          python3 project/scripts/prepare-source-kit.py project upstream/libwebp evidence/repeat.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/repeat.json
+          cmp evidence/FixMyShot-source.tar.gz evidence/repeat.tar.gz
+          tar -xzf evidence/FixMyShot-source.tar.gz -C restore-check
+          (cd restore-check && sha256sum -c MANIFEST.sha256 > ../evidence/member-checksums.txt)
+          python3 restore-check/restore-source-snapshot.py > evidence/restored-identities.jsonl
+          python3 restore-check/prepare-source-kit.py restore-check/project restore-check/upstream/libwebp evidence/restored.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/restored-kit.json
+          cmp evidence/FixMyShot-source.tar.gz evidence/restored.tar.gz
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = {
+              'schema': 1,
+              'scope': 'EXACT_PROJECT_AND_FULL_WEBP_SOURCE_KIT_ONLY',
+              'repeated_archive_identical': True,
+              'all_manifest_members_verified': True,
+              'original_git_identities_restored_offline': True,
+              'restored_archive_identical': True,
+              'complete_corresponding_source_clearance': False,
+              'signing_or_publication': False,
+          }
+          Path('evidence/verification.json').write_text(json.dumps(report, indent=2) + '\n')
+          PY
+          rm evidence/repeat.tar.gz evidence/restored.tar.gz
+          (cd evidence && sha256sum FixMyShot-source.tar.gz source-kit.json verification.json > SHA256SUMS.txt)
+      - name: Preserve source kit and verification receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: source-kit-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/
