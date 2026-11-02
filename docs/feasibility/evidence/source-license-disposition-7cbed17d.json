@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "scope": "BOUNDED_EXACT_ALPHA_LICENSE_AND_SOURCE_DISPOSITION",
+  "status": "REVIEW_COMPLETE_WITH_SOURCE_CORRESPONDENCE_HOLD_N01",
+  "reviewed_on": "2026-11-02",
+  "compiled_source": "7cbed17de44f4bc4ff31b62270ace3bd5a51b492",
+  "unsigned_apk_bytes": 12340030,
+  "unsigned_apk_sha256": "1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42",
+  "runtime_catalog_sha256": "f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407",
+  "declared_runtime_license_compatibility": "NO_INCOMPATIBILITY_IDENTIFIED_WITH_GPL_3_ONLY",
+  "declared_runtime_licenses": {
+    "Apache-2.0": 132,
+    "BSD-3-Clause": 1
+  },
+  "actual_unsigned_apk_canonical_legal_assets": {
+    "status": "PASS",
+    "exact_files": 8,
+    "compiled_source_originals_used": true
+  },
+  "original_materials": {
+    "artifact_id": 13110605926,
+    "zip_bytes": 58473971,
+    "zip_sha256": "c653657179360f35ab20613f0b41bef20c1e99e3bb31ba61bac71b10d0243d37",
+    "archive_bytes": 34104279,
+    "archive_sha256": "c9124e8d3d1e966d3b4dbfd1b1eb0fa8a88c7b51af655ce8a438ab9cbd5f48fa",
+    "members": 1282,
+    "all_manifest_digests_replayed": true,
+    "runtime_source_archives_opened": 95,
+    "source_archive_license_instances": 47,
+    "unique_source_archive_license_texts": 1,
+    "source_archive_apache_text_sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0",
+    "canonical_apache_file_contains_additional_build_tool_license_texts": true
+  },
+  "aar_resource_inputs": {
+    "total": 1074,
+    "parseable_xml": 747,
+    "text": 161,
+    "png": 166,
+    "png_owners": {
+      "androidx.appcompat:appcompat:1.7.1": 150,
+      "androidx.core:core:1.16.0": 16
+    },
+    "png_with_compiled_npTc_chunks": 0,
+    "original_preferred_editing_form_for_every_resource_proved": false
+  },
+  "source_material_stage": "COMPLETE_PREVIOUSLY_ACCEPTED",
+  "remaining_source_holds": [
+    {
+      "id": "N01",
+      "coordinate": "androidx.emoji2:emoji2:1.4.0",
+      "scope": "Correspondence of historical Noto generation and relocation material to the frozen bundled implementation",
+      "already_complete": "FlatBuffers 1.12 version/material identification: 45 matching declaration layouts, complete frozen constant subset, schema and generated Java staged",
+      "not_proved": [
+        "Exact external Noto build checkout",
+        "Implementation correspondence beyond declarations and constant sets"
+      ],
+      "next_discriminating_evidence": "Establish primary release external-source/generation context or compare the relevant generated/relocated implementation with the frozen classes; no repeat of unchanged declaration/source captures."
+    }
+  ],
+  "final_corresponding_source_approved": false,
+  "upstream_binary_source_equivalence_proved": false,
+  "complete_offline_toolchain_required_by_this_review": false,
+  "issuer_exception_changed": false,
+  "publisher_review_counts_changed": false,
+  "new_android_or_phone_test": false,
+  "signing_merge_or_publication_authorized": false,
+  "review_owner": "../runtime-license-review.md",
+  "primary_license_references": [
+    "https://apache.org/licenses/GPL-compatibility.html",
+    "https://www.apache.org/licenses/LICENSE-2.0",
+    "https://www.gnu.org/licenses/gpl-3.0.html"
+  ],
+  "gpl_source_of_text": "Exact compiled project LICENSE; direct canonical GNU HTML retrieval unavailable during this review"
+}

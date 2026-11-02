@@ -1,5 +1,48 @@
 # Runtime license declarations and embedded notices
 
+## Exact-alpha license and source disposition — 2026-11-02
+
+Reviewed candidate: executable7cbed17de44f4bc4ff31b62270ace3bd5a51b492,
+unsigned12,340,030-byte APK SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+The [bounded review receipt](evidence/source-license-disposition-7cbed17d.json)
+separates completed checks from the one remaining source-correspondence hold.
+
+| Review boundary | Disposition |
+| --- | --- |
+| Declared managed runtime licenses | No incompatibility identified:132Apache-2.0 and oneBSD-3-Clause declarations, under the unchanged133-component catalog |
+| Native notices | Existing WebP COPYING/PATENTS, NDK BSD/Apache and AndroidX Apache source records retained |
+| Actual current APK canonical legal assets | PASS: all8required entries match the exact compiled-source originals |
+| Published source-archive license texts |47instances of one original Apache text retained; its terms match the canonical text's Apache portion. The canonical file also retains additional build-tool license texts, which do not prove those tools are packaged runtime components |
+| Exact source-material archive | All1282members and every manifest digest pass;95source archives (94companions plus mapped Protobuf) are readable |
+| Published AAR resource/build inputs |1074files:747parseable XML,161text files,166PNG. PNG owners are AppCompat150/Core16; no compiled npTc nine-patch chunks found. These observations do not prove every image's original preferred editing form |
+| Known supplemental omissions | DataStore JNI, Core stable AIDL/build inputs, FlatBuffers Java, Noto schema/generated Java and both relocation mappings are staged |
+| Remaining source correspondence | **HOLD N01**: exact external Noto/generation/relocation correspondence for Emoji2 is not established by declaration/constant-set matching alone |
+
+Apache's [compatibility statement](https://apache.org/licenses/GPL-compatibility.html)
+supports inclusion of Apache-2.0 software in GPLv3 projects; its
+[redistribution conditions](https://www.apache.org/licenses/LICENSE-2.0)
+still require the applicable license/notices. The exact project LICENSE
+§§1/6 remains the authority for corresponding source. No universal copyright,
+patent, security or whole build-tool review is claimed.
+
+N01 is a specific evidentiary limit, not a newly missing library or a request
+to repeat the completed FlatBuffers1.12version-identification exercise.
+The source/version inventory and notice-byte checks are complete. Final
+corresponding-source/distribution clearance stays open until N01 has a defensible
+disposition. A useful next investigation must establish the release's external
+source/generation context or compare the relevant generated/relocated
+implementation with the frozen classes. Repeating the same45declarations,
+checksums or source capture cannot close it.
+
+Do not require an entirely offline toolchain or byte-identical upstream AARs
+merely to label source material available: those are different claims. Conversely,
+a source bundle and a byte-identical app rebuild do not by themselves establish
+that historical Noto source corresponds to the bundled implementation.
+The [approved issuer-risk exception](../decisions/dependency-assurance-alpha-proposal.md)
+does not waive N01. No new APK build, emulator/phone test, dependency/legal-asset
+change, signing, merge or publication occurred.
+
 Scope: frozen sourcef9434ab9,487/858 generated inventory and exact app lock.
 This review covers declared runtime licenses and archived text, not all native
 source obligations, publisher authentication, legal compatibility or release

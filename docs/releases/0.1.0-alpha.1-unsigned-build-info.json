@@ -49,12 +49,20 @@
     "same_certificate_upgrade": "NOT_RUN",
     "obtainium_install_and_update": "NOT_RUN",
     "remaining_limitations": [
-      "Final source/license/preferred-form disposition remains open; staged source is not publisher proof or binary/source equivalence.",
+      "Source inventory/declared-license compatibility/canonical notice checks complete. Final corresponding-source clearance retains N01: Noto/Emoji2 generation/relocation correspondence. No binary/source equivalence claimed.",
       "Other applicable device/resource/accessibility requirements and final truthful screenshots remain distinct.",
       "HEIC/AVIF/JXL outputs deferred from 0.1.0; original failed evidence retained.",
       "Stable signing custody, signed APK inspection, fresh install, sequential upgrade and Obtainium are not accepted by this unsigned draft.",
       "No key, production signing, merge, tag, release or deployment authorized."
-    ]
+    ],
+    "source_license_disposition": {
+      "receipt": "../feasibility/evidence/source-license-disposition-7cbed17d.json",
+      "declared_license_compatibility": "NO_INCOMPATIBILITY_IDENTIFIED",
+      "actual_canonical_legal_assets": "PASS_8",
+      "source_material_stage": "COMPLETE",
+      "remaining_source_hold": "N01_NOTO_EMOJI2_GENERATION_RELOCATION_CORRESPONDENCE",
+      "final_corresponding_source_approved": false
+    }
   },
   "compiled_tree": "32723ea9cbaac3b1db3f6f891cb368bf8b11aa18",
   "unsigned_apk_bytes": 12340030,

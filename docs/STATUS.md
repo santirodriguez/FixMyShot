@@ -1,5 +1,18 @@
 # Completion status
 
+## License checks closed; one source-correspondence hold remains — 2026-11-02
+
+The [bounded review](feasibility/runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
+finds no declared runtime/native license incompatibility, rechecks all8canonical
+legal assets in the actual unsigned APK and all1282source-material manifest
+members, and classifies1074AAR inputs. No new Android/phone tests were needed.
+Source inventory, notices and FlatBuffers version identification are complete.
+The one remaining source hold is **N01**, correspondence of the supplied Noto
+generation/relocation material to Emoji2's frozen implementation. Final
+corresponding-source clearance remains open; repeat captures/declaration-only
+comparisons cannot close N01. B remains approved for issuer risk only.
+Other delivery/signing/install/publication gates retain their distinct scope.
+
 ## Exact-alpha issuer-risk exception approved; unsigned delivery receipt prepared — 2026-11-02
 
 The maintainer explicitly chose Option B. The [approved decision](decisions/dependency-assurance-alpha-proposal.md)

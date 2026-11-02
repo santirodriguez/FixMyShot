@@ -17,9 +17,13 @@ this exact exception. Changed bindings require a new decision.
 The [unsigned BUILD-INFO draft](releases/0.1.0-alpha.1-unsigned-build-info.json)
 is populated from original CI evidence, the independent byte-identical rebuild
 and verified source-material receipts. It is not final public BUILD-INFO.json.
-Final source/license/preferred-form disposition, applicable remaining device/
-resource/accessibility requirements and truthful screenshots still need their
-own disposition; this decision does not waive them.
+The [exact-alpha source/license review](feasibility/runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
+now closes declared-license compatibility and current canonical notice-byte
+checks. Source staging is complete; final source clearance has one defined
+hold, N01 (Noto/Emoji2 generation/relocation correspondence). Do not restart
+completed source capture/version identification or require a whole offline
+toolchain to close that different issue. Applicable remaining device/resource/
+accessibility requirements and truthful screenshots retain their own scope.
 
 No production signing identity is established by the repository evidence.
 Before any separately authorized key/signing operation, resolve whether an

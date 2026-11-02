@@ -1,5 +1,22 @@
 # Published runtime source material
 
+## Source review narrowed to one correspondence hold — 2026-11-02
+
+The [current disposition](runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
+closes the declared-license compatibility and current canonical notice-byte
+checks, and replays the exact source-material archive. All747AAR XML files parse;
+166PNGs have no compiled npTc chunks;47source-archive license texts are one
+original Apache text. This is bounded inspection, not proof of preferred
+editing provenance for every resource or semantic equivalence of every class.
+
+Only **N01** remains in this source review: establish a defensible correspondence
+between the supplied Noto generation/relocation material and the frozen Emoji2
+implementation. Exact checkout and method bodies remain unproved;45matching
+declarations/constant subsets already close version identification and must not
+be repeated as a new source verdict. Source-material staging is accepted;
+final corresponding-source clearance is still withheld. The [machine receipt](evidence/source-license-disposition-7cbed17d.json)
+retains precise boundaries and the next discriminating evidence.
+
 ## Current runtime sources prepared and verified — 2026-11-02
 
 [Actions41373814270](https://github.com/santirodriguez/FixMyShot/actions/runs/41373814270)
