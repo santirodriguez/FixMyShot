@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble the accepted 7cbed runtime source materials, offline; no release approval."""
+"""Assemble the bound alpha.2 runtime source materials, offline; no release approval."""
 import argparse
 import gzip
 import hashlib
@@ -11,7 +11,7 @@ import tarfile
 import zipfile
 import zlib
 
-KIT_SHA = '77d6cadd5ad75d4f4d6c7295c18f6e244e90e82eeee0176982d62264848083b0'
+KIT_SHA = 'be9a836178f58c7c4db5e4b580241c06ea53efc409fe4b926745085ad77792a0'
 CAPTURE_SHA = 'f88e271b106e6f92484d7be1e5ac605ea66d6ff1e70bf0882e2501101fb5da31'
 PLAN_SHA = '3a0e1aae590a2296f8315d097b083758663c5f8fbb22e5f50c39bf60047fb08e'
 PROTO_SHA = '2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971'
@@ -80,15 +80,15 @@ def package(kit, source_root, binaries, evidence, supplemental, protobuf):
                     raise ValueError('Oversized evidence file')
                 add(prefix+'/'+path.relative_to(root).as_posix(), path.read_bytes())
     add('prepare-source-material-bundle.py', Path(__file__).read_bytes())
-    record = {'schema': 1, 'scope': 'ACCEPTED_7CBED_SOURCE_MATERIALS_NOT_COMPLETE_DISTRIBUTION_APPROVAL',
-              'compiled_source': '7cbed17de44f4bc4ff31b62270ace3bd5a51b492',
+    record = {'schema': 1, 'scope': 'BOUND_ALPHA2_SOURCE_MATERIALS_NOT_COMPLETE_DISTRIBUTION_APPROVAL',
+              'compiled_source': '1f89c979a7b432e6117670d170ce8ca0df5e2567',
               'project_webp_kit_sha256': KIT_SHA, 'source_capture_sha256': CAPTURE_SHA,
               'upstream_protobuf_sha256': PROTO_SHA, 'aar_material_owners': owners,
               'publisher_authentication_approved': False, 'binary_source_equivalence_approved': False,
               'complete_offline_build': False, 'final_corresponding_source_approved': False,
               'signing_or_publication': False}
     add('SOURCE-MATERIALS.json', (json.dumps(record, indent=2)+'\n').encode())
-    add('README-SOURCES.md', b'''# FixMyShot 7cbed source materials
+    add('README-SOURCES.md', b'''# FixMyShot alpha.2 source materials
 
 The nested project-and-webp-source.tar.gz retains the exact accepted project
 and full pinned WebP source plus its original Git restoration helpers. Extract
