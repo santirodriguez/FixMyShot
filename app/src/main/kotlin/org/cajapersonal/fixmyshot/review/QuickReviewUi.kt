@@ -291,10 +291,10 @@ internal fun CompareOriginalButton(comparing: Boolean, enabled: Boolean, onCompa
 @Composable
 internal fun QuickWorkspace(modifier: Modifier, stage: @Composable () -> Unit, tools: @Composable () -> Unit) {
     BoxWithConstraints(modifier) {
-        val toolsHeightLimit = maxHeight * .40f
+        val toolsHeightLimit = maxHeight * .50f
         if (maxWidth > maxHeight) Row(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1.5f).fillMaxHeight()) { stage() }
-            Column(Modifier.weight(1f).fillMaxHeight().clipToBounds().verticalScroll(rememberScrollState()).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { tools() }
+            Column(Modifier.weight(1f).fillMaxHeight().clipToBounds().verticalScroll(rememberScrollState()).padding(vertical = 8.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { tools() }
         } else Column(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f).fillMaxWidth()) { stage() }
             Column(Modifier.fillMaxWidth().heightIn(max = toolsHeightLimit).clipToBounds().verticalScroll(rememberScrollState()).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { tools() }

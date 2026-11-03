@@ -660,15 +660,14 @@ internal fun ReviewScreen(
                     QuickTemplateCards(draft.destination, editEnabled,
                         onSelect = { finishGesture(); onTemplate(it) },
                         onCustomize = { finishGesture(); advanced = true; tool = ReviewTool.DESTINATION })
-                    Column(Modifier.padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Column(Modifier.padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         val quick = stagedPlan?.settings
-                        if (quick != null) QuickFramingRow(quick.fit, editEnabled, { onFit(it, true) })
-                        CompareOriginalButton(comparing, preview != null && editEnabled) { comparing = it }
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalAlignment = Alignment.CenterVertically) {
                             OutlinedButton(onClick = { backgroundsOpen = true }, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.editor_background)) }
                             OutlinedButton(onClick = { finishGesture(); advanced = true }, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.quick_customize)) }
                         }
+                        if (quick != null) QuickFramingRow(quick.fit, editEnabled, { onFit(it, true) })
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween) {
                             QuickOutputFormat(draft.batch.format, draft.destination, editEnabled) {
@@ -680,6 +679,7 @@ internal fun ReviewScreen(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
 
+                        CompareOriginalButton(comparing, preview != null && editEnabled) { comparing = it }
                         if (plans.any { it.requiresReview }) TextButton(onClick = { advanced = true; tool = ReviewTool.EXPORT }) {
                             Text(stringResource(R.string.editor_review_required), color = MaterialTheme.colorScheme.error)
                         }

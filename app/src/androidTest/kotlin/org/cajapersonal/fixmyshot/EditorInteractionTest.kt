@@ -97,6 +97,7 @@ class EditorInteractionTest {
     }
 
     private fun click(label: String) {
+        if (find(label) == null) reveal(label)
         await { find(label) != null }
         var node = requireNotNull(find(label))
         while (!node.isClickable && node.parent != null) node = node.parent
@@ -440,6 +441,7 @@ class EditorInteractionTest {
 
     @Test fun quickTemplatesAndModeSwitchPreserveTheSameDraft() = fixture { scenario, model, label ->
         caseName = "automatic"
+        reveal(label(R.string.quick_customize))
         assertNotNull(find(label(R.string.quick_customize)))
         assertNull(find(label(R.string.editor_framing)))
         caseName = "automatic-initial"
@@ -460,6 +462,8 @@ class EditorInteractionTest {
         click(label(R.string.editor_background))
         reveal(label(R.string.quick_background_edge))
         click(label(R.string.quick_background_edge))
+        click(label(R.string.quick_done))
+        assertNull(find(label(R.string.quick_background_edge)))
         await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         val selected = model.draft
         click(label(R.string.quick_customize))
@@ -570,6 +574,8 @@ class EditorInteractionTest {
         click(label(R.string.editor_background))
         reveal(label(R.string.quick_background_edge))
         click(label(R.string.quick_background_edge))
+        click(label(R.string.quick_done))
+        assertNull(find(label(R.string.quick_background_edge)))
         await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         assertEquals(before.batch, model.draft.batch)
         assertSame(sample, model.preview)
