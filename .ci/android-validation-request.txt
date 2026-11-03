@@ -1,3 +1,3 @@
-Validate activity system bar appearance on focus return after Settings dialog dismissal.
-Preserve dark-dialog correction; capture Settings light and returned editor light as well as dark. All test assertions retained.
+Validate system bar contrast on dialog focus acquisition and all theme-return captures.
+Collector now requires existing dark/light/return capture files, preventing silent screenshot omission. Preserve all instrumentation assertions.
 profile=current

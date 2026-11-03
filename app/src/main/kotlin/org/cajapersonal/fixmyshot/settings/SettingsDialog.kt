@@ -32,7 +32,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.window.DialogWindowProvider
 import androidx.compose.ui.graphics.luminance
@@ -76,12 +76,24 @@ internal fun SettingsDialog(
         // Dialogs own a separate window; the Activity's system-bar appearance does not update it.
         val dialogView = LocalView.current
         val lightSurface = MaterialTheme.colorScheme.surface.luminance() > 0.5f
-        SideEffect {
-            (dialogView.parent as? DialogWindowProvider)?.window?.let { dialogWindow ->
-                WindowCompat.getInsetsController(dialogWindow, dialogWindow.decorView).apply {
-                    isAppearanceLightStatusBars = lightSurface
-                    isAppearanceLightNavigationBars = lightSurface
+        val dialogWindow = (dialogView.parent as? DialogWindowProvider)?.window
+        DisposableEffect(dialogWindow, lightSurface) {
+            fun applyAppearance() {
+                dialogWindow?.let { target ->
+                    WindowCompat.getInsetsController(target, target.decorView).apply {
+                        isAppearanceLightStatusBars = lightSurface
+                        isAppearanceLightNavigationBars = lightSurface
+                    }
                 }
+            }
+            val observer = dialogView.viewTreeObserver
+            val listener = android.view.ViewTreeObserver.OnWindowFocusChangeListener { focused ->
+                if (focused) applyAppearance()
+            }
+            observer.addOnWindowFocusChangeListener(listener)
+            applyAppearance()
+            onDispose {
+                if (observer.isAlive) observer.removeOnWindowFocusChangeListener(listener)
             }
         }
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface) {
