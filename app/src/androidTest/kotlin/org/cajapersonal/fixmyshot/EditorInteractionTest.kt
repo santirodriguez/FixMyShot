@@ -692,9 +692,15 @@ class EditorInteractionTest {
         } finally {
             reveal(label(R.string.theme_light))
             click(label(R.string.theme_light))
+            caseName = "settings-light"
+            settleUi()
+            capture()
             click(label(R.string.close_action))
         }
         await { find(label(R.string.preview_description)) != null }
+        caseName = "settings-return-light"
+        settleUi()
+        capture()
         assertEquals(before, model.draft)
     }
 

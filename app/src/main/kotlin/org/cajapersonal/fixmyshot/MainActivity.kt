@@ -63,6 +63,21 @@ import java.io.IOException
 import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
+    private var darkSystemBars = false
+
+    private fun applySystemBarAppearance() {
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !darkSystemBars
+            isAppearanceLightNavigationBars = !darkSystemBars
+        }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        // A dismissed dialog can restore stale system-bar flags after composition.
+        if (hasFocus) applySystemBarAppearance()
+    }
+
     private val worker = LatestPreviewWorker()
     // A separate serial queue allows one main preview and one small thumbnail decode at most.
     private val thumbnailWorker = Executors.newSingleThreadExecutor()
@@ -139,8 +154,8 @@ class MainActivity : AppCompatActivity() {
                 scheduleThumbnails(model.draft.images.map { it.id })
             }
             SideEffect {
-                WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = !dark
-                WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightNavigationBars = !dark
+                darkSystemBars = dark
+                applySystemBarAppearance()
             }
             FixMyShotTheme(dark) {
                 if (settingsOpen) SettingsDialog(

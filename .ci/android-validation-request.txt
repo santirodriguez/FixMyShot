@@ -1,3 +1,3 @@
-Validate Settings dialog system-bar icon contrast against actual themed surface, including existing dark Settings capture and mode persistence tests.
-Preserve accepted Preview2 geometry, package, production signing and all output/privacy guards.
+Validate activity system bar appearance on focus return after Settings dialog dismissal.
+Preserve dark-dialog correction; capture Settings light and returned editor light as well as dark. All test assertions retained.
 profile=current
