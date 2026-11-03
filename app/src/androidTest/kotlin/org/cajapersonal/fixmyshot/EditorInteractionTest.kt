@@ -118,6 +118,20 @@ class EditorInteractionTest {
         return false
     }
 
+    private fun systemBarsMatchTheme(light: Boolean): Boolean {
+        if (Build.VERSION.SDK_INT < 30) return true
+        var matches = false
+        test.runOnMainSync {
+            val focused = android.view.inspector.WindowInspector.getGlobalWindowViews()
+                .firstOrNull { it.hasWindowFocus() }
+            val appearance = focused?.windowInsetsController?.systemBarsAppearance
+            val mask = android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS or
+                android.view.WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+            matches = appearance != null && (appearance and mask) == if (light) mask else 0
+        }
+        return matches
+    }
+
     private fun toolPane(node: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
         if (node == null) return null
         val rect = Rect().also { node.getBoundsInScreen(it) }
@@ -692,7 +706,7 @@ class EditorInteractionTest {
         try {
             await { find(label(R.string.settings_title)) != null }
             click(label(R.string.theme_dark))
-            await { selectedChoice(label(R.string.theme_dark)) }
+            await { selectedChoice(label(R.string.theme_dark)) && systemBarsMatchTheme(light = false) }
             settleUi()
             capture()
             reveal(label(R.string.help_title))
@@ -705,13 +719,14 @@ class EditorInteractionTest {
             reveal(label(R.string.theme_light))
             click(label(R.string.theme_light))
             caseName = "settings-light"
-            await { selectedChoice(label(R.string.theme_light)) }
+            await { selectedChoice(label(R.string.theme_light)) && systemBarsMatchTheme(light = true) }
             settleUi()
             capture()
             click(label(R.string.close_action))
         }
         await { find(label(R.string.preview_description)) != null }
         caseName = "settings-return-light"
+        await { systemBarsMatchTheme(light = true) }
         settleUi()
         capture()
         assertEquals(before, model.draft)

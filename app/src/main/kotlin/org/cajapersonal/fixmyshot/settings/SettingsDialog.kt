@@ -86,13 +86,22 @@ internal fun SettingsDialog(
                     }
                 }
             }
+            // Dialog parameter updates can restore platform bar flags after this effect.
+            // Reapply on the next UI turn, after the current composition's window updates.
+            val deferredAppearance = Runnable { applyAppearance() }
+            fun requestAppearance() {
+                applyAppearance()
+                dialogView.removeCallbacks(deferredAppearance)
+                dialogView.post(deferredAppearance)
+            }
             val observer = dialogView.viewTreeObserver
             val listener = android.view.ViewTreeObserver.OnWindowFocusChangeListener { focused ->
-                if (focused) applyAppearance()
+                if (focused) requestAppearance()
             }
             observer.addOnWindowFocusChangeListener(listener)
-            applyAppearance()
+            requestAppearance()
             onDispose {
+                dialogView.removeCallbacks(deferredAppearance)
                 if (observer.isAlive) observer.removeOnWindowFocusChangeListener(listener)
             }
         }
