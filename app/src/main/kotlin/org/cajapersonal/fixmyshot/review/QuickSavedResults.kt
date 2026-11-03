@@ -1,5 +1,9 @@
 package org.cajapersonal.fixmyshot.review
 
+import org.cajapersonal.fixmyshot.design.ActionLabel
+import org.cajapersonal.fixmyshot.design.ActionIcon
+import org.cajapersonal.fixmyshot.design.ActionMark
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -32,9 +36,9 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean, nextIma
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(R.string.quick_saved_title),
                         style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.primary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.weight(1f))
-                    TextButton(onClick = onDetails) { Text(stringResource(R.string.quick_result_details)) }
+                    TextButton(onClick = onDetails) { ActionLabel(ActionMark.INFO, stringResource(R.string.quick_result_details)) }
                 }
                 Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -46,22 +50,22 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean, nextIma
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Button(onClick = onNextImage, enabled = enabled && nextImageEnabled,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
-                        Text(stringResource(R.string.quick_edit_another))
+                        ActionLabel(ActionMark.ADD, stringResource(R.string.quick_edit_another))
                     }
                     Text(stringResource(R.string.quick_edit_another_hint),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    HorizontalDivider()
+                    Spacer(Modifier.height(4.dp))
                     OutlinedButton(onClick = onView, enabled = enabled,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
-                        Text(stringResource(R.string.quick_view_saved))
+                        ActionLabel(ActionMark.VIEW, stringResource(R.string.quick_view_saved))
                     }
                     OutlinedButton(onClick = onShare, enabled = enabled,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
-                        Text(stringResource(R.string.quick_share_saved))
+                        ActionLabel(ActionMark.SHARE, stringResource(R.string.quick_share_saved))
                     }
                     TextButton(onClick = onContinueEditing, enabled = enabled) {
-                        Text(stringResource(R.string.quick_keep_editing))
+                        ActionLabel(ActionMark.EDIT, stringResource(R.string.quick_keep_editing))
                     }
                 }
             }

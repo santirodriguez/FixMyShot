@@ -1,5 +1,9 @@
 package org.cajapersonal.fixmyshot.settings
 
+import org.cajapersonal.fixmyshot.design.ActionLabel
+import org.cajapersonal.fixmyshot.design.ActionIcon
+import org.cajapersonal.fixmyshot.design.ActionMark
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
@@ -69,7 +73,7 @@ internal fun SettingsDialog(
             Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.settings_title), style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.weight(1f))
-                TextButton(onClick = onDismiss) { Text(stringResource(R.string.close_action)) }
+                TextButton(onClick = onDismiss) { ActionLabel(ActionMark.CLOSE, stringResource(R.string.close_action)) }
             }
             Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -141,7 +145,7 @@ private fun Choice(label: String, selected: Boolean, enabled: Boolean,
 private fun SettingsSection(title: String, content: @Composable () -> Unit) {
     Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerLow,
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)) {
-        Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(title, style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
             content()
         }
@@ -158,9 +162,9 @@ private fun SettingsDisclosure(title: String, content: @Composable () -> Unit) {
             TextButton(onClick = { expanded = !expanded }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)
                 .semantics { stateDescription = state }) {
                 Text(title, modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
-                Text(if (expanded) "\u2212" else "+")
+                Text(if (expanded) "\u2212" else "+", color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
-            if (expanded) Column(Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { content() }
+            if (expanded) Column(Modifier.padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) { content() }
         }
     }
 }

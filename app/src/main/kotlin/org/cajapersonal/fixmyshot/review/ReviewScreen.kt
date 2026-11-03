@@ -1,5 +1,9 @@
 package org.cajapersonal.fixmyshot.review
 
+import org.cajapersonal.fixmyshot.design.ActionLabel
+import org.cajapersonal.fixmyshot.design.ActionIcon
+import org.cajapersonal.fixmyshot.design.ActionMark
+
 import android.graphics.Bitmap
 import android.net.Uri
 import org.cajapersonal.fixmyshot.export.PendingMediaStoreRemoval
@@ -153,6 +157,7 @@ internal fun ReviewScreen(
     var confirmingOutput by remember { mutableStateOf<String?>(null) }
     var removingPending by remember { mutableStateOf<String?>(null) }
     var confirmingBatchReset by remember(draft) { mutableStateOf<DraftSession?>(null) }
+    var detailsExpanded by remember { mutableStateOf(false) }
     var confirmingDiscard by remember(draft) { mutableStateOf<DraftSession?>(null) }
     var advanced by rememberSaveable { mutableStateOf(false) }
     val advancedState = rememberSaveableStateHolder()
@@ -247,9 +252,9 @@ internal fun ReviewScreen(
         confirmButton = { TextButton(onClick = {
             confirmingDiscard = null
             onDiscard(discardedDraft)
-        }) { Text(stringResource(R.string.quick_discard)) } },
+        }, colors = androidx.compose.material3.ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.error)) { ActionLabel(ActionMark.DISCARD, stringResource(R.string.quick_discard)) } },
         dismissButton = { TextButton(onClick = { confirmingDiscard = null }) {
-            Text(stringResource(R.string.quick_keep_editing))
+            ActionLabel(ActionMark.EDIT, stringResource(R.string.quick_keep_editing))
         } },
     )
     val confirmationId = confirmingOutput
@@ -490,11 +495,11 @@ internal fun ReviewScreen(
     }
     if (confirmingSavedDiscard && sessionRestoreBlocked) AlertDialog(
         onDismissRequest = { confirmingSavedDiscard = false },
-        title = { Text(stringResource(R.string.quick_discard)) },
+        title = { ActionLabel(ActionMark.DISCARD, stringResource(R.string.quick_discard)) },
         text = { Text(stringResource(R.string.discard_session_confirmation)) },
-        dismissButton = { TextButton(onClick = { confirmingSavedDiscard = false }) { Text(stringResource(R.string.quick_keep_editing)) } },
+        dismissButton = { TextButton(onClick = { confirmingSavedDiscard = false }) { ActionLabel(ActionMark.EDIT, stringResource(R.string.quick_keep_editing)) } },
         confirmButton = { TextButton(onClick = { confirmingSavedDiscard = false; onDiscardUnavailableSession() },
-            enabled = !busy && !exportState.isLocked) { Text(stringResource(R.string.quick_discard)) } },
+            enabled = !busy && !exportState.isLocked) { ActionLabel(ActionMark.DISCARD, stringResource(R.string.quick_discard)) } },
     )
     if (requestCrop) CropConsentDialog(onCancel = { requestCrop = false }, onConfirm = {
         requestCrop = false; onFit(FitMode.FLEXIBLE, true)
@@ -532,9 +537,25 @@ internal fun ReviewScreen(
                 Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(stringResource(if (hasResults) R.string.quick_results else R.string.quick_details),
                         style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
-                    TextButton(onClick = { infoOpen = false }) { Text(stringResource(R.string.quick_done)) }
+                    TextButton(onClick = { infoOpen = false }) { ActionLabel(ActionMark.CLOSE, stringResource(R.string.quick_done)) }
                 }
-                Box(Modifier.weight(1f)) { panel(false) }
+                stagedPlan?.let { summary ->
+                    Surface(Modifier.fillMaxWidth().padding(16.dp), shape = MaterialTheme.shapes.medium,
+                        color = MaterialTheme.colorScheme.surfaceContainerLow) {
+                        Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(formatLabel(summary.settings.format), style = MaterialTheme.typography.titleMedium)
+                            Text(stringResource(if (summary.settings.metadata == MetadataPolicy.REMOVE_IDENTIFYING)
+                                R.string.editor_metadata_removed else R.string.editor_metadata_kept),
+                                style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                }
+                if (!hasResults && !hasFeedback) TextButton(onClick = { detailsExpanded = !detailsExpanded },
+                    modifier = Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.quick_details))
+                    Text(if (detailsExpanded) " −" else " +")
+                }
+                if (hasResults || hasFeedback || detailsExpanded) Box(Modifier.weight(1f)) { panel(false) }
             }
         }
     }
@@ -583,13 +604,16 @@ internal fun ReviewScreen(
     Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp).heightIn(min = 52.dp),
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            Image(painterResource(R.drawable.brand_header), stringResource(R.string.app_name),
+            if (draft.images.isNotEmpty()) Image(painterResource(R.drawable.brand_header), stringResource(R.string.app_name),
                 modifier = Modifier.weight(1f).height(42.dp), contentScale = ContentScale.Fit)
+            else Spacer(Modifier.weight(1f))
             if (draft.workingSourceIds.isNotEmpty() || sessionRestoreBlocked) TextButton(onClick = {
                 if (!editEnabled && !sessionRestoreBlocked) infoOpen = true
                 else if (sessionRestoreBlocked) confirmingSavedDiscard = true else confirmingDiscard = draft
-            }) { Text(stringResource(R.string.quick_discard)) }
-            TextButton(onClick = onSettings) { Text(stringResource(R.string.quick_settings)) }
+            }) { ActionLabel(ActionMark.DISCARD, stringResource(R.string.quick_discard)) }
+            androidx.compose.material3.FilledTonalIconButton(onClick = onSettings) {
+                ActionIcon(ActionMark.INFO, stringResource(R.string.quick_settings))
+            }
         }
         if (hasResults || hasFeedback) TextButton(onClick = { infoOpen = true }, modifier = Modifier.fillMaxWidth()) {
             Text(stringResource(if (hasResults) R.string.quick_open_results else R.string.quick_open_feedback))
