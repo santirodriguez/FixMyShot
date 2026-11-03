@@ -11,9 +11,19 @@ Do not use its unsigned identity or “no signed candidate” entries as current
   core99 and API36instrumentation135 including editor12. Original artifacts,
   source/APK receipts and independent v2 signature/content checks passed.
   The maintainer reports “Va bien”; retain that bounded visual/usability acceptance.
-- The Settings system-bar correction at57a58db9 updates the dialog's own window
-  from its actual surface luminance. Its exact-source CI and dark/light capture
-  acceptance are pending; do not infer PASS from the earlier preview.
+- The current Settings/Activity focus correction at e91342fd passed
+  [Actions41668536862](https://github.com/santirodriguez/FixMyShot/actions/runs/41668536862):
+  build and API36 smoke SUCCESS; optional legacy SAF SKIPPED. Original smoke
+  artifact13249145654 was downloaded and independently verified: 2,453,196 bytes,
+  SHA256 aae7e01bc2636182265c1e694e6ddba0ff85da916ed889fc5d8e154d1f42888b,
+  unique safe ZIP members, CRC and exact source receipt PASS.
+  Actual dark Settings and returned light editor captures show readable status
+  icons AND gesture indicators. The intermediate settings-light capture still
+  shows Dark selected: capture preceded the asynchronous theme update. It is
+  not evidence of the light dialog, and no complete three-state visual PASS is
+  claimed. Correct that capture synchronization in the next candidate validation
+  batch; do not start another unchanged run solely for this limitation. No new
+  Pixel test or production APK handoff is claimed.
 - PNG/WebP and accepted editing/picker evidence remain valid within their recorded
   bounds. Deferred HEIC/AVIF/JXL investigations are not restarted.
 
@@ -31,6 +41,27 @@ and wider independent metadata/color cases where unrecorded); and M09 sequential
 upgrade using increasing versionCodes plus an authorized obtainable asset source.
 Do not label unavailable evidence PASS or demand repetition of accepted checks.
 Merge, release/publication, Play enrollment and deployment remain separate gates.
+
+## Proposed next candidate preparation — approval pending
+
+Prepare 0.1.0-alpha.2 / versionCode2 with the existing production application ID,
+accepted Preview2 UI and bounded system-bar correction. First reconcile the
+ledger's actually distributed alpha.1 against its verified signed receipt;
+retain that row when adding code2. Keep dependency/native pins, permissions,
+normal PNG/WebP output and deferred-codec decisions unchanged.
+
+The preparation batch should synchronize the light-dialog screenshot with the
+actual applied theme, update current version/docs/About/notes, and produce one
+unsigned final-source build. Inspect its original APK, manifest and captures,
+compare dependency inputs against the completed alpha.1 review, then generate
+source materials and independently reproduce the same frozen source. Reuse
+unchanged review evidence; preserve pending delivery checks explicitly.
+
+This plan does not extend the artifact-specific Option B assurance exception.
+Present any changed binding with exact new source/input/APK hashes for a separate
+maintainer decision after the build. Production signing of those exact bytes,
+upgrade handoff, merge and publication remain separately authorized steps. Do
+not activate the existing code1 signing request for code2 or substitute inputs.
 
 ## Current delivery reconciliation — 2026-11-02
 
