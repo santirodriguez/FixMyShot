@@ -1,3 +1,3 @@
-Validate preview2 with bounded dialog-dismissal wait and scroll targeting limited to actual quick-panel tools.
-Prior build and all non-editor groups pass; retain all12 editor tests/assertions/timeouts and unchanged application source.
+Validate Settings dialog system-bar icon contrast against actual themed surface, including existing dark Settings capture and mode persistence tests.
+Preserve accepted Preview2 geometry, package, production signing and all output/privacy guards.
 profile=current

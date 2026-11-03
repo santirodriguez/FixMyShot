@@ -32,6 +32,11 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.window.DialogWindowProvider
+import androidx.compose.ui.graphics.luminance
+import androidx.core.view.WindowCompat
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -68,6 +73,17 @@ internal fun SettingsDialog(
     // verticalScroll competing at the top/bottom of a long Settings page.
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(
         usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
+        // Dialogs own a separate window; the Activity's system-bar appearance does not update it.
+        val dialogView = LocalView.current
+        val lightSurface = MaterialTheme.colorScheme.surface.luminance() > 0.5f
+        SideEffect {
+            (dialogView.parent as? DialogWindowProvider)?.window?.let { dialogWindow ->
+                WindowCompat.getInsetsController(dialogWindow, dialogWindow.decorView).apply {
+                    isAppearanceLightStatusBars = lightSurface
+                    isAppearanceLightNavigationBars = lightSurface
+                }
+            }
+        }
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.surface) {
         Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding()) {
             Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp), verticalAlignment = Alignment.CenterVertically) {
