@@ -71,7 +71,7 @@
   },
   "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
   "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED_SEE_0.1.0-alpha.2-assurance.json",
-  "production_signature": "NOT_AUTHORIZED_NOT_RUN",
+  "production_signature": "COMPLETED_AND_INDEPENDENTLY_VERIFIED_SEE_SIGNED_RECEIPT",
   "physical_alpha2_install": "NOT_RUN",
   "sequential_upgrade": "NOT_RUN",
   "obtainium": "NOT_RUN",
@@ -90,5 +90,6 @@
     ],
     "declared_permission_protection_level": "signature",
     "android_dangerous_or_network_permissions": []
-  }
+  },
+  "signed_candidate_receipt": "0.1.0-alpha.2-signed-build-info.json"
 }

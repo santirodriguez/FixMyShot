@@ -2,7 +2,10 @@
 
 Real changes. No imaginary release history.
 
-## Unreleased — 0.1.0-alpha.2
+## 0.1.0-alpha.2
+
+Signed Actions validation candidate handed off on 2026-11-03; no GitHub release.
+Installation and increasing-code upgrade acceptance remain pending.
 
 - Refine the home, information action and result buttons with a restrained layout and labelled icons.
 - Put common destinations before Google Play while retaining Original as the neutral default.
@@ -11,8 +14,9 @@ Real changes. No imaginary release history.
 - Preserve the installed alpha.1 identity in the version ledger; prepare code2 for a later same-certificate upgrade.
 - Keep PNG/lossless WebP output, permissions and dependency/native inputs unchanged.
 
-This candidate is not signed or distributed. Its final build, source materials,
-independent rebuild and artifact-specific assurance decision are pending.
+This candidate was signed and independently inspected after its verified build,
+source materials, byte-identical rebuild and exact artifact-specific assurance
+approval. Actual installation/upgrade acceptance remains pending.
 The maintainer accepted Preview2's visual/usability revision; no new Pixel
 measurement or complete theme-state capture acceptance is inferred.
 See [current evidence and remaining checks](docs/TESTING.md).

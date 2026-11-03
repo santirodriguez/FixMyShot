@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "status": "SIGNED_AND_VERIFIED__NOT_FUNCTIONAL_RELEASE_ACCEPTANCE",
+  "source_commit": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "unsigned_apk_sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa",
+  "signed_apk_sha256": "2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57",
+  "signed_apk_bytes": 12401557,
+  "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+  "package": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.2",
+  "version_code": 2,
+  "minimum_api_verified": 26,
+  "build_tools": "36.0.0",
+  "workflow_commit": "65a87483346562617264599f156965ef12ea7aa1",
+  "workflow_run_id": "41719563373",
+  "physical_install_test": "NOT_RUN",
+  "sequential_upgrade_test": "NOT_RUN",
+  "obtainium_test": "NOT_RUN",
+  "authorization": "Explicit maintainer \"si go\" for the exact alpha.2 signing and verification plan on 2026-11-03; no merge or release authorization",
+  "signing_authorized": true,
+  "artifact": {
+    "workflow_run": 41719563373,
+    "artifact_id": 13272275462,
+    "bytes": 10525601,
+    "sha256": "93f2235774c96951901066a181f7bd56a9e9eb1b6c14d0bca793a2c027f4c0ad",
+    "url": "https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373/artifacts/13272275462",
+    "expires_at": "2026-11-10T21:11:47Z"
+  },
+  "original_apksigner_report": {
+    "minimum_api": 26,
+    "v2": true,
+    "v3": true,
+    "signer_count": 1
+  },
+  "independent_inspection": {
+    "schema": 1,
+    "scope": "INDEPENDENT_APK_V2_SIGNATURE_CONTENT_AND_ORIGINAL_ENTRY_INSPECTION",
+    "signed_apk_bytes": 12401557,
+    "signed_apk_sha256": "2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57",
+    "unsigned_apk_sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa",
+    "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+    "rsa_sha256_v2_signature": "PASS",
+    "protected_content_chunks": 14,
+    "all_original_apk_entries_unchanged": true,
+    "added_signing_entries": [
+      "META-INF/FIXMYSHO.RSA",
+      "META-INF/FIXMYSHO.SF",
+      "META-INF/MANIFEST.MF"
+    ],
+    "native_library_data_offsets_unchanged_and_16k_aligned": 9,
+    "physical_install": "NOT_RUN",
+    "sequential_upgrade": "NOT_RUN"
+  },
+  "unsigned_build_receipt": "0.1.0-alpha.2-unsigned-build-info.json",
+  "assurance_receipt": "0.1.0-alpha.2-assurance.json",
+  "merge_or_release_authorized": false
+}

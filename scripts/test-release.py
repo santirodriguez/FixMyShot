@@ -29,6 +29,7 @@ class ReleaseChecks(unittest.TestCase):
             path.write_text(path.read_text().replace(current["version_name"], "0.1.0-alpha.1")
                             .replace(f'versionCode = {current["version_code"]}', "versionCode = 1"))
         self.ledger["releases"] = [dict(version_name="0.1.0-alpha.1", version_code=1, status="planned")]
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## Unreleased — 0.1.0-alpha.1\n")
 
     def write(self):
         (self.root / "docs/releases/ledger.json").write_text(json.dumps(self.ledger))

@@ -1,5 +1,30 @@
 # Testing and evidence
 
+## Alpha.2 signed candidate verified — 2026-11-03
+
+Explicitly authorized [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373)
+completed both jobs SUCCESS. Actual original signed artifact was downloaded and
+checked: 10,525,601 bytes, SHA256
+93f2235774c96951901066a181f7bd56a9e9eb1b6c14d0bca793a2c027f4c0ad,
+four safe unique ZIP members and CRC PASS. Signed APK: 12,401,557 bytes, SHA256
+2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57.
+
+Original apksigner verification from API26 reports v2/v3 PASS with the established
+app certificate. Independent RSA-SHA256 v2 certificate/signature and all14
+protected-content chunks PASS. Every original unsigned APK entry is unchanged;
+only the three expected META-INF signing entries were added. All9native library
+data offsets remain unchanged and ZIP16KiB aligned. This is structural evidence,
+not a new physical16KiB runtime test. The
+[signed receipt](releases/0.1.0-alpha.2-signed-build-info.json) retains exact
+unsigned/source/signer/run/artifact bindings.
+
+The code2 ledger row is distributed through the signed Actions validation
+channel, preventing its reuse for different bytes. No GitHub release exists.
+Physical alpha.2 install/increasing-code upgrade and Obtainium remain NOT_RUN.
+Next bounded handoff: install over production alpha.1 without uninstalling and
+confirm the actual update/launch. Preserve accepted Preview2/PNG/WebP/picker
+evidence and all other recorded manual limits; no repeat general comparison.
+
 ## Alpha.2 exact-source automated acceptance — 2026-11-03
 
 Source `1f89c979a7b432e6117670d170ce8ca0df5e2567` / tree `5b30eeeb7596ca595ac1a3ba880c64c356d17859`
@@ -36,7 +61,7 @@ artifact-specific Option B exception and signing authority do not qualify these
 new bytes automatically. The maintainer separately approved the same bounded
 Option B disposition for the exact alpha.2 bindings on 2026-11-03; the
 [alpha.2 assurance receipt](releases/0.1.0-alpha.2-assurance.json) records this.
-No alpha.2 signing or publication is authorized. Existing accepted manual evidence and remaining delivery
+Alpha.2 signing was subsequently authorized and verified; publication remains unauthorized. Existing accepted manual evidence and remaining delivery
 limits below retain their scope; no codec/picker/visual repeat requested.
 
 

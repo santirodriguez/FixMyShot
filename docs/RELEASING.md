@@ -3,19 +3,21 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Unsigned alpha.2 preparation.** The current planned candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
+> **Signed alpha.2 validation candidate.** The current candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
 > Alpha.1/code1 was signed in [Actions41543938314](https://github.com/santirodriguez/FixMyShot/actions/runs/41543938314), independently inspected and installed/opened by the maintainer. Its ledger row preserves the exact source, APK and public certificate.
-> Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; there is no signed alpha.2 APK. Historical alpha.1 receipts below remain bound to their original bytes.
-> No merge, signature of new bytes, release, store upload or publication is authorized by this preparation.
+> Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). Physical update acceptance remains pending. Historical alpha.1 receipts below remain bound to their original bytes.
+> No merge, release, store upload or publication is authorized by candidate signing.
 
-## Alpha.2 exact-candidate signing plan — not authorized
+## Alpha.2 exact-candidate signing — executed and verified
 
-The alpha.2 Option B decision is approved. Signing remains a separate decision.
-This prepared plan uses the existing app-signing identity and repository Actions
-secrets already used for alpha.1. It creates no key or secret and changes no
-credential, permission or environment setting.
+The maintainer separately authorized the exact signing operation on 2026-11-03.
+It completed in Actions41719563373 and its original signed artifact was
+independently inspected. The existing app-signing identity and repository secrets
+were reused; no key, secret, credential, permission or environment setting changed.
+[Download the original signed candidate artifact](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373/artifacts/13272275462) before
+2026-11-10. Installation/upgrade acceptance remains pending.
 
-| Binding | Exact proposed target |
+| Binding | Exact executed target |
 | --- | --- |
 | Compiled source/tree | 1f89c979a7b432e6117670d170ce8ca0df5e2567 / 5b30eeeb7596ca595ac1a3ba880c64c356d17859 |
 | Original build/artifact | Actions41710230009 / bootstrap13266133766 |
@@ -25,9 +27,8 @@ credential, permission or environment setting.
 | Existing public signer SHA256 | 33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445 |
 | Output | FixMyShot-0.1.0-alpha.2-universal.apk plus non-secret verification receipt |
 
-After explicit authority for this exact operation, update the existing signing
-workflow/script pins and request to these exact values. Sign a copy of the
-verified original APK, without rebuilding the app. Require its source/hash/size,
+The authorized workflow/script pins and request were updated to these exact
+values. A copy of the verified original APK was signed without rebuilding. Require its source/hash/size,
 production package/version, existing signer certificate, API26+ signature and
 ELF/ZIP alignment; inspect the actual signed APK and confirm that every original
 APK entry remains unchanged except the expected signing additions. Remove
@@ -35,10 +36,9 @@ temporary key material through the existing cleanup path. Stage the signed
 candidate in the existing seven-day Actions artifact channel, whose visibility
 was accepted for candidate delivery. Never expose secret values in reports.
 
-The current executable signing workflow and request still bind alpha.1; this
-documentation does not activate or repurpose them. A later authorization to sign
-alpha.2 includes the necessary bounded pin/request updates and the corresponding
-Actions execution and artifact inspection. It does not authorize a merge, tag,
+The current executable signing workflow and request now bind this exact alpha.2
+operation. Rerunning its authorized run signs the same bound candidate again;
+a changed input needs a new decision. Signing does not authorize a merge, tag,
 GitHub release, store upload, deployment or a new signing identity. Physical
 installation and the increasing-code upgrade remain unexecuted until actually
 reported or independently evidenced; Obtainium keeps its separate source limit.

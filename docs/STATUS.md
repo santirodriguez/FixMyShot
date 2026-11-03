@@ -9,8 +9,8 @@ their original archive/member hashes were independently verified.
 See the [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json).
 
 The maintainer separately approved the [exact alpha.2 Option B disposition](releases/0.1.0-alpha.2-assurance.json)
-on 2026-11-03, preserving all pending publisher classifications. No alpha.2 production signing, physical install,
-sequential upgrade, Obtainium acceptance, merge or publication is claimed.
+on 2026-11-03, preserving all pending publisher classifications. Subsequent exact-candidate signing passed Actions41719563373 and independent signature/content inspection. Physical alpha.2 install,
+sequential upgrade, Obtainium acceptance, merge and publication remain unperformed.
 Remaining manual/final-assets limits retain their [recorded scope](TESTING.md);
 do not repeat accepted general Preview2/PNG/WebP/picker tests.
 Earlier preparation entries below remain historical.
