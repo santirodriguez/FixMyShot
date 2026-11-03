@@ -37,7 +37,7 @@
   },
   "corresponding_source_materials": {
     "workflow_run": 41714329031,
-    "status": "COMPLETE_BUNDLE_IN_PROGRESS",
+    "status": "PASS_ORIGINAL_ARCHIVES_AND_ALL_MANIFEST_MEMBERS_VERIFIED",
     "project_webp_kit": {
       "workflow_run": 41713619657,
       "artifact_id": 13269321638,
@@ -47,7 +47,20 @@
       "project_files": 770,
       "webp_files": 343
     },
-    "prior_bundle_attempt": "FAILED_HISTORICAL_ALPHA1_KIT_HASH_PIN__CORRECTED_IN_bc7c12df"
+    "prior_bundle_attempt": "FAILED_HISTORICAL_ALPHA1_KIT_HASH_PIN__CORRECTED_IN_bc7c12df",
+    "artifact_id": 13269596362,
+    "artifact_bytes": 58608240,
+    "artifact_sha256": "926d549fa49406261d765d54962f3eb885fac98f8b42450c175181dc29e906d8",
+    "complete_bundle": {
+      "bytes": 34170964,
+      "sha256": "7804550f938ee944c6d5735644193fdd563eaf6feb1afc93d06d44c4a25dd3b1",
+      "members": 1282,
+      "manifest_members_verified": 1281,
+      "runtime_companion_archives_verified": 94,
+      "supplemental_protobuf_verified": true
+    },
+    "signing_or_publication": false,
+    "final_corresponding_source_distribution_approval": false
   },
   "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
   "artifact_specific_assurance": "PROPOSED_NOT_APPROVED_SEE_0.1.0-alpha.2-assurance.json",
