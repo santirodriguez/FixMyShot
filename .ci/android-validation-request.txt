@@ -1,2 +1,2 @@
-Validate the approved sober visual preview: home information action, labeled action icons, refined settings and confirmations. Preserve all runtime guards.
+Validate sober visual preview including qualified empty-header spacer. Preserve all runtime guards.
 profile=current

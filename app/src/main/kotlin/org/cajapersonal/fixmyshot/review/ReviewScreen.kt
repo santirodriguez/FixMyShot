@@ -606,7 +606,7 @@ internal fun ReviewScreen(
             verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             if (draft.images.isNotEmpty()) Image(painterResource(R.drawable.brand_header), stringResource(R.string.app_name),
                 modifier = Modifier.weight(1f).height(42.dp), contentScale = ContentScale.Fit)
-            else Spacer(Modifier.weight(1f))
+            else androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
             if (draft.workingSourceIds.isNotEmpty() || sessionRestoreBlocked) TextButton(onClick = {
                 if (!editEnabled && !sessionRestoreBlocked) infoOpen = true
                 else if (sessionRestoreBlocked) confirmingSavedDiscard = true else confirmingDiscard = draft
