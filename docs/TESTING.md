@@ -1,5 +1,37 @@
 # Testing and evidence
 
+## Visual preview delivery checkpoint — 2026-11-03
+
+The older delivery matrix below is historical for compiled source7cbed17d.
+Do not use its unsigned identity or “no signed candidate” entries as current facts.
+
+- Original alpha.1/code1 was signed and independently inspected from Actions41543938314;
+  the maintainer confirmed installation and launch. This does not prove sequential upgrade or Obtainium.
+- The separate debug Preview2 at86499cc0 passed Actions41631750308:
+  core99 and API36instrumentation135 including editor12. Original artifacts,
+  source/APK receipts and independent v2 signature/content checks passed.
+  The maintainer reports “Va bien”; retain that bounded visual/usability acceptance.
+- The Settings system-bar correction at57a58db9 updates the dialog's own window
+  from its actual surface luminance. Its exact-source CI and dark/light capture
+  acceptance are pending; do not infer PASS from the earlier preview.
+- PNG/WebP and accepted editing/picker evidence remain valid within their recorded
+  bounds. Deferred HEIC/AVIF/JXL investigations are not restarted.
+
+Before final distribution, bind the final approved executable source and version
+to new build/source packaging and applicable reproducibility/assurance receipts;
+the artifact-specific Option B and signed7cbed17d bytes do not automatically
+qualify modified UI binaries. Preserve completed dependency/source review where
+inputs remain unchanged rather than reopening it wholesale. Production signing
+of new bytes needs its own explicit authority.
+
+Remaining delivery gates: exact final candidate source/material co-location and
+public docs/About/screenshots; unresolved bounded manual coverage from M03–M07
+(actual16KiB runtime, full100-item failure exercise, human locales/accessibility
+and wider independent metadata/color cases where unrecorded); and M09 sequential
+upgrade using increasing versionCodes plus an authorized obtainable asset source.
+Do not label unavailable evidence PASS or demand repetition of accepted checks.
+Merge, release/publication, Play enrollment and deployment remain separate gates.
+
 ## Current delivery reconciliation — 2026-11-02
 
 Executable source remains7cbed17de44f4bc4ff31b62270ace3bd5a51b492.
