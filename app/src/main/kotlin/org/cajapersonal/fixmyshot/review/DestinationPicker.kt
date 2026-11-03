@@ -22,13 +22,12 @@ import org.cajapersonal.fixmyshot.core.*
 private data class DestinationGroup(val name: String, val ids: List<String>)
 private val destinationGroups = listOf(
     DestinationGroup("Original", listOf(DestinationCatalog.ORIGINAL)),
-    DestinationGroup("Google Play", listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE)),
+    DestinationGroup("WhatsApp", listOf(DestinationCatalog.WHATSAPP_CHAT, DestinationCatalog.WHATSAPP_STATUS)),
     DestinationGroup("Instagram", listOf(DestinationCatalog.INSTAGRAM_FEED,
         DestinationCatalog.INSTAGRAM_STORY, DestinationCatalog.INSTAGRAM_SQUARE)),
+    DestinationGroup("Facebook", listOf(DestinationCatalog.FACEBOOK_FEED, DestinationCatalog.FACEBOOK_SQUARE)),
     DestinationGroup("TikTok", listOf(DestinationCatalog.TIKTOK_PHOTO)),
-    DestinationGroup("WhatsApp", listOf(DestinationCatalog.WHATSAPP_STATUS, DestinationCatalog.WHATSAPP_CHAT)),
-    DestinationGroup("Facebook", listOf(DestinationCatalog.FACEBOOK_FEED,
-        DestinationCatalog.FACEBOOK_SQUARE)),
+    DestinationGroup("Google Play", listOf(DestinationCatalog.PLAY_PORTRAIT, DestinationCatalog.PLAY_PHONE)),
 )
 
 /** A surface is a stable output contract, not just an application logo or an aspect ratio. */
@@ -76,7 +75,7 @@ internal fun DestinationPicker(destination: DestinationChoice, enabled: Boolean,
                     Column {
                         TextButton(onClick = { group = if (group == platform.name) "" else platform.name },
                             modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
-                            Text(platform.name, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                            Text(if (platform.name == "Original") stringResource(R.string.quick_original_layout) else platform.name, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                             Text(if (group == platform.name) "\u2212" else "+")
                         }
                         if (group == platform.name) {
@@ -85,7 +84,7 @@ internal fun DestinationPicker(destination: DestinationChoice, enabled: Boolean,
                                     onSelect(DestinationChoice.Preset(option)); open = false
                                 }
                             }
-                            Text(stringResource(when (platform.name) {
+                            if (platform.name != "Original") Text(stringResource(when (platform.name) {
                                 "Google Play" -> R.string.ux_play_note
                                 "TikTok" -> R.string.ux_tiktok_note
                                 "WhatsApp" -> R.string.ux_whatsapp_note

@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot.design
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,7 +16,7 @@ internal enum class ActionMark { INFO, VIEW, SHARE, ADD, EDIT, DISCARD, CLOSE }
 /** Decorative local vectors accompany localized labels; no icon font or dependency. */
 @Composable
 internal fun ActionIcon(mark: ActionMark, description: String? = null) {
-    val vector = ImageVector.Builder(mark.name, 24.dp, 24.dp, 24f, 24f).apply {
+    val vector = remember(mark) { ImageVector.Builder(mark.name, 24.dp, 24.dp, 24f, 24f).apply {
         path(fill = null, stroke = androidx.compose.ui.graphics.SolidColor(Color.Black), strokeLineWidth = 1.8f) {
             when (mark) {
                 ActionMark.INFO -> { moveTo(12f,3f); curveTo(24f,3f,24f,21f,12f,21f); curveTo(0f,21f,0f,3f,12f,3f); moveTo(12f,10f); lineTo(12f,17f); moveTo(12f,7f); lineTo(12f,8f) }
@@ -27,7 +28,7 @@ internal fun ActionIcon(mark: ActionMark, description: String? = null) {
                 ActionMark.CLOSE -> { moveTo(6f,6f); lineTo(18f,18f); moveTo(18f,6f); lineTo(6f,18f) }
             }
         }
-    }.build()
+    }.build() }
     Icon(vector, description, Modifier.size(20.dp))
 }
 

@@ -1,3 +1,3 @@
-Validate isolated visualpreview identity with matching device collector package.
-Previous build passed; smoke stopped before instrumentation due to stale heicbytes package. No test or runtime guards changed.
+Validate popular social destination ordering, localized Original group, removal of irrelevant social note for Original and remembered action vectors.
+Keep neutral Original default and previous explicit destination, output contracts and all existing tests.
 profile=current
