@@ -31,14 +31,44 @@
     "build_tools": "36.0.0",
     "ndk": "28.2.13676358"
   },
-  "independent_unsigned_rebuild": "REQUESTED_NOT_YET_VERIFIED",
-  "corresponding_source_materials": "REQUESTED_NOT_YET_VERIFIED",
+  "independent_unsigned_rebuild": {
+    "workflow_run": 41713619611,
+    "status": "IN_PROGRESS_NOT_YET_VERIFIED"
+  },
+  "corresponding_source_materials": {
+    "workflow_run": 41714329031,
+    "status": "COMPLETE_BUNDLE_IN_PROGRESS",
+    "project_webp_kit": {
+      "workflow_run": 41713619657,
+      "artifact_id": 13269321638,
+      "bytes": 24394878,
+      "sha256": "be9a836178f58c7c4db5e4b580241c06ea53efc409fe4b926745085ad77792a0",
+      "status": "PASS_ORIGINAL_BYTES_MODES_GIT_BLOBS_TREES_COMMIT_OBJECTS",
+      "project_files": 770,
+      "webp_files": 343
+    },
+    "prior_bundle_attempt": "FAILED_HISTORICAL_ALPHA1_KIT_HASH_PIN__CORRECTED_IN_bc7c12df"
+  },
   "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
-  "artifact_specific_assurance": "NEW_BINDING_DECISION_REQUIRED_ALPHA1_EXCEPTION_NOT_INHERITED",
+  "artifact_specific_assurance": "PROPOSED_NOT_APPROVED_SEE_0.1.0-alpha.2-assurance.json",
   "production_signature": "NOT_AUTHORIZED_NOT_RUN",
   "physical_alpha2_install": "NOT_RUN",
   "sequential_upgrade": "NOT_RUN",
   "obtainium": "NOT_RUN",
   "remaining_manual_limits": "../TESTING.md#current-delivery-reconciliation--2026-11-02",
-  "publication": "NOT_AUTHORIZED_NOT_RUN"
+  "publication": "NOT_AUTHORIZED_NOT_RUN",
+  "actual_binary_manifest": {
+    "status": "PASS",
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "0.1.0-alpha.2",
+    "version_code": 2,
+    "min_sdk": 26,
+    "target_sdk": 36,
+    "allow_backup": false,
+    "uses_permissions": [
+      "org.cajapersonal.fixmyshot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "declared_permission_protection_level": "signature",
+    "android_dangerous_or_network_permissions": []
+  }
 }

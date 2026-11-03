@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "status": "PROPOSED_NOT_APPROVED",
+  "approval": null,
+  "decision_date": null,
+  "prerequisites": "Independent rebuild and complete source-material original outputs still require verification",
+  "prior_approved_decision": "../decisions/dependency-assurance-alpha-proposal.md",
+  "prior_receipt": "0.1.0-alpha.1-assurance.json",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.2",
+  "version_code": 2,
+  "compiled_source": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "compiled_tree": "5b30eeeb7596ca595ac1a3ba880c64c356d17859",
+  "unsigned_apk": {
+    "bytes": 12356414,
+    "sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa"
+  },
+  "frozen_input_bindings": {
+    "inventory_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+    "inactive_proof_record_sha256": "9c3fb232913c5225d62f8aa0351961be17a03c791ebce034dc6a2fd79f76f467",
+    "app_runtime_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "runtime_component_catalog_sha256": "f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407"
+  },
+  "input_binding_comparison": "ALL_FOUR_ORIGINAL_BINDING_HASHES_MATCH_ACTUAL_CANDIDATE_SOURCE_ARCHIVE",
+  "issuer_classifications": {
+    "frozen_files": 858,
+    "reviewed": 325,
+    "pending": 533,
+    "pending_runtime_binary_archives": 2,
+    "source": "0.1.0-alpha.1-assurance.json"
+  },
+  "classifications_changed": false,
+  "new_publisher_anchor_established": false,
+  "active_gradle_verification_enabled": false,
+  "requested_decision": "Accept the same recorded residual issuer risk for only the exact alpha.2 source/input/unsigned APK bindings after prerequisite verification; preserve every pending classification",
+  "production_signing_authorized": false,
+  "merge_release_or_deployment_authorized": false,
+  "other_delivery_gates_waived": false,
+  "residual_risk": "Independent builds can repeat the same compromised repository input. Source availability does not prove publisher identity or binary/source equivalence."
+}
