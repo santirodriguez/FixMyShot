@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "status": "UNSIGNED_CANDIDATE_NOT_RELEASED",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.2",
+  "version_code": 2,
+  "source_commit": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "source_tree": "5b30eeeb7596ca595ac1a3ba880c64c356d17859",
+  "unsigned_apk": {
+    "bytes": 12356414,
+    "sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa"
+  },
+  "baseline": {
+    "workflow_run": 41710230009,
+    "artifact_id": 13266133766,
+    "archive_bytes": 46166656,
+    "archive_sha256": "d1c0e9ce9ca1842f3a93847d07d46928d491ce1d6fb7adad8a0e83b83ee58da9"
+  },
+  "smoke": {
+    "artifact_id": 13266399380,
+    "archive_bytes": 2474690,
+    "archive_sha256": "694bc213c2d480d99a17f59935b9a7f589ad629aa625d97949c68cdb7b334add",
+    "core_tests": 99,
+    "api36_instrumented_tests": 135,
+    "status": "PASS",
+    "theme_capture_inspection": "PASS_DARK_SETTINGS_LIGHT_SETTINGS_RETURNED_LIGHT_EDITOR_STATUS_AND_GESTURE_CONTRAST"
+  },
+  "toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9",
+    "gradle": "9.4.1",
+    "build_tools": "36.0.0",
+    "ndk": "28.2.13676358"
+  },
+  "independent_unsigned_rebuild": "REQUESTED_NOT_YET_VERIFIED",
+  "corresponding_source_materials": "REQUESTED_NOT_YET_VERIFIED",
+  "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
+  "artifact_specific_assurance": "NEW_BINDING_DECISION_REQUIRED_ALPHA1_EXCEPTION_NOT_INHERITED",
+  "production_signature": "NOT_AUTHORIZED_NOT_RUN",
+  "physical_alpha2_install": "NOT_RUN",
+  "sequential_upgrade": "NOT_RUN",
+  "obtainium": "NOT_RUN",
+  "remaining_manual_limits": "../TESTING.md#current-delivery-reconciliation--2026-11-02",
+  "publication": "NOT_AUTHORIZED_NOT_RUN"
+}

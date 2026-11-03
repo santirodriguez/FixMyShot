@@ -1,5 +1,30 @@
 # Testing and evidence
 
+## Alpha.2 exact-source automated acceptance — 2026-11-03
+
+Source `1f89c979a7b432e6117670d170ce8ca0df5e2567` / tree `5b30eeeb7596ca595ac1a3ba880c64c356d17859`
+passed [Actions41710230009](https://github.com/santirodriguez/FixMyShot/actions/runs/41710230009):
+build and API36 smoke SUCCESS; optional legacy SAF SKIPPED. Original bootstrap
+and smoke archives were downloaded and checked for size/SHA256, safe unique
+members, CRC and exact source. Actual core XML: 99 tests, no failures/errors/skips;
+all 15 Android groups: 135 tests PASS including editor12.
+The [alpha.2 unsigned receipt](releases/0.1.0-alpha.2-unsigned-build-info.json)
+records the exact original artifact and APK bindings.
+
+All three actual captures were visually inspected: dark Settings, light Settings
+and returned light editor now show readable status icons AND gesture indicators.
+The test also waits for selected theme semantics and actual focused-window bar
+appearance on API30+. This closes the bounded API36 contrast issue; earlier red
+runs and low-contrast images remain historical evidence. It is not a new physical
+Pixel acceptance or exhaustive Android/theme/accessibility qualification.
+
+Independent rebuild and corresponding-source materials are now requested for
+this same frozen source. Keep their status pending until original outputs are
+inspected. Alpha.1's artifact-specific Option B exception and signing authority
+do not qualify these new bytes. Existing accepted manual evidence and remaining
+delivery limits below retain their scope; no codec/picker/visual repeat requested.
+
+
 ## Visual preview delivery checkpoint — 2026-11-03
 
 The older delivery matrix below is historical for compiled source7cbed17d.
