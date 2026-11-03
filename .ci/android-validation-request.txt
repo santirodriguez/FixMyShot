@@ -1,2 +1,3 @@
-Validate sober visual preview including qualified empty-header spacer. Preserve all runtime guards.
+Validate the sober visual preview under its separate debug identity .visualpreview / FixMyShot Preview.
+Preserve the signed production candidate and previously installed diagnostics. No release identity or signing change.
 profile=current
