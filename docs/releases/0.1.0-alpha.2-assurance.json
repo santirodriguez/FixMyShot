@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "status": "PROPOSED_NOT_APPROVED",
-  "approval": null,
-  "decision_date": null,
+  "status": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED",
+  "approval": "Explicit maintainer \"si go\" approving the immediately preceding exact alpha.2 Option B recommendation; signing and publication excluded",
+  "decision_date": "2026-11-03",
   "prerequisites": "VERIFIED: exact-source automated suite, independent full-byte rebuild and original complete source materials",
   "prior_approved_decision": "../decisions/dependency-assurance-alpha-proposal.md",
   "prior_receipt": "0.1.0-alpha.1-assurance.json",
@@ -32,10 +32,11 @@
   "classifications_changed": false,
   "new_publisher_anchor_established": false,
   "active_gradle_verification_enabled": false,
-  "requested_decision": "Accept the same recorded residual issuer risk for only the exact alpha.2 source/input/unsigned APK bindings after prerequisite verification; preserve every pending classification",
+  "requested_decision": "APPROVED: same residual issuer risk accepted only for the exact alpha.2 source/input/unsigned APK bindings; pending classifications retained",
   "production_signing_authorized": false,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
   "residual_risk": "Independent builds can repeat the same compromised repository input. Source availability does not prove publisher identity or binary/source equivalence.",
-  "supporting_evidence": "0.1.0-alpha.2-unsigned-build-info.json"
+  "supporting_evidence": "0.1.0-alpha.2-unsigned-build-info.json",
+  "decision": "../decisions/dependency-assurance-alpha-proposal.md#alpha2-extension-approved--2026-11-03"
 }

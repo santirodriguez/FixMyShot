@@ -70,7 +70,7 @@
     "final_corresponding_source_distribution_approval": false
   },
   "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
-  "artifact_specific_assurance": "PROPOSED_NOT_APPROVED_SEE_0.1.0-alpha.2-assurance.json",
+  "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED_SEE_0.1.0-alpha.2-assurance.json",
   "production_signature": "NOT_AUTHORIZED_NOT_RUN",
   "physical_alpha2_install": "NOT_RUN",
   "sequential_upgrade": "NOT_RUN",

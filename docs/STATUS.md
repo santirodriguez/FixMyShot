@@ -8,9 +8,8 @@ reproduced every unsigned APK byte; complete source materials41714329031 and
 their original archive/member hashes were independently verified.
 See the [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json).
 
-The [new artifact-specific assurance proposal](releases/0.1.0-alpha.2-assurance.json)
-is prepared, not approved. Alpha.1's exact exception and production signature
-do not extend automatically. No alpha.2 production signing, physical install,
+The maintainer separately approved the [exact alpha.2 Option B disposition](releases/0.1.0-alpha.2-assurance.json)
+on 2026-11-03, preserving all pending publisher classifications. No alpha.2 production signing, physical install,
 sequential upgrade, Obtainium acceptance, merge or publication is claimed.
 Remaining manual/final-assets limits retain their [recorded scope](TESTING.md);
 do not repeat accepted general Preview2/PNG/WebP/picker tests.

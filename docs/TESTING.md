@@ -33,8 +33,10 @@ Completed N01 and issuer classifications were not reopened or relabelled.
 
 Unsigned preparation is complete within this bounded scope. Alpha.1's
 artifact-specific Option B exception and signing authority do not qualify these
-new bytes. The [alpha.2 proposal](releases/0.1.0-alpha.2-assurance.json) is
-PROPOSED_NOT_APPROVED. Existing accepted manual evidence and remaining delivery
+new bytes automatically. The maintainer separately approved the same bounded
+Option B disposition for the exact alpha.2 bindings on 2026-11-03; the
+[alpha.2 assurance receipt](releases/0.1.0-alpha.2-assurance.json) records this.
+No alpha.2 signing or publication is authorized. Existing accepted manual evidence and remaining delivery
 limits below retain their scope; no codec/picker/visual repeat requested.
 
 

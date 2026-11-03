@@ -1,5 +1,31 @@
 # Approved candidate-only dependency assurance decision
 
+## Alpha.2 extension approved — 2026-11-03
+
+The maintainer explicitly answered “si go” to the recommendation to apply the
+same bounded Option B disposition to this exact alpha.2 candidate, with signing
+and publication expressly excluded.
+
+| Binding | Approved value |
+| --- | --- |
+| Application/version | org.cajapersonal.fixmyshot / 0.1.0-alpha.2 / code2 |
+| Compiled source | 1f89c979a7b432e6117670d170ce8ca0df5e2567 |
+| Compiled tree | 5b30eeeb7596ca595ac1a3ba880c64c356d17859 |
+| Unsigned APK | 12,356,414 bytes |
+| SHA256 | 3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa |
+
+The [alpha.2 assurance receipt](../releases/0.1.0-alpha.2-assurance.json) retains
+the same four verified inventory/proof/lock/catalog fingerprints and all
+325 reviewed / 533 pending classifications. The
+[unsigned receipt](../releases/0.1.0-alpha.2-unsigned-build-info.json) binds the
+verified automated tests, full-byte independent rebuild and complete source
+materials. No new publisher anchor, namespace/key trust or active Gradle
+verification policy is introduced. Any future changed binding needs a new
+decision. Other recorded device/delivery requirements retain their scope.
+Signing, merge and publication are not authorized by this decision.
+
+## Original alpha.1 decision — retained in full
+
 Status: **OPTION B APPROVED — 2026-11-02**. The maintainer explicitly chose
 “B. Sigamos” after reviewing this proposal. This records acceptance of residual
 issuer risk for the exact candidate below; proof classifications, active Gradle
