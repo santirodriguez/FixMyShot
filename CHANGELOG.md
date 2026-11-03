@@ -17,8 +17,9 @@ Installation and increasing-code upgrade acceptance remain pending.
 This candidate was signed and independently inspected after its verified build,
 source materials, byte-identical rebuild and exact artifact-specific assurance
 approval. Actual installation/upgrade acceptance remains pending.
-The maintainer accepted Preview2's visual/usability revision; no new Pixel
-measurement or complete theme-state capture acceptance is inferred.
+The maintainer accepted Preview2's visual/usability revision; the current API36
+dark/light/return captures passed independent inspection. No new physical Pixel
+measurement is inferred.
 See [current evidence and remaining checks](docs/TESTING.md).
 
 ## 0.1.0-alpha.1
