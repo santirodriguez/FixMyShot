@@ -1,3 +1,3 @@
-Validate unsigned alpha.2/code2 and retained alpha.1 distribution history.
-Capture dark/light/return only after selected theme semantics settle; preserve all assertions and current API36 profile.
+Validate alpha.2 selected theme capture via checkable ancestors, independent of clickability.
+Test-only correction; retain all 12 editor cases, assertions and timeouts. No production source change.
 profile=current

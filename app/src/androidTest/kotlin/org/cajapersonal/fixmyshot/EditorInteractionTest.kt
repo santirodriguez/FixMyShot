@@ -108,9 +108,14 @@ class EditorInteractionTest {
     }
 
     private fun selectedChoice(label: String): Boolean {
-        var node = find(label) ?: return false
-        while (!node.isClickable && node.parent != null) node = node.parent
-        return node.isChecked || node.isSelected
+        var node: AccessibilityNodeInfo? = find(label)
+        // Compose exposes the radio state on an ancestor independently of clickability.
+        while (node != null) {
+            if (node.isCheckable) return node.isChecked
+            if (node.isSelected) return true
+            node = node.parent
+        }
+        return false
     }
 
     private fun toolPane(node: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
