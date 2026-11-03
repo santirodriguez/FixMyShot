@@ -97,7 +97,9 @@ class EditorInteractionTest {
     }
 
     private fun click(label: String) {
-        if (find(label) == null) reveal(label)
+        if (label in setOf(app.getString(R.string.quick_customize), app.getString(R.string.editor_background))) {
+            reveal(label)
+        }
         await { find(label) != null }
         var node = requireNotNull(find(label))
         while (!node.isClickable && node.parent != null) node = node.parent
@@ -463,6 +465,7 @@ class EditorInteractionTest {
         reveal(label(R.string.quick_background_edge))
         click(label(R.string.quick_background_edge))
         click(label(R.string.quick_done))
+        await { find(label(R.string.quick_background_edge)) == null }
         assertNull(find(label(R.string.quick_background_edge)))
         await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         val selected = model.draft
@@ -575,6 +578,7 @@ class EditorInteractionTest {
         reveal(label(R.string.quick_background_edge))
         click(label(R.string.quick_background_edge))
         click(label(R.string.quick_done))
+        await { find(label(R.string.quick_background_edge)) == null }
         assertNull(find(label(R.string.quick_background_edge)))
         await { model.draft.images.single().overrides.resolve(model.draft.batch).background is BackgroundChoice.CustomRgb }
         assertEquals(before.batch, model.draft.batch)
