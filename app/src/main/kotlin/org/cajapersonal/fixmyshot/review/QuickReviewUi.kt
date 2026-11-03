@@ -25,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -293,10 +294,10 @@ internal fun QuickWorkspace(modifier: Modifier, stage: @Composable () -> Unit, t
         val toolsHeightLimit = maxHeight * .40f
         if (maxWidth > maxHeight) Row(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1.5f).fillMaxHeight()) { stage() }
-            Column(Modifier.weight(1f).fillMaxHeight().verticalScroll(rememberScrollState())) { tools() }
+            Column(Modifier.weight(1f).fillMaxHeight().clipToBounds().verticalScroll(rememberScrollState()).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { tools() }
         } else Column(Modifier.fillMaxSize()) {
             Box(Modifier.weight(1f).fillMaxWidth()) { stage() }
-            Column(Modifier.fillMaxWidth().heightIn(max = toolsHeightLimit).verticalScroll(rememberScrollState())) { tools() }
+            Column(Modifier.fillMaxWidth().heightIn(max = toolsHeightLimit).clipToBounds().verticalScroll(rememberScrollState()).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) { tools() }
         }
     }
 }

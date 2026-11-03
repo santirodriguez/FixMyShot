@@ -527,6 +527,20 @@ internal fun ReviewScreen(
             onContinueEditing = { if (fullySaved) onContinueEditing() },
             onDismiss = { savedResultsOpen = false })
     }
+    if (backgroundsOpen) Dialog(onDismissRequest = { backgroundsOpen = false }) {
+        Surface(shape = MaterialTheme.shapes.extraLarge, color = MaterialTheme.colorScheme.surface) {
+            Column(Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(20.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Text(stringResource(R.string.editor_background), style = MaterialTheme.typography.titleLarge)
+                stagedPlan?.settings?.let { current ->
+                    QuickBackgroundRow(current.background, preview, editEnabled) { onBackground(it, true) }
+                }
+                TextButton(onClick = { backgroundsOpen = false }, modifier = Modifier.align(Alignment.End)) {
+                    ActionLabel(ActionMark.CLOSE, stringResource(R.string.quick_done))
+                }
+            }
+        }
+    }
     savedImage?.let { verified ->
         SavedImageViewer(verified) { savedImage = null }
     }
@@ -611,7 +625,9 @@ internal fun ReviewScreen(
                 if (!editEnabled && !sessionRestoreBlocked) infoOpen = true
                 else if (sessionRestoreBlocked) confirmingSavedDiscard = true else confirmingDiscard = draft
             }) { ActionLabel(ActionMark.DISCARD, stringResource(R.string.quick_discard)) }
-            androidx.compose.material3.FilledTonalIconButton(onClick = onSettings) {
+            androidx.compose.material3.OutlinedIconButton(onClick = onSettings,
+                colors = androidx.compose.material3.IconButtonDefaults.outlinedIconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.primary)) {
                 ActionIcon(ActionMark.INFO, stringResource(R.string.quick_settings))
             }
         }
@@ -644,14 +660,14 @@ internal fun ReviewScreen(
                     QuickTemplateCards(draft.destination, editEnabled,
                         onSelect = { finishGesture(); onTemplate(it) },
                         onCustomize = { finishGesture(); advanced = true; tool = ReviewTool.DESTINATION })
-                    Column(Modifier.padding(horizontal = 12.dp)) {
+                    Column(Modifier.padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         val quick = stagedPlan?.settings
                         if (quick != null) QuickFramingRow(quick.fit, editEnabled, { onFit(it, true) })
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+                        CompareOriginalButton(comparing, preview != null && editEnabled) { comparing = it }
+                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
                             verticalAlignment = Alignment.CenterVertically) {
-                            CompareOriginalButton(comparing, preview != null && editEnabled) { comparing = it }
-                            TextButton(onClick = { backgroundsOpen = !backgroundsOpen }) { Text(stringResource(R.string.editor_background)) }
-                            TextButton(onClick = { finishGesture(); advanced = true }) { Text(stringResource(R.string.quick_customize)) }
+                            OutlinedButton(onClick = { backgroundsOpen = true }, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.editor_background)) }
+                            OutlinedButton(onClick = { finishGesture(); advanced = true }, modifier = Modifier.weight(1f)) { Text(stringResource(R.string.quick_customize)) }
                         }
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween) {
@@ -663,7 +679,7 @@ internal fun ReviewScreen(
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant)
                         }
-                        if (backgroundsOpen && quick != null) QuickBackgroundRow(quick.background, preview, editEnabled) { onBackground(it, true) }
+
                         if (plans.any { it.requiresReview }) TextButton(onClick = { advanced = true; tool = ReviewTool.EXPORT }) {
                             Text(stringResource(R.string.editor_review_required), color = MaterialTheme.colorScheme.error)
                         }
