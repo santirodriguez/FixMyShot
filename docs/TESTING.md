@@ -42,9 +42,9 @@ upgrade using increasing versionCodes plus an authorized obtainable asset source
 Do not label unavailable evidence PASS or demand repetition of accepted checks.
 Merge, release/publication, Play enrollment and deployment remain separate gates.
 
-## Proposed next candidate preparation — approval pending
+## Unsigned alpha.2 preparation — approved 2026-11-03
 
-Prepare 0.1.0-alpha.2 / versionCode2 with the existing production application ID,
+The maintainer approved preparing 0.1.0-alpha.2 / versionCode2 with the existing production application ID,
 accepted Preview2 UI and bounded system-bar correction. First reconcile the
 ledger's actually distributed alpha.1 against its verified signed receipt;
 retain that row when adding code2. Keep dependency/native pins, permissions,

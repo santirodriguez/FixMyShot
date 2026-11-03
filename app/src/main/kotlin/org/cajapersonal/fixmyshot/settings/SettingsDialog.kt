@@ -140,7 +140,7 @@ internal fun SettingsDialog(
                     TextButton(onClick = { onLink("https://github.com/santirodriguez/FixMyShot") }) {
                         Text(stringResource(R.string.about_source))
                     }
-                    TextButton(onClick = { onLink("https://github.com/santirodriguez/FixMyShot/blob/release/0.1.0/THIRD_PARTY_NOTICES") }) {
+                    TextButton(onClick = { onLink("https://github.com/santirodriguez/FixMyShot/blob/release/0.1.0-editor/THIRD_PARTY_NOTICES") }) {
                         Text(stringResource(R.string.about_notices))
                     }
                     TextButton(onClick = { onLink("https://santiagorodriguez.com/") }) { Text(stringResource(R.string.about_website)) }

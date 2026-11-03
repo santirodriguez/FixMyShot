@@ -2,7 +2,28 @@
 
 Real changes. No imaginary release history.
 
-## Unreleased — 0.1.0-alpha.1
+## Unreleased — 0.1.0-alpha.2
+
+- Refine the home, information action and result buttons with a restrained layout and labelled icons.
+- Put common destinations before Google Play while retaining Original as the neutral default.
+- Separate background choices into a dialog and give lower editor actions clearer spacing.
+- Restore readable system-bar icons when Settings opens, changes theme or returns to the editor.
+- Preserve the installed alpha.1 identity in the version ledger; prepare code2 for a later same-certificate upgrade.
+- Keep PNG/lossless WebP output, permissions and dependency/native inputs unchanged.
+
+This candidate is not signed or distributed. Its final build, source materials,
+independent rebuild and artifact-specific assurance decision are pending.
+The maintainer accepted Preview2's visual/usability revision; no new Pixel
+measurement or complete theme-state capture acceptance is inferred.
+See [current evidence and remaining checks](docs/TESTING.md).
+
+## 0.1.0-alpha.1
+
+Signed candidate installed and opened by the maintainer; no GitHub release or
+Obtainium/update acceptance. Historical development notes below describe the
+original candidate; later acceptance is recorded in TESTING.
+
+
 
 ### Prepare the shot
 

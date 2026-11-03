@@ -5,6 +5,16 @@
     {
       "version_name": "0.1.0-alpha.1",
       "version_code": 1,
+      "status": "distributed",
+      "signed_apk_sha256": "ad6369c71bf2d7c17a21c78bc2573167b20f46007eb297dc2757e4bf88240467",
+      "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+      "source_commit": "7cbed17de44f4bc4ff31b62270ace3bd5a51b492",
+      "distribution_channel": "Maintainer-installed signed Actions candidate; no GitHub release",
+      "signing_workflow_run": 41543938314
+    },
+    {
+      "version_name": "0.1.0-alpha.2",
+      "version_code": 2,
       "status": "planned"
     }
   ]

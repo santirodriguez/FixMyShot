@@ -3,7 +3,10 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Preparation, not publication.** The unreleased candidate remains `0.1.0-alpha.1`/versionCode `1` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1). Executable source `7cbed17d` passed [build/lint/core99 and API36 instrumented135tests](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328); original source/APK/artifact bytes were independently checked. HEIC/AVIF/JXL are explicitly deferred from0.1.0; normal new outputs are PNG and lossless WebP. The verified unsigned release APK is12,340,030bytes,SHA256 `1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42`. It is not signed or distributed. The exact-source independent rebuild and bounded source/license engineering review are complete. Applicable remaining manual acceptance, stable signing custody, sequential upgrades, final screenshots and separately authorized merge/tags/publication remain open; see [current acceptance](TESTING.md#current-pngwebp-automated-acceptance--2026-11-01) and [status](STATUS.md). The exact `7cbed17d` unsigned runtime now has a verified byte-identical independent rebuild in [Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088); this does not prove a future changed distribution source or signed bytes. Nothing here authorizes a key, signature, merge or release.
+> **Unsigned alpha.2 preparation.** The current planned candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
+> Alpha.1/code1 was signed in [Actions41543938314](https://github.com/santirodriguez/FixMyShot/actions/runs/41543938314), independently inspected and installed/opened by the maintainer. Its ledger row preserves the exact source, APK and public certificate.
+> Alpha.2 retains the production application ID and accepted Preview2 UI. It has no signed APK or new artifact-specific assurance approval yet. First validate its unsigned build, actual theme captures, unchanged dependency inputs, corresponding source and independent rebuild of the same frozen source. Historical alpha.1 receipts below remain bound to their original bytes.
+> No merge, signature of new bytes, release, store upload or publication is authorized by this preparation.
 
 ## Approved assurance exception and unsigned receipt
 
@@ -49,8 +52,9 @@ environment and secrets are skipped. Changing the state to `SIGN_CANDIDATE`
 requires explicit authority to sign this exact candidate. Use a fresh request ID.
 Rerunning an authorized signing run signs the same bound candidate again.
 
-Before activation, the repository owner must configure the `fixmyshot-signing`
-Environment with access restricted to the exact release branch, and add:
+For the completed alpha.1 operation, the maintainer configured repository Actions
+secrets directly; no Environment is required by the current workflow:
+
 - `FIXMYSHOT_APP_KEYSTORE_BASE64`: the app-signing PKCS12 encoded as Base64.
 - `FIXMYSHOT_APP_KEYSTORE_PASSWORD`: its password (also the PKCS12 key password).
 
@@ -69,8 +73,8 @@ executed. Temporary key material is removed on normal/error shell exit.
 The signed Actions artifact is publicly downloadable and retained for seven days.
 The maintainer approved that visibility; this is not a GitHub release/tag or
 functional-release acceptance. Installation, upgrades, Obtainium and the remaining
-manual matrix keep their own status. No signing execution has occurred at
-preparation time. The original unsigned artifact currently expires2026-11-08;
+manual matrix keep their own status. The alpha.1 execution subsequently completed in Actions41543938314;
+this section's remaining preparation wording is historical and does not authorize code2. The original unsigned artifact currently expires2026-11-08;
 expiry must fail without a silent rebuild or input substitution.
 
 The older bounded plan below is retained as preparation history. Local key

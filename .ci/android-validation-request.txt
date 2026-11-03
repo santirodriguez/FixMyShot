@@ -1,3 +1,3 @@
-Validate system bar contrast on dialog focus acquisition and all theme-return captures.
-Collector now requires existing dark/light/return capture files, preventing silent screenshot omission. Preserve all instrumentation assertions.
+Validate unsigned alpha.2/code2 and retained alpha.1 distribution history.
+Capture dark/light/return only after selected theme semantics settle; preserve all assertions and current API36 profile.
 profile=current

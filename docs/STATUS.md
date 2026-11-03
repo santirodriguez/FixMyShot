@@ -1,5 +1,19 @@
 # Completion status
 
+## Unsigned alpha.2 preparation — 2026-11-03
+
+The maintainer approved preparing alpha.2/code2 with the accepted Preview2 UI,
+current system-bar correction and unchanged output/dependency/permission scope.
+Alpha.1/code1 remains recorded as the signed, maintainer-installed Actions
+candidate; no GitHub release exists. Current build and exact-source receipts for
+alpha.2 are pending. The light-dialog capture now waits for its selected radio
+state before collection; runtime validation must confirm the actual image.
+
+Do not inherit alpha.1's exact-artifact assurance exception or signing authority.
+Reuse unchanged completed review and accepted physical checks. Outstanding
+manual/upgrade/Obtainium/final-assets scope remains in [TESTING](TESTING.md).
+Older sections below retain their historical source and acceptance boundaries.
+
 ## Delivery evidence reconciled; private signing scope prepared — 2026-11-02
 
 The [current delivery matrix](TESTING.md#current-delivery-reconciliation--2026-11-02)

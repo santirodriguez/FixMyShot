@@ -65,7 +65,7 @@ class EditorInteractionTest {
         fun dump(node: AccessibilityNodeInfo?, depth: Int = 0) {
             if (node == null) return
             val rect = Rect().also { node.getBoundsInScreen(it) }
-            tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} package=${node.packageName} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} bounds=$rect")
+            tree.appendLine("depth=$depth text=${node.text} description=${node.contentDescription} package=${node.packageName} visible=${node.isVisibleToUser} scrollable=${node.isScrollable} checkable=${node.isCheckable} checked=${node.isChecked} selected=${node.isSelected} bounds=$rect")
             for (i in 0 until node.childCount) dump(node.getChild(i), depth + 1)
         }
         dump(freshRoot())
@@ -105,6 +105,12 @@ class EditorInteractionTest {
         while (!node.isClickable && node.parent != null) node = node.parent
         assertTrue("Control not clickable: $label", node.performAction(AccessibilityNodeInfo.ACTION_CLICK))
         settleUi()
+    }
+
+    private fun selectedChoice(label: String): Boolean {
+        var node = find(label) ?: return false
+        while (!node.isClickable && node.parent != null) node = node.parent
+        return node.isChecked || node.isSelected
     }
 
     private fun toolPane(node: AccessibilityNodeInfo? = freshRoot()): AccessibilityNodeInfo? {
@@ -681,7 +687,8 @@ class EditorInteractionTest {
         try {
             await { find(label(R.string.settings_title)) != null }
             click(label(R.string.theme_dark))
-            await { find(label(R.string.settings_language)) != null }
+            await { selectedChoice(label(R.string.theme_dark)) }
+            settleUi()
             capture()
             reveal(label(R.string.help_title))
             click(label(R.string.help_title))
@@ -693,6 +700,7 @@ class EditorInteractionTest {
             reveal(label(R.string.theme_light))
             click(label(R.string.theme_light))
             caseName = "settings-light"
+            await { selectedChoice(label(R.string.theme_light)) }
             settleUi()
             capture()
             click(label(R.string.close_action))

@@ -56,7 +56,7 @@ copies by default; visible content is still visible. [Privacy details](docs/PRIV
 
 ## On your phone
 
-**Development preview · 0.1.0-alpha.1.** A public release APK is not available yet.
+**Development preview · 0.1.0-alpha.2.** A public release APK is not available yet.
 
 The first release is planned for GitHub, with Obtainium updates. F-Droid and
 Google Play are future distribution channels.
