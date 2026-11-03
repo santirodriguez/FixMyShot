@@ -18,11 +18,24 @@ appearance on API30+. This closes the bounded API36 contrast issue; earlier red
 runs and low-contrast images remain historical evidence. It is not a new physical
 Pixel acceptance or exhaustive Android/theme/accessibility qualification.
 
-Independent rebuild and corresponding-source materials are now requested for
-this same frozen source. Keep their status pending until original outputs are
-inspected. Alpha.1's artifact-specific Option B exception and signing authority
-do not qualify these new bytes. Existing accepted manual evidence and remaining
-delivery limits below retain their scope; no codec/picker/visual repeat requested.
+[Independent rebuild41713619611](https://github.com/santirodriguez/FixMyShot/actions/runs/41713619611)
+passed and its actual unsigned APK was directly compared with the original:
+all 12,356,414 bytes identical. Core99 passed again; the workflow enforced the
+same exact source/tree, pristine checkout and empty Gradle/project caches.
+[Complete source materials41714329031](https://github.com/santirodriguez/FixMyShot/actions/runs/41714329031)
+also passed. The original 58,608,240-byte ZIP, nested project/WebP kit and
+34,170,964-byte complete bundle were independently checked, including all
+manifest entries and 94 original source companions plus pinned Protobuf.
+The earlier material attempt failed because the outer bundler pinned the
+historical alpha.1 kit; its exact kit hash/source binding was updated after
+independent verification, retaining every other material pin and guard.
+Completed N01 and issuer classifications were not reopened or relabelled.
+
+Unsigned preparation is complete within this bounded scope. Alpha.1's
+artifact-specific Option B exception and signing authority do not qualify these
+new bytes. The [alpha.2 proposal](releases/0.1.0-alpha.2-assurance.json) is
+PROPOSED_NOT_APPROVED. Existing accepted manual evidence and remaining delivery
+limits below retain their scope; no codec/picker/visual repeat requested.
 
 
 ## Visual preview delivery checkpoint — 2026-11-03

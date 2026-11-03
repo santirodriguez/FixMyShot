@@ -3,7 +3,7 @@
   "status": "PROPOSED_NOT_APPROVED",
   "approval": null,
   "decision_date": null,
-  "prerequisites": "Independent rebuild and complete source-material original outputs still require verification",
+  "prerequisites": "VERIFIED: exact-source automated suite, independent full-byte rebuild and original complete source materials",
   "prior_approved_decision": "../decisions/dependency-assurance-alpha-proposal.md",
   "prior_receipt": "0.1.0-alpha.1-assurance.json",
   "application_id": "org.cajapersonal.fixmyshot",
@@ -36,5 +36,6 @@
   "production_signing_authorized": false,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
-  "residual_risk": "Independent builds can repeat the same compromised repository input. Source availability does not prove publisher identity or binary/source equivalence."
+  "residual_risk": "Independent builds can repeat the same compromised repository input. Source availability does not prove publisher identity or binary/source equivalence.",
+  "supporting_evidence": "0.1.0-alpha.2-unsigned-build-info.json"
 }

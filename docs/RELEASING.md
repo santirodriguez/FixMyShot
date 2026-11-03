@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > **Unsigned alpha.2 preparation.** The current planned candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
 > Alpha.1/code1 was signed in [Actions41543938314](https://github.com/santirodriguez/FixMyShot/actions/runs/41543938314), independently inspected and installed/opened by the maintainer. Its ledger row preserves the exact source, APK and public certificate.
-> Alpha.2 retains the production application ID and accepted Preview2 UI. It has no signed APK or new artifact-specific assurance approval yet. First validate its unsigned build, actual theme captures, unchanged dependency inputs, corresponding source and independent rebuild of the same frozen source. Historical alpha.1 receipts below remain bound to their original bytes.
+> Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The [new assurance proposal](releases/0.1.0-alpha.2-assurance.json) remains unapproved; there is no signed alpha.2 APK. Historical alpha.1 receipts below remain bound to their original bytes.
 > No merge, signature of new bytes, release, store upload or publication is authorized by this preparation.
 
 ## Approved assurance exception and unsigned receipt

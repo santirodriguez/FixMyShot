@@ -33,7 +33,14 @@
   },
   "independent_unsigned_rebuild": {
     "workflow_run": 41713619611,
-    "status": "IN_PROGRESS_NOT_YET_VERIFIED"
+    "status": "PASS_FULL_BYTE_IDENTITY",
+    "artifact_id": 13268284181,
+    "artifact_bytes": 47822653,
+    "artifact_sha256": "035b938ffaa275b2a863b57ca6c8cc48b0e15452e410689934d59272a14f809c",
+    "independently_downloaded_and_compared": true,
+    "core_tests": 99,
+    "clean_source_and_empty_caches_verified": true,
+    "byte_identical": true
   },
   "corresponding_source_materials": {
     "workflow_run": 41714329031,
