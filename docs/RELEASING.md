@@ -10,19 +10,50 @@
 
 <a id="proposed-development-prerelease-path--decision-pending"></a>
 
-## Current public identity and integration
+## Current handoff: main, GitHub and Obtainium
 
-Public copy uses **Caja Personal**, with the [FixMyShot website](https://fixmyshot.cajapersonal.org/)
-and [Caja Personal support](https://cajapersonal.org/donate/). The
-[identity amendment](decisions/public-identity.md) records the frozen APK boundary.
-PR #1 is merged into `release/0.1.0` at `1b03caf0`; `main` is still unchanged.
-The earlier kit's review-only copy and proposed documentary tag need reconciliation
-with this current copy before publication; its exact four asset files remain
-unchanged. Do not publish the old personal-profile footer.
+The first public candidate is the explicitly incomplete **0.1.0-alpha.2 / code2**
+development prerelease, using the verified signed APK and exact source archive.
+Public presentation uses Caja Personal. The frozen app still has its original
+About links; a different APK requires a new versionCode and acceptance.
+
+1. Review and separately authorize [PR #2](https://github.com/santirodriguez/FixMyShot/pull/2)
+   into `main`. Record the successful push run ID and control SHA from
+   **Prepare development release kit** on `release/0.1.0`.
+2. After separately authorizing publication, run **Publish reviewed development
+   prerelease** from `main`, with that `prepared_run_id` and the exact confirmation
+   `PUBLISH v0.1.0-alpha.2`. A merge does not dispatch publication.
+3. The workflow checks the staging run's repository, branch, workflow, event and
+   successful result; downloads its exact artifact; verifies the four assets and
+   checksums; and requires the packaging-control commit to be contained in `main`.
+   The tag identifies that reviewed control commit. BUILD-INFO separately pins
+   compiled source `1f89c979`; no rebuild of the documentary tag is claimed.
+4. It creates a draft, uploads the APK/source/BUILD-INFO/checksums and downloads
+   every uploaded asset to check its full size and SHA256. Only then is the
+   prerelease published, without marking it latest. Conflicting tags/assets/
+   releases are refused, never moved or replaced. An interrupted run retains
+   its draft; diagnose and retry with the same kit.
+5. Verify the live links and actual Obtainium source/install/update behavior.
+   The README button configures the source, prereleases and universal-APK filter.
+   Its configuration is tested automatically; device acceptance remains separate.
+
+Staging is read-only and does not build or sign. The kit is retained for90days,
+allowing publication after the original signing/source Actions inputs expire.
+If the kit itself expires, recover the exact inputs; never substitute different
+bytes with the same code. Only the manually dispatched publishing job uses the
+short-lived repository GITHUB_TOKEN with `contents: write`; no new secret,
+environment or signing-key operation is required. It becomes executable after
+integration into `main`.
+
+The [Obtainium deep-link specification](https://wiki.obtainium.imranr.dev/deep_links/)
+defines the README configuration link; no community listing is needed.
+Offline refusal/recovery tests run in PR CI. Actual GitHub API writes remain
+unexecuted until explicit publication approval. Full functional0.1.0 and manual
+coverage limits remain in [TESTING](TESTING.md#current-delivery-disposition--2026-11-04).
 
 ## Approved development prerelease preparation — 2026-11-04
 
-Status: **PREPARATION COMPLETE; PR1 MERGED TO RELEASE BRANCH; MAIN/PUBLICATION NOT AUTHORIZED**.
+Status: **ORIGINAL PREPARATION VERIFIED; MAIN INTEGRATION AND PUBLICATION REQUIRE SEPARATE APPROVAL**.
 
 The maintainer's Go approved preparing this bounded test-release kit. The
 request-triggered [staging workflow](../.github/workflows/prepare-development-release.yml)
@@ -70,7 +101,7 @@ review and accepted manual comparisons are reused. Actual16KiB runtime,
 privacy/color checks and detailed settings/default retention retain their
 recorded dispositions.
 
-## Verified development release kit — 2026-11-04
+## Historical verified development release kit — 2026-11-04
 
 [Actions41851782509](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509) **passed**. The [original prepared kit](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509/artifacts/13335176928) contains four release assets and three review files; it expires 2026-11-11. Its downloaded ZIP digest/size/CRC and all seven original files were independently checked. The APK and source archive remain byte-identical to their accepted inputs. See the [durable manifest and verification receipt](releases/0.1.0-alpha.2-staging.json).
 
@@ -259,11 +290,11 @@ and [Obtainium GitHub source](https://wiki.obtainium.imranr.dev/sources/#github)
 
 ## 01 · Keep the identity straight
 
-Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. The verified current debug diagnostic uses the `.heicbytes` suffix (`FixMyShot HEIC Sample`), a retained diagnostic identity rather than a claim of HEIC output support. Earlier diagnostics used separate suffixes such as `.ux22next` (`FixMyShot Next`) and `.debug`. None establishes the production upgrade path. Keep FixMyShot's independent signing identity across updates.
+Production uses `org.cajapersonal.fixmyshot` through prereleases and eventual public 1.0. Ordinary current debug builds use `.visualspacing`; opt-in AVIF probes use `.avifprobe`. Earlier isolated `.heicbytes`, `.ux22next` and `.debug` diagnostics remain historical, and do not establish codec support. None establishes the production upgrade path. Keep FixMyShot's independent signing identity across updates.
 
-`versionName` is SemVer without the tag's `v`; the checker supports plain/prerelease versions without build metadata. Tags later use `v0.1.0-alpha.1`, etc. `versionCode` starts at 1 and increases for every subsequently distributed production-ID APK, including prereleases. Never reuse a code for different distributed bytes. A changed public APK needs a new version/code, not a replacement asset under the old identity.
+`versionName` is SemVer without the tag's `v`; the checker supports plain/prerelease versions without build metadata. The first public candidate tag is `v0.1.0-alpha.2`. `versionCode` starts at 1 and increases for every subsequently distributed production-ID APK, including prereleases. Never reuse a code for different distributed bytes. A changed public APK needs a new version/code, not a replacement asset under the old identity.
 
-The ledger is ordered by increasing code, with at most one `planned` row, last. Keep its name/code aligned with `app/build.gradle.kts`, README and the exact unreleased changelog heading. After actual distribution, record `distributed`, signed-APK SHA-256, public certificate SHA-256 and immutable source commit. Retain that row unchanged when appending the next candidate. A never-distributed planned row can be corrected. The checker validates current files; it does not authenticate edited history or inspect GitHub release state.
+The ledger is ordered by increasing code, with at most one `planned` row, last. Keep its name/code aligned with `app/build.gradle.kts`, README and the status-appropriate changelog heading. After actual distribution, record `distributed`, signed-APK SHA-256, public certificate SHA-256 and immutable source commit. Retain that row unchanged when appending the next candidate. A never-distributed planned row can be corrected. The checker validates current files; it does not authenticate edited history or inspect GitHub release state.
 
 ```sh
 python3 scripts/check-release.py
@@ -412,33 +443,34 @@ Creating FixMyShot's long-lived key, securing backups and signing require separa
 After authorized signing of the verified artifact, run these in an isolated staging directory using the **existing Android SDK tools**:
 
 ```sh
-apksigner verify --verbose --print-certs FixMyShot-0.1.0-alpha.1-universal.apk
-apkanalyzer manifest print FixMyShot-0.1.0-alpha.1-universal.apk
-python3 /path/to/FixMyShot/scripts/check-apk.py FixMyShot-0.1.0-alpha.1-universal.apk
+apksigner verify --verbose --print-certs FixMyShot-0.1.0-alpha.2-universal.apk
+apkanalyzer manifest print FixMyShot-0.1.0-alpha.2-universal.apk
+python3 /path/to/FixMyShot/scripts/check-apk.py FixMyShot-0.1.0-alpha.2-universal.apk
 ```
 
 Compare actual app ID/name/code/minSdk, non-debuggable state and permissions with source/ledger. Compare the public certificate to the established identity. Check all shipping ABIs and actual ELF/ZIP 16 KiB alignment; alignment is not runtime 16 KiB acceptance. Retain unsigned and signed hashes. Never edit/realign signed bytes; reverify the signature after final staging.
 
 Primary tool references, checked 2026-10-23: [apksigner](https://developer.android.com/tools/apksigner) · [apkanalyzer](https://developer.android.com/tools/apkanalyzer). These are maintainer-environment steps, not a request to install tools on the user's computer.
 
-## 04 · Package three clear assets
+## 04 · Package four clear assets
 
 | Public asset | Contents |
 |---|---|
 | `FixMyShot-<versionName>-universal.apk` | One signed production-ID APK, all shipping ABIs |
 | `BUILD-INFO.json` | Source/tag, unsigned/signed digests, public cert, actual tools and exact acceptance evidence |
-| `SHA256SUMS.txt` | Hashes of the final signed APK and completed BUILD-INFO.json |
+| `SHA256SUMS.txt` | Hashes of the APK, source archive and completed BUILD-INFO.json |
+| `FixMyShot-<versionName>-source-materials.tar.gz` | Exact project/native/runtime source materials |
 
 Complete the BUILD-INFO template from actual records; null/NOT_RUN values are reminders, not final evidence. Include recoverable corresponding source and pinned native build/license records. Exclude operator paths, device serials, private images and credentials. A checksum cannot contain itself.
 
 Once BUILD-INFO is final, from the isolated asset directory:
 
 ```sh
-sha256sum FixMyShot-0.1.0-alpha.1-universal.apk BUILD-INFO.json > SHA256SUMS.txt
+sha256sum FixMyShot-0.1.0-alpha.2-universal.apk FixMyShot-0.1.0-alpha.2-source-materials.tar.gz BUILD-INFO.json > SHA256SUMS.txt
 sha256sum -c SHA256SUMS.txt
 ```
 
-Use the notes template, keep user benefits first and technical receipts expandable. Replace every EDIT marker and missing field with verified facts. Use tag-bound artwork/source links. Verify all three asset links after authorized publication. Keep README accurate before publication instead of presenting a dead Download button. Rendering notes does not establish release acceptance.
+Use the notes template, keep user benefits first and technical receipts expandable. Replace every EDIT marker and missing field with verified facts. Use tag-bound artwork/source links. Verify all four asset links after authorized publication. Keep README accurate before publication instead of presenting a dead Download button. Rendering notes does not establish release acceptance.
 
 ## 05 · Actually install and update
 
@@ -448,7 +480,7 @@ For **Obtainium**, add `https://github.com/santirodriguez/FixMyShot`, enable pre
 
 ## 06 · The final handoff
 
-Before requesting separately authorized merge/tag/publication, reconcile the **then-current** candidate source and signed bytes, applicable gates, independent same-source rebuild, corresponding-source closure, publisher evidence/explicit disposition, ledger, APK manifest, tag, GitHub prerelease flag and final assets/hashes. The diagnostic APK acceptance does not authorize production signing or release. Scan README, changelog, About/version, authentic screenshots and notes for stale claims. Branding artwork is not an app screenshot. Do not claim the planned website or stores are live.
+Before requesting separately authorized merge/tag/publication, reconcile the **then-current** candidate source and signed bytes, applicable gates, independent same-source rebuild, corresponding-source closure, publisher evidence/explicit disposition, ledger, APK manifest, tag, GitHub prerelease flag and final assets/hashes. The diagnostic APK acceptance does not authorize production signing or release. Scan README, changelog, About/version, authentic screenshots and notes for stale claims. Branding artwork is not an app screenshot. Verify actual website/store state before making availability claims.
 
 Initial functional 0.1.0 is a GitHub prerelease; public 1.0 remains the later stable milestone. F-Droid/Google Play submissions, website deployment and key operations have separate authority. This preparation does not publish, merge or sign anything.
 
@@ -482,3 +514,4 @@ now requires eight exact legal assets. The grouped build verifies the actual
 installed NDK source against its pinned release before package acceptance. See
 [native source review](feasibility/native-source-review.md); an earlier seven-
 asset package does not qualify a later notice update.
+

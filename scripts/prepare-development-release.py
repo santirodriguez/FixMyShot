@@ -162,10 +162,10 @@ def stage(request, signed_root, source_root, output, control):
         "compiled_source_commit": request["compiled_source"],
         "compiled_source_tree": request["compiled_tree"], "assets": rows,
         "integration_snapshot": request["integration_snapshot"],
-        "proposed_integration_sequence": ["Separately authorize PR1 into release/0.1.0",
-            "Prepare/review release/0.1.0 into main; recheck the recorded default-branch snapshot",
-            "After authorized integration, publish only the reviewed assets and tag the exact packaging-control commit"],
-        "integration_gate": "PR1 targets release/0.1.0, not main. Separate authority must resolve default-branch integration before publication; staging changes neither branch.",
+        "proposed_integration_sequence": ["Review PR2 and this exact prepared kit",
+            "Separately authorize release/0.1.0 into main",
+            "Separately authorize the manual publishing workflow with this successful staging run ID"],
+        "integration_gate": "The exact packaging-control commit must be contained in main before publication. Staging does not merge, tag or publish.",
         "tag_source_explanation": "The tag identifies current documentation/packaging control. BUILD-INFO and the nested source kit identify the exact earlier compiled Git source; no rebuild of the tag is claimed.",
         "obtainium_source": "https://github.com/santirodriguez/FixMyShot",
         "obtainium_apk_filter": r"^FixMyShot-.*-universal\.apk$",
@@ -192,3 +192,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     stage(json.loads(args.request.read_text()), args.signed_root, args.source_root,
           args.output, args.control_commit)
+

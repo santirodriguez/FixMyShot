@@ -2,16 +2,21 @@
 
 ## Current pre-main review — 2026-11-04
 
-PR1 is merged into release/0.1.0 at1b03caf0; main is unchanged. The development
-kit was prepared and its four assets independently verified. Current public
-copy uses Caja Personal and the published project website; the frozen APK still
-has its original About attribution/links. The [pre-main review](releases/pre-main-review.md)
-records all six automatic merge-triggered CI outcomes, the known deferred AVIF
-failure and one newly observed Android test-helper failure being corrected.
-A draft main-integration PR must pass its affected exact-head checks before a
-merge decision. No main merge/tag/publication is authorized. Earlier dated
-proposal/status sections below are historical, not the current authority.
+PR1 is merged into release/0.1.0. [PR2](https://github.com/santirodriguez/FixMyShot/pull/2)
+prepares main integration; no main merge or publication has occurred.
+Android CI41858529484 passed all135instrumented tests and its build checks.
+Original artifacts and current canonical screenshots were inspected; see the
+[pre-main review](releases/pre-main-review.md). Deferred AVIF retains its known
+negative diagnostic evidence and remains outside normal export.
 
+Release preparation now includes an Obtainium configuration button, current
+Caja Personal notes and an explicit manual publishing workflow. It verifies a
+reviewed kit already merged into main, preserves the exact signed APK/source,
+checks uploaded bytes before publishing and refuses conflicting remote state.
+The release/API write path awaits explicit execution authority. Full functional
+0.1.0 and actual Obtainium/device coverage remain incomplete; see
+[the release handoff](RELEASING.md#current-handoff-main-github-and-obtainium).
+Earlier dated status/proposal entries below are historical.
 
 ## Delivery scope reconciled — 2026-11-04
 
@@ -25,7 +30,7 @@ Obtainium evidence; historical matrices below retain their original bindings.
 Full functional0.1.0 acceptance remains open. The
 [proposed development-prerelease path](RELEASING.md#proposed-development-prerelease-path--decision-pending)
 would prepare the already signed alpha.2 as an explicitly incomplete test release.
-That proposal requires a scope decision; merge/tag/publication remain unauthorized.
+Preparation was subsequently approved; merge/tag/publication retain their separate authority.
 No repeat of accepted visual, output, picker, update/launch or screenshot checks
 is requested.
 
@@ -656,3 +661,4 @@ runtime files;522other captured files remain pending. New issuer searches found
 no accepted primary anchor, so325/858and the inactive policy are unchanged.
 Functionality/device acceptance and distribution approval must be reported
 separately. No phone run or APK handoff is claimed here.
+

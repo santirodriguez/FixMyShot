@@ -6,6 +6,12 @@ Run build and validation commands from the repository root.
 
 Run `python3 scripts/check-release.py` for the checked version ledger, source identity and release-note fields. `python3 scripts/test-release.py` exercises its offline refusal boundaries. See [RELEASING](../docs/RELEASING.md) for the notes/build-receipt templates, exact artifact naming, reproducibility, signature and Obtainium checks. These source checks do not inspect or approve a signed APK and do not publish anything.
 
+Run `python3 scripts/test-development-release.py` for offline publication guards,
+recoverable-draft handling and Obtainium configuration. The read-only staging
+workflow validates the real frozen inputs; publication is a separate manual
+dispatch after main integration and explicit approval. See RELEASING for its
+exact run-ID/confirmation handoff.
+
 ## Bootstrap build
 
 Use JDK 17 and Android SDK platform 36, build tools 36.0.0, NDK 28.2.13676358 and CMake 3.22.1. The migrated candidate pins AGP 9.2.1, Gradle 9.4.1, Kotlin 2.4.21 and Compose BOM 2025.12.00. These are starting pins, not claims of current security approval or independently reproducible output. Review the actual resolved dependency/security inventory before freezing G1.
@@ -18,6 +24,10 @@ python3 scripts/check-bootstrap.py
 ```
 
 The standard Gradle9.4.1 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](../docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
+
+Normal0.1.0 output is PNG/lossless WebP. HEIC/AVIF/JXL are deferred under the
+[approved amendments](../docs/decisions/compatibility-and-validation.md). The following
+bootstrap notes retain historical implementation context, not current codec qualification.
 
 HEIC/AVIF native writer feasibility uses the pinned AndroidX HeifWriter release candidate; inspect actual device output before advertising those formats. A bounded Photo Picker / received-share / app-private review import path exists, with immutable PNG/WebP preflight, a test-only private output executor, and an internal API29+ journaled MediaStore transaction adapter. An experimental user-triggered Export UI now uses the frozen sequential coordinator: owned MediaStore on API29+, explicit user-selected SAF folder on API26–28, localized progress and per-item results. Source-bound build/API26/API36 tests now cover synthetic export results, selected-output share payloads and read-only recovery checks; genuine selected SAF trees, external receiving apps and complete recovery remain unverified. See docs/TESTING.md for the exact receipt; this is not G4/release acceptance. No storage permission was added.
 
@@ -44,7 +54,7 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 ## Translations and reports
 
-Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (236 in the current implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
+Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (391 in the current implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
 Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](../docs/TESTING.md) for acceptance boundaries.
 
@@ -393,3 +403,4 @@ reopen triggers. New certificate/CRL/keystore/production-signing inputs require
 fresh operation review. Do not relabel the initial failed observer run, suppress
 frozen findings, activate generated trust or repeat unchanged probes merely to
 obtain another green run.
+

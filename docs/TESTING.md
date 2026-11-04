@@ -1,5 +1,25 @@
 # Testing and evidence
 
+## Pre-main automation review — 2026-11-04
+
+[PR2 Android CI41858529484](https://github.com/santirodriguez/FixMyShot/actions/runs/41858529484)
+completed SUCCESS for headf8dcc53e. GitHub compiled synthetic mergef9bc363b,
+whose treec0c49214 exactly equals the reviewed release-branch tree. Build/core,
+lint and APK checks passed; all135Android tests passed, including all12editor
+cases after the single-root visibility-helper correction. Legacy SAF was skipped.
+Original smoke artifact13340300321:2580636bytes, SHA256
+6b8a00b01e125b949d8c6ac70b74e9bf3307524a522c2613ee1544cbc107e679;
+all73unique members and CRC passed. The three contrast captures were inspected.
+This is emulator evidence, not a new physical test or a replacement signed APK.
+
+The actual canonical Home/Settings bytes were opened again and match current
+Git blobs55b3c21c/3d06e640 and ARTWORK's alpha.2 receipts. No image was changed.
+Offline publication tests exercise exact-kit refusals, main/tag/ancestry guards,
+interrupted draft recovery, remote digest mismatches, conflicting assets,
+trusted staging-run selection and the Obtainium link's actual configuration.
+The exact real APK/source kit also passed restaging and local kit verification.
+Live release API writes remain unexecuted pending separate publication approval.
+
 ## Current delivery disposition — 2026-11-04
 
 This reconciliation uses the exact signed alpha.2/code2 APK
@@ -28,7 +48,8 @@ submission/website deployment merely to proceed.
 
 The [development-prerelease proposal](RELEASING.md#proposed-development-prerelease-path--decision-pending)
 offers a separate, explicitly incomplete test channel for the existing alpha.2
-bytes. It is not approved and does not waive the functional gates. Obtainium
+bytes. Its preparation is approved; publication remains separately controlled. It does
+not waive the functional gates. Obtainium
 cannot be called accepted before actual accessible release assets are tested.
 No merge, tag or publication is authorized by this reconciliation.
 
@@ -1738,3 +1759,4 @@ Prepared evidence: three pure-JVM EditorZoomTest cases, two actual Compose acces
 Local resource/XML/catalog/placeholder/manifest checks(278 matching keys), release-source checker and10release/10device-report host cases PASS; Bash syntax and diff whitespace PASS. Android compile/lint/JVM/new interaction/runtime checks are NOT RUN until the exact source-bound Actions checkpoint completes. No frame-time or allocation benchmark is claimed. Pixel9ProXL smoothness/visual/fidelity, TalkBack/large text/keyboard/manual languages, real-provider/other hardware and existing release gates remain OPEN.
 
 First checkpoint932dae34 / Actions40702874741 failed in the host collector fixture before Android compilation: the mock did not yet emit the new two-test EditorInteractionTest result. Its success result fell through to the old four-test default, so the new strict two-test guard correctly refused it. Update the mock's explicit editor classification; no product assertion or count is relaxed. New Android build/runtime acceptance remains pending.
+

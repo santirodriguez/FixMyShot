@@ -70,7 +70,10 @@ Store publication still requires the final candidate screenshot review. Editor t
 patterns are retained as engineering evidence rather than promotional screenshots.
 
 `docs/assets/badges/donate.svg` is the repository's GPL-3.0-only support button, with
-accessible title/description and the existing author donation destination.
+accessible title/description and the Caja Personal support destination.
+`docs/assets/badges/obtainium.svg` is an original GPL-3.0-only project button,
+not a copy of the Obtainium logo. Its configuration selects the GitHub source,
+prereleases and the single universal APK; no catalog listing is implied.
 
 ## Current tracked screenshot inspection — 2026-11-02
 
@@ -126,3 +129,4 @@ exact replacements are uploaded and their remote blobs/readback verified.
 Do not update the README caption to currentalpha.2 before that replacement.
 Its canonical paths can remain unchanged; no second independently edited
 screenshot set is needed.
+

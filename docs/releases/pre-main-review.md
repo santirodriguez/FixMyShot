@@ -9,8 +9,10 @@ claims an unpublished APK is available. Current release notes and their reusable
 template use the same identity and canonical project/support links.
 
 Sites confirms the project active at https://fixmyshot.cajapersonal.org/ with
-custom hostname/TLS active, published version3. Hosted privacy/support route
-contents were not independently verified. No website or DNS changes were made.
+custom hostname/TLS active. A separately authorized Site-only update published
+version4 on2026-11-04 (source90cc9622). Home/privacy and EN/ES/CA selection were
+verified in the published site. Donation link targets were checked; no payment
+flow is claimed. This site deployment did not change Android APK bytes.
 
 The [identity amendment](../decisions/public-identity.md) preserves immutable
 source, legal provenance and the signed APK. Its About attribution/links are
@@ -53,7 +55,7 @@ Job/step outcomes were inspected for all six. Original downloaded evidence:
   fidelity gate; it is not a new production regression or format qualification.
   PSNR>=38dB and max-channel-error<=2 remain required; AVIF stays deferred.
 
-## Remaining integration gates
+## Original integration checkpoint — superseded by current review
 
 PR1 is already merged into release/0.1.0; main remains the original LICENSE-only
 baseline. Prepare a draft integration PR and inspect its exact-head Android CI.
@@ -64,3 +66,33 @@ exercise is authorized by this documentation/test correction.
 The original signed alpha.2 bytes, certificate, source kit and previously
 accepted manual update/launch remain unchanged. The broader pending functional
 coverage and actual Obtainium source/install/update remain unverified.
+
+
+## Current main-integration and publishing review
+
+The normal PR2 run [41858529484](https://github.com/santirodriguez/FixMyShot/actions/runs/41858529484)
+is SUCCESS: build/core/lint/packages and135/135API36 instrumentation, including
+all12editor cases. Original smoke artifact13340300321 (2580636bytes, SHA256
+6b8a00b01e125b949d8c6ac70b74e9bf3307524a522c2613ee1544cbc107e679)
+has73unique safe members, valid CRC and135actual passing test results. Its
+compiled synthetic mergef9bc363b has the identical tree as headf8dcc53e. This
+closes the test-helper regression above without changing production code.
+
+The current canonical1.png/2.png were opened in full and match the reviewed
+alpha.2 originals and current candidate Git blobs. No screenshots or APKs were
+replaced. The signed hash/source/certificate and accepted manual reports remain.
+
+The release automation update adds a local Obtainium button with explicit
+GitHub/prerelease/universal-APK configuration; refreshes staging for the current
+branch/PR; and adds a manually dispatched publisher for main. Its reviewed kit
+control must be contained in main. The publisher creates a draft, independently
+reads back all four uploaded assets before publication and refuses remote
+conflicts. Interrupted drafts can be resumed without clobbering assets.
+Offline refusal/recovery tests and real-input local restaging passed. The new
+hosted staging/PR checks must complete for this update before main is recommended.
+No live release API write, new signing or physical acceptance is claimed.
+
+The tag identifies the reviewed packaging-control commit, while BUILD-INFO and
+the unchanged source archive identify compiled1f89c979. The historicalc9137faf
+tag proposal is superseded. Full functional0.1.0 and actual Obtainium acceptance
+remain incomplete; this is only the approved development-prerelease path.

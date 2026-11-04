@@ -12,8 +12,9 @@ historical receipts, legal notices, original source archives or Git history.
 - Support: https://cajapersonal.org/donate/
 
 Sites readback confirms project appgprj_6ae8fdc5984c819190d413472099628c active,
-published version3, with the canonical custom hostname and TLS active. This
-does not verify every hosted route, privacy-policy text or donation flow.
+published version4 after the separately approved2026-11-04Site update, with the
+canonical custom hostname and TLS active. Home/privacy and EN/ES/CA selection
+were verified live; no donation payment flow or full policy-equivalence audit is claimed.
 The repository remains authoritative for the app and its privacy source.
 
 ## Frozen candidate boundary
@@ -30,3 +31,4 @@ use the current repository release notes for public-copy review. Reconcile and
 restage the documentary tag/build receipt/notes together before publication.
 The previous c9137faf tag target is historical preparation, not approval to
 publish obsolete public copy. No tag or publication is authorized here.
+

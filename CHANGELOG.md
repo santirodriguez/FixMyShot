@@ -4,7 +4,9 @@ Real changes. No imaginary release history.
 
 ## 0.1.0-alpha.2
 
-Signed Actions validation candidate handed off on 2026-11-03; no GitHub release.
+Signed validation candidate handed off on 2026-11-03. Published downloads, when
+available, are listed on GitHub Releases; the development prerelease preserves
+these exact signed bytes.
 The maintainer reports successful alpha.1/code1 to alpha.2/code2 update and launch.
 Detailed settings/default retention and Obtainium acceptance remain pending.
 
@@ -96,3 +98,4 @@ their acceptance. HEIC/AVIF/JXL implementation and qualification are deferred
 from 0.1.0 and are outside this delivery's remaining critical path.
 See [TESTING](docs/TESTING.md), [STATUS](docs/STATUS.md) and
 [FORMATS](docs/FORMATS.md) for evidence, explicit scope and limits.
+

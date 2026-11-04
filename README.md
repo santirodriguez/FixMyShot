@@ -10,9 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="https://fixmyshot.cajapersonal.org/"><img src="https://img.shields.io/badge/Explore-FixMyShot-68DCEB?style=for-the-badge" alt="Visit the FixMyShot website" /></a>
-  <a href="https://github.com/santirodriguez/FixMyShot/releases"><img src="https://img.shields.io/badge/GitHub-Releases-26364D?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Browse published GitHub releases" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/Open_source-GPLv3-BDA7FF?style=for-the-badge" alt="GNU GPL version 3 only" /></a>
+  <a href="https://fixmyshot.cajapersonal.org/"><img src="https://img.shields.io/badge/Explore-FixMyShot-68DCEB?style=for-the-badge" alt="Visit the FixMyShot website" height="36" /></a>
+  <a href="https://github.com/santirodriguez/FixMyShot/releases"><img src="https://img.shields.io/badge/GitHub-Releases-26364D?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Browse published GitHub releases" height="36" /></a>
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium%3A%2F%2Fapp%2F%257B%2522id%2522%253A%2522org.cajapersonal.fixmyshot%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fgithub.com%252Fsantirodriguez%252FFixMyShot%2522%252C%2522author%2522%253A%2522Caja%2520Personal%2522%252C%2522name%2522%253A%2522FixMyShot%2522%252C%2522additionalSettings%2522%253A%257B%2522includePrereleases%2522%253Atrue%252C%2522apkFilterRegEx%2522%253A%2522%255EFixMyShot-.*-universal%255C%255C.apk%2524%2522%257D%257D"><img src="docs/assets/badges/obtainium.svg" alt="Add FixMyShot to Obtainium" height="36" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Open_source-GPLv3-BDA7FF?style=for-the-badge" alt="GNU GPL version 3 only" height="36" /></a>
 </p>
 
 <p align="center">
@@ -79,12 +80,14 @@ Choose light, dark or system appearance, with offline **English, Español and Ca
 ## On your phone
 
 **Development preview · 0.1.0-alpha.2.** A signed testing candidate is prepared.
-The [releases page](https://github.com/santirodriguez/FixMyShot/releases) lists published
-downloads when available; this README does not announce a release.
+Published APKs, checksums and exact source materials are listed on the
+[releases page](https://github.com/santirodriguez/FixMyShot/releases) when available.
 Full functional 0.1.0 acceptance remains incomplete.
 
-GitHub is the first distribution channel. Obtainium will follow its published
-prerelease assets; actual Obtainium installation and updates remain unverified.
+GitHub is the first distribution channel. The **Add to Obtainium** button
+configures the GitHub source, enables prereleases and selects the universal APK.
+It becomes installable when a release is published; actual Obtainium installation
+and updates still require device acceptance.
 F-Droid and Google Play are future channels.
 
 <details>
@@ -161,3 +164,4 @@ A later documentation commit is not a claim that it produced the same APK.
 </p>
 
 <p align="center"><sub><a href="https://fixmyshot.cajapersonal.org/">Website</a> · <a href="LICENSE">GNU GPLv3 only</a> · <a href="THIRD_PARTY_NOTICES">Third-party notices</a></sub></p>
+

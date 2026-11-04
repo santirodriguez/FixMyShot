@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "request_id": "alpha.2-development-kit-2026-11-04",
+  "request_id": "alpha.2-main-release-automation-2026-11-04",
   "application_id": "org.cajapersonal.fixmyshot",
   "version_name": "0.1.0-alpha.2",
   "version_code": 2,
@@ -30,11 +30,11 @@
     "artifact_name": "source-kit-bc7c12df8990c15d802aca95f4f00aafa9b4ab7e"
   },
   "integration_snapshot": {
-    "pr": 1,
-    "head_branch": "release/0.1.0-editor",
-    "reviewed_parent": "24a14b89be29d2044c0e7226ac8fecd168b5e8d7",
-    "base_branch": "release/0.1.0",
-    "base_sha": "4aa497e427d1d09a1bf84ef7f942869b08c7fc65",
+    "pr": 2,
+    "head_branch": "release/0.1.0",
+    "reviewed_parent": "f8dcc53e97b7857b8c4418fb3d4d65d51cc8deb7",
+    "base_branch": "main",
+    "base_sha": "eb430e13ac71fdf334978b88623acf1ae1944c7e",
     "default_branch": "main",
     "default_branch_sha": "eb430e13ac71fdf334978b88623acf1ae1944c7e"
   }
