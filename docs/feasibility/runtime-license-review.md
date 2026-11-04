@@ -55,6 +55,8 @@ The source workflow's explicit operation remains n01-implementation; a future
 source-material generation must explicitly select source-materials in
 .ci/source-material-operation.json. No unchanged regeneration is needed now.
 
+<a id="exact-alpha-license-and-source-disposition--2026-11-02"></a>
+
 ## Exact-alpha license and source disposition — 2026-11-02 (before N01 comparison)
 
 Reviewed candidate: executable7cbed17de44f4bc4ff31b62270ace3bd5a51b492,
