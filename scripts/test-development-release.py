@@ -206,9 +206,13 @@ class PublicationTests(unittest.TestCase):
     def test_reviewed_stable_release_is_latest_and_idempotent(self):
         self.request.update(version_name="1.0.0", tag_name="v1.0.0",
                             release_channel="stable", stable_acceptance_reviewed=True)
+        for key, suffix in (("signed_apk", "-universal.apk"), ("source_materials", "-source-materials.tar.gz")):
+            original = self.kit / "assets" / self.request[key]["filename"]
+            self.request[key]["filename"] = "FixMyShot-1.0.0" + suffix
+            original.rename(original.with_name(self.request[key]["filename"]))
         info_path = self.kit / "assets/BUILD-INFO.json"
         info = json.loads(info_path.read_text())
-        info.update(version_name="1.0.0", coverage_limits={"functional_acceptance": "ACCEPTED",
+        info.update(version_name="1.0.0", signed_apk=self.request["signed_apk"], coverage_limits={"functional_acceptance": "ACCEPTED",
                                                         "obtainium_install_update": "NOT_RUN"})
         info_path.write_text(json.dumps(info))
         self.plan.update(prerelease=False, make_latest=True, tag_name="v1.0.0",
@@ -223,6 +227,10 @@ class PublicationTests(unittest.TestCase):
         self.write_plan()
         (self.kit / "review/staging-receipt.json").write_text(json.dumps({"control_commit": CONTROL, "assets": rows}))
         self.client.files = {p.name: p.read_bytes() for p in assets.iterdir()}
+        self.request["stable_acceptance_reviewed"] = False
+        with self.assertRaises(ValueError): self.publish("PUBLISH v1.0.0")
+        self.assertEqual(self.client.writes, [])
+        self.request["stable_acceptance_reviewed"] = True
         result = self.publish("PUBLISH v1.0.0")
         self.assertEqual(result["assets_verified"], 4)
         self.assertFalse(self.client.release["prerelease"])

@@ -83,6 +83,11 @@ def release_policy(request):
 def verify_kit(kit, control, request):
     require(request.get("state", "READY") == "READY", "Release inputs are not ready")
     policy = release_policy(request)
+    version = request["version_name"]
+    require(request["tag_name"] == "v" + version
+            and request["signed_apk"]["filename"] == "FixMyShot-" + version + "-universal.apk"
+            and request["source_materials"]["filename"] == "FixMyShot-" + version + "-source-materials.tar.gz",
+            "Version/tag/asset names differ")
     require(re.fullmatch(r"[0-9a-f]{40}", control or "") is not None, "Invalid kit control commit")
     plan = json.loads((kit / "review/release-plan.json").read_text())
     receipt = json.loads((kit / "review/staging-receipt.json").read_text())
