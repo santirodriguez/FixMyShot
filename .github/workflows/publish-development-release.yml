@@ -54,4 +54,4 @@ jobs:
           name: publication-${{ github.run_id }}
           path: publication-receipt.json
           if-no-files-found: error
-          retention-days: 90
+          retention-days: 7

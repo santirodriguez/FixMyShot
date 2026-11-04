@@ -85,5 +85,5 @@ jobs:
           name: development-release-kit-${{ github.sha }}
           path: development-release/
           if-no-files-found: error
-          retention-days: 90
+          retention-days: 7
 

@@ -18,7 +18,9 @@ Public presentation uses Caja Personal. The frozen app still has its original
 About links; a different APK requires a new versionCode and acceptance.
 
 1. Review and separately authorize [PR #2](https://github.com/santirodriguez/FixMyShot/pull/2)
-   into `main`. Record the successful push run ID and control SHA from
+   into `main` using a merge commit, preserving the reviewed control ancestry.
+   A squash/rebase requires a new reconciled kit before publication.
+   Record the successful push run ID and control SHA from
    **Prepare development release kit** on `release/0.1.0`.
 2. After separately authorizing publication, run **Publish reviewed development
    prerelease** from `main`, with that `prepared_run_id` and the exact confirmation
@@ -37,8 +39,10 @@ About links; a different APK requires a new versionCode and acceptance.
    The README button configures the source, prereleases and universal-APK filter.
    Its configuration is tested automatically; device acceptance remains separate.
 
-Staging is read-only and does not build or sign. The kit is retained for90days,
-allowing publication after the original signing/source Actions inputs expire.
+Staging is read-only and does not build or sign. The repository currently caps
+artifact retention at7days (confirmed by the original upload log); the workflows
+use that limit. Always inspect the artifact's actual `expires_at` before handoff.
+The prepared kit can outlive its original signing/source Actions inputs.
 If the kit itself expires, recover the exact inputs; never substitute different
 bytes with the same code. Only the manually dispatched publishing job uses the
 short-lived repository GITHUB_TOKEN with `contents: write`; no new secret,

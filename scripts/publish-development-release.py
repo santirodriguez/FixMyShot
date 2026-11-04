@@ -167,11 +167,19 @@ def publish(client, kit, control, main, request, confirmation):
                 client.download(asset["id"], downloaded)
                 require(downloaded.stat().st_size == record["bytes"] and sha256(downloaded) == record["sha256"],
                         "Remote asset readback differs; release remains a draft")
+        return {a["id"]: (a["name"], a["size"], a["state"]) for a in by_name.values()}
 
-    check_assets(release["draft"])
+    verified_assets = check_assets(release["draft"])
     check_main()
     actual_tag = client.json("GET", ref_path)["object"]
     require(actual_tag["type"] == "commit" and actual_tag["sha"] == control, "Tag changed during upload")
+    current = client.json("GET", API + "/releases/" + str(release["id"]))
+    require(current["name"] == release["name"] and current["body"] == notes
+            and current["draft"] == release["draft"] and current["prerelease"] is True,
+            "Release changed during upload; inspect it before retrying")
+    assets = client.json("GET", API + "/releases/" + str(release["id"]) + "/assets?per_page=100")
+    require(len(assets) == 4 and {a["id"]: (a["name"], a["size"], a["state"]) for a in assets} == verified_assets,
+            "Assets changed after verification; release remains a draft")
     if release["draft"]:
         release = client.json("PATCH", API + "/releases/" + str(release["id"]),
                               {"draft": False, "prerelease": True, "make_latest": "false"})

@@ -39,6 +39,8 @@ class FakeGitHub:
             return self.release
         if path.endswith("/assets?per_page=100"):
             return self.assets
+        if method == "GET" and path.endswith("/releases/1"):
+            return self.release
         if method == "PATCH":
             self.release.update(value)
             return self.release
@@ -151,6 +153,18 @@ class PublicationTests(unittest.TestCase):
             self.publish()
         self.assertTrue(self.client.release["draft"])
         self.assertEqual(self.client.assets[0]["name"], "extra.apk")
+
+    def test_asset_added_during_upload_prevents_publication(self):
+        original = self.client.download
+        def change_after_readback(asset_id, path):
+            original(asset_id, path)
+            if asset_id == 4:
+                self.client.assets.append({"id": 90, "name": "unreviewed.apk", "size": 1, "state": "uploaded"})
+        self.client.download = change_after_readback
+        with self.assertRaises(ValueError):
+            self.publish()
+        self.assertTrue(self.client.release["draft"])
+        self.assertFalse(any(m == "PATCH" for m, p in self.client.writes))
 
     def test_staging_cannot_claim_stable_or_resolved_coverage(self):
         self.plan["prerelease"] = False
