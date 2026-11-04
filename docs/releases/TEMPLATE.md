@@ -53,7 +53,7 @@ Images are processed locally. New sessions start with PNG and identifying-metada
 - Application ID: `org.cajapersonal.fixmyshot`
 - Version: `{{VERSION}}` · versionCode `{{CODE}}` · tag `{{TAG}}`
 - [Source and build instructions](https://github.com/santirodriguez/FixMyShot/tree/{{TAG}})
-- [Privacy](https://github.com/santirodriguez/FixMyShot/blob/{{TAG}}/PRIVACY.md) · [Format limits](https://github.com/santirodriguez/FixMyShot/blob/{{TAG}}/docs/FORMATS.md)
+- [Privacy](https://github.com/santirodriguez/FixMyShot/blob/{{TAG}}/docs/PRIVACY.md) · [Format limits](https://github.com/santirodriguez/FixMyShot/blob/{{TAG}}/docs/FORMATS.md)
 
 </details>
 

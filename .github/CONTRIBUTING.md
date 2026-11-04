@@ -1,8 +1,10 @@
 # Contributing
 
+Run build and validation commands from the repository root.
+
 ## Release preparation
 
-Run `python3 scripts/check-release.py` for the checked version ledger, source identity and release-note fields. `python3 scripts/test-release.py` exercises its offline refusal boundaries. See [RELEASING](docs/RELEASING.md) for the notes/build-receipt templates, exact artifact naming, reproducibility, signature and Obtainium checks. These source checks do not inspect or approve a signed APK and do not publish anything.
+Run `python3 scripts/check-release.py` for the checked version ledger, source identity and release-note fields. `python3 scripts/test-release.py` exercises its offline refusal boundaries. See [RELEASING](../docs/RELEASING.md) for the notes/build-receipt templates, exact artifact naming, reproducibility, signature and Obtainium checks. These source checks do not inspect or approve a signed APK and do not publish anything.
 
 ## Bootstrap build
 
@@ -15,7 +17,7 @@ python3 scripts/check-bootstrap.py
 ./gradlew :app:connectedDebugAndroidTest
 ```
 
-The standard Gradle9.4.1 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
+The standard Gradle9.4.1 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](../docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
 
 HEIC/AVIF native writer feasibility uses the pinned AndroidX HeifWriter release candidate; inspect actual device output before advertising those formats. A bounded Photo Picker / received-share / app-private review import path exists, with immutable PNG/WebP preflight, a test-only private output executor, and an internal API29+ journaled MediaStore transaction adapter. An experimental user-triggered Export UI now uses the frozen sequential coordinator: owned MediaStore on API29+, explicit user-selected SAF folder on API26–28, localized progress and per-item results. Source-bound build/API26/API36 tests now cover synthetic export results, selected-output share payloads and read-only recovery checks; genuine selected SAF trees, external receiving apps and complete recovery remain unverified. See docs/TESTING.md for the exact receipt; this is not G4/release acceptance. No storage permission was added.
 
@@ -30,7 +32,7 @@ The release branch runs the build and a representative API36 emulator only when 
 Do not write a checkpoint file at the start of development or for documentation-only commits. Rework related failures as one bounded slice, and honor the 5-minute normal/10-minute hard passive CI waiting limit. Preserve applicable hardware, codec, reproducibility and signing gates; legacy compatibility requirements are qualified by docs/decisions/compatibility-and-validation.md.
 
 
-JXL is [deferred for v0.1.0](docs/decisions/jxl-first-delivery.md) after the completed three-ABI reference experiment. Keep its opt-in helper/workflow as historical tooling; do not trigger another reference build as part of ordinary app work. Any later scoped reconsideration must measure the actual optimized package/runtime costs. Before interpreting Gradle trust candidates, run `python3 scripts/test-gradle-candidates.py` and `python3 scripts/audit-gradle-candidates.py <source-bound-bootstrap-artifact.zip>`; generated hashes remain untrusted until independently corroborated. The source-built JXL reports and their binary/measurement limits remain in `docs/feasibility/phase1-batch-preflight.md`.
+JXL is [deferred for v0.1.0](../docs/decisions/jxl-first-delivery.md) after the completed three-ABI reference experiment. Keep its opt-in helper/workflow as historical tooling; do not trigger another reference build as part of ordinary app work. Any later scoped reconsideration must measure the actual optimized package/runtime costs. Before interpreting Gradle trust candidates, run `python3 scripts/test-gradle-candidates.py` and `python3 scripts/audit-gradle-candidates.py <source-bound-bootstrap-artifact.zip>`; generated hashes remain untrusted until independently corroborated. The source-built JXL reports and their binary/measurement limits remain in `docs/feasibility/phase1-batch-preflight.md`.
 
 ## Ownership
 
@@ -44,7 +46,7 @@ The encoder accepts only already-normalized 8-bit sRGB bitmaps and returns an ap
 
 Android XML resources are canonical. `python3 scripts/check-bootstrap.py` checks the currently implemented keys (236 in the current implementation), duplicate/missing entries, placeholders, XML and bootstrap permissions without Android Studio. The check also compares the packaged locale configuration with the language catalog; full future plural/array/markup and APK-language review remains open. Use Argentine Spanish and natural Catalan; automated structure checks do not replace linguistic review.
 
-Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](docs/TESTING.md) for acceptance boundaries.
+Keep implementation and technical documentation in English. Do not include private screenshots, source filenames, content URIs, credentials or personal metadata in reports. Use the synthetic harness and identify the exact source SHA, API, device and check performed. See [TESTING](../docs/TESTING.md) for acceptance boundaries.
 
 
 ## Appearance and language
@@ -56,6 +58,12 @@ The ViewModel retains the batch/selected-image scope and an editor-session token
 Discard/finish resets the editor token and scope. A fresh ViewModel also starts a fresh editor context, so journal restoration recovers applied settings without reviving old uncommitted fields. Removing the last image keeps the context while undo still owns sources. Keep scope changes and draft/removal callbacks guarded during import/share or blocked/locked work; selected-only callbacks must refuse a missing selection rather than editing the batch. Confirmation dialogs remain short-lived and are not restored. See [Compose state saving](https://developer.android.com/develop/ui/compose/state-saving) and [rememberSaveable](https://developer.android.com/reference/kotlin/androidx/compose/runtime/saveable/package-summary): restoration does not revalidate remembered inputs, so explicit composition keys define these boundaries.
 
 `settings/AppPreferences.kt` stores only theme in Preferences DataStore (1.1.7). AppCompat (1.7.1) owns language persistence on older Android. API33+ uses LocaleManager from the actual Activity context for selection and platform storage, through settings/AppLanguages.kt; no static delegate is used to find a possibly stale Activity service. Do not add a second language preference or persist metadata opt-out/output format as a new-session default. These stable versions deliberately fit the existing toolchain; they are not latest-version claims. Language resources remain offline and settings changes retain the ViewModel draft. The original flag vectors have provenance in THIRD_PARTY_NOTICES.
+
+## Live review workspace
+
+ReviewCanvas draws the retained normalized source directly with ReviewBitmapRenderer's shared Canvas mapping. Keep source acquisition keyed to source identity, not draft revision. Never recycle a bitmap still owned by Compose/ViewModel snapshots, derive export input from the sample, or allocate an output bitmap in the pointer/composition path. The tool pane scrolls independently; ReviewWorkspace uses side-by-side panes in short/wide windows. Gesture/slider intermediates are local, the release commits a single undoable edit, and arrows/zoom/reset use the same selected-image geometry. Output defaults, inherited overrides and export preflight remain owned by core.
+
+EditorInteractionTest exercises actual accessibility controls and pointer input on a synthetic1344×2992 private source, checks one gesture commit/undo, retained sample through recreation and fixed canvas bounds while scrolling tools, and captures a synthetic editor image. EditorZoomTest checks logarithmic range/round trips and small reversible steps. Neither is a device frame-time benchmark or TalkBack/200%font/locale acceptance. The development editor diagnostic uses .editor and its matching smoke package, preserving other installed diagnostics; production ID/signing is unchanged.
 
 ## Crop rendering
 
@@ -231,7 +239,7 @@ Use `scripts/review-kotlin-manifests.py` with explicit control, request, prior-r
 
 An explicitly paired `.ci/dependency-security-request.json` adds an OSV inventory to the same data-only job. It pins the baseline, three lockfiles and native source commit, and becomes a no-network skip when the provenance request changes. Collection uses only the fixed official OSV API, batches of 100, no retries, a 180-second deadline, response/total limits and at most 100 advisory-detail fetches. Pagination or incomplete details cannot pass as a complete inventory.
 
-Run `python3 scripts/test-dependency-security.py` (6 cases), then replay retained evidence with `scripts/review-dependency-security.py`; its 4 offline tests cover scope changes, missing/paginated results, false clean claims and withdrawn advisories. Release-runtime selection comes from the app lockfile. Absence from these project lockfiles does **not** prove a plugin/buildscript dependency is unselected. Database matches require applicability/remediation review; no match means only no database match at the recorded time. [Current triage and reproduction](docs/feasibility/dependency-security-review.md) own the findings and open actions.
+Run `python3 scripts/test-dependency-security.py` (6 cases), then replay retained evidence with `scripts/review-dependency-security.py`; its 4 offline tests cover scope changes, missing/paginated results, false clean claims and withdrawn advisories. Release-runtime selection comes from the app lockfile. Absence from these project lockfiles does **not** prove a plugin/buildscript dependency is unselected. Database matches require applicability/remediation review; no match means only no database match at the recorded time. [Current triage and reproduction](../docs/feasibility/dependency-security-review.md) own the findings and open actions.
 
 
 ### Review the runtime publisher capture
@@ -245,7 +253,7 @@ signature bound to the separately anchored primary, with a strong digest and
 usable signing key. A key-service fingerprint match alone grants no approval.
 
 Run `python3 scripts/test-runtime-publishers.py` (8 offline refusal cases).
-[The retained capture and replay commands](docs/feasibility/evidence/README.md)
+[The retained capture and replay commands](../docs/feasibility/evidence/README.md)
 recover the actual public evidence without networking or another Android build.
 Missing issuer anchors, unverifiable signatures and unavailable captures stay
 pending; do not automatically retry them or broaden trust to a publisher group.
@@ -256,7 +264,7 @@ The migrated security inventory can be requested separately from publisher
 capture after an exact source-bound XML/lock snapshot is reviewed. The opt-in
 `.ci/security-inventory-request.json` and `--standalone` collector mode require
 explicit STANDALONE_PINNED_SECURITY_INVENTORY scope and complete hash pins.
-See the [security owner](docs/feasibility/dependency-security-review.md#security-only-refresh-after-migrated-source-qualification).
+See the [security owner](../docs/feasibility/dependency-security-review.md#security-only-refresh-after-migrated-source-qualification).
 This mode never retries publisher collection or approves trust/security.
 
 ## Reuse exact publisher proofs after a dependency migration
@@ -295,7 +303,7 @@ An explicit `--previous` report and `--expected-previous` digest allow completin
 missing rows from the same source/inventory/lock only. Complete prior rows are
 reused; cached text hashes are checked. The original partial report/producer
 and new report retain separate identities. See the current
-[license review](docs/feasibility/runtime-license-review.md).
+[license review](../docs/feasibility/runtime-license-review.md).
 
 ## Exact Google POM source-copy review
 
@@ -308,7 +316,7 @@ size and frozen SHA256. It never approves other publishers mirrored by Google.
 `scripts/review-google-source-poms.py` independently replays matching rows and
 records all outcomes. The same-release planner omits earlier failed lookups.
 Run `python3 scripts/test-google-source-copy.py` and the actual offline replay in
-[the owner](docs/feasibility/google-source-copy-review.md). The candidate remains
+[the owner](../docs/feasibility/google-source-copy-review.md). The candidate remains
 inactive; source-copy evidence must never be described as PGP verification.
 
 
@@ -320,7 +328,7 @@ in LICENSES/Android-NDK-cpufeatures.txt. The grouped build runs
 scripts/check-ndk-native-notices.py against the actual source-pinned NDK and
 retains its small raw source inputs/report. An SDK/hash/canonical-text mismatch
 fails instead of approving a different source. The APK checker now requires
-eight canonical legal assets. See [the owner](docs/feasibility/native-source-review.md).
+eight canonical legal assets. See [the owner](../docs/feasibility/native-source-review.md).
 
 
 ## Runtime source-copy and actual APK exposure review
@@ -338,13 +346,13 @@ large raw archives through the documented evidence path; capture is not upload.
 release-source checksum record for exact JetBrains-owned files only. Foreign
 publishers, adjacent metadata and blanket namespace trust are excluded. Four
 offline cases use the retained original publisher record. See the complete
-[replay owner](docs/feasibility/google-source-copy-review.md).
+[replay owner](../docs/feasibility/google-source-copy-review.md).
 
 `scripts/audit-apk-tooling-exposure.py` reads actual APK DEX class definitions
 and type references for the six matched tooling package families. Six offline
 cases include positive/multidex and malformed-input boundaries. Absence is
 package evidence only; do not mark build operations or whole security safe.
-The [security owner](docs/feasibility/dependency-security-review.md) separates
+The [security owner](../docs/feasibility/dependency-security-review.md) separates
 actual APK exposure from residual build risk. These read-only analysis tools
 change no app input and do not require a new Android build by themselves.
 
@@ -369,7 +377,7 @@ retains original Git identities. Its restore-source-snapshot.py companion
 validates exact bytes/modes before creating fresh local .git directories.
 It never fetches sources, builds, signs or publishes. Do not package a dirty
 working tree or silently substitute HEAD for the accepted compiled source.
-[The release procedure](docs/RELEASING.md#02c--stage-recoverable-project-and-native-sources)
+[The release procedure](../docs/RELEASING.md#02c--stage-recoverable-project-and-native-sources)
 records the real regeneration/restoration and remaining source-review limits.
 
 
@@ -379,7 +387,7 @@ scripts/test-build-classloads.py. Preserve startup/SDK/Gradle/AGP/lint/JUnit
 coverage requirements, raw-before-parse snapshots, bounded files, fail-closed
 record parsing and origin-specific JAR hashes. Preflight proves format/startup
 only. Class presence does not prove a method ran; absence is limited to captured
-JVMs, declared prefixes and tasks. The [assessment](docs/feasibility/evidence/host-tool-operation-review/assessment.json)
+JVMs, declared prefixes and tasks. The [assessment](../docs/feasibility/evidence/host-tool-operation-review/assessment.json)
 records completion for the current source/task set and known SDK route, plus
 reopen triggers. New certificate/CRL/keystore/production-signing inputs require
 fresh operation review. Do not relabel the initial failed observer run, suppress

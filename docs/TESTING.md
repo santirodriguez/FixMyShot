@@ -1,6 +1,410 @@
 # Testing and evidence
 
-Latest accepted application checkpoint: **5d568a7e**, normal Actions
+## Current delivery disposition — 2026-11-04
+
+This reconciliation uses the exact signed alpha.2/code2 APK
+SHA256 `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`,
+compiled source `1f89c979`, the recorded maintainer report and current canonical
+screenshots verified at `e742f5c2`. It adds no new physical-test claim.
+
+| Check | Current disposition and genuinely remaining scope |
+| --- | --- |
+| M01 | Requested PNG/WebP visual comparison accepted by maintainer report; no repeat requested or new quantitative physical metric inferred |
+| M02 | HEIC/AVIF/JXL deferred for0.1.0 by approved amendments; no codec qualification work remains in this delivery's scope |
+| M03 | Automated current storage paths and structural16KiB alignment pass; actual16KiB runtime NOT_RUN; legacy SAF retains its best-effort limitation |
+| M04 | Existing batch/retry/recovery/transaction evidence retained; full100-item mixed resource/process-kill/provider exercise not recorded |
+| M05 | Three-language resources/completeness checks pass; exhaustive human wording/offline/system-manual language review not recorded |
+| M06 | Existing interaction/semantics/recreation evidence retained; full TalkBack/200%text/landscape/input-accessibility exercise not recorded |
+| M07 | Existing synthetic orientation/privacy/color and bounded manual output evidence retained; wider independent identifying-field/opt-out/alpha/HDR inspection not recorded |
+| M08 | Layout guidance only; optional social-preview evidence not claimed and no real post requested |
+| M09 | Signed same-ID/same-certificate code1→code2 update/launch accepted by maintainer report; detailed settings/default retention and actual Obtainium install/update remain unverified |
+| M10 | Current English Home/darkSettings image readback/visual inspection complete; final delivery copy/assets remain subject to the chosen release scope; future store/localized sets are not a new GitHub prerequisite |
+
+These gaps do not imply known failures, but they are not passing evidence.
+The unchanged blueprint's full functional0.1.0 acceptance remains open. Do not
+reopen accepted general editor/picker/PNG/WebP/Preview2 or update/launch checks,
+regenerate/re-sign code2, repeat deferred-codec diagnostics or require store
+submission/website deployment merely to proceed.
+
+The [development-prerelease proposal](RELEASING.md#proposed-development-prerelease-path--decision-pending)
+offers a separate, explicitly incomplete test channel for the existing alpha.2
+bytes. It is not approved and does not waive the functional gates. Obtainium
+cannot be called accepted before actual accessible release assets are tested.
+No merge, tag or publication is authorized by this reconciliation.
+
+## Alpha.2 update/launch accepted by maintainer — 2026-11-03
+
+The maintainer answered “si go” to the specific request to confirm installing
+the signed alpha.2/code2 over alpha.1/code1 and successful launch. Record
+MAINTAINER_REPORTED_UPDATE_AND_LAUNCH_ACCEPTANCE for the exact handed-off signed
+APK in the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json).
+This is reported acceptance, not agent-operated physical testing or device logs.
+Do not request that same update/launch check again.
+
+M09 is PARTIAL: the same-ID/same-certificate increasing-code update and launch
+are accepted within that report. Detailed settings retention/new-session-default
+checks and Obtainium fresh install/update remain separately unverified.
+General editor/PNG/WebP/picker and Preview2 acceptance remain retained.
+Outstanding M03–M07 scope below is not waived or restarted wholesale.
+
+M10: the exact alpha.2 English Home/dark Settings images are now tracked in
+upload commit e742f5c20e5fa04a02aa6b3e69aee8c082c1f5a3. Commit-pinned GitHub
+readback, byte lengths/SHA256/Git blob identities, dimensions and full visual
+inspection PASS. See [ARTWORK](ARTWORK.md#alpha2-canonical-screenshots-verified).
+README reuses the canonical paths and identifies alpha.2/API36 emulator
+provenance. This closes this bounded replacement/readback subtask, not all
+localized/store/final-asset requirements. No APK rebuild or signature change.
+
+## Alpha.2 signed candidate verified — 2026-11-03
+
+Explicitly authorized [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373)
+completed both jobs SUCCESS. Actual original signed artifact was downloaded and
+checked: 10,525,601 bytes, SHA256
+93f2235774c96951901066a181f7bd56a9e9eb1b6c14d0bca793a2c027f4c0ad,
+four safe unique ZIP members and CRC PASS. Signed APK: 12,401,557 bytes, SHA256
+2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57.
+
+Original apksigner verification from API26 reports v2/v3 PASS with the established
+app certificate. Independent RSA-SHA256 v2 certificate/signature and all14
+protected-content chunks PASS. Every original unsigned APK entry is unchanged;
+only the three expected META-INF signing entries were added. All9native library
+data offsets remain unchanged and ZIP16KiB aligned. This is structural evidence,
+not a new physical16KiB runtime test. The
+[signed receipt](releases/0.1.0-alpha.2-signed-build-info.json) retains exact
+unsigned/source/signer/run/artifact bindings.
+
+The code2 ledger row is distributed through the signed Actions validation
+channel, preventing its reuse for different bytes. No GitHub release exists.
+Physical alpha.2 install/increasing-code upgrade and Obtainium remain NOT_RUN.
+Next bounded handoff: install over production alpha.1 without uninstalling and
+confirm the actual update/launch. Preserve accepted Preview2/PNG/WebP/picker
+evidence and all other recorded manual limits; no repeat general comparison.
+
+## Alpha.2 exact-source automated acceptance — 2026-11-03
+
+Source `1f89c979a7b432e6117670d170ce8ca0df5e2567` / tree `5b30eeeb7596ca595ac1a3ba880c64c356d17859`
+passed [Actions41710230009](https://github.com/santirodriguez/FixMyShot/actions/runs/41710230009):
+build and API36 smoke SUCCESS; optional legacy SAF SKIPPED. Original bootstrap
+and smoke archives were downloaded and checked for size/SHA256, safe unique
+members, CRC and exact source. Actual core XML: 99 tests, no failures/errors/skips;
+all 15 Android groups: 135 tests PASS including editor12.
+The [alpha.2 unsigned receipt](releases/0.1.0-alpha.2-unsigned-build-info.json)
+records the exact original artifact and APK bindings.
+
+All three actual captures were visually inspected: dark Settings, light Settings
+and returned light editor now show readable status icons AND gesture indicators.
+The test also waits for selected theme semantics and actual focused-window bar
+appearance on API30+. This closes the bounded API36 contrast issue; earlier red
+runs and low-contrast images remain historical evidence. It is not a new physical
+Pixel acceptance or exhaustive Android/theme/accessibility qualification.
+
+[Independent rebuild41713619611](https://github.com/santirodriguez/FixMyShot/actions/runs/41713619611)
+passed and its actual unsigned APK was directly compared with the original:
+all 12,356,414 bytes identical. Core99 passed again; the workflow enforced the
+same exact source/tree, pristine checkout and empty Gradle/project caches.
+[Complete source materials41714329031](https://github.com/santirodriguez/FixMyShot/actions/runs/41714329031)
+also passed. The original 58,608,240-byte ZIP, nested project/WebP kit and
+34,170,964-byte complete bundle were independently checked, including all
+manifest entries and 94 original source companions plus pinned Protobuf.
+The earlier material attempt failed because the outer bundler pinned the
+historical alpha.1 kit; its exact kit hash/source binding was updated after
+independent verification, retaining every other material pin and guard.
+Completed N01 and issuer classifications were not reopened or relabelled.
+
+Unsigned preparation is complete within this bounded scope. Alpha.1's
+artifact-specific Option B exception and signing authority do not qualify these
+new bytes automatically. The maintainer separately approved the same bounded
+Option B disposition for the exact alpha.2 bindings on 2026-11-03; the
+[alpha.2 assurance receipt](releases/0.1.0-alpha.2-assurance.json) records this.
+Alpha.2 signing was subsequently authorized and verified; publication remains unauthorized. Existing accepted manual evidence and remaining delivery
+limits below retain their scope; no codec/picker/visual repeat requested.
+
+
+## Visual preview delivery checkpoint — 2026-11-03
+
+The older delivery matrix below is historical for compiled source7cbed17d.
+Do not use its unsigned identity or “no signed candidate” entries as current facts.
+
+- Original alpha.1/code1 was signed and independently inspected from Actions41543938314;
+  the maintainer confirmed installation and launch. This does not prove sequential upgrade or Obtainium.
+- The separate debug Preview2 at86499cc0 passed Actions41631750308:
+  core99 and API36instrumentation135 including editor12. Original artifacts,
+  source/APK receipts and independent v2 signature/content checks passed.
+  The maintainer reports “Va bien”; retain that bounded visual/usability acceptance.
+- The current Settings/Activity focus correction at e91342fd passed
+  [Actions41668536862](https://github.com/santirodriguez/FixMyShot/actions/runs/41668536862):
+  build and API36 smoke SUCCESS; optional legacy SAF SKIPPED. Original smoke
+  artifact13249145654 was downloaded and independently verified: 2,453,196 bytes,
+  SHA256 aae7e01bc2636182265c1e694e6ddba0ff85da916ed889fc5d8e154d1f42888b,
+  unique safe ZIP members, CRC and exact source receipt PASS.
+  Actual dark Settings and returned light editor captures show readable status
+  icons AND gesture indicators. The intermediate settings-light capture still
+  shows Dark selected: capture preceded the asynchronous theme update. It is
+  not evidence of the light dialog, and no complete three-state visual PASS is
+  claimed. Correct that capture synchronization in the next candidate validation
+  batch; do not start another unchanged run solely for this limitation. No new
+  Pixel test or production APK handoff is claimed.
+- PNG/WebP and accepted editing/picker evidence remain valid within their recorded
+  bounds. Deferred HEIC/AVIF/JXL investigations are not restarted.
+
+Before final distribution, bind the final approved executable source and version
+to new build/source packaging and applicable reproducibility/assurance receipts;
+the artifact-specific Option B and signed7cbed17d bytes do not automatically
+qualify modified UI binaries. Preserve completed dependency/source review where
+inputs remain unchanged rather than reopening it wholesale. Production signing
+of new bytes needs its own explicit authority.
+
+Remaining delivery gates: exact final candidate source/material co-location and
+public docs/About/screenshots; unresolved bounded manual coverage from M03–M07
+(actual16KiB runtime, full100-item failure exercise, human locales/accessibility
+and wider independent metadata/color cases where unrecorded); and M09 sequential
+upgrade using increasing versionCodes plus an authorized obtainable asset source.
+Do not label unavailable evidence PASS or demand repetition of accepted checks.
+Merge, release/publication, Play enrollment and deployment remain separate gates.
+
+## Unsigned alpha.2 preparation — approved 2026-11-03
+
+The maintainer approved preparing 0.1.0-alpha.2 / versionCode2 with the existing production application ID,
+accepted Preview2 UI and bounded system-bar correction. First reconcile the
+ledger's actually distributed alpha.1 against its verified signed receipt;
+retain that row when adding code2. Keep dependency/native pins, permissions,
+normal PNG/WebP output and deferred-codec decisions unchanged.
+
+The preparation batch should synchronize the light-dialog screenshot with the
+actual applied theme, update current version/docs/About/notes, and produce one
+unsigned final-source build. Inspect its original APK, manifest and captures,
+compare dependency inputs against the completed alpha.1 review, then generate
+source materials and independently reproduce the same frozen source. Reuse
+unchanged review evidence; preserve pending delivery checks explicitly.
+
+This plan does not extend the artifact-specific Option B assurance exception.
+Present any changed binding with exact new source/input/APK hashes for a separate
+maintainer decision after the build. Production signing of those exact bytes,
+upgrade handoff, merge and publication remain separately authorized steps. Do
+not activate the existing code1 signing request for code2 or substitute inputs.
+
+## Current delivery reconciliation — 2026-11-02
+
+Executable source remains7cbed17de44f4bc4ff31b62270ace3bd5a51b492.
+The unsigned12,340,030-byte APK remains SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+Control/documentation HEADs are not substituted for that compiled source.
+The current unsigned [BUILD-INFO draft](releases/0.1.0-alpha.1-unsigned-build-info.json)
+binds this reconciliation to the existing evidence.
+
+### Accepted evidence — reuse it
+
+- Ordinary CI41338068328: build/lint/core99 and API36instrumented135PASS,
+  including all80synthetic lossless encodes. Structural16KiB alignment and
+  eight canonical legal assets pass; actual emulator pages were4096bytes.
+- Exact-source independent rebuild41369848088: every unsigned APK byte identical.
+  Current kit41372832634/materials41373814270 and their original archive/member
+  checks remain accepted. No unchanged regeneration/rebuild is needed.
+- Source/license engineering review is complete; [N01 is closed](feasibility/runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02).
+  The approved [exact-alpha issuer-risk disposition](decisions/dependency-assurance-alpha-proposal.md)
+  retains325reviewed/533pending classifications; no repeated issuer capture.
+- General UX2.2, consecutive-image/picker cancellation and the requested
+  PNG/WebP four-file comparison are accepted by maintainer report. Do not ask
+  for those exercises/files again. This is not new agent-operated Pixel
+  testing or independent real-image pixel/metadata measurement.
+
+### Manual/delivery matrix — preserve the actual boundary
+
+| Blueprint check | Current disposition | Only unresolved scope |
+| --- | --- | --- |
+| M01 | Requested PNG/WebP comparison accepted as MAINTAINER_REPORTED_MANUAL_ACCEPTANCE | Do not infer every §7worked example or quantitative physical color metric from that bounded confirmation |
+| M02 | HEIC/AVIF/JXL outputs deferred for0.1.0 by explicit amendments | No codec investigation or physical qualification is required for those deferred outputs in this delivery; original failures remain |
+| M03 | Current automated storage paths pass; legacySAF skipped/NOT_RUN under the best-effort amendment | Actual16KiB runtime remains NOT_RUN; retain the legacy limitation without demanding a new legacy-only adapter or unchanged matrix. Alignment is not runtime |
+| M04 | Automated batch/retry/recovery/transaction groups pass; ordinary batch UX accepted | Full100-item mixed cancellation/process-kill/low-space/provider exercise is not recorded as completed |
+| M05 | Packaged en/es/ca resources and automatic completeness checks pass | Exhaustive human wording/offline/system-manual language-switch review remains NOT_RUN |
+| M06 | Automated editor/semantics/recreation coverage passes | Full TalkBack/200%text/landscape/input-accessibility manual exercise remains NOT_RUN |
+| M07 | Synthetic lossless/orientation/metadata evidence and bounded manual output acceptance retained | Wider independent inspector checks of identifying-field removal/allowed opt-out/color-alpha-HDR cases remain unverified where not recorded |
+| M08 | No authorized social upload-preview exercise | Keep layout-guidance claims; under blueprint§16 this is a documented limit, not a reason to publish a post or a universal template-release blocker |
+| M09 | No signed production candidate, established public cert, install/upgrade or Obtainium acceptance | Requires stable custody, actual signed bytes, two increasing versionCodes and an authorized source from which Obtainium can fetch assets |
+| M10 | Actual tracked Start/dark-Settings PNGs visually inspected; authentic historical development captures | Their source is13b50c18, not a new7cbed17d capture. Final candidate images/current docs/About/notes acceptance remains open; do not fabricate or silently replace captures |
+
+This is a reconciliation, not a waiver or an assertion that every missing
+exercise must be restarted. Reuse accepted scope and group only genuinely
+missing manual checks in a later authorized candidate session. M01/M05/M06/M07
+and other applicable functional requirements are not all closed; G3/G4/G5
+remain partial/open. G6 has accepted unsigned build/source evidence but lacks
+signed delivery/upgrade acceptance. G7 is the later public-stable milestone.
+No current functional-publication readiness is claimed.
+
+### Signing and update dependencies
+
+The [bounded signing plan](RELEASING.md#bounded-private-candidate-signing-plan--not-authorized)
+is prepared, not authorized. No repository-established production certificate
+or published release was found; this does not prove no external key exists.
+Resolve existing identity/custody before any new key or signature operation.
+
+M09 cannot be established with only the frozen code1APK: a second increasing-code
+signed candidate is a different artifact. It needs its own source/version/input
+review and applicable assurance disposition; the current artifact-specific B
+exception does not automatically cover it. An equal-code reinstall/debug package
+is not the required sequential upgrade. Actual GitHub-backed Obtainium tracking
+also needs accessible release assets; there are no releases currently and no
+publication authority. Preserve M09 as NOT_RUN, not an implicit deferral or a
+reason to publish automatically.
+
+Earlier entries below preserve the status at their respective checkpoints.
+
+
+## Current source-material validation PASS — 2026-11-02
+
+Source kit41372832634 and complete source-material staging41373814270
+passed for compiled7cbed17d. Actual original ZIPs and all archive members,
+source/Git-blob/mode identities, nested kit and94published companions
+were independently checked. See the [current source review](feasibility/runtime-source-review.md#current-runtime-sources-prepared-and-verified--2026-11-02)
+and its machine-readable receipts. First kit41372427458 failed on two
+long AIDL names under USTAR; the PAX correction retains all original
+paths/bytes and has7passing packer regressions, plus6capture tests.
+The unchanged app already passed99core/135instrumented tests and exact
+unsigned byte reproduction. No new Android or phone tests were required.
+This is technical source staging, not a publisher/license/source verdict.
+
+## Exact-runtime independent unsigned rebuild PASS — 2026-11-02 UTC
+
+[Actions41369848088](https://github.com/santirodriguez/FixMyShot/actions/runs/41369848088)
+completed SUCCESS, control556b1d1b8a478def4dcfc5589468960df9a16871,
+compiled source7cbed17de44f4bc4ff31b62270ace3bd5a51b492/tree
+32723ea9cbaac3b1db3f6f891cb368bf8b11aa18. The existing workflow
+proved pristine exact checkout, empty Gradle/project outputs and
+--no-build-cache/--rerun-tasks; logs preserve those checks. Core XML:
+99tests,0failures,0errors,0skipped. No emulator or signing ran.
+
+Original artifact13108034320,47705316bytes,ZIP SHA256
+9ed14965e7183a547cff25f3cab4582328983940d6579cab5e7c133e35007719,
+was independently downloaded and verified for size/digest/CRC/unique
+safe paths. Its comparison JSON records byte_identical=true and the
+correct control/source/baseline identities. The actual rebuilt unsigned
+APK was compared directly with the original CI41338068328 APK:
+all12340030bytes identical, SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+This accepts reproducibility of that exact runtime, not a future changed
+distribution source, complete publisher/source clearance or signed bytes.
+The rebuild report's physical_acceptance=NOT_RUN describes that job;
+the separate maintainer-reported manual acceptance remains recorded.
+
+An explicit source-kit job now reuses the existing deterministic packer
+for that exact project and full pinned libwebp sources. It performs
+two generations, per-member checks, offline Git-identity restoration
+and a third regeneration before accepting equal bytes. It builds/signs/
+publishes no APK and does not mirror all other dependencies or establish
+complete corresponding-source clearance. Inspect its original final
+artifact separately; no source-kit PASS is inferred from workflow creation.
+
+
+## PNG/WebP manual confirmation accepted — 2026-11-01
+
+The maintainer confirmed the requested output comparison was satisfactory
+and directed continuation. Result: MAINTAINER_REPORTED_MANUAL_ACCEPTANCE.
+No four-file upload or repeated equivalent comparison is required.
+No new source/output files or agent-operated phone test were supplied;
+physical pixel/PSNR/metadata measurements are not inferred.
+The [scope clarification](decisions/compatibility-and-validation.md#accepted-manual-pngwebp-confirmation--2026-11-01)
+governs this evidence method. Earlier independently measured synthetic
+results and limitations below remain accurate. Runtime7cbed17d is pinned
+for one clean independent unsigned rebuild against CI41338068328;
+that pending result must be inspected separately, never inferred here.
+
+## Current PNG/WebP automated acceptance — 2026-11-01
+
+[Actions41338068328](https://github.com/santirodriguez/FixMyShot/actions/runs/41338068328)
+at runtime7cbed17de44f4bc4ff31b62270ace3bd5a51b492 completed SUCCESS:
+build/lint/core99 and API36 instrumented135tests PASS. Editor12,
+renderer8,thumbnail3,private20,transaction12,export-flow5,share4,
+import/settings33,batch7,retry8,recovery16,codec-smoke4 and three
+separate native diagnostic tests. Optional legacySAF SKIPPED/NOT RUN.
+The editor mode-switch follow-up passed; the earlier ed81e7fb run's
+134/135 FAILURE remains valid historical evidence, not retroactive PASS.
+
+Original downloaded artifacts passed ZIP digest/size/CRC/unique safe
+paths and their source receipts:
+- Bootstrap13095978797,46072914B,SHA25657dea88ff891ebc49df65a1ec1b3deec6cbdaa6df4285d61382579fc899c756c.
+- Smoke13096009495,2423800B,SHA256b8e0e53ce5be79853c7fe82d24ad44ea33dbde88221f31cd09c8286228a8a1be.
+
+The748-file source archive independently reconstructs Git tree
+32723ea9cbaac3b1db3f6f891cb368bf8b11aa18 exactly. Original JVM XML
+totals99tests,0failures,0errors,0skipped. All80lossless synthetic
+encodes report pixel PASS. Independent host decoding of the retained
+1344x2992 PNG/WebP yields identical RGBA/maxdifference0. This is
+synthetic emulator evidence, not physical color/peak PSS/process-cold
+performance or actual16KiB runtime acceptance; actual page size4096.
+
+All three APK hashes/lengths were independently checked:
+| APK | Bytes | SHA256 |
+| --- | ---: | --- |
+| Debug |16945453|da680e59cd303dcbccae27bc69bda2c1faecb317816d1f801193ebd0ec35f790|
+| Instrumentation |666548|c1f2022cca2be919b21415a7668194d660b834cc94934b7badc1fa7aaf54f92b|
+| Unsigned release |12340030|1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42|
+
+Actual binary manifests confirm release package org.cajapersonal.fixmyshot,
+0.1.0-alpha.1/code1,min26/target36,not debuggable; debug package has
+.heicbytes suffix and debuggable=true. Each requests only its AndroidX
+package-local signature-protected DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION,
+with no Internet/dangerous runtime permission. No new signature/key or
+production install/upgrade acceptance follows from inspecting these bytes.
+
+Independent exact-source APK checks PASS: nine native libraries across
+arm64-v8a,armeabi-v7a,x86_64 with ELF/ZIP16KiB alignment; all eight
+canonical legal assets byte-match their archived sources in debug and
+release. These checks do not establish whole license/source/publisher
+clearance or runtime16KiB support. HEIC/AVIF/JXL remain deferred from0.1.0.
+
+### Remaining delivery acceptance (reconciled 2026-11-02)
+
+The current matrix above supersedes this entry's former pending rebuild/source/
+four-file wording. Those exact-source checks and the bounded manual comparison
+are accepted; N01 is closed. Complete only the listed unresolved applicable
+manual/resource/accessibility scope. Stable signing/custody, signed inspection,
+sequential upgrade/Obtainium and exact final assets require their distinct evidence
+and authority. No new keys, signatures, publication or physical test occurred.
+
+
+## Current functional checkpoint — 2026-10-29
+
+Current draft PR #1 compiled HEAD: [`d54eb9c7`](https://github.com/santirodriguez/FixMyShot/commit/d54eb9c7ff9e95a5b55cb3f2ab5b2501797bfcb7)
+on `release/0.1.0-editor`; target `release/0.1.0`; **OPEN / DRAFT / not merged**.
+[Android bootstrap 40966098425](https://github.com/santirodriguez/FixMyShot/actions/runs/40966098425) completed **SUCCESS**:
+build/lint and core 99/99 (zero failures/errors/skips), API36 editor 12/12,
+import/settings/session 23/23, and the other retained instrumentation groups,
+including renderer 8, private-output 20, transaction 12, export-flow 5,
+share 4, batch 7, retry 8, recovery 16 and thumbnail 3. The optional
+API26/28 SAF-provider job was **SKIPPED / NOT RUN**, not accepted.
+
+Independent checks recorded the exact-source artifacts:
+`bootstrap` ID `12938547270`, 45,873,108 B,
+SHA-256 `a05d2b3ba747f917768609d75b7898ff3fcaad81fc60d20752ca46c4fbdb2544`;
+`smoke-api-36` ID `12937952691`, 2,279,411 B,
+SHA-256 `5b8535fc3a9e1f8e97c540190b1d2544a9fe69ae55cddd766eeebdef15bdb07e`.
+Official digests, unique ZIP entries, CRC, compiled source receipts and APK
+receipts were independently reconciled; the source archive matched 707 project
+files. The isolated `FixMyShot-Next-d54eb9c7.apk` (debug package `.ux22next`)
+is 16,896,841 B, SHA-256
+`1b526d18191363657ea0d8eadbc7c8a6f61d5a930c4b41d4838ef312390c7743`.
+Its RSA-SHA256 v2 signed contents and binary manifest were verified:
+minSdk26/target36, no Internet or broad-storage permission, backup disabled.
+This is **ephemeral diagnostic signing**, not a production key.
+
+Automated UI evidence includes real system-picker visibility, Back cancellation
+to a clean Start, saved-copy preservation and PNG/privacy defaults. The user
+ran the requested consecutive-image and picker-cancellation test on the
+delivered diagnostic and confirmed: “Hecho. Todo funciona bien.” That is
+user-reported **functional acceptance of this flow**; earlier general UX2.2
+visual feedback was positive. Neither statement verifies full-resolution Pixel
+color/matte, frame-time/jank, native HEIC/AVIF, second hardware, 16 KiB runtime,
+manual languages/accessibility, provider failures, final source/provenance,
+production signing or Obtainium upgrades. Do **not** repeat the accepted
+phone exercise or the unchanged source's green test matrix merely for this
+documentation synchronization.
+
+## Historical source-bound receipts
+
+Entries below retain the state and limitations of their own recorded commits.
+They are not the current application HEAD or substitutes for the checkpoint above.
+
+Earlier bounded build/reproducibility baseline: **5d568a7e**, normal Actions
 [40196478234](https://github.com/santirodriguez/FixMyShot/actions/runs/40196478234)
 and exact-source independent rebuild
 [40197042011](https://github.com/santirodriguez/FixMyShot/actions/runs/40197042011).
@@ -1324,3 +1728,13 @@ ordinary HEIC/AVIF export. Bind the returned report to this exact APK hash;
 record model/Android and actual results. Startup, gallery, source preservation,
 native codec, physical16KiB and all wider device gates remain PENDING until
 observed. The debug handoff grants no publisher/source/distribution approval.
+
+## Live editor redesign — accumulated validation requested (2026-10-28)
+
+Development branch release/0.1.0-editor starts at4aa497e427d1d09a1bf84ef7f942869b08c7fc65. The editor keeps a fixed canvas and independently scrollable active-tool pane, shares the original source sample across geometry edits/recreation, and replaces the former crop/position dialogs with live plan-driven drawing. Crop/slider gestures commit once on release; fine +/- zoom uses2% relative steps with a logarithmic slider. Advanced fields are contextual; batch overrides, original files, output geometry/formats/privacy/recovery are preserved. Debug package .editor/visible FixMyShot Editor installs separately; production ID/key untouched.
+
+Prepared evidence: three pure-JVM EditorZoomTest cases, two actual Compose accessibility/pointer EditorInteractionTest cases, existing8render regressions and full current-profile suites. The new cases assert retained sample identity, one gesture revision plus undo/recreation, a precise1.02x button step and stable canvas bounds during control scrolling; editor-framing.png contains only synthetic content. Existing renderer/transaction/private-output assertions remain unchanged.
+
+Local resource/XML/catalog/placeholder/manifest checks(278 matching keys), release-source checker and10release/10device-report host cases PASS; Bash syntax and diff whitespace PASS. Android compile/lint/JVM/new interaction/runtime checks are NOT RUN until the exact source-bound Actions checkpoint completes. No frame-time or allocation benchmark is claimed. Pixel9ProXL smoothness/visual/fidelity, TalkBack/large text/keyboard/manual languages, real-provider/other hardware and existing release gates remain OPEN.
+
+First checkpoint932dae34 / Actions40702874741 failed in the host collector fixture before Android compilation: the mock did not yet emit the new two-test EditorInteractionTest result. Its success result fell through to the old four-test default, so the new strict two-test guard correctly refused it. Update the mock's explicit editor classification; no product assertion or count is relaxed. New Android build/runtime acceptance remains pending.

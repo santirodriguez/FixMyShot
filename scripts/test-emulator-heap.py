@@ -9,6 +9,10 @@ import unittest
 HELPER = Path(__file__).with_name('configure-emulator-heap.sh').resolve()
 MOCK = '''#!/usr/bin/env bash
 set -eu
+if [[ "${1:-}" == -s ]]; then
+  [[ "${2:-}" == emulator-5554 ]] || exit 99
+  shift 2
+fi
 printf '%s\\n' "$*" >> adb-calls.txt
 case "$*" in
  'get-serialno') echo "${SERIAL:-emulator-5554}" ;;
@@ -25,7 +29,11 @@ case "$*" in
    if [[ "${ROOT_ONCE:-0}" == 1 && ! -f root-failed ]]; then touch root-failed; exit 1; fi
    touch root-ready ;;
  'shell id -u')
+   if [[ "${ROOT_LOST_AFTER_STOP:-0}" == 1 && -f stop-failed ]]; then echo 2000; exit 0; fi
    if [[ "${ROOT_NEVER:-0}" == 1 || ( "${ROOT_ONCE:-0}" == 1 && ! -f root-ready ) ]]; then echo 2000; else echo 0; fi ;;
+ 'shell stop')
+   if [[ "${STOP_NEVER:-0}" == 1 ]]; then exit 255; fi
+   if [[ "${STOP_ONCE:-0}" == 1 && ! -f stop-failed ]]; then touch stop-failed; exit 255; fi ;;
  'shell setprop dalvik.vm.heapgrowthlimit 512m')
    if [[ "${REFUSE_PROPERTY:-0}" != 1 ]]; then echo 512m > growth; fi ;;
  'shell setprop dalvik.vm.heapsize 512m') echo 512m > heap ;;
@@ -100,6 +108,28 @@ class EmulatorHeapTests(unittest.TestCase):
         self.assertEqual(3, len([call for call in log.splitlines() if call == 'root']))
         self.assertNotIn('setprop', log)
         self.assertNotIn('shell stop', log)
+
+    def test_stop_disconnect_recovers_same_emulator_once(self):
+        result, log, root = self.run_helper(STOP_ONCE='1')
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(2, log.splitlines().count('shell stop'))
+        self.assertIn('stage=stop-framework:reconnect', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
+        self.assertIn('heapgrowthlimit_after=512m', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
+
+    def test_permanent_stop_failure_restores_and_does_not_set_properties(self):
+        result, log, root = self.run_helper(STOP_NEVER='1')
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(2, log.splitlines().count('shell stop'))
+        self.assertIn('shell start', log)
+        self.assertNotIn('setprop', log)
+        self.assertNotIn('adjustment=CI_EMULATOR_ONLY', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
+
+    def test_reconnect_without_root_cannot_mutate_heap(self):
+        result, log, root = self.run_helper(STOP_ONCE='1', ROOT_LOST_AFTER_STOP='1')
+        self.assertNotEqual(0, result.returncode)
+        self.assertEqual(1, log.splitlines().count('shell stop'))
+        self.assertNotIn('setprop', log)
+        self.assertNotIn('adjustment=CI_EMULATOR_ONLY', (root / 'evidence/emulator-heap-adjustment.txt').read_text())
 
     def test_failed_property_change_is_not_success(self):
         result, log, _ = self.run_helper(REFUSE_PROPERTY='1')

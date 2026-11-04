@@ -22,7 +22,7 @@ internal fun ExportJobNotice(
     val actionEnabled = enabled && state.canAcknowledge && !state.outputBusy
     // Confirmation belongs to these exact results, never to a later check or busy operation.
     var confirming by remember(state, finishSession, enabled) { mutableStateOf(false) }
-    val title = if (finishSession) R.string.export_finish_session else R.string.export_history_acknowledge
+    val title = if (finishSession) R.string.quick_new_work else R.string.export_history_acknowledge
     val explanation = if (finishSession) R.string.export_finish_session_notice else R.string.export_finish_review_notice
     if (confirming && actionEnabled) AlertDialog(
         onDismissRequest = { confirming = false },

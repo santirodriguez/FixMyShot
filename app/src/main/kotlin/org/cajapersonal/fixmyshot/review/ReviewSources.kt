@@ -237,7 +237,8 @@ internal class ReviewSources(private val context: Context,
 
     /** Only unchanged pixels/appearance can bypass the renderer. Candidate validation stays external. */
     fun copyPayload(recipe: PrivateOutputRecipe, target: File, cancelled: AtomicBoolean): Boolean {
-        if (!validId.matches(recipe.sourceId) || recipe.crop != null || recipe.sourceColor != SourceColor.SRGB ||
+        if (!validId.matches(recipe.sourceId) || recipe.flexibleFrame || recipe.crop != null ||
+            recipe.sourceColor != SourceColor.SRGB ||
             recipe.request.metadataPolicy != MetadataPolicy.REMOVE_IDENTIFYING ||
             recipe.canvas != recipe.orientedSource || recipe.placement.left != 0 || recipe.placement.top != 0 ||
             recipe.placement.width != recipe.canvas.width || recipe.placement.height != recipe.canvas.height) return false

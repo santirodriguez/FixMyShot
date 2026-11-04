@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "scope": "EXACT_ALPHA_N01_IMPLEMENTATION_CORRESPONDENCE_CLOSURE",
+  "status": "N01_CLOSED_BOUNDED_ENGINEERING_SOURCE_REVIEW",
+  "compiled_application_source": "7cbed17de44f4bc4ff31b62270ace3bd5a51b492",
+  "unsigned_apk_sha256": "1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42",
+  "control_commit": "d5a9030e3387e0e15fb861c0ec001491ca033590",
+  "workflow_run": 41517838551,
+  "workflow_result": "SUCCESS_DIAGNOSTIC_COLLECTION_NOT_AUTOMATIC_SOURCE_APPROVAL",
+  "artifact_id": 13175812437,
+  "artifact_zip_bytes": 677629,
+  "artifact_zip_sha256": "8b275198747e7f3050ecab0437320a2b48249b4bd7457ae66858f5028b41a2b6",
+  "artifact_manifest_sha256": "3e7d2b90423b478b9dab18c857df81d54e33e8ff34c783cd1e5fa468c2b39986",
+  "all_original_artifact_members_verified": 229,
+  "prior_failed_attempt": {
+    "commit": "387578141af96dd6caaf64c51ff5adfe4693d7bf",
+    "workflow_run": 41517192700,
+    "result": "FAILURE_BEFORE_COMPARISON_JAVA_7_SOURCE_LEVEL_REJECTED_ACTUAL_LAMBDA",
+    "artifact_id": 13175936290,
+    "artifact_zip_bytes": 368411,
+    "artifact_zip_sha256": "56deccc823421308c45468716f2d79bed5f49772491c8f0592c8b7cba11cb2e8",
+    "correction": "Both published and frozen class sets are Java8/major52; compile original sources with javac17 --release8 and -proc:none, resolve and compare actual lambda BootstrapMethods"
+  },
+  "inputs": {
+    "published_flatbuffers_jar_sha256": "3f8c088b4dd04a9858721f2e162508c94db0dd86f961e306ee63ef2eda871bf7",
+    "published_flatbuffers_source_jar_sha256": "6522155eaadf630f60c05154c4f79505f14675e408d10e0f40c7fbfebf0a21ab",
+    "frozen_emoji2_aar_sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+    "frozen_repackaged_jar_sha256": "de10d78b35a33c1ade2607b63c29b3b70a856cad821b5bc711a9018eed9a43ab"
+  },
+  "source_files_compiled_without_annotation_processing": 26,
+  "compiled_classes": 49,
+  "frozen_classes": 49,
+  "actual_fields_compared": 121,
+  "actual_methods_compared": 513,
+  "original_published_classes": 45,
+  "strict_comparisons": 94,
+  "strict_disassembly_matches_preserved": 90,
+  "presentation_differences_reviewed": 4,
+  "presentation_disposition": [
+    "Published FlatBufferBuilder and FlexBuffersBuilder: only ldc versus ldc_w widths and resulting instruction byte addresses/branch targets; resolved constants, instructions and actual target instructions preserved.",
+    "Compiled FlatBufferBuilder: same ldc width/address representation difference.",
+    "Compiled Table$1: javap pretty constructor parameter display differs; actual JVM name/flags/descriptor and instructions match. Parameter display is normalized only after full actual declaration layout equality."
+  ],
+  "compiled_noto_generated_classes_matching_strictly": 4,
+  "all_49_compiled_to_frozen_declaration_instruction_and_bootstrap_comparisons_pass": true,
+  "tampered_original_compiled_member_refused": true,
+  "retained_reports": [
+    {
+      "path": "original-comparison.json",
+      "bytes": 85899,
+      "sha256": "67fd0852ba901cca41aa55e44aa67ef6d5078efbe1d518b055f9f3e03a99728b"
+    },
+    {
+      "path": "instruction-review.json",
+      "bytes": 53633,
+      "sha256": "46dc061700fcfd8a1ab0e640c614d9f340e91f810c04102acfb6331e0f6d927f"
+    }
+  ],
+  "offline_reviewer": "scripts/review-repackaged-instructions.py",
+  "offline_reviewer_sha256": "2774d31dcbb610416f521800e6df0f7f13fa4b4cb9ed36388a0f8b2864bf7da4",
+  "comparison_unit_tests": 7,
+  "presentation_review_unit_tests": 5,
+  "source_license_engineering_review_for_exact_candidate": "COMPLETE_WITH_RECORDED_LIMITS_NO_REMAINING_N01_HOLD",
+  "exact_historical_noto_build_checkout_proved": false,
+  "class_byte_identity_or_all_debug_annotation_attribute_equivalence": false,
+  "formal_semantic_equivalence_proved": false,
+  "issuer_assurance_counts_or_exception_changed": false,
+  "new_android_build_or_phone_test": false,
+  "final_signed_source_asset_handoff_approved": false,
+  "signing_merge_or_publication_authorized": false
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FixMyShot: prova física AVIF</string>
+    <string name="instructions">Només diagnòstic. Tria una captura PNG sRGB opaca de 1344×2992, executa tres codificacions AVIF, compara l’original amb el resultat, registra què hi veus i desa l’informe JSON.</string>
+    <string name="privacy_notice">La captura es queda en aquest dispositiu. Sense permís d’Internet, pujada automàtica, publicació a la galeria ni exportació normal. Només l’acció Desa l’informe escriu mètriques fora de l’aplicació. El mostreig pot afectar els temps; el PSS màxim observat no és un pic exacte.</string>
+    <string name="no_input">No hi ha cap imatge seleccionada</string>
+    <string name="select_image">Selecciona una captura PNG</string>
+    <string name="start_benchmark">Executa tres codificacions</string>
+    <string name="preview_source">Mostra l’original</string>
+    <string name="preview_avif">Mostra l’AVIF</string>
+    <string name="visual_ok">La imatge es veu bé</string>
+    <string name="visual_bad">Hi veig defectes visuals</string>
+    <string name="export_report">Desa les mètriques JSON</string>
+    <string name="loading">S’està llegint la captura…</string>
+    <string name="ready">Captura preparada. Executa el diagnòstic.</string>
+    <string name="running">S’està codificant. Mantén aquesta pantalla oberta.</string>
+    <string name="finished">Ha acabat el diagnòstic AVIF.</string>
+    <string name="saved">L’informe JSON s’ha desat a la ubicació triada.</string>
+    <string name="failed">El diagnòstic ha fallat</string>
+    <string name="visual_recorded">S’ha registrat l’avaluació visual. Desa l’informe per exportar-la.</string>
+</resources>

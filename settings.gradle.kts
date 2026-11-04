@@ -10,3 +10,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FixMyShot"
 include(":app", ":core", ":codec-native")
+
+// Never configure or build the separate physical AVIF probe during ordinary FixMyShot builds.
+if (providers.gradleProperty("fixmyshot.avifPhysicalProbe").orNull == "true") {
+    include(":avif-physical")
+}

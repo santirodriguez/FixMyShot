@@ -1,0 +1,25 @@
+{
+  "kind": "VERIFIED_HISTORICAL_ENCODER_ONLY_DIAGNOSTIC_BASELINE",
+  "source_sha": "a615c8a6e79f961958d0270c1689552bb4bce8f4",
+  "run_id": 41158416408,
+  "artifact_id": 13026490043,
+  "artifact_zip_sha256": "699e95a497b4d12fb9742595bc27dc352c8dd46a1e29875fade7d504d5f88e5d",
+  "apk_sha256": "613de84f53a563ad05e4daaeeb2593629d8edd46a0f8501de7a9ccf92b81a592",
+  "apk_bytes": 8866209,
+  "native": {
+    "arm64-v8a": {
+      "sha256": "3a37cebdd9c401131eb72a0dffaf20cce1ed751ca91211d9beebcfba2100f92d",
+      "size": 2973888
+    },
+    "x86_64": {
+      "sha256": "cc2af6478cf928f83e189f72a99e2726da983e01ffc7f46d1d685d3ea6bf9f68",
+      "size": 3098384
+    }
+  },
+  "notice_sha256": {
+    "assets/legal/avif-software/libaom-LICENSE": "4764a286d8b2faeaf42f4418e7d7a28d58fc8fd4d00a3d0a7f44b0a4099de7f2",
+    "assets/legal/avif-software/libaom-PATENTS": "661fb8e504744e95587b556b94a58343448300606a41bea8c7a9b97125696e61",
+    "assets/legal/avif-software/libavif-LICENSE": "165abf92cc04b39e80d29cadea7a6a7e8fddf59407d4ad2616507a7ebe8216f9",
+    "assets/legal/project/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  }
+}

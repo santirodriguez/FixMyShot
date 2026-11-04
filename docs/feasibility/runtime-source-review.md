@@ -1,5 +1,81 @@
 # Published runtime source material
 
+## N01 closed; exact-candidate source engineering review complete — 2026-11-02
+
+The [implementation review](runtime-license-review.md#n01-closed-by-implementation-correspondence--2026-11-02)
+compiles the26retained original Java files into all49frozen repackaged classes.
+Their actual declarations/instructions and lambda bootstrap references correspond;
+the4Noto-generated classes match strictly. The4remaining presentation differences
+in the original90/94report are ldc width/byte-label changes and a pretty constructor
+parameter display difference, resolved without removing behavior. The full
+[receipt and both reports](evidence/n01-implementation-7cbed17d/review.json)
+preserve raw negatives, original hashes and precise limits.
+
+N01 is closed. The exact7cbed17d candidate's bounded engineering source/license
+review is complete; no new source bundle or Android test is required. Exact
+historical Noto checkout, full class/debug/annotation equivalence and formal
+semantic equivalence remain unproved and are not claimed. Final signed asset/
+source co-location and separately authorized distribution handoff remain pending.
+Issuer-risk OptionB and all325reviewed/533pending classifications are unchanged.
+
+## Source review narrowed to one correspondence hold — 2026-11-02 (before implementation comparison)
+
+The [current disposition](runtime-license-review.md#exact-alpha-license-and-source-disposition--2026-11-02)
+closes the declared-license compatibility and current canonical notice-byte
+checks, and replays the exact source-material archive. All747AAR XML files parse;
+166PNGs have no compiled npTc chunks;47source-archive license texts are one
+original Apache text. This is bounded inspection, not proof of preferred
+editing provenance for every resource or semantic equivalence of every class.
+
+Only **N01** remains in this source review: establish a defensible correspondence
+between the supplied Noto generation/relocation material and the frozen Emoji2
+implementation. Exact checkout and method bodies remain unproved;45matching
+declarations/constant subsets already close version identification and must not
+be repeated as a new source verdict. Source-material staging is accepted;
+final corresponding-source clearance is still withheld. The [machine receipt](evidence/source-license-disposition-7cbed17d.json)
+retains precise boundaries and the next discriminating evidence.
+
+## Current runtime sources prepared and verified — 2026-11-02
+
+[Actions41373814270](https://github.com/santirodriguez/FixMyShot/actions/runs/41373814270)
+completed SUCCESS for compiled source7cbed17d, control d863d5a7.
+The [exact receipt](evidence/source-materials-7cbed17d.json) records
+original artifact13110605926,58473971B,ZIP SHA256
+c653657179360f35ab20613f0b41bef20c1e99e3bb31ba61bac71b10d0243d37.
+The downloaded original passed size/digest/CRC/unique-safe-path checks.
+
+The34104279-byte source-material archive has1282safe regular members,
+SHA256c9124e8d3d1e966d3b4dbfd1b1eb0fa8a88c7b51af655ce8a438ab9cbd5f48fa.
+Two generations are byte-identical; all manifest/member and94source-
+companion digests were independently checked. It contains the exact
+748-file project/full343-file WebP kit, mapped upstream Protobuf,
+1074original resource/manifest/rule inputs from95frozen binary owners,
+and source-generation/relocation review evidence. All190rehydrated
+inputs (50632483bytes) matched previous pins; runtime lock and catalog
+identities still match. No unavailable issuer route was retried.
+
+The nested24327724-byte project/WebP kit has1098members,SHA256
+77d6cadd5ad75d4f4d6c7295c18f6e244e90e82eeee0176982d62264848083b0.
+Offline Git restoration and restored regeneration are byte-identical.
+The [kit receipt](evidence/source-kit-7cbed17d.json) retains the actual
+project/WebP commit/tree/file/blob/mode checks. Control185b465e uses PAX
+to retain two long AIDL names; first run41372427458 failed under USTAR
+before producing a kit. All7packer and6capture regression tests pass.
+Compiled application source and dependencies were not changed.
+
+This completes the technical material stage, not publisher identity,
+binary/source equivalence, preferred-editing-form/license compatibility,
+complete offline build or final corresponding-source clearance.
+The [remaining issuer partition](google-source-copy-review.md#exact-remaining-runtime-partition)
+still has two runtime binaries plus nine runtime metadata files pending,
+with522other frozen files pending. Proof counts and inactive verification
+policy are unchanged. The maintainer subsequently approved the
+[exact-alpha issuer-risk exception](../decisions/dependency-assurance-alpha-proposal.md)
+on2026-11-02; it does not approve source/license/preferred-form disposition
+or reclassify pending issuer identities. No signing,
+publication or new phone test occurred. Actions assets are temporary
+staging; receipts and deterministic pinned producers preserve recovery.
+
 Scope: accepted compiled source e516aa89 and the unchanged487component/858file
 inventory, exact app lock and133component runtime catalog. This stages source
 material; it does not authenticate additional binaries, prove binary/source

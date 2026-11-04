@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "bytes": 4938,
+      "filename": "BUILD-INFO.json",
+      "sha256": "9858dc5f6ad5b368e9f9830d56367457aaf3a873d0b2650ef229f12113010a82"
+    },
+    {
+      "bytes": 34170964,
+      "filename": "FixMyShot-0.1.0-alpha.2-source-materials.tar.gz",
+      "sha256": "7804550f938ee944c6d5735644193fdd563eaf6feb1afc93d06d44c4a25dd3b1"
+    },
+    {
+      "bytes": 12401557,
+      "filename": "FixMyShot-0.1.0-alpha.2-universal.apk",
+      "sha256": "2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57"
+    },
+    {
+      "bytes": 300,
+      "filename": "SHA256SUMS.txt",
+      "sha256": "c812c0c14e1ab75319df5d7ccf14848a2df81ec21cb4a96cbf6df1bf0bf53ec6"
+    }
+  ],
+  "build_signing_tag_merge_release_performed": false,
+  "compiled_source_commit": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "control_commit": "c9137faf6dd2e84fdac6122f66ae812f72a5bd58",
+  "original_signed_apk_preserved": true,
+  "original_source_archive_preserved": true,
+  "producer_sha256": "ac595d22a4f9f16395cff9d96c80c22d94a227e28d69f7cbcea4fb68a8e36490",
+  "schema": 1,
+  "scope": "EXACT_DEVELOPMENT_RELEASE_ASSET_STAGING_ONLY",
+  "source_manifest_members_verified": 1281,
+  "hosted_validation": {
+    "run_id": 41851782509,
+    "conclusion": "success",
+    "artifact_id": 13335176928,
+    "artifact_bytes": 44710055,
+    "artifact_sha256": "e7d75d66ddc37e2f4b86c325d087d69c38fbcb54e2ca9fa02a46bf5c3aa30b32",
+    "artifact_expires_at": "2026-11-11T14:51:39Z",
+    "download": "https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509/artifacts/13335176928",
+    "checks": [
+      "Original hosted ZIP length, digest, unique safe members and CRC passed",
+      "All seven hosted files byte-identical to independently verified local kit",
+      "All three SHA256SUMS entries passed",
+      "Original signed APK and complete source archive unchanged",
+      "Wrong APK digest negative check rejected before creating output"
+    ],
+    "new_android_or_physical_tests": false
+  },
+  "proposed_tag": "v0.1.0-alpha.2",
+  "proposed_tag_target_commit": "c9137faf6dd2e84fdac6122f66ae812f72a5bd58",
+  "functional_0_1_0_acceptance": "INCOMPLETE",
+  "publication_authority": false
+}

@@ -21,6 +21,15 @@ class ReleaseChecks(unittest.TestCase):
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_text((ROOT / name).read_text())
         self.ledger = json.loads((self.root / "docs/releases/ledger.json").read_text())
+        # Exercise history refusal cases from a stable synthetic code1 fixture.
+        # The real repository's evolving ledger is checked separately below.
+        current = self.ledger["releases"][-1]
+        for name in ("app/build.gradle.kts", "README.md", "CHANGELOG.md"):
+            path = self.root / name
+            path.write_text(path.read_text().replace(current["version_name"], "0.1.0-alpha.1")
+                            .replace(f'versionCode = {current["version_code"]}', "versionCode = 1"))
+        self.ledger["releases"] = [dict(version_name="0.1.0-alpha.1", version_code=1, status="planned")]
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## Unreleased — 0.1.0-alpha.1\n")
 
     def write(self):
         (self.root / "docs/releases/ledger.json").write_text(json.dumps(self.ledger))
@@ -30,6 +39,7 @@ class ReleaseChecks(unittest.TestCase):
         return MODULE["validate"](self.root)
 
     def test_current_identity_and_unpublished_render(self):
+        MODULE["validate"]()  # Also validate the actual repository, including distributed history.
         _, template, fields = self.check()
         output = self.root / "draft.md"
         MODULE["render_notes"](template, fields, output)

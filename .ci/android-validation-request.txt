@@ -1,9 +1,3 @@
-Review-stage WYSIWYG distinction validation (2026-10-27).
-Source base: 52ed38c9983d5adf4a95021de6df9ff70b3fc235
-Build Kotlin unit tests, Android lint, debug/unsigned/test APKs and API36 smoke.
-Preview-only changes: outline final output bounds, stripe external editor-only stage,
-checkerboard inside transparency canvas, label effective CONTAIN vs CROP, guide default OFF.
-Preserve real engine pixels, destination geometry, automatic background and output plans.
-Test stage/canvas pixel projections without increasing ReviewRenderTest case count.
-No release/signing/deploy or physical user acceptance.
+Validate dialog light-theme transition after platform window parameter updates.
+Check actual focused-window status/navigation appearance on API30+ before all three theme captures; retain all editor assertions.
 profile=current

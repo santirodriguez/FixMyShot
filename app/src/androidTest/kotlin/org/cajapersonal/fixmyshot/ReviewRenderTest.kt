@@ -197,6 +197,18 @@ class ReviewRenderTest {
                 assertEquals(Color.RED, movedPreview.getPixel(20, 1))
                 assertEquals(40, movedPreview.height)
                 assertEquals(40, movedPreview.width)
+                val scratch = ReviewBitmapRenderer.DrawResources()
+                val output = Bitmap.createBitmap(40, 40, Bitmap.Config.ARGB_8888)
+                try {
+                    for ((frame, expected) in listOf(crop to centeredPreview, movedPlan to movedPreview, crop to centeredPreview)) {
+                        val geometry = (frame.geometry as org.cajapersonal.fixmyshot.core.PlannedGeometry.Cropped).value
+                        ReviewBitmapRenderer.drawContent(android.graphics.Canvas(output), 40, 40, source,
+                            PixelSize(40, 80), geometry.output,
+                            org.cajapersonal.fixmyshot.core.PixelPlacement(0, 0, 40, 40), geometry.visibleSource, scratch)
+                        for (y in 0 until 40) for (x in 0 until 40)
+                            assertEquals("Cached live mapping must match exact preview pixels", expected.getPixel(x, y), output.getPixel(x, y))
+                    }
+                } finally { output.recycle() }
             } finally { centeredPreview.recycle(); movedPreview.recycle() }
         } finally { source.recycle() }
     }

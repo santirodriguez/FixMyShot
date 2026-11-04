@@ -108,10 +108,14 @@ internal class PrivateOutputExecutor(
             val height = recipe.canvas.height
             val placement = recipe.placement
             if (width.toLong() * height.toLong() > 24_000_000L ||
-                placement.left < 0 || placement.top < 0 ||
                 placement.width <= 0 || placement.height <= 0 ||
-                placement.left.toLong() + placement.width > width ||
-                placement.top.toLong() + placement.height > height) {
+                (!recipe.flexibleFrame && (placement.left < 0 || placement.top < 0 ||
+                    placement.left.toLong() + placement.width > width ||
+                    placement.top.toLong() + placement.height > height)) ||
+                (recipe.flexibleFrame && (placement.left.toLong() >= width ||
+                    placement.top.toLong() >= height ||
+                    placement.left.toLong() + placement.width <= 0 ||
+                    placement.top.toLong() + placement.height <= 0))) {
                 return PrivateExecutionResult.Failed(PrivateExecutionFailure.RESOURCE_LIMIT)
             }
             rendered = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)

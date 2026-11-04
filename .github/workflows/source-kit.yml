@@ -1,0 +1,203 @@
+name: Exact source materials
+# Explicit source-material preparation; no APK build, signing or publication.
+on:
+  push:
+    branches: ['release/**']
+    paths: ['.ci/source-material-operation.json', '.ci/source-kit-request.json', '.github/workflows/source-kit.yml', 'scripts/prepare-source-kit.py', 'scripts/test-source-kit.py', 'scripts/prepare-source-material-bundle.py', 'scripts/compare-repackaged-implementation.py', 'scripts/test-repackaged-implementation.py']
+permissions:
+  contents: read
+concurrency:
+  group: source-kit-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  request:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    outputs:
+      operation: ${{ steps.mode.outputs.operation }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - id: mode
+        name: Validate explicit source-material operation
+        run: |
+          python3 scripts/check-independent-rebuild.py request .ci/source-kit-request.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          request = json.loads(Path('.ci/source-kit-request.json').read_text())
+          mode_path = Path('.ci/source-material-operation.json')
+          mode = json.loads(mode_path.read_text()) if mode_path.exists() else {
+              'schema': 1, 'operation': 'source-materials', 'source_commit': request['source_commit']}
+          if set(mode) != {'schema', 'operation', 'source_commit'} or mode['schema'] != 1 or mode['source_commit'] != request['source_commit']:
+              raise ValueError('Operation is not bound to the accepted source request')
+          operation = mode['operation']
+          if operation not in ('source-materials', 'n01-implementation'):
+              raise ValueError('Unsupported source-material operation')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('operation=' + operation + '\n')
+          PY
+  n01-implementation:
+    needs: request
+    if: needs.request.outputs.operation == 'n01-implementation'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Compare only exact N01 source and frozen implementation
+        run: |
+          python3 scripts/test-repackaged-implementation.py
+          python3 scripts/compare-repackaged-implementation.py evidence --jdk "$JAVA_HOME_17_X64"
+      - name: Preserve original inputs, disassemblies and negative differences
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: n01-implementation-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/
+  source-kit:
+    needs: request
+    if: needs.request.outputs.operation == 'source-materials'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          path: controller
+          persist-credentials: false
+      - name: Validate explicit source and accepted baseline
+        id: request
+        run: |
+          python3 controller/scripts/check-independent-rebuild.py request controller/.ci/source-kit-request.json --github-output "$GITHUB_OUTPUT"
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          request = json.loads(Path('controller/.ci/source-kit-request.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('source_tree=' + request['source_tree'] + '\n')
+          PY
+          python3 controller/scripts/test-source-kit.py
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ steps.request.outputs.source_commit }}
+          path: project
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: webmproject/libwebp
+          ref: 4fa21912338357f89e4fd51cf2368325b59e9bd9
+          path: upstream/libwebp
+          persist-credentials: false
+      - name: Generate twice from exact Git objects and restore offline
+        env:
+          SOURCE_COMMIT: ${{ steps.request.outputs.source_commit }}
+          SOURCE_TREE: ${{ steps.request.outputs.source_tree }}
+        run: |
+          mkdir evidence restore-check
+          cp controller/.ci/source-kit-request.json evidence/request.json
+          python3 controller/scripts/prepare-source-kit.py project upstream/libwebp evidence/FixMyShot-source.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/source-kit.json
+          python3 controller/scripts/prepare-source-kit.py project upstream/libwebp evidence/repeat.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/repeat.json
+          cmp evidence/FixMyShot-source.tar.gz evidence/repeat.tar.gz
+          tar -xzf evidence/FixMyShot-source.tar.gz -C restore-check
+          (cd restore-check && sha256sum -c MANIFEST.sha256 > ../evidence/member-checksums.txt)
+          python3 restore-check/restore-source-snapshot.py > evidence/restored-identities.jsonl
+          python3 restore-check/prepare-source-kit.py restore-check/project restore-check/upstream/libwebp evidence/restored.tar.gz --source "$SOURCE_COMMIT" --tree "$SOURCE_TREE" --receipt evidence/restored-kit.json
+          cmp evidence/FixMyShot-source.tar.gz evidence/restored.tar.gz
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = {
+              'schema': 1,
+              'scope': 'EXACT_PROJECT_AND_FULL_WEBP_SOURCE_KIT_ONLY',
+              'repeated_archive_identical': True,
+              'all_manifest_members_verified': True,
+              'original_git_identities_restored_offline': True,
+              'restored_archive_identical': True,
+              'complete_corresponding_source_clearance': False,
+              'signing_or_publication': False,
+          }
+          Path('evidence/verification.json').write_text(json.dumps(report, indent=2) + '\n')
+          PY
+          rm evidence/repeat.tar.gz evidence/restored.tar.gz
+          (cd evidence && sha256sum FixMyShot-source.tar.gz source-kit.json verification.json > SHA256SUMS.txt)
+      - name: Rehydrate previously captured source inputs with exact byte pins
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures, hashlib, importlib.util, json, time, urllib.request
+          from pathlib import Path, PurePosixPath
+          spec = importlib.util.spec_from_file_location('capture', 'controller/scripts/capture-runtime-sources.py')
+          capture_module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(capture_module)
+          root = Path('project')
+          capture_path = root/'docs/feasibility/evidence/runtime-source-companions-e516aa89/capture.json'
+          plan_path = root/'docs/feasibility/evidence/runtime-source-closure-e516aa89/binary-plan.json'
+          assert hashlib.sha256(capture_path.read_bytes()).hexdigest() == 'f88e271b106e6f92484d7be1e5ac605ea66d6ff1e70bf0882e2501101fb5da31'
+          assert hashlib.sha256(plan_path.read_bytes()).hexdigest() == '3a0e1aae590a2296f8315d097b083758663c5f8fbb22e5f50c39bf60047fb08e'
+          record = json.loads(capture_path.read_text())
+          plan = json.loads(plan_path.read_text())
+          assert hashlib.sha256((root/'app/gradle.lockfile').read_bytes()).hexdigest() == record['app_lock_sha256']
+          assert hashlib.sha256((root/'LICENSES/runtime-components.json').read_bytes()).hexdigest() == record['catalog_sha256']
+          base = Path('material-inputs')
+          base.mkdir()
+          tasks = {}
+          def add(path, url, digest, size):
+              relative = PurePosixPath(path)
+              assert not relative.is_absolute() and '..' not in relative.parts
+              capture_module.checked_url(url)
+              assert len(digest) == 64 and (size is None or 0 < size <= 16*1024*1024)
+              value = (url, digest, size)
+              if str(relative) in tasks:
+                  assert tasks[str(relative)] == value
+              tasks[str(relative)] = value
+          captured = [r for r in record['components'] if 'archive_sha256' in r]
+          assert len(captured) == 94 and len(plan) == 95
+          for row in captured:
+              add('sources/'+row['relative_archive'], row['source_url'], row['archive_sha256'], row['archive_bytes'])
+          for row in plan:
+              add('binaries/'+row['sha256'], row['url'], row['sha256'], row['bytes'])
+          add('protobuf.jar', 'https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-javalite/4.28.2/protobuf-javalite-4.28.2-sources.jar', '2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971', None)
+          assert sum(v[2] or 16*1024*1024 for v in tasks.values()) <= 80*1024*1024
+          deadline = time.monotonic() + 180
+          def one(item):
+              name, (url, expected, size) = item
+              remaining = deadline - time.monotonic()
+              if remaining <= 0:
+                  raise TimeoutError('Bounded source-material recovery expired')
+              opener = urllib.request.build_opener(capture_module.Redirect())
+              request = urllib.request.Request(url, headers={'User-Agent': 'FixMyShot-source-staging/1'})
+              with opener.open(request, timeout=min(30, remaining)) as response:
+                  raw = response.read((size or 16*1024*1024) + 1)
+              if (size is not None and len(raw) != size) or hashlib.sha256(raw).hexdigest() != expected:
+                  raise ValueError('Pinned material bytes differ: '+name)
+              capture_module.inspect(raw)
+              path = base/name
+              path.parent.mkdir(parents=True, exist_ok=True)
+              with path.open('xb') as stream:
+                  stream.write(raw)
+              return {'path': name, 'bytes': len(raw), 'sha256': expected}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+              results = list(pool.map(one, sorted(tasks.items())))
+          Path('evidence/rehydrated-inputs.json').write_text(json.dumps({'schema': 1, 'scope': 'EXACT_PREVIOUSLY_CAPTURED_INPUTS_ONLY_NOT_ISSUER_APPROVAL', 'files': results}, indent=2) + '\n')
+          PY
+      - name: Assemble current source materials twice without changing reviewed inputs
+        run: |
+          python3 controller/scripts/prepare-source-material-bundle.py evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries project/docs/feasibility/evidence/runtime-source-companions-e516aa89 project/docs/feasibility/evidence/runtime-source-closure-e516aa89 material-inputs/protobuf.jar evidence/FixMyShot-source-materials.tar.gz evidence/source-materials.json
+          python3 controller/scripts/prepare-source-material-bundle.py evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries project/docs/feasibility/evidence/runtime-source-companions-e516aa89 project/docs/feasibility/evidence/runtime-source-closure-e516aa89 material-inputs/protobuf.jar evidence/materials-repeat.tar.gz evidence/materials-repeat.json
+          cmp evidence/FixMyShot-source-materials.tar.gz evidence/materials-repeat.tar.gz
+          mkdir material-check
+          tar -xzf evidence/FixMyShot-source-materials.tar.gz -C material-check
+          (cd material-check && sha256sum -c MANIFEST.sha256 > ../evidence/material-member-checksums.txt)
+          rm evidence/materials-repeat.tar.gz
+          (cd evidence && sha256sum FixMyShot-source.tar.gz FixMyShot-source-materials.tar.gz source-kit.json source-materials.json verification.json > SHA256SUMS.txt)
+      - name: Preserve source kit and verification receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: source-kit-${{ github.sha }}
+          retention-days: 7
+          if-no-files-found: error
+          path: evidence/

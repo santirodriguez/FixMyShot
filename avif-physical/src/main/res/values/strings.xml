@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FixMyShot AVIF Physical Check</string>
+    <string name="instructions">Diagnostic only. Select one 1344×2992 opaque sRGB PNG screenshot, then run three AVIF encodes. Compare source and output, record visual findings and save the JSON report.</string>
+    <string name="privacy_notice">Your screenshot stays on this device. No Internet permission, automatic upload, gallery write or production export. Only your explicit Save Report action writes metrics outside this app. Sampling may affect timings; the measured PSS maximum is not an exact peak.</string>
+    <string name="no_input">No image selected</string>
+    <string name="select_image">Select PNG screenshot</string>
+    <string name="start_benchmark">Run three encodes</string>
+    <string name="preview_source">View original</string>
+    <string name="preview_avif">View AVIF</string>
+    <string name="visual_ok">Image looks correct</string>
+    <string name="visual_bad">I see visual artifacts</string>
+    <string name="export_report">Save metrics JSON</string>
+    <string name="loading">Reading selected screenshot…</string>
+    <string name="ready">Screenshot ready. Run the diagnostic.</string>
+    <string name="running">Encoding. Keep this screen open.</string>
+    <string name="finished">Synthetic/real AVIF probe completed.</string>
+    <string name="saved">Metrics JSON saved to your selected location.</string>
+    <string name="failed">Diagnostic failed</string>
+    <string name="visual_recorded">Visual assessment recorded. Save the report to export it.</string>
+</resources>

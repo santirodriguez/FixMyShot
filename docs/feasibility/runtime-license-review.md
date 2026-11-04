@@ -1,5 +1,103 @@
 # Runtime license declarations and embedded notices
 
+## N01 closed by implementation correspondence — 2026-11-02
+
+[Actions41517838551](https://github.com/santirodriguez/FixMyShot/actions/runs/41517838551)
+completed the isolated comparison at controld5a9030e. The
+[original-artifact receipt](evidence/n01-implementation-7cbed17d/review.json)
+and full original/reviewed reports retain the evidence, including negative results.
+All229original artifact members and input hashes were independently verified.
+
+The26unchanged Java source files compile to all49classes in Emoji2's
+repackaged implementation. All actual class layouts (121fields/513methods),
+available instruction listings and lambda bootstrap handles/arguments correspond
+after the two declared namespace relocations and the bounded representation
+review below. All4Noto-generated classes match the strict disassembly comparison.
+This closes the specific N01 material-correspondence hold; it does not identify
+the original historical build checkout.
+
+The initial disassembly report remains90/94, **DIFFERENCES_REQUIRE_REVIEW**.
+The4differences were inspected, not discarded:
+- Published FlatBufferBuilder/FlexBuffersBuilder and compiled FlatBufferBuilder
+  use ldc versus ldc_w after constant-pool rewriting. Mapping byte positions to
+  actual instruction ordinals preserves every branch/switch destination, operand
+  and literal; no instruction is removed.
+- javap displays the compiled Table$1 synthetic constructor without its
+  synthetic parameters. Both actual JVM descriptors are
+  (Landroidx/emoji2/text/flatbuffer/Table;Ljava/nio/ByteBuffer;)V. Actual member
+  names/flags/descriptors are checked before normalizing the pretty argument list.
+  Its instructions are unchanged.
+
+The offline reviewer passes94/94 bounded correspondence checks, retaining all90
+strict matches. Seven collection and five presentation-review tests pass,
+including wrong branch targets, literals/whitespace, opcodes, descriptors,
+bootstrap targets/arguments and invalid listings. An actual compiled-member
+mutation is refused by the pinned original manifest before review.
+The first run41517192700 failed before comparison because Java7 rejects the
+actual lambda. Both original binaries are major52/Java8; the corrected build uses
+the existing JDK17 with --release8 and -proc:none. That failure is preserved.
+
+The exact candidate's engineering source/license review is now complete with
+the recorded limits. The prepared source-material archive remains unchanged.
+Do not reopen N01 merely because class bytes, debug/annotation/other attributes,
+formal semantic equivalence or the exact historical checkout were not proved.
+Those broader claims are not made. The original0/45raw-byte result and all
+publisher classifications remain unchanged; OptionB is still issuer-only.
+Final signed asset/source co-location and release handoff remain pending under
+separate authority, alongside the other applicable delivery controls. This
+comparison builds no APK and claims no new phone test, signing or publication.
+
+To replay only the offline review, extract the exact original artifact to a
+fresh directory and run:
+`python3 scripts/review-repackaged-instructions.py <original-artifact-directory> <new-review.json>`.
+It verifies the pinned original manifest/report and refuses changed members.
+The source workflow's explicit operation remains n01-implementation; a future
+source-material generation must explicitly select source-materials in
+.ci/source-material-operation.json. No unchanged regeneration is needed now.
+
+## Exact-alpha license and source disposition — 2026-11-02 (before N01 comparison)
+
+Reviewed candidate: executable7cbed17de44f4bc4ff31b62270ace3bd5a51b492,
+unsigned12,340,030-byte APK SHA256
+1e38786776a466b3809dca84d7cfba45dc6f3196781f3aca7979507260f1ee42.
+The [bounded review receipt](evidence/source-license-disposition-7cbed17d.json)
+separates completed checks from the one remaining source-correspondence hold.
+
+| Review boundary | Disposition |
+| --- | --- |
+| Declared managed runtime licenses | No incompatibility identified:132Apache-2.0 and oneBSD-3-Clause declarations, under the unchanged133-component catalog |
+| Native notices | Existing WebP COPYING/PATENTS, NDK BSD/Apache and AndroidX Apache source records retained |
+| Actual current APK canonical legal assets | PASS: all8required entries match the exact compiled-source originals |
+| Published source-archive license texts |47instances of one original Apache text retained; its terms match the canonical text's Apache portion. The canonical file also retains additional build-tool license texts, which do not prove those tools are packaged runtime components |
+| Exact source-material archive | All1282members and every manifest digest pass;95source archives (94companions plus mapped Protobuf) are readable |
+| Published AAR resource/build inputs |1074files:747parseable XML,161text files,166PNG. PNG owners are AppCompat150/Core16; no compiled npTc nine-patch chunks found. These observations do not prove every image's original preferred editing form |
+| Known supplemental omissions | DataStore JNI, Core stable AIDL/build inputs, FlatBuffers Java, Noto schema/generated Java and both relocation mappings are staged |
+| Remaining source correspondence | **HOLD N01**: exact external Noto/generation/relocation correspondence for Emoji2 is not established by declaration/constant-set matching alone |
+
+Apache's [compatibility statement](https://apache.org/licenses/GPL-compatibility.html)
+supports inclusion of Apache-2.0 software in GPLv3 projects; its
+[redistribution conditions](https://www.apache.org/licenses/LICENSE-2.0)
+still require the applicable license/notices. The exact project LICENSE
+§§1/6 remains the authority for corresponding source. No universal copyright,
+patent, security or whole build-tool review is claimed.
+
+N01 is a specific evidentiary limit, not a newly missing library or a request
+to repeat the completed FlatBuffers1.12version-identification exercise.
+The source/version inventory and notice-byte checks are complete. Final
+corresponding-source/distribution clearance stays open until N01 has a defensible
+disposition. A useful next investigation must establish the release's external
+source/generation context or compare the relevant generated/relocated
+implementation with the frozen classes. Repeating the same45declarations,
+checksums or source capture cannot close it.
+
+Do not require an entirely offline toolchain or byte-identical upstream AARs
+merely to label source material available: those are different claims. Conversely,
+a source bundle and a byte-identical app rebuild do not by themselves establish
+that historical Noto source corresponds to the bundled implementation.
+The [approved issuer-risk exception](../decisions/dependency-assurance-alpha-proposal.md)
+does not waive N01. No new APK build, emulator/phone test, dependency/legal-asset
+change, signing, merge or publication occurred.
+
 Scope: frozen sourcef9434ab9,487/858 generated inventory and exact app lock.
 This review covers declared runtime licenses and archived text, not all native
 source obligations, publisher authentication, legal compatibility or release

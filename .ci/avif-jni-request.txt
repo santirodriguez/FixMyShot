@@ -1,0 +1,5 @@
+Run the isolated source-pinned libavif/libaom JNI feasibility experiment once.
+Compile three ABI shared libraries, capture exact upstream license and patent notices, and compare same-source diagnostic APK bytes.
+Measure only synthetic 65x67 and 1344x2992 encoding in API36, with process PSS snapshots and host pixel checks.
+Do not alter normal export formats, permissions, signing identity, published artifacts or release state.
+Do not infer physical Pixel, 16KiB hardware runtime or final GPL/patent clearance from emulator success.

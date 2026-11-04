@@ -99,7 +99,7 @@ restore-source-snapshot.py with Python3/Git to verify every source file before
 restoring shallow Git identities. It refuses extra/missing/changed files and an
 existing .git. The original project commit is needed because AGP embeds it in
 the APK. This creates only local .git data in these two extracted directories;
-it does not contact a server or install software. Then follow project/CONTRIBUTING.md
+it does not contact a server or install software. Then follow project/.github/CONTRIBUTING.md
 with the source-pinned SDK/JDK/Gradle/NDK/CMake. Dependencies still require their
 reviewed repositories or existing verified caches. Do not claim an offline build.
 
@@ -122,7 +122,7 @@ identical bytes. Check the recorded runtime when comparing independently.
                                       for name,(data,mode) in sorted(entries.items())).encode(),0o644)
     output=io.BytesIO()
     with gzip.GzipFile(fileobj=output,mode='wb',filename='',mtime=0,compresslevel=9) as compressed:
-        with tarfile.open(fileobj=compressed,mode='w',format=tarfile.USTAR_FORMAT) as archive:
+        with tarfile.open(fileobj=compressed,mode='w',format=tarfile.PAX_FORMAT) as archive:
             for name,(data,mode) in sorted(entries.items()):
                 info=tarfile.TarInfo(name)
                 info.size=len(data)
@@ -132,6 +132,7 @@ identical bytes. Check the recorded runtime when comparing independently.
     return data,{'schema':1,'scope':manifest['scope'],'project_commit':source_commit,'project_tree':source_tree,
                  'project_files':len(repositories['project']['files']),'webp_commit':WEBP_COMMIT,
                  'webp_tree':WEBP_TREE,'webp_files':343,'webp_source_bytes':8073794,
+                 'archive_format':'POSIX_PAX',
                  'archive_members':len(entries),'archive_bytes':len(data),'archive_sha256':hashlib.sha256(data).hexdigest(),
                  'producer_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                  'restore_helper_sha256':hashlib.sha256(Path(snapshot.__file__).read_bytes()).hexdigest(),
