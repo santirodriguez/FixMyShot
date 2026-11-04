@@ -1,0 +1,15 @@
+{
+  "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/jetifier/jetifier-processor/1.0.0-beta10/jetifier-processor-1.0.0-beta10-sources.jar",
+  "sha256": "535e86bd7967d7461bd2e5520649df271bfd6be15ea9a534ce7e3adcbe6ee616",
+  "bytes": 57754,
+  "members": 54,
+  "selected": [
+    {
+      "path": "com/android/tools/build/jetifier/processor/transform/pom/XmlUtils.kt",
+      "local": "jetifier-XmlUtils.kt",
+      "bytes": 4696,
+      "sha256": "9430d4f6f20d765c261369e0e6629d1e474c9e95de016a0b095a50abed586a87"
+    }
+  ],
+  "publisher_authentication_claim": false
+}

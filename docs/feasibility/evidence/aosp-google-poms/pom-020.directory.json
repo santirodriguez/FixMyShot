@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "2bcd7e19ade37cd59d208b521e877d1b063f008d",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d8f52f8e8a7e6234759f92f87fd9575f19b2715c",
+      "name": "origin.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4f5acaab35817b9036d729048f85da52b5b42986",
+      "name": "versionedparcelable-1.1.1.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a042fa98fc5966daed3c7c027b5ea44b09814ec4",
+      "name": "versionedparcelable-1.1.1.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c8349960d22498ce0ec49f0ca9e5d965ff652505",
+      "name": "versionedparcelable-1.1.1.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "76d66b2659acb29cdaed5793a3ae97d21463f365",
+      "name": "versionedparcelable-1.1.1.pom.sha1"
+    }
+  ]
+}

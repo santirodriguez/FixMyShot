@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.print",
+    "print",
+    "1.0.0",
+    "print-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.pom",
+  "directory_sha256": "f9532c23ba0200d8b65157fa084a7660a86d0e60dee24777c07a08a31d206bcb",
+  "directory_tree": "e68c377b7ea7467b41f4785ed8c3a5eee9e19283",
+  "blob_sha1": "927140aec1cf4227c6ab7654ed42d3ec8defffb6",
+  "bytes": 1586,
+  "sha256": "62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7"
+}

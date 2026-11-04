@@ -1,0 +1,517 @@
+{
+  "schema": 1,
+  "scope": "FROZEN_TOOLING_FINDING_OWNERSHIP_AND_ACTUAL_APK_TYPE_REVIEW",
+  "scan_time": "2026-10-25T04:20:30.880820+00:00",
+  "distinct_advisory_ids": 49,
+  "matching_components": 18,
+  "families": {
+    "netty": [
+      {
+        "coordinate": "io.netty:netty-codec-http2:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-563q-j3cm-6jxm",
+          "GHSA-5x3r-wrvg-rp6q",
+          "GHSA-93wv-jw9v-4972",
+          "GHSA-c2gf-v879-257j",
+          "GHSA-c69g-56f8-xwqj",
+          "GHSA-f6hv-jmp6-3vwv",
+          "GHSA-prj3-ccx8-p6x4",
+          "GHSA-w9fj-cfpg-grvv"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-codec-http2:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-563q-j3cm-6jxm",
+          "GHSA-5x3r-wrvg-rp6q",
+          "GHSA-93wv-jw9v-4972",
+          "GHSA-c2gf-v879-257j",
+          "GHSA-c69g-56f8-xwqj",
+          "GHSA-f6hv-jmp6-3vwv",
+          "GHSA-prj3-ccx8-p6x4",
+          "GHSA-w9fj-cfpg-grvv",
+          "GHSA-xpw8-rcwv-8f8p"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-codec-http:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-38f8-5428-x5cv",
+          "GHSA-4mp9-239f-g9hg",
+          "GHSA-57rv-r2g8-2cj3",
+          "GHSA-6cqp-g7gg-8hr5",
+          "GHSA-6jqx-86gh-f27w",
+          "GHSA-84h7-rjj3-6jx4",
+          "GHSA-8c42-7qj2-3j46",
+          "GHSA-f6hv-jmp6-3vwv",
+          "GHSA-fghv-69vj-qj49",
+          "GHSA-gcjf-9mgh-3p7g",
+          "GHSA-hvcg-qmg6-jm4c",
+          "GHSA-jppx-w49h-x2qq",
+          "GHSA-m4cv-j2px-7723",
+          "GHSA-mvh2-crg5-v77c",
+          "GHSA-pwqr-wmgm-9rr8",
+          "GHSA-q4f6-jm68-57ww",
+          "GHSA-v8h7-rr48-vmmv",
+          "GHSA-xxqh-mfjm-7mv9"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-codec-http:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-38f8-5428-x5cv",
+          "GHSA-4mp9-239f-g9hg",
+          "GHSA-57rv-r2g8-2cj3",
+          "GHSA-5jpm-x58v-624v",
+          "GHSA-6cqp-g7gg-8hr5",
+          "GHSA-6jqx-86gh-f27w",
+          "GHSA-84h7-rjj3-6jx4",
+          "GHSA-8c42-7qj2-3j46",
+          "GHSA-f6hv-jmp6-3vwv",
+          "GHSA-fghv-69vj-qj49",
+          "GHSA-gcjf-9mgh-3p7g",
+          "GHSA-hvcg-qmg6-jm4c",
+          "GHSA-jppx-w49h-x2qq",
+          "GHSA-m4cv-j2px-7723",
+          "GHSA-mvh2-crg5-v77c",
+          "GHSA-pwqr-wmgm-9rr8",
+          "GHSA-q4f6-jm68-57ww",
+          "GHSA-v8h7-rr48-vmmv",
+          "GHSA-xxqh-mfjm-7mv9"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-codec:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-3p8m-j85q-pgmj",
+          "GHSA-558v-64gr-wgg4",
+          "GHSA-mj4r-2hfc-f8p6"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-codec:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-3p8m-j85q-pgmj",
+          "GHSA-558v-64gr-wgg4",
+          "GHSA-mj4r-2hfc-f8p6"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-common:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-389x-839f-4rhx",
+          "GHSA-xq3w-v528-46rv"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-common:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-389x-839f-4rhx",
+          "GHSA-xq3w-v528-46rv"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-handler-proxy:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-45q3-82m4-75jr"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-handler-proxy:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-45q3-82m4-75jr"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-handler:4.1.110.Final",
+        "advisory_ids": [
+          "GHSA-3qp7-7mw8-wx86",
+          "GHSA-4g8c-wm8x-jfhw",
+          "GHSA-c4c3-7fpv-j4q5",
+          "GHSA-c653-97m9-rcg9",
+          "GHSA-fccg-mwvh-qqg4",
+          "GHSA-x4gw-5cx5-pgmh"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-android-test-plugin-host-emulator-control"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "io.netty:netty-handler:4.1.93.Final",
+        "advisory_ids": [
+          "GHSA-3qp7-7mw8-wx86",
+          "GHSA-4g8c-wm8x-jfhw",
+          "GHSA-6mjq-h674-j845",
+          "GHSA-c4c3-7fpv-j4q5",
+          "GHSA-c653-97m9-rcg9",
+          "GHSA-fccg-mwvh-qqg4",
+          "GHSA-x4gw-5cx5-pgmh"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "unified-test-platform-core"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ],
+    "commons_lang3": [
+      {
+        "coordinate": "org.apache.commons:commons-lang3:3.16.0",
+        "advisory_ids": [
+          "GHSA-j288-q9x7-2f5v"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ],
+    "apache_httpclient": [
+      {
+        "coordinate": "org.apache.httpcomponents:httpclient:4.5.6",
+        "advisory_ids": [
+          "GHSA-7r82-7xv7-xcpj"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ],
+    "jose4j": [
+      {
+        "coordinate": "org.bitbucket.b_c:jose4j:0.9.5",
+        "advisory_ids": [
+          "GHSA-3677-xxcr-wjqv"
+        ],
+        "scope": "capture_without_lockfile_selection",
+        "lock_associations": [],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ],
+    "bouncycastle": [
+      {
+        "coordinate": "org.bouncycastle:bcpkix-jdk18on:1.79",
+        "advisory_ids": [
+          "GHSA-wg6q-6289-32hp"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      },
+      {
+        "coordinate": "org.bouncycastle:bcprov-jdk18on:1.79",
+        "advisory_ids": [
+          "GHSA-574f-3g2m-x479",
+          "GHSA-9pwp-9qqc-pr26",
+          "GHSA-c3fc-8qff-9hwx",
+          "GHSA-qp49-qgx5-5m26"
+        ],
+        "scope": "selected_other_configuration",
+        "lock_associations": [
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "app/gradle.lockfile"
+          },
+          {
+            "configurations": [
+              "androidLintTool",
+              "unified-test-platform-android-test-plugin-result-listener-gradle"
+            ],
+            "lockfile": "codec-native/gradle.lockfile"
+          }
+        ],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ],
+    "jdom2": [
+      {
+        "coordinate": "org.jdom:jdom2:2.0.6",
+        "advisory_ids": [
+          "GHSA-2363-cqg2-863c"
+        ],
+        "scope": "capture_without_lockfile_selection",
+        "lock_associations": [],
+        "apk_matching_type_definitions": 0,
+        "apk_matching_type_references": 0,
+        "build_operation_exploitability": "OPEN_NOT_PROVED_ABSENT"
+      }
+    ]
+  },
+  "actual_apk_report": "apk-tooling-types-5d568a7e.json",
+  "current_apk_family_types": "ABSENT_BOTH_ACTUAL_DEBUG_AND_RELEASE",
+  "build_tool_findings": "OPEN_NO_BLANKET_DISMISSAL",
+  "active_policy_or_dependency_versions_changed": false,
+  "whole_security_approval": false,
+  "scan_input_pins": {
+    "app/gradle.lockfile": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "codec-native/gradle.lockfile": "98bc94c4dafce1674c2230be7a7613433b9585f8f3fcdbab1fe81d9fe9ea5e76",
+    "codec-native/src/main/cpp/CMakeLists.txt": "28c077daa48e54afc846f03e76a84c185d1578a37b44820f34357748a68df7b2",
+    "core/gradle.lockfile": "c20b13045f651150ce29a8110b370464e5256f4631f57d44d251706960e0c93d",
+    "docs/feasibility/evidence/gradle-baseline-f9434ab9.xml": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755"
+  }
+}

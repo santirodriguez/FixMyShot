@@ -1,0 +1,805 @@
+{
+  "schema": 1,
+  "scope": "ALL_49_FROZEN_FINDINGS_BOUNDED_ACTUAL_HOST_BUILD_OBSERVATION_AND_KNOWN_ROUTE_REVIEW",
+  "source_commit": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "control_commit": "e69ce830372392a62feeb4432b285016e598dfb5",
+  "run_id": 40214535917,
+  "job_id": 121232707660,
+  "frozen_counts_unchanged": {
+    "advisories": 49,
+    "components": 18
+  },
+  "configured_tasks": [
+    ":core:test",
+    ":app:lintDebug",
+    ":app:assembleDebug",
+    ":app:assembleRelease",
+    ":app:assembleDebugAndroidTest"
+  ],
+  "device_testing_route": "Existing normal smoke uses adb shell am instrument directly; no connectedAndroidTest/managed-device/UTP execution task configured in this host task set. No absence of all hidden callers is inferred solely from that fact.",
+  "observability_limits": [
+    "Class presence does not prove advisory method execution",
+    "Absence applies to captured logged JVMs and explicit prefixes only",
+    "SDK/build/lint/test coverage markers required; unknown or rotated/partial traces rejected",
+    "Native executables, device VMs, custom future tasks or arbitrarily changed JVM environments are not covered",
+    "Source archive inspection alone does not authenticate additional frozen publisher files"
+  ],
+  "rows": [
+    {
+      "advisory": "GHSA-2363-cqg2-863c",
+      "family": "jdom2",
+      "coordinates": [
+        "org.jdom:jdom2:2.0.6"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-3677-xxcr-wjqv",
+      "family": "jose4j",
+      "coordinates": [
+        "org.bitbucket.b_c:jose4j:0.9.5"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-389x-839f-4rhx",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-common:4.1.110.Final",
+        "io.netty:netty-common:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-38f8-5428-x5cv",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-3p8m-j85q-pgmj",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec:4.1.110.Final",
+        "io.netty:netty-codec:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-3qp7-7mw8-wx86",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-45q3-82m4-75jr",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler-proxy:4.1.110.Final",
+        "io.netty:netty-handler-proxy:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-4g8c-wm8x-jfhw",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-4mp9-239f-g9hg",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-558v-64gr-wgg4",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec:4.1.110.Final",
+        "io.netty:netty-codec:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-563q-j3cm-6jxm",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-574f-3g2m-x479",
+      "family": "bouncycastle",
+      "coordinates": [
+        "org.bouncycastle:bcprov-jdk18on:1.79"
+      ],
+      "known_trigger_classes": [
+        "org.bouncycastle.crypto.modes.G3413CTRBlockCipher"
+      ],
+      "observation_disposition": "ADVISORY_TRIGGER_CLASS_NOT_OBSERVED_IN_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-57rv-r2g8-2cj3",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-5jpm-x58v-624v",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-5x3r-wrvg-rp6q",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-6cqp-g7gg-8hr5",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-6jqx-86gh-f27w",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-6mjq-h674-j845",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-7r82-7xv7-xcpj",
+      "family": "apache_httpclient",
+      "coordinates": [
+        "org.apache.httpcomponents:httpclient:4.5.6"
+      ],
+      "known_trigger_classes": [
+        "org.apache.http.client.utils.URIUtils"
+      ],
+      "observation_disposition": "URIUTILS_OBSERVED_ONLY_FROM_EXACT_HASH_MATCHING_HTTPCLIENT4_5_14_JAR",
+      "observed_trigger_classes": [
+        {
+          "class": "org.apache.http.client.utils.URIUtils",
+          "origin": "file:/home/runner/work/_temp/fixmyshot-independent-gradle/wrapper/dists/gradle-9.4.1-bin/arn2x92ynaizyzdaamcbpbhtj/gradle-9.4.1/lib/httpclient-4.5.14.jar",
+          "processes": [
+            "classes-2925.log"
+          ]
+        }
+      ]
+    },
+    {
+      "advisory": "GHSA-84h7-rjj3-6jx4",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-8c42-7qj2-3j46",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-93wv-jw9v-4972",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-9pwp-9qqc-pr26",
+      "family": "bouncycastle",
+      "coordinates": [
+        "org.bouncycastle:bcprov-jdk18on:1.79"
+      ],
+      "known_trigger_classes": [
+        "org.bouncycastle.asn1.x509.PKIXNameConstraintValidator",
+        "org.bouncycastle.jce.provider.PKIXNameConstraintValidator",
+        "org.bouncycastle.pkix.ASN1PKIXNameConstraintValidator"
+      ],
+      "observation_disposition": "ADVISORY_TRIGGER_CLASS_NOT_OBSERVED_IN_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-c2gf-v879-257j",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-c3fc-8qff-9hwx",
+      "family": "bouncycastle",
+      "coordinates": [
+        "org.bouncycastle:bcprov-jdk18on:1.79"
+      ],
+      "known_trigger_classes": [
+        "org.bouncycastle.x509.util.LDAPStoreHelper"
+      ],
+      "observation_disposition": "ADVISORY_TRIGGER_CLASS_NOT_OBSERVED_IN_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-c4c3-7fpv-j4q5",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-c653-97m9-rcg9",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-c69g-56f8-xwqj",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-f6hv-jmp6-3vwv",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final",
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-fccg-mwvh-qqg4",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-fghv-69vj-qj49",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-gcjf-9mgh-3p7g",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-hvcg-qmg6-jm4c",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-j288-q9x7-2f5v",
+      "family": "commons_lang3",
+      "coordinates": [
+        "org.apache.commons:commons-lang3:3.16.0"
+      ],
+      "known_trigger_classes": [
+        "org.apache.commons.lang3.ClassUtils"
+      ],
+      "observation_disposition": "CLASSUTILS_OBSERVED_ONLY_FROM_GRADLE_BUNDLED_COMMONS_LANG3_3_20_0_ORIGIN",
+      "observed_trigger_classes": [
+        {
+          "class": "org.apache.commons.lang3.ClassUtils",
+          "origin": "file:/home/runner/work/_temp/fixmyshot-independent-gradle/wrapper/dists/gradle-9.4.1-bin/arn2x92ynaizyzdaamcbpbhtj/gradle-9.4.1/lib/commons-lang3-3.20.0.jar",
+          "processes": [
+            "classes-2925.log"
+          ]
+        }
+      ]
+    },
+    {
+      "advisory": "GHSA-jppx-w49h-x2qq",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-m4cv-j2px-7723",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-mj4r-2hfc-f8p6",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec:4.1.110.Final",
+        "io.netty:netty-codec:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-mvh2-crg5-v77c",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-prj3-ccx8-p6x4",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-pwqr-wmgm-9rr8",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-q4f6-jm68-57ww",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-qp49-qgx5-5m26",
+      "family": "bouncycastle",
+      "coordinates": [
+        "org.bouncycastle:bcprov-jdk18on:1.79"
+      ],
+      "known_trigger_classes": [
+        "org.bouncycastle.asn1.LazyEncodedSequence"
+      ],
+      "observation_disposition": "LAZY_ASN1_CLASS_OBSERVED__INSPECTED_SDK_CERT_ROUTE_USES_NON_LAZY_CONSTRUCTOR",
+      "observed_trigger_classes": [
+        {
+          "class": "org.bouncycastle.asn1.LazyEncodedSequence",
+          "origin": "file:/home/runner/work/_temp/fixmyshot-independent-gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk18on/1.79/4d8e2732bcee15f1db93df266c3f5b70ce5cac21/bcprov-jdk18on-1.79.jar",
+          "processes": [
+            "classes-2925.log"
+          ]
+        }
+      ],
+      "source_route_review": "SDK32.2.1 KeystoreHelper is the single direct BouncyCastle importer found in that published source archive. Its debug certificate route builds RSA/SHA256withRSA and a local Android Debug certificate, then JcaX509CertificateConverter calls CertificateFactory.generateCertificate. The exact BC1.79 factory certificate path uses ASN1InputStream(pis), whose constructor sets lazyEvaluate=false; the distinct CRL path explicitly uses true. This is source inference, not method tracing or proof that no other caller exists."
+    },
+    {
+      "advisory": "GHSA-v8h7-rr48-vmmv",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-w9fj-cfpg-grvv",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.110.Final",
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-wg6q-6289-32hp",
+      "family": "bouncycastle",
+      "coordinates": [
+        "org.bouncycastle:bcpkix-jdk18on:1.79"
+      ],
+      "known_trigger_classes": [
+        "org.bouncycastle.operator.jcajce.JcaContentVerifierProviderBuilder$CompositeVerifier"
+      ],
+      "observation_disposition": "ADVISORY_TRIGGER_CLASS_NOT_OBSERVED_IN_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-x4gw-5cx5-pgmh",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-handler:4.1.110.Final",
+        "io.netty:netty-handler:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-xpw8-rcwv-8f8p",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http2:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-xq3w-v528-46rv",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-common:4.1.110.Final",
+        "io.netty:netty-common:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    },
+    {
+      "advisory": "GHSA-xxqh-mfjm-7mv9",
+      "family": "netty",
+      "coordinates": [
+        "io.netty:netty-codec-http:4.1.110.Final",
+        "io.netty:netty-codec-http:4.1.93.Final"
+      ],
+      "known_trigger_classes": [],
+      "observation_disposition": "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS",
+      "observed_trigger_classes": []
+    }
+  ],
+  "corrective_capture": "SUCCESS_ACTUAL_13_JVMS_126398_EVENTS_AND_STRICT_APK_BYTE_COMPARISON",
+  "assessment_complete_for_documented_observation_scope": true,
+  "all_possible_paths_or_security_gate_closed": false,
+  "disposition_counts": {
+    "NO_FAMILY_CLASS_OBSERVED_IN_13_CAPTURED_JVMS": 42,
+    "ADVISORY_TRIGGER_CLASS_NOT_OBSERVED_IN_CAPTURED_JVMS": 4,
+    "URIUTILS_OBSERVED_ONLY_FROM_EXACT_HASH_MATCHING_HTTPCLIENT4_5_14_JAR": 1,
+    "CLASSUTILS_OBSERVED_ONLY_FROM_GRADLE_BUNDLED_COMMONS_LANG3_3_20_0_ORIGIN": 1,
+    "LAZY_ASN1_CLASS_OBSERVED__INSPECTED_SDK_CERT_ROUTE_USES_NON_LAZY_CONSTRUCTOR": 1
+  },
+  "source_route_execution_not_proved_by_class_loading": true,
+  "observation_report_sha256": "38c6f873e2ba042933a58d094ec290c3a4f44e9d44fa007fe66c1157ccac126d",
+  "current_build_operation_review": "COMPLETE_FOR_EXPLICIT_OBSERVED_TASK_SET_AND_DOCUMENTED_KNOWN_SDK_ROUTE; NOT_PATCHED_OR_GENERAL_SECURITY_CLEARANCE",
+  "residual_observation_limits": [
+    "No exhaustive direct/reflective method trace for every possible ASN.1 caller",
+    "Only the recorded JVMs, task set and explicit prefixes; native/device execution and arbitrary relocation remain outside",
+    "Publisher authenticity and whole distribution-source/security approval are separate"
+  ],
+  "reopen_on": [
+    "Different source/dependency/Gradle/SDK/JVM versions or task set",
+    "Connected/managed-device UTP, external network peers, new HTTP/JOSE consumers",
+    "External certificate/CRL/keystore inputs or production signing",
+    "A materially new relevant advisory/input route; no automatic repeated unchanged capture"
+  ],
+  "selected_source_files": [
+    {
+      "path": "BouncyCastle-LICENSE.html",
+      "bytes": 1175,
+      "sha256": "edbbb10380b1271998b867a2e36b1cbee226e03d438726e1a91f80c5dde11849"
+    },
+    {
+      "path": "BouncyCastle-license-source.json",
+      "bytes": 224,
+      "sha256": "eb3c21157ac6b62d9ca307c13073e771a9429cecbc3dcd46d1f3f66986fe311f"
+    },
+    {
+      "path": "SOURCE-NOTICES.md",
+      "bytes": 645,
+      "sha256": "8eb24a49791ea1cb467d3f52f21113459767f79a09fd19d0fbfa68628f108224"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__cert__CertUtils.java",
+      "bytes": 10181,
+      "sha256": "cc429aa7322af947ba1c31aa4529ed6a5188b1d437485094bbfb9e4e86cd9f22"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__cert__X509CertificateHolder.java",
+      "bytes": 11770,
+      "sha256": "f3bf43fe447d6dd1441e234efa410dee47d7b1ecc5c677a4c0c79efb3844bedd"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__cert__X509v1CertificateBuilder.java",
+      "bytes": 4015,
+      "sha256": "a4717487ec95384a7b395d8cc98533348899f30b5eac723ceb28a9423a86830c"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__cert__X509v3CertificateBuilder.java",
+      "bytes": 19577,
+      "sha256": "a4956471836b207d8b1c1a4336b23f77acf55fc5d45c2f9089cffe0a55750213"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__cert__jcajce__JcaX509CertificateConverter.java",
+      "bytes": 3188,
+      "sha256": "03435d67a51f88b138c6643bf66999ee31d70f8a81f9cfd534973337239b0de3"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__operator__jcajce__JcaContentVerifierProviderBuilder.java",
+      "bytes": 14575,
+      "sha256": "3f290fb3110db09f10a40080fac4574c844e4adc483b8a1f432985aa0688f3be"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__pkix__ASN1PKIXNameConstraintValidator.java",
+      "bytes": 63858,
+      "sha256": "6ca34947bb3f17140f1c4daf6100cd39144f6eb900cdd804a72d6b447001628a"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__pkix__PKIXNameConstraintValidator.java",
+      "bytes": 3750,
+      "sha256": "880b66d8c61eac47ef77beae5d8a73bad69d8297f281469c881e203934d6413c"
+    },
+    {
+      "path": "bcpkix-org__bouncycastle__pkix__PKIXNameConstraintValidatorException.java",
+      "bytes": 428,
+      "sha256": "83ac74fb47f9c7899e34b1e7186559f2685dc812de921d5130e031f97150aa11"
+    },
+    {
+      "path": "bcpkix-source-report.json",
+      "bytes": 2751,
+      "sha256": "6e90b42390686073a222d9f936ddf56d34bb135a4acefa6b281c06744afcf5f9"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__asn1__ASN1InputStream.java",
+      "bytes": 18899,
+      "sha256": "63c3872d200206ee176e4ce3981ffe6faa0c8f0c666c0c3cb99fab24d5a07248"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__asn1__ASN1Primitive.java",
+      "bytes": 3162,
+      "sha256": "9b975c854ee598d33e97152ca5b267cca8ff140d14459c0f0c2d4be9ee7d83c8"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__asn1__LazyEncodedSequence.java",
+      "bytes": 3319,
+      "sha256": "95bc10119ef97eb8d71a665966909f65f9de6c3c4cf636864097eca4529d4b6e"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__asn1__x509__PKIXNameConstraintValidator.java",
+      "bytes": 64231,
+      "sha256": "876b435d7367145aec87513590a3c13ead2dde4978659e45abbd0943c734bbd6"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__crypto__modes__G3413CTRBlockCipher.java",
+      "bytes": 5952,
+      "sha256": "061a03bc6cfb8b4ac3d77d987de6907016d4ce458359c03d34937d35b5d7f97b"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__jcajce__provider__asymmetric__x509__CertificateFactory.java",
+      "bytes": 12674,
+      "sha256": "f7c74cc3bbfaea1ad9ca6ef8082837f596945f8237b9656a860f17c1c5475851"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__jce__provider__PKIXNameConstraintValidator.java",
+      "bytes": 3804,
+      "sha256": "f1bd9324cf7d027b8dd568cf1c3f6a55178359dc12d6a9224c40b27fdda3cca5"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__jce__provider__PKIXNameConstraintValidatorException.java",
+      "bytes": 436,
+      "sha256": "1873d7edd16781336efc61f223323d48fd6e6fb75bb17eb6f0c401c700bfaa30"
+    },
+    {
+      "path": "bcprov-org__bouncycastle__x509__util__LDAPStoreHelper.java",
+      "bytes": 40120,
+      "sha256": "d2599f02a96c787588747f8f422b188fddde5f9b2865f67c0e31687d1c0b4db9"
+    },
+    {
+      "path": "bcprov-source-report.json",
+      "bytes": 2757,
+      "sha256": "c25c53f9d01e98befd4230bb29a8e9a796e2f86db940d701684e8fd0ece8059d"
+    },
+    {
+      "path": "build.json",
+      "bytes": 1294,
+      "sha256": "59f9616b4ad53737bd555cdb00e50bc9df778ce9de95c45fd4aa0629a248cfb5"
+    },
+    {
+      "path": "classload-offline-replay.json",
+      "bytes": 403,
+      "sha256": "d19ebb204a667cdeb8f9b21ad812b66e4f5ab418c7d07934b234c0b5627cab33"
+    },
+    {
+      "path": "classload-report.json",
+      "bytes": 337994,
+      "sha256": "38c6f873e2ba042933a58d094ec290c3a4f44e9d44fa007fe66c1157ccac126d"
+    },
+    {
+      "path": "debug-legal.json",
+      "bytes": 1511,
+      "sha256": "173e83b477c809237023242aaa8d857ff542678fa0528eb29f0e07123a371de1"
+    },
+    {
+      "path": "debug-native.json",
+      "bytes": 1738,
+      "sha256": "fee345e2c59f50ae50e480bb3f476058c51ee315b18fea2234b116e17666d033"
+    },
+    {
+      "path": "debug-tooling-types.json",
+      "bytes": 3513,
+      "sha256": "e17ecb73da37ee6eb390e582f9d4d2c7c4c175ed67c05c40068932ab76550753"
+    },
+    {
+      "path": "first-observer-attempt.json",
+      "bytes": 1407,
+      "sha256": "cdc2e58ea29f512eb7506de23cb584ab18429dd718485a4b91e1d95afdc91341"
+    },
+    {
+      "path": "first-rebuild-comparison.json",
+      "bytes": 999,
+      "sha256": "8e3eaf66747f010e2b9b4753ef1e36a39d6bf8d50de40c4277110b0fdc84d92e"
+    },
+    {
+      "path": "httpclient-URIUtils.java",
+      "bytes": 16517,
+      "sha256": "52b93c9853a98095225218f958b1cb3e004c30c57241f058eb21045a7a37518f"
+    },
+    {
+      "path": "httpclient-source-report.json",
+      "bytes": 464,
+      "sha256": "739e0dc1833c2cca20e233f4685469d6ec4dd0820a0f927d4f3c73b1df347621"
+    },
+    {
+      "path": "rebuild-comparison.json",
+      "bytes": 999,
+      "sha256": "07479fe4ef2e454ae8047fab64d5291f176b80f3f131aa244c6fd66dca411b71"
+    },
+    {
+      "path": "sdk-common-com__android__ide__common__signing__KeystoreHelper.java",
+      "bytes": 13525,
+      "sha256": "395b0bb45725c9915bca17441b51d91eb3fecf08165a87493318e7f912302032"
+    },
+    {
+      "path": "sdk-common-source-report.json",
+      "bytes": 583,
+      "sha256": "1d6840aa94c0b8881ba8ca388d713c07885de91c5fd3745e943e9817b2e1491d"
+    }
+  ]
+}

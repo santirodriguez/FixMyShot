@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "collection_scope": "STANDALONE_PINNED_SECURITY_INVENTORY",
+  "baseline_source_commit": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
+  "baseline_path": "docs/feasibility/evidence/gradle-baseline-f9434ab9.xml",
+  "native_commit": "4fa21912338357f89e4fd51cf2368325b59e9bd9",
+  "inputs": {
+    "docs/feasibility/evidence/gradle-baseline-f9434ab9.xml": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+    "app/gradle.lockfile": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "core/gradle.lockfile": "c20b13045f651150ce29a8110b370464e5256f4631f57d44d251706960e0c93d",
+    "codec-native/gradle.lockfile": "98bc94c4dafce1674c2230be7a7613433b9585f8f3fcdbab1fe81d9fe9ea5e76",
+    "codec-native/src/main/cpp/CMakeLists.txt": "28c077daa48e54afc846f03e76a84c185d1578a37b44820f34357748a68df7b2"
+  }
+}

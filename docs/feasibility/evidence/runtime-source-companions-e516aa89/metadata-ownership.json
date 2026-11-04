@@ -1,0 +1,1690 @@
+{
+  "schema": 1,
+  "scope": "EXACT_FROZEN_NO_BINARY_METADATA_TO_ALREADY_SELECTED_COMPONENT_SOURCE_OWNERSHIP",
+  "not_a_gradle_variant_selection_trace": true,
+  "issuer_authentication_changed": false,
+  "rows": [
+    {
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.9.1/annotation-1.9.1.module",
+      "local_file": "androidx.annotation__annotation__1.9.1.module",
+      "bytes": 43864,
+      "sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.annotation:annotation-jvm:1.9.1",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.annotation:annotation-jvm:1.9.1",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.annotation:annotation-jvm:1.9.1",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.collection:collection:1.5.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection/1.5.0/collection-1.5.0.module",
+      "local_file": "androidx.collection__collection__1.5.0.module",
+      "bytes": 39702,
+      "sha256": "bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.collection:collection-jvm:1.5.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.collection:collection-jvm:1.5.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.collection:collection-jvm:1.5.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-core:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core/1.10.0/animation-core-1.10.0.module",
+      "local_file": "androidx.compose.animation__animation-core__1.10.0.module",
+      "bytes": 15011,
+      "sha256": "2560e6513e16978300d7f1cb2593e9cdc0f57dbb37b788efd2ee6769c12d7921",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-core-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-core-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-core-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation/1.10.0/animation-1.10.0.module",
+      "local_file": "androidx.compose.animation__animation__1.10.0.module",
+      "bytes": 15269,
+      "sha256": "2158c1b57ce292ac2fd0d1541ece2cd08bbfbbd80aa6417a0668076693855458",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.animation:animation-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-layout:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout/1.10.0/foundation-layout-1.10.0.module",
+      "local_file": "androidx.compose.foundation__foundation-layout__1.10.0.module",
+      "bytes": 11943,
+      "sha256": "421dccb4cf516955c206ca1cad456983934a9909b44b0e9a14f735a779a563d1",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation/1.10.0/foundation-1.10.0.module",
+      "local_file": "androidx.compose.foundation__foundation__1.10.0.module",
+      "bytes": 12183,
+      "sha256": "b9f547775ab6920e06afeb371322840ab72d738b5a694a6f733ad7049675c452",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.foundation:foundation-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3:1.4.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3/1.4.0/material3-1.4.0.module",
+      "local_file": "androidx.compose.material3__material3__1.4.0.module",
+      "bytes": 13368,
+      "sha256": "757081d128daf8801c1dd9acc431fa5269e656b28a0a490ae98ccee68e9c3452",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.compose.material3:material3-android:1.4.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.compose.material3:material3-android:1.4.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.compose.material3:material3-android:1.4.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.material:material-ripple:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple/1.10.0/material-ripple-1.10.0.module",
+      "local_file": "androidx.compose.material__material-ripple__1.10.0.module",
+      "bytes": 9238,
+      "sha256": "31c55e4c7264b06da320bef7086a6bd4265a40422d36e5eb770798b33f9742c2",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.material:material-ripple-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.material:material-ripple-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.material:material-ripple-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-annotation:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation/1.10.0/runtime-annotation-1.10.0.module",
+      "local_file": "androidx.compose.runtime__runtime-annotation__1.10.0.module",
+      "bytes": 53230,
+      "sha256": "029616c9ddf00b22bf629e151fca5ce73a96f094c4b5d96dc813dd3faa585f02",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-retain:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain/1.10.0/runtime-retain-1.10.0.module",
+      "local_file": "androidx.compose.runtime__runtime-retain__1.10.0.module",
+      "bytes": 53087,
+      "sha256": "8254e7bfa01e5471e6917a3730ad0af5265f9d52e7ddb3c3aa7a5befdf75f91f",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-saveable:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable/1.10.0/runtime-saveable-1.10.0.module",
+      "local_file": "androidx.compose.runtime__runtime-saveable__1.10.0.module",
+      "bytes": 53185,
+      "sha256": "835897174ebee1ebcf01000661f6cfcc8aedca1dbf4d17cb76245a5347b8f028",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime/1.10.0/runtime-1.10.0.module",
+      "local_file": "androidx.compose.runtime__runtime__1.10.0.module",
+      "bytes": 51807,
+      "sha256": "c1be9e41b03bc50e3850e86e5827fdf3eca11707989d93affb38e1bc8b53d675",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.runtime:runtime-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-geometry:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry/1.10.0/ui-geometry-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui-geometry__1.10.0.module",
+      "bytes": 27298,
+      "sha256": "ed47254977efa73d57b1528d1d142cd1e662fb408321cb182affa3f82a2ab569",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-geometry-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-geometry-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-geometry-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-graphics:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics/1.10.0/ui-graphics-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui-graphics__1.10.0.module",
+      "bytes": 28146,
+      "sha256": "b29b99982c91b69dbd50ff989f6e33ed4d31548b3609492189dba634d0c589d9",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-graphics-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-graphics-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-graphics-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-text:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text/1.10.0/ui-text-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui-text__1.10.0.module",
+      "bytes": 27724,
+      "sha256": "9109b898376ca1af4e8748ac437beba461f0e9f806eddfe8384f81561e5733c8",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-text-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-text-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-text-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-unit:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit/1.10.0/ui-unit-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui-unit__1.10.0.module",
+      "bytes": 27722,
+      "sha256": "c10ac08770b2a090703664d21030e316cfddc4407c1b014b8ad3250f8bed51d5",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-unit-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-unit-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-unit-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-util:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util/1.10.0/ui-util-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui-util__1.10.0.module",
+      "bytes": 26881,
+      "sha256": "8e3bedd5c2e1c813a73e5282dbbfced422f786083828c42f9202da3929e54122",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-util-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-util-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-util-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui:1.10.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui/1.10.0/ui-1.10.0.module",
+      "local_file": "androidx.compose.ui__ui__1.10.0.module",
+      "bytes": 28549,
+      "sha256": "48600c0d2ff9eaaf6d7888124496fa2dd4830a1cc328591054cafed5f6a657e3",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-android:1.10.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.compose.ui:ui-android:1.10.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+      "local_file": "androidx.compose__compose-bom__2025.12.00.pom",
+      "bytes": 39897,
+      "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+      "frozen_bytes_match": true,
+      "status": "BOM_METADATA_ONLY_DESCRIPTOR",
+      "packaging": "pom",
+      "managed_dependencies": 240
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-okio:1.1.7",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-okio/1.1.7/datastore-core-okio-1.1.7.module",
+      "local_file": "androidx.datastore__datastore-core-okio__1.1.7.module",
+      "bytes": 27053,
+      "sha256": "47fadb8caff5982ac29ccc1ff38d4206ee29ecb947fa06d4070c0ebc1086a7eb",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.datastore:datastore-core-okio-jvm:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.datastore:datastore-core-okio-jvm:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.datastore:datastore-core-okio-jvm:1.1.7",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core:1.1.7",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core/1.1.7/datastore-core-1.1.7.module",
+      "local_file": "androidx.datastore__datastore-core__1.1.7.module",
+      "bytes": 27932,
+      "sha256": "4821397339e3272f95139e408985bc91384ada3ca66e424ed8af6577070de489",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core:1.1.7",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core/1.1.7/datastore-preferences-core-1.1.7.module",
+      "local_file": "androidx.datastore__datastore-preferences-core__1.1.7.module",
+      "bytes": 29643,
+      "sha256": "109dc49114519f2672fb3178de01fb53953e9559be83394dc259444550caed99",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-core-android:1.1.7",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences:1.1.7",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences/1.1.7/datastore-preferences-1.1.7.module",
+      "local_file": "androidx.datastore__datastore-preferences__1.1.7.module",
+      "bytes": 28732,
+      "sha256": "24f6866605ed027c6e13158ca18464d2a1af1ba8a5f0ce3ff2224b7604fe0a2b",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-preferences-android:1.1.7",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.datastore:datastore:1.1.7",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore/1.1.7/datastore-1.1.7.module",
+      "local_file": "androidx.datastore__datastore__1.1.7.module",
+      "bytes": 27538,
+      "sha256": "705450d5e0d0a84c1599ae1421a9969e3aa704bc39640ebcd671e4643d2fc8f8",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-android:1.1.7",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.datastore:datastore-android:1.1.7",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common:2.9.4",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common/2.9.4/lifecycle-common-2.9.4.module",
+      "local_file": "androidx.lifecycle__lifecycle-common__2.9.4.module",
+      "bytes": 59297,
+      "sha256": "c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-common-jvm:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-common-jvm:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-common-jvm:2.9.4",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose:2.9.4",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose/2.9.4/lifecycle-runtime-compose-2.9.4.module",
+      "local_file": "androidx.lifecycle__lifecycle-runtime-compose__2.9.4.module",
+      "bytes": 63755,
+      "sha256": "27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx:2.9.4",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx/2.9.4/lifecycle-runtime-ktx-2.9.4.module",
+      "local_file": "androidx.lifecycle__lifecycle-runtime-ktx__2.9.4.module",
+      "bytes": 25969,
+      "sha256": "05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime:2.9.4",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime/2.9.4/lifecycle-runtime-2.9.4.module",
+      "local_file": "androidx.lifecycle__lifecycle-runtime__2.9.4.module",
+      "bytes": 61469,
+      "sha256": "dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-runtime-android:2.9.4",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.4",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.9.4/lifecycle-viewmodel-savedstate-2.9.4.module",
+      "local_file": "androidx.lifecycle__lifecycle-viewmodel-savedstate__2.9.4.module",
+      "bytes": 65819,
+      "sha256": "4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-compose:1.3.2",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose/1.3.2/savedstate-compose-1.3.2.module",
+      "local_file": "androidx.savedstate__savedstate-compose__1.3.2.module",
+      "bytes": 44485,
+      "sha256": "3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.savedstate:savedstate-compose-android:1.3.2",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.savedstate:savedstate-compose-android:1.3.2",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.savedstate:savedstate-compose-android:1.3.2",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate:1.3.2",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate/1.3.2/savedstate-1.3.2.module",
+      "local_file": "androidx.savedstate__savedstate__1.3.2.module",
+      "bytes": 43574,
+      "sha256": "320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "releaseApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.savedstate:savedstate-android:1.3.2",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.savedstate:savedstate-android:1.3.2",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "releaseSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "fake-sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "androidJvm"
+          },
+          "target": "androidx.savedstate:savedstate-android:1.3.2",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "androidx.window:window-core:1.5.0",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/window/window-core/1.5.0/window-core-1.5.0.module",
+      "local_file": "androidx.window__window-core__1.5.0.module",
+      "bytes": 45700,
+      "sha256": "595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "androidApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.window:window-core-android:1.5.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "aar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.window:window-core-android:1.5.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "androidSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "android",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "androidx.window:window-core-android:1.5.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "com.squareup.okio:okio:3.4.0",
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio/3.4.0/okio-3.4.0.module",
+      "local_file": "com.squareup.okio__okio__3.4.0.module",
+      "bytes": 20764,
+      "sha256": "69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "com.squareup.okio:okio-jvm:3.4.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "com.squareup.okio:okio-jvm:3.4.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-common:2.4.21",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/2.4.21/kotlin-stdlib-common-2.4.21.module",
+      "local_file": "org.jetbrains.kotlin__kotlin-stdlib-common__2.4.21.module",
+      "bytes": 626,
+      "sha256": "aeae4f24688e1dd7ebee648ab2b12be685cbe33e9c72bc1439730a794d6e2d5b",
+      "frozen_bytes_match": true,
+      "status": "DEPENDENCY_ONLY_METADATA_TO_SELECTED_STDLIB",
+      "candidate_redirects_to_selected_components": [],
+      "dependency_target": "org.jetbrains.kotlin:kotlin-stdlib:2.4.21",
+      "original_variant": {
+        "name": "stdlibCommonElements",
+        "attributes": {
+          "org.gradle.category": "library"
+        },
+        "dependencies": [
+          {
+            "group": "org.jetbrains.kotlin",
+            "module": "kotlin-stdlib",
+            "version": {
+              "requires": "2.4.21"
+            }
+          }
+        ]
+      },
+      "target_has_frozen_binary": true
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.9.0",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.9.0/kotlinx-coroutines-bom-1.9.0.pom",
+      "local_file": "org.jetbrains.kotlinx__kotlinx-coroutines-bom__1.9.0.pom",
+      "bytes": 4291,
+      "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78",
+      "frozen_bytes_match": true,
+      "status": "BOM_METADATA_ONLY_DESCRIPTOR",
+      "packaging": "pom",
+      "managed_dependencies": 17
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/1.9.0/kotlinx-coroutines-core-1.9.0.module",
+      "local_file": "org.jetbrains.kotlinx__kotlinx-coroutines-core__1.9.0.module",
+      "bytes": 45570,
+      "sha256": "ad534034a953b4e12cbeeb874c66adf8b1ca14df15fe0d2e6547aa34e86dfeca",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+          "target_has_frozen_binary": true
+        }
+      ]
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-bom:1.7.3",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-bom/1.7.3/kotlinx-serialization-bom-1.7.3.pom",
+      "local_file": "org.jetbrains.kotlinx__kotlinx-serialization-bom__1.7.3.pom",
+      "bytes": 4037,
+      "sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46",
+      "frozen_bytes_match": true,
+      "status": "BOM_METADATA_ONLY_DESCRIPTOR",
+      "packaging": "pom",
+      "managed_dependencies": 15
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core/1.7.3/kotlinx-serialization-core-1.7.3.module",
+      "local_file": "org.jetbrains.kotlinx__kotlinx-serialization-core__1.7.3.module",
+      "bytes": 48820,
+      "sha256": "39d09a6e02df2b32558440a64c628f9c605fae8c4f6090321798334c82177e64",
+      "frozen_bytes_match": true,
+      "status": "METADATA_WITH_SELECTED_COMPONENT_TARGETS",
+      "candidate_redirects_to_selected_components": [
+        {
+          "variant": "jvmApiElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-api",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmRuntimeElements-published",
+          "attributes": {
+            "org.gradle.category": "library",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+          "target_has_frozen_binary": true
+        },
+        {
+          "variant": "jvmSourcesElements-published",
+          "attributes": {
+            "org.gradle.category": "documentation",
+            "org.gradle.dependency.bundling": "external",
+            "org.gradle.docstype": "sources",
+            "org.gradle.jvm.environment": "standard-jvm",
+            "org.gradle.libraryelements": "jar",
+            "org.gradle.usage": "java-runtime",
+            "org.jetbrains.kotlin.platform.type": "jvm"
+          },
+          "target": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+          "target_has_frozen_binary": true
+        }
+      ]
+    }
+  ],
+  "static_metadata_ownership_resolved": 38,
+  "status_counts": {
+    "METADATA_WITH_SELECTED_COMPONENT_TARGETS": 34,
+    "BOM_METADATA_ONLY_DESCRIPTOR": 3,
+    "DEPENDENCY_ONLY_METADATA_TO_SELECTED_STDLIB": 1
+  }
+}

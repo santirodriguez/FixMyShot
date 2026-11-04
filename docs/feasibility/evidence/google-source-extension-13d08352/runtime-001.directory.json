@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "6572385202011e0400e63b03c424416306a46ecc",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d0c7a2114e7a20a6b048fbecf180e8975d28c6ad",
+      "name": "annotation-jvm-1.8.1.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "818a03ef3d738876b8b388a359bc44d602271195",
+      "name": "annotation-jvm-1.8.1.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4b0c806a3f28827581c3d833c4b471df4604ead2",
+      "name": "annotation-jvm-1.8.1.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f3e7d6ac550fc1d968e7313cdf190488361e2c78",
+      "name": "annotation-jvm-1.8.1.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7e418fe14b32d85f22e352339e35ecac554f1a02",
+      "name": "annotation-jvm-1.8.1.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "251950259b17e509b06beb1086ac891041ac6fbf",
+      "name": "annotation-jvm-1.8.1.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7a416b3e2e93c833317cc2091c4f465f5606632e",
+      "name": "origin.json"
+    }
+  ]
+}

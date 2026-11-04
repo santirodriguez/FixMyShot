@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "review_scope": "EXACT_BASELINE_RUNTIME_PRIORITY_ONLY",
+  "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "baseline_metadata_sha256": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+  "publishers": [
+    {
+      "id": "kotlin",
+      "groups": [
+        "org.jetbrains.kotlin"
+      ],
+      "key_entry": "kotlin-key",
+      "primary_fingerprint": "2FBA29D08D2E25EE84C132C30729A0AFF8999A87",
+      "source_repository": "JetBrains/kotlin-web-site",
+      "source_commit": "7c6cc881f3f73aab10935a011e6a726373674836",
+      "source_path": "docs/topics/security.md",
+      "source_blob": "13ea5304fa06844b2e8a3f2f053e6e3310f5bada",
+      "source_url": "https://kotlinlang.org/docs/security.html",
+      "source_text": "[//]: # (title: Security)\n\nWe do our best to make sure our products are free of security vulnerabilities. To reduce the risk of introducing a vulnerability,\nyou can follow these best practices: \n\n* Always use the latest Kotlin release. For security purposes, we sign our releases published on [Maven Central](https://central.sonatype.com/search?q=g:org.jetbrains.kotlin) \nwith these PGP keys:\n\n  * Key ID: **kt-a@jetbrains.com**\n  * Fingerprint: **2FBA 29D0 8D2E 25EE 84C1 32C3 0729 A0AF F899 9A87**\n  * Key size: **RSA 3072**\n\n* Use the latest versions of your application's dependencies. If you need to use a specific version of a dependency, \nperiodically check if any new security vulnerabilities have been discovered. You can follow \n[the guidelines from GitHub](https://docs.github.com/en/code-security) \nor browse known vulnerabilities in the [CVE base](https://cve.mitre.org/cgi-bin/cvekey.cgi?keyword=kotlin).\n\nStarting with Kotlin 2.4.0, the Kotlin standard library for the JVM has an 18-month support window for each release line. \nLanguage releases (2._x_._0_) and the following tooling releases (2._x_._20_) belong to the same release line (2._x_).\nTo learn more about how we handle security vulnerabilities in the standard library for the JVM, see [Standard library security support](releases.md#standard-library-security-support).\n\nWe always want to hear about any security issues you find. To report vulnerabilities that you discover in Kotlin,\npost a message directly to our [issue tracker](https://youtrack.jetbrains.com/newIssue?project=KT&c=Type%20Security%20Problem) or send us an [email](mailto:security@jetbrains.org). \n\nFor more information on how our responsible disclosure process works, see the [JetBrains Coordinated Disclosure Policy](https://www.jetbrains.com/legal/docs/terms/coordinated-disclosure/).\n"
+    },
+    {
+      "id": "square",
+      "groups": [
+        "com.squareup.okio"
+      ],
+      "key_entry": "square-key",
+      "primary_fingerprint": "DBD744ACE7ADE6AA50DD591F66B50994442D2D40",
+      "source_repository": "lysine-dev/okhttp",
+      "source_commit": "ba92108a334394a9fb2ee27858f35375cffa6cae",
+      "source_path": "docs/security/security.md",
+      "source_blob": "aa9020585609634c850ca79d9bea53e42a9293bd",
+      "source_url": "https://lysine.dev/okhttp/security/security/",
+      "source_text": "Security\n========\n\n## Supported Versions\n\n| Version | Supported          | Notes                                        |\n| ------- |--------------------| -------------------------------------------- |\n| 5.x     | ✅                  | Android 5.0+ (API level 21+) and on Java 8+. |\n| 4.x     | ✅ Until 2028-08-31 | Android 5.0+ (API level 21+) and on Java 8+. |\n| 3.x     | ❌ Ended 2021-12-31 | Android 2.3+ (API level 9+) and Java 7+.     |\n\n\n## Reporting a Vulnerability\n\nSquare recognizes the important contributions the security research community\ncan make. We therefore encourage reporting security issues with the code\ncontained in this repository.\n\nIf you believe you have discovered a security vulnerability, please follow the\nguidelines at https://bugcrowd.com/squareopensource\n\n\n## Verifying Artifacts\n\nWe sign our artifacts using [this key][signing_key_2026]:\n\n```\npub (4)eddsa263/5dd80b0ddccbe005f0a47fd66751e1a6e2001b8d 2026-07-21T22:42:04Z\n\nuid lysine.dev <project-lysine@commonhaus.org>\nsig cert  6751e1a6e2001b8d 2026-07-21T22:42:04Z 2076-07-08T22:42:04Z ____________________ [selfsig]\n```\n\nPrior to 2026-07-21, we used [this key][signing_key_2021].\n\n```\npub rsa4096/dbd744ace7ade6aa50dd591f66b50994442d2d40 2021-07-09T14:50:19Z\n\t Hash=a79b48fd6a1f31699c788b50c97d0b98\n\nuid Square Clippy <opensource@squareup.com>\nsig  sig  66b50994442d2d40 2021-07-09T14:50:19Z 2041-07-04T14:50:19Z ____________________ [selfsig]\n```\n\nThe best way to verify artifacts is [automatically with Gradle][gradle_verification].\n\n\n[gradle_verification]: https://docs.gradle.org/current/userguide/dependency_verification.html#sec:signature-verification\n[signing_key_2021]: https://keyserver.ubuntu.com/pks/lookup?search=dbd744ace7ade6aa50dd591f66b50994442d2d40&fingerprint=on&op=index\n[signing_key_2026]: https://keyserver.ubuntu.com/pks/lookup?search=5dd80b0ddccbe005f0a47fd66751e1a6e2001b8d&fingerprint=on&op=index\n",
+      "scope_note": "Exact Okio files signed by the independently published historical Square issuer key; no wildcard group approval."
+    }
+  ],
+  "deferred_groups": [
+    "com.google.guava",
+    "org.jetbrains",
+    "org.jetbrains.kotlinx",
+    "org.jspecify"
+  ],
+  "deferred_note": "Capture is not issuer authentication; no key inferred from the detached signature."
+}
+

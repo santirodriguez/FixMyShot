@@ -1,0 +1,339 @@
+{
+  "schema": 1,
+  "scope": "APK_RUNTIME_CLASS_NAME_OWNERSHIP_AND_SUPPLEMENTAL_SOURCE_MATERIAL_STAGE",
+  "compiled_source": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "accepted_apk_sha256": "b677f044625cfee76ad2c77a3e2f812a1c4bcfd53429f87023fea015be02a8dd",
+  "accepted_apk_bytes": 11841246,
+  "frozen_runtime_binary_archives": 95,
+  "all_binary_bytes_matched_frozen_hashes": true,
+  "runtime_binary_bytes": 40739883,
+  "packaged_class_definitions": 16986,
+  "class_name_categories": {
+    "FROZEN_CLASS_NAME": 13245,
+    "D8_GENERATED_NAME_RELATION": 2961,
+    "AAR_NAMESPACE_RESOURCE_CLASS_NAME": 212,
+    "ACCEPTED_PROJECT_NAMESPACE": 568
+  },
+  "unattributed_class_names": 0,
+  "packaged_components_with_direct_or_synthetic_classes": 85,
+  "sourcefile_package_filename_unmatched_diagnostics": 398,
+  "sourcefile_missing_attribute_diagnostics": 79,
+  "sourcefile_diagnostics_are_not_398_unaccounted_libraries": true,
+  "sourcefile_limits": "Debug SourceFile is not a completeness oracle. Cross-module Kotlin inlining, generated or absent debug names, JVM package overrides, AIDL/annotation/parcel generators and repackaging require separate interpretation. Full diagnostic list retained.",
+  "datastore_jni_missing_material_added": true,
+  "flatbuffers_original_java_source_files_added": 26,
+  "core_stable_aidl_original_source_files_added": 5,
+  "class_parser_offline_tests": 7,
+  "source_binary_equivalence": false,
+  "historical_noto_checkout_exact_emoji_build_checkout_proved": false,
+  "complete_corresponding_source_approved": false,
+  "publisher_review": "UNCHANGED_325_858_INACTIVE_11_RUNTIME_522_OTHER_PENDING",
+  "physical_or_signing_acceptance_changed": false,
+  "remaining_source_limits": [
+    "Finish distribution/source review of staged relocation and code-generation materials; name coverage and a historical Noto mapping do not prove exact source/binary equivalence",
+    "Final accepted-source freeze and stage/sign/publication reconciliation remain separate"
+  ],
+  "no_new_android_or_osv_run": true,
+  "retained_evidence": [
+    {
+      "path": "SOURCE-NOTICES.md",
+      "bytes": 997,
+      "sha256": "85e4ed8a4ca943cfdb455d896d15aff753d59f208086aca6cbc8dbf01dcf8b0b"
+    },
+    {
+      "path": "apk-class-owners.json",
+      "bytes": 157925,
+      "sha256": "09e93104b07d06a846664adbee2c6aeaa25b5e3244032f5309aea4a47371f73d"
+    },
+    {
+      "path": "binary-alternate-route.json",
+      "bytes": 1118,
+      "sha256": "0986956a0a8895322acea82de4e7b1c0c1aac88a55014507b66016e5c0ce2a15"
+    },
+    {
+      "path": "binary-capture-completion.json",
+      "bytes": 50521,
+      "sha256": "61cab76c7d2a7c7203c88ecbb3395efce5e098568e5ee34b0f564059c75574ec"
+    },
+    {
+      "path": "binary-curl-resume.json",
+      "bytes": 4939,
+      "sha256": "b8976ce4c0d84db3e72c9d4cddd86e2449734d2dd6f8f12159619becb893e3e3"
+    },
+    {
+      "path": "binary-local-recovery.json",
+      "bytes": 8123,
+      "sha256": "8f8285d6a7a57fbdb478ca428aba6e1cc6fcced771bd90bb60f6231d83814b2e"
+    },
+    {
+      "path": "binary-plan.json",
+      "bytes": 48730,
+      "sha256": "3a0e1aae590a2296f8315d097b083758663c5f8fbb22e5f50c39bf60047fb08e"
+    },
+    {
+      "path": "core-generation/capture.json",
+      "bytes": 1534,
+      "sha256": "16c78f296748e8bea02da65e442c90ccef1b3a9ef78459ff25f3eb282152c734"
+    },
+    {
+      "path": "core-generation/core__.json",
+      "bytes": 3873,
+      "sha256": "34284d8a15dfdc5157f64225859220cb3a3c38584da6285ac71394f259756524"
+    },
+    {
+      "path": "core-generation/core__core__.json",
+      "bytes": 1224,
+      "sha256": "c1b555a774484a0edc8c820efc7d9ff85250159616b275ae51b937150cd3b28f"
+    },
+    {
+      "path": "core-generation/core__core__build.gradle.kts",
+      "bytes": 4068,
+      "sha256": "398aff85c95d809720ee5a2070089b331accbeab643477755e3618eefbcb5ba8"
+    },
+    {
+      "path": "core-generation/core__core__src__main__.json",
+      "bytes": 631,
+      "sha256": "27dec5757ed4d16eb77a8fbdff076b578f5e908aaddf832ee528784510733e23"
+    },
+    {
+      "path": "core-generation/core__core__src__main__stableAidl__android__support__v4__app__INotificationSideChannel.aidl",
+      "bytes": 1352,
+      "sha256": "a9393e82cb3228e38275294313aed9d953030a4f8b64d0effd68cd1c199f0281"
+    },
+    {
+      "path": "core-generation/core__core__src__main__stableAidl__android__support__v4__os__IResultReceiver.aidl",
+      "bytes": 876,
+      "sha256": "9f6f0d2af03ba025c2d0cc55eea8d52c8c3c8138e3689a259e09395c9e16f89c"
+    },
+    {
+      "path": "core-generation/core__core__src__main__stableAidl__android__support__v4__os__IResultReceiver2.aidl",
+      "bytes": 877,
+      "sha256": "fd4dde27443f850737ac2d19b74de2f98f4c7e6e5b3c1c95b410177b1602bca6"
+    },
+    {
+      "path": "core-generation/core__core__src__main__stableAidl__androidx__core__app__unusedapprestrictions__IUnusedAppRestrictionsBackportCallback.aidl",
+      "bytes": 1280,
+      "sha256": "3bf712158804c6b6a4c4594b6c5f040adb9f8e11b8397a09e4dac1b7b3ddc82c"
+    },
+    {
+      "path": "core-generation/core__core__src__main__stableAidl__androidx__core__app__unusedapprestrictions__IUnusedAppRestrictionsBackportService.aidl",
+      "bytes": 1584,
+      "sha256": "a6a0415e4aa4af76d5629a90fe8a840700e3cf4dd1801ea3cc908ff6a4c57867"
+    },
+    {
+      "path": "core-generation/corrected-path-capture.json",
+      "bytes": 2048,
+      "sha256": "c3019bc11cc5f5360284c9a9d5a53f5a05130937f7b4d9a4227b257765351f50"
+    },
+    {
+      "path": "core-source-attempt.json",
+      "bytes": 1534,
+      "sha256": "16c78f296748e8bea02da65e442c90ccef1b3a9ef78459ff25f3eb282152c734"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ArrayReadWriteBuf.java",
+      "bytes": 5890,
+      "sha256": "06bf40a351c5804dc96462b2a1cfb5df4237f4df896c215e17c498c029774700"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__BaseVector.java",
+      "bytes": 2705,
+      "sha256": "ff7bcc5f58348e4fba6300150536475df7c08f45479565ffde11466e3b517222"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__BooleanVector.java",
+      "bytes": 1548,
+      "sha256": "4779a105116df27e4f2397da6abe69604b7cf0e773d5634bc2eab6225e08e413"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ByteBufferReadWriteBuf.java",
+      "bytes": 3213,
+      "sha256": "c8724970028b622c59ec7112165871aa9e9b0c408d157aec80e5e18c1de28ccb"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ByteBufferUtil.java",
+      "bytes": 1611,
+      "sha256": "f4c4f5ed36597aa1c6310524ac9167d069b3a58de3d6efa6e0a397d6a14a32db"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ByteVector.java",
+      "bytes": 1889,
+      "sha256": "38fdae90c1d4c488d72b7a06c24ce5c465a49759844be950673b022e2ff1dc84"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Constants.java",
+      "bytes": 1967,
+      "sha256": "d6cac7f09abea9b017e7109bbbc062b26cdb8c436ff250464a50a74f103619bc"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__DoubleVector.java",
+      "bytes": 1562,
+      "sha256": "535f846041d2b07220ffc0e73c9de31a32c7ed0119e0459846ba94574113c206"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__FlatBufferBuilder.java",
+      "bytes": 39656,
+      "sha256": "c6bea350deda012552350a1cebf0d0bbcf54ae743978b28f0dfde9e98d49c923"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__FlexBuffers.java",
+      "bytes": 37730,
+      "sha256": "bfc365315a6fbbeffe2361602ae5aaff0e158e734ecadce994c7852979d0ef30"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__FlexBuffersBuilder.java",
+      "bytes": 26479,
+      "sha256": "bcd4ef9f02c9e6d162e929fa0a726b513ebfce47da022c17c6ecba93ed730eca"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__FloatVector.java",
+      "bytes": 1553,
+      "sha256": "743ef37894238d18da251b348493c566726da594c7afc8f0274272daaa3bc656"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__IntVector.java",
+      "bytes": 1924,
+      "sha256": "ff34812db3ab52980ea8faa8d9cdaf44552ade8dd26405f19e71b56afd042dad"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__LongVector.java",
+      "bytes": 1552,
+      "sha256": "9d6dca679040ec8dce2db56db733d0b49338f9bf0036c828f62a8649bbd3070b"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ReadBuf.java",
+      "bytes": 2013,
+      "sha256": "f00eda11f2c39aa5b89a86c37d21163e416756311665f8587c8479e968d3268f"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ReadWriteBuf.java",
+      "bytes": 3922,
+      "sha256": "43f8a25ba3f0cc3f808386ae6b689549d5739954cd8eb1f3c0a6f9fd7ac7811f"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__ShortVector.java",
+      "bytes": 1931,
+      "sha256": "0cc669f81409f08ead687917206f7199ddeccf94039463faaba3d2835d9fabbd"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__StringVector.java",
+      "bytes": 1657,
+      "sha256": "593da13b9037c5cc2fd1ea7b61b7f37e7c934917b0c44d6267a3c151a9c817da"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Struct.java",
+      "bytes": 1865,
+      "sha256": "ba8e1848729c21300b312e6d62b25656c3c9c307b109d142a87b13a521939286"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Table.java",
+      "bytes": 11501,
+      "sha256": "a1ea7205973cbc57d3bdd54e99019179c03a3df307cb1a99f74046435ba3773e"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__UnionVector.java",
+      "bytes": 1755,
+      "sha256": "84a846d54f0d31b0c23159ba1999777843947d843392adf648ec81d98a03789f"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Utf8.java",
+      "bytes": 7136,
+      "sha256": "b4aa3e90078c0a880012fe5a5e2302289f59e25ff3f5f21c20afa444ba1d163e"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Utf8Old.java",
+      "bytes": 3232,
+      "sha256": "8468e6681865afd92770ebb82345bbec9eb3f95556861612ce49fade831ae9b0"
+    },
+    {
+      "path": "flatbuffers/com__google__flatbuffers__Utf8Safe.java",
+      "bytes": 17905,
+      "sha256": "fe9969831c34d14775635676a1fd875b443fe25001d4811655b14b1b9c8a8418"
+    },
+    {
+      "path": "flatbuffers/emoji2__emoji2__build.gradle",
+      "bytes": 1665,
+      "sha256": "06f09e8db6074d77c2038415d9a7e096bfdf2ec7ca8e377cbcdcffbc48c19fb9"
+    },
+    {
+      "path": "flatbuffers/historical-capture.json",
+      "bytes": 3153,
+      "sha256": "703f2fa3d3dc4e3ac5f10686abb80e6adf9071afe788602ece644e130a0ed63e"
+    },
+    {
+      "path": "flatbuffers/historical-emoji-compat-flatbuffers__build.gradle",
+      "bytes": 1081,
+      "sha256": "485e37f69771053b38ce9fe1719b8117d15559ac957cfeb6a0f12d77778c26a6"
+    },
+    {
+      "path": "flatbuffers/historical-emoji-compat-flatbuffers__data__emoji_metadata.fbs",
+      "bytes": 972,
+      "sha256": "04365978889b87675e766f74ce5cb6d7c7bfad34c610f1a1b5b2b1c99d6f4de8"
+    },
+    {
+      "path": "flatbuffers/noto-build.gradle",
+      "bytes": 1080,
+      "sha256": "ebab412eb557c382bb355571bef25772345b51ff5a5b650c171b7ca616b5de77"
+    },
+    {
+      "path": "flatbuffers/noto-tag-commit.json",
+      "bytes": 751,
+      "sha256": "d339ca04d851a5177996e277298446df6f7e73eb1b10bc9b4e92a92f33d24489"
+    },
+    {
+      "path": "flatbuffers/noto-tag-source-capture.json",
+      "bytes": 4236,
+      "sha256": "a9189eedee69f83f4dfa5398fb072fd926b939a2c404348e0fba36c4e11d8f34"
+    },
+    {
+      "path": "flatbuffers/published-source-files.json",
+      "bytes": 6284,
+      "sha256": "cff2be3422ae83908dd361bbd1156279ba37724e60756dbe7053bec4c1d05524"
+    },
+    {
+      "path": "flatbuffers/relocation-comparison.json",
+      "bytes": 20347,
+      "sha256": "45992cad2e1934edafe767af117cca3dbc1a8bcc3b51beee1dc4e20f12db5495"
+    },
+    {
+      "path": "flatbuffers/settings.gradle",
+      "bytes": 84172,
+      "sha256": "04911e30261e1651f7b24a24de791d454bcc422c45a876cb4e7430aa6bbfda18"
+    },
+    {
+      "path": "flatbuffers/tag-emoji-compat-flatbuffers__src__java__androidx__text__emoji__flatbuffer__.json",
+      "bytes": 371,
+      "sha256": "1eea800bac9e31042af94a98b0a5880272af3d1e33de70dfedb3f5276d8b1380"
+    },
+    {
+      "path": "flatbuffers/tag-emoji-compat-flatbuffers__src__java__androidx__text__emoji__flatbuffer__MetadataItem.java",
+      "bytes": 5060,
+      "sha256": "035efd4dd11a794355eddb6c7e884428a6cbcd26cb8b1d9bf8eeae7987213370"
+    },
+    {
+      "path": "flatbuffers/tag-emoji-compat-flatbuffers__src__java__androidx__text__emoji__flatbuffer__MetadataList.java",
+      "bytes": 4565,
+      "sha256": "2c28c16002e75ce439ebc88202033ee8bbb5fec7cff8efad5a94c1a64f707f33"
+    },
+    {
+      "path": "initial-binary-capture.json",
+      "bytes": 33534,
+      "sha256": "c09e5c05d52146bda157b2257ac37a6249e4e1434baf10793f055bbce556e1e8"
+    },
+    {
+      "path": "native/androidx_datastore_core_SharedCounter.cc",
+      "bytes": 2370,
+      "sha256": "adde5c7d79854f584e413277a03bd25ba4055c110d70c327d42f496e8fc4ce93"
+    },
+    {
+      "path": "native/directory.json",
+      "bytes": 248,
+      "sha256": "15315368298630529d0ec8af1ac44c6d4766e0f0e85c6f41c74547dbd7024118"
+    },
+    {
+      "path": "supplement-review.json",
+      "bytes": 1856,
+      "sha256": "6d9acd34cabf92fae5b4276a09bfaff70f3df30d8532d379a02ad16d5b32197c"
+    }
+  ]
+}

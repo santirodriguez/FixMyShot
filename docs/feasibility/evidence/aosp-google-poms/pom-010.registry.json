@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.loader",
+    "loader",
+    "1.0.0",
+    "loader-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.pom",
+  "directory_sha256": "24ff81691910968260445a9f69f7c4eb9c6d3b870b3e60a876d39aff5d6fa85e",
+  "directory_tree": "9d6b6a7eda359adbe614237f1235c268284f5f9c",
+  "blob_sha1": "8bf9635b6c405474631b27bea86126b61c95c220",
+  "bytes": 2207,
+  "sha256": "c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e"
+}

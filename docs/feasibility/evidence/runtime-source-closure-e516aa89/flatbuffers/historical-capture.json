@@ -1,0 +1,17 @@
+[
+  {
+    "file": "historical-emoji-compat-flatbuffers__build.gradle",
+    "url": "https://android.googlesource.com/platform/external/noto-fonts/+/refs/tags/android-13.0.0_r52/emoji-compat-flatbuffers/build.gradle?format=TEXT",
+    "text": "/*\n * Copyright (C) 2017 The Android Open Source Project\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n\nplugins {\n    id(\"java\")\n}\n\nsourceSets {\n    main {\n        java.srcDirs = ['src/java']\n    }\n}\n\ncompileJava {\n    sourceCompatibility = JavaVersion.VERSION_1_7\n    targetCompatibility = JavaVersion.VERSION_1_7\n}\n\ndependencies {\n    implementation(\"com.google.flatbuffers:flatbuffers-java:1.12.0\")\n}\n\n// The \"javadoc\" task is unused so we don't want it to appear in the output of `./gradlew tasks`\n// So, we set the group to null\ntasks[\"javadoc\"].group = null\n"
+  },
+  {
+    "file": "historical-emoji-compat-flatbuffers__src__java__.json",
+    "url": "https://android.googlesource.com/platform/external/noto-fonts/+/refs/tags/android-13.0.0_r52/emoji-compat-flatbuffers/src/java/?format=JSON",
+    "text": ")]}'\n{\n  \"id\": \"0e642dc71be4f7b5bbe310b44a902b3c00cf4ab2\",\n  \"entries\": [\n    {\n      \"mode\": 16384,\n      \"type\": \"tree\",\n      \"id\": \"8d3cfd996930bf7e7d8d386e9bc63412c68f0a62\",\n      \"name\": \"androidx\"\n    }\n  ]\n}\n"
+  },
+  {
+    "file": "historical-emoji-compat-flatbuffers__data__emoji_metadata.fbs",
+    "url": "https://android.googlesource.com/platform/external/noto-fonts/+/refs/tags/android-13.0.0_r52/emoji-compat-flatbuffers/data/emoji_metadata.fbs?format=TEXT",
+    "text": "//IDL file for Flatbuffers\n// Copyright (C) 2017 The Android Open Source Project\n//\n// Licensed under the Apache License, Version 2.0 (the \"License\");\n// you may not use this file except in compliance with the License.\n// You may obtain a copy of the License at\n//\n//      http://www.apache.org/licenses/LICENSE-2.0\n//\n// Unless required by applicable law or agreed to in writing, software\n// distributed under the License is distributed on an \"AS IS\" BASIS,\n// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n// See the License for the specific language governing permissions and\n// limitations under the License.\n\nnamespace androidx.text.emoji.flatbuffer;\n\ntable MetadataList {\n    version : int;\n    list : [MetadataItem];\n    sourceSha : string;\n}\n\ntable MetadataItem {\n    id : int;\n    emojiStyle : bool;\n    sdkAdded : short;\n    compatAdded : short;\n    width : short;\n    height : short;\n    codepoints : [int];\n}\n\nroot_type MetadataList;"
+  }
+]

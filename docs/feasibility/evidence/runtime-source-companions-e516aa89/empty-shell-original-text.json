@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "scope": "ORIGINAL_MANIFEST_RESOURCE_AND_RULE_TEXT_NO_CLASS_IMPLEMENTATIONS",
+  "rows": [
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "binary_sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+      "path": "AndroidManifest.xml",
+      "bytes": 203,
+      "sha256": "b3bd19e59fe5fc8c1a24ca97c90e03b4f54f837351c458ec96568dee973c0055",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"androidx.activity.ktx\" >\n\n    <uses-sdk android:minSdkVersion=\"21\" />\n\n</manifest>"
+    },
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "binary_sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+      "path": "proguard.txt",
+      "bytes": 80,
+      "sha256": "db29be5ef4f07d01dcee3de1e69ba80ce066af8280ca81cd91078d2d320cfaa3",
+      "original_utf8": "# Intentionally empty proguard rules to indicate this library is safe to shrink\n"
+    },
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "binary_sha256": "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3",
+      "path": "res/values/values.xml",
+      "bytes": 63,
+      "sha256": "0aed495e21a70cab045e3b4792a02f2c7ad68fc1687d73474a09db0b269bc041",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n</resources>"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4",
+      "binary_sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+      "path": "AndroidManifest.xml",
+      "bytes": 218,
+      "sha256": "e5ae1a2ae62ed3232e3f8c8a920b3f052d8fb8dc7c8d105291bbda7096f50f45",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"androidx.lifecycle.livedata.core.ktx\" >\n\n    <uses-sdk android:minSdkVersion=\"21\" />\n\n</manifest>"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4",
+      "binary_sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+      "path": "proguard.txt",
+      "bytes": 80,
+      "sha256": "db29be5ef4f07d01dcee3de1e69ba80ce066af8280ca81cd91078d2d320cfaa3",
+      "original_utf8": "# Intentionally empty proguard rules to indicate this library is safe to shrink\n"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4",
+      "binary_sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+      "path": "res/values/values.xml",
+      "bytes": 63,
+      "sha256": "0aed495e21a70cab045e3b4792a02f2c7ad68fc1687d73474a09db0b269bc041",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n</resources>"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+      "binary_sha256": "970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b",
+      "path": "AndroidManifest.xml",
+      "bytes": 204,
+      "sha256": "42dbadcc9475fc779989bc897e14e4ee474f3e80b816cf6f51abad7b3b52cf3b",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"androidx.lifecycle.ktx\" >\n\n    <uses-sdk android:minSdkVersion=\"21\" />\n\n</manifest>"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+      "binary_sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+      "path": "AndroidManifest.xml",
+      "bytes": 214,
+      "sha256": "4bd096d4d895541287f1527cf3dddda69c4b4705beb022e1583a8409df81ce1b",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"androidx.lifecycle.viewmodel.ktx\" >\n\n    <uses-sdk android:minSdkVersion=\"21\" />\n\n</manifest>"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+      "binary_sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+      "path": "proguard.txt",
+      "bytes": 80,
+      "sha256": "db29be5ef4f07d01dcee3de1e69ba80ce066af8280ca81cd91078d2d320cfaa3",
+      "original_utf8": "# Intentionally empty proguard rules to indicate this library is safe to shrink\n"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+      "binary_sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+      "path": "res/values/values.xml",
+      "bytes": 63,
+      "sha256": "0aed495e21a70cab045e3b4792a02f2c7ad68fc1687d73474a09db0b269bc041",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n</resources>"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-ktx:1.3.2",
+      "binary_sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+      "path": "AndroidManifest.xml",
+      "bytes": 205,
+      "sha256": "3435cd6e10738f99ac9dd03ef92a04c89b6cf533da49f890c00217a12c14798f",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"androidx.savedstate.ktx\" >\n\n    <uses-sdk android:minSdkVersion=\"21\" />\n\n</manifest>"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-ktx:1.3.2",
+      "binary_sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+      "path": "proguard.txt",
+      "bytes": 80,
+      "sha256": "db29be5ef4f07d01dcee3de1e69ba80ce066af8280ca81cd91078d2d320cfaa3",
+      "original_utf8": "# Intentionally empty proguard rules to indicate this library is safe to shrink\n"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-ktx:1.3.2",
+      "binary_sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+      "path": "res/values/values.xml",
+      "bytes": 63,
+      "sha256": "0aed495e21a70cab045e3b4792a02f2c7ad68fc1687d73474a09db0b269bc041",
+      "original_utf8": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n</resources>"
+    }
+  ]
+}

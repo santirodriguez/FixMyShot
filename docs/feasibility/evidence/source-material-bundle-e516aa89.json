@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "scope": "ACCEPTED_E516_SOURCE_MATERIALS_NOT_COMPLETE_DISTRIBUTION_APPROVAL",
+  "archive_sha256": "b9e007771a2a18aa3a76d30cdff0fa82346251afbfc1fab9cc93ed083b9b2693",
+  "archive_bytes": 32779542,
+  "members": 1282,
+  "producer_sha256": "e66794ca84844cad417b02b79b43da13fa4941b339f78b88bd346df7ee9332ab",
+  "python": "3.12.14",
+  "zlib": "1.3.2",
+  "final_distribution_source_approved": false,
+  "two_full_generations_byte_identical": true,
+  "safe_unique_regular_members_and_normalized_metadata": "PASS_ALL_1282",
+  "every_manifest_hash_and_original_nested_source_kit": "PASS",
+  "no_APK_delivery_or_binary_git_upload": true,
+  "source_and_publisher_limits": "PRESERVED_NOT_COMPLETE_SOURCE_DISTRIBUTION_CLEARANCE",
+  "aar_resource_manifest_rule_files": 1074,
+  "aar_material_owner_coordinates": 72
+}

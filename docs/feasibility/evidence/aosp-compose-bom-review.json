@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "EXACT_GOOGLE_PUBLISHER_SOURCE_COPY_REVIEW_PASS",
+  "source_artifact_sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+  "registry_sha256": "4a3bc94e81bf2ee037e7affa3068e44b478608d9b9a664c47cd76cbd66ec2cf4",
+  "directory_sha256": "079ada77189337ea18c48fdedaafc842cab4e0103cd5716d9161ac3f38e6fe8d",
+  "git_blob_sha1": "6eedce3f09ebe4622a3114c8f1a8644c93328240",
+  "prior_review_sha256": "0a3c46dd9fcbf43397014e1771714c087ce523aefcb72a37cdeb2d552f294f5b",
+  "new_review_sha256": "85fcf9c1f80cea5a062fb81ed2cec74f59338093fb9a9fbb8b8a464fcbd8f687",
+  "prior223_proofs_unchanged": true,
+  "historical387_proofs_unchanged": true,
+  "new_verified_files": 1,
+  "reviewed_total": 224,
+  "pending": 634,
+  "critical_checks": [
+    {
+      "coordinate": "com.android.tools.build:gradle:9.2.1",
+      "file": "gradle-9.2.1.jar",
+      "verified": true
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.21",
+      "file": "kotlin-gradle-plugin-2.4.21-gradle813.jar",
+      "verified": true
+    },
+    {
+      "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+      "file": "heifwriter-1.2.0-rc01.aar",
+      "verified": true
+    },
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "file": "activity-compose-1.11.0.aar",
+      "verified": true
+    },
+    {
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "file": "compose-bom-2025.12.00.pom",
+      "verified": true
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "file": "junit-4.13.2.jar",
+      "verified": true
+    }
+  ],
+  "pgp_signature_claim": false,
+  "active_gradle_policy_changed": false,
+  "scope": "One exact AndroidX BOM POM via independent publisher-maintained AOSP release source; no other file, namespace or complete trust approval"
+}

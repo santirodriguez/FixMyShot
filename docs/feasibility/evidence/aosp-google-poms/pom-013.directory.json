@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "efba9d238b6638147e7f94b8d3b5d78f544c3850",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "86c41ed7fa377cd5ade1b6e0ea8d200ae98de533",
+      "name": "core-1.6.1.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "8dd4e25f0c56f1649844c00645e93817480d2417",
+      "name": "core-1.6.1.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c2ce2e89c3dcbab5e3584c8999318b2cb7d1f0fa",
+      "name": "core-1.6.1.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7278aa21015768cd9f64a1e02297dfe7305abed6",
+      "name": "core-1.6.1.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "aea4e8f9b4a486cc49dcb1d26e708ff919733284",
+      "name": "origin.json"
+    }
+  ]
+}

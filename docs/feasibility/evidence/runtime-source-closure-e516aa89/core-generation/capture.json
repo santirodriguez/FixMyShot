@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/build.gradle?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/aidl/android/support/v4/app/INotificationSideChannel.aidl?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/aidl/android/support/v4/os/IResultReceiver.aidl?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/stableAidl/androidx/core/os/IResultReceiver2.aidl?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/aidl/androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportCallback.aidl?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://android.googlesource.com/platform/frameworks/support/+/096ee90dd35920496448ba4b5c14f3979bcfee47/core/core/src/main/aidl/androidx/core/app/unusedapprestrictions/IUnusedAppRestrictionsBackportService.aidl?format=TEXT",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

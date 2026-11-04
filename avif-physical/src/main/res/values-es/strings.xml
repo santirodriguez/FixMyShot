@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FixMyShot AVIF: prueba física</string>
+    <string name="instructions">Solo diagnóstico. Elegí una captura PNG sRGB opaca de 1344×2992, ejecutá tres codificaciones AVIF, compará original y resultado, registrá lo que ves y guardá el informe JSON.</string>
+    <string name="privacy_notice">La captura permanece en este dispositivo. Sin permiso de Internet, subida automática, publicación en galería ni exportación normal. Solo la acción Guardar informe escribe métricas fuera de la app. El muestreo puede alterar los tiempos; el PSS máximo observado no es un pico exacto.</string>
+    <string name="no_input">Ninguna imagen seleccionada</string>
+    <string name="select_image">Seleccionar captura PNG</string>
+    <string name="start_benchmark">Ejecutar tres codificaciones</string>
+    <string name="preview_source">Ver original</string>
+    <string name="preview_avif">Ver AVIF</string>
+    <string name="visual_ok">La imagen se ve correcta</string>
+    <string name="visual_bad">Veo defectos visuales</string>
+    <string name="export_report">Guardar métricas JSON</string>
+    <string name="loading">Leyendo la captura seleccionada…</string>
+    <string name="ready">Captura lista. Ejecutá el diagnóstico.</string>
+    <string name="running">Codificando. Mantené esta pantalla abierta.</string>
+    <string name="finished">Finalizó el diagnóstico AVIF.</string>
+    <string name="saved">Informe JSON guardado en la ubicación elegida.</string>
+    <string name="failed">Falló el diagnóstico</string>
+    <string name="visual_recorded">Evaluación visual registrada. Guardá el informe para exportarla.</string>
+</resources>

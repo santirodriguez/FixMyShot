@@ -1,0 +1,18 @@
+)]}'
+{
+  "id": "974921107e2671cf1d9218f30d9ddc4558e69339",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0b2a694657147af460cfd9d0ae6587c4bfd03a73",
+      "name": "MetadataItem.java"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "633009804e7253b65810a81f2d5a9bc1ac54f273",
+      "name": "MetadataList.java"
+    }
+  ]
+}

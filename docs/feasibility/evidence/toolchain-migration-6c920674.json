@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "run_id": 40149344439,
+  "job_id": 121037373724,
+  "control_commit": "6c9206742e4286e7907b82985b6011897e27c0cc",
+  "conclusion": "failure",
+  "base_source": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+  "recipe_revision": 1,
+  "artifact_id": 12582287135,
+  "artifact_bytes": 62089,
+  "artifact_sha256": "589b8631476cbe4d9cc2fab8050ca28f2ecea3aac56035068ea6f026c09b4248",
+  "artifact_crc_unique_safe_members": "PASS",
+  "failure_phase": "APP_CONFIGURATION_BEFORE_WRAPPER_GENERATION",
+  "diagnosis": "AGP9 rejects Provider instances in legacy Android SourceSet registration for generated branding/resources and legal/assets.",
+  "gradle_distribution_9_4_1_launch": "PASS_CHECKSUM_PINNED",
+  "generated_wrapper_verification": "NOT_REACHED",
+  "graph_refresh": "NOT_REACHED",
+  "app_compilation": "NOT_RUN",
+  "production_source_changed": false,
+  "correction": "Recipe2 uses typed per-variant generated task DirectoryProperty outputs and addGeneratedSourceDirectory. No disallowProvider compatibility bypass."
+}

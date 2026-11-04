@@ -1,0 +1,3 @@
+JXL reference source feasibility checkpoint #2, 2026-10-21.
+Pinned NDK r28c resolution now ignores stale runner ANDROID_NDK_HOME.
+Re-run only source-built JXL ABI jobs, not Android app/emulator tests.

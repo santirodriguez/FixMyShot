@@ -1,0 +1,57 @@
+name: Publish reviewed development prerelease
+on:
+  workflow_dispatch:
+    inputs:
+      prepared_run_id:
+        description: Successful release/0.1.0 push run of Prepare development release kit
+        required: true
+        type: string
+      confirmation:
+        description: 'Explicit publication approval: PUBLISH v0.1.0-alpha.2'
+        required: true
+        type: string
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: publish-development-prerelease
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Validate the exact successful staging run
+        id: kit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PREPARED_RUN_ID: ${{ inputs.prepared_run_id }}
+        run: python3 scripts/publish-development-release.py --select-run "$PREPARED_RUN_ID"
+      - name: Download only its reviewed kit
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: ${{ steps.kit.outputs.artifact }}
+          run-id: ${{ inputs.prepared_run_id }}
+          github-token: ${{ github.token }}
+          path: development-release
+      - name: Verify assets, bind tag to merged source, upload draft and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_CONFIRMATION: ${{ inputs.confirmation }}
+          KIT_CONTROL: ${{ steps.kit.outputs.control }}
+        run: |
+          python3 scripts/publish-development-release.py --kit development-release --control "$KIT_CONTROL" --publish | tee publication-receipt.json
+      - name: Preserve the publication result
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publication-${{ github.run_id }}
+          path: publication-receipt.json
+          if-no-files-found: error
+          retention-days: 7

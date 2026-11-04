@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.vectordrawable",
+    "vectordrawable",
+    "1.1.0",
+    "vectordrawable-1.1.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom",
+  "directory_sha256": "d8fe927113de904d8132677285d529be1a474b4526b0f7666defe501b640b74c",
+  "directory_tree": "e20ab092b83843fbba987245235f755615e69aca",
+  "blob_sha1": "80acd8792a9f3e2128adba13571a11e3c0353eb8",
+  "bytes": 1726,
+  "sha256": "5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2"
+}

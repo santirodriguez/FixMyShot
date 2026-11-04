@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "32c0672762c07fc6631fa624a62085d4b5bebaac",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b18363b74b02a9ad6ac9968b1b710a5dc868a0bf",
+      "name": "junit-1.2.1.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "51b42e510b9abf84d48632eee11aac8f84e90b98",
+      "name": "junit-1.2.1.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "195c430b7a339e4c81f934301d8c853f0ebf0f75",
+      "name": "junit-1.2.1.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4a89e24eee3b2c046520a236d665891d1c617450",
+      "name": "junit-1.2.1.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d5616fb9a55422e5407a9c7d25dbd6a5a7c7a6c4",
+      "name": "origin.json"
+    }
+  ]
+}

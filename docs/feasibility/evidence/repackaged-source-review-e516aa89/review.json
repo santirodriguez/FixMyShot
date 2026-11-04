@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "scope": "REPACKAGED_FLATBUFFERS_VERSION_AND_SOURCE_MATERIAL_IDENTIFICATION_REVIEW",
+  "original_published_binary_sha256": "3f8c088b4dd04a9858721f2e162508c94db0dd86f961e306ee63ef2eda871bf7",
+  "frozen_emoji_aar_sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+  "published_source_jar_sha256": "6522155eaadf630f60c05154c4f79505f14675e408d10e0f40c7fbfebf0a21ab",
+  "explicit_namespace_mapping": [
+    "com/google/flatbuffers -> androidx/emoji2/text/flatbuffer",
+    "com.google.flatbuffers -> androidx.emoji2.text.flatbuffer"
+  ],
+  "class_declaration_layouts_matching": 45,
+  "unique_constant_sets_matching": 31,
+  "sets_with_original_only_differences": 14,
+  "new_frozen_constants_or_members": 0,
+  "remaining_original_only_class_references": {
+    "androidx/emoji2/text/flatbuffer/Constants": 11,
+    "java/lang/Double": 1,
+    "java/lang/Long": 1,
+    "java/lang/Byte": 1,
+    "java/lang/Short": 1,
+    "java/lang/Character": 1
+  },
+  "repackaged_additional_classes": [
+    "androidx/emoji2/text/flatbuffer/MetadataItem$Vector.class",
+    "androidx/emoji2/text/flatbuffer/MetadataItem.class",
+    "androidx/emoji2/text/flatbuffer/MetadataList$Vector.class",
+    "androidx/emoji2/text/flatbuffer/MetadataList.class"
+  ],
+  "additional_metadata_source_files_and_schema_staged_in_previous_receipt": true,
+  "version_identification_status": "FLATBUFFERS_1_12_0_CORROBORATED_BY_ALL_45_DECLARATIONS_AND_FULL_FROZEN_CONSTANT_SUBSET",
+  "source_material_identification_review": "COMPLETE_WITH_RECORDED_SCOPE_LIMITS",
+  "constant_pool_order_and_duplicate_indices_are_not_compared": true,
+  "full_constant_set_differences_not_suppressed": true,
+  "prior_naive_full_byte_result": "UNCHANGED_0_OF_45_IDENTICAL",
+  "method_bodies_compared": false,
+  "nonconstant_attributes_compared": false,
+  "exact_noto_build_checkout_proved": false,
+  "binary_source_equivalence_proved": false,
+  "publisher_authentication_changed": false,
+  "final_distribution_source_approved": false,
+  "new_offline_tests": 4,
+  "new_android_build_or_source_bundle_required": false,
+  "existing_source_bundle_sha256_unchanged": "b9e007771a2a18aa3a76d30cdff0fa82346251afbfc1fab9cc93ed083b9b2693",
+  "retained_evidence": [
+    {
+      "path": "symbol-differences.json",
+      "bytes": 5590,
+      "sha256": "405d2bb30fcbcf712fdb346e995f1053a74c976841a45b933a680dc884830697"
+    },
+    {
+      "path": "symbols.json",
+      "bytes": 41061,
+      "sha256": "41f652337aedf89229a7316848409faf2967ba1640b9c3bba975af83e1e04a5b"
+    }
+  ]
+}

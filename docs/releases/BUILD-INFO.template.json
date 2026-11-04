@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "status": "UNPUBLISHED_TEMPLATE",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": null,
+  "version_code": null,
+  "git_tag": null,
+  "source_commit": null,
+  "corresponding_source_url": null,
+  "unsigned_apk_sha256": null,
+  "signed_apk": {
+    "filename": null,
+    "bytes": null,
+    "sha256": null,
+    "certificate_sha256": null,
+    "manifest_inspection": "NOT_RUN",
+    "signature_verification": "NOT_RUN",
+    "elf_zip_16k_alignment": "NOT_RUN"
+  },
+  "actual_toolchain": {
+    "jdk": null,
+    "android_sdk": null,
+    "build_tools": null,
+    "gradle": null,
+    "agp": null,
+    "kotlin": null,
+    "ndk": null,
+    "cmake": null,
+    "native_source_and_license_receipt": null
+  },
+  "verification": {
+    "source_bound_automated_evidence": null,
+    "dependency_authentication": "NOT_RUN",
+    "independent_unsigned_rebuild": "NOT_RUN",
+    "device_and_fidelity_evidence": null,
+    "fresh_install": "NOT_RUN",
+    "same_certificate_upgrade": "NOT_RUN",
+    "obtainium_install_and_update": "NOT_RUN",
+    "remaining_limitations": null
+  }
+}

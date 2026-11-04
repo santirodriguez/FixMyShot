@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "baseline_source_commit": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
+  "baseline_metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "entries": [
+    {
+      "id": "kotlin-manifest-2-4-21",
+      "kind": "publisher",
+      "url": "https://github.com/JetBrains/kotlin/releases/download/v2.4.21/maven-2.4.21-sha256.txt",
+      "sha256": "89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2",
+      "max_bytes": 262144
+    }
+  ]
+}

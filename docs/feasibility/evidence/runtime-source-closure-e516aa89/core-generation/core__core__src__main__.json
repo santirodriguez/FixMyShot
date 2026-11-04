@@ -1,0 +1,30 @@
+)]}'
+{
+  "id": "12774232abaa88790c09dc5534b721a25a9c9a03",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d214fa6384f75882eb6c5fd76dd090d1289e7b95",
+      "name": "AndroidManifest.xml"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "9eead28091d652e05fd2cbbb85cc8b1dd7bdeb62",
+      "name": "java"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "e9c0793b7e52726577d2ada24bf3c3ba0512a755",
+      "name": "res"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "fc41d7cbdea4dc504d6043bcf7a12ec5d46b9b40",
+      "name": "stableAidl"
+    }
+  ]
+}

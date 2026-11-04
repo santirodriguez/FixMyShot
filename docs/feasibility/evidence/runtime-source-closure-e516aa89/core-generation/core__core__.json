@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "c0202080f06e02c20b0d725f5a42874b453410b8",
+  "entries": [
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "675895e8d2a86716a5db089d11ced971a67e5ec6",
+      "name": "api"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4354454868b1033bb100eb6ff19ec625d0b6bb6e",
+      "name": "build.gradle.kts"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "16e29a8d52a384b4f3952d1000b702895618133c",
+      "name": "dependencyAnalysis-baseline.json"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "ed23d6914147442b4eabdaa03fb5dbc78bb68bda",
+      "name": "integration-tests"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5200f6f92264139bce158279727e7178eb07cc91",
+      "name": "lint-baseline.xml"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "bcc9a891c6d95bc4bb3a318ddea9098d11f5281b",
+      "name": "proguard-rules.pro"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "518a06fbcfd80f5bf8cfac6eb33041470e2ad0c6",
+      "name": "samples"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "457036d3494ba9c44bff5d2fb71c647ff5c93a64",
+      "name": "src"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "1cdb35d3e3d7b391d84a5ed88567dcac029bfa53",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "61f302add51dd13ebd2b7866ea60f84492e7d0cc",
+      "name": "origin.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9eec5453888cc7ac3f7c2234000ee4da90689a29",
+      "name": "tracing-1.1.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d217b51207bd4d25636ad5465ece3fbc132a7573",
+      "name": "tracing-1.1.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "384b9118a45dfc327eabef4e4136fc92f40792ac",
+      "name": "tracing-1.1.0.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "05254af7437c8913fc19db998c59407af3a75f7c",
+      "name": "tracing-1.1.0.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9fb9647ea70b8612db35f5da1d2520cc21ddc363",
+      "name": "tracing-1.1.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b817418bd01374842e1fef0f47330edce08d7e92",
+      "name": "tracing-1.1.0.pom.sha1"
+    }
+  ]
+}

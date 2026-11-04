@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "e190e50f27431ea1937f561cc94517f79e0bf272",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "53c149d2b044e8effb9a0a1a261366435e2a53e0",
+      "name": "core-ktx-1.13.0-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a8d13574e29ed4755e3535b0555c215bba9bae5f",
+      "name": "core-ktx-1.13.0-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "373ff82e98b3d8896f8389c8aba7ed93e5ec664f",
+      "name": "core-ktx-1.13.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "33c2f9e2189d359c5a4265440666dd9dd4f1ee04",
+      "name": "core-ktx-1.13.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d344662698201197df0e12f6040693b9624b2a10",
+      "name": "core-ktx-1.13.0.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5259d0cc5b6ab03ab5876a99ff483981cff03a24",
+      "name": "core-ktx-1.13.0.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1f403c563a3ac8d2a7966fd696cb0529805b3b03",
+      "name": "core-ktx-1.13.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6acf48797d82c1dcc8b8947064039fb5e6528de0",
+      "name": "core-ktx-1.13.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e8408d4d90f38b905a328dff183ce987df0a36c9",
+      "name": "origin.json"
+    }
+  ]
+}

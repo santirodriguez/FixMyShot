@@ -1,0 +1,762 @@
+{
+  "schema": 1,
+  "scope": "EXACT_GOOGLE_APP_RUNTIME_SOURCE_COPIES_ONE_PINNED_AOSP_RELEASE",
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "prior_review_sha256": "38c8e5c17d2fcc40f38f73e2728ec99e52ad49d71fc46cda325ae486c5659ee0",
+  "app_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+  "collector_sha256": "32444850b73e8ac97113d24c5338fd06409e4475855286aa9da7d19b1a0e8889",
+  "automatic_authentication": false,
+  "results": [
+    {
+      "id": "runtime-000",
+      "identity": [
+        "androidx.annotation",
+        "annotation",
+        "1.9.1",
+        "annotation-1.9.1.module"
+      ],
+      "expected_sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation/1.9.1/annotation-1.9.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 43864,
+      "sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+      "blob_sha1": "7ead07e8598de1441f180c6062c8377b4221faa9",
+      "directory_tree": "a05fa07046a1f58e94bae8af630db8eedddd9918",
+      "directory_sha256": "c08b3180cd240ab9c34db9180ef8632ab316af8c74e2e8a3364ae53a6af3c46d"
+    },
+    {
+      "id": "runtime-001",
+      "identity": [
+        "androidx.annotation",
+        "annotation-experimental",
+        "1.4.1",
+        "annotation-experimental-1.4.1.aar"
+      ],
+      "expected_sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 39841,
+      "sha256": "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0",
+      "blob_sha1": "1fcbb8fc61708e95405f526b144abc084c105d62",
+      "directory_tree": "4c44d132ec080cf90d1efb70a1cf426a5586d482",
+      "directory_sha256": "359db398ebc9eba3d2d0fd38ce6723f02a42e1ca31d1b68807c8a89702456b7b"
+    },
+    {
+      "id": "runtime-002",
+      "identity": [
+        "androidx.annotation",
+        "annotation-experimental",
+        "1.4.1",
+        "annotation-experimental-1.4.1.module"
+      ],
+      "expected_sha256": "2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3950,
+      "sha256": "2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d",
+      "blob_sha1": "37f19680db711c3b891d6b95c1de1a18657eb8fb",
+      "directory_tree": "4c44d132ec080cf90d1efb70a1cf426a5586d482",
+      "directory_sha256": "359db398ebc9eba3d2d0fd38ce6723f02a42e1ca31d1b68807c8a89702456b7b"
+    },
+    {
+      "id": "runtime-003",
+      "identity": [
+        "androidx.annotation",
+        "annotation-jvm",
+        "1.9.1",
+        "annotation-jvm-1.9.1.jar"
+      ],
+      "expected_sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 60577,
+      "sha256": "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0",
+      "blob_sha1": "819381c89bd13b192a293a5d6d7af2f51645e575",
+      "directory_tree": "76fde89defddb8517596f94e4f001d877361d136",
+      "directory_sha256": "fdf98e0d45b13f680cd857842ac67839df00c20fcc22ea1cf3ee1dad07206731"
+    },
+    {
+      "id": "runtime-004",
+      "identity": [
+        "androidx.annotation",
+        "annotation-jvm",
+        "1.9.1",
+        "annotation-jvm-1.9.1.module"
+      ],
+      "expected_sha256": "03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3388,
+      "sha256": "03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c",
+      "blob_sha1": "4d082e49a181b0cbd0fff92ec35b34b7a948738d",
+      "directory_tree": "76fde89defddb8517596f94e4f001d877361d136",
+      "directory_sha256": "fdf98e0d45b13f680cd857842ac67839df00c20fcc22ea1cf3ee1dad07206731"
+    },
+    {
+      "id": "runtime-005",
+      "identity": [
+        "androidx.arch.core",
+        "core-common",
+        "2.2.0",
+        "core-common-2.2.0.jar"
+      ],
+      "expected_sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 11657,
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+      "blob_sha1": "b2efafcbc7252ea6915631ae98a5b4ed53ca04fa",
+      "directory_tree": "60f2c144b14c488aad66683f50fd501f8394a5a6",
+      "directory_sha256": "cc88f68445365db7f49e6217bfdedf19d00200020d23f39828ca43c3e3d2d134"
+    },
+    {
+      "id": "runtime-006",
+      "identity": [
+        "androidx.arch.core",
+        "core-common",
+        "2.2.0",
+        "core-common-2.2.0.module"
+      ],
+      "expected_sha256": "edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3079,
+      "sha256": "edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981",
+      "blob_sha1": "9eea3eed93ac8a6678ec0f69b82706a86c18385d",
+      "directory_tree": "60f2c144b14c488aad66683f50fd501f8394a5a6",
+      "directory_sha256": "cc88f68445365db7f49e6217bfdedf19d00200020d23f39828ca43c3e3d2d134"
+    },
+    {
+      "id": "runtime-007",
+      "identity": [
+        "androidx.arch.core",
+        "core-runtime",
+        "2.2.0",
+        "core-runtime-2.2.0.aar"
+      ],
+      "expected_sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 7577,
+      "sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+      "blob_sha1": "efa6db622543ba1e2612f78fcccd0946bf2c3a1e",
+      "directory_tree": "ba823ade3b1880e6b902d12b5d10dd4169fd05d0",
+      "directory_sha256": "250b25d091c731ce0a4623454af0d152a0205a13723c2c71ef4ee358d2078259"
+    },
+    {
+      "id": "runtime-008",
+      "identity": [
+        "androidx.arch.core",
+        "core-runtime",
+        "2.2.0",
+        "core-runtime-2.2.0.module"
+      ],
+      "expected_sha256": "a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3386,
+      "sha256": "a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944",
+      "blob_sha1": "b826b6c31b49e02e9cc6b6765a1ea296e122bda6",
+      "directory_tree": "ba823ade3b1880e6b902d12b5d10dd4169fd05d0",
+      "directory_sha256": "250b25d091c731ce0a4623454af0d152a0205a13723c2c71ef4ee358d2078259"
+    },
+    {
+      "id": "runtime-009",
+      "identity": [
+        "androidx.autofill",
+        "autofill",
+        "1.0.0",
+        "autofill-1.0.0.aar"
+      ],
+      "expected_sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4280,
+      "sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+      "blob_sha1": "b88bd83afb87b296110ebddd9e8db6b64e08f875",
+      "directory_tree": "7db9662d71cc5b09d5f2244933644a463629c3d2",
+      "directory_sha256": "a4c24f770c876da0b4c87f1c9d4122c7f029d2aacec1b15115fa71012b9073b6"
+    },
+    {
+      "id": "runtime-010",
+      "identity": [
+        "androidx.concurrent",
+        "concurrent-futures",
+        "1.1.0",
+        "concurrent-futures-1.1.0.jar"
+      ],
+      "expected_sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 25987,
+      "sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e",
+      "blob_sha1": "833b095873b42062c5ebbbc376dc392f88185b91",
+      "directory_tree": "56013aa2d0fd4b53976c7dd3538159f5a2771695",
+      "directory_sha256": "7f6f54f90031b5bd712191f9b8ca16a14656d08cf2afbfa895252cb650fa8bbb"
+    },
+    {
+      "id": "runtime-011",
+      "identity": [
+        "androidx.concurrent",
+        "concurrent-futures",
+        "1.1.0",
+        "concurrent-futures-1.1.0.module"
+      ],
+      "expected_sha256": "77639a0b051e22510bad93affcea0ebd781ef124bf9b7621a95749937bcfcdfd",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3485,
+      "sha256": "77639a0b051e22510bad93affcea0ebd781ef124bf9b7621a95749937bcfcdfd",
+      "blob_sha1": "4e23e0fed4d24e55deef62ec95d7ae67fc20c200",
+      "directory_tree": "56013aa2d0fd4b53976c7dd3538159f5a2771695",
+      "directory_sha256": "7f6f54f90031b5bd712191f9b8ca16a14656d08cf2afbfa895252cb650fa8bbb"
+    },
+    {
+      "id": "runtime-012",
+      "identity": [
+        "androidx.cursoradapter",
+        "cursoradapter",
+        "1.0.0",
+        "cursoradapter-1.0.0.aar"
+      ],
+      "expected_sha256": "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 10591,
+      "sha256": "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564",
+      "blob_sha1": "cd1494a9bc7236233553f24af3f252d35b61a2bd",
+      "directory_tree": "99c70488fcff16c4836e84ad0eded46dcb920d91",
+      "directory_sha256": "21cb78a57b3e306863a2886b8f5df4823b14630a728f7db5dd4f884ad0ee0e2e"
+    },
+    {
+      "id": "runtime-013",
+      "identity": [
+        "androidx.customview",
+        "customview",
+        "1.0.0",
+        "customview-1.0.0.aar"
+      ],
+      "expected_sha256": "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 33238,
+      "sha256": "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2",
+      "blob_sha1": "73e70ac40e44b6e241d170aba371258f027d5927",
+      "directory_tree": "f3ddb0e0c50df6bee8d2361512c15562e74356ef",
+      "directory_sha256": "b56efb31f28e67ce5d63238ae9daab958e16507b23b95dcce5c189785fa9619a"
+    },
+    {
+      "id": "runtime-014",
+      "identity": [
+        "androidx.customview",
+        "customview-poolingcontainer",
+        "1.0.0",
+        "customview-poolingcontainer-1.0.0.aar"
+      ],
+      "expected_sha256": "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 6608,
+      "sha256": "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752",
+      "blob_sha1": "d5a68ee2c340bc78c51914b7d517f100d6021a4a",
+      "directory_tree": "31bb4874f832373f1b7c2f9e4ceb3bebac98b2a1",
+      "directory_sha256": "73da422167d95db7a90db63e4a44333f941a7ffcbda25ba71750904af78cccc2"
+    },
+    {
+      "id": "runtime-015",
+      "identity": [
+        "androidx.customview",
+        "customview-poolingcontainer",
+        "1.0.0",
+        "customview-poolingcontainer-1.0.0.module"
+      ],
+      "expected_sha256": "903034d5152dd2e0162b1468ea25a22e1ca384006b3d282d5a143cc760321a01",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3144,
+      "sha256": "903034d5152dd2e0162b1468ea25a22e1ca384006b3d282d5a143cc760321a01",
+      "blob_sha1": "8903135630ac7c482b129ceb2189416581d02d32",
+      "directory_tree": "31bb4874f832373f1b7c2f9e4ceb3bebac98b2a1",
+      "directory_sha256": "73da422167d95db7a90db63e4a44333f941a7ffcbda25ba71750904af78cccc2"
+    },
+    {
+      "id": "runtime-016",
+      "identity": [
+        "androidx.documentfile",
+        "documentfile",
+        "1.0.0",
+        "documentfile-1.0.0.aar"
+      ],
+      "expected_sha256": "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 11221,
+      "sha256": "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487",
+      "blob_sha1": "79fd5502a92cd486b7cb1c23c922afbdb93e31dd",
+      "directory_tree": "a04b9dfc62afe97570f412c7c3eb10f2d18d0dd3",
+      "directory_sha256": "c5006dedaf6979cf816ed75472e3bc441cbf90c77a0bda416edf2d1689760255"
+    },
+    {
+      "id": "runtime-017",
+      "identity": [
+        "androidx.drawerlayout",
+        "drawerlayout",
+        "1.0.0",
+        "drawerlayout-1.0.0.aar"
+      ],
+      "expected_sha256": "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 32470,
+      "sha256": "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1",
+      "blob_sha1": "a9968c7fec10003c8418407e744713a4be86d89e",
+      "directory_tree": "51b36461d6ef901fcaf316df2a9cc461d386f83b",
+      "directory_sha256": "6d1349033f9f5631131578b66996b1032adac4441a5d3272f878cded7ac43bed"
+    },
+    {
+      "id": "runtime-018",
+      "identity": [
+        "androidx.dynamicanimation",
+        "dynamicanimation",
+        "1.0.0",
+        "dynamicanimation-1.0.0.aar"
+      ],
+      "expected_sha256": "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 32597,
+      "sha256": "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04",
+      "blob_sha1": "b9f4cc6c6446f8602a1cf8579dfe3af1518e261d",
+      "directory_tree": "2e642af117d9b2b5c09c46e9a73b4b8b4af5d98c",
+      "directory_sha256": "d5a93e352f20107a0474282fec0f5a2798ff492eb8c603626dbab15915b1c75d"
+    },
+    {
+      "id": "runtime-019",
+      "identity": [
+        "androidx.emoji2",
+        "emoji2",
+        "1.4.0",
+        "emoji2-1.4.0.aar"
+      ],
+      "expected_sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 143546,
+      "sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+      "blob_sha1": "134d6f565b7127deaf1cb121d3f49beb3168edf2",
+      "directory_tree": "e99b935d93bd63cea423852fad1e79d6fb15e41a",
+      "directory_sha256": "28725adf20060656a3b228c70f5683ce8c33bdef670d234a012accae909f5596"
+    },
+    {
+      "id": "runtime-020",
+      "identity": [
+        "androidx.emoji2",
+        "emoji2",
+        "1.4.0",
+        "emoji2-1.4.0.module"
+      ],
+      "expected_sha256": "92be16cccb757f807bddd92f1fca95a038a810ccca051c4149c11682478954b8",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 8448,
+      "sha256": "92be16cccb757f807bddd92f1fca95a038a810ccca051c4149c11682478954b8",
+      "blob_sha1": "bec0924f39c50ad37b872bc3141a7b2f5074a537",
+      "directory_tree": "e99b935d93bd63cea423852fad1e79d6fb15e41a",
+      "directory_sha256": "28725adf20060656a3b228c70f5683ce8c33bdef670d234a012accae909f5596"
+    },
+    {
+      "id": "runtime-021",
+      "identity": [
+        "androidx.emoji2",
+        "emoji2-views-helper",
+        "1.4.0",
+        "emoji2-views-helper-1.4.0.aar"
+      ],
+      "expected_sha256": "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 22560,
+      "sha256": "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375",
+      "blob_sha1": "4cc94c18082c67f20f9b14d656e703b26ca1e4de",
+      "directory_tree": "0e7895dce44b516e9038d7a22f219c48253cd41e",
+      "directory_sha256": "1e1cc195aba9201749b059c03d4ee12fe646c4c97e6b68ad6fc9e2f2322ffa8d"
+    },
+    {
+      "id": "runtime-022",
+      "identity": [
+        "androidx.emoji2",
+        "emoji2-views-helper",
+        "1.4.0",
+        "emoji2-views-helper-1.4.0.module"
+      ],
+      "expected_sha256": "248aa276fdba8116e656233cac3f3fd541444df2305de93e6813795fcd0ba26a",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 8209,
+      "sha256": "248aa276fdba8116e656233cac3f3fd541444df2305de93e6813795fcd0ba26a",
+      "blob_sha1": "e6355207516471d874edf0285a472106ac88ba1f",
+      "directory_tree": "0e7895dce44b516e9038d7a22f219c48253cd41e",
+      "directory_sha256": "1e1cc195aba9201749b059c03d4ee12fe646c4c97e6b68ad6fc9e2f2322ffa8d"
+    },
+    {
+      "id": "runtime-023",
+      "identity": [
+        "androidx.fragment",
+        "fragment",
+        "1.5.4",
+        "fragment-1.5.4.aar"
+      ],
+      "expected_sha256": "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/fragment/fragment/1.5.4/fragment-1.5.4.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 337572,
+      "sha256": "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde",
+      "blob_sha1": "8ca2c546bec98ce773564df18d8719b29dbac9ce",
+      "directory_tree": "f47447919654e87b5f2b4c95353591218dfbe8bd",
+      "directory_sha256": "9e6e814ab51affdbbbc0e334992f3976a19e1152bcf82879fb7d722239b21d56"
+    },
+    {
+      "id": "runtime-024",
+      "identity": [
+        "androidx.fragment",
+        "fragment",
+        "1.5.4",
+        "fragment-1.5.4.module"
+      ],
+      "expected_sha256": "af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/fragment/fragment/1.5.4/fragment-1.5.4.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 6728,
+      "sha256": "af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0",
+      "blob_sha1": "f49a14568a03cc6b570dadf73eab408cb5a0f520",
+      "directory_tree": "f47447919654e87b5f2b4c95353591218dfbe8bd",
+      "directory_sha256": "9e6e814ab51affdbbbc0e334992f3976a19e1152bcf82879fb7d722239b21d56"
+    },
+    {
+      "id": "runtime-025",
+      "identity": [
+        "androidx.graphics",
+        "graphics-path",
+        "1.0.1",
+        "graphics-path-1.0.1.aar"
+      ],
+      "expected_sha256": "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 39380,
+      "sha256": "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03",
+      "blob_sha1": "85d60412fbdc0debffed3d21b7156197e7d46b48",
+      "directory_tree": "39b90a25b33974ae131e1475d58d9756eb2d3e9c",
+      "directory_sha256": "a05a65ad7608ffcc5f655dba90d742e02ae87fd150d82d9a29ae482086e34a10"
+    },
+    {
+      "id": "runtime-026",
+      "identity": [
+        "androidx.graphics",
+        "graphics-path",
+        "1.0.1",
+        "graphics-path-1.0.1.module"
+      ],
+      "expected_sha256": "3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4016,
+      "sha256": "3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8",
+      "blob_sha1": "ea4e54fcf1ecd2c204f26ca241109f18c4c500b1",
+      "directory_tree": "39b90a25b33974ae131e1475d58d9756eb2d3e9c",
+      "directory_sha256": "a05a65ad7608ffcc5f655dba90d742e02ae87fd150d82d9a29ae482086e34a10"
+    },
+    {
+      "id": "runtime-027",
+      "identity": [
+        "androidx.interpolator",
+        "interpolator",
+        "1.0.0",
+        "interpolator-1.0.0.aar"
+      ],
+      "expected_sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 7669,
+      "sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a",
+      "blob_sha1": "bccf86f791ae97dcb4bcc1c245c86d3d73a111e9",
+      "directory_tree": "01c2c012a18d70ba2cbcfdfb238bd87db95409f8",
+      "directory_sha256": "785a174894f67716331ef38d71344d37611b5b94086da8a416993f0757292988"
+    },
+    {
+      "id": "runtime-028",
+      "identity": [
+        "androidx.legacy",
+        "legacy-support-core-utils",
+        "1.0.0",
+        "legacy-support-core-utils-1.0.0.aar"
+      ],
+      "expected_sha256": "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4104,
+      "sha256": "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7",
+      "blob_sha1": "2980f6039d1bda8b69b366e5f019d14148a6e518",
+      "directory_tree": "a8981029bf06c51338e3bc4b98586d67a28dbddc",
+      "directory_sha256": "bfd7a4fc76a2de45bd1d6cee6879f5e1de42d58aba3f408a20af94320179db02"
+    },
+    {
+      "id": "runtime-029",
+      "identity": [
+        "androidx.loader",
+        "loader",
+        "1.0.0",
+        "loader-1.0.0.aar"
+      ],
+      "expected_sha256": "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 33445,
+      "sha256": "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025",
+      "blob_sha1": "32c57746c035c91f560c6a4e6e7ead3e48ab9c06",
+      "directory_tree": "9d6b6a7eda359adbe614237f1235c268284f5f9c",
+      "directory_sha256": "24ff81691910968260445a9f69f7c4eb9c6d3b870b3e60a876d39aff5d6fa85e"
+    },
+    {
+      "id": "runtime-030",
+      "identity": [
+        "androidx.localbroadcastmanager",
+        "localbroadcastmanager",
+        "1.0.0",
+        "localbroadcastmanager-1.0.0.aar"
+      ],
+      "expected_sha256": "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 6808,
+      "sha256": "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8",
+      "blob_sha1": "e9074ee4600b2d1e78fb56802eeb8bfe1819e62b",
+      "directory_tree": "a3339851e0a98d6b1d1ab17ad2ccf99e354e3b8f",
+      "directory_sha256": "b99235b29ad2cf8bc10ffa28ec75c0c28a6d91441aac7e49157a282cf5a7f205"
+    },
+    {
+      "id": "runtime-031",
+      "identity": [
+        "androidx.print",
+        "print",
+        "1.0.0",
+        "print-1.0.0.aar"
+      ],
+      "expected_sha256": "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 15782,
+      "sha256": "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd",
+      "blob_sha1": "7bb51fd5055128611c2652d60736b94b615231a1",
+      "directory_tree": "e68c377b7ea7467b41f4785ed8c3a5eee9e19283",
+      "directory_sha256": "f9532c23ba0200d8b65157fa084a7660a86d0e60dee24777c07a08a31d206bcb"
+    },
+    {
+      "id": "runtime-032",
+      "identity": [
+        "androidx.profileinstaller",
+        "profileinstaller",
+        "1.4.0",
+        "profileinstaller-1.4.0.aar"
+      ],
+      "expected_sha256": "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 53890,
+      "sha256": "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a",
+      "blob_sha1": "23a3cba1cf6b49311cfc7b3664fcf10433f75500",
+      "directory_tree": "d0f7af9ce406a7aa69af6c881c295d0d0633fc60",
+      "directory_sha256": "5abcedae804b329bb948d96b238d21ec92bf7ce417c6e86b8e0b1f1349748d5c"
+    },
+    {
+      "id": "runtime-033",
+      "identity": [
+        "androidx.profileinstaller",
+        "profileinstaller",
+        "1.4.0",
+        "profileinstaller-1.4.0.module"
+      ],
+      "expected_sha256": "39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4555,
+      "sha256": "39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b",
+      "blob_sha1": "79e0191eda30022a77f2a664a8aab644ce28e62d",
+      "directory_tree": "d0f7af9ce406a7aa69af6c881c295d0d0633fc60",
+      "directory_sha256": "5abcedae804b329bb948d96b238d21ec92bf7ce417c6e86b8e0b1f1349748d5c"
+    },
+    {
+      "id": "runtime-034",
+      "identity": [
+        "androidx.resourceinspection",
+        "resourceinspection-annotation",
+        "1.0.1",
+        "resourceinspection-annotation-1.0.1.jar"
+      ],
+      "expected_sha256": "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.jar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 2336,
+      "sha256": "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb",
+      "blob_sha1": "21eb30727e3f9e70637d33f0416ce685e6b75541",
+      "directory_tree": "ab211866b52dd05be4ad0f4e1812015bd1d10399",
+      "directory_sha256": "2e5969dfce91977b9cc5c95a9ed52bc6846b3d5eb502780efc0271e6e5b043dc"
+    },
+    {
+      "id": "runtime-035",
+      "identity": [
+        "androidx.resourceinspection",
+        "resourceinspection-annotation",
+        "1.0.1",
+        "resourceinspection-annotation-1.0.1.module"
+      ],
+      "expected_sha256": "352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3012,
+      "sha256": "352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7",
+      "blob_sha1": "c23d8997a6f872ea8faed3d40e78e8b5265387fa",
+      "directory_tree": "ab211866b52dd05be4ad0f4e1812015bd1d10399",
+      "directory_sha256": "2e5969dfce91977b9cc5c95a9ed52bc6846b3d5eb502780efc0271e6e5b043dc"
+    },
+    {
+      "id": "runtime-036",
+      "identity": [
+        "androidx.startup",
+        "startup-runtime",
+        "1.1.1",
+        "startup-runtime-1.1.1.aar"
+      ],
+      "expected_sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 19371,
+      "sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3",
+      "blob_sha1": "adf44c45e3c4f3dac4ed55d2697d2e03e7db0fae",
+      "directory_tree": "c5a1beaa85228b7150358d6844dbc24b429a33a7",
+      "directory_sha256": "a627a127b8c37abd8546bcfa45ecc837bc7526b5435bb33a6f609f88d7065332"
+    },
+    {
+      "id": "runtime-037",
+      "identity": [
+        "androidx.startup",
+        "startup-runtime",
+        "1.1.1",
+        "startup-runtime-1.1.1.module"
+      ],
+      "expected_sha256": "cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3039,
+      "sha256": "cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865",
+      "blob_sha1": "f45059e74fb0ddcfe2cfc7263ade409de7998b52",
+      "directory_tree": "c5a1beaa85228b7150358d6844dbc24b429a33a7",
+      "directory_sha256": "a627a127b8c37abd8546bcfa45ecc837bc7526b5435bb33a6f609f88d7065332"
+    },
+    {
+      "id": "runtime-038",
+      "identity": [
+        "androidx.tracing",
+        "tracing",
+        "1.2.0",
+        "tracing-1.2.0.aar"
+      ],
+      "expected_sha256": "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.2.0/tracing-1.2.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 6060,
+      "sha256": "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2",
+      "blob_sha1": "3fbd0184471df372d9535f0a7b23c0aa9ce97c4b",
+      "directory_tree": "7bea9b24d9d1d1e91d9d4628ab63ec619cc0b15b",
+      "directory_sha256": "3adc1337cde9a118269ac005befb3390379b83c758204dc4607ebd31c7f071ba"
+    },
+    {
+      "id": "runtime-039",
+      "identity": [
+        "androidx.tracing",
+        "tracing",
+        "1.2.0",
+        "tracing-1.2.0.module"
+      ],
+      "expected_sha256": "d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.2.0/tracing-1.2.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3429,
+      "sha256": "d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3",
+      "blob_sha1": "f42d4847459d288fcfb0b9c21e9bf2264e4178a3",
+      "directory_tree": "7bea9b24d9d1d1e91d9d4628ab63ec619cc0b15b",
+      "directory_sha256": "3adc1337cde9a118269ac005befb3390379b83c758204dc4607ebd31c7f071ba"
+    },
+    {
+      "id": "runtime-040",
+      "identity": [
+        "androidx.vectordrawable",
+        "vectordrawable",
+        "1.1.0",
+        "vectordrawable-1.1.0.aar"
+      ],
+      "expected_sha256": "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 33236,
+      "sha256": "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26",
+      "blob_sha1": "0746c6259dc830ce4b97f9db245e9a252cef4c07",
+      "directory_tree": "e20ab092b83843fbba987245235f755615e69aca",
+      "directory_sha256": "d8fe927113de904d8132677285d529be1a474b4526b0f7666defe501b640b74c"
+    },
+    {
+      "id": "runtime-041",
+      "identity": [
+        "androidx.vectordrawable",
+        "vectordrawable-animated",
+        "1.1.0",
+        "vectordrawable-animated-1.1.0.aar"
+      ],
+      "expected_sha256": "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 34496,
+      "sha256": "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8",
+      "blob_sha1": "bf8857759508816a3032bca28c5e35c7a2e00388",
+      "directory_tree": "7d2025b2978a48568c4ca443d45f22cddb83d3f9",
+      "directory_sha256": "169b6ac395287f4a67ab486421e0fbda9055c7af064eae571b5043869d9123c3"
+    },
+    {
+      "id": "runtime-042",
+      "identity": [
+        "androidx.versionedparcelable",
+        "versionedparcelable",
+        "1.1.1",
+        "versionedparcelable-1.1.1.aar"
+      ],
+      "expected_sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 31061,
+      "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4",
+      "blob_sha1": "4f5acaab35817b9036d729048f85da52b5b42986",
+      "directory_tree": "2bcd7e19ade37cd59d208b521e877d1b063f008d",
+      "directory_sha256": "26b40285fe5d035b42676d6bc5dd9524ec1b3a860dfd03c9c6b303b26e806266"
+    },
+    {
+      "id": "runtime-043",
+      "identity": [
+        "androidx.viewpager",
+        "viewpager",
+        "1.0.0",
+        "viewpager-1.0.0.aar"
+      ],
+      "expected_sha256": "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 53513,
+      "sha256": "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682",
+      "blob_sha1": "a7667298cb55a232868049c006749e95b5679f04",
+      "directory_tree": "eac3b8d74b34be2d6ff70274ad72d1b6319de668",
+      "directory_sha256": "fd286e8346a401fffa87d0e2860f492dcf6a306dc10fd310432d906d6f7cf413"
+    }
+  ]
+}

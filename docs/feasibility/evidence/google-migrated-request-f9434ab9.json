@@ -1,0 +1,583 @@
+{
+  "schema": 1,
+  "baseline_source_commit": "f9434ab9ba2bb3913c2d97bd56fb73d5df59a9e0",
+  "baseline_metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "entries": [
+    {
+      "id": "migration-000",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:gradle:9.2.1",
+      "file": "gradle-9.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/9.2.1/gradle-9.2.1.jar",
+      "sha256": "582e85078b60eb80669223b34b58200ba034654b2edb1cf9621e62fde7dfc0a3",
+      "max_bytes": 33554432
+    },
+    {
+      "id": "migration-001",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-common:9.2.1",
+      "file": "databinding-common-9.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-common/9.2.1/databinding-common-9.2.1.jar",
+      "sha256": "82816382a2a9dec4f0ab17c79cef08a9e4fe4b97d896ac20d7f215b6dd788b18",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-002",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-compiler-common:9.2.1",
+      "file": "databinding-compiler-common-9.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-compiler-common/9.2.1/databinding-compiler-common-9.2.1.jar",
+      "sha256": "68ab090ddb4d1f411b7defa90c021e068d1aa46878b5beb94de87ff971106dcb",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-003",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-core-jvm:1.1.7",
+      "file": "datastore-core-jvm-1.1.7.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-jvm/1.1.7/datastore-core-jvm-1.1.7.jar",
+      "sha256": "362cbad1f13874a22c7360a18eb995ca52a360379ba0ea5af1b1cf0df0319a2f",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-004",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-jvm:1.1.7",
+      "file": "datastore-jvm-1.1.7.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-jvm/1.1.7/datastore-jvm-1.1.7.jar",
+      "sha256": "bbd2d9f6c8bcf5a7ae97b999bc6641ef304224b7392b4cea26b9cf87d7cb0281",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-005",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-preferences-core-jvm:1.1.7",
+      "file": "datastore-preferences-core-jvm-1.1.7.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core-jvm/1.1.7/datastore-preferences-core-jvm-1.1.7.jar",
+      "sha256": "8817e03c8856d8cb530723abaaf3a588c18e7a12af8fb7a393fceef06e026d53",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-006",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-preferences-jvm:1.1.7",
+      "file": "datastore-preferences-jvm-1.1.7.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-jvm/1.1.7/datastore-preferences-jvm-1.1.7.jar",
+      "sha256": "2c9606bbf8b2255e47aec0c0d3b020d2ba726eb26b3b406d53ea0477b6d31637",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-007",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-common-jvm:2.8.7",
+      "file": "lifecycle-common-jvm-2.8.7.jar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.8.7/lifecycle-common-jvm-2.8.7.jar",
+      "sha256": "61c873a7327c946ec033c310bb98f3f92eeabcede0e1a5200ab8a1896483c7bf",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-008",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-livedata:2.8.7",
+      "file": "lifecycle-livedata-2.8.7.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata/2.8.7/lifecycle-livedata-2.8.7.aar",
+      "sha256": "703634525a67b1c6beaaab4f980dfa0bacdf7e143d0b5d51f5ac0d9404400290",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-009",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core:2.8.7",
+      "file": "lifecycle-livedata-core-2.8.7.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core/2.8.7/lifecycle-livedata-core-2.8.7.aar",
+      "sha256": "d786e5e6f79b8fab026f09a2d4ae3de1d72875f7645a6b7be48f1d9ab384734b",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-010",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7",
+      "file": "lifecycle-livedata-core-ktx-2.8.7.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core-ktx/2.8.7/lifecycle-livedata-core-ktx-2.8.7.aar",
+      "sha256": "b6e785e8532b155921310563a90fd262b5dacf6964aeea6cbbe412ac1da59460",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-011",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-android:2.8.7",
+      "file": "lifecycle-runtime-release.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.8.7/lifecycle-runtime-android-2.8.7.aar",
+      "sha256": "b8eb997dd434d70eb97cbd6d1395b6337c6771717c7acd59f11c0853f3860284",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-012",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7",
+      "file": "lifecycle-runtime-compose-release.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.8.7/lifecycle-runtime-compose-android-2.8.7.aar",
+      "sha256": "80bf0a8fe9a79b93a318832bc36900f3ab8bd5931ff9ca0ecd3087100e1f07d8",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-013",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7",
+      "file": "lifecycle-runtime-ktx-release.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx-android/2.8.7/lifecycle-runtime-ktx-android-2.8.7.aar",
+      "sha256": "b3d39c5dba5e207ef4c79d491a76500194c5ea6874157f05a15f01792c0cc4e7",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-014",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel:2.8.7",
+      "file": "lifecycle-viewmodel-2.8.7.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel/2.8.7/lifecycle-viewmodel-2.8.7.aar",
+      "sha256": "43d28a6c6da9c1cb72bfb5cc1b511a7937b2db8b79d52f37d0b7f14c79b090dd",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-015",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-android:2.8.7",
+      "file": "lifecycle-viewmodel-release.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.8.7/lifecycle-viewmodel-android-2.8.7.aar",
+      "sha256": "e7e7043f66b077637563ff564a7fc6cee461d284a0f2485c050a2143abbd8920",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-016",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7",
+      "file": "lifecycle-viewmodel-savedstate-2.8.7.aar",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.8.7/lifecycle-viewmodel-savedstate-2.8.7.aar",
+      "sha256": "646f2a42d2884b02308fb19837089e2669835fe21ca6a5b60666d5eb94d081dd",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-017",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.databinding:baseLibrary:9.2.1",
+      "file": "baseLibrary-9.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/databinding/baseLibrary/9.2.1/baseLibrary-9.2.1.jar",
+      "sha256": "96ba2a5f000846d317acdd90de6a7429701ac56573de2ccc8423d2ba40446fd9",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-018",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:annotations:32.2.1",
+      "file": "annotations-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/annotations/32.2.1/annotations-32.2.1.jar",
+      "sha256": "549717934c89945f9fe734f880d73473ef79336ab3517acf0e4d2851d97c5dce",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-019",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:common:32.2.1",
+      "file": "common-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/common/32.2.1/common-32.2.1.jar",
+      "sha256": "85ba2d79bbb553a9075f2710dca7eff504799b8338c7037c9971227b9cf01dc0",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-020",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:dvlib:32.2.1",
+      "file": "dvlib-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/dvlib/32.2.1/dvlib-32.2.1.jar",
+      "sha256": "f91ff66003800ec83009f18f8b45096de4cd87824d0ad9897018376c82e840a3",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-021",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:play-sdk-proto:32.2.1",
+      "file": "play-sdk-proto-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/play-sdk-proto/32.2.1/play-sdk-proto-32.2.1.jar",
+      "sha256": "4dadc9fdf87be84b82113357ec2a1e668be8b67c734f001e655a05281a0d7cc8",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-022",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:repository:32.2.1",
+      "file": "repository-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/repository/32.2.1/repository-32.2.1.jar",
+      "sha256": "6a63ca24481b1fb5acbdf3aaab5c39eef1a1e24c3c4f59147000791e0f67d8dc",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-023",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:sdk-common:32.2.1",
+      "file": "sdk-common-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/sdk-common/32.2.1/sdk-common-32.2.1.jar",
+      "sha256": "d95030eb74d9f8ee954c59fef895b8795e289b429aea4e7423cbf70d5075c547",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-024",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:sdklib:32.2.1",
+      "file": "sdklib-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/sdklib/32.2.1/sdklib-32.2.1.jar",
+      "sha256": "23bb6b5b4db79bcd16e71c656f8005ba8730005880ae4c253dcc7642016f0198",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-025",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:crash:32.2.1",
+      "file": "crash-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/crash/32.2.1/crash-32.2.1.jar",
+      "sha256": "3cf8a9e451280669666041b468e8de506abaef57757713a9b9aa8c215d039c07",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-026",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:protos:32.2.1",
+      "file": "protos-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/protos/32.2.1/protos-32.2.1.jar",
+      "sha256": "9731cac86a0cd1b77fb646c40744f34bb07b0e9934a3ac3a8a457137048a555c",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-027",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:shared:32.2.1",
+      "file": "shared-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/shared/32.2.1/shared-32.2.1.jar",
+      "sha256": "dc37f6e562ec34a69b151337a58fd789d3921ef46375c6e7144e23ae8d37f237",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-028",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:tracker:32.2.1",
+      "file": "tracker-32.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/tracker/32.2.1/tracker-32.2.1.jar",
+      "sha256": "67445ba419cffa2e94cc4289f3cf7acaa624bf3711879a0c7fb769652175a0e1",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-029",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:aapt2:9.2.1-15009934",
+      "file": "aapt2-9.2.1-15009934-linux.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/9.2.1-15009934/aapt2-9.2.1-15009934-linux.jar",
+      "sha256": "755f6727fb3f4cce5e319eac0f3618ed4b36b49a46d4bb2cbb6fa8e9175a54d6",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-030",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:aapt2-proto:9.2.1-15009934",
+      "file": "aapt2-proto-9.2.1-15009934.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2-proto/9.2.1-15009934/aapt2-proto-9.2.1-15009934.jar",
+      "sha256": "2335bab7fd8269ee98d3843410c4a5553d31dd71f9a22f49b21a676d3139c882",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-031",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:aaptcompiler:9.2.1",
+      "file": "aaptcompiler-9.2.1.jar",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/aaptcompiler/9.2.1/aaptcompiler-9.2.1.jar",
+      "sha256": "45c46bfd758de568b8118a168d56863f87566188692c9e80c1b77fff8c6a3620",
+      "max_bytes": 4194304
+    },
+    {
+      "id": "migration-032",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-core-jvm:1.1.7",
+      "file": "datastore-core-jvm-1.1.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-jvm/1.1.7/datastore-core-jvm-1.1.7.module",
+      "sha256": "58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-033",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-jvm:1.1.7",
+      "file": "datastore-jvm-1.1.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-jvm/1.1.7/datastore-jvm-1.1.7.module",
+      "sha256": "333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-034",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-preferences-core-jvm:1.1.7",
+      "file": "datastore-preferences-core-jvm-1.1.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core-jvm/1.1.7/datastore-preferences-core-jvm-1.1.7.module",
+      "sha256": "2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-035",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.datastore:datastore-preferences-jvm:1.1.7",
+      "file": "datastore-preferences-jvm-1.1.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-jvm/1.1.7/datastore-preferences-jvm-1.1.7.module",
+      "sha256": "45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-036",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-common-jvm:2.8.7",
+      "file": "lifecycle-common-jvm-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.8.7/lifecycle-common-jvm-2.8.7.module",
+      "sha256": "e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-037",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-android:2.8.7",
+      "file": "lifecycle-runtime-android-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.8.7/lifecycle-runtime-android-2.8.7.module",
+      "sha256": "4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-038",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose-android:2.8.7",
+      "file": "lifecycle-runtime-compose-android-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.8.7/lifecycle-runtime-compose-android-2.8.7.module",
+      "sha256": "c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-039",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx:2.8.7",
+      "file": "lifecycle-runtime-ktx-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx/2.8.7/lifecycle-runtime-ktx-2.8.7.module",
+      "sha256": "09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-040",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7",
+      "file": "lifecycle-runtime-ktx-android-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx-android/2.8.7/lifecycle-runtime-ktx-android-2.8.7.module",
+      "sha256": "adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-041",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-android:2.8.7",
+      "file": "lifecycle-viewmodel-android-2.8.7.module",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.8.7/lifecycle-viewmodel-android-2.8.7.module",
+      "sha256": "b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-042",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:aapt2-proto:9.2.1-15009934",
+      "file": "aapt2-proto-9.2.1-15009934.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2-proto/9.2.1-15009934/aapt2-proto-9.2.1-15009934.module",
+      "sha256": "59569173bf80ec813dc7ad45b37eed01584d11ddd886fc4987cbd17bf29b6f45",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-043",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:aaptcompiler:9.2.1",
+      "file": "aaptcompiler-9.2.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/aaptcompiler/9.2.1/aaptcompiler-9.2.1.module",
+      "sha256": "92a10902ee5acc47c87a9974cf967f5667eb8e17372ef0b7c255d4a0f9b579df",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-044",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:builder:9.2.1",
+      "file": "builder-9.2.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/builder/9.2.1/builder-9.2.1.module",
+      "sha256": "f34a8b2e9f1c5cad6d163fbe7528eca6fefc90bf5d5b7ed0653ee0c8a1e6dfe4",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-045",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:builder-model:9.2.1",
+      "file": "builder-model-9.2.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-model/9.2.1/builder-model-9.2.1.module",
+      "sha256": "3ff6020d3705e2fcbc8498a32ef7653591f2bf53932d622d6605d2326e6389fc",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-046",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:builder-test-api:9.2.1",
+      "file": "builder-test-api-9.2.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/builder-test-api/9.2.1/builder-test-api-9.2.1.module",
+      "sha256": "fba50975eae599901eaf74da243445e7fbbe3d00be1e3da8c0a6a31e4fe3ac0b",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-047",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.build:gradle:9.2.1",
+      "file": "gradle-9.2.1.module",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/build/gradle/9.2.1/gradle-9.2.1.module",
+      "sha256": "0d76f91471eb1e18dfbb263ee202843a0f0bd7e07ab3c9b5a37d37f8b7eb80c7",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-048",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-common:9.2.1",
+      "file": "databinding-common-9.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-common/9.2.1/databinding-common-9.2.1.pom",
+      "sha256": "d0633857870ae3157d29dc83eec48fe50b219db7524b05ae99d58e3cd92fa1d3",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-049",
+      "kind": "signed-artifact",
+      "coordinate": "androidx.databinding:databinding-compiler-common:9.2.1",
+      "file": "databinding-compiler-common-9.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/databinding/databinding-compiler-common/9.2.1/databinding-compiler-common-9.2.1.pom",
+      "sha256": "7e3dd0e28a364dab896628911068f91316d903c2402ae9e367fb72a7ac241c0f",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-050",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.application:com.android.application.gradle.plugin:9.2.1",
+      "file": "com.android.application.gradle.plugin-9.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/application/com.android.application.gradle.plugin/9.2.1/com.android.application.gradle.plugin-9.2.1.pom",
+      "sha256": "b97b73de27b383d5073d91314dfa86736ddacdae4fe498c3b35bc49ef14d9cb2",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-051",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.databinding:baseLibrary:9.2.1",
+      "file": "baseLibrary-9.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/databinding/baseLibrary/9.2.1/baseLibrary-9.2.1.pom",
+      "sha256": "8ddbc65e26b82a4d56c2137717e9041b96159b691cfc65395fefdda85204b58b",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-052",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.library:com.android.library.gradle.plugin:9.2.1",
+      "file": "com.android.library.gradle.plugin-9.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/library/com.android.library.gradle.plugin/9.2.1/com.android.library.gradle.plugin-9.2.1.pom",
+      "sha256": "efec35f0deb6faeb7aaa9d0474b265d84887ee14f3a43b284cb9deabb7810903",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-053",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:annotations:32.2.1",
+      "file": "annotations-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/annotations/32.2.1/annotations-32.2.1.pom",
+      "sha256": "9f3a8890f9a80d8928d8a2ca8b540c82b062a33d17339b1265b2c47177738cc9",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-054",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:common:32.2.1",
+      "file": "common-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/common/32.2.1/common-32.2.1.pom",
+      "sha256": "2de83a285e21abc38fdcf1a74edd6310aad4bd2bfd98d1cf9036b263aa50c54f",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-055",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:dvlib:32.2.1",
+      "file": "dvlib-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/dvlib/32.2.1/dvlib-32.2.1.pom",
+      "sha256": "8b9fbc44215390c86c3a3312ba351eac70f26d59a82253f9d0ed2017cd0f2366",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-056",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:play-sdk-proto:32.2.1",
+      "file": "play-sdk-proto-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/play-sdk-proto/32.2.1/play-sdk-proto-32.2.1.pom",
+      "sha256": "57bdaf89f51bc1368b6291e2353de2e8214bd6181caf8e036c2b6bcada587f0d",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-057",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:repository:32.2.1",
+      "file": "repository-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/repository/32.2.1/repository-32.2.1.pom",
+      "sha256": "5df98b0be251645da7a5acb772db1256d87499345fc24bf72e0f9e8e0335b653",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-058",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:sdk-common:32.2.1",
+      "file": "sdk-common-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/sdk-common/32.2.1/sdk-common-32.2.1.pom",
+      "sha256": "9607f02187c03cf23da8c509c8e3ce2d1d983a4342eabe9fd97fa6507ba18240",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-059",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools:sdklib:32.2.1",
+      "file": "sdklib-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/sdklib/32.2.1/sdklib-32.2.1.pom",
+      "sha256": "785eff59677538b01dbc63d65a2afe879b3f8b0fec24e691c0d5b7bc49f6684c",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-060",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:crash:32.2.1",
+      "file": "crash-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/crash/32.2.1/crash-32.2.1.pom",
+      "sha256": "737ae2730b4bfadb2b64d727d482af71d3fc35708282acd3ddea6c4317036b55",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-061",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:protos:32.2.1",
+      "file": "protos-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/protos/32.2.1/protos-32.2.1.pom",
+      "sha256": "99b685a2df455828ed3d84ada36c6ac6a00091c65e7525bc49fc6a74404d0b73",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-062",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:shared:32.2.1",
+      "file": "shared-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/shared/32.2.1/shared-32.2.1.pom",
+      "sha256": "b6047af9373c7408ba5c9857e48cb0f91e5079f25a4f162dd3d7e305613be96d",
+      "max_bytes": 524288
+    },
+    {
+      "id": "migration-063",
+      "kind": "signed-artifact",
+      "coordinate": "com.android.tools.analytics-library:tracker:32.2.1",
+      "file": "tracker-32.2.1.pom",
+      "url": "https://dl.google.com/dl/android/maven2/com/android/tools/analytics-library/tracker/32.2.1/tracker-32.2.1.pom",
+      "sha256": "1d0af5e4898bafdf0bc8f127f215fd0ec59faa7a9a7c9d37e04e2c9bd54161db",
+      "max_bytes": 524288
+    }
+  ]
+}

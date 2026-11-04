@@ -1,0 +1,30 @@
+)]}'
+{
+  "id": "a4c5f0e7918cc8bf89681a41914821fd5c543b5c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6eedce3f09ebe4622a3114c8f1a8644c93328240",
+      "name": "compose-bom-2025.12.00.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "057126a6f37315f93dca81e2800fcd9690e229ea",
+      "name": "compose-bom-2025.12.00.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a591d1e7310f1648c0bd095f135aa1634c8d92f9",
+      "name": "origin.json"
+    }
+  ]
+}

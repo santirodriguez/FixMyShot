@@ -1,0 +1,1383 @@
+<?xml version='1.0' encoding='utf-8'?>
+<verification-metadata xmlns="https://schema.gradle.org/dependency-verification">
+  <!--PARTIAL REVIEWED CANDIDATE ONLY; not active verification-metadata.xml-->
+  <configuration>
+    <verify-metadata>true</verify-metadata>
+    <verify-signatures>false</verify-signatures>
+  </configuration>
+  <components>
+    <component group="androidx.activity" name="activity" version="1.11.0">
+      <artifact name="activity-1.11.0.aar">
+        <sha256 value="26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="activity-1.11.0.module">
+        <sha256 value="c19b71592d90a24b6f6996d2c1b78a24ff05cb382250bb1c670617fd605caa27" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.activity" name="activity-compose" version="1.11.0">
+      <artifact name="activity-compose-1.11.0.aar">
+        <sha256 value="03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="activity-compose-1.11.0.module">
+        <sha256 value="e1bf1fe873ee1921b1757b9947ba64dfe4bb6de85daf311ada07927a75754855" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.activity" name="activity-ktx" version="1.11.0">
+      <artifact name="activity-ktx-1.11.0.aar">
+        <sha256 value="3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="activity-ktx-1.11.0.module">
+        <sha256 value="4ec5ffc2997cd3c0f3117391668c44dd9133af0a80ee67cbc7511c7cbd0d37d7" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.annotation" name="annotation" version="1.8.1">
+      <artifact name="annotation-1.8.1.module">
+        <sha256 value="e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation/1.8.1/annotation-1.8.1.module; Git blob 32a12cd147928898c4e81c8e27d598ed60d22d75; exact SHA256 e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5" />
+      </artifact>
+    </component>
+    <component group="androidx.annotation" name="annotation" version="1.9.1">
+      <artifact name="annotation-1.9.1.module">
+        <sha256 value="f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation/1.9.1/annotation-1.9.1.module; Git blob 7ead07e8598de1441f180c6062c8377b4221faa9; exact SHA256 f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f" />
+      </artifact>
+    </component>
+    <component group="androidx.annotation" name="annotation-experimental" version="1.4.1">
+      <artifact name="annotation-experimental-1.4.1.aar">
+        <sha256 value="6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar; Git blob 1fcbb8fc61708e95405f526b144abc084c105d62; exact SHA256 6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0" />
+      </artifact>
+      <artifact name="annotation-experimental-1.4.1.module">
+        <sha256 value="2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.module; Git blob 37f19680db711c3b891d6b95c1de1a18657eb8fb; exact SHA256 2ac2f7106e12f263425b4a4dfc80989447fb895675fe902d86759aa74fd12b7d" />
+      </artifact>
+    </component>
+    <component group="androidx.annotation" name="annotation-jvm" version="1.8.1">
+      <artifact name="annotation-jvm-1.8.1.module">
+        <sha256 value="c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1.module; Git blob 4b0c806a3f28827581c3d833c4b471df4604ead2; exact SHA256 c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0" />
+      </artifact>
+    </component>
+    <component group="androidx.annotation" name="annotation-jvm" version="1.9.1">
+      <artifact name="annotation-jvm-1.9.1.jar">
+        <sha256 value="1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar; Git blob 819381c89bd13b192a293a5d6d7af2f51645e575; exact SHA256 1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0" />
+      </artifact>
+      <artifact name="annotation-jvm-1.9.1.module">
+        <sha256 value="03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.module; Git blob 4d082e49a181b0cbd0fff92ec35b34b7a948738d; exact SHA256 03fb659177c8618e47425925c11bc91f384703ea26c265be9b25cd79292b511c" />
+      </artifact>
+    </component>
+    <component group="androidx.appcompat" name="appcompat" version="1.7.1">
+      <artifact name="appcompat-1.7.1.aar">
+        <sha256 value="2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="appcompat-1.7.1.module">
+        <sha256 value="8bbf16792c81cc2dd083681783a5382f573007eee8157182932f1b454e2b7f04" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.appcompat" name="appcompat-resources" version="1.7.1">
+      <artifact name="appcompat-resources-1.7.1.aar">
+        <sha256 value="8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="appcompat-resources-1.7.1.module">
+        <sha256 value="163cc5e0f249433ddb0016fbd011ab8de07cf23e07e618c74644688e26cd18e8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.arch.core" name="core-common" version="2.2.0">
+      <artifact name="core-common-2.2.0.jar">
+        <sha256 value="65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar; Git blob b2efafcbc7252ea6915631ae98a5b4ed53ca04fa; exact SHA256 65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41" />
+      </artifact>
+      <artifact name="core-common-2.2.0.module">
+        <sha256 value="edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.module; Git blob 9eea3eed93ac8a6678ec0f69b82706a86c18385d; exact SHA256 edf4200cfdc2d946232252c99e5dcb9c61bb909eb5450b2613d1d4fdc974b981" />
+      </artifact>
+    </component>
+    <component group="androidx.arch.core" name="core-runtime" version="2.2.0">
+      <artifact name="core-runtime-2.2.0.aar">
+        <sha256 value="a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.aar; Git blob efa6db622543ba1e2612f78fcccd0946bf2c3a1e; exact SHA256 a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47" />
+      </artifact>
+      <artifact name="core-runtime-2.2.0.module">
+        <sha256 value="a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.module; Git blob b826b6c31b49e02e9cc6b6765a1ea296e122bda6; exact SHA256 a8b17513949e5db6c9601c30be19df953762dd877512f1e2cfcfae81d2440944" />
+      </artifact>
+    </component>
+    <component group="androidx.autofill" name="autofill" version="1.0.0">
+      <artifact name="autofill-1.0.0.aar">
+        <sha256 value="c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.aar; Git blob b88bd83afb87b296110ebddd9e8db6b64e08f875; exact SHA256 c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd" />
+      </artifact>
+      <artifact name="autofill-1.0.0.pom">
+        <sha256 value="3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom; Git blob 7dc90a5fd94d0e3f793c277a02294fdf3bc2030f; exact SHA256 3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450" />
+      </artifact>
+    </component>
+    <component group="androidx.collection" name="collection" version="1.5.0">
+      <artifact name="collection-1.5.0.module">
+        <sha256 value="bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.collection" name="collection-jvm" version="1.5.0">
+      <artifact name="collection-jvm-1.5.0.jar">
+        <sha256 value="70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="collection-jvm-1.5.0.module">
+        <sha256 value="dde85e292509231b5471bb091b575099d4f43161eb281e87385038a0161072e6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.collection" name="collection-ktx" version="1.5.0">
+      <artifact name="collection-ktx-1.5.0.jar">
+        <sha256 value="939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="collection-ktx-1.5.0.module">
+        <sha256 value="4228894e25eec7e17329b206ba72e8aad255bc535018dc62acc5eff3b5c7aaa5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose" name="compose-bom" version="2025.12.00">
+      <artifact name="compose-bom-2025.12.00.pom">
+        <sha256 value="08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom; Git blob 6eedce3f09ebe4622a3114c8f1a8644c93328240; exact SHA256 08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.animation" name="animation" version="1.10.0">
+      <artifact name="animation-1.10.0.module">
+        <sha256 value="2158c1b57ce292ac2fd0d1541ece2cd08bbfbbd80aa6417a0668076693855458" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.animation" name="animation-android" version="1.10.0">
+      <artifact name="animation-android-1.10.0.module">
+        <sha256 value="048631961b8d45793f92705d8775d19e02824b120d1547b92852889678f5834b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="animation.aar">
+        <sha256 value="8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.animation" name="animation-core" version="1.10.0">
+      <artifact name="animation-core-1.10.0.module">
+        <sha256 value="2560e6513e16978300d7f1cb2593e9cdc0f57dbb37b788efd2ee6769c12d7921" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.animation" name="animation-core-android" version="1.10.0">
+      <artifact name="animation-core-android-1.10.0.module">
+        <sha256 value="c756a26751aa2dd8950ee29fea39ca81e419e4cd7d07a23b04c7158da9db33a2" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="animation-core.aar">
+        <sha256 value="55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.foundation" name="foundation" version="1.10.0">
+      <artifact name="foundation-1.10.0.module">
+        <sha256 value="b9f547775ab6920e06afeb371322840ab72d738b5a694a6f733ad7049675c452" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.foundation" name="foundation-android" version="1.10.0">
+      <artifact name="foundation-android-1.10.0.module">
+        <sha256 value="d4d4ad1b52952463b0b1a5099f6591a8da70105249643ffe3b1fe59e311c3766" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="foundation.aar">
+        <sha256 value="c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.foundation" name="foundation-layout" version="1.10.0">
+      <artifact name="foundation-layout-1.10.0.module">
+        <sha256 value="421dccb4cf516955c206ca1cad456983934a9909b44b0e9a14f735a779a563d1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.foundation" name="foundation-layout-android" version="1.10.0">
+      <artifact name="foundation-layout-android-1.10.0.module">
+        <sha256 value="a6979914bfa087650ece415d36b0b0d74669f86c3f453a2f9c05fcf47aeef61a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="foundation-layout.aar">
+        <sha256 value="85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.material" name="material-ripple" version="1.10.0">
+      <artifact name="material-ripple-1.10.0.module">
+        <sha256 value="31c55e4c7264b06da320bef7086a6bd4265a40422d36e5eb770798b33f9742c2" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.material" name="material-ripple-android" version="1.10.0">
+      <artifact name="material-ripple-android-1.10.0.module">
+        <sha256 value="6985cda3f981e229076a21b6e322bc03ec22342c869c083227a6a65b273c4138" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="material-ripple.aar">
+        <sha256 value="ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.material3" name="material3" version="1.4.0">
+      <artifact name="material3-1.4.0.module">
+        <sha256 value="757081d128daf8801c1dd9acc431fa5269e656b28a0a490ae98ccee68e9c3452" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.material3" name="material3-android" version="1.4.0">
+      <artifact name="material3-android-1.4.0.module">
+        <sha256 value="fccd6a8d0d33fcf7c3277bc43eb452c73803ec620597c81dbc4a79e290a71a97" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="material3.aar">
+        <sha256 value="3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime" version="1.10.0">
+      <artifact name="runtime-1.10.0.module">
+        <sha256 value="c1be9e41b03bc50e3850e86e5827fdf3eca11707989d93affb38e1bc8b53d675" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-android" version="1.10.0">
+      <artifact name="runtime-android-1.10.0.module">
+        <sha256 value="aafadad4ff1e6132fcf440f7f7e8c17cefa294e1de87db12e2c434569ab339ce" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="runtime.aar">
+        <sha256 value="612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-annotation" version="1.10.0">
+      <artifact name="runtime-annotation-1.10.0.module">
+        <sha256 value="029616c9ddf00b22bf629e151fca5ce73a96f094c4b5d96dc813dd3faa585f02" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-annotation-android" version="1.10.0">
+      <artifact name="runtime-annotation-android-1.10.0.module">
+        <sha256 value="7e99adea1a682fce56106f0bca2c53a1f58c130f0f31de9849760f7a5de212ce" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="runtime-annotation.aar">
+        <sha256 value="8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-retain" version="1.10.0">
+      <artifact name="runtime-retain-1.10.0.module">
+        <sha256 value="8254e7bfa01e5471e6917a3730ad0af5265f9d52e7ddb3c3aa7a5befdf75f91f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-retain-android" version="1.10.0">
+      <artifact name="runtime-retain-android-1.10.0.module">
+        <sha256 value="7dcfa819b62306bf1658a3c84beeb799f6078200804db343a9559aa5d89498aa" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="runtime-retain.aar">
+        <sha256 value="fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-saveable" version="1.10.0">
+      <artifact name="runtime-saveable-1.10.0.module">
+        <sha256 value="835897174ebee1ebcf01000661f6cfcc8aedca1dbf4d17cb76245a5347b8f028" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.runtime" name="runtime-saveable-android" version="1.10.0">
+      <artifact name="runtime-saveable-android-1.10.0.module">
+        <sha256 value="be1559a7468b8a82bdb71fbe953bb2b2f1f5ea9dfb6e25e3e3fe22454a5e27ea" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="runtime-saveable.aar">
+        <sha256 value="f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui" version="1.10.0">
+      <artifact name="ui-1.10.0.module">
+        <sha256 value="48600c0d2ff9eaaf6d7888124496fa2dd4830a1cc328591054cafed5f6a657e3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-android" version="1.10.0">
+      <artifact name="ui-android-1.10.0.module">
+        <sha256 value="2e867f73ae9d2a78e6a78355d7c1f3d1da29edbc3f64cd78f77a889dab66895a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui.aar">
+        <sha256 value="d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-geometry" version="1.10.0">
+      <artifact name="ui-geometry-1.10.0.module">
+        <sha256 value="ed47254977efa73d57b1528d1d142cd1e662fb408321cb182affa3f82a2ab569" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-geometry-android" version="1.10.0">
+      <artifact name="ui-geometry-android-1.10.0.module">
+        <sha256 value="22950743dd658d1f250a3d0a27dce49d03074928e116725e4e23e0d4b990365a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui-geometry.aar">
+        <sha256 value="40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-graphics" version="1.10.0">
+      <artifact name="ui-graphics-1.10.0.module">
+        <sha256 value="b29b99982c91b69dbd50ff989f6e33ed4d31548b3609492189dba634d0c589d9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-graphics-android" version="1.10.0">
+      <artifact name="ui-graphics-android-1.10.0.module">
+        <sha256 value="95b58307cbc92c52d3d1a22bb93586117f91957ca29ed3a572104e37100fe1e9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui-graphics.aar">
+        <sha256 value="b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-text" version="1.10.0">
+      <artifact name="ui-text-1.10.0.module">
+        <sha256 value="9109b898376ca1af4e8748ac437beba461f0e9f806eddfe8384f81561e5733c8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-text-android" version="1.10.0">
+      <artifact name="ui-text-android-1.10.0.module">
+        <sha256 value="c6fd2b4f48b754c8dfd0b9427a6ee97c4f8018d9a6221b1498202ae1acabb4d3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui-text.aar">
+        <sha256 value="626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-unit" version="1.10.0">
+      <artifact name="ui-unit-1.10.0.module">
+        <sha256 value="c10ac08770b2a090703664d21030e316cfddc4407c1b014b8ad3250f8bed51d5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-unit-android" version="1.10.0">
+      <artifact name="ui-unit-android-1.10.0.module">
+        <sha256 value="bbcadbde83e5f849c8ae272dfa37b934922ac645feb71b67e16137c6da43c6ef" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui-unit.aar">
+        <sha256 value="b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-util" version="1.10.0">
+      <artifact name="ui-util-1.10.0.module">
+        <sha256 value="8e3bedd5c2e1c813a73e5282dbbfced422f786083828c42f9202da3929e54122" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.compose.ui" name="ui-util-android" version="1.10.0">
+      <artifact name="ui-util-android-1.10.0.module">
+        <sha256 value="35161c6a849b54334edea68ee06b6f49419052dc825bdbbef4ee98d177a0c66a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="ui-util.aar">
+        <sha256 value="75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.concurrent" name="concurrent-futures" version="1.1.0">
+      <artifact name="concurrent-futures-1.1.0.jar">
+        <sha256 value="0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar; Git blob 833b095873b42062c5ebbbc376dc392f88185b91; exact SHA256 0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e" />
+      </artifact>
+      <artifact name="concurrent-futures-1.1.0.module">
+        <sha256 value="77639a0b051e22510bad93affcea0ebd781ef124bf9b7621a95749937bcfcdfd" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.module; Git blob 4e23e0fed4d24e55deef62ec95d7ae67fc20c200; exact SHA256 77639a0b051e22510bad93affcea0ebd781ef124bf9b7621a95749937bcfcdfd" />
+      </artifact>
+    </component>
+    <component group="androidx.concurrent" name="concurrent-futures-ktx" version="1.1.0">
+      <artifact name="concurrent-futures-ktx-1.1.0.module">
+        <sha256 value="69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures-ktx/1.1.0/concurrent-futures-ktx-1.1.0.module; Git blob eaa0c6788121186862871a98a89d75586e76a836; exact SHA256 69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core" version="1.13.0">
+      <artifact name="core-1.13.0.module">
+        <sha256 value="2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/core/core/1.13.0/core-1.13.0.module; Git blob a0d8b20dd622c6a6e98155a796ad07b461abeb35; exact SHA256 2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core" version="1.16.0">
+      <artifact name="core-1.16.0.aar">
+        <sha256 value="6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="core-1.16.0.module">
+        <sha256 value="4ab4a3b0bc1664e3a2c60dec699af635778e15c6ee373971690948f073dd721e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core-ktx" version="1.13.0">
+      <artifact name="core-ktx-1.13.0.module">
+        <sha256 value="a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/core/core-ktx/1.13.0/core-ktx-1.13.0.module; Git blob d344662698201197df0e12f6040693b9624b2a10; exact SHA256 a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core-ktx" version="1.16.0">
+      <artifact name="core-ktx-1.16.0.aar">
+        <sha256 value="1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="core-ktx-1.16.0.module">
+        <sha256 value="89fb92ca127594cdcd11c5efb5ab0e8eb23466bc41b8df7579514d2fef6e1281" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.core" name="core-viewtree" version="1.0.0">
+      <artifact name="core-viewtree-1.0.0.aar">
+        <sha256 value="dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="core-viewtree-1.0.0.module">
+        <sha256 value="11386cfa46cbbfddb6a4059f14354c00691cf65d3d63c3618818a83326ef3c7f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.cursoradapter" name="cursoradapter" version="1.0.0">
+      <artifact name="cursoradapter-1.0.0.aar">
+        <sha256 value="a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.aar; Git blob cd1494a9bc7236233553f24af3f252d35b61a2bd; exact SHA256 a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564" />
+      </artifact>
+      <artifact name="cursoradapter-1.0.0.pom">
+        <sha256 value="62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom; Git blob ffca433f2f77b5a75ad1245769fe67daa74968a6; exact SHA256 62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100" />
+      </artifact>
+    </component>
+    <component group="androidx.customview" name="customview" version="1.0.0">
+      <artifact name="customview-1.0.0.aar">
+        <sha256 value="20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.aar; Git blob 73e70ac40e44b6e241d170aba371258f027d5927; exact SHA256 20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2" />
+      </artifact>
+      <artifact name="customview-1.0.0.pom">
+        <sha256 value="ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.pom; Git blob db3906ef20dc0f998a5ce505105cbe8ef90c37ac; exact SHA256 ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49" />
+      </artifact>
+    </component>
+    <component group="androidx.customview" name="customview-poolingcontainer" version="1.0.0">
+      <artifact name="customview-poolingcontainer-1.0.0.aar">
+        <sha256 value="3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.aar; Git blob d5a68ee2c340bc78c51914b7d517f100d6021a4a; exact SHA256 3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752" />
+      </artifact>
+      <artifact name="customview-poolingcontainer-1.0.0.module">
+        <sha256 value="903034d5152dd2e0162b1468ea25a22e1ca384006b3d282d5a143cc760321a01" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.module; Git blob 8903135630ac7c482b129ceb2189416581d02d32; exact SHA256 903034d5152dd2e0162b1468ea25a22e1ca384006b3d282d5a143cc760321a01" />
+      </artifact>
+    </component>
+    <component group="androidx.databinding" name="databinding-common" version="9.2.1">
+      <artifact name="databinding-common-9.2.1.jar">
+        <sha256 value="82816382a2a9dec4f0ab17c79cef08a9e4fe4b97d896ac20d7f215b6dd788b18" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.databinding" name="databinding-compiler-common" version="9.2.1">
+      <artifact name="databinding-compiler-common-9.2.1.jar">
+        <sha256 value="68ab090ddb4d1f411b7defa90c021e068d1aa46878b5beb94de87ff971106dcb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore" version="1.1.7">
+      <artifact name="datastore-1.1.7.module">
+        <sha256 value="705450d5e0d0a84c1599ae1421a9969e3aa704bc39640ebcd671e4643d2fc8f8" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-android" version="1.1.7">
+      <artifact name="datastore-android-1.1.7.module">
+        <sha256 value="669f2695add59bab604dc5090a879e4163ddff550ef75a1298c4ec2250c837f9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-release.aar">
+        <sha256 value="26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core" version="1.1.7">
+      <artifact name="datastore-core-1.1.7.module">
+        <sha256 value="4821397339e3272f95139e408985bc91384ada3ca66e424ed8af6577070de489" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-android" version="1.1.7">
+      <artifact name="datastore-core-android-1.1.7.module">
+        <sha256 value="a38beb4eda9e2f92c06842dbba77aae924e5ee22c36e533c6960f1b054313bdd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-core-release.aar">
+        <sha256 value="adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-jvm" version="1.1.7">
+      <artifact name="datastore-core-jvm-1.1.7.jar">
+        <sha256 value="362cbad1f13874a22c7360a18eb995ca52a360379ba0ea5af1b1cf0df0319a2f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-core-jvm-1.1.7.module">
+        <sha256 value="58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-core-jvm/1.1.7/datastore-core-jvm-1.1.7.module; Git blob 6b6977b3ff633cb6694f0cb182b1b3e91e972557; exact SHA256 58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-okio" version="1.1.7">
+      <artifact name="datastore-core-okio-1.1.7.module">
+        <sha256 value="47fadb8caff5982ac29ccc1ff38d4206ee29ecb947fa06d4070c0ebc1086a7eb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-core-okio-jvm" version="1.1.7">
+      <artifact name="datastore-core-okio-jvm-1.1.7.jar">
+        <sha256 value="291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-core-okio-jvm-1.1.7.module">
+        <sha256 value="05b2108ff565eb2b1aafb6b9e4d51f834a7bfaac2f4dfc7a81b3992d7e6bed21" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-jvm" version="1.1.7">
+      <artifact name="datastore-jvm-1.1.7.jar">
+        <sha256 value="bbd2d9f6c8bcf5a7ae97b999bc6641ef304224b7392b4cea26b9cf87d7cb0281" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-jvm-1.1.7.module">
+        <sha256 value="333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-jvm/1.1.7/datastore-jvm-1.1.7.module; Git blob cc2f219624ac8f707531d3b41a620e5152c46275; exact SHA256 333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences" version="1.1.7">
+      <artifact name="datastore-preferences-1.1.7.module">
+        <sha256 value="24f6866605ed027c6e13158ca18464d2a1af1ba8a5f0ce3ff2224b7604fe0a2b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-android" version="1.1.7">
+      <artifact name="datastore-preferences-android-1.1.7.module">
+        <sha256 value="49d055ae6611ad770f6e3d22eec6875b5f5ab3a7398841cf84cae18d5c89d3a2" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-release.aar">
+        <sha256 value="1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-core" version="1.1.7">
+      <artifact name="datastore-preferences-core-1.1.7.module">
+        <sha256 value="109dc49114519f2672fb3178de01fb53953e9559be83394dc259444550caed99" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-core-android" version="1.1.7">
+      <artifact name="datastore-preferences-core-android-1.1.7.module">
+        <sha256 value="aa76e59310d9aa389efbc417934533ccc3563aed3f911186e16df787c40ffb00" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-core-release.aar">
+        <sha256 value="31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-core-jvm" version="1.1.7">
+      <artifact name="datastore-preferences-core-jvm-1.1.7.jar">
+        <sha256 value="8817e03c8856d8cb530723abaaf3a588c18e7a12af8fb7a393fceef06e026d53" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-core-jvm-1.1.7.module">
+        <sha256 value="2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-preferences-core-jvm/1.1.7/datastore-preferences-core-jvm-1.1.7.module; Git blob bcb112dce2bbe816300b007f994073973989a5c3; exact SHA256 2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-external-protobuf" version="1.1.7">
+      <artifact name="datastore-preferences-external-protobuf-1.1.7.jar">
+        <sha256 value="fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-external-protobuf-1.1.7.module">
+        <sha256 value="87863e6b93a416dc00f857713edf683914b64ac6ebcf220e5826e336a841bfa5" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-jvm" version="1.1.7">
+      <artifact name="datastore-preferences-jvm-1.1.7.jar">
+        <sha256 value="2c9606bbf8b2255e47aec0c0d3b020d2ba726eb26b3b406d53ea0477b6d31637" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-jvm-1.1.7.module">
+        <sha256 value="45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-preferences-jvm/1.1.7/datastore-preferences-jvm-1.1.7.module; Git blob 24f70aaf144578cab4c1fa44a80f70af14529b3b; exact SHA256 45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556" />
+      </artifact>
+    </component>
+    <component group="androidx.datastore" name="datastore-preferences-proto" version="1.1.7">
+      <artifact name="datastore-preferences-proto-1.1.7.jar">
+        <sha256 value="63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="datastore-preferences-proto-1.1.7.module">
+        <sha256 value="3da01b6fb8751c39237202b8fe668c55347c0e35960db6d7776bd482f2e6ef3e" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.documentfile" name="documentfile" version="1.0.0">
+      <artifact name="documentfile-1.0.0.aar">
+        <sha256 value="865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.aar; Git blob 79fd5502a92cd486b7cb1c23c922afbdb93e31dd; exact SHA256 865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487" />
+      </artifact>
+      <artifact name="documentfile-1.0.0.pom">
+        <sha256 value="013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom; Git blob dfc9aaddb4dfd91489dd4116ba4e61eb134e20bd; exact SHA256 013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5" />
+      </artifact>
+    </component>
+    <component group="androidx.drawerlayout" name="drawerlayout" version="1.0.0">
+      <artifact name="drawerlayout-1.0.0.aar">
+        <sha256 value="9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.aar; Git blob a9968c7fec10003c8418407e744713a4be86d89e; exact SHA256 9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1" />
+      </artifact>
+      <artifact name="drawerlayout-1.0.0.pom">
+        <sha256 value="da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom; Git blob 507479bcd8f7a2064f96cb759ec7390b3e92b26e; exact SHA256 da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4" />
+      </artifact>
+    </component>
+    <component group="androidx.dynamicanimation" name="dynamicanimation" version="1.0.0">
+      <artifact name="dynamicanimation-1.0.0.aar">
+        <sha256 value="ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.aar; Git blob b9f4cc6c6446f8602a1cf8579dfe3af1518e261d; exact SHA256 ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04" />
+      </artifact>
+      <artifact name="dynamicanimation-1.0.0.pom">
+        <sha256 value="44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom; Git blob dc09da5853ce10e045e7ee16832b458ba84267aa; exact SHA256 44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898" />
+      </artifact>
+    </component>
+    <component group="androidx.emoji2" name="emoji2" version="1.4.0">
+      <artifact name="emoji2-1.4.0.aar">
+        <sha256 value="433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.aar; Git blob 134d6f565b7127deaf1cb121d3f49beb3168edf2; exact SHA256 433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242" />
+      </artifact>
+      <artifact name="emoji2-1.4.0.module">
+        <sha256 value="92be16cccb757f807bddd92f1fca95a038a810ccca051c4149c11682478954b8" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.module; Git blob bec0924f39c50ad37b872bc3141a7b2f5074a537; exact SHA256 92be16cccb757f807bddd92f1fca95a038a810ccca051c4149c11682478954b8" />
+      </artifact>
+    </component>
+    <component group="androidx.emoji2" name="emoji2-views-helper" version="1.4.0">
+      <artifact name="emoji2-views-helper-1.4.0.aar">
+        <sha256 value="ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.aar; Git blob 4cc94c18082c67f20f9b14d656e703b26ca1e4de; exact SHA256 ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375" />
+      </artifact>
+      <artifact name="emoji2-views-helper-1.4.0.module">
+        <sha256 value="248aa276fdba8116e656233cac3f3fd541444df2305de93e6813795fcd0ba26a" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.module; Git blob e6355207516471d874edf0285a472106ac88ba1f; exact SHA256 248aa276fdba8116e656233cac3f3fd541444df2305de93e6813795fcd0ba26a" />
+      </artifact>
+    </component>
+    <component group="androidx.exifinterface" name="exifinterface" version="1.4.2">
+      <artifact name="exifinterface-1.4.2.aar">
+        <sha256 value="6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="exifinterface-1.4.2.module">
+        <sha256 value="6365165eb5aacc700a34b1650a2910ea01ebd819821b89af7689fa41274fb00b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.fragment" name="fragment" version="1.5.4">
+      <artifact name="fragment-1.5.4.aar">
+        <sha256 value="bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/fragment/fragment/1.5.4/fragment-1.5.4.aar; Git blob 8ca2c546bec98ce773564df18d8719b29dbac9ce; exact SHA256 bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde" />
+      </artifact>
+      <artifact name="fragment-1.5.4.module">
+        <sha256 value="af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/fragment/fragment/1.5.4/fragment-1.5.4.module; Git blob f49a14568a03cc6b570dadf73eab408cb5a0f520; exact SHA256 af3260808dceb6532efc2d7215be45872c24a699dada7d77bff738ce3b85a7f0" />
+      </artifact>
+    </component>
+    <component group="androidx.graphics" name="graphics-path" version="1.0.1">
+      <artifact name="graphics-path-1.0.1.aar">
+        <sha256 value="8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.aar; Git blob 85d60412fbdc0debffed3d21b7156197e7d46b48; exact SHA256 8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03" />
+      </artifact>
+      <artifact name="graphics-path-1.0.1.module">
+        <sha256 value="3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.module; Git blob ea4e54fcf1ecd2c204f26ca241109f18c4c500b1; exact SHA256 3f6fc7e96f8a1fd21045da7f2e332aef528aa1f56b6455fb8f25043aafa0e1b8" />
+      </artifact>
+    </component>
+    <component group="androidx.heifwriter" name="heifwriter" version="1.2.0-rc01">
+      <artifact name="heifwriter-1.2.0-rc01.aar">
+        <sha256 value="2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F" />
+      </artifact>
+      <artifact name="heifwriter-1.2.0-rc01.module">
+        <sha256 value="1ab25b802cef746359456a5e6a4b86f8fbb18ef5777b2760a7b5172d89689d01" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0E225917414670F4442C250DFD533C07C264648F" />
+      </artifact>
+    </component>
+    <component group="androidx.interpolator" name="interpolator" version="1.0.0">
+      <artifact name="interpolator-1.0.0.aar">
+        <sha256 value="33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar; Git blob bccf86f791ae97dcb4bcc1c245c86d3d73a111e9; exact SHA256 33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a" />
+      </artifact>
+      <artifact name="interpolator-1.0.0.pom">
+        <sha256 value="0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom; Git blob 49a663964345f69b668ccc07148b4274be77967e; exact SHA256 0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b" />
+      </artifact>
+    </component>
+    <component group="androidx.legacy" name="legacy-support-core-utils" version="1.0.0">
+      <artifact name="legacy-support-core-utils-1.0.0.aar">
+        <sha256 value="a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.aar; Git blob 2980f6039d1bda8b69b366e5f019d14148a6e518; exact SHA256 a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7" />
+      </artifact>
+      <artifact name="legacy-support-core-utils-1.0.0.pom">
+        <sha256 value="8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom; Git blob 39f3ee8f8fe53fee80b48dc511af40c68ed36703; exact SHA256 8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common" version="2.8.7">
+      <artifact name="lifecycle-common-2.8.7.module">
+        <sha256 value="0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-common/2.8.7/lifecycle-common-2.8.7.module; Git blob ed3cfcb6e4643803958a3fd09bafa7046f15f629; exact SHA256 0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common" version="2.9.4">
+      <artifact name="lifecycle-common-2.9.4.module">
+        <sha256 value="c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common-java8" version="2.9.4">
+      <artifact name="lifecycle-common-java8-2.9.4.jar">
+        <sha256 value="497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-common-java8-2.9.4.module">
+        <sha256 value="07bab59d012bc806f03debd192f93e312d72bca56b25178234a21a6812daf041" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common-jvm" version="2.8.7">
+      <artifact name="lifecycle-common-jvm-2.8.7.module">
+        <sha256 value="e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-common-jvm/2.8.7/lifecycle-common-jvm-2.8.7.module; Git blob ee9bf3095850d0bb3b29c0ea4aca056c64589cb7; exact SHA256 e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-common-jvm" version="2.9.4">
+      <artifact name="lifecycle-common-jvm-2.9.4.jar">
+        <sha256 value="37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-common-jvm-2.9.4.module">
+        <sha256 value="1d1837f3942b33ea30aa2301fdcea2639408a0fd6fd4368c22478fa8153aebbf" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata" version="2.8.7">
+      <artifact name="lifecycle-livedata-2.8.7.module">
+        <sha256 value="d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata/2.8.7/lifecycle-livedata-2.8.7.module; Git blob e3207fbd0752d215ff6e844b318d7e9167ec5d08; exact SHA256 d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata" version="2.9.4">
+      <artifact name="lifecycle-livedata-2.9.4.aar">
+        <sha256 value="f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-livedata-2.9.4.module">
+        <sha256 value="9a8153a07ae2edd8b7919a34ad9195847005eaed69fa3e5060636208a728c312" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core" version="2.8.7">
+      <artifact name="lifecycle-livedata-core-2.8.7.module">
+        <sha256 value="b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata-core/2.8.7/lifecycle-livedata-core-2.8.7.module; Git blob 236ab3aff2d7f70affe38080a8cc1b290af3d47d; exact SHA256 b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core" version="2.9.4">
+      <artifact name="lifecycle-livedata-core-2.9.4.aar">
+        <sha256 value="ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-livedata-core-2.9.4.module">
+        <sha256 value="dee60656abb194da028d93b9bd652b4b164cdab35a000b475d63303c5d00994b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core-ktx" version="2.8.7">
+      <artifact name="lifecycle-livedata-core-ktx-2.8.7.module">
+        <sha256 value="3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.8.7/lifecycle-livedata-core-ktx-2.8.7.module; Git blob 5ace935874dcb9f593e665f414e4d027e6d400d4; exact SHA256 3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-livedata-core-ktx" version="2.9.4">
+      <artifact name="lifecycle-livedata-core-ktx-2.9.4.aar">
+        <sha256 value="f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-livedata-core-ktx-2.9.4.module">
+        <sha256 value="0a940e79e256cc7fbec69d8eb35362ac79599ab4b21ab4846aba64ba4960a192" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-process" version="2.9.4">
+      <artifact name="lifecycle-process-2.9.4.aar">
+        <sha256 value="4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-process-2.9.4.module">
+        <sha256 value="f7cd5051bacb3f4b8ec7dc40ac6342a61eea1147592dda9f364a24cf882c7ddb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime" version="2.8.7">
+      <artifact name="lifecycle-runtime-2.8.7.module">
+        <sha256 value="cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime/2.8.7/lifecycle-runtime-2.8.7.module; Git blob 5d1dcea31779bb699836d593018382fe82d5a035; exact SHA256 cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime" version="2.9.4">
+      <artifact name="lifecycle-runtime-2.9.4.module">
+        <sha256 value="dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-android" version="2.8.7">
+      <artifact name="lifecycle-runtime-android-2.8.7.module">
+        <sha256 value="4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-android/2.8.7/lifecycle-runtime-android-2.8.7.module; Git blob 1aad30de28f49ae4ecd71556afd2659e0d72c059; exact SHA256 4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-android" version="2.9.4">
+      <artifact name="lifecycle-runtime-android-2.9.4.module">
+        <sha256 value="c7888e850c40fd059fb2c1ec5bf46e88313e9b5d5152133c385a1aafb8433f47" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-runtime-release.aar">
+        <sha256 value="86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-compose" version="2.8.7">
+      <artifact name="lifecycle-runtime-compose-2.8.7.module">
+        <sha256 value="cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-compose/2.8.7/lifecycle-runtime-compose-2.8.7.module; Git blob fbc1624633cbb318eb3097ebfd645c1e2f972d9e; exact SHA256 cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-compose" version="2.9.4">
+      <artifact name="lifecycle-runtime-compose-2.9.4.module">
+        <sha256 value="27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-compose-android" version="2.8.7">
+      <artifact name="lifecycle-runtime-compose-android-2.8.7.module">
+        <sha256 value="c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-compose-android/2.8.7/lifecycle-runtime-compose-android-2.8.7.module; Git blob 18ce0175409fe73fd84aabc71021864499dcc7ce; exact SHA256 c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-compose-android" version="2.9.4">
+      <artifact name="lifecycle-runtime-compose-android-2.9.4.module">
+        <sha256 value="e087a2c2bdfe360497339335ba51dbcdd1503c0a7c9f4f8285db7023e0429439" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-runtime-compose-release.aar">
+        <sha256 value="b6803f906a89fd85c77df343dd4aeeb349125ca79e12d55d68d4cf42f42231f6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-ktx" version="2.8.7">
+      <artifact name="lifecycle-runtime-ktx-2.8.7.module">
+        <sha256 value="09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-ktx/2.8.7/lifecycle-runtime-ktx-2.8.7.module; Git blob 67730ab7a7c887c7cc6e9263b18196c29d8f9a29; exact SHA256 09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-ktx" version="2.9.4">
+      <artifact name="lifecycle-runtime-ktx-2.9.4.module">
+        <sha256 value="05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-ktx-android" version="2.8.7">
+      <artifact name="lifecycle-runtime-ktx-android-2.8.7.module">
+        <sha256 value="adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-ktx-android/2.8.7/lifecycle-runtime-ktx-android-2.8.7.module; Git blob 1fcaa20b9102f74def6f538c749f7d999e8aa29d; exact SHA256 adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-runtime-ktx-android" version="2.9.4">
+      <artifact name="lifecycle-runtime-ktx-android-2.9.4.module">
+        <sha256 value="6a2070e9d9243bd3b5d5a108b9db5583bcc4c742b32efb45fe33f49429eb7193" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-runtime-ktx.aar">
+        <sha256 value="970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel" version="2.8.7">
+      <artifact name="lifecycle-viewmodel-2.8.7.module">
+        <sha256 value="f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel/2.8.7/lifecycle-viewmodel-2.8.7.module; Git blob e05f3e67671814c3bbdff9df6ded5d1a8a593afb; exact SHA256 f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel" version="2.9.4">
+      <artifact name="lifecycle-viewmodel-2.9.4.aar">
+        <sha256 value="cab404b05d5faed209104a2aef14c0cbb316ab9fabe4a8f037b043e5d2f43435" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-viewmodel-2.9.4.module">
+        <sha256 value="964d69d6b877296e8b79a77bb826ef5fb186aecaa7a1a7ff776fb2250c993006" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-android" version="2.8.7">
+      <artifact name="lifecycle-viewmodel-android-2.8.7.module">
+        <sha256 value="b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel-android/2.8.7/lifecycle-viewmodel-android-2.8.7.module; Git blob 26476880fca8a1e6a580ac944bbd31da9fb5148e; exact SHA256 b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-android" version="2.9.4">
+      <artifact name="lifecycle-viewmodel-android-2.9.4.module">
+        <sha256 value="b637acdd8aab5348974661830874a7456bac341f43a0b281827cc6b0fcfc73c1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-viewmodel-release.aar">
+        <sha256 value="4b236b2e504db5ca5d09334fef05aa8cdc31ee35a433c3aa4d0420efa9613332" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-ktx" version="2.9.4">
+      <artifact name="lifecycle-viewmodel-ktx-2.9.4.aar">
+        <sha256 value="b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-viewmodel-ktx-2.9.4.module">
+        <sha256 value="5631efeab797f79a1adba5df64b2f0cca54e08b428756df7630cb23b90098a67" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-savedstate" version="2.8.7">
+      <artifact name="lifecycle-viewmodel-savedstate-2.8.7.module">
+        <sha256 value="bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.8.7/lifecycle-viewmodel-savedstate-2.8.7.module; Git blob 830cf2369d6b163083dd0db5b4a3f11ddada3ed2; exact SHA256 bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-savedstate" version="2.9.4">
+      <artifact name="lifecycle-viewmodel-savedstate-2.9.4.module">
+        <sha256 value="4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.lifecycle" name="lifecycle-viewmodel-savedstate-android" version="2.9.4">
+      <artifact name="lifecycle-viewmodel-savedstate-android-2.9.4.module">
+        <sha256 value="bf64c4c3cf5ad5fe5d6fd0e07787ec68054cc226f9f670e05af5ef9da67c2593" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="lifecycle-viewmodel-savedstate-release.aar">
+        <sha256 value="079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.loader" name="loader" version="1.0.0">
+      <artifact name="loader-1.0.0.aar">
+        <sha256 value="11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.aar; Git blob 32c57746c035c91f560c6a4e6e7ead3e48ab9c06; exact SHA256 11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025" />
+      </artifact>
+      <artifact name="loader-1.0.0.pom">
+        <sha256 value="c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.pom; Git blob 8bf9635b6c405474631b27bea86126b61c95c220; exact SHA256 c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e" />
+      </artifact>
+    </component>
+    <component group="androidx.localbroadcastmanager" name="localbroadcastmanager" version="1.0.0">
+      <artifact name="localbroadcastmanager-1.0.0.aar">
+        <sha256 value="e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.aar; Git blob e9074ee4600b2d1e78fb56802eeb8bfe1819e62b; exact SHA256 e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8" />
+      </artifact>
+      <artifact name="localbroadcastmanager-1.0.0.pom">
+        <sha256 value="a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom; Git blob abf4d6f44c33d4978575e9e0a524b75cdbbd2b98; exact SHA256 a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9" />
+      </artifact>
+    </component>
+    <component group="androidx.print" name="print" version="1.0.0">
+      <artifact name="print-1.0.0.aar">
+        <sha256 value="1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.aar; Git blob 7bb51fd5055128611c2652d60736b94b615231a1; exact SHA256 1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd" />
+      </artifact>
+      <artifact name="print-1.0.0.pom">
+        <sha256 value="62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.pom; Git blob 927140aec1cf4227c6ab7654ed42d3ec8defffb6; exact SHA256 62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7" />
+      </artifact>
+    </component>
+    <component group="androidx.profileinstaller" name="profileinstaller" version="1.4.0">
+      <artifact name="profileinstaller-1.4.0.aar">
+        <sha256 value="d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.aar; Git blob 23a3cba1cf6b49311cfc7b3664fcf10433f75500; exact SHA256 d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a" />
+      </artifact>
+      <artifact name="profileinstaller-1.4.0.module">
+        <sha256 value="39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.module; Git blob 79e0191eda30022a77f2a664a8aab644ce28e62d; exact SHA256 39bf997a28d8eed2cb319819f6f352a1ba3a78b9c979004fbe05e26b8f7d160b" />
+      </artifact>
+    </component>
+    <component group="androidx.resourceinspection" name="resourceinspection-annotation" version="1.0.1">
+      <artifact name="resourceinspection-annotation-1.0.1.jar">
+        <sha256 value="8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.jar; Git blob 21eb30727e3f9e70637d33f0416ce685e6b75541; exact SHA256 8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb" />
+      </artifact>
+      <artifact name="resourceinspection-annotation-1.0.1.module">
+        <sha256 value="352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.module; Git blob c23d8997a6f872ea8faed3d40e78e8b5265387fa; exact SHA256 352a11a8d8a4c1bd6cd2c2fefff9c94ca954d7b5202a0656959db95297f6a2b7" />
+      </artifact>
+    </component>
+    <component group="androidx.savedstate" name="savedstate" version="1.3.2">
+      <artifact name="savedstate-1.3.2.module">
+        <sha256 value="320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.savedstate" name="savedstate-android" version="1.3.2">
+      <artifact name="savedstate-android-1.3.2.module">
+        <sha256 value="5d962b8d6a4bc5284492a40003c9867fd392ac6979ab440bdecdd427899741bb" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="savedstate-release.aar">
+        <sha256 value="1e26f137705596d09d3f4f52559a29026d9a1a6688be7f1a948316a4f1e39b20" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.savedstate" name="savedstate-compose" version="1.3.2">
+      <artifact name="savedstate-compose-1.3.2.module">
+        <sha256 value="3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.savedstate" name="savedstate-compose-android" version="1.3.2">
+      <artifact name="savedstate-compose-android-1.3.2.module">
+        <sha256 value="8376ee32d654f97712f817275e785880daef1e44448f38272a7734ec091ce401" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="savedstate-compose.aar">
+        <sha256 value="93426691f25441cc3179494b25f401a8a468aabbee4c40b90c0327413fd65523" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.savedstate" name="savedstate-ktx" version="1.3.2">
+      <artifact name="savedstate-ktx-1.3.2.aar">
+        <sha256 value="1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="savedstate-ktx-1.3.2.module">
+        <sha256 value="f7fc8a13f9fbe5cf092128299aff529392f3eee54e6d3fe5f0a2f82fc6c5f3db" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.startup" name="startup-runtime" version="1.1.1">
+      <artifact name="startup-runtime-1.1.1.aar">
+        <sha256 value="e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.aar; Git blob adf44c45e3c4f3dac4ed55d2697d2e03e7db0fae; exact SHA256 e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3" />
+      </artifact>
+      <artifact name="startup-runtime-1.1.1.module">
+        <sha256 value="cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.module; Git blob f45059e74fb0ddcfe2cfc7263ade409de7998b52; exact SHA256 cfd96cf6450c6e2b697598924729ad9a0495c5a4fcf4ebee7e2f81b07e415865" />
+      </artifact>
+    </component>
+    <component group="androidx.test" name="core" version="1.6.1">
+      <artifact name="core-1.6.1.pom">
+        <sha256 value="44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/core/1.6.1/core-1.6.1.pom; Git blob c2ce2e89c3dcbab5e3584c8999318b2cb7d1f0fa; exact SHA256 44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b" />
+      </artifact>
+    </component>
+    <component group="androidx.test" name="monitor" version="1.7.2">
+      <artifact name="monitor-1.7.2.pom">
+        <sha256 value="388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/monitor/1.7.2/monitor-1.7.2.pom; Git blob 0c14b7e21e6c1125435113e4f9f3c9e6e5e5a889; exact SHA256 388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce" />
+      </artifact>
+    </component>
+    <component group="androidx.test.ext" name="junit" version="1.2.1">
+      <artifact name="junit-1.2.1.pom">
+        <sha256 value="983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom; Git blob 195c430b7a339e4c81f934301d8c853f0ebf0f75; exact SHA256 983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751" />
+      </artifact>
+    </component>
+    <component group="androidx.test.services" name="storage" version="1.5.0">
+      <artifact name="storage-1.5.0.pom">
+        <sha256 value="81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/services/storage/1.5.0/storage-1.5.0.pom; Git blob 14adbc12bfdd9c4aaae2a67b3443162879b2b21b; exact SHA256 81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d" />
+      </artifact>
+    </component>
+    <component group="androidx.tracing" name="tracing" version="1.1.0">
+      <artifact name="tracing-1.1.0.module">
+        <sha256 value="b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.1.0/tracing-1.1.0.module; Git blob 384b9118a45dfc327eabef4e4136fc92f40792ac; exact SHA256 b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3" />
+      </artifact>
+    </component>
+    <component group="androidx.tracing" name="tracing" version="1.2.0">
+      <artifact name="tracing-1.2.0.aar">
+        <sha256 value="6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.2.0/tracing-1.2.0.aar; Git blob 3fbd0184471df372d9535f0a7b23c0aa9ce97c4b; exact SHA256 6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2" />
+      </artifact>
+      <artifact name="tracing-1.2.0.module">
+        <sha256 value="d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.2.0/tracing-1.2.0.module; Git blob f42d4847459d288fcfb0b9c21e9bf2264e4178a3; exact SHA256 d0d8d486b6bd33206dbf3f1a6d167e9b43c268ea63c3321c886b1543ad05ece3" />
+      </artifact>
+    </component>
+    <component group="androidx.transition" name="transition" version="1.6.0">
+      <artifact name="transition-1.6.0.aar">
+        <sha256 value="248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="transition-1.6.0.module">
+        <sha256 value="c763c376fd6d39e51477c902b315e58ca2a1f47d4b099cb99f49a148bd61c560" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.vectordrawable" name="vectordrawable" version="1.1.0">
+      <artifact name="vectordrawable-1.1.0.aar">
+        <sha256 value="46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.aar; Git blob 0746c6259dc830ce4b97f9db245e9a252cef4c07; exact SHA256 46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26" />
+      </artifact>
+      <artifact name="vectordrawable-1.1.0.pom">
+        <sha256 value="5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom; Git blob 80acd8792a9f3e2128adba13571a11e3c0353eb8; exact SHA256 5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2" />
+      </artifact>
+    </component>
+    <component group="androidx.vectordrawable" name="vectordrawable-animated" version="1.1.0">
+      <artifact name="vectordrawable-animated-1.1.0.aar">
+        <sha256 value="76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.aar; Git blob bf8857759508816a3032bca28c5e35c7a2e00388; exact SHA256 76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8" />
+      </artifact>
+      <artifact name="vectordrawable-animated-1.1.0.pom">
+        <sha256 value="276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.pom; Git blob ec234d3b46220320e50835c53dd25bb5a2aa71af; exact SHA256 276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd" />
+      </artifact>
+    </component>
+    <component group="androidx.versionedparcelable" name="versionedparcelable" version="1.1.1">
+      <artifact name="versionedparcelable-1.1.1.aar">
+        <sha256 value="57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.aar; Git blob 4f5acaab35817b9036d729048f85da52b5b42986; exact SHA256 57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4" />
+      </artifact>
+      <artifact name="versionedparcelable-1.1.1.pom">
+        <sha256 value="5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom; Git blob c8349960d22498ce0ec49f0ca9e5d965ff652505; exact SHA256 5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f" />
+      </artifact>
+    </component>
+    <component group="androidx.viewpager" name="viewpager" version="1.0.0">
+      <artifact name="viewpager-1.0.0.aar">
+        <sha256 value="147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar; Git blob a7667298cb55a232868049c006749e95b5679f04; exact SHA256 147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682" />
+      </artifact>
+      <artifact name="viewpager-1.0.0.pom">
+        <sha256 value="1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.pom; Git blob c062095003a41bc8b40b00f09a2376437db1ac33; exact SHA256 1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128" />
+      </artifact>
+    </component>
+    <component group="androidx.window" name="window" version="1.5.0">
+      <artifact name="window-1.5.0.aar">
+        <sha256 value="5de2d48aa578402f46deb5294a955cee62f0c7d8c1840ef626fc7afb8abe22f9" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="window-1.5.0.module">
+        <sha256 value="8ac5d2772e97c957dddcbcb1c1198229d4afe57cdf5ecd5eb3cd436a05190743" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.window" name="window-core" version="1.5.0">
+      <artifact name="window-core-1.5.0.module">
+        <sha256 value="595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="androidx.window" name="window-core-android" version="1.5.0">
+      <artifact name="window-core-android-1.5.0.module">
+        <sha256 value="5bd818686803bf3c037f61a0e96af4441e884aa8a4d91062d2ad57876f917b50" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+      <artifact name="window-core.aar">
+        <sha256 value="d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="bundletool" version="1.18.3">
+      <artifact name="bundletool-1.18.3.pom">
+        <sha256 value="fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae" origin="Google publisher-maintained AOSP source copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/bundletool/1.18.3/bundletool-1.18.3.pom; Git blob f6f2c23829bdd8230e9220f0a2c4adf08d648147; exact SHA256 fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build" name="gradle" version="9.2.1">
+      <artifact name="gradle-9.2.1.jar">
+        <sha256 value="582e85078b60eb80669223b34b58200ba034654b2edb1cf9621e62fde7dfc0a3" origin="Google detached PGP; primary EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796; signer 0F06FF86BEEAF4E71866EE5232EE5355A6BC6E42" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build.jetifier" name="jetifier-core" version="1.0.0-beta10">
+      <artifact name="jetifier-core-1.0.0-beta10.module">
+        <sha256 value="f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/jetifier/jetifier-core/1.0.0-beta10/jetifier-core-1.0.0-beta10.module; Git blob 18fc5400164b3ad01a24ec17b911a6adf9cf7d24; exact SHA256 f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7" />
+      </artifact>
+    </component>
+    <component group="com.android.tools.build.jetifier" name="jetifier-processor" version="1.0.0-beta10">
+      <artifact name="jetifier-processor-1.0.0-beta10.module">
+        <sha256 value="36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13" origin="Google publisher-maintained AOSP release copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/jetifier/jetifier-processor/1.0.0-beta10/jetifier-processor-1.0.0-beta10.module; Git blob 14aed10424acbda214ad498291d5a522ea60d43b; exact SHA256 36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13" />
+      </artifact>
+    </component>
+    <component group="com.google.guava" name="listenablefuture" version="1.0">
+      <artifact name="listenablefuture-1.0.jar">
+        <sha256 value="e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069" origin="Google Guava ownership google/guava@5ae56d77e64305752b919ff2c96713f47ac0c94c/futures/listenablefuture1/pom.xml; exact Google-maintained AOSP copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.jar; Git blob 5e676925fa90da084afc26f2c9ae38c8201ec044; exact SHA256 e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069" />
+      </artifact>
+      <artifact name="listenablefuture-1.0.pom">
+        <sha256 value="53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a" origin="Google Guava ownership google/guava@5ae56d77e64305752b919ff2c96713f47ac0c94c/futures/listenablefuture1/pom.xml; exact Google-maintained AOSP copy https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.pom; Git blob 3bd8c01db211326957dfcf2440a326b46b1c2ab8; exact SHA256 53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a" />
+      </artifact>
+    </component>
+    <component group="com.squareup.okio" name="okio" version="3.4.0">
+      <artifact name="okio-3.4.0.module">
+        <sha256 value="69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+    </component>
+    <component group="com.squareup.okio" name="okio-jvm" version="3.4.0">
+      <artifact name="okio-jvm-3.4.0.jar">
+        <sha256 value="0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+      <artifact name="okio-jvm-3.4.0.module">
+        <sha256 value="6fec13cf3361600364bfcc68004af7c760ceaf1fc1bbcc958742ae4d61db1512" origin="Square Okio exact detached PGP; primary DBD744ACE7ADE6AA50DD591F66B50994442D2D40; independently published issuer lysine-dev/okhttp@ba92108a334394a9fb2ee27858f35375cffa6cae/docs/security/security.md; public key SHA256 4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255; signer DBD744ACE7ADE6AA50DD591F66B50994442D2D40" />
+      </artifact>
+    </component>
+    <component group="junit" name="junit" version="4.13.2">
+      <artifact name="junit-4.13.2.jar">
+        <sha256 value="8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3" origin="JUnit detached PGP; publisher KEYS fingerprint FF6E2C001948C5F2F38B0CC385911F425EC61B51" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains" name="annotations" version="13.0">
+      <artifact name="annotations-13.0.jar">
+        <sha256 value="ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum ace2a10dc8e2d5fd34925ecac03e4988b2c0f851650c94b8cef49ba1bd111478" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains" name="annotations" version="23.0.0">
+      <artifact name="annotations-23.0.0.jar">
+        <sha256 value="7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum 7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="compose-compiler-gradle-plugin" version="2.4.21">
+      <artifact name="compose-compiler-gradle-plugin-2.4.21-gradle813.jar">
+        <sha256 value="17b7d35e53e23f4820e0fb9f3ad71f7ab463970d68bcd8ba7f8d71498b50395f" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="compose-compiler-gradle-plugin-2.4.21.module">
+        <sha256 value="e7bc61dabd4381f4a8f53c7be30bfb5cccd971af27d55b7c39b0a37b28bef24d" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="compose-group-mapping" version="2.4.21">
+      <artifact name="compose-group-mapping-2.4.21.jar">
+        <sha256 value="45bb5caf737fb50cf96fd67f4a45aff8a75cae387333a5be80ad29523442d327" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="compose-group-mapping-2.4.21.pom">
+        <sha256 value="a1c461dc79493649a9d1eee167c172dd32aa3260a48735751de30ee169cf4620" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="fus-statistics-gradle-plugin" version="2.4.21">
+      <artifact name="fus-statistics-gradle-plugin-2.4.21-gradle813.jar">
+        <sha256 value="44a07b9203eb2c75ceb2d33327f89b991f2d35095a96a0f1c224a012c5465367" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="fus-statistics-gradle-plugin-2.4.21.module">
+        <sha256 value="3090b4e873054cdc29991ae94c92fa45afb4c145d460441d803baf6ef165bbb8" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-android-extensions-runtime" version="1.9.22">
+      <artifact name="kotlin-android-extensions-runtime-1.9.22.jar">
+        <sha256 value="f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-android-extensions-runtime-1.9.22.pom">
+        <sha256 value="73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-build-statistics" version="2.4.21">
+      <artifact name="kotlin-build-statistics-2.4.21.jar">
+        <sha256 value="f917249997fe48d1eb1204906b4cabc8230bf32a1d9fb385e52311acaa6ebc68" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-build-statistics-2.4.21.pom">
+        <sha256 value="4ac9fe3a27069f9ad87dc36ede15fc06335663d4ae46fac09a16bb090e16038c" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-build-tools-api" version="2.4.21">
+      <artifact name="kotlin-build-tools-api-2.4.21.jar">
+        <sha256 value="c5cd6a49bd072b529ae10809111c16a7aa0f92147e95d288354017fd65799461" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-build-tools-api-2.4.21.pom">
+        <sha256 value="4b909e42d55242520278d5397eca1edd58921fe128942eeff95a6da279c2eb27" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-build-tools-compat" version="2.4.21">
+      <artifact name="kotlin-build-tools-compat-2.4.21.jar">
+        <sha256 value="9e71ba89b6d26e46a087d4f8b64bc2f0a774282ea779fc08b26527d0a80d4fe8" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-build-tools-compat-2.4.21.pom">
+        <sha256 value="9d9b4627d5b7bb8631457061275f21524d874b865550addec4f3b029d8265817" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-build-tools-cri-impl" version="2.4.21">
+      <artifact name="kotlin-build-tools-cri-impl-2.4.21.jar">
+        <sha256 value="d1849f9b98033f5333905409074ca90e6a0e17258cd0eb8befa47d795e695841" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-build-tools-cri-impl-2.4.21.pom">
+        <sha256 value="57f3c430dfec2e575bb1b64055412ace12d4ed5d9a02eb97a85dd47f53701ef1" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-build-tools-impl" version="2.4.21">
+      <artifact name="kotlin-build-tools-impl-2.4.21.jar">
+        <sha256 value="3152b3e1fbaa4d48f3681734a2c0efc438359a48c8a3c5cac00d874670de1377" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-build-tools-impl-2.4.21.pom">
+        <sha256 value="6ef5cb90e2d8ea75faf9ec668d306b6be7628f11ebd41878a82cae3e17dbedfb" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-compiler-embeddable" version="2.4.21">
+      <artifact name="kotlin-compiler-embeddable-2.4.21.jar">
+        <sha256 value="ef19419c765e7ac8404465fa026ca8fc4dbb8a822de0fc79aa53c8dce29f1d02" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-compiler-embeddable-2.4.21.pom">
+        <sha256 value="e1620d2b18319cf7495dc67697ab03ba23a7d6d9da685285884a7a8aa08ae891" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-compiler-runner" version="2.4.21">
+      <artifact name="kotlin-compiler-runner-2.4.21.jar">
+        <sha256 value="75cd5956405697559e6925ebc5808449a2e12002d4f017275281ad3d4c0c7985" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-compiler-runner-2.4.21.pom">
+        <sha256 value="619d17c885321949eaa167af0842cad8f7aa83a4a9ca1051e5de04d11a6c0f40" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-compose-compiler-plugin-embeddable" version="2.4.21">
+      <artifact name="kotlin-compose-compiler-plugin-embeddable-2.4.21.jar">
+        <sha256 value="634f5c17bed5854548208f2901071f2ead5993ffad25b34fea1668ee9e314b53" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-compose-compiler-plugin-embeddable-2.4.21.pom">
+        <sha256 value="d5af6aa743ce0fa940b004a6cbd1777db0a76319e1daa1fded9b03c361aa03a3" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-daemon-client" version="2.4.21">
+      <artifact name="kotlin-daemon-client-2.4.21.jar">
+        <sha256 value="095903c4c4713bf91a562d226d7ba0464cf5424e76342d487deec494451ab29b" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-daemon-client-2.4.21.pom">
+        <sha256 value="c2f18065fa18f5e92eff14f34029e4f70052011070655120796adbce7167ad65" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-daemon-embeddable" version="2.4.21">
+      <artifact name="kotlin-daemon-embeddable-2.4.21.jar">
+        <sha256 value="7b3ef24674e5bcffcadfc4e43202ea314194939ecbcdd90a4770b2f1b04e0d07" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-daemon-embeddable-2.4.21.pom">
+        <sha256 value="95236a3a7e9953545e2ff7c6dc0ea7ffeb27560000f20abe89dc53790fec3c7e" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugin" version="2.4.21">
+      <artifact name="kotlin-gradle-plugin-2.4.21-gradle813.jar">
+        <sha256 value="60eaf7b2c098d6c0e2171e5d454b3f7b95c227215dc5f831d0aeefd405e98213" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugin-2.4.21.module">
+        <sha256 value="a412aecabbb40c7ed2fad5311d0114d4ca0e3a9690658ad3c4caed619e400d94" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugin-annotations" version="2.4.21">
+      <artifact name="kotlin-gradle-plugin-annotations-2.4.21.jar">
+        <sha256 value="5c386b0fa287584497b07d62af954e30d05907e6da867221124d0bb936989bbd" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugin-annotations-2.4.21.pom">
+        <sha256 value="b0f6b87a35d4be7ae06e554efdb261ea4bc5d59fa282c23ee28061d30805ddd6" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugin-api" version="2.4.21">
+      <artifact name="kotlin-gradle-plugin-api-2.4.21-gradle813.jar">
+        <sha256 value="43b8c73f3e4f123b1a5e4bc8e62bd9b258dfa84129e6564bebb03c5fada84d23" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugin-api-2.4.21.module">
+        <sha256 value="b8ae1c9ee5976145d4fd7925012e5699e2df5df7fe9613bac41d59404a58e815" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugin-idea" version="2.4.21">
+      <artifact name="kotlin-gradle-plugin-idea-2.4.21.jar">
+        <sha256 value="086734484c7edf19a620ab1a617d097c40e03bc52602e77840ea5ebd6380e514" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugin-idea-2.4.21.module">
+        <sha256 value="ddd2bb8f319a7c468ba2fb5a404b795c69e066bd5ad2d565b47b86fa2a337606" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugin-idea-proto" version="2.4.21">
+      <artifact name="kotlin-gradle-plugin-idea-proto-2.4.21.jar">
+        <sha256 value="4559d92c5c1758a3e1ec5728822b059b2eb4aebef13c701ee86c7688acf164d5" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugin-idea-proto-2.4.21.pom">
+        <sha256 value="3c6eff2166eb46a8474b7bcccaa7d1ca5074260c866cc4bb2ba3678216a7bc15" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-gradle-plugins-bom" version="2.4.21">
+      <artifact name="kotlin-gradle-plugins-bom-2.4.21.module">
+        <sha256 value="04f6a73a2c34217ac31599b8ed5ff24b85ebd410d32242eb27965c7b213f56c3" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-gradle-plugins-bom-2.4.21.pom">
+        <sha256 value="624c0c869b3fcf1665afec9c5c51a807be0a8c983931ebb188548ddcdb055780" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-klib-commonizer-api" version="2.4.21">
+      <artifact name="kotlin-klib-commonizer-api-2.4.21.jar">
+        <sha256 value="62ebe32fcf69600125b28388f0a80781276784d90e14d333bbd5080b4807220c" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-klib-commonizer-api-2.4.21.pom">
+        <sha256 value="186a53ce6f218e43472808dc32cab627e19c144df2517398794bdb53d2df14a0" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-klib-commonizer-embeddable" version="2.4.21">
+      <artifact name="kotlin-klib-commonizer-embeddable-2.4.21.jar">
+        <sha256 value="2f8df89c7567b6f732b83e7184af7bb9c039ecd6290c0805fe015d9743bb5cf7" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-klib-commonizer-embeddable-2.4.21.pom">
+        <sha256 value="5f43d7cae54104cf0acc0e0f9dbce0f13f1df0c0138256b0f3299f5ff1e04a07" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-native-utils" version="2.4.21">
+      <artifact name="kotlin-native-utils-2.4.21.jar">
+        <sha256 value="e1858bf1fb5bbb1738c4fa0f9cfb502b911cabf313a5de4cae686d6c50d74814" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-native-utils-2.4.21.pom">
+        <sha256 value="9882156113d96f7911101a721cce2adefe2c8d9acc8844fb6397b8523538db37" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-parcelize-runtime" version="1.9.22">
+      <artifact name="kotlin-parcelize-runtime-1.9.22.jar">
+        <sha256 value="f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-parcelize-runtime-1.9.22.pom">
+        <sha256 value="ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-script-runtime" version="2.4.21">
+      <artifact name="kotlin-script-runtime-2.4.21.jar">
+        <sha256 value="a658cf5902a1525a06c264a5e42b437e97a6679ddeef8ca641246f270cf6a013" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-script-runtime-2.4.21.pom">
+        <sha256 value="425d1683a903d085a1718122918242ad6ad0246c79283786697395e4d3a8c801" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-scripting-common" version="2.4.21">
+      <artifact name="kotlin-scripting-common-2.4.21.jar">
+        <sha256 value="67817eeee13da1f827f7ab9b961e300c2a6c612c290dfebb12db2eafcf0813b3" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-scripting-common-2.4.21.pom">
+        <sha256 value="5bf1576f1519ef4ee07b35470bf79b921d3b0212b52bce2e2333e88ec54be257" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-scripting-compiler-embeddable" version="2.4.21">
+      <artifact name="kotlin-scripting-compiler-embeddable-2.4.21.jar">
+        <sha256 value="a9a2f4aab2d01ebec3a8ba91c4cc07a4589205867378e98854f2a3d0ecf0f31a" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-scripting-compiler-embeddable-2.4.21.pom">
+        <sha256 value="cf0fd334e23f41d1a58d1c784b61e8abb3c8ff41f348c631967f98c8d6b039d4" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-scripting-compiler-impl-embeddable" version="2.4.21">
+      <artifact name="kotlin-scripting-compiler-impl-embeddable-2.4.21.jar">
+        <sha256 value="5794e84bb83b855540c1105997a5963745d7c15d12654bb07304bb115564a7cb" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-scripting-compiler-impl-embeddable-2.4.21.pom">
+        <sha256 value="58f11ca7ed212eb26bf84416ee39a7714618f04a5dd119c09d3708cbbc3cf771" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-scripting-jvm" version="2.4.21">
+      <artifact name="kotlin-scripting-jvm-2.4.21.jar">
+        <sha256 value="f00bc053865d7c2864e26087ce50b60ee8bdd30f9a252890d21a34e35d398f17" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-scripting-jvm-2.4.21.pom">
+        <sha256 value="f9de68cf49f356252fe4af9185f1dd3a2a5cf6ca236da03452a83513e223dbfc" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib" version="2.2.21">
+      <artifact name="kotlin-stdlib-2.2.21.jar">
+        <sha256 value="6558a3d233da56a20934b32159f9db5f86ed5816ef098f78a2c223dc6abb79dd" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
+      </artifact>
+      <artifact name="kotlin-stdlib-2.2.21.module">
+        <sha256 value="bfbc657ddd3a8e37e4c8ad417968d5eb0b0b171c9fce48f962c2ad32ee434c21" origin="Kotlin v2.2.21 official Maven SHA256 manifest 791a6bf5ff0404afe4f8eaf903faa6db5f97652f4d1e79b9795404f3111bb3c8" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib" version="2.4.21">
+      <artifact name="kotlin-stdlib-2.4.21.jar">
+        <sha256 value="bd8250210584cb659847dce9cda660f8e9906e5def7fbebcea93dc6dcb6a88a3" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-stdlib-2.4.21.module">
+        <sha256 value="03b0df67c0cd74a948a45c5b03c4bbcfb31ab9b9879fb380adf7c187b6594b7f" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib-common" version="2.4.21">
+      <artifact name="kotlin-stdlib-common-2.4.21.module">
+        <sha256 value="aeae4f24688e1dd7ebee648ab2b12be685cbe33e9c72bc1439730a794d6e2d5b" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk7" version="1.8.0">
+      <artifact name="kotlin-stdlib-jdk7-1.8.0.jar">
+        <sha256 value="4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-stdlib-jdk7-1.8.0.pom">
+        <sha256 value="dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-stdlib-jdk8" version="1.8.0">
+      <artifact name="kotlin-stdlib-jdk8-1.8.0.jar">
+        <sha256 value="05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+      <artifact name="kotlin-stdlib-jdk8-1.8.0.pom">
+        <sha256 value="2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26" origin="kotlin detached PGP; primary 2FBA29D08D2E25EE84C132C30729A0AFF8999A87; signer 6F538074CCEBF35F28AF9B066A0975F8B1127B83" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-tooling-core" version="2.4.21">
+      <artifact name="kotlin-tooling-core-2.4.21.jar">
+        <sha256 value="5fc5db083803232857408ed5c25bcc307c703b04bdef6cb2c34ebf4db611a622" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-tooling-core-2.4.21.pom">
+        <sha256 value="b26b1cb6480001519d4650586cdc6054ea2d2d486ff332431c543eb8f76f41ce" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-util-io" version="2.4.21">
+      <artifact name="kotlin-util-io-2.4.21.jar">
+        <sha256 value="5821175f24578ca8f1ef405bc982b3668f3f40f1a5dd28bb3283dd5215a922d1" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-util-io-2.4.21.pom">
+        <sha256 value="a16f898aa8c686dc0b83d556ac4adecfcadbb6662ca547fca7802bf536d6d3d3" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-util-klib" version="2.4.21">
+      <artifact name="kotlin-util-klib-2.4.21.jar">
+        <sha256 value="f01f79d54968941dfa83a525ae173be93460bb85b0bf2cc9ff06f6eb0864691e" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-util-klib-2.4.21.pom">
+        <sha256 value="97b59495de92c789c6963e4e70d5545ceccd2f0fab67d7ce72f7c5a87b948030" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin" name="kotlin-util-klib-metadata" version="2.4.21">
+      <artifact name="kotlin-util-klib-metadata-2.4.21.jar">
+        <sha256 value="a47f883b82fc3b99fe3d666498b22312628afb5cc1b9b26e8188175be2da6060" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+      <artifact name="kotlin-util-klib-metadata-2.4.21.pom">
+        <sha256 value="a0f7f315c9f60b53458cc1e034a7c55e17619ce7db51db43efb7d3cdacbb5c6c" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin.jvm" name="org.jetbrains.kotlin.jvm.gradle.plugin" version="2.4.21">
+      <artifact name="org.jetbrains.kotlin.jvm.gradle.plugin-2.4.21.pom">
+        <sha256 value="8e08073d123182e69c07d24c6dca7b98cc53a37707a73a6af7be88e38218b42b" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlin.plugin.compose" name="org.jetbrains.kotlin.plugin.compose.gradle.plugin" version="2.4.21">
+      <artifact name="org.jetbrains.kotlin.plugin.compose.gradle.plugin-2.4.21.pom">
+        <sha256 value="ee66712b1006e971636f11554af63c56835caf315382ce23e54f59f5b8b9d4f9" origin="Kotlin official v2.4.21 release checksum manifest SHA256 89dd3bfe6391ed74d1f86c794447ff868394d55609e720ea6d7ed033a0a2ecb2" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlinx" name="kotlinx-coroutines-core-jvm" version="1.7.3">
+      <artifact name="kotlinx-coroutines-core-jvm-1.7.3.jar">
+        <sha256 value="1ab3acc38f3e7355c4f9d1ec62107a46fa73c899f3070d055e5d4373dfe67e12" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum 1ab3acc38f3e7355c4f9d1ec62107a46fa73c899f3070d055e5d4373dfe67e12" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlinx" name="kotlinx-coroutines-core-jvm" version="1.8.0">
+      <artifact name="kotlinx-coroutines-core-jvm-1.8.0.jar">
+        <sha256 value="9860906a1937490bf5f3b06d2f0e10ef451e65b95b269f22daf68a3d1f5065c5" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum 9860906a1937490bf5f3b06d2f0e10ef451e65b95b269f22daf68a3d1f5065c5" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlinx" name="kotlinx-coroutines-core-jvm" version="1.9.0">
+      <artifact name="kotlinx-coroutines-core-jvm-1.9.0.jar">
+        <sha256 value="ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a" />
+      </artifact>
+    </component>
+    <component group="org.jetbrains.kotlinx" name="kotlinx-serialization-core-jvm" version="1.7.3">
+      <artifact name="kotlinx-serialization-core-jvm-1.7.3.jar">
+        <sha256 value="f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb" origin="JetBrains official Kotlin v2.4.21 release source https://github.com/JetBrains/kotlin/blob/9180ce6a7a7d3627f88b424717583f28ddca052d/gradle/verification-metadata.xml; source SHA256 60d44a5f54f4a439583db9808af334feb9a7468c17806f661449e3e34e3a042a; exact artifact checksum f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb" />
+      </artifact>
+    </component>
+  </components>
+</verification-metadata>

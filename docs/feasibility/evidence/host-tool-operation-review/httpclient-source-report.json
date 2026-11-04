@@ -1,0 +1,13 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6-sources.jar",
+  "bytes": 729203,
+  "sha256": "6a8076d9a98a5be9f1a055011166f9055b0aee2de133699db3ccf20377533e58",
+  "selected": [
+    {
+      "path": "org/apache/http/client/utils/URIUtils.java",
+      "sha256": "52b93c9853a98095225218f958b1cb3e004c30c57241f058eb21045a7a37518f",
+      "bytes": 16517
+    }
+  ],
+  "publisher_authentication_claim": false
+}

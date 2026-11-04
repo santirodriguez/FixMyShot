@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="52" viewBox="0 0 220 52" role="img" aria-labelledby="title desc">
+  <title id="title">Add to Obtainium</title>
+  <desc id="desc">Track FixMyShot prereleases directly from GitHub with Obtainium.</desc>
+  <rect x="1" y="1" width="218" height="50" rx="14" fill="#30283f" stroke="#ad91d6" stroke-width="2"/>
+  <path d="M27 15v15m-6-6 6 6 6-6M18 34v4h18v-4" fill="none" stroke="#e4d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="49" y="22" fill="#d6c1ef" font-family="sans-serif" font-size="10" letter-spacing="1">TRACK FROM GITHUB</text>
+  <text x="49" y="39" fill="#fff" font-family="sans-serif" font-size="17" font-weight="700">Add to Obtainium</text>
+</svg>

@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "aa061eab5eea8dd9902429f2c138bb51e7e156d3",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b5d9b84adefd91ac1436b69fae76a2ece5932356",
+      "name": "jetifier-processor-1.0.0-beta10.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4ea8352f7dfd8d36d85f3dd97261459c4195242b",
+      "name": "jetifier-processor-1.0.0-beta10.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "14aed10424acbda214ad498291d5a522ea60d43b",
+      "name": "jetifier-processor-1.0.0-beta10.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1b170bc7f061568288ef181dc2de10e5a8fddc38",
+      "name": "jetifier-processor-1.0.0-beta10.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "21d7de65c9b75f552d58bf39ff43cf2b9c1ed727",
+      "name": "jetifier-processor-1.0.0-beta10.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "18b66fb4e77589aec35a9c1475d0381c92408d69",
+      "name": "jetifier-processor-1.0.0-beta10.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ede7beb4cdddb402551f878f5fb011c5d4a2c286",
+      "name": "origin.json"
+    }
+  ]
+}

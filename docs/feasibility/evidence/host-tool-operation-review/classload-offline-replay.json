@@ -1,0 +1,11 @@
+{
+  "scope": "FULL_RAW_CLASS_EVENT_REPLAY_WITHOUT_REHASHING_REMOTE_CI_JARS",
+  "status": "PASS",
+  "processes": 13,
+  "events": 126398,
+  "per_file_hashes_counts_and_startup_markers": "EXACT",
+  "roles_prefixes_and_full_observed_family_class_sets": "EXACT",
+  "same_review_script_sha256": true,
+  "original_jar_hashes_recomputed_outside_ci": false,
+  "original_ci_jar_hashes_retained_in_report": true
+}

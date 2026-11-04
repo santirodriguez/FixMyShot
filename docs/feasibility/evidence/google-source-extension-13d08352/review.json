@@ -1,0 +1,693 @@
+{
+  "schema": 1,
+  "scope": "EXACT_26_GOOGLE_MODULES_AND_TWO_GUAVA_FILES_NOT_PGP",
+  "reviewed": 325,
+  "pending": 533,
+  "runtime_reviewed": 217,
+  "runtime_pending": 11,
+  "other_reviewed": 108,
+  "other_pending": 522,
+  "prior297_proofs_unchanged": true,
+  "review": {
+    "scope": "EXACT_GOOGLE_MODULES_AND_TWO_EXPLICIT_GUAVA_FILES_NOT_PGP",
+    "prior_review_sha256": "4b2c787862a85ca38ca2dbf24409d49964a42f1db78648ad61d67d3270bf34d7",
+    "capture_report_sha256": "92fd7224a75743ea3dfbb5202dc551cb9855c7162e2e04a80f80335b72945ed7",
+    "guava_ownership_sha256": "3dfeb0d43e0627bf01adc97f7273829127fc252138d7436e788d6c636de9700a",
+    "guava_directory_sha256": "fd31bf6f9310d84bc94beb30e6880d9945587d94bea324f88b587474cdc46d22",
+    "existing_artifact_archive_sha256": "019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3",
+    "guava_source_commit": "5ae56d77e64305752b919ff2c96713f47ac0c94c",
+    "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+    "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+    "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+    "reviewer_sha256": "c5e3b5c393f764db568361f74ed936dbf11ea12ea427a8516ecc1d3d11102c43",
+    "source_checker_sha256": "32444850b73e8ac97113d24c5338fd06409e4475855286aa9da7d19b1a0e8889",
+    "verified_new_files": 28,
+    "outcomes": [
+      {
+        "identity": [
+          "androidx.annotation",
+          "annotation",
+          "1.8.1",
+          "annotation-1.8.1.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 34460,
+        "sha256": "e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5",
+        "blob_sha1": "32a12cd147928898c4e81c8e27d598ed60d22d75",
+        "directory_tree": "3e7b2579718bcaf282bbb5b11ef70003e36dbff5",
+        "directory_sha256": "f74564e5ac6b2eb589aaccf99e6a16ecc4eced5c8912f8c17e73943b2c7361e0"
+      },
+      {
+        "identity": [
+          "androidx.annotation",
+          "annotation-jvm",
+          "1.8.1",
+          "annotation-jvm-1.8.1.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 3225,
+        "sha256": "c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0",
+        "blob_sha1": "4b0c806a3f28827581c3d833c4b471df4604ead2",
+        "directory_tree": "6572385202011e0400e63b03c424416306a46ecc",
+        "directory_sha256": "4f9842283641ab8f7e6079a20b8da4469786bd4d588b34454ef08fac393a4ae8"
+      },
+      {
+        "identity": [
+          "androidx.concurrent",
+          "concurrent-futures-ktx",
+          "1.1.0",
+          "concurrent-futures-ktx-1.1.0.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 4112,
+        "sha256": "69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19",
+        "blob_sha1": "eaa0c6788121186862871a98a89d75586e76a836",
+        "directory_tree": "2beab86a47e70fc9e2d13623aecb99b6435ea4a7",
+        "directory_sha256": "734b936ff4b3a5d27ade0282a9e74db7c678ee4d26efd6c5f8ed6af6d96419ce"
+      },
+      {
+        "identity": [
+          "androidx.core",
+          "core",
+          "1.13.0",
+          "core-1.13.0.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 6044,
+        "sha256": "2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3",
+        "blob_sha1": "a0d8b20dd622c6a6e98155a796ad07b461abeb35",
+        "directory_tree": "5639f6466456f5bd8d52ee8c84556d850c81003d",
+        "directory_sha256": "02bb5f13669d252c42d51299684f75568b2ec8cc6f3910600ebcf9aed0f17807"
+      },
+      {
+        "identity": [
+          "androidx.core",
+          "core-ktx",
+          "1.13.0",
+          "core-ktx-1.13.0.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 4655,
+        "sha256": "a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f",
+        "blob_sha1": "d344662698201197df0e12f6040693b9624b2a10",
+        "directory_tree": "e190e50f27431ea1937f561cc94517f79e0bf272",
+        "directory_sha256": "122e3b4ef9160c75c2f31171ce07071dad44c987a1ebf0b85f47e05c13ea6623"
+      },
+      {
+        "identity": [
+          "androidx.datastore",
+          "datastore-core-jvm",
+          "1.1.7",
+          "datastore-core-jvm-1.1.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 11645,
+        "sha256": "58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032",
+        "blob_sha1": "6b6977b3ff633cb6694f0cb182b1b3e91e972557",
+        "directory_tree": "31a04f0f4a79a1f2f459d52258f46fa39a3ae717",
+        "directory_sha256": "a6170cab289651348d02bfdbb3912ad0603480cf8b9ee1d6069668e731e6514c"
+      },
+      {
+        "identity": [
+          "androidx.datastore",
+          "datastore-jvm",
+          "1.1.7",
+          "datastore-jvm-1.1.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 12138,
+        "sha256": "333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5",
+        "blob_sha1": "cc2f219624ac8f707531d3b41a620e5152c46275",
+        "directory_tree": "a834c3faf76f6c5902e8c193f387fb46a460680e",
+        "directory_sha256": "88f726fa338a592120ee0f107af37604b136e25fcea9ee8bb8675d9ece2cfe69"
+      },
+      {
+        "identity": [
+          "androidx.datastore",
+          "datastore-preferences-core-jvm",
+          "1.1.7",
+          "datastore-preferences-core-jvm-1.1.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 12559,
+        "sha256": "2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c",
+        "blob_sha1": "bcb112dce2bbe816300b007f994073973989a5c3",
+        "directory_tree": "70dc569f4da205d5bc8b049985a9393a27ac6a5b",
+        "directory_sha256": "2a852716f29157b2809aeda7a6c0289fe816639d410e56bd6568e2028d53ad95"
+      },
+      {
+        "identity": [
+          "androidx.datastore",
+          "datastore-preferences-jvm",
+          "1.1.7",
+          "datastore-preferences-jvm-1.1.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 12246,
+        "sha256": "45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556",
+        "blob_sha1": "24f70aaf144578cab4c1fa44a80f70af14529b3b",
+        "directory_tree": "f5fd8b8fa895b64dcd256a84ba903a38b4f3ca79",
+        "directory_sha256": "abe63f055ee6eab437bc2f2e920ac338487c9724206694f969e4295d7976c78a"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-common",
+          "2.8.7",
+          "lifecycle-common-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 34668,
+        "sha256": "0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764",
+        "blob_sha1": "ed3cfcb6e4643803958a3fd09bafa7046f15f629",
+        "directory_tree": "63193f9cafb88c32b54b0760ddda274f07b211dd",
+        "directory_sha256": "aa40d946ca5c943a196a2c56d8776b2f90ce21c864be3fbf79a32929b9f564fc"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-common-jvm",
+          "2.8.7",
+          "lifecycle-common-jvm-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 17776,
+        "sha256": "e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060",
+        "blob_sha1": "ee9bf3095850d0bb3b29c0ea4aca056c64589cb7",
+        "directory_tree": "730df03943d95f6da67001fd6104cb86f95e477b",
+        "directory_sha256": "90af20768c11585dfcbcf48aae9537a6ded1f0e00eca0c4900495bd8d5245ec2"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-livedata",
+          "2.8.7",
+          "lifecycle-livedata-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 24021,
+        "sha256": "d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323",
+        "blob_sha1": "e3207fbd0752d215ff6e844b318d7e9167ec5d08",
+        "directory_tree": "4d9f26754d1d23a5e528f7b1010d342c1a6e183e",
+        "directory_sha256": "be96b1f137325deeab4f5f6a3a696c95e1e7ccad843ca1e9587125cb7beaf449"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-livedata-core",
+          "2.8.7",
+          "lifecycle-livedata-core-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 23508,
+        "sha256": "b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2",
+        "blob_sha1": "236ab3aff2d7f70affe38080a8cc1b290af3d47d",
+        "directory_tree": "75d0a1a4be2a24789a3cf89636454d84938fc949",
+        "directory_sha256": "c14772da1ffec8e2bc4ea1a02ab3b123a082c780e558e37f67384c2dd915e2b7"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-livedata-core-ktx",
+          "2.8.7",
+          "lifecycle-livedata-core-ktx-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 23497,
+        "sha256": "3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad",
+        "blob_sha1": "5ace935874dcb9f593e665f414e4d027e6d400d4",
+        "directory_tree": "3a160b2674ec17cf3b8d653ed489e2ad216e68ff",
+        "directory_sha256": "eb4f2441a427aff62bd02a5217b830f224bd87cc4534b3dc246c2597e8eb3849"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime",
+          "2.8.7",
+          "lifecycle-runtime-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 36423,
+        "sha256": "cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85",
+        "blob_sha1": "5d1dcea31779bb699836d593018382fe82d5a035",
+        "directory_tree": "8f5541a5aad56b3b98c9c57f78aeb27231d14301",
+        "directory_sha256": "e8fc2d9b7d27b0f4d765229f3d04956c0bbe067902dd95b68964dd498f811f8d"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime-android",
+          "2.8.7",
+          "lifecycle-runtime-android-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 21700,
+        "sha256": "4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46",
+        "blob_sha1": "1aad30de28f49ae4ecd71556afd2659e0d72c059",
+        "directory_tree": "e6a4e685ae21adad759b23255cbf2220885cce0a",
+        "directory_sha256": "8fe0cdd220c328a02b3d446c782996cf07d6c523e5ab2f18197d2c8e5ebc5335"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime-compose",
+          "2.8.7",
+          "lifecycle-runtime-compose-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 28404,
+        "sha256": "cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c",
+        "blob_sha1": "fbc1624633cbb318eb3097ebfd645c1e2f972d9e",
+        "directory_tree": "1ac4032bb0842ca66a9b00e03dfda195974a1673",
+        "directory_sha256": "d6f1d37c3e7d93c9a4de63edd12c5e7a971c582a83ebe346db619d3d8dfa1311"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime-compose-android",
+          "2.8.7",
+          "lifecycle-runtime-compose-android-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 20804,
+        "sha256": "c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902",
+        "blob_sha1": "18ce0175409fe73fd84aabc71021864499dcc7ce",
+        "directory_tree": "ac1ab4bba691452a372aca014b9df042bef5ff33",
+        "directory_sha256": "43c400c37284182ddb5a8d806ba6f26d7a11a349a3e3eb80912ac5b6c121a5bc"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime-ktx",
+          "2.8.7",
+          "lifecycle-runtime-ktx-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 24474,
+        "sha256": "09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243",
+        "blob_sha1": "67730ab7a7c887c7cc6e9263b18196c29d8f9a29",
+        "directory_tree": "86f32e594f5b9b47152dfb438648465136807814",
+        "directory_sha256": "557dae5490c8cf14745299e0d700d901729923904bec1cc784c612239c712816"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-runtime-ktx-android",
+          "2.8.7",
+          "lifecycle-runtime-ktx-android-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 20030,
+        "sha256": "adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d",
+        "blob_sha1": "1fcaa20b9102f74def6f538c749f7d999e8aa29d",
+        "directory_tree": "43e1b18e1d3de539065a5f16d9d69df77c835612",
+        "directory_sha256": "1b7155246210ae71198abbff552efcb9ee4fdecbe1cc62dbf0488de483f0e8b9"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-viewmodel",
+          "2.8.7",
+          "lifecycle-viewmodel-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 36559,
+        "sha256": "f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372",
+        "blob_sha1": "e05f3e67671814c3bbdff9df6ded5d1a8a593afb",
+        "directory_tree": "a5ccdea8da3f47c92d1a99a5ead434227584efd3",
+        "directory_sha256": "2d49a24fdcfc183b7394cc32073da55f9f92cc7e0fa1340defe7327b5dd6a188"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-viewmodel-android",
+          "2.8.7",
+          "lifecycle-viewmodel-android-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 19932,
+        "sha256": "b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc",
+        "blob_sha1": "26476880fca8a1e6a580ac944bbd31da9fb5148e",
+        "directory_tree": "7fdaacb17899e2e0be95a0337a51adff76d9233e",
+        "directory_sha256": "10a70292a496528d70d12fe4bbdacd599f9c0c8c7dbe5be51f7ae9d22e959f2a"
+      },
+      {
+        "identity": [
+          "androidx.lifecycle",
+          "lifecycle-viewmodel-savedstate",
+          "2.8.7",
+          "lifecycle-viewmodel-savedstate-2.8.7.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 25409,
+        "sha256": "bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d",
+        "blob_sha1": "830cf2369d6b163083dd0db5b4a3f11ddada3ed2",
+        "directory_tree": "c61fc480004ea34fbfa5dacf6d61f916c9e8e21c",
+        "directory_sha256": "7dd5130952581475d17b87cff8cee7349eea451875bebca7a3db35138fbde6a8"
+      },
+      {
+        "identity": [
+          "androidx.tracing",
+          "tracing",
+          "1.1.0",
+          "tracing-1.1.0.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 2822,
+        "sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3",
+        "blob_sha1": "384b9118a45dfc327eabef4e4136fc92f40792ac",
+        "directory_tree": "1cdb35d3e3d7b391d84a5ed88567dcac029bfa53",
+        "directory_sha256": "d112673e7cd552d0892f9cb472d016265895dd22d9db71722ec68247e204d4aa"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "aapt2-proto",
+          "9.2.1-15009934",
+          "aapt2-proto-9.2.1-15009934.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "aaptcompiler",
+          "9.2.1",
+          "aaptcompiler-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "builder",
+          "9.2.1",
+          "builder-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "builder-model",
+          "9.2.1",
+          "builder-model-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "builder-test-api",
+          "9.2.1",
+          "builder-test-api-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "gradle",
+          "9.2.1",
+          "gradle-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "gradle-api",
+          "9.2.1",
+          "gradle-api-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "gradle-common-api",
+          "9.2.1",
+          "gradle-common-api-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "gradle-settings-api",
+          "9.2.1",
+          "gradle-settings-api-9.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build",
+          "manifest-merger",
+          "32.2.1",
+          "manifest-merger-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.build.jetifier",
+          "jetifier-core",
+          "1.0.0-beta10",
+          "jetifier-core-1.0.0-beta10.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 3734,
+        "sha256": "f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7",
+        "blob_sha1": "18fc5400164b3ad01a24ec17b911a6adf9cf7d24",
+        "directory_tree": "a93c028994b63003608e3a46b2872d2768539734",
+        "directory_sha256": "0db6851e41bf542e83fb379229fac2bfcba5499993b7d44b408f7a48f53b9439"
+      },
+      {
+        "identity": [
+          "com.android.tools.build.jetifier",
+          "jetifier-processor",
+          "1.0.0-beta10",
+          "jetifier-processor-1.0.0-beta10.module"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 5041,
+        "sha256": "36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13",
+        "blob_sha1": "14aed10424acbda214ad498291d5a522ea60d43b",
+        "directory_tree": "aa061eab5eea8dd9902429f2c138bb51e7e156d3",
+        "directory_sha256": "e8dff3d004ad280f5be22b382352ea2d626a2e937669011628c319785ea1c40d"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-device-provider-ddmlib",
+          "32.2.1",
+          "android-device-provider-ddmlib-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-additional-test-output",
+          "32.2.1",
+          "android-test-plugin-host-additional-test-output-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-apk-installer",
+          "32.2.1",
+          "android-test-plugin-host-apk-installer-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-coverage",
+          "32.2.1",
+          "android-test-plugin-host-coverage-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-device-info",
+          "32.2.1",
+          "android-test-plugin-host-device-info-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-emulator-control",
+          "32.2.1",
+          "android-test-plugin-host-emulator-control-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-host-logcat",
+          "32.2.1",
+          "android-test-plugin-host-logcat-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "android-test-plugin-result-listener-gradle",
+          "32.2.1",
+          "android-test-plugin-result-listener-gradle-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "gradle-work-action",
+          "32.2.1",
+          "gradle-work-action-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "gradle-work-action-api",
+          "32.2.1",
+          "gradle-work-action-api-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.android.tools.utp",
+          "utp-common",
+          "32.2.1",
+          "utp-common-32.2.1.module"
+        ],
+        "status": "DIRECTORY_HTTP_404"
+      },
+      {
+        "identity": [
+          "com.google.guava",
+          "listenablefuture",
+          "1.0",
+          "listenablefuture-1.0.jar"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 3149,
+        "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+        "blob_sha1": "5e676925fa90da084afc26f2c9ae38c8201ec044",
+        "directory_tree": "bf30c117c3419e5f2d36b44d42be4866c72fa71f",
+        "directory_sha256": "fd31bf6f9310d84bc94beb30e6880d9945587d94bea324f88b587474cdc46d22"
+      },
+      {
+        "identity": [
+          "com.google.guava",
+          "listenablefuture",
+          "1.0",
+          "listenablefuture-1.0.pom"
+        ],
+        "status": "MATCHED_FROZEN_BYTES",
+        "bytes": 2226,
+        "sha256": "53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a",
+        "blob_sha1": "3bd8c01db211326957dfcf2440a326b46b1c2ab8",
+        "directory_tree": "bf30c117c3419e5f2d36b44d42be4866c72fa71f",
+        "directory_sha256": "fd31bf6f9310d84bc94beb30e6880d9945587d94bea324f88b587474cdc46d22"
+      }
+    ],
+    "pgp_signature_claim": false,
+    "namespace_wide_trust": false,
+    "active_gradle_policy_changed": false
+  },
+  "candidate_json_sha256": "9c3fb232913c5225d62f8aa0351961be17a03c791ebce034dc6a2fd79f76f467",
+  "candidate_xml_sha256": "0c34af9a06c961055de05b9c3fce4372c94a348ac44e5adca56f8f7915e274dd",
+  "remaining_runtime_identities": [
+    [
+      "org.jetbrains",
+      "annotations",
+      "23.0.0",
+      "annotations-23.0.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.jar"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-bom",
+      "1.9.0",
+      "kotlinx-coroutines-bom-1.9.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core",
+      "1.9.0",
+      "kotlinx-coroutines-core-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core-jvm",
+      "1.9.0",
+      "kotlinx-coroutines-core-jvm-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-bom",
+      "1.7.3",
+      "kotlinx-serialization-bom-1.7.3.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core",
+      "1.7.3",
+      "kotlinx-serialization-core-1.7.3.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core-jvm",
+      "1.7.3",
+      "kotlinx-serialization-core-jvm-1.7.3.module"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.jar"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.module"
+    ]
+  ],
+  "capture_limits": {
+    "module_plan": 47,
+    "matched_modules": 26,
+    "unavailable_directories_not_retried": 21,
+    "imported_collector_deadline_seconds": 120,
+    "imported_collector_max_bytes": 33554432,
+    "workers": 6,
+    "redirects": false,
+    "automatic_retries": false
+  },
+  "capture_scope_disclosure": "Original report is retained verbatim. Its runtime collector scope label and producer SHA identify the imported unchanged collector; the explicit collection adapter selected all 47 then-pending Google module identities. This review independently recomputes that selection, not runtime selection. Raw UTF8 module bytes were renamed from .bin to .module without altering their bytes. No downloaded code was executed. Guava JAR/POM reuse the unchanged previously committed capture."
+}

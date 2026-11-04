@@ -1,0 +1,753 @@
+{
+  "schema": 1,
+  "scope": "GOOGLE_PUBLISHED_POMS_ONE_IMMUTABLE_AOSP_RELEASE",
+  "metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "prior_review_sha256": "85fcf9c1f80cea5a062fb81ed2cec74f59338093fb9a9fbb8b8a464fcbd8f687",
+  "collector_sha256": "3a3926d6bbda64fe6bbcc56d7b2e1cb0d312755a4613f8a70ce2e6eab96c0b69",
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "automatic_authentication": false,
+  "results": [
+    {
+      "id": "pom-000",
+      "identity": [
+        "androidx.autofill",
+        "autofill",
+        "1.0.0",
+        "autofill-1.0.0.pom"
+      ],
+      "expected_sha256": "3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "341727c4aca040ee42ed2b1997436b6c7d144ae755f4f4e18759f820e091c4bf"
+    },
+    {
+      "id": "pom-001",
+      "identity": [
+        "androidx.cursoradapter",
+        "cursoradapter",
+        "1.0.0",
+        "cursoradapter-1.0.0.pom"
+      ],
+      "expected_sha256": "62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "cc71786da837ed5a46d9852605e0f519ac40fd766377ed9004fea2224e0246c0"
+    },
+    {
+      "id": "pom-002",
+      "identity": [
+        "androidx.customview",
+        "customview",
+        "1.0.0",
+        "customview-1.0.0.pom"
+      ],
+      "expected_sha256": "ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "a09e79b823933d3e40090b13690873834296d0f8ef6965b33efa21a71f544da3"
+    },
+    {
+      "id": "pom-003",
+      "identity": [
+        "androidx.databinding",
+        "databinding-common",
+        "9.2.1",
+        "databinding-common-9.2.1.pom"
+      ],
+      "expected_sha256": "d0633857870ae3157d29dc83eec48fe50b219db7524b05ae99d58e3cd92fa1d3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/databinding/databinding-common/9.2.1/databinding-common-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-004",
+      "identity": [
+        "androidx.databinding",
+        "databinding-compiler-common",
+        "9.2.1",
+        "databinding-compiler-common-9.2.1.pom"
+      ],
+      "expected_sha256": "7e3dd0e28a364dab896628911068f91316d903c2402ae9e367fb72a7ac241c0f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/databinding/databinding-compiler-common/9.2.1/databinding-compiler-common-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-005",
+      "identity": [
+        "androidx.documentfile",
+        "documentfile",
+        "1.0.0",
+        "documentfile-1.0.0.pom"
+      ],
+      "expected_sha256": "013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "93ea0d4513d2a0114c7910323048b73bb6e6344e0823a97773f129a54c7e9d5a"
+    },
+    {
+      "id": "pom-006",
+      "identity": [
+        "androidx.drawerlayout",
+        "drawerlayout",
+        "1.0.0",
+        "drawerlayout-1.0.0.pom"
+      ],
+      "expected_sha256": "da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "5198c6fa2ecd7ee5004804f814316629a8da918293d95803b2883bc655b91289"
+    },
+    {
+      "id": "pom-007",
+      "identity": [
+        "androidx.dynamicanimation",
+        "dynamicanimation",
+        "1.0.0",
+        "dynamicanimation-1.0.0.pom"
+      ],
+      "expected_sha256": "44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "838925d9f321bdbf3fcd8f2f5cc733993911412345cbb315496b39259f4df9c6"
+    },
+    {
+      "id": "pom-008",
+      "identity": [
+        "androidx.interpolator",
+        "interpolator",
+        "1.0.0",
+        "interpolator-1.0.0.pom"
+      ],
+      "expected_sha256": "0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "9bf4ff2ebd8df4237e4ee0632941723fc0fe4d8f42656742765c741de4de3e2d"
+    },
+    {
+      "id": "pom-009",
+      "identity": [
+        "androidx.legacy",
+        "legacy-support-core-utils",
+        "1.0.0",
+        "legacy-support-core-utils-1.0.0.pom"
+      ],
+      "expected_sha256": "8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "ac431b0fa43581acaae4b0c85d505863bfe5c86bd2eb9153f426be66828f6de3"
+    },
+    {
+      "id": "pom-010",
+      "identity": [
+        "androidx.loader",
+        "loader",
+        "1.0.0",
+        "loader-1.0.0.pom"
+      ],
+      "expected_sha256": "c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/loader/loader/1.0.0/loader-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "6eb61a767f9f9c18b0eec2c770a3a149199225c311bde7b3a026a052871383ed"
+    },
+    {
+      "id": "pom-011",
+      "identity": [
+        "androidx.localbroadcastmanager",
+        "localbroadcastmanager",
+        "1.0.0",
+        "localbroadcastmanager-1.0.0.pom"
+      ],
+      "expected_sha256": "a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "59ec27e27921d33086a04e15f0713be873fba7164dbcfb7bf5e80065aec42f6e"
+    },
+    {
+      "id": "pom-012",
+      "identity": [
+        "androidx.print",
+        "print",
+        "1.0.0",
+        "print-1.0.0.pom"
+      ],
+      "expected_sha256": "62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/print/print/1.0.0/print-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "a00acf4175b541fd882b359579cf40f8c5ef476a8d1dd729b3451dd15746744b"
+    },
+    {
+      "id": "pom-013",
+      "identity": [
+        "androidx.test",
+        "core",
+        "1.6.1",
+        "core-1.6.1.pom"
+      ],
+      "expected_sha256": "44d102e5879664a4a4e1006881f2e6d886af99db362d20cb9a659d997b32464b",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/core/1.6.1/core-1.6.1.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "22481c5c071be5893a947b4067b3e712a9e3439dae32ed3771e8acfdc7928a67"
+    },
+    {
+      "id": "pom-014",
+      "identity": [
+        "androidx.test",
+        "monitor",
+        "1.7.2",
+        "monitor-1.7.2.pom"
+      ],
+      "expected_sha256": "388fe58cf6062ffcce209853ac5c006d1d6efee9ba76b16fabfb45a7f26521ce",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/monitor/1.7.2/monitor-1.7.2.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "54eb4723a6083665d6f0a91522fcfe51660198fa836d41fadab15d8eb3fc4534"
+    },
+    {
+      "id": "pom-015",
+      "identity": [
+        "androidx.test",
+        "runner",
+        "1.6.2",
+        "runner-1.6.2.pom"
+      ],
+      "expected_sha256": "e6abf0cb643a79f3e120b3d6a03dd8906f8d6a9edb73cfbb7a64048d073a4f16",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/runner/1.6.2/runner-1.6.2.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-016",
+      "identity": [
+        "androidx.test.ext",
+        "junit",
+        "1.2.1",
+        "junit-1.2.1.pom"
+      ],
+      "expected_sha256": "983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "915323a649c9c41f20280656853b120319df7b4fac953cea695b247fbff9fd83"
+    },
+    {
+      "id": "pom-017",
+      "identity": [
+        "androidx.test.services",
+        "storage",
+        "1.5.0",
+        "storage-1.5.0.pom"
+      ],
+      "expected_sha256": "81aa4b6bacb955c15edbe9bb2ed600b7e97d2c094b0369f4eec86eca3b23465d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/test/services/storage/1.5.0/storage-1.5.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "288fd96be5d576f535827e58d3104202c36d0411439010cf6541a9f0c9ce3b7e"
+    },
+    {
+      "id": "pom-018",
+      "identity": [
+        "androidx.vectordrawable",
+        "vectordrawable",
+        "1.1.0",
+        "vectordrawable-1.1.0.pom"
+      ],
+      "expected_sha256": "5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "8a3dcaef29fcb5b3833e8fdd4e426433e11b501a189d7acc5eeeb4e64d5f2e91"
+    },
+    {
+      "id": "pom-019",
+      "identity": [
+        "androidx.vectordrawable",
+        "vectordrawable-animated",
+        "1.1.0",
+        "vectordrawable-animated-1.1.0.pom"
+      ],
+      "expected_sha256": "276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "1b037b86209012e383607b0ece9b7a14c8bc2b043991ce5b44681c9d98e8da2e"
+    },
+    {
+      "id": "pom-020",
+      "identity": [
+        "androidx.versionedparcelable",
+        "versionedparcelable",
+        "1.1.1",
+        "versionedparcelable-1.1.1.pom"
+      ],
+      "expected_sha256": "5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "6bca09a1610251bd09e70dd6234eaca166e672e254690a71d6e4b096f1197eef"
+    },
+    {
+      "id": "pom-021",
+      "identity": [
+        "androidx.viewpager",
+        "viewpager",
+        "1.0.0",
+        "viewpager-1.0.0.pom"
+      ],
+      "expected_sha256": "1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "8bbdb9e40db273fa7172c9ee6ebf2fe7bfc7877e7c2cc4e8acaae637fb98e8cb"
+    },
+    {
+      "id": "pom-022",
+      "identity": [
+        "com.android.application",
+        "com.android.application.gradle.plugin",
+        "9.2.1",
+        "com.android.application.gradle.plugin-9.2.1.pom"
+      ],
+      "expected_sha256": "b97b73de27b383d5073d91314dfa86736ddacdae4fe498c3b35bc49ef14d9cb2",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/application/com.android.application.gradle.plugin/9.2.1/com.android.application.gradle.plugin-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-023",
+      "identity": [
+        "com.android.databinding",
+        "baseLibrary",
+        "9.2.1",
+        "baseLibrary-9.2.1.pom"
+      ],
+      "expected_sha256": "8ddbc65e26b82a4d56c2137717e9041b96159b691cfc65395fefdda85204b58b",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/databinding/baseLibrary/9.2.1/baseLibrary-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-024",
+      "identity": [
+        "com.android.library",
+        "com.android.library.gradle.plugin",
+        "9.2.1",
+        "com.android.library.gradle.plugin-9.2.1.pom"
+      ],
+      "expected_sha256": "efec35f0deb6faeb7aaa9d0474b265d84887ee14f3a43b284cb9deabb7810903",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/library/com.android.library.gradle.plugin/9.2.1/com.android.library.gradle.plugin-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-025",
+      "identity": [
+        "com.android.tools",
+        "annotations",
+        "32.2.1",
+        "annotations-32.2.1.pom"
+      ],
+      "expected_sha256": "9f3a8890f9a80d8928d8a2ca8b540c82b062a33d17339b1265b2c47177738cc9",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/annotations/32.2.1/annotations-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-026",
+      "identity": [
+        "com.android.tools",
+        "common",
+        "32.2.1",
+        "common-32.2.1.pom"
+      ],
+      "expected_sha256": "2de83a285e21abc38fdcf1a74edd6310aad4bd2bfd98d1cf9036b263aa50c54f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/common/32.2.1/common-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-027",
+      "identity": [
+        "com.android.tools",
+        "dvlib",
+        "32.2.1",
+        "dvlib-32.2.1.pom"
+      ],
+      "expected_sha256": "8b9fbc44215390c86c3a3312ba351eac70f26d59a82253f9d0ed2017cd0f2366",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/dvlib/32.2.1/dvlib-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-028",
+      "identity": [
+        "com.android.tools",
+        "play-sdk-proto",
+        "32.2.1",
+        "play-sdk-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "57bdaf89f51bc1368b6291e2353de2e8214bd6181caf8e036c2b6bcada587f0d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/play-sdk-proto/32.2.1/play-sdk-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-029",
+      "identity": [
+        "com.android.tools",
+        "repository",
+        "32.2.1",
+        "repository-32.2.1.pom"
+      ],
+      "expected_sha256": "5df98b0be251645da7a5acb772db1256d87499345fc24bf72e0f9e8e0335b653",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/repository/32.2.1/repository-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-030",
+      "identity": [
+        "com.android.tools",
+        "sdk-common",
+        "32.2.1",
+        "sdk-common-32.2.1.pom"
+      ],
+      "expected_sha256": "9607f02187c03cf23da8c509c8e3ce2d1d983a4342eabe9fd97fa6507ba18240",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/sdk-common/32.2.1/sdk-common-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-031",
+      "identity": [
+        "com.android.tools",
+        "sdklib",
+        "32.2.1",
+        "sdklib-32.2.1.pom"
+      ],
+      "expected_sha256": "785eff59677538b01dbc63d65a2afe879b3f8b0fec24e691c0d5b7bc49f6684c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/sdklib/32.2.1/sdklib-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-032",
+      "identity": [
+        "com.android.tools.analytics-library",
+        "crash",
+        "32.2.1",
+        "crash-32.2.1.pom"
+      ],
+      "expected_sha256": "737ae2730b4bfadb2b64d727d482af71d3fc35708282acd3ddea6c4317036b55",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/analytics-library/crash/32.2.1/crash-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-033",
+      "identity": [
+        "com.android.tools.analytics-library",
+        "protos",
+        "32.2.1",
+        "protos-32.2.1.pom"
+      ],
+      "expected_sha256": "99b685a2df455828ed3d84ada36c6ac6a00091c65e7525bc49fc6a74404d0b73",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/analytics-library/protos/32.2.1/protos-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-034",
+      "identity": [
+        "com.android.tools.analytics-library",
+        "shared",
+        "32.2.1",
+        "shared-32.2.1.pom"
+      ],
+      "expected_sha256": "b6047af9373c7408ba5c9857e48cb0f91e5079f25a4f162dd3d7e305613be96d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/analytics-library/shared/32.2.1/shared-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-035",
+      "identity": [
+        "com.android.tools.analytics-library",
+        "tracker",
+        "32.2.1",
+        "tracker-32.2.1.pom"
+      ],
+      "expected_sha256": "1d0af5e4898bafdf0bc8f127f215fd0ec59faa7a9a7c9d37e04e2c9bd54161db",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/analytics-library/tracker/32.2.1/tracker-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-036",
+      "identity": [
+        "com.android.tools.build",
+        "aapt2",
+        "9.2.1-15009934",
+        "aapt2-9.2.1-15009934.pom"
+      ],
+      "expected_sha256": "3f422e9f421a692446b3cc480a1c78b53b29ea934fd67ad52786ef5cd6a67e87",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/aapt2/9.2.1-15009934/aapt2-9.2.1-15009934.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-037",
+      "identity": [
+        "com.android.tools.build",
+        "apksig",
+        "9.2.1",
+        "apksig-9.2.1.pom"
+      ],
+      "expected_sha256": "4b4ad3cc908d3137811a377cf8281eb1f9a404b1e8d3058bd810f21213a052bd",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/apksig/9.2.1/apksig-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-038",
+      "identity": [
+        "com.android.tools.build",
+        "apkzlib",
+        "9.2.1",
+        "apkzlib-9.2.1.pom"
+      ],
+      "expected_sha256": "da188f92359c3b7c71a60f3e4e4ae8d9c3211f51919cfeeda8a6c0268db1596f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/apkzlib/9.2.1/apkzlib-9.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-039",
+      "identity": [
+        "com.android.tools.build",
+        "bundletool",
+        "1.18.3",
+        "bundletool-1.18.3.pom"
+      ],
+      "expected_sha256": "fa674b39b96cae98015f3850f366cfeb00fe6c7aea2d90b20c017b90e0996dae",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/bundletool/1.18.3/bundletool-1.18.3.pom",
+      "status": "MATCHED_FROZEN_BYTES",
+      "registry_sha256": "63166c80f987c7597d77597b05a57ace90825d136aa231ff854c8fe094778813"
+    },
+    {
+      "id": "pom-040",
+      "identity": [
+        "com.android.tools.ddms",
+        "ddmlib",
+        "32.2.1",
+        "ddmlib-32.2.1.pom"
+      ],
+      "expected_sha256": "fdf1e17c967b99941ef56d1293e167ff68e78572836a69a8e89d80690c34ba55",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/ddms/ddmlib/32.2.1/ddmlib-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-041",
+      "identity": [
+        "com.android.tools.emulator",
+        "proto",
+        "32.2.1",
+        "proto-32.2.1.pom"
+      ],
+      "expected_sha256": "f8c227b9b7f74bad1484fb9cd576d97b9540e5bd4dbaa0daa48d3ba07ff21c36",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/emulator/proto/32.2.1/proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-042",
+      "identity": [
+        "com.android.tools.external.com-intellij",
+        "intellij-core",
+        "32.2.1",
+        "intellij-core-32.2.1.pom"
+      ],
+      "expected_sha256": "27b7d0585ca46ce545f3623b8236ef85d4408c94158f24a897fbb63032ad9664",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/external/com-intellij/intellij-core/32.2.1/intellij-core-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-043",
+      "identity": [
+        "com.android.tools.external.com-intellij",
+        "kotlin-compiler",
+        "32.2.1",
+        "kotlin-compiler-32.2.1.pom"
+      ],
+      "expected_sha256": "7b65b3a2a6f62649c1e501e7d5048429bbe751e89a7b32da7bd0baeac07455d4",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/external/com-intellij/kotlin-compiler/32.2.1/kotlin-compiler-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-044",
+      "identity": [
+        "com.android.tools.external.org-jetbrains",
+        "uast",
+        "32.2.1",
+        "uast-32.2.1.pom"
+      ],
+      "expected_sha256": "46b2be94f7fb2ff11cb24d53034c8e9fc32b23bc8b33dc3c4c3e6f985a8b73f0",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/external/org-jetbrains/uast/32.2.1/uast-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-045",
+      "identity": [
+        "com.android.tools.layoutlib",
+        "layoutlib-api",
+        "32.2.1",
+        "layoutlib-api-32.2.1.pom"
+      ],
+      "expected_sha256": "ee16c4de1cf7607e50a95d33a0b6c11ec18fe9d2bfe924f406d715536ee7dd85",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/layoutlib/layoutlib-api/32.2.1/layoutlib-api-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-046",
+      "identity": [
+        "com.android.tools.lint",
+        "lint",
+        "32.2.1",
+        "lint-32.2.1.pom"
+      ],
+      "expected_sha256": "fb585be9dfa2c842341448af02133955538ec5286e82550bdfc71294e9c02f71",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint/32.2.1/lint-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-047",
+      "identity": [
+        "com.android.tools.lint",
+        "lint-api",
+        "32.2.1",
+        "lint-api-32.2.1.pom"
+      ],
+      "expected_sha256": "6cf8beafd0746b96ad470513241f12e6396af16eb409845ef44b7e6d63bcf216",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint-api/32.2.1/lint-api-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-048",
+      "identity": [
+        "com.android.tools.lint",
+        "lint-checks",
+        "32.2.1",
+        "lint-checks-32.2.1.pom"
+      ],
+      "expected_sha256": "c2a2bbc4ad28b7b4e57408bec5082e460bcf0335c8cbfc75aa387a6eff3fb3de",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint-checks/32.2.1/lint-checks-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-049",
+      "identity": [
+        "com.android.tools.lint",
+        "lint-gradle",
+        "32.2.1",
+        "lint-gradle-32.2.1.pom"
+      ],
+      "expected_sha256": "cf86e0e833ddd44f500d4bfcba10baef1e3bcded59b4ab744d161a5ea4b5367e",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint-gradle/32.2.1/lint-gradle-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-050",
+      "identity": [
+        "com.android.tools.lint",
+        "lint-model",
+        "32.2.1",
+        "lint-model-32.2.1.pom"
+      ],
+      "expected_sha256": "1ebf1ef5b2365d185163a08774d50319fc23a0864e9b552716814e2a78b82b90",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint-model/32.2.1/lint-model-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-051",
+      "identity": [
+        "com.android.tools.lint",
+        "lint-typedef-remover",
+        "32.2.1",
+        "lint-typedef-remover-32.2.1.pom"
+      ],
+      "expected_sha256": "4d39dbf2923840ba1d077cb5d91955f95535163115d4c6c9cc92dd134fcd9a01",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/lint/lint-typedef-remover/32.2.1/lint-typedef-remover-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-052",
+      "identity": [
+        "com.android.tools.utp",
+        "android-device-provider-ddmlib-proto",
+        "32.2.1",
+        "android-device-provider-ddmlib-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "e11f7f975e2fcf4c42eb5c2b7e7f1bb63ebc4525a265eed6a0c7f9782c6d738c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-device-provider-ddmlib-proto/32.2.1/android-device-provider-ddmlib-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-053",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-additional-test-output-proto",
+        "32.2.1",
+        "android-test-plugin-host-additional-test-output-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "e9d7de48d75dfc246518c524794a5ba220cb2c344b8f6d1ba5e3544e0605d725",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-additional-test-output-proto/32.2.1/android-test-plugin-host-additional-test-output-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-054",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-apk-installer-proto",
+        "32.2.1",
+        "android-test-plugin-host-apk-installer-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "5cf66d19967adc953109ca75e3b9c20f2156457c508a8b21f12def32568b5d5e",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-apk-installer-proto/32.2.1/android-test-plugin-host-apk-installer-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-055",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-coverage-proto",
+        "32.2.1",
+        "android-test-plugin-host-coverage-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "07af3954b4411c4acb4a013fa68dea8fd184eacf465ba2877cdc616ef6e34c4d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-coverage-proto/32.2.1/android-test-plugin-host-coverage-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-056",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-device-info-proto",
+        "32.2.1",
+        "android-test-plugin-host-device-info-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "a6441001a1aa0355dc2665feea0eb5f26f8106c5f8bc9209ec95db2467aec88d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-device-info-proto/32.2.1/android-test-plugin-host-device-info-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-057",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-emulator-control-proto",
+        "32.2.1",
+        "android-test-plugin-host-emulator-control-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "d2aa885bd5a60fa105e183a177f96932732ac28c3e8e79809e057082c47b95ab",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-emulator-control-proto/32.2.1/android-test-plugin-host-emulator-control-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-058",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-logcat-proto",
+        "32.2.1",
+        "android-test-plugin-host-logcat-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "870225306272242c80a40ec4e7cbdec034bddbfc69d1b1048b02a880541d86cc",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-logcat-proto/32.2.1/android-test-plugin-host-logcat-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    },
+    {
+      "id": "pom-059",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-result-listener-gradle-proto",
+        "32.2.1",
+        "android-test-plugin-result-listener-gradle-proto-32.2.1.pom"
+      ],
+      "expected_sha256": "aef90efbd07c0ac3da2888e1c3906a121285ad019a9db32a5aeaae03f88b66e3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-result-listener-gradle-proto/32.2.1/android-test-plugin-result-listener-gradle-proto-32.2.1.pom",
+      "status": "HTTP_404"
+    }
+  ]
+}

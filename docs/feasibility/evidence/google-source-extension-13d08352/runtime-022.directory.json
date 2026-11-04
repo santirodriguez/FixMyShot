@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "c61fc480004ea34fbfa5dacf6d61f916c9e8e21c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d114ea33f0fac59454d61ca966e3052e184c505d",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f1772a762b2560ac98de4b19c9f8bb56ff15e23d",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "1de86df76babb26e6c6066acab92d17d88fe02c5",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d276aac3861119a3b13c48fbc2541522141075be",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "830cf2369d6b163083dd0db5b4a3f11ddada3ed2",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6d0ebcfa8cb7d1e48afaf9a2a35e065c025e087a",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6ac577b710bf3164d6c17fec5cf92186a561f29a",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9eeaab20ad811ce3a33ad475f529659d1432a82a",
+      "name": "lifecycle-viewmodel-savedstate-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d8f90987e3b4c2cbbdb7b41ca972f3a86678f1b6",
+      "name": "origin.json"
+    }
+  ]
+}

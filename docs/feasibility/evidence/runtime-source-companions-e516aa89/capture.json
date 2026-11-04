@@ -1,0 +1,2362 @@
+{
+  "schema": 1,
+  "scope": "PUBLISHED_SOURCE_COMPANION_STAGING_NOT_CORRESPONDING_SOURCE_OR_ISSUER_APPROVAL",
+  "captured_at_utc": "2026-10-25T20:05:26.516180+00:00",
+  "metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "app_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+  "catalog_sha256": "f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407",
+  "producer_files": {
+    "capture-runtime-sources.py": "e85789e174a311d8d9f02079035a9eb32b52e3ca6e49f85b464c85433562919c",
+    "audit-runtime-licenses.py": "30156530be9d689f78c9c840bd8b31f33be2e1e5688f1fdee415d61536551cd0",
+    "review-dependency-provenance.py": "dafaf9f96bfdbbf6e315ea2385933d38597de62603a7f72a8bdcf26aa804c250"
+  },
+  "issuer_authentication_approved": false,
+  "complete_corresponding_source_approved": false,
+  "components": [
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0-sources.jar",
+      "relative_archive": "archives/000-activity-compose-1.11.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 16146,
+      "archive_sha256": "d90a2c22431fcd2bdad4b2f3637c831ec8ea124376f46a9a341e98c969e0f9e0",
+      "members": 16,
+      "regular_files": 9,
+      "expanded_bytes": 39960,
+      "source_files": 7,
+      "source_bytes": 29760,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/activity/activity-compose/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "1a83082427de420dc7f3a0723a531c2b08bbd1a18b66950a2cfbe95521286903"
+    },
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-ktx/1.11.0/activity-ktx-1.11.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "3663f6811a3c6c0c28f8ba82ba5e9f363f4bc12ee53155794f456d3c5b2acae3"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-ktx/1.11.0/activity-ktx-1.11.0-sources.jar",
+      "relative_archive": "archives/001-activity-ktx-1.11.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4406,
+      "archive_sha256": "e3201cf6c56fade2fc70e2f70408260992b83ddf0ccf4b69221a98ae26c02d74",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/activity/activity-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "e23d96efbe1cb81c69ac36d28776081240aa6c2eb23b2a9883cea43c4d4a53e2"
+    },
+    {
+      "coordinate": "androidx.activity:activity:1.11.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "26726186b34f90b0fe55bbf0ebbf640ade99915bc35f4cb0153ddcf751499bd3"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0-sources.jar",
+      "relative_archive": "archives/002-activity-1.11.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 64328,
+      "archive_sha256": "c5c0ec34e54ce4ca4d7f29010096d670f4fa3ec6528b57c48801b7e090ac2b6a",
+      "members": 39,
+      "regular_files": 30,
+      "expanded_bytes": 232859,
+      "source_files": 28,
+      "source_bytes": 222659,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/activity/activity/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "04f5d028d346215121d36c3fb3bcb67012499fe839bd5ade729024986fefef4d"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "6bd4c7c7476f8260cd3bdbb81183583e93fc9f790c27dea7dc314181cbf87aa0"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1-sources.jar",
+      "relative_archive": "archives/003-annotation-experimental-1.4.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 5257,
+      "archive_sha256": "783a221a7c1093ff8932053998a69a24489f7930806a32b55366108146d29c1d",
+      "members": 9,
+      "regular_files": 5,
+      "expanded_bytes": 8983,
+      "source_files": 4,
+      "source_bytes": 8958,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "8b2ac8ec2dbca7ced48e55ed2b2fcc2f4bf42b8560d476d23d1b67f89a80fc45"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1e343917ebf27ba96fe4dc52b1cad7fd32b738fbc6355bb6cd5b3b305d7212d0"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1-sources.jar",
+      "relative_archive": "archives/004-annotation-jvm-1.9.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 71470,
+      "archive_sha256": "c6ae897fbfb73ca09d4ae31a24bfff85c652097ad10644cdbb738488728cb39b",
+      "members": 82,
+      "regular_files": 72,
+      "expanded_bytes": 123743,
+      "source_files": 70,
+      "source_bytes": 113543,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/annotation/annotation/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "4736dde9494dfa0615300108f7f0236e0051e5c4d90e3bf33c34f00c01b3a0c2"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation:1.9.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.9.1/annotation-1.9.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "8e2db31224ca53b108c784da2b361959062716d416b210cfef3d5a3828306df0"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1-sources.jar",
+      "relative_archive": "archives/006-appcompat-resources-1.7.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 40127,
+      "archive_sha256": "cacf441fbbec0ebf12b4308bbeeb9a7389387c35a66f13bd2551dc328cf33ead",
+      "members": 23,
+      "regular_files": 14,
+      "expanded_bytes": 152088,
+      "source_files": 13,
+      "source_bytes": 152063,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "16fbc7afd96bc2dd99f2d48ef9100ddffdb7e6400abc45b00cb80b4a95a2fa5f"
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat:1.7.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat/1.7.1/appcompat-1.7.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat/1.7.1/appcompat-1.7.1-sources.jar",
+      "relative_archive": "archives/007-appcompat-1.7.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 496096,
+      "archive_sha256": "d3f8371e7b5b61e36450677af4e911c351c9ec625e9a7fc5b44acbb3fbc3a45d",
+      "members": 137,
+      "regular_files": 127,
+      "expanded_bytes": 2059705,
+      "source_files": 126,
+      "source_bytes": 2059680,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "6b8e85a96b9eb419b7ca192f775df42c6ee1c30e30c45b3dd8e46e1d4993a301"
+    },
+    {
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0-sources.jar",
+      "relative_archive": "archives/008-core-common-2.2.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 5684,
+      "archive_sha256": "563d430880d847890029234386ef03adb95403c34f3c9dec3a7002e2f4007ae4",
+      "members": 10,
+      "regular_files": 4,
+      "expanded_bytes": 15091,
+      "source_files": 3,
+      "source_bytes": 15066,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "08834c69d25ba1dc2f7f9aee1ba370ffa0edbc1e145482ce2be2a0347802e0cd"
+    },
+    {
+      "coordinate": "androidx.arch.core:core-runtime:2.2.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0-sources.jar",
+      "relative_archive": "archives/009-core-runtime-2.2.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4715,
+      "archive_sha256": "4adaab3a8ab711634d566d2e239e199af8b5ac92c1de85540dc34c7040754e96",
+      "members": 9,
+      "regular_files": 4,
+      "expanded_bytes": 9139,
+      "source_files": 3,
+      "source_bytes": 9114,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "d6a4e131ca18e0f9c0934e6a761f269399c4fd5f88d4086540f5900246f1adc7"
+    },
+    {
+      "coordinate": "androidx.autofill:autofill:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom",
+      "pom_sha256": "3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450",
+      "frozen_binary_sha256": [
+        "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/autofill/autofill/1.0.0/autofill-1.0.0-sources.jar",
+      "relative_archive": "archives/010-autofill-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 3715,
+      "archive_sha256": "05d18219a30b897f96b2eed2480329ce48da34cfba6416ecfde1289674a1f35f",
+      "members": 5,
+      "regular_files": 2,
+      "expanded_bytes": 27619,
+      "source_files": 1,
+      "source_bytes": 27594,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "a3c7068f779f4b2ee0eb8e98fe21cdf03dcefa2f3a83bcaff4a25290599ced15"
+    },
+    {
+      "coordinate": "androidx.collection:collection-jvm:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0-sources.jar",
+      "relative_archive": "archives/011-collection-jvm-1.5.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 288386,
+      "archive_sha256": "bcc6197ec5fb349e86ae3ba6c94b164d3a9ac5a03d9f9c235d7c4eb24e5878b3",
+      "members": 73,
+      "regular_files": 61,
+      "expanded_bytes": 1235822,
+      "source_files": 59,
+      "source_bytes": 1225622,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/collection/collection/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "eb184a6bdfabe1c8509d62e8ffe3bff673a23a6ad1728112db448e261f53eae4"
+    },
+    {
+      "coordinate": "androidx.collection:collection-ktx:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0-sources.jar",
+      "relative_archive": "archives/012-collection-ktx-1.5.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4426,
+      "archive_sha256": "335a9cd93dcb4afab7c4daa34d5d4e24b38443ccef4ae5fffdfd6cf4f718b01e",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/collection/collection-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "0b6b5efdbcb31191e1afdb4a9951dded4a425b28be208319bd27c1de5f49d982"
+    },
+    {
+      "coordinate": "androidx.collection:collection:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection/1.5.0/collection-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0-sources.jar",
+      "relative_archive": "archives/014-animation-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 96452,
+      "archive_sha256": "a9491a146c1715139444d74876897186699f5c8e49edf66f42d7df721f0f781d",
+      "members": 48,
+      "regular_files": 29,
+      "expanded_bytes": 394105,
+      "source_files": 26,
+      "source_bytes": 383317,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/animation/animation/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "1c861a81435e5e7b07ccae744559d8b0e08488afbbe89ded3c75b542b4750e00"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-core-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core-android/1.10.0/animation-core-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core-android/1.10.0/animation-core-android-1.10.0-sources.jar",
+      "relative_archive": "archives/015-animation-core-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 115164,
+      "archive_sha256": "12c1db9f74f744f4c33d04ab7272226dc1e67a1e5cfafbe808036718ac954fe1",
+      "members": 59,
+      "regular_files": 42,
+      "expanded_bytes": 447541,
+      "source_files": 39,
+      "source_bytes": 436608,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/animation/animation-core/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "106cfb968de615623e5dd17ce8fd5d5674a7dea4e2bac0c1037012cca52cf3c7"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-core:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core/1.10.0/animation-core-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation/1.10.0/animation-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-android/1.10.0/foundation-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-android/1.10.0/foundation-android-1.10.0-sources.jar",
+      "relative_archive": "archives/018-foundation-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 1084664,
+      "archive_sha256": "741aed4a8fb21b91c03238dc6eddc9c2b10f57b0770c9d711dbdc1b7cf61b7e5",
+      "members": 493,
+      "regular_files": 419,
+      "expanded_bytes": 3788070,
+      "source_files": 416,
+      "source_bytes": 3775576,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/foundation/foundation/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "20666f451d4959181ea137e8183954e0c9b30bd77afa5fbf67c57e6906ab5886"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout-android/1.10.0/foundation-layout-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "85513652dc9e458be47683dc0e61473e0bbbe24417d18c4eaf15b0c25a60318c"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout-android/1.10.0/foundation-layout-android-1.10.0-sources.jar",
+      "relative_archive": "archives/019-foundation-layout-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 109065,
+      "archive_sha256": "2078cb0647875e51b6a84ada6bd120a81f29ab977899d457f2b11656f4248e50",
+      "members": 55,
+      "regular_files": 33,
+      "expanded_bytes": 506045,
+      "source_files": 31,
+      "source_bytes": 495845,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/foundation/foundation-layout/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "9d4ec266a19ca47975b7a6521aa96eb6f474a53dde0b3bf26b7d7f25ffb23603"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-layout:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout/1.10.0/foundation-layout-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation/1.10.0/foundation-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3-android:1.4.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3-android/1.4.0/material3-android-1.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "3a37e8b36df3822fe1e6059f0f9fafda8800388860477624ac1b9422c418a36e"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3-android/1.4.0/material3-android-1.4.0-sources.jar",
+      "relative_archive": "archives/022-material3-android-1.4.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 703105,
+      "archive_sha256": "3e3209422a382566a780e2c1410edd866e4474498098fdbcf942c690ade1ddaa",
+      "members": 276,
+      "regular_files": 252,
+      "expanded_bytes": 3347095,
+      "source_files": 249,
+      "source_bytes": 3325618,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/material3/material3/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "0829b16a06a17ab047d37b76e7328d0b29bf579104d2ce70ef99d69b372c703a"
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3:1.4.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3/1.4.0/material3-1.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.material:material-ripple-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple-android/1.10.0/material-ripple-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple-android/1.10.0/material-ripple-android-1.10.0-sources.jar",
+      "relative_archive": "archives/024-material-ripple-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 30931,
+      "archive_sha256": "7ec7d1d2136078edeadd3b01ab10af49b79f3d8b9b498a0ecf49416ebda7d252",
+      "members": 24,
+      "regular_files": 9,
+      "expanded_bytes": 93835,
+      "source_files": 7,
+      "source_bytes": 83635,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/material/material-ripple/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "d17d95ab4dcd8bbe2e0b4be11f51baefc6e54a4b4b7182189a2b8a14b542497b"
+    },
+    {
+      "coordinate": "androidx.compose.material:material-ripple:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple/1.10.0/material-ripple-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.10.0/runtime-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.10.0/runtime-android-1.10.0-sources.jar",
+      "relative_archive": "archives/026-runtime-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 462036,
+      "archive_sha256": "7596b9060c0d4271a37d2b4ff5e60eaabb663469f86bfcf3429d49083c70703d",
+      "members": 238,
+      "regular_files": 194,
+      "expanded_bytes": 1682654,
+      "source_files": 190,
+      "source_bytes": 1670424,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/runtime/runtime/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "faa53dea3dd62a21e592c02415a0a1f03af3cd3a622fc7a301bc0394b58c3e1f"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation-android/1.10.0/runtime-annotation-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation-android/1.10.0/runtime-annotation-android-1.10.0-sources.jar",
+      "relative_archive": "archives/027-runtime-annotation-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 12735,
+      "archive_sha256": "faddbe6240e43542fcccfb4106f15b36494facbd81dc18e58124c1327dfe4fb1",
+      "members": 19,
+      "regular_files": 9,
+      "expanded_bytes": 22418,
+      "source_files": 6,
+      "source_bytes": 11840,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/runtime/runtime-annotation/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "f4ffcd312650f5f37fdc382ddaab290a9ae5fea9671b27a96d95774fe5d577ea"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-annotation:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation/1.10.0/runtime-annotation-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain-android/1.10.0/runtime-retain-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain-android/1.10.0/runtime-retain-android-1.10.0-sources.jar",
+      "relative_archive": "archives/029-runtime-retain-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 31336,
+      "archive_sha256": "5acfa51320a00d8db46a2c54f67beaf636c5320274f4d76b3499161b0b7eb018",
+      "members": 31,
+      "regular_files": 15,
+      "expanded_bytes": 89472,
+      "source_files": 13,
+      "source_bytes": 79272,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/runtime/runtime-retain/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "4d510fb9741a9dcd7c28c62330d5c0e672b6879f60b540f0008eb56e39399e78"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-retain:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain/1.10.0/runtime-retain-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-android/1.10.0/runtime-saveable-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-android/1.10.0/runtime-saveable-android-1.10.0-sources.jar",
+      "relative_archive": "archives/031-runtime-saveable-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 22402,
+      "archive_sha256": "6d8d50f5fbdf4ae9ba0602328c9cd9e3ac1beaf64fe40d8890712d7b208fe39d",
+      "members": 22,
+      "regular_files": 11,
+      "expanded_bytes": 62309,
+      "source_files": 9,
+      "source_bytes": 52109,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/runtime/runtime-saveable/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "9dbea83e845ee7db975ec61ca5822d354d8125bd8111c68fe44d88f3fe46af88"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-saveable:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable/1.10.0/runtime-saveable-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime/1.10.0/runtime-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-android/1.10.0/ui-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-android/1.10.0/ui-android-1.10.0-sources.jar",
+      "relative_archive": "archives/034-ui-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 978444,
+      "archive_sha256": "a47331ac10dc5080b12f08d182fcdb2ce11158b689090aae7ab1a38832c5bdb2",
+      "members": 454,
+      "regular_files": 374,
+      "expanded_bytes": 3386808,
+      "source_files": 370,
+      "source_bytes": 3351468,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "80d3c374291efc46aaad9e34889be50a8334f7f9bdcf356360e57a74092cae7b"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-geometry-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry-android/1.10.0/ui-geometry-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry-android/1.10.0/ui-geometry-android-1.10.0-sources.jar",
+      "relative_archive": "archives/035-ui-geometry-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 25602,
+      "archive_sha256": "8b4ab7f4776d1e1d78fbdde46637bfe51f01e365d13d5253b905bf3f0361b0e0",
+      "members": 20,
+      "regular_files": 10,
+      "expanded_bytes": 74168,
+      "source_files": 8,
+      "source_bytes": 63968,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui-geometry/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "ae8082e3e2ca8503fb80e8a9ab8dbc3c9ea0d4dc4130f6de957b271aa5f1cf86"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-geometry:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry/1.10.0/ui-geometry-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-graphics-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics-android/1.10.0/ui-graphics-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics-android/1.10.0/ui-graphics-android-1.10.0-sources.jar",
+      "relative_archive": "archives/037-ui-graphics-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 276989,
+      "archive_sha256": "963de783dc1a7f8274e9eb9e3125092238cd784d4470e78a34d01fcf1624c0e7",
+      "members": 139,
+      "regular_files": 113,
+      "expanded_bytes": 968113,
+      "source_files": 110,
+      "source_bytes": 957448,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui-graphics/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "bde864fac1df08ed14a555189097e00329f60c74f75d4ab87a7cb7c772431f21"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-graphics:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics/1.10.0/ui-graphics-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-text-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text-android/1.10.0/ui-text-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text-android/1.10.0/ui-text-android-1.10.0-sources.jar",
+      "relative_archive": "archives/039-ui-text-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 344100,
+      "archive_sha256": "9440b0cae0c4d7f811d840bde40c3eeeb466d53a78a266932fe5f4b3ce6503a5",
+      "members": 204,
+      "regular_files": 165,
+      "expanded_bytes": 1175351,
+      "source_files": 162,
+      "source_bytes": 1164683,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui-text/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "852d1395abf6ee71b8d57a2aeeaf84b967a04cad6518906da70731db72856312"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-text:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text/1.10.0/ui-text-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-unit-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit-android/1.10.0/ui-unit-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit-android/1.10.0/ui-unit-android-1.10.0-sources.jar",
+      "relative_archive": "archives/041-ui-unit-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 47155,
+      "archive_sha256": "8a124fbc5b090990a96116d1190fb5cef817e7fec200ce2c91c19844b51a31d0",
+      "members": 46,
+      "regular_files": 23,
+      "expanded_bytes": 128460,
+      "source_files": 21,
+      "source_bytes": 118260,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui-unit/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "24623e2dbc30892068cc25dd5f2cb5b62a331629ca4bc87cbf5192037217a6ff"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-unit:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit/1.10.0/ui-unit-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-util-android:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util-android/1.10.0/ui-util-android-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util-android/1.10.0/ui-util-android-1.10.0-sources.jar",
+      "relative_archive": "archives/043-ui-util-android-1.10.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 19692,
+      "archive_sha256": "d015468b2b45b1c09c7dce13dcbe954e8bda268a627096f987fc0961ee766d90",
+      "members": 31,
+      "regular_files": 11,
+      "expanded_bytes": 57806,
+      "source_files": 9,
+      "source_bytes": 47606,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/compose/ui/ui-util/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "1ce4af986b57fe38ec394022176c9640258f0802077f1c5a19da16305b4f3b4b"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-util:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util/1.10.0/ui-util-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui:1.10.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui/1.10.0/ui-1.10.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.compose:compose-bom:2025.12.00",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/compose/compose-bom/2025.12.00/compose-bom-2025.12.00.pom",
+      "pom_sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.concurrent:concurrent-futures:1.1.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0-sources.jar",
+      "relative_archive": "archives/047-concurrent-futures-1.1.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 19716,
+      "archive_sha256": "cc06fb6045a6c066f50e237a3c2126bc88c16d358a57b3612ba633c9f530b0a0",
+      "members": 9,
+      "regular_files": 5,
+      "expanded_bytes": 69833,
+      "source_files": 4,
+      "source_bytes": 69808,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "30658f0d95c7fc54213aa6d4d5a35d10ef9737d25bdd3e32668d566eda33f694"
+    },
+    {
+      "coordinate": "androidx.core:core-ktx:1.16.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/core/core-ktx/1.16.0/core-ktx-1.16.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/core/core-ktx/1.16.0/core-ktx-1.16.0-sources.jar",
+      "relative_archive": "archives/048-core-ktx-1.16.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 73838,
+      "archive_sha256": "1aadd1028ab3bad23c90cfed674d660e0743056db16076d7d35a99f9827c4d42",
+      "members": 80,
+      "regular_files": 59,
+      "expanded_bytes": 194873,
+      "source_files": 57,
+      "source_bytes": 184673,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/core/core-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "2140bbd06bce72ef78d90e0c644968350a46ebce4212d2b3059cb759e510ce26"
+    },
+    {
+      "coordinate": "androidx.core:core-viewtree:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/core/core-viewtree/1.0.0/core-viewtree-1.0.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/core/core-viewtree/1.0.0/core-viewtree-1.0.0-sources.jar",
+      "relative_archive": "archives/049-core-viewtree-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6342,
+      "archive_sha256": "7026f2086f667720c43d4ca6bc58ab016d122ae0a404ca94e5fef6a7090e0984",
+      "members": 10,
+      "regular_files": 3,
+      "expanded_bytes": 13650,
+      "source_files": 1,
+      "source_bytes": 3450,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/core/core-viewtree/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "cbf691d586476928330db6dec12827fe1519edd2b9b65b2c18bda2812e2461e5"
+    },
+    {
+      "coordinate": "androidx.core:core:1.16.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/core/core/1.16.0/core-1.16.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/core/core/1.16.0/core-1.16.0-sources.jar",
+      "relative_archive": "archives/050-core-1.16.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 972131,
+      "archive_sha256": "ed8ec0b5d74352b852c5eda44a6f21cdb726fd2a94293dc2609219330136b207",
+      "members": 347,
+      "regular_files": 302,
+      "expanded_bytes": 4119776,
+      "source_files": 296,
+      "source_bytes": 4109171,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/core/core/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "f3395c2a4399a2557dee17de147076c82d6989195ef29e26126813d3a27c99b9"
+    },
+    {
+      "coordinate": "androidx.cursoradapter:cursoradapter:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom",
+      "pom_sha256": "62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100",
+      "frozen_binary_sha256": [
+        "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0-sources.jar",
+      "relative_archive": "archives/051-cursoradapter-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 11882,
+      "archive_sha256": "99b72a3aec8c9edfd9de20f5913ce4c413bca2f0cf9877b504e26aa03ef50323",
+      "members": 9,
+      "regular_files": 5,
+      "expanded_bytes": 41199,
+      "source_files": 4,
+      "source_bytes": 41174,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "6e9a62659f9d53463bb6b91a5479d4144eb0ea657a7796600416e660f976af5c"
+    },
+    {
+      "coordinate": "androidx.customview:customview-poolingcontainer:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0-sources.jar",
+      "relative_archive": "archives/052-customview-poolingcontainer-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 2651,
+      "archive_sha256": "0715571baa86e8f7683fcc1d59fe2881c5e8603af9ff212c82423ae098d34c62",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 5411,
+      "source_files": 1,
+      "source_bytes": 5386,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "b263e3ae979f4f44337ca0759e38963a1af5a973f1fbf7124384378f76de47fd"
+    },
+    {
+      "coordinate": "androidx.customview:customview:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview/1.0.0/customview-1.0.0.pom",
+      "pom_sha256": "ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49",
+      "frozen_binary_sha256": [
+        "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview/1.0.0/customview-1.0.0-sources.jar",
+      "relative_archive": "archives/053-customview-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 29305,
+      "archive_sha256": "87c910a3c3c5d1e4881ebcc7a8f7fced04fdad6ff1f8e5ff7f100adf62df1787",
+      "members": 10,
+      "regular_files": 5,
+      "expanded_bytes": 136266,
+      "source_files": 4,
+      "source_bytes": 136241,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "86e51c9ed77bcbc54683fd33d818a61bb1aebff1967ca0785adf827c560a2d92"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-android:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-android/1.1.7/datastore-android-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-android/1.1.7/datastore-android-1.1.7-sources.jar",
+      "relative_archive": "archives/054-datastore-android-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 8197,
+      "archive_sha256": "09186429ebf9da4236ff7a0b164fb117bae713cdc22f3b3cd79bc2deaf0cf6f2",
+      "members": 13,
+      "regular_files": 5,
+      "expanded_bytes": 20409,
+      "source_files": 4,
+      "source_bytes": 20384,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "6e7fe231bee4c33127dc822466baf3d1c41eff1dc326742a3330edb5cea15bc7"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-android:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-android/1.1.7/datastore-core-android-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-android/1.1.7/datastore-core-android-1.1.7-sources.jar",
+      "relative_archive": "archives/055-datastore-core-android-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 50293,
+      "archive_sha256": "66af76cdc50e22705b73fc0ec634badefa53b4bb5c2726c9bf8a26e57c682488",
+      "members": 51,
+      "regular_files": 36,
+      "expanded_bytes": 110089,
+      "source_files": 35,
+      "source_bytes": 110064,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "ee31c80dcfc0b0070e2b01d3bf3262f3bd7c4628abb4b199fd0233dc4148fc05"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-okio-jvm:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-okio-jvm/1.1.7/datastore-core-okio-jvm-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-okio-jvm/1.1.7/datastore-core-okio-jvm-1.1.7-sources.jar",
+      "relative_archive": "archives/056-datastore-core-okio-jvm-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6831,
+      "archive_sha256": "779bb1b6960be085987dbc68bafb117d4719c9930d447397d36baaa52278853b",
+      "members": 16,
+      "regular_files": 5,
+      "expanded_bytes": 12206,
+      "source_files": 4,
+      "source_bytes": 12181,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "45105edb4f47296560ac91e99e23313dca8669de92fec1f19d23235c7d33d0e7"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-okio:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-okio/1.1.7/datastore-core-okio-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core/1.1.7/datastore-core-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-android:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-android/1.1.7/datastore-preferences-android-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-android/1.1.7/datastore-preferences-android-1.1.7-sources.jar",
+      "relative_archive": "archives/059-datastore-preferences-android-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6984,
+      "archive_sha256": "c66873f4fd455388d75d7d2bb82503b73de6930e7ed5702b1900754300185938",
+      "members": 14,
+      "regular_files": 5,
+      "expanded_bytes": 13776,
+      "source_files": 4,
+      "source_bytes": 13751,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "522d092a5c91166c6d3fd3529d0c0481ed8b67190c6ae963bc5c60bceff9aa4f"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core-android:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core-android/1.1.7/datastore-preferences-core-android-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core-android/1.1.7/datastore-preferences-core-android-1.1.7-sources.jar",
+      "relative_archive": "archives/060-datastore-preferences-core-android-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 17447,
+      "archive_sha256": "e1e5bcb0ecc3724a2498ad31525aeb3f1c09d8cf80974e4a207e9cf5d9332dd5",
+      "members": 22,
+      "regular_files": 11,
+      "expanded_bytes": 44337,
+      "source_files": 10,
+      "source_bytes": 44312,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "e7418b4be236b8b2c99292c28d517b080e3e4ba89902a9267a4b98aa0488f1d5"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core/1.1.7/datastore-preferences-core-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-external-protobuf:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-external-protobuf/1.1.7/datastore-preferences-external-protobuf-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7"
+      ],
+      "status": "KNOWN_EMPTY_COMPANION_NOT_RETRIED_USE_RECORDED_UPSTREAM_MAPPING",
+      "prior_review": "docs/feasibility/evidence/runtime-license-review-f9434ab9.json#protobuf_sources",
+      "empty_companion_sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-proto:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-proto/1.1.7/datastore-preferences-proto-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-proto/1.1.7/datastore-preferences-proto-1.1.7-sources.jar",
+      "relative_archive": "archives/063-datastore-preferences-proto-1.1.7-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 7437,
+      "archive_sha256": "3fdbe97382d8360355fe77b8b73c047535dc5e900f5c2e3400fc877fdc8644c7",
+      "members": 7,
+      "regular_files": 3,
+      "expanded_bytes": 62496,
+      "source_files": 2,
+      "source_bytes": 62471,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "fe8dfd714182838fb6d46868e289d5f945f3cb0a2439e98a26b4e95ff2e46f43"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences/1.1.7/datastore-preferences-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore:1.1.7",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore/1.1.7/datastore-1.1.7.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.documentfile:documentfile:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom",
+      "pom_sha256": "013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5",
+      "frozen_binary_sha256": [
+        "865a061ef2fad16522f8433536b8d47208c46ff7c7745197dfa1eeb481869487"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0-sources.jar",
+      "relative_archive": "archives/066-documentfile-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 10935,
+      "archive_sha256": "79c2424477565d0500b47c8288fb8e6dd9c8306984e8dbd38d576f013873b410",
+      "members": 10,
+      "regular_files": 6,
+      "expanded_bytes": 35331,
+      "source_files": 5,
+      "source_bytes": 35306,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "503f3163897f5f5e8982e13119604bcd93e89b3b1d055fab9442c878e2831971"
+    },
+    {
+      "coordinate": "androidx.drawerlayout:drawerlayout:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.pom",
+      "pom_sha256": "da6733425a83f5ce850878fa7201082345fed7c668dd58550fdd19c0396c6fa4",
+      "frozen_binary_sha256": [
+        "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0-sources.jar",
+      "relative_archive": "archives/067-drawerlayout-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 20020,
+      "archive_sha256": "3702e90acc99c16d192eada8467aea9595d1c3fff3e2155ffe66e5f31e334513",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 97879,
+      "source_files": 1,
+      "source_bytes": 97854,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "98d67fa2dc8be71b5c226ae4fe6b3c7b8f84d9ea8b11f4bac8b25e043b04d65e"
+    },
+    {
+      "coordinate": "androidx.dynamicanimation:dynamicanimation:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.pom",
+      "pom_sha256": "44ce22ee620d28f17301bcc60ad49b69b7d0596c2a87b054ad1e3feac7b4a898",
+      "frozen_binary_sha256": [
+        "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0-sources.jar",
+      "relative_archive": "archives/068-dynamicanimation-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 23166,
+      "archive_sha256": "7ddbf0b830e295b8013a41c2c6771416118bcc8d61328a881daae657c1429196",
+      "members": 13,
+      "regular_files": 9,
+      "expanded_bytes": 77042,
+      "source_files": 8,
+      "source_bytes": 77017,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "01062f9486208ddd56b9e8cfffc23179ccf7470169e0f40db4d8bc87852f3266"
+    },
+    {
+      "coordinate": "androidx.emoji2:emoji2-views-helper:1.4.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0-sources.jar",
+      "relative_archive": "archives/069-emoji2-views-helper-1.4.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 17591,
+      "archive_sha256": "7c813c4fc93038ef7d262fd894c48f960f6d914f79d83407106ede1ab55b92a0",
+      "members": 13,
+      "regular_files": 9,
+      "expanded_bytes": 55767,
+      "source_files": 8,
+      "source_bytes": 55742,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "60ba78ffb911f4703b26ec86a77d02e5c7c4ee7f0ed97573a63cab9cb9db82d5"
+    },
+    {
+      "coordinate": "androidx.emoji2:emoji2:1.4.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0-sources.jar",
+      "relative_archive": "archives/070-emoji2-1.4.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 57705,
+      "archive_sha256": "5db44eec9cee653ba403f0e88a02ce41ab6301a0b7dd7cb35fc32f9747f2228b",
+      "members": 21,
+      "regular_files": 17,
+      "expanded_bytes": 224537,
+      "source_files": 16,
+      "source_bytes": 224512,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "8d443bdf2b40bd652b3065c28c66eda8bd0745430e76c63975fd50690cd0aa4b"
+    },
+    {
+      "coordinate": "androidx.exifinterface:exifinterface:1.4.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/exifinterface/exifinterface/1.4.2/exifinterface-1.4.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/exifinterface/exifinterface/1.4.2/exifinterface-1.4.2-sources.jar",
+      "relative_archive": "archives/071-exifinterface-1.4.2-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 73351,
+      "archive_sha256": "dc69c04f03e72ad38ed43774554e6612dd9ffe7299eacaab62a38df8ac2c7767",
+      "members": 11,
+      "regular_files": 4,
+      "expanded_bytes": 384631,
+      "source_files": 2,
+      "source_bytes": 374431,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/exifinterface/exifinterface/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "9c72948355a3f0f33a8db3a7747331830a952c3ade4a2a3cb5fa7d8da83d76be"
+    },
+    {
+      "coordinate": "androidx.fragment:fragment:1.5.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/fragment/fragment/1.5.4/fragment-1.5.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "bc3c2431dda42e94bb9511c587eae890d276e4aafe393a8da7b00169186dafde"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/fragment/fragment/1.5.4/fragment-1.5.4-sources.jar",
+      "relative_archive": "archives/072-fragment-1.5.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 190527,
+      "archive_sha256": "388140b5e899ea70dceb7de93ebe732b7d534a14ca87014895faf19ef74ac8fe",
+      "members": 58,
+      "regular_files": 53,
+      "expanded_bytes": 824291,
+      "source_files": 52,
+      "source_bytes": 824266,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "4a0390bb185d66c5b1f3977331f4e7addcec71ad748f3a0a3fb6c5063d454227"
+    },
+    {
+      "coordinate": "androidx.graphics:graphics-path:1.0.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1-sources.jar",
+      "relative_archive": "archives/073-graphics-path-1.0.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 9908,
+      "archive_sha256": "9f1b5995b9577a8876525c3411ebb2a49f9ef0e875f6aec3059e807596dc6ca6",
+      "members": 9,
+      "regular_files": 5,
+      "expanded_bytes": 26745,
+      "source_files": 4,
+      "source_bytes": 26720,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "2be53078a77344410cf4054cc5692930b34a8640ada9e040a6a63527cee9cf43"
+    },
+    {
+      "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/heifwriter/heifwriter/1.2.0-rc01/heifwriter-1.2.0-rc01.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/heifwriter/heifwriter/1.2.0-rc01/heifwriter-1.2.0-rc01-sources.jar",
+      "relative_archive": "archives/074-heifwriter-1.2.0-rc01-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 45272,
+      "archive_sha256": "5212f3f9901707514ed0b88c6529ac79e4214ac23719471d5d3da5d8dcbb8f84",
+      "members": 18,
+      "regular_files": 12,
+      "expanded_bytes": 156428,
+      "source_files": 10,
+      "source_bytes": 146228,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/heifwriter/heifwriter/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "7d3e6c26cc0158006c7a20b5af73081479485df8f1f14d89b0ccd7d84b268a66"
+    },
+    {
+      "coordinate": "androidx.interpolator:interpolator:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.pom",
+      "pom_sha256": "0ddc07cc39699f48ecd9ec894b5830c0f09e22e82959294edf37217224c88b7b",
+      "frozen_binary_sha256": [
+        "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0-sources.jar",
+      "relative_archive": "archives/075-interpolator-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6655,
+      "archive_sha256": "fa13ada71fe7bd9461f622f418e7c16a18e85da7708fb505c75229a9b8830345",
+      "members": 10,
+      "regular_files": 5,
+      "expanded_bytes": 12155,
+      "source_files": 4,
+      "source_bytes": 12130,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "75d6aad1b529a410d1bd87cd74772be30d2c89394386384deb96a45d492cd2c8"
+    },
+    {
+      "coordinate": "androidx.legacy:legacy-support-core-utils:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.pom",
+      "pom_sha256": "8fd093008b3ee7c06e52c78da2af980a7b47b69b967fa91dad7af466f7a00a38",
+      "frozen_binary_sha256": [
+        "a7edcf01d5b52b3034073027bc4775b78a4764bb6202bb91d61c829add8dd1c7"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0-sources.jar",
+      "relative_archive": "archives/076-legacy-support-core-utils-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 3201,
+      "archive_sha256": "dff5a95a7a706957b16edbf5b36c619fc869742bdf18845520d0cf71748c8070",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 6722,
+      "source_files": 1,
+      "source_bytes": 6697,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "846fa22a1129c42b74b8e0fb14ec8a538bf49c98137d0aeb52fef36141285527"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common-java8:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-java8/2.9.4/lifecycle-common-java8-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-java8/2.9.4/lifecycle-common-java8-2.9.4-sources.jar",
+      "relative_archive": "archives/077-lifecycle-common-java8-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4452,
+      "archive_sha256": "895e71679cd319db8140664d650af6695b0530f5896be9b8ecccd24cc4f6674f",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-common-java8/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "786a94b23c20fc58f276f2059b114d0684bc2a39125dba409387a73c1d897d2a"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common-jvm:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4-sources.jar",
+      "relative_archive": "archives/078-lifecycle-common-jvm-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 32061,
+      "archive_sha256": "5764b2618dfb88b98668e5e84bec8e5af0e0c168d714687a0a3b3591f669846c",
+      "members": 32,
+      "regular_files": 22,
+      "expanded_bytes": 80624,
+      "source_files": 20,
+      "source_bytes": 70424,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-common/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "06c56cd8c8a6b5d38718e5429e73e552fdd32598ca4cf6aa8af5bad2f222ff0d"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common/2.9.4/lifecycle-common-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core-ktx/2.9.4/lifecycle-livedata-core-ktx-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core-ktx/2.9.4/lifecycle-livedata-core-ktx-2.9.4-sources.jar",
+      "relative_archive": "archives/080-lifecycle-livedata-core-ktx-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4472,
+      "archive_sha256": "20e0447343b348bc66275a8601ee4fc95bd83624620155e6ac7b2f80fe0aeafd",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-livedata-core-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "02802f61f45f013c8a4f3c6f27ac79e873d15d08a702a8c0b5e1571bd3e6c8ef"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core/2.9.4/lifecycle-livedata-core-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core/2.9.4/lifecycle-livedata-core-2.9.4-sources.jar",
+      "relative_archive": "archives/081-lifecycle-livedata-core-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 12289,
+      "archive_sha256": "c01b92cdc3d62ca3621ab3ffa98346253c4f6ccfa855bb57d53b654241a01a82",
+      "members": 12,
+      "regular_files": 6,
+      "expanded_bytes": 32618,
+      "source_files": 4,
+      "source_bytes": 22418,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-livedata-core/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "0cb3c78a90b56adfa8eed35e4718b5f1c3e65e4bfba067cd31bcaa25d5e6dfaf"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata/2.9.4/lifecycle-livedata-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata/2.9.4/lifecycle-livedata-2.9.4-sources.jar",
+      "relative_archive": "archives/082-lifecycle-livedata-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 17685,
+      "archive_sha256": "9ddf30e9f2d811372d0f3cf24ba8dfa95441a043be257e0463ce218c977774a2",
+      "members": 13,
+      "regular_files": 7,
+      "expanded_bytes": 52576,
+      "source_files": 5,
+      "source_bytes": 42376,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-livedata/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "0f4e2f643c48ac71707631eecca0189d3cbe9e660307a9c12afbea3796c608ad"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-process:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-process/2.9.4/lifecycle-process-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-process/2.9.4/lifecycle-process-2.9.4-sources.jar",
+      "relative_archive": "archives/083-lifecycle-process-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 9772,
+      "archive_sha256": "3591d371c62f87ff407b3bc303689b33e1fd813aa5a799d02abbec92b8a4f2b0",
+      "members": 12,
+      "regular_files": 6,
+      "expanded_bytes": 22619,
+      "source_files": 4,
+      "source_bytes": 12419,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-process/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "70143e74f7b7d4cb39460f14bbd29d053a7902dc911ec831404146613944a3e3"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-android:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.9.4/lifecycle-runtime-android-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.9.4/lifecycle-runtime-android-2.9.4-sources.jar",
+      "relative_archive": "archives/084-lifecycle-runtime-android-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 23063,
+      "archive_sha256": "df2a5880a320144ece50e794a75fa45a87802d92a033fd3d283503c07a718b67",
+      "members": 25,
+      "regular_files": 12,
+      "expanded_bytes": 58636,
+      "source_files": 10,
+      "source_bytes": 48436,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-runtime/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "9b8b38c42c581f08884891c2747963fc812a2ef225137134935506078699452b"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.9.4/lifecycle-runtime-compose-android-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "b6803f906a89fd85c77df343dd4aeeb349125ca79e12d55d68d4cf42f42231f6"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.9.4/lifecycle-runtime-compose-android-2.9.4-sources.jar",
+      "relative_archive": "archives/085-lifecycle-runtime-compose-android-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 15314,
+      "archive_sha256": "60f77ad98798c212db32fc534e3e481f7f517b002ab293a31ba36f749dc7e8d1",
+      "members": 20,
+      "regular_files": 8,
+      "expanded_bytes": 61948,
+      "source_files": 6,
+      "source_bytes": 51748,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-runtime-compose/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "80e05bcdfae32ce69097147ea7e58d54b1b6f7f371569c538e360956b594f428"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose/2.9.4/lifecycle-runtime-compose-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx-android/2.9.4/lifecycle-runtime-ktx-android-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx-android/2.9.4/lifecycle-runtime-ktx-android-2.9.4-sources.jar",
+      "relative_archive": "archives/087-lifecycle-runtime-ktx-android-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4448,
+      "archive_sha256": "c5df5b7bfa9c6d61ef14047bd9de207db688188c0d5d7b5f5c4ad6613806b1fc",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-runtime-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "2b3911ba816ef2f0d9c2dc5bab609b60927f0e34e81a172b7d56494c1a046e51"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx/2.9.4/lifecycle-runtime-ktx-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime/2.9.4/lifecycle-runtime-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-android:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.9.4/lifecycle-viewmodel-android-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "4b236b2e504db5ca5d09334fef05aa8cdc31ee35a433c3aa4d0420efa9613332"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.9.4/lifecycle-viewmodel-android-2.9.4-sources.jar",
+      "relative_archive": "archives/090-lifecycle-viewmodel-android-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 42786,
+      "archive_sha256": "7fc71221f470885593b974fe086e5b14ee24669a94c010254de1c64fb4c2218d",
+      "members": 48,
+      "regular_files": 29,
+      "expanded_bytes": 93986,
+      "source_files": 27,
+      "source_bytes": 83786,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "7ff739e4b44fcda966298d5cbe839560ea0be871ec0d88124e09e909d8c71929"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-ktx/2.9.4/lifecycle-viewmodel-ktx-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-ktx/2.9.4/lifecycle-viewmodel-ktx-2.9.4-sources.jar",
+      "relative_archive": "archives/091-lifecycle-viewmodel-ktx-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4456,
+      "archive_sha256": "f15c9fbd9ade832f04d2deed9cdc1732697e63b8c34ffae0ada712197abcc6ec",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-viewmodel-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "de998451f361dea86350f0bc636c3823ea7c50df1d37ee049111013a3d6bff4e"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate-android/2.9.4/lifecycle-viewmodel-savedstate-android-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate-android/2.9.4/lifecycle-viewmodel-savedstate-android-2.9.4-sources.jar",
+      "relative_archive": "archives/092-lifecycle-viewmodel-savedstate-android-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 30198,
+      "archive_sha256": "743019a7d172beaa5823675df52affcef66ccc4ef8716e4494fd46bf5a315a13",
+      "members": 32,
+      "regular_files": 15,
+      "expanded_bytes": 78167,
+      "source_files": 13,
+      "source_bytes": 67967,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-viewmodel-savedstate/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "65ad16e173456447e9210f99eb63780c6097e73a9ee0596399b9968a7e243ebd"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.9.4/lifecycle-viewmodel-savedstate-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel:2.9.4",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel/2.9.4/lifecycle-viewmodel-2.9.4.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "cab404b05d5faed209104a2aef14c0cbb316ab9fabe4a8f037b043e5d2f43435"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel/2.9.4/lifecycle-viewmodel-2.9.4-sources.jar",
+      "relative_archive": "archives/094-lifecycle-viewmodel-2.9.4-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 47927,
+      "archive_sha256": "cf92e89f5195e58638722e9b3f4ab9b1227c7fc517d00f30e9082024b8c44a6e",
+      "members": 79,
+      "regular_files": 35,
+      "expanded_bytes": 86887,
+      "source_files": 33,
+      "source_bytes": 76687,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/lifecycle/lifecycle-viewmodel/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "4d5cee4cb84e9027f016880c5e3b07b8be7fef2a530b7ddeacfff8298e34e2d6"
+    },
+    {
+      "coordinate": "androidx.loader:loader:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/loader/loader/1.0.0/loader-1.0.0.pom",
+      "pom_sha256": "c978d550808b47434aa49a63164110a50b55b0bcc6160a93a2e37d5110df8c5e",
+      "frozen_binary_sha256": [
+        "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/loader/loader/1.0.0/loader-1.0.0-sources.jar",
+      "relative_archive": "archives/095-loader-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 25417,
+      "archive_sha256": "efcbafaac8fc06bd5b162b57ac1e146d11919b79dea2202339470c931cecdc67",
+      "members": 12,
+      "regular_files": 7,
+      "expanded_bytes": 91617,
+      "source_files": 6,
+      "source_bytes": 91592,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "b30b964983cdf580f47595abd52fdde706cda943890446eebea1a7080ce8d827"
+    },
+    {
+      "coordinate": "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom",
+      "pom_sha256": "a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9",
+      "frozen_binary_sha256": [
+        "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0-sources.jar",
+      "relative_archive": "archives/096-localbroadcastmanager-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4073,
+      "archive_sha256": "952b8567a76d6484aa96f9712b9dc90f21b83a73e2496daf243e2e1adfb65dd4",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 12179,
+      "source_files": 1,
+      "source_bytes": 12154,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "525e9d067671f2511b01555616ca52cb66d9717a8078abf2b9ac42976787cdc0"
+    },
+    {
+      "coordinate": "androidx.print:print:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/print/print/1.0.0/print-1.0.0.pom",
+      "pom_sha256": "62482c0594841bee24bb996abb6cb7b320a6a3b77dca9f0a0ba4fe3be5530aa7",
+      "frozen_binary_sha256": [
+        "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/print/print/1.0.0/print-1.0.0-sources.jar",
+      "relative_archive": "archives/097-print-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 7099,
+      "archive_sha256": "659b6e2047484dbae409b9b49c19f9ebd9540bb7ef3610438e2c2b15064fc217",
+      "members": 5,
+      "regular_files": 2,
+      "expanded_bytes": 30542,
+      "source_files": 1,
+      "source_bytes": 30517,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "e301b53e346774a1d2d8980c1dd67f871ac3d665afc7f6027b587834b5b73fed"
+    },
+    {
+      "coordinate": "androidx.profileinstaller:profileinstaller:1.4.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0-sources.jar",
+      "relative_archive": "archives/098-profileinstaller-1.4.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 44238,
+      "archive_sha256": "7b8637080b47188656fd54dab66e9270334242d277d2a8e3c46691c3afa152a0",
+      "members": 21,
+      "regular_files": 15,
+      "expanded_bytes": 166863,
+      "source_files": 13,
+      "source_bytes": 156663,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/profileinstaller/profileinstaller/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "9faca182fa657f817bda1518dc74e932ae8b951e3ee19ac0bb3acac918b3b415"
+    },
+    {
+      "coordinate": "androidx.resourceinspection:resourceinspection-annotation:1.0.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1-sources.jar",
+      "relative_archive": "archives/099-resourceinspection-annotation-1.0.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 5237,
+      "archive_sha256": "cdca7861ae17115f8d74f9f197d1a4f8b0217ca035a3990da2e2c1ca1fa7f822",
+      "members": 8,
+      "regular_files": 4,
+      "expanded_bytes": 9690,
+      "source_files": 3,
+      "source_bytes": 9665,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "64032c790d45e86897822c1e07f41529f4cef6b3c3b5026a6438e11eb1e8e19c"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-android:1.3.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-android/1.3.2/savedstate-android-1.3.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1e26f137705596d09d3f4f52559a29026d9a1a6688be7f1a948316a4f1e39b20"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-android/1.3.2/savedstate-android-1.3.2-sources.jar",
+      "relative_archive": "archives/100-savedstate-android-1.3.2-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 55260,
+      "archive_sha256": "6749d720e67c3bcfef3380ba4b98ccafb6a9a57d9298d8abaa17242351a53224",
+      "members": 53,
+      "regular_files": 34,
+      "expanded_bytes": 207692,
+      "source_files": 32,
+      "source_bytes": 197492,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/savedstate/savedstate/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "2fc666c33073fa4548d45340e0e49a639dde17421bd3e00e777eaae22c48bb05"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-compose-android:1.3.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose-android/1.3.2/savedstate-compose-android-1.3.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "93426691f25441cc3179494b25f401a8a468aabbee4c40b90c0327413fd65523"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose-android/1.3.2/savedstate-compose-android-1.3.2-sources.jar",
+      "relative_archive": "archives/101-savedstate-compose-android-1.3.2-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 12210,
+      "archive_sha256": "e5e73c5468cb23da524156e64051417342e21c9bcfdefc1ae3a939a54c7ad5f5",
+      "members": 21,
+      "regular_files": 7,
+      "expanded_bytes": 23897,
+      "source_files": 5,
+      "source_bytes": 13697,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/savedstate/savedstate-compose/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "552d45c26b0e0f21c2d1b1a5de318158cb821bfa322416c16da26807391f667a"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-compose:1.3.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose/1.3.2/savedstate-compose-1.3.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-ktx:1.3.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-ktx/1.3.2/savedstate-ktx-1.3.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-ktx/1.3.2/savedstate-ktx-1.3.2-sources.jar",
+      "relative_archive": "archives/103-savedstate-ktx-1.3.2-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4426,
+      "archive_sha256": "b1e8d78600a68fb3c0029793146ac07ea0335819f813554e85c568caa35cb5e4",
+      "members": 6,
+      "regular_files": 2,
+      "expanded_bytes": 10200,
+      "source_files": 0,
+      "source_bytes": 0,
+      "source_presence": "NO_SOURCE_TEXT_PAYLOAD_REQUIRES_UPSTREAM_REVIEW",
+      "notice_paths": [
+        "META-INF/androidx/savedstate/savedstate-ktx/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "778452838d8af1ff9878cadec2f4db8001e893ad38fa395fa5b70b467fd07c24"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate:1.3.2",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate/1.3.2/savedstate-1.3.2.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.startup:startup-runtime:1.1.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1-sources.jar",
+      "relative_archive": "archives/105-startup-runtime-1.1.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6839,
+      "archive_sha256": "53e03bc065b26b2227b5fdca6776cbfa0d1a69afb8f3c1e96c1743fa54320196",
+      "members": 9,
+      "regular_files": 6,
+      "expanded_bytes": 16803,
+      "source_files": 5,
+      "source_bytes": 16778,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "ab40ab56ea9294b19489c7c166b271757a24da5218c76284ff89588785f5f7f9"
+    },
+    {
+      "coordinate": "androidx.tracing:tracing:1.2.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/tracing/tracing/1.2.0/tracing-1.2.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/tracing/tracing/1.2.0/tracing-1.2.0-sources.jar",
+      "relative_archive": "archives/106-tracing-1.2.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 6669,
+      "archive_sha256": "3daf3a210e213f1675e6ea9ae2a9c0b9c837b42805835b65d999eca58fbddc90",
+      "members": 7,
+      "regular_files": 4,
+      "expanded_bytes": 18480,
+      "source_files": 3,
+      "source_bytes": 18455,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "e689105b2cee1c79dedb1af943a0fb89f39c432338bee213be267ca5b0b73018"
+    },
+    {
+      "coordinate": "androidx.transition:transition:1.6.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/transition/transition/1.6.0/transition-1.6.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/transition/transition/1.6.0/transition-1.6.0-sources.jar",
+      "relative_archive": "archives/107-transition-1.6.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 136384,
+      "archive_sha256": "d366250918f6b6bc89cdc05d771e88ee057574546cd19210cf52fae6dcaa4cec",
+      "members": 61,
+      "regular_files": 55,
+      "expanded_bytes": 511261,
+      "source_files": 53,
+      "source_bytes": 501061,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/transition/transition/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "691c4812dda8ee8acb6cb7c560d84d7c7cb710ab403f12617d39a8322ff563a7"
+    },
+    {
+      "coordinate": "androidx.vectordrawable:vectordrawable-animated:1.1.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.pom",
+      "pom_sha256": "276a20116b705fb75b9003ee9496c56f6fd3b32375fb232472811eba60a040bd",
+      "frozen_binary_sha256": [
+        "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0-sources.jar",
+      "relative_archive": "archives/108-vectordrawable-animated-1.1.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 24016,
+      "archive_sha256": "a3880c595965c55fd1bdee0554b99c66e9c28d3311b7ce6242189fc1f554fcf1",
+      "members": 12,
+      "regular_files": 7,
+      "expanded_bytes": 97536,
+      "source_files": 6,
+      "source_bytes": 97511,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "8dd888a4a18196dc361122a81acc4f032feddda25366209341b366db978a10fd"
+    },
+    {
+      "coordinate": "androidx.vectordrawable:vectordrawable:1.1.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.pom",
+      "pom_sha256": "5b0e2d5b2179e54804785cbc21ce5f473b5e1ddd55a57da482e94dcd39492bb2",
+      "frozen_binary_sha256": [
+        "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0-sources.jar",
+      "relative_archive": "archives/109-vectordrawable-1.1.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 19475,
+      "archive_sha256": "a1ae4fccc4ab76a734c10f79adf39262517658a79084bad467c4c6f41c478187",
+      "members": 9,
+      "regular_files": 4,
+      "expanded_bytes": 91052,
+      "source_files": 3,
+      "source_bytes": 91027,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "01392f450e479fc8b85ee770a316cca8d6c958cde7e9766799ff55614b1aab47"
+    },
+    {
+      "coordinate": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.pom",
+      "pom_sha256": "5f51e65873ca612de3838fa90d2ee95b8d040efd31b9c390a19bf94d615cdb2f",
+      "frozen_binary_sha256": [
+        "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1-sources.jar",
+      "relative_archive": "archives/110-versionedparcelable-1.1.1-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 21164,
+      "archive_sha256": "135016af471acf4cd9583d36ceb779710c6b46812ccaaef7c526d5d60eae6b0b",
+      "members": 14,
+      "regular_files": 11,
+      "expanded_bytes": 90455,
+      "source_files": 10,
+      "source_bytes": 90430,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "464a55d947c72a3c5edd352dbb14248549f6ad68cf44df42e6f1b889eeb5428c"
+    },
+    {
+      "coordinate": "androidx.viewpager:viewpager:1.0.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.pom",
+      "pom_sha256": "1f72f836339d03c6eb013f65075e76ca87075a577578eb4f95f74a3a5d253128",
+      "frozen_binary_sha256": [
+        "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0-sources.jar",
+      "relative_archive": "archives/111-viewpager-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 38376,
+      "archive_sha256": "d4f9a044ab8c23392b12a3f2930d5fd6b5982421a746f2f2a812e9619431fbfd",
+      "members": 9,
+      "regular_files": 5,
+      "expanded_bytes": 167890,
+      "source_files": 4,
+      "source_bytes": 167865,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "69f4c33b6e499bce35d919411007b737f3c61569da8fda8f3a02a8513aa2764a"
+    },
+    {
+      "coordinate": "androidx.window:window-core-android:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/window/window-core-android/1.5.0/window-core-android-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/window/window-core-android/1.5.0/window-core-android-1.5.0-sources.jar",
+      "relative_archive": "archives/112-window-core-android-1.5.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 13190,
+      "archive_sha256": "df2d830a33d04300574b65d7a87904458a910b879af3d13022def0a627a22df6",
+      "members": 16,
+      "regular_files": 7,
+      "expanded_bytes": 32840,
+      "source_files": 5,
+      "source_bytes": 22640,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/window/window-core/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "68e0bb2b104d4f1775829f96c14961fa874896a20e2cf80b2b48cf1c1beed9a0"
+    },
+    {
+      "coordinate": "androidx.window:window-core:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/window/window-core/1.5.0/window-core-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "androidx.window:window:1.5.0",
+      "pom_url": "https://dl.google.com/dl/android/maven2/androidx/window/window/1.5.0/window-1.5.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "5de2d48aa578402f46deb5294a955cee62f0c7d8c1840ef626fc7afb8abe22f9"
+      ],
+      "source_url": "https://dl.google.com/dl/android/maven2/androidx/window/window/1.5.0/window-1.5.0-sources.jar",
+      "relative_archive": "archives/114-window-1.5.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 216286,
+      "archive_sha256": "37d85fa5e68b3bc28c88b05dc2b0d5d7caf0af3d7692bd0bc0c56a8dc6ca6a33",
+      "members": 135,
+      "regular_files": 117,
+      "expanded_bytes": 735320,
+      "source_files": 115,
+      "source_bytes": 725120,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [
+        "META-INF/androidx/window/window/LICENSE.txt"
+      ],
+      "member_manifest_sha256": "251b1ef6df7ff1833dc7073b775de465c47fd019a38e9ee5944ae1dd6c0339ad"
+    },
+    {
+      "coordinate": "com.google.guava:listenablefuture:1.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.pom",
+      "pom_sha256": "53873caf26bc1ed8a567ea6c939ab2aaa3f47a5e32d5cade95ddf5080d23238a",
+      "frozen_binary_sha256": [
+        "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0-sources.jar",
+      "relative_archive": "archives/115-listenablefuture-1.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 4021,
+      "archive_sha256": "3d1bd8d4a39b293612a40e547ec51d9ce34fa638d7adeae83871cdbe2923b161",
+      "members": 8,
+      "regular_files": 2,
+      "expanded_bytes": 7410,
+      "source_files": 1,
+      "source_bytes": 7273,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "9c39ea099b056fae8c912ec369abf7347095642bf0a5a03664091535eb820639"
+    },
+    {
+      "coordinate": "com.squareup.okio:okio-jvm:3.4.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.4.0/okio-jvm-3.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.4.0/okio-jvm-3.4.0-sources.jar",
+      "relative_archive": "archives/116-okio-jvm-3.4.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 168616,
+      "archive_sha256": "724af2ce287bf9b101194df419ebbe3765debf516c6a2e26b9d67c168d902778",
+      "members": 85,
+      "regular_files": 78,
+      "expanded_bytes": 512635,
+      "source_files": 77,
+      "source_bytes": 512610,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "e5e38e4d0627fc700055a63f557d10da308d04ccf3c0c35715227fe5d6f47655"
+    },
+    {
+      "coordinate": "com.squareup.okio:okio:3.4.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio/3.4.0/okio-3.4.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-android-extensions-runtime/1.9.22/kotlin-android-extensions-runtime-1.9.22.pom",
+      "pom_sha256": "73bc8813701afeca3706d55e264ce0ee4125ccfb38dfd82a0cfc05f75c3950ce",
+      "frozen_binary_sha256": [
+        "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-android-extensions-runtime/1.9.22/kotlin-android-extensions-runtime-1.9.22-sources.jar",
+      "relative_archive": "archives/118-kotlin-android-extensions-runtime-1.9.22-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 7200,
+      "archive_sha256": "418ea1adaaaf4537d180cc25e0b1c0d02a54fa3a38f88bd7625eb2307aa447dd",
+      "members": 15,
+      "regular_files": 10,
+      "expanded_bytes": 8910,
+      "source_files": 9,
+      "source_bytes": 8885,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "26d92ea316755dcc25ab57eefb6943d776e426e16e97e9b10bc8883478f52cb5"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-parcelize-runtime/1.9.22/kotlin-parcelize-runtime-1.9.22.pom",
+      "pom_sha256": "ab8fc408b4a72aa5e3687bbcd5acdde84c84cc1828bcfe4ea5c71e8671fa94b4",
+      "frozen_binary_sha256": [
+        "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-parcelize-runtime/1.9.22/kotlin-parcelize-runtime-1.9.22-sources.jar",
+      "relative_archive": "archives/119-kotlin-parcelize-runtime-1.9.22-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 5247,
+      "archive_sha256": "b7cf21217b9bbfbea21dd944c163454a8592344bef5b0b92ba2fa46aa1e97660",
+      "members": 11,
+      "regular_files": 8,
+      "expanded_bytes": 6520,
+      "source_files": 7,
+      "source_bytes": 6495,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "1076aadec14b5c05be033c752a4d19af36948de477c2cbdbfb1f53e40f3d7085"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-common:2.4.21",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/2.4.21/kotlin-stdlib-common-2.4.21.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.0/kotlin-stdlib-jdk7-1.8.0.pom",
+      "pom_sha256": "dfa9644a6ae5b898ee475bb1f57e830ba1f770aee6c9c15f8112aa381180184a",
+      "frozen_binary_sha256": [
+        "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.0/kotlin-stdlib-jdk7-1.8.0-sources.jar",
+      "relative_archive": "archives/121-kotlin-stdlib-jdk7-1.8.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 580,
+      "archive_sha256": "ea10d3e5e6e695d8a5283cbf116321acae6ba42d0bdd3eda50f7c34a26fa25cb",
+      "members": 3,
+      "regular_files": 2,
+      "expanded_bytes": 352,
+      "source_files": 1,
+      "source_bytes": 327,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "022232f843729faec53c72dca6b102987cc2c08b6612a246bd8dd26c2f8708ea"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0.pom",
+      "pom_sha256": "2bb6c7551b97c7ba029f9866582e7aa19d63abfd4cd53da3fc0c462f3ab5fc26",
+      "frozen_binary_sha256": [
+        "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0-sources.jar",
+      "relative_archive": "archives/122-kotlin-stdlib-jdk8-1.8.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 556,
+      "archive_sha256": "40e9a80f6b953d12389623760d438e69914098d0c4d7053f70f90533ec041259",
+      "members": 3,
+      "regular_files": 2,
+      "expanded_bytes": 325,
+      "source_files": 1,
+      "source_bytes": 300,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "4a1746c1af5a983ff29c53053167d9bb0d0f99d2de34a314a1146aeaab5ec946"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.4.21",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "bd8250210584cb659847dce9cda660f8e9906e5def7fbebcea93dc6dcb6a88a3"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21-sources.jar",
+      "relative_archive": "archives/123-kotlin-stdlib-2.4.21-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 767009,
+      "archive_sha256": "1e29c0668b0aa555e7b154e5da2e8094e1b755cfee25737839195bbbdad8a4a2",
+      "members": 498,
+      "regular_files": 418,
+      "expanded_bytes": 4637495,
+      "source_files": 416,
+      "source_bytes": 4630592,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "0d057fc70575f1bc84cd212c2f9eb6e8ec7f975c546b5e905b44703a65231e9c"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "bd783acd2f9738845d58380f46f45b5cde95d0cb03027d56725338b26bfc4d72"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0-sources.jar",
+      "relative_archive": "archives/124-kotlinx-coroutines-android-1.9.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 7783,
+      "archive_sha256": "dd4d70dbc424eb0492126446b4035821d40d255664a8a36091d357f11390bc50",
+      "members": 17,
+      "regular_files": 10,
+      "expanded_bytes": 13315,
+      "source_files": 3,
+      "source_bytes": 11008,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "945680aa25bda01e5d9f1d9505f041e3df5319b14847651d3ee3db50cccf8991"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-bom:1.9.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-bom/1.9.0/kotlinx-coroutines-bom-1.9.0.pom",
+      "pom_sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78",
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "ad89c2892235e670f222d819cb3d81188143cb19a05b59df9889ae4269f5c70a"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0-sources.jar",
+      "relative_archive": "archives/126-kotlinx-coroutines-core-jvm-1.9.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 396314,
+      "archive_sha256": "01e0f26a274d8f2f2ae702b161bc0980cea817bfcaf66ca4944434ea7b601771",
+      "members": 194,
+      "regular_files": 168,
+      "expanded_bytes": 1301938,
+      "source_files": 167,
+      "source_bytes": 1301913,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "c819b23e8f2440faaf09a39e96c2ff4a5103b40ab19f67823748f82f300ae3a8"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/1.9.0/kotlinx-coroutines-core-1.9.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-bom:1.7.3",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-bom/1.7.3/kotlinx-serialization-bom-1.7.3.pom",
+      "pom_sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46",
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.7.3/kotlinx-serialization-core-jvm-1.7.3.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "f0adde45864144475385cf4aa7e0b7feb27f61fcf9472665ed98cc971b06b1eb"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.7.3/kotlinx-serialization-core-jvm-1.7.3-sources.jar",
+      "relative_archive": "archives/129-kotlinx-serialization-core-jvm-1.7.3-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 106717,
+      "archive_sha256": "d084ce9bf130919d4b899db09896531440d1e330919187c7932d7fe0fa5257b8",
+      "members": 66,
+      "regular_files": 53,
+      "expanded_bytes": 370217,
+      "source_files": 52,
+      "source_bytes": 370192,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "6eb187bf4b33d99f4b4f2b538add13bb5321299a64fe71e29f474765d4ba5e89"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core/1.7.3/kotlinx-serialization-core-1.7.3.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [],
+      "status": "NO_BINARY_CAPTURE_FOR_COORDINATE_NOT_AUTOMATIC_SOURCE_EXEMPTION"
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:23.0.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.pom",
+      "pom_sha256": "c9490f655132328df2cfbcfdf743f53fc3916d6c1d10437175a6ca6e3a67771c",
+      "frozen_binary_sha256": [
+        "7b0f19724082cbfcbc66e5abea2b9bc92cf08a1ea11e191933ed43801eb3cd05"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0-sources.jar",
+      "relative_archive": "archives/131-annotations-23.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 37462,
+      "archive_sha256": "ff2309b42f7584520497bb48bc609aca04c9886cf48708f14be83f00423ec144",
+      "members": 40,
+      "regular_files": 31,
+      "expanded_bytes": 74172,
+      "source_files": 30,
+      "source_bytes": 74147,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "a85236703fd62606c657f0e74e89f7f36f5f3497c929e55824361207700cdf07"
+    },
+    {
+      "coordinate": "org.jspecify:jspecify:1.0.0",
+      "pom_url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.pom",
+      "pom_sha256": null,
+      "frozen_binary_sha256": [
+        "1fad6e6be7557781e4d33729d49ae1cdc8fdda6fe477bb0cc68ce351eafdfbab"
+      ],
+      "source_url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0-sources.jar",
+      "relative_archive": "archives/132-jspecify-1.0.0-sources.jar",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 11996,
+      "archive_sha256": "adf0898191d55937fb3192ba971826f4f294292c4a960740f3c27310e7b70296",
+      "members": 10,
+      "regular_files": 6,
+      "expanded_bytes": 25625,
+      "source_files": 5,
+      "source_bytes": 25600,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "97cc2597d190b0facb2bcad87bcc15b5c296c6b7a05f989bb85158889db9fe69"
+    }
+  ]
+}

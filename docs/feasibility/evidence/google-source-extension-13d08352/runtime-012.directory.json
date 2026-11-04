@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "75d0a1a4be2a24789a3cf89636454d84938fc949",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b86aec3a1a99283aa545c5d11d94c44a722d8d2d",
+      "name": "lifecycle-livedata-core-2.8.7-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "43922ac0af294368a2db0907fcf84c149663c30e",
+      "name": "lifecycle-livedata-core-2.8.7-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9dc817d0a975fa29cf27f7fff4adede72c89ad2a",
+      "name": "lifecycle-livedata-core-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "fdd58be8d2deb5b665a21c31ab1b01cb144038ca",
+      "name": "lifecycle-livedata-core-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "236ab3aff2d7f70affe38080a8cc1b290af3d47d",
+      "name": "lifecycle-livedata-core-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "66cf31592d11066f8a24d487027fdcb6b885e9de",
+      "name": "lifecycle-livedata-core-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "99c4fb2e063f41a50daefb47a409de4e53bbe7e3",
+      "name": "lifecycle-livedata-core-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "886abe509cef0ba12370fbbdd6a114eebd4ebb95",
+      "name": "lifecycle-livedata-core-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "bf7eaa45aba96e7e8e80de31e8fdf3ee93803688",
+      "name": "origin.json"
+    }
+  ]
+}

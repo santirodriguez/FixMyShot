@@ -1,0 +1,89 @@
+name: Prepare development release kit
+on:
+  push:
+    branches: ['release/0.1.0-editor', 'release/0.1.0']
+    paths:
+      - '.ci/development-release-request.json'
+      - '.github/workflows/prepare-development-release.yml'
+      - '.github/workflows/publish-development-release.yml'
+      - 'scripts/*development-release.py'
+      - 'docs/releases/0.1.0-alpha.2-notes.md'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.ci/development-release-request.json'
+      - '.github/workflows/*development-release.yml'
+      - 'scripts/*development-release.py'
+      - 'docs/releases/0.1.0-alpha.2-notes.md'
+      - 'README.md'
+      - 'docs/assets/badges/obtainium.svg'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: development-release-kit-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check release publishing and Obtainium boundaries offline
+        run: python3 scripts/test-development-release.py
+  stage:
+    needs: verify
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Read the explicit staging inputs
+        id: request
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          r = json.loads(Path('.ci/development-release-request.json').read_text())
+          if r['schema'] != 1:
+              raise ValueError('Unknown staging request')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              for label, key in (('sign', 'signing'), ('source', 'sources')):
+                  run = r[key]['run_id']
+                  name = r[key]['artifact_name']
+                  if type(run) is not int or run <= 0 or re.fullmatch(r'[A-Za-z0-9_.-]+', name) is None:
+                      raise ValueError('Unsafe artifact request')
+                  out.write(f'{label}_run={run}\n{label}_artifact={name}\n')
+          PY
+      - name: Download the verified signed candidate
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: ${{ steps.request.outputs.sign_artifact }}
+          run-id: ${{ steps.request.outputs.sign_run }}
+          github-token: ${{ github.token }}
+          path: candidate-input/signature
+      - name: Download the verified full source materials
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: ${{ steps.request.outputs.source_artifact }}
+          run-id: ${{ steps.request.outputs.source_run }}
+          github-token: ${{ github.token }}
+          path: candidate-input/sources
+      - name: Stage exact assets and review material without building or signing
+        run: |
+          python3 scripts/prepare-development-release.py .ci/development-release-request.json candidate-input/signature candidate-input/sources development-release --control-commit "$GITHUB_SHA"
+          (cd development-release/assets && sha256sum -c SHA256SUMS.txt)
+          python3 scripts/publish-development-release.py --kit development-release --control "$GITHUB_SHA"
+      - name: Preserve the prepared kit for review
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: development-release-kit-${{ github.sha }}
+          path: development-release/
+          if-no-files-found: error
+          retention-days: 7
+

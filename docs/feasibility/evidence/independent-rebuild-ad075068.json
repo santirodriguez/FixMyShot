@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "scope": "UNSIGNED_APK_BYTE_COMPARISON",
+  "workflow_control_commit": "033a03929140a806e49402978b49f2c885dc444e",
+  "request": {
+    "schema": 1,
+    "source_commit": "ad075068564dc8a7d8d0eca35fc1f69ff3d16464",
+    "source_tree": "b5ecadc6a756e0c07a67b7f0b38ae354744d3b8b",
+    "baseline_run_id": 40142693059,
+    "baseline_artifact_id": 12579476722,
+    "baseline_archive_sha256": "0b03a6224f7ce4a6c8f4c1ecc1cbb77fef5191dc2c13505c95677de50147dfe1",
+    "expected_unsigned_apk_sha256": "2ae8f0a8b2705fbf9e61d4bddf3933f22489cce0906225d573175f2f19dd7e27",
+    "expected_unsigned_apk_bytes": 23516325
+  },
+  "source_identity_checked": true,
+  "actual_unsigned_apk_sha256": "2ae8f0a8b2705fbf9e61d4bddf3933f22489cce0906225d573175f2f19dd7e27",
+  "actual_unsigned_apk_bytes": 23516325,
+  "byte_identical": true,
+  "cache_policy": "REQUIRES_VERIFY_STEP_AND_WORKFLOW_REVIEW",
+  "dependency_authentication": "OPEN",
+  "production_signature": "NOT_RUN",
+  "physical_acceptance": "NOT_RUN"
+}

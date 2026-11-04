@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "scope": "COMPRESS_1_27_1_TO_LANG_3_16_0_SOURCE_CALL_REVIEW_NOT_GLOBAL_BUILD_CLEARANCE",
+  "advisory": "GHSA-j288-q9x7-2f5v",
+  "frozen_match_coordinate": "org.apache.commons:commons-lang3:3.16.0",
+  "runtime_apk_family_types": "ZERO_IN_ACCEPTED5D_APKS; e516APP_PAYLOADS_IDENTICAL",
+  "known_owner": "AGP SDK repository -> Commons Compress1.27.1 -> Commons Lang3.16.0; lint/UTP associations remain recorded",
+  "compress_java_source_files_scanned": 404,
+  "compress_files_importing_lang": 6,
+  "lang_java_source_files_in_source_manifest": 249,
+  "direct_calls": [
+    {
+      "class": "ArrayFill",
+      "methods": [
+        "fill(byte[],byte)",
+        "fill(int[],int)"
+      ],
+      "purpose": "Initialize archive/compression arrays"
+    },
+    {
+      "class": "SystemProperties",
+      "methods": [
+        "getOsName()"
+      ],
+      "purpose": "Read host OS property"
+    },
+    {
+      "class": "FieldUtils",
+      "methods": [
+        "readField(Object,String,boolean)"
+      ],
+      "purpose": "Unwrap existing InputStreams using constant field names in and path"
+    }
+  ],
+  "dangerous_method": "ClassUtils.getClass(ClassLoader,String,boolean) retries unresolved dotted class names recursively",
+  "transitive_check": "FieldUtils.readField/getField traverses loaded class fields/interfaces; its ClassUtils use is getAllInterfaces(Class), not getClass(String). ArrayFill/SystemProperties inspected calls do not call the recursive class-name resolver. Object.getClass in TarArchiveEntry is not Commons Lang ClassUtils.getClass.",
+  "disposition": "NO_ADVISORY_METHOD_PATH_FOUND_IN_INSPECTED_COMPRESS_CALLS__SOURCE_INFERENCE",
+  "not_claimed": [
+    "Patched/removed Commons Lang version",
+    "Exhaustive AGP/lint/UTP direct or reflective callers",
+    "Tool-JAR/source byte equivalence",
+    "A global security gate pass or advisory suppression",
+    "New publisher authentication from source-only observations"
+  ],
+  "frozen_osv_advisory_count_unchanged": 49,
+  "frozen_matching_components_unchanged": 18,
+  "raw_files": [
+    {
+      "path": "compress-BinaryTree.java",
+      "bytes": 7160,
+      "sha256": "b30fa4db3ecfda9bfa9fbd1ad4bc32ea7faec9fa325da41be60b94d661ec89dd"
+    },
+    {
+      "path": "compress-HuffmanDecoder.java",
+      "bytes": 20104,
+      "sha256": "1f8baf8f3cfc67dc84258be66c09bbe4549e3a297d83a04a2c96dfb3f352faa0"
+    },
+    {
+      "path": "compress-LZ77Compressor.java",
+      "bytes": 20950,
+      "sha256": "dbb449b09e4ab710c009b78a9c1ba2f2a3c772e9c4cc702346f0c8494beadb5f"
+    },
+    {
+      "path": "compress-Pack200UnpackerAdapter.java",
+      "bytes": 7554,
+      "sha256": "f690c8ed9dd350287c445419c3738bf59fa7bb8a5f1cf3ffd408591e29be0cb5"
+    },
+    {
+      "path": "compress-TarArchiveEntry.java",
+      "bytes": 74667,
+      "sha256": "16e090e6b0db72c470055eb333a4aac75cab9bb74e21f6fde6ba2a7fd61393a5"
+    },
+    {
+      "path": "compress-TarArchiveOutputStream.java.bytes.json",
+      "bytes": 29762,
+      "sha256": "6bfb528d0a4784c8c0a580daf68e12ee4001d6f9a9d7f0a2e128166ff11b6668"
+    },
+    {
+      "path": "compress-source-report.json",
+      "bytes": 82435,
+      "sha256": "d8a2c2d3cac321cb10f73b4fa4e0bd01c46ee0e970f22504a7fc63423c2e9840"
+    },
+    {
+      "path": "lang-ArrayFill.java",
+      "bytes": 4425,
+      "sha256": "defeaa923f065bf9f80c7b8f1a0d57f3e8bfae74bd7bb6edce4a1b94a4469b02"
+    },
+    {
+      "path": "lang-ClassUtils.java",
+      "bytes": 64821,
+      "sha256": "fb963c6db285d45d2c8c335fe1cf22e8218e3ddfc3c72542c8dbf8d2ac29186f"
+    },
+    {
+      "path": "lang-FieldUtils.java",
+      "bytes": 38264,
+      "sha256": "d3c9169f646653a8a7390e7d4c7f62d7e5d627e847cd3ae122f95159ba51977d"
+    },
+    {
+      "path": "lang-SystemProperties.java",
+      "bytes": 139505,
+      "sha256": "e000708ecfc55360431a19da083a43c0a0ae8c9882bc4e302462f167c87f369e"
+    },
+    {
+      "path": "lang-source-report.json",
+      "bytes": 47193,
+      "sha256": "582262f7ca87355c01523f5562c015dba4e70214e1af1edbafa7d2ec86d4b2f8"
+    }
+  ],
+  "non_utf8_source_transport": [
+    {
+      "original": "compress-TarArchiveOutputStream.java",
+      "stored": "compress-TarArchiveOutputStream.java.bytes.json",
+      "sha256": "eeda1f8fac71b52de153e4ee65ef6221e9b5ced35d73aaf37265fc4c38422172"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.cursoradapter",
+    "cursoradapter",
+    "1.0.0",
+    "cursoradapter-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.pom",
+  "directory_sha256": "21cb78a57b3e306863a2886b8f5df4823b14630a728f7db5dd4f884ad0ee0e2e",
+  "directory_tree": "99c70488fcff16c4836e84ad0eded46dcb920d91",
+  "blob_sha1": "ffca433f2f77b5a75ad1245769fe67daa74968a6",
+  "bytes": 1611,
+  "sha256": "62d95c89850af21030b19f14d5f7ecd6d8bcc9a3014c59002ec99624caac8100"
+}

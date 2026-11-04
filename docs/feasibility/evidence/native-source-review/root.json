@@ -1,0 +1,258 @@
+)]}'
+{
+  "id": "3a7830b9713d9187cf1211862d4571ff58b0d507",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "71043af1eb687b9d75329fd4c3cee18e56cc23c3",
+      "name": ".cmake-format.py"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "fa5a76cf9728a2bfd83cc37828c6520326cef436",
+      "name": ".gitattributes"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "cf44822343023b792ba8cbbf6b302548f8ab5d44",
+      "name": ".gitignore"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "376fd58331d33090cf29458be6e737d645d86451",
+      "name": ".mailmap"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4658b844b806ea7d155ae8530c31a6a2a952fed4",
+      "name": ".pylintrc"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0be981a4867039beebe75a1a5b21afa1e31d2cf3",
+      "name": ".style.yapf"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6fe9552cd0e4b0b30e77ebd4d3620ca1ced95e03",
+      "name": "AUTHORS"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f1e9ad803047167acf9a8c8402e8e6689eb9916f",
+      "name": "Android.mk"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "39d3d8f6af7fe5cfdba0bb2179838453ae892ea7",
+      "name": "CMakeLists.txt"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9540f34f75ce10d5801ec17e633d1ce807abe27b",
+      "name": "CONTRIBUTING.md"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7a6f99547d4d6b4c5e6d5321acfaeba313e08de3",
+      "name": "COPYING"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0d53a3200b036b2829b139bad94f26a2460847c1",
+      "name": "ChangeLog"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e1c1dd4046314bf6aca335e16133c64cb52ad429",
+      "name": "Makefile.am"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "773bab19d1195317c7994358391c95a83b2f82a6",
+      "name": "Makefile.vc"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "fa4f977ab94f3e6fb89fc66152ffb94e2b6a05d4",
+      "name": "NEWS"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "caedf607e95ae4c3dc84d057fddcc301cd0e4863",
+      "name": "PATENTS"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "91ad12e151afc6d8e0c01869b23bf627f9d3f2e8",
+      "name": "PRESUBMIT.py"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "90f2b0594c10c76a4111798f4562c472aef7f609",
+      "name": "README.md"
+    },
+    {
+      "mode": 33261,
+      "type": "blob",
+      "id": "8ef9babbae6f795050dfa8157c4478042b9e0746",
+      "name": "autogen.sh"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "14ceebf78c752c573c0d0fc827261bc02a8db50a",
+      "name": "build.gradle"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "2c672d968c2f4f52fc4bcd8f1f31cf8200a64bb9",
+      "name": "cmake"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ccba2eeed2467cde06dbdb8aea39f499bdc105cb",
+      "name": "codereview.settings"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a9a82a04c98e2e625ced81a46f5af0fdc4e37005",
+      "name": "configure.ac"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "1d4c90a6fbc77cc5f26341329436b0e09b35ad87",
+      "name": "doc"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "d0b400f4faa65895fb58bef8fb066d8e51198dfe",
+      "name": "examples"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "e08aef36b341b8b23e4d7a11c4be73a4f2782cd4",
+      "name": "extras"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "28d39f5dfece48c7a0c3a77d77c565e9a45651bd",
+      "name": "gradle.properties"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "67805990a6ef9278e5f84edd716a19fae2d909a2",
+      "name": "gradle"
+    },
+    {
+      "mode": 33261,
+      "type": "blob",
+      "id": "2fe81a7d95e4f9ad2c9b2a046707d36ceb3980b3",
+      "name": "gradlew"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9618d8d9607cd91a0efb866bcac4810064ba6fac",
+      "name": "gradlew.bat"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "4ca97b0490c988d11ba526f9ef6176159e6dac63",
+      "name": "imageio"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "50083fc857f1a126baaffc701b118bf734803c6e",
+      "name": "infra"
+    },
+    {
+      "mode": 33261,
+      "type": "blob",
+      "id": "859aa3488bcbf9e7e9ae4ea88d0b879170efc29c",
+      "name": "iosbuild.sh"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "13b472af068b5f95ec137ab7ee98978b78d21c68",
+      "name": "m4"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "70f97ff20757c9707580efc726a4438cb1a6575e",
+      "name": "makefile.unix"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "5fc2a31fdcd6596a4e624d9fcfdad9bcf93e9aac",
+      "name": "man"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "f84fe4f60de1ebe4f922e88256d7a5dccb881558",
+      "name": "sharpyuv"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "81605fa1a8a55dc9b55b4c4839a4c4990485b49e",
+      "name": "src"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "4cbf9ef8ea4495990b6652776e728df40c891db1",
+      "name": "swig"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "b524b202259c90cdcb01824cc460637a139fbdf5",
+      "name": "tests"
+    },
+    {
+      "mode": 16384,
+      "type": "tree",
+      "id": "34dae4a161e00ea023383c8df33964a54712f393",
+      "name": "webp_js"
+    },
+    {
+      "mode": 33261,
+      "type": "blob",
+      "id": "a54b449b2414bbcd45a116e0488d1e7f95189019",
+      "name": "xcframeworkbuild.sh"
+    }
+  ]
+}

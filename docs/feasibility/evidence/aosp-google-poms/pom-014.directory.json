@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "de4f29690bad7ccb6345eec1881691d3d6fd7631",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4d1d0c7f5251717a0480ec139530ae9a5eff79bf",
+      "name": "monitor-1.7.2.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b3cc72b92311b9d4aa1f1c2de5420d8a794e8b30",
+      "name": "monitor-1.7.2.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "0c14b7e21e6c1125435113e4f9f3c9e6e5e5a889",
+      "name": "monitor-1.7.2.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "41ee2c824d7bdcae05c916790d87aac462d06400",
+      "name": "monitor-1.7.2.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c8e2618f6d9f2873c251641de1d73725db95798b",
+      "name": "origin.json"
+    }
+  ]
+}

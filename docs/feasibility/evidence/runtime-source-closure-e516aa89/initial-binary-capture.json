@@ -1,0 +1,652 @@
+{
+  "schema": 1,
+  "rows": [
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.aar"
+    },
+    {
+      "coordinate": "androidx.activity:activity-ktx:1.11.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-ktx/1.11.0/activity-ktx-1.11.0.aar"
+    },
+    {
+      "coordinate": "androidx.activity:activity:1.11.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity/1.11.0/activity-1.11.0.aar"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-experimental:1.4.1",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-experimental/1.4.1/annotation-experimental-1.4.1.aar"
+    },
+    {
+      "coordinate": "androidx.annotation:annotation-jvm:1.9.1",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/annotation/annotation-jvm/1.9.1/annotation-jvm-1.9.1.jar"
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat-resources:1.7.1",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat-resources/1.7.1/appcompat-resources-1.7.1.aar"
+    },
+    {
+      "coordinate": "androidx.appcompat:appcompat:1.7.1",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "2ad334a323b28046e89b738c77d184cb3dcca32a551ab048851b2fda23a3ba26",
+      "bytes": 1148656,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/appcompat/appcompat/1.7.1/appcompat-1.7.1.aar"
+    },
+    {
+      "coordinate": "androidx.arch.core:core-common:2.2.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "65308a06b1c00ee186cb9e19321383f043b993813f1522c47f4a3e3303bdba41",
+      "bytes": 11657,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-common/2.2.0/core-common-2.2.0.jar"
+    },
+    {
+      "coordinate": "androidx.arch.core:core-runtime:2.2.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "a1be5e0caa2b07623862af6ae21b3ab0718123245184d0e30dea81b53f990a47",
+      "bytes": 7577,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/arch/core/core-runtime/2.2.0/core-runtime-2.2.0.aar"
+    },
+    {
+      "coordinate": "androidx.autofill:autofill:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "c9468f56e05006ea151a426c54957cd0799b8b83a579d2846dd22061f33e5ecd",
+      "bytes": 4280,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/autofill/autofill/1.0.0/autofill-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.collection:collection-jvm:1.5.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "70b35924e4babcdffa37d0e575ee039c56a2d97123342624c48b603233704341",
+      "bytes": 877998,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-jvm/1.5.0/collection-jvm-1.5.0.jar"
+    },
+    {
+      "coordinate": "androidx.collection:collection-ktx:1.5.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "939b4a8697640e77d83e4e8b4c4a9d18f8130198c5961194af8dd9db9dc7c353",
+      "bytes": 4799,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/collection/collection-ktx/1.5.0/collection-ktx-1.5.0.jar"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-core-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "55d7bd5ba5796bc07d0552256734789a5be039555cd93991d0d26ce1a7671fef",
+      "bytes": 1369852,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-core-android/1.10.0/animation-core-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "c7366032bb88f90f307ab50f58e3c87ad93e278f50cfdbd9bedb6f10bc6217a3",
+      "bytes": 4945349,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-android/1.10.0/foundation-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.foundation:foundation-layout-android:1.10.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/foundation/foundation-layout-android/1.10.0/foundation-layout-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.material3:material3-android:1.4.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material3/material3-android/1.4.0/material3-android-1.4.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.material:material-ripple-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "ad7c12b3256ada337533ebb422c03a203e6e0d4226f83315d2abad16616d80be",
+      "bytes": 96259,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/material/material-ripple-android/1.10.0/material-ripple-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "612d36c21865a0008e889a2515c088cbd3b2210891f23acfe458abb63030d92a",
+      "bytes": 2495395,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-android/1.10.0/runtime-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-annotation-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "8b875f9d2e87cc927bef19dec3e6f3ff6db97d67a87f07573abc44c1e707992d",
+      "bytes": 9059,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-annotation-android/1.10.0/runtime-annotation-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-retain-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "fd03f002bd47edf80902e62cafb660bc1d93800fc6a7c9bcc16e620e46c4b86f",
+      "bytes": 1061099,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-retain-android/1.10.0/runtime-retain-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.runtime:runtime-saveable-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "f4c34f0e72eb6bb590811468bda832832a57edd678a0afa8373f505a619b3a36",
+      "bytes": 1058083,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/runtime/runtime-saveable-android/1.10.0/runtime-saveable-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "d5a7ae5986b9d32bdf6f7174eb2293c4eb894f5b4cdcebff4e1e42cd4aec00c8",
+      "bytes": 5760718,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-android/1.10.0/ui-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-geometry-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "40749b3f14b055cfd4438a59fef1cf9dffd01ae38df55ac981ffd890b5aab3a0",
+      "bytes": 59774,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-geometry-android/1.10.0/ui-geometry-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-graphics-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "b787d8795e4dee10a09d96fc5f8b99b087262b29004aaa40502dbde50971a8ae",
+      "bytes": 1695014,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-graphics-android/1.10.0/ui-graphics-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-text-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "626714ee7a6120adbebad6c57d743087aed173fe4769fea2ccee71b4770c1c70",
+      "bytes": 821593,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-text-android/1.10.0/ui-text-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-unit-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "b2a256118b29007709790d6f36e36cb139cd88b5796502c656d071ebebbee762",
+      "bytes": 100767,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-unit-android/1.10.0/ui-unit-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.compose.ui:ui-util-android:1.10.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "75259f110f0dc1272977e02e4eb591e71ebbdee136e0b21d76c9fd326372c909",
+      "bytes": 22302,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/compose/ui/ui-util-android/1.10.0/ui-util-android-1.10.0.aar"
+    },
+    {
+      "coordinate": "androidx.concurrent:concurrent-futures:1.1.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "0ce067c514a0d1049d1bebdf709e344ed3266fe9744275682937cdcb13334e9e",
+      "bytes": 25987,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/concurrent/concurrent-futures/1.1.0/concurrent-futures-1.1.0.jar"
+    },
+    {
+      "coordinate": "androidx.core:core-ktx:1.16.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "1766dbd82f64a12dcd359ecb6f15f3cf35db4d66d22961a7c51b2ffc6468314c",
+      "bytes": 175736,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/core/core-ktx/1.16.0/core-ktx-1.16.0.aar"
+    },
+    {
+      "coordinate": "androidx.core:core-viewtree:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "dc1b678d58ebcf2bfa1587be68ff826694ce3d221251b9ef30d4d4b36297e6de",
+      "bytes": 6980,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/core/core-viewtree/1.0.0/core-viewtree-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.core:core:1.16.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "6bf03d39dbe3744acce227d3b697374c3625aae1025fbec8ad9fd7bd58bce431",
+      "bytes": 1377184,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/core/core/1.16.0/core-1.16.0.aar"
+    },
+    {
+      "coordinate": "androidx.cursoradapter:cursoradapter:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "a81c8fe78815fa47df5b749deb52727ad11f9397da58b16017f4eb2c11e28564",
+      "bytes": 10591,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/cursoradapter/cursoradapter/1.0.0/cursoradapter-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.customview:customview-poolingcontainer:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "3584102fc49bf399c56e3b7be4bfe12000c46112320cd8cf85cc0a8f93f3e752",
+      "bytes": 6608,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview-poolingcontainer/1.0.0/customview-poolingcontainer-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.customview:customview:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "20e5b8f6526a34595a604f56718da81167c0b40a7a94a57daa355663f2594df2",
+      "bytes": 33238,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/customview/customview/1.0.0/customview-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-android:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "26c12c6417e7e4cfd36386aa8cc2b9839fe87a6792f820805827bde4d27f9e6e",
+      "bytes": 26511,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-android/1.1.7/datastore-android-1.1.7.aar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-android:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "adca1d7cde73406fcca2a0eeabac63459adc9d1fe201b79ba08711fa2e331984",
+      "bytes": 198992,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-android/1.1.7/datastore-core-android-1.1.7.aar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-core-okio-jvm:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "291506b4fce398249793e327207635bd4df25181d9539808d7181a4abd0875f5",
+      "bytes": 30276,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-core-okio-jvm/1.1.7/datastore-core-okio-jvm-1.1.7.jar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-android:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "1b3d703abc765b60517334b04c5b520e6e25168a2f2d73d5b0cd975d20054f8d",
+      "bytes": 16725,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-android/1.1.7/datastore-preferences-android-1.1.7.aar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-core-android:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "31cebf4444b1df57876e695109a0a63c9a93ff05df503d27a3927b86af0cfac0",
+      "bytes": 36753,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-core-android/1.1.7/datastore-preferences-core-android-1.1.7.aar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-external-protobuf:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "fcb3f373cf743426c85ebb0d3cc644aefaf26f39b7fa55bb90238d41b689eca7",
+      "bytes": 1048830,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-external-protobuf/1.1.7/datastore-preferences-external-protobuf-1.1.7.jar"
+    },
+    {
+      "coordinate": "androidx.datastore:datastore-preferences-proto:1.1.7",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "63686a612f39b8ca603bebe3376d55fb6c9ee28a4a5173efa49c89cbcca8a127",
+      "bytes": 25751,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/datastore/datastore-preferences-proto/1.1.7/datastore-preferences-proto-1.1.7.jar"
+    },
+    {
+      "coordinate": "androidx.documentfile:documentfile:1.0.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.drawerlayout:drawerlayout:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "9402442cdc5a43cf62fb14f8cf98c63342d4d9d9b805c8033c6cf7e802749ac1",
+      "bytes": 32470,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/drawerlayout/drawerlayout/1.0.0/drawerlayout-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.dynamicanimation:dynamicanimation:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "ce005162c229bf308d2d5b12fb6cad0874069cbbeaccee63a8193bd08d40de04",
+      "bytes": 32597,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/dynamicanimation/dynamicanimation/1.0.0/dynamicanimation-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.emoji2:emoji2-views-helper:1.4.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "ed5d3ed772a5fbf0d570f7526f585cd61a180e60f9372584c328a68e2cff3375",
+      "bytes": 22560,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2-views-helper/1.4.0/emoji2-views-helper-1.4.0.aar"
+    },
+    {
+      "coordinate": "androidx.emoji2:emoji2:1.4.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "433febd3434a45667176c76a64f3f205ca6335a6b544c5b5d57f25a38a375242",
+      "bytes": 143546,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/emoji2/emoji2/1.4.0/emoji2-1.4.0.aar"
+    },
+    {
+      "coordinate": "androidx.exifinterface:exifinterface:1.4.2",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "6bb2b68682a2023c55f35f941444ffea0157947b061e4fd7606ba935e2e77425",
+      "bytes": 75550,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/exifinterface/exifinterface/1.4.2/exifinterface-1.4.2.aar"
+    },
+    {
+      "coordinate": "androidx.fragment:fragment:1.5.4",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/fragment/fragment/1.5.4/fragment-1.5.4.aar"
+    },
+    {
+      "coordinate": "androidx.graphics:graphics-path:1.0.1",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "8ca4032b6d79b351f0b59ad4b580eddbb9423e1652f7c958830687f1eee2ec03",
+      "bytes": 39380,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/graphics/graphics-path/1.0.1/graphics-path-1.0.1.aar"
+    },
+    {
+      "coordinate": "androidx.heifwriter:heifwriter:1.2.0-rc01",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "2f8fdeebd71c6cf6411749f18ce475325c06adb708a98807e8069d22081ee1cd",
+      "bytes": 56879,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/heifwriter/heifwriter/1.2.0-rc01/heifwriter-1.2.0-rc01.aar"
+    },
+    {
+      "coordinate": "androidx.interpolator:interpolator:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a",
+      "bytes": 7669,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/interpolator/interpolator/1.0.0/interpolator-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.legacy:legacy-support-core-utils:1.0.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/legacy/legacy-support-core-utils/1.0.0/legacy-support-core-utils-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common-java8:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "497dd84de9f2fd46324f25f9a3af032d3a23d087e87af515c4b19435f6d6a651",
+      "bytes": 4839,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-java8/2.9.4/lifecycle-common-java8-2.9.4.jar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-common-jvm:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "37d89b2101f074ac6c260917dabb185607645ee200aa3018c7c5bde70edcf184",
+      "bytes": 60804,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-common-jvm/2.9.4/lifecycle-common-jvm-2.9.4.jar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "f55b7a8d433e9b8163154ccaa42fa2be55c70cd1ede5eeea521a4b4b884dd4fe",
+      "bytes": 5832,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core-ktx/2.9.4/lifecycle-livedata-core-ktx-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata-core:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "ea866f0c379d1f92837994010ab5ac0a5d5499dbab521efc71b3bc2b497d6ba4",
+      "bytes": 34182,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata-core/2.9.4/lifecycle-livedata-core-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-livedata:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "f240c2c94a96d4a5eae5d379c2a8589d426a33b989d83ae9f0e01f69502c0181",
+      "bytes": 54996,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-livedata/2.9.4/lifecycle-livedata-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-process:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "4784b8d083c211e076d9115bfa1737f7e0f62b553e801cf50caa4400e34a95d6",
+      "bytes": 19920,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-process/2.9.4/lifecycle-process-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-android:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "86f16a1330eb23600ba90d0334b3e1db38d3a30c8b1efcd92ca21aa85afa8173",
+      "bytes": 82853,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-android/2.9.4/lifecycle-runtime-android-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-compose-android:2.9.4",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "TimeoutError: The read operation timed out",
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-compose-android/2.9.4/lifecycle-runtime-compose-android-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "970199c9ed1ac13d620aa8de7f8abbc28ce80653c3ce328d0ac2f15272b56e1b",
+      "bytes": 5765,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-runtime-ktx-android/2.9.4/lifecycle-runtime-ktx-android-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-android:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "4b236b2e504db5ca5d09334fef05aa8cdc31ee35a433c3aa4d0420efa9613332",
+      "bytes": 65737,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-android/2.9.4/lifecycle-viewmodel-android-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "b7d58bb86bb8e2ccc607d1f8570e714810f7cfb3feba37d375ff1646383435a1",
+      "bytes": 5810,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-ktx/2.9.4/lifecycle-viewmodel-ktx-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "079441c43fa3ff8ea7a02df3b12eec483c3e57583f832cfaff663750527c1421",
+      "bytes": 57514,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel-savedstate-android/2.9.4/lifecycle-viewmodel-savedstate-android-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.lifecycle:lifecycle-viewmodel:2.9.4",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "cab404b05d5faed209104a2aef14c0cbb316ab9fabe4a8f037b043e5d2f43435",
+      "bytes": 4568,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/lifecycle/lifecycle-viewmodel/2.9.4/lifecycle-viewmodel-2.9.4.aar"
+    },
+    {
+      "coordinate": "androidx.loader:loader:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025",
+      "bytes": 33445,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/loader/loader/1.0.0/loader-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.localbroadcastmanager:localbroadcastmanager:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "e71c328ceef5c4a7d76f2d86df1b65d65fe2acf868b1a4efd84a3f34336186d8",
+      "bytes": 6808,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.print:print:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "1d5c7f3135a1bba661fc373fd72e11eb0a4adbb3396787826dd8e4190d5d9edd",
+      "bytes": 15782,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/print/print/1.0.0/print-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.profileinstaller:profileinstaller:1.4.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "d502141fcce902430f62b674c32aecd0f75262e7ee2cd15c74adb617cd13130a",
+      "bytes": 53890,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/profileinstaller/profileinstaller/1.4.0/profileinstaller-1.4.0.aar"
+    },
+    {
+      "coordinate": "androidx.resourceinspection:resourceinspection-annotation:1.0.1",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "8cff870ec6fb31db48a52f4a792335b4bf8de07e03bd37823181526433ccd5cb",
+      "bytes": 2336,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/resourceinspection/resourceinspection-annotation/1.0.1/resourceinspection-annotation-1.0.1.jar"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-android:1.3.2",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "1e26f137705596d09d3f4f52559a29026d9a1a6688be7f1a948316a4f1e39b20",
+      "bytes": 141149,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-android/1.3.2/savedstate-android-1.3.2.aar"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-compose-android:1.3.2",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "93426691f25441cc3179494b25f401a8a468aabbee4c40b90c0327413fd65523",
+      "bytes": 16497,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-compose-android/1.3.2/savedstate-compose-android-1.3.2.aar"
+    },
+    {
+      "coordinate": "androidx.savedstate:savedstate-ktx:1.3.2",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "1c300732ece8e9d0001fb19cc693b0f77f19e77cdf90ca5c4cd56d5e6951d02b",
+      "bytes": 5763,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/savedstate/savedstate-ktx/1.3.2/savedstate-ktx-1.3.2.aar"
+    },
+    {
+      "coordinate": "androidx.startup:startup-runtime:1.1.1",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "e0a6329a371262fe4c450372b70fdaf33b769ef6917094723787cfce896b1dd3",
+      "bytes": 19371,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/startup/startup-runtime/1.1.1/startup-runtime-1.1.1.aar"
+    },
+    {
+      "coordinate": "androidx.tracing:tracing:1.2.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "6faa90390d1fdbf0adb9a99bf99de67b94c6c6f35aea9510593a9d17973736a2",
+      "bytes": 6060,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/tracing/tracing/1.2.0/tracing-1.2.0.aar"
+    },
+    {
+      "coordinate": "androidx.transition:transition:1.6.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "248c45e1254d31181d2047b0b01394f09a2e539a5d9e89b773d53c62c96860f6",
+      "bytes": 195762,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/transition/transition/1.6.0/transition-1.6.0.aar"
+    },
+    {
+      "coordinate": "androidx.vectordrawable:vectordrawable-animated:1.1.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "76da2c502371d9c38054df5e2b248d00da87809ed058f3363eae87ce5e2403f8",
+      "bytes": 34496,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable-animated/1.1.0/vectordrawable-animated-1.1.0.aar"
+    },
+    {
+      "coordinate": "androidx.vectordrawable:vectordrawable:1.1.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "46fd633ac01b49b7fcabc263bf098c5a8b9e9a69774d234edcca04fb02df8e26",
+      "bytes": 33236,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/vectordrawable/vectordrawable/1.1.0/vectordrawable-1.1.0.aar"
+    },
+    {
+      "coordinate": "androidx.versionedparcelable:versionedparcelable:1.1.1",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "57e8d93260d18d5b9007c9eed3c64ad159de90c8609ebfc74a347cbd514535a4",
+      "bytes": 31061,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/versionedparcelable/versionedparcelable/1.1.1/versionedparcelable-1.1.1.aar"
+    },
+    {
+      "coordinate": "androidx.viewpager:viewpager:1.0.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "147af4e14a1984010d8f155e5e19d781f03c1d70dfed02a8e0d18428b8fc8682",
+      "bytes": 53513,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/viewpager/viewpager/1.0.0/viewpager-1.0.0.aar"
+    },
+    {
+      "coordinate": "androidx.window:window-core-android:1.5.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "d0d50db0756194a6d49a66ad8dafd17b24b4c5fbd8379375056e2eb9bdfeaf22",
+      "bytes": 18779,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/window/window-core-android/1.5.0/window-core-android-1.5.0.aar"
+    },
+    {
+      "coordinate": "androidx.window:window:1.5.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "5de2d48aa578402f46deb5294a955cee62f0c7d8c1840ef626fc7afb8abe22f9",
+      "bytes": 485264,
+      "url": "https://dl.google.com/dl/android/maven2/androidx/window/window/1.5.0/window-1.5.0.aar"
+    },
+    {
+      "coordinate": "com.google.guava:listenablefuture:1.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069",
+      "bytes": 3149,
+      "url": "https://repo.maven.apache.org/maven2/com/google/guava/listenablefuture/1.0/listenablefuture-1.0.jar"
+    },
+    {
+      "coordinate": "com.squareup.okio:okio-jvm:3.4.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e",
+      "bytes": 360090,
+      "url": "https://repo.maven.apache.org/maven2/com/squareup/okio/okio-jvm/3.4.0/okio-jvm-3.4.0.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-android-extensions-runtime:1.9.22",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "f00537c7023e604933f6a9563b1bb3b83e61fbfd2cc3d0e9900d616bab6862a4",
+      "bytes": 9709,
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-android-extensions-runtime/1.9.22/kotlin-android-extensions-runtime-1.9.22.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-parcelize-runtime:1.9.22",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "f0077f35ec828e148ac92d0c6aa141a732b5eb7a4a391679aeefa59fa9a1a5cc",
+      "bytes": 7000,
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-parcelize-runtime/1.9.22/kotlin-parcelize-runtime-1.9.22.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "4c889d1d9803f5f2eb6c1592a6b7e62369ac7660c9eee15aba16fec059163666",
+      "bytes": 963,
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk7/1.8.0/kotlin-stdlib-jdk7-1.8.0.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0",
+      "status": "EXACT_FROZEN_BYTES_CAPTURED",
+      "sha256": "05b62804441b0c9a1920b6b7d5cf7329a4e24b6258478e32b1f046ca01900946",
+      "bytes": 968,
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jdk8/1.8.0/kotlin-stdlib-jdk8-1.8.0.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlin:kotlin-stdlib:2.4.21",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.4.21/kotlin-stdlib-2.4.21.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/1.9.0/kotlinx-coroutines-android-1.9.0.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.9.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.9.0/kotlinx-coroutines-core-jvm-1.9.0.jar"
+    },
+    {
+      "coordinate": "org.jetbrains.kotlinx:kotlinx-serialization-core-jvm:1.7.3",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-serialization-core-jvm/1.7.3/kotlinx-serialization-core-jvm-1.7.3.jar"
+    },
+    {
+      "coordinate": "org.jetbrains:annotations:23.0.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jetbrains/annotations/23.0.0/annotations-23.0.0.jar"
+    },
+    {
+      "coordinate": "org.jspecify:jspecify:1.0.0",
+      "status": "FAILED_NOT_RETRIED",
+      "error": "URLError: <urlopen error timed out>",
+      "url": "https://repo.maven.apache.org/maven2/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar"
+    }
+  ],
+  "publisher_authentication_changed": false
+}

@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "scope": "ACTUAL_FULL_HOST_BUILD_PASS_OBSERVER_REFUSED",
+  "control": "f18b1a3adf1a0348ce3c526d9577b44d9d316d78",
+  "run_id": 40213670439,
+  "job_id": 121230089773,
+  "source": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "artifact_id": 12605944796,
+  "bytes": 43572015,
+  "sha256": "ea122a11bf817cba241fdf7415da33ed5922dd29a3475c6aac93ed30a720634c",
+  "archive_crc_and_safe_unique_members": "PASS_25",
+  "actual_unsigned_apk_byte_identical_to_accepted": "PASS_b677f044",
+  "core": {
+    "tests": 69,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "observer_status": "REFUSED_UNRECOGNIZED_CLASS_LOAD_RECORD",
+  "raw_observer_trace_preserved_in_first_attempt": false,
+  "no_absence_conclusion_from_first_attempt": true,
+  "corrective_control": "e69ce830372392a62feeb4432b285016e598dfb5",
+  "correction": "HotSpot classLoader.cpp emits opened:/path: metadata under same class,load tag. Added explicit parser records, real-JVM preflight, raw snapshot before parsing, diagnostics and tests; also include known gRPC shaded Netty alias.",
+  "byte_comparator_weakened": false,
+  "original_exact_rejected_line_not_retained": true,
+  "format_fix_basis": "Primary OpenJDK17 classLoader.cpp emits opened:/path: records under class,load; those valid record types were absent from the initial parser. The exact first offending line is unknown because its raw trace was not preserved."
+}

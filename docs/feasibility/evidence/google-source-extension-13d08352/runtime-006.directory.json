@@ -1,0 +1,54 @@
+)]}'
+{
+  "id": "a834c3faf76f6c5902e8c193f387fb46a460680e",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a104f87fb50e6d3508b4cbf73ea0f93d0cf6ed3f",
+      "name": "datastore-jvm-1.1.7.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "7042100f913ecb3773a4a7699318c7f07a93bd1f",
+      "name": "datastore-jvm-1.1.7.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "cc2f219624ac8f707531d3b41a620e5152c46275",
+      "name": "datastore-jvm-1.1.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "2df8e75695278aa4b4f48462583bbe9f6823d309",
+      "name": "datastore-jvm-1.1.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e28046d697511ce71e79c6fe77709061ceb30c45",
+      "name": "datastore-jvm-1.1.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d597bcd124273e623672a4559f02a8fe58dfe871",
+      "name": "datastore-jvm-1.1.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e5f828a97c4141d11bff9b04954fcc21fd167457",
+      "name": "origin.json"
+    }
+  ]
+}

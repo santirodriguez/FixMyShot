@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "rows": [
+    {
+      "coordinate": "com.google.protobuf:protobuf-javalite:4.28.2",
+      "source_url": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-javalite/4.28.2/protobuf-javalite-4.28.2-sources.jar",
+      "relative_archive": "archives/protobuf-javalite-4.28.2-sources.jar",
+      "mapping_owner": "docs/feasibility/evidence/runtime-license-review-f9434ab9.json#protobuf_sources",
+      "scope": "UPSTREAM_SOURCE_BEFORE_ANDROIDX_NAMESPACE_RELOCATION_NOT_BINARY_EQUIVALENCE",
+      "status": "CAPTURED_REQUIRES_SOURCE_REVIEW",
+      "archive_bytes": 453804,
+      "archive_sha256": "2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971",
+      "members": 164,
+      "regular_files": 160,
+      "expanded_bytes": 3100402,
+      "source_files": 159,
+      "source_bytes": 3100354,
+      "source_presence": "SOURCE_TEXT_PRESENT_NOT_COMPLETENESS_PROOF",
+      "notice_paths": [],
+      "member_manifest_sha256": "5baf3b4577cb0c9121c85c28f9b3e4ad5589589a129efd8994d270e0e19d6b0e"
+    }
+  ],
+  "issuer_authentication_approved": false
+}

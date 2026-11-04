@@ -1,0 +1,151 @@
+{
+  "schema": 1,
+  "scope": "EXACT_THREE_OKIO_FILES_DETACHED_SIGNATURE_REVIEW",
+  "reviewed": 297,
+  "pending": 561,
+  "runtime_reviewed": 215,
+  "runtime_pending": 13,
+  "other_reviewed": 82,
+  "other_pending": 548,
+  "prior294_proofs_unchanged": true,
+  "active_gradle_policy_changed": false,
+  "namespace_wide_trust": false,
+  "review": {
+    "prior_review_sha256": "9dc7776b37f4fd9e8eee1c62e4dff3ce687ab507971489b72a7f01a3041c3e77",
+    "registry_sha256": "b3d34114ca6b80308aa74520aa6f4268ea5054dfa72adc1286abc6e5592ea9e8",
+    "archive_sha256": "019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3",
+    "public_key_sha256": "4bf0a15d40e13fedb0736e5a6b1e331c94da9e36fb739316932256508bbd5255",
+    "public_key_url": "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xDBD744ACE7ADE6AA50DD591F66B50994442D2D40",
+    "primary_fingerprint": "DBD744ACE7ADE6AA50DD591F66B50994442D2D40",
+    "source_commit": "ba92108a334394a9fb2ee27858f35375cffa6cae",
+    "source_blob": "aa9020585609634c850ca79d9bea53e42a9293bd",
+    "reviewer_sha256": "9776290fd5fe5ec3afc96a21ce96509791f439aa61d521ede6f5953971ca5c5d",
+    "signature_verifier_sha256": "e1f809c2e14f1521387c1c225d7dce24cace8b1f384c0dc029c30367ab3dfe8d",
+    "verified_new_files": 3,
+    "outcomes": [
+      {
+        "identity": [
+          "com.squareup.okio",
+          "okio",
+          "3.4.0",
+          "okio-3.4.0.module"
+        ],
+        "sha256": "69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3",
+        "bytes": 20764,
+        "signature_sha256": "0a331b5a6711c5bd63fa5d72bf17594debdcccefb6a6816535e5f3b9ab9f35da",
+        "validsig_status": "[GNUPG:] VALIDSIG DBD744ACE7ADE6AA50DD591F66B50994442D2D40 2023-07-07 1688739713 0 4 0 1 10 00 DBD744ACE7ADE6AA50DD591F66B50994442D2D40"
+      },
+      {
+        "identity": [
+          "com.squareup.okio",
+          "okio-jvm",
+          "3.4.0",
+          "okio-jvm-3.4.0.jar"
+        ],
+        "sha256": "0139ec7a506dbbd54cad62291b019cb850534be097c8c66c1000d5fbe8edef3e",
+        "bytes": 360090,
+        "signature_sha256": "fd7f55d49e8bc7df170e8fa43b96a6abb85b810f27ba5fc9104a845e7da19989",
+        "validsig_status": "[GNUPG:] VALIDSIG DBD744ACE7ADE6AA50DD591F66B50994442D2D40 2023-07-07 1688739736 0 4 0 1 10 00 DBD744ACE7ADE6AA50DD591F66B50994442D2D40"
+      },
+      {
+        "identity": [
+          "com.squareup.okio",
+          "okio-jvm",
+          "3.4.0",
+          "okio-jvm-3.4.0.module"
+        ],
+        "sha256": "6fec13cf3361600364bfcc68004af7c760ceaf1fc1bbcc958742ae4d61db1512",
+        "bytes": 2636,
+        "signature_sha256": "5525d5555bfa254b7d137aec2ab8c80652fb6f4b1b4268e17214b4ebe26860d1",
+        "validsig_status": "[GNUPG:] VALIDSIG DBD744ACE7ADE6AA50DD591F66B50994442D2D40 2023-07-07 1688739736 0 4 0 1 10 00 DBD744ACE7ADE6AA50DD591F66B50994442D2D40"
+      }
+    ],
+    "namespace_wide_trust": false,
+    "active_gradle_policy_changed": false,
+    "key_freshness_or_absent_revocations_claim": false
+  },
+  "candidate_json_sha256": "4b2c787862a85ca38ca2dbf24409d49964a42f1db78648ad61d67d3270bf34d7",
+  "candidate_xml_sha256": "9c6877ee9f0235ec111781b3ef9e102396737a46a7177cd1a7205054e35c559f",
+  "remaining_runtime_identities": [
+    [
+      "com.google.guava",
+      "listenablefuture",
+      "1.0",
+      "listenablefuture-1.0.jar"
+    ],
+    [
+      "com.google.guava",
+      "listenablefuture",
+      "1.0",
+      "listenablefuture-1.0.pom"
+    ],
+    [
+      "org.jetbrains",
+      "annotations",
+      "23.0.0",
+      "annotations-23.0.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.jar"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-android",
+      "1.9.0",
+      "kotlinx-coroutines-android-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-bom",
+      "1.9.0",
+      "kotlinx-coroutines-bom-1.9.0.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core",
+      "1.9.0",
+      "kotlinx-coroutines-core-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-coroutines-core-jvm",
+      "1.9.0",
+      "kotlinx-coroutines-core-jvm-1.9.0.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-bom",
+      "1.7.3",
+      "kotlinx-serialization-bom-1.7.3.pom"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core",
+      "1.7.3",
+      "kotlinx-serialization-core-1.7.3.module"
+    ],
+    [
+      "org.jetbrains.kotlinx",
+      "kotlinx-serialization-core-jvm",
+      "1.7.3",
+      "kotlinx-serialization-core-jvm-1.7.3.module"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.jar"
+    ],
+    [
+      "org.jspecify",
+      "jspecify",
+      "1.0.0",
+      "jspecify-1.0.0.module"
+    ]
+  ],
+  "key_capture_bytes": 1712,
+  "diagnosis": "The previous keys.openpgp.org bundle contained no valid UID/self-certification and GnuPG marked its primary invalid (pub:i), then returned ERRSIG/NO_PUBKEY. The Ubuntu bundle contains the publisher UID/self-certification, the same independently anchored primary, and a 2041 expiry. All three SHA512 detached signatures validate. No missing-revocation/freshness verdict is inferred."
+}

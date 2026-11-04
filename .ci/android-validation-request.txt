@@ -1,0 +1,3 @@
+Validate dialog light-theme transition after platform window parameter updates.
+Check actual focused-window status/navigation appearance on API30+ before all three theme captures; retain all editor assertions.
+profile=current

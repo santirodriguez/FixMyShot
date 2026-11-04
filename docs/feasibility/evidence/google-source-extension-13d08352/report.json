@@ -1,0 +1,708 @@
+{
+  "schema": 1,
+  "scope": "EXACT_GOOGLE_APP_RUNTIME_SOURCE_COPIES_ONE_PINNED_AOSP_RELEASE",
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "metadata_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+  "prior_review_sha256": "4b2c787862a85ca38ca2dbf24409d49964a42f1db78648ad61d67d3270bf34d7",
+  "app_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+  "collector_sha256": "32444850b73e8ac97113d24c5338fd06409e4475855286aa9da7d19b1a0e8889",
+  "automatic_authentication": false,
+  "results": [
+    {
+      "id": "runtime-000",
+      "identity": [
+        "androidx.annotation",
+        "annotation",
+        "1.8.1",
+        "annotation-1.8.1.module"
+      ],
+      "expected_sha256": "e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation/1.8.1/annotation-1.8.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 34460,
+      "sha256": "e6386e85afdd865044e216575e493ed39a63a6325bd925379a21429c3941c8b5",
+      "blob_sha1": "32a12cd147928898c4e81c8e27d598ed60d22d75",
+      "directory_tree": "3e7b2579718bcaf282bbb5b11ef70003e36dbff5",
+      "directory_sha256": "f74564e5ac6b2eb589aaccf99e6a16ecc4eced5c8912f8c17e73943b2c7361e0"
+    },
+    {
+      "id": "runtime-001",
+      "identity": [
+        "androidx.annotation",
+        "annotation-jvm",
+        "1.8.1",
+        "annotation-jvm-1.8.1.module"
+      ],
+      "expected_sha256": "c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/annotation/annotation-jvm/1.8.1/annotation-jvm-1.8.1.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3225,
+      "sha256": "c959e3b0cdc75c15efe01605fa56aa79f033e39238e150638b8fabde6aa121a0",
+      "blob_sha1": "4b0c806a3f28827581c3d833c4b471df4604ead2",
+      "directory_tree": "6572385202011e0400e63b03c424416306a46ecc",
+      "directory_sha256": "4f9842283641ab8f7e6079a20b8da4469786bd4d588b34454ef08fac393a4ae8"
+    },
+    {
+      "id": "runtime-002",
+      "identity": [
+        "androidx.concurrent",
+        "concurrent-futures-ktx",
+        "1.1.0",
+        "concurrent-futures-ktx-1.1.0.module"
+      ],
+      "expected_sha256": "69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/concurrent/concurrent-futures-ktx/1.1.0/concurrent-futures-ktx-1.1.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4112,
+      "sha256": "69b79724566d49140846700690b8d2165231c577e93e66726a443e8f976bbe19",
+      "blob_sha1": "eaa0c6788121186862871a98a89d75586e76a836",
+      "directory_tree": "2beab86a47e70fc9e2d13623aecb99b6435ea4a7",
+      "directory_sha256": "734b936ff4b3a5d27ade0282a9e74db7c678ee4d26efd6c5f8ed6af6d96419ce"
+    },
+    {
+      "id": "runtime-003",
+      "identity": [
+        "androidx.core",
+        "core",
+        "1.13.0",
+        "core-1.13.0.module"
+      ],
+      "expected_sha256": "2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/core/core/1.13.0/core-1.13.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 6044,
+      "sha256": "2e0e6e5c1205b7462a0c5c3e32b58c2e525435812ed89946c7be6737493b51e3",
+      "blob_sha1": "a0d8b20dd622c6a6e98155a796ad07b461abeb35",
+      "directory_tree": "5639f6466456f5bd8d52ee8c84556d850c81003d",
+      "directory_sha256": "02bb5f13669d252c42d51299684f75568b2ec8cc6f3910600ebcf9aed0f17807"
+    },
+    {
+      "id": "runtime-004",
+      "identity": [
+        "androidx.core",
+        "core-ktx",
+        "1.13.0",
+        "core-ktx-1.13.0.module"
+      ],
+      "expected_sha256": "a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/core/core-ktx/1.13.0/core-ktx-1.13.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 4655,
+      "sha256": "a3e6a0692e05fd59e6ac380715ed72b325c625a3627646c69d108bdcddc4260f",
+      "blob_sha1": "d344662698201197df0e12f6040693b9624b2a10",
+      "directory_tree": "e190e50f27431ea1937f561cc94517f79e0bf272",
+      "directory_sha256": "122e3b4ef9160c75c2f31171ce07071dad44c987a1ebf0b85f47e05c13ea6623"
+    },
+    {
+      "id": "runtime-005",
+      "identity": [
+        "androidx.datastore",
+        "datastore-core-jvm",
+        "1.1.7",
+        "datastore-core-jvm-1.1.7.module"
+      ],
+      "expected_sha256": "58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-core-jvm/1.1.7/datastore-core-jvm-1.1.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 11645,
+      "sha256": "58021c7670af96974556d75ff4e418c099cd121179ce92f8347dfcadc67b0032",
+      "blob_sha1": "6b6977b3ff633cb6694f0cb182b1b3e91e972557",
+      "directory_tree": "31a04f0f4a79a1f2f459d52258f46fa39a3ae717",
+      "directory_sha256": "a6170cab289651348d02bfdbb3912ad0603480cf8b9ee1d6069668e731e6514c"
+    },
+    {
+      "id": "runtime-006",
+      "identity": [
+        "androidx.datastore",
+        "datastore-jvm",
+        "1.1.7",
+        "datastore-jvm-1.1.7.module"
+      ],
+      "expected_sha256": "333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-jvm/1.1.7/datastore-jvm-1.1.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 12138,
+      "sha256": "333c371dd12ec174e7d31bfffaa9dc8396ffb9b16b88971eb757c0817aafb9e5",
+      "blob_sha1": "cc2f219624ac8f707531d3b41a620e5152c46275",
+      "directory_tree": "a834c3faf76f6c5902e8c193f387fb46a460680e",
+      "directory_sha256": "88f726fa338a592120ee0f107af37604b136e25fcea9ee8bb8675d9ece2cfe69"
+    },
+    {
+      "id": "runtime-007",
+      "identity": [
+        "androidx.datastore",
+        "datastore-preferences-core-jvm",
+        "1.1.7",
+        "datastore-preferences-core-jvm-1.1.7.module"
+      ],
+      "expected_sha256": "2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-preferences-core-jvm/1.1.7/datastore-preferences-core-jvm-1.1.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 12559,
+      "sha256": "2c5e81aae9a4851801ae6626cf2cba512fd2460956f0f7c4d0cf101db370591c",
+      "blob_sha1": "bcb112dce2bbe816300b007f994073973989a5c3",
+      "directory_tree": "70dc569f4da205d5bc8b049985a9393a27ac6a5b",
+      "directory_sha256": "2a852716f29157b2809aeda7a6c0289fe816639d410e56bd6568e2028d53ad95"
+    },
+    {
+      "id": "runtime-008",
+      "identity": [
+        "androidx.datastore",
+        "datastore-preferences-jvm",
+        "1.1.7",
+        "datastore-preferences-jvm-1.1.7.module"
+      ],
+      "expected_sha256": "45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/datastore/datastore-preferences-jvm/1.1.7/datastore-preferences-jvm-1.1.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 12246,
+      "sha256": "45905e7ec9d518d553d1772a4cab191ed1dd3badff9373b090dda836a1cb0556",
+      "blob_sha1": "24f70aaf144578cab4c1fa44a80f70af14529b3b",
+      "directory_tree": "f5fd8b8fa895b64dcd256a84ba903a38b4f3ca79",
+      "directory_sha256": "abe63f055ee6eab437bc2f2e920ac338487c9724206694f969e4295d7976c78a"
+    },
+    {
+      "id": "runtime-009",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-common",
+        "2.8.7",
+        "lifecycle-common-2.8.7.module"
+      ],
+      "expected_sha256": "0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-common/2.8.7/lifecycle-common-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 34668,
+      "sha256": "0de78fc06ee5045d68fc7e81c313a2a3d53ac7d127f79f9bc95abf7be49e5764",
+      "blob_sha1": "ed3cfcb6e4643803958a3fd09bafa7046f15f629",
+      "directory_tree": "63193f9cafb88c32b54b0760ddda274f07b211dd",
+      "directory_sha256": "aa40d946ca5c943a196a2c56d8776b2f90ce21c864be3fbf79a32929b9f564fc"
+    },
+    {
+      "id": "runtime-010",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-common-jvm",
+        "2.8.7",
+        "lifecycle-common-jvm-2.8.7.module"
+      ],
+      "expected_sha256": "e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-common-jvm/2.8.7/lifecycle-common-jvm-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 17776,
+      "sha256": "e487a4c007d6abf29d01083c33e28696cd42cffcf714489dc91e97c3d42c6060",
+      "blob_sha1": "ee9bf3095850d0bb3b29c0ea4aca056c64589cb7",
+      "directory_tree": "730df03943d95f6da67001fd6104cb86f95e477b",
+      "directory_sha256": "90af20768c11585dfcbcf48aae9537a6ded1f0e00eca0c4900495bd8d5245ec2"
+    },
+    {
+      "id": "runtime-011",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-livedata",
+        "2.8.7",
+        "lifecycle-livedata-2.8.7.module"
+      ],
+      "expected_sha256": "d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata/2.8.7/lifecycle-livedata-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 24021,
+      "sha256": "d72516cfce78bef654fe5df4c99b9dabd19780c95053268a6d5b4b0dda2d4323",
+      "blob_sha1": "e3207fbd0752d215ff6e844b318d7e9167ec5d08",
+      "directory_tree": "4d9f26754d1d23a5e528f7b1010d342c1a6e183e",
+      "directory_sha256": "be96b1f137325deeab4f5f6a3a696c95e1e7ccad843ca1e9587125cb7beaf449"
+    },
+    {
+      "id": "runtime-012",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-livedata-core",
+        "2.8.7",
+        "lifecycle-livedata-core-2.8.7.module"
+      ],
+      "expected_sha256": "b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata-core/2.8.7/lifecycle-livedata-core-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 23508,
+      "sha256": "b0a1da7f1fe36060ec7847f1972857a24b7db29e6cd4516e62c5520009d813c2",
+      "blob_sha1": "236ab3aff2d7f70affe38080a8cc1b290af3d47d",
+      "directory_tree": "75d0a1a4be2a24789a3cf89636454d84938fc949",
+      "directory_sha256": "c14772da1ffec8e2bc4ea1a02ab3b123a082c780e558e37f67384c2dd915e2b7"
+    },
+    {
+      "id": "runtime-013",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-livedata-core-ktx",
+        "2.8.7",
+        "lifecycle-livedata-core-ktx-2.8.7.module"
+      ],
+      "expected_sha256": "3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-livedata-core-ktx/2.8.7/lifecycle-livedata-core-ktx-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 23497,
+      "sha256": "3d188bb622fcbb021d93cc007d3c477d4f402ae6f58b7fc46a441d0ab70678ad",
+      "blob_sha1": "5ace935874dcb9f593e665f414e4d027e6d400d4",
+      "directory_tree": "3a160b2674ec17cf3b8d653ed489e2ad216e68ff",
+      "directory_sha256": "eb4f2441a427aff62bd02a5217b830f224bd87cc4534b3dc246c2597e8eb3849"
+    },
+    {
+      "id": "runtime-014",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime",
+        "2.8.7",
+        "lifecycle-runtime-2.8.7.module"
+      ],
+      "expected_sha256": "cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime/2.8.7/lifecycle-runtime-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 36423,
+      "sha256": "cb00e5cb9283b75948dcc0d27234fb6d72a80c34dcb7b3b8d493185e4316bf85",
+      "blob_sha1": "5d1dcea31779bb699836d593018382fe82d5a035",
+      "directory_tree": "8f5541a5aad56b3b98c9c57f78aeb27231d14301",
+      "directory_sha256": "e8fc2d9b7d27b0f4d765229f3d04956c0bbe067902dd95b68964dd498f811f8d"
+    },
+    {
+      "id": "runtime-015",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime-android",
+        "2.8.7",
+        "lifecycle-runtime-android-2.8.7.module"
+      ],
+      "expected_sha256": "4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-android/2.8.7/lifecycle-runtime-android-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 21700,
+      "sha256": "4d1b3881c98d42934cb8d5de7c8a9e12049549a5147718647d7be6ca6d958c46",
+      "blob_sha1": "1aad30de28f49ae4ecd71556afd2659e0d72c059",
+      "directory_tree": "e6a4e685ae21adad759b23255cbf2220885cce0a",
+      "directory_sha256": "8fe0cdd220c328a02b3d446c782996cf07d6c523e5ab2f18197d2c8e5ebc5335"
+    },
+    {
+      "id": "runtime-016",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime-compose",
+        "2.8.7",
+        "lifecycle-runtime-compose-2.8.7.module"
+      ],
+      "expected_sha256": "cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-compose/2.8.7/lifecycle-runtime-compose-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 28404,
+      "sha256": "cc98a8849d81dab3064bc9ff871e43e91b48e0ba7d521f7c99ba26afec25657c",
+      "blob_sha1": "fbc1624633cbb318eb3097ebfd645c1e2f972d9e",
+      "directory_tree": "1ac4032bb0842ca66a9b00e03dfda195974a1673",
+      "directory_sha256": "d6f1d37c3e7d93c9a4de63edd12c5e7a971c582a83ebe346db619d3d8dfa1311"
+    },
+    {
+      "id": "runtime-017",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime-compose-android",
+        "2.8.7",
+        "lifecycle-runtime-compose-android-2.8.7.module"
+      ],
+      "expected_sha256": "c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-compose-android/2.8.7/lifecycle-runtime-compose-android-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 20804,
+      "sha256": "c024a16694c8b5c41ec8ef0ede2365eb612f8a3da25017fdf2ff343029f33902",
+      "blob_sha1": "18ce0175409fe73fd84aabc71021864499dcc7ce",
+      "directory_tree": "ac1ab4bba691452a372aca014b9df042bef5ff33",
+      "directory_sha256": "43c400c37284182ddb5a8d806ba6f26d7a11a349a3e3eb80912ac5b6c121a5bc"
+    },
+    {
+      "id": "runtime-018",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime-ktx",
+        "2.8.7",
+        "lifecycle-runtime-ktx-2.8.7.module"
+      ],
+      "expected_sha256": "09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-ktx/2.8.7/lifecycle-runtime-ktx-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 24474,
+      "sha256": "09c6dcf0fee2ad69c523db6c2a343168a8d9e9d27743cf84b69c757b7fcab243",
+      "blob_sha1": "67730ab7a7c887c7cc6e9263b18196c29d8f9a29",
+      "directory_tree": "86f32e594f5b9b47152dfb438648465136807814",
+      "directory_sha256": "557dae5490c8cf14745299e0d700d901729923904bec1cc784c612239c712816"
+    },
+    {
+      "id": "runtime-019",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-runtime-ktx-android",
+        "2.8.7",
+        "lifecycle-runtime-ktx-android-2.8.7.module"
+      ],
+      "expected_sha256": "adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-runtime-ktx-android/2.8.7/lifecycle-runtime-ktx-android-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 20030,
+      "sha256": "adc61521e894f163beee3aedc8c4c0dfb5991663b88ea1ea7798fac95694e17d",
+      "blob_sha1": "1fcaa20b9102f74def6f538c749f7d999e8aa29d",
+      "directory_tree": "43e1b18e1d3de539065a5f16d9d69df77c835612",
+      "directory_sha256": "1b7155246210ae71198abbff552efcb9ee4fdecbe1cc62dbf0488de483f0e8b9"
+    },
+    {
+      "id": "runtime-020",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-viewmodel",
+        "2.8.7",
+        "lifecycle-viewmodel-2.8.7.module"
+      ],
+      "expected_sha256": "f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel/2.8.7/lifecycle-viewmodel-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 36559,
+      "sha256": "f1d821fc18036dd20cc21ffbe02f547120bf0051e06ae9e1977140213c934372",
+      "blob_sha1": "e05f3e67671814c3bbdff9df6ded5d1a8a593afb",
+      "directory_tree": "a5ccdea8da3f47c92d1a99a5ead434227584efd3",
+      "directory_sha256": "2d49a24fdcfc183b7394cc32073da55f9f92cc7e0fa1340defe7327b5dd6a188"
+    },
+    {
+      "id": "runtime-021",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-viewmodel-android",
+        "2.8.7",
+        "lifecycle-viewmodel-android-2.8.7.module"
+      ],
+      "expected_sha256": "b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel-android/2.8.7/lifecycle-viewmodel-android-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 19932,
+      "sha256": "b04994ce67d6999438316ff41b2ddb84613a64b8f81399ef3074895ad81065dc",
+      "blob_sha1": "26476880fca8a1e6a580ac944bbd31da9fb5148e",
+      "directory_tree": "7fdaacb17899e2e0be95a0337a51adff76d9233e",
+      "directory_sha256": "10a70292a496528d70d12fe4bbdacd599f9c0c8c7dbe5be51f7ae9d22e959f2a"
+    },
+    {
+      "id": "runtime-022",
+      "identity": [
+        "androidx.lifecycle",
+        "lifecycle-viewmodel-savedstate",
+        "2.8.7",
+        "lifecycle-viewmodel-savedstate-2.8.7.module"
+      ],
+      "expected_sha256": "bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/lifecycle/lifecycle-viewmodel-savedstate/2.8.7/lifecycle-viewmodel-savedstate-2.8.7.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 25409,
+      "sha256": "bab22c067f25577a6ac334e8682414818073e9f445038d19039c90f8716fbf6d",
+      "blob_sha1": "830cf2369d6b163083dd0db5b4a3f11ddada3ed2",
+      "directory_tree": "c61fc480004ea34fbfa5dacf6d61f916c9e8e21c",
+      "directory_sha256": "7dd5130952581475d17b87cff8cee7349eea451875bebca7a3db35138fbde6a8"
+    },
+    {
+      "id": "runtime-023",
+      "identity": [
+        "androidx.tracing",
+        "tracing",
+        "1.1.0",
+        "tracing-1.1.0.module"
+      ],
+      "expected_sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/tracing/tracing/1.1.0/tracing-1.1.0.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 2822,
+      "sha256": "b1fed4309623b6f20bc817d8fbd70e4ea7085e40647694cd399ae58d2f0049e3",
+      "blob_sha1": "384b9118a45dfc327eabef4e4136fc92f40792ac",
+      "directory_tree": "1cdb35d3e3d7b391d84a5ed88567dcac029bfa53",
+      "directory_sha256": "d112673e7cd552d0892f9cb472d016265895dd22d9db71722ec68247e204d4aa"
+    },
+    {
+      "id": "runtime-024",
+      "identity": [
+        "com.android.tools.build",
+        "aapt2-proto",
+        "9.2.1-15009934",
+        "aapt2-proto-9.2.1-15009934.module"
+      ],
+      "expected_sha256": "59569173bf80ec813dc7ad45b37eed01584d11ddd886fc4987cbd17bf29b6f45",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/aapt2-proto/9.2.1-15009934/aapt2-proto-9.2.1-15009934.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-025",
+      "identity": [
+        "com.android.tools.build",
+        "aaptcompiler",
+        "9.2.1",
+        "aaptcompiler-9.2.1.module"
+      ],
+      "expected_sha256": "92a10902ee5acc47c87a9974cf967f5667eb8e17372ef0b7c255d4a0f9b579df",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/aaptcompiler/9.2.1/aaptcompiler-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-026",
+      "identity": [
+        "com.android.tools.build",
+        "builder",
+        "9.2.1",
+        "builder-9.2.1.module"
+      ],
+      "expected_sha256": "f34a8b2e9f1c5cad6d163fbe7528eca6fefc90bf5d5b7ed0653ee0c8a1e6dfe4",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/builder/9.2.1/builder-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-027",
+      "identity": [
+        "com.android.tools.build",
+        "builder-model",
+        "9.2.1",
+        "builder-model-9.2.1.module"
+      ],
+      "expected_sha256": "3ff6020d3705e2fcbc8498a32ef7653591f2bf53932d622d6605d2326e6389fc",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/builder-model/9.2.1/builder-model-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-028",
+      "identity": [
+        "com.android.tools.build",
+        "builder-test-api",
+        "9.2.1",
+        "builder-test-api-9.2.1.module"
+      ],
+      "expected_sha256": "fba50975eae599901eaf74da243445e7fbbe3d00be1e3da8c0a6a31e4fe3ac0b",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/builder-test-api/9.2.1/builder-test-api-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-029",
+      "identity": [
+        "com.android.tools.build",
+        "gradle",
+        "9.2.1",
+        "gradle-9.2.1.module"
+      ],
+      "expected_sha256": "0d76f91471eb1e18dfbb263ee202843a0f0bd7e07ab3c9b5a37d37f8b7eb80c7",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/gradle/9.2.1/gradle-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-030",
+      "identity": [
+        "com.android.tools.build",
+        "gradle-api",
+        "9.2.1",
+        "gradle-api-9.2.1.module"
+      ],
+      "expected_sha256": "37d636a4dc7d182e643a2488166d10266d48f7e022aade48e299dcbc16094996",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/gradle-api/9.2.1/gradle-api-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-031",
+      "identity": [
+        "com.android.tools.build",
+        "gradle-common-api",
+        "9.2.1",
+        "gradle-common-api-9.2.1.module"
+      ],
+      "expected_sha256": "1493fbdada9613a85d0a4186c0f2f57fd7c2108759a3f64568bfde6cfe18157d",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/gradle-common-api/9.2.1/gradle-common-api-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-032",
+      "identity": [
+        "com.android.tools.build",
+        "gradle-settings-api",
+        "9.2.1",
+        "gradle-settings-api-9.2.1.module"
+      ],
+      "expected_sha256": "f4a576e88003dbc127f6039897a01f9a5b2b42cf50c597acc17742603ad79270",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/gradle-settings-api/9.2.1/gradle-settings-api-9.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-033",
+      "identity": [
+        "com.android.tools.build",
+        "manifest-merger",
+        "32.2.1",
+        "manifest-merger-32.2.1.module"
+      ],
+      "expected_sha256": "00808dc63b78ddf05506e833c77b1806e2b60d446c524775cd74a55b9e73eb83",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/manifest-merger/32.2.1/manifest-merger-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-034",
+      "identity": [
+        "com.android.tools.build.jetifier",
+        "jetifier-core",
+        "1.0.0-beta10",
+        "jetifier-core-1.0.0-beta10.module"
+      ],
+      "expected_sha256": "f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/jetifier/jetifier-core/1.0.0-beta10/jetifier-core-1.0.0-beta10.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 3734,
+      "sha256": "f0917589a42d276163f10040ab5842e91883dcbdb1d48bfd1f1fcaa72c1ca7b7",
+      "blob_sha1": "18fc5400164b3ad01a24ec17b911a6adf9cf7d24",
+      "directory_tree": "a93c028994b63003608e3a46b2872d2768539734",
+      "directory_sha256": "0db6851e41bf542e83fb379229fac2bfcba5499993b7d44b408f7a48f53b9439"
+    },
+    {
+      "id": "runtime-035",
+      "identity": [
+        "com.android.tools.build.jetifier",
+        "jetifier-processor",
+        "1.0.0-beta10",
+        "jetifier-processor-1.0.0-beta10.module"
+      ],
+      "expected_sha256": "36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/build/jetifier/jetifier-processor/1.0.0-beta10/jetifier-processor-1.0.0-beta10.module",
+      "status": "MATCHED_FROZEN_BYTES",
+      "bytes": 5041,
+      "sha256": "36c25576b19993df360170528cc62b7246c37776d6158154a67cdf8fc2d58e13",
+      "blob_sha1": "14aed10424acbda214ad498291d5a522ea60d43b",
+      "directory_tree": "aa061eab5eea8dd9902429f2c138bb51e7e156d3",
+      "directory_sha256": "e8dff3d004ad280f5be22b382352ea2d626a2e937669011628c319785ea1c40d"
+    },
+    {
+      "id": "runtime-036",
+      "identity": [
+        "com.android.tools.utp",
+        "android-device-provider-ddmlib",
+        "32.2.1",
+        "android-device-provider-ddmlib-32.2.1.module"
+      ],
+      "expected_sha256": "446516fe9c1f72404ccd4b434ed79ed3893303fd7b41e01ff5ce0d5be6addbbc",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-device-provider-ddmlib/32.2.1/android-device-provider-ddmlib-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-037",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-additional-test-output",
+        "32.2.1",
+        "android-test-plugin-host-additional-test-output-32.2.1.module"
+      ],
+      "expected_sha256": "fdb1b962c159078e0fcf91ff82e2390d0d269d59e1f171bacd92546bae125971",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-additional-test-output/32.2.1/android-test-plugin-host-additional-test-output-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-038",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-apk-installer",
+        "32.2.1",
+        "android-test-plugin-host-apk-installer-32.2.1.module"
+      ],
+      "expected_sha256": "7dc135245809d11c2dbaac34da1565873bb67adc61f0c1f0a6e9be865a868d52",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-apk-installer/32.2.1/android-test-plugin-host-apk-installer-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-039",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-coverage",
+        "32.2.1",
+        "android-test-plugin-host-coverage-32.2.1.module"
+      ],
+      "expected_sha256": "a9b2949afcc27b9fcbb9bd12d194a2f6140e67bff8b52c1e0d97b5dc925bea8c",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-coverage/32.2.1/android-test-plugin-host-coverage-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-040",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-device-info",
+        "32.2.1",
+        "android-test-plugin-host-device-info-32.2.1.module"
+      ],
+      "expected_sha256": "2e5cb51e1876a36dd392485fa2578d825ffabe794dfb83414d77c555f193e1c5",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-device-info/32.2.1/android-test-plugin-host-device-info-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-041",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-emulator-control",
+        "32.2.1",
+        "android-test-plugin-host-emulator-control-32.2.1.module"
+      ],
+      "expected_sha256": "c3b1319a9257af739986f7ce364f48701363128288dc154c5d15594969dd9946",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-emulator-control/32.2.1/android-test-plugin-host-emulator-control-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-042",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-host-logcat",
+        "32.2.1",
+        "android-test-plugin-host-logcat-32.2.1.module"
+      ],
+      "expected_sha256": "242575878a97d804b54eb175dd75b19ee9eac8ea7308fdfc4b43637c8d163458",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-host-logcat/32.2.1/android-test-plugin-host-logcat-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-043",
+      "identity": [
+        "com.android.tools.utp",
+        "android-test-plugin-result-listener-gradle",
+        "32.2.1",
+        "android-test-plugin-result-listener-gradle-32.2.1.module"
+      ],
+      "expected_sha256": "95cebe1c2ecfa971ba7be69b5368423bb9688bdfd19a3fcbcfa5436c2ec6b515",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/android-test-plugin-result-listener-gradle/32.2.1/android-test-plugin-result-listener-gradle-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-044",
+      "identity": [
+        "com.android.tools.utp",
+        "gradle-work-action",
+        "32.2.1",
+        "gradle-work-action-32.2.1.module"
+      ],
+      "expected_sha256": "c4d54c0b0f0bbce1a3fb11ab0535f2b46667f5497ebc0f372252fe65f95566bc",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/gradle-work-action/32.2.1/gradle-work-action-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-045",
+      "identity": [
+        "com.android.tools.utp",
+        "gradle-work-action-api",
+        "32.2.1",
+        "gradle-work-action-api-32.2.1.module"
+      ],
+      "expected_sha256": "1228c9dd7a98abfc7b9de700ed6d2e3a57e9ad028354e60a437c1d076c3cadf4",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/gradle-work-action-api/32.2.1/gradle-work-action-api-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    },
+    {
+      "id": "runtime-046",
+      "identity": [
+        "com.android.tools.utp",
+        "utp-common",
+        "32.2.1",
+        "utp-common-32.2.1.module"
+      ],
+      "expected_sha256": "b541b17a65d142ccde00225487740a8a1849d4f2bfecded1a3978e30f68b7204",
+      "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/com/android/tools/utp/utp-common/32.2.1/utp-common-32.2.1.module",
+      "status": "DIRECTORY_HTTP_404"
+    }
+  ]
+}

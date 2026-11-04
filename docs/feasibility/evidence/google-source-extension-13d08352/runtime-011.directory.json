@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "4d9f26754d1d23a5e528f7b1010d342c1a6e183e",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4a7565af2a4fcbdb87d7f7ae5086c66720a4fcff",
+      "name": "lifecycle-livedata-2.8.7-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "9e1fabbaf5c9e1931db326892b26b96040f280e4",
+      "name": "lifecycle-livedata-2.8.7-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5d112e9d80a88bb597b1f3c1d34476edc95e53cc",
+      "name": "lifecycle-livedata-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "987a88e6b8f89f0f458f715b9d40b85d2a37054f",
+      "name": "lifecycle-livedata-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "e3207fbd0752d215ff6e844b318d7e9167ec5d08",
+      "name": "lifecycle-livedata-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "2fb8c86f41d714556af89e26422d476a0cb69933",
+      "name": "lifecycle-livedata-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6bff6d795d8479d2923d06a3a9a85f254b2bc36d",
+      "name": "lifecycle-livedata-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "3b5ba0bbce88db3fbc9e16e2b25aa8fbccf38e3b",
+      "name": "lifecycle-livedata-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a3b41810390a6b67ab3e4a7240ef325abb17afbb",
+      "name": "origin.json"
+    }
+  ]
+}

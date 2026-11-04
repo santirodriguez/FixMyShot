@@ -1,0 +1,199 @@
+name: Android bootstrap
+# Release work is batch-validated, not rebuilt for each development commit.
+# GitHub workflow_dispatch is not usable until a workflow is on the default branch.
+on:
+  push:
+    branches: ['release/**']
+    paths:
+      - '.ci/android-validation-request.txt'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    outputs:
+      apis: ${{ steps.profile.outputs.apis }}
+      legacy: ${{ steps.profile.outputs.legacy }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Select explicit batch validation profile
+        id: profile
+        run: |
+          if [[ "$(tail -n 1 .ci/android-validation-request.txt)" == profile=extended ]]; then
+            echo 'apis=[26,36]' >> "$GITHUB_OUTPUT"
+            echo 'legacy=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'apis=[36]' >> "$GITHUB_OUTPUT"
+            echo 'legacy=false' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Validate bootstrap resources and report checker
+        run: |
+          python3 scripts/check-bootstrap.py
+          python3 scripts/check-release.py
+          python3 scripts/test-release.py
+          python3 scripts/test-apk-legal.py
+          python3 scripts/test-gradle-wrapper.py
+          python3 scripts/test-device-report.py
+          python3 scripts/test-emulator-heap.py
+          python3 scripts/test-native-probe.py
+          python3 scripts/test-native-grid.py
+          python3 scripts/test-odd-avif-report.py
+          python3 scripts/test-avif-byte-sample.py
+          python3 scripts/test-heic-layout.py
+          python3 scripts/test-saf-provider.py
+      - name: Install pinned Android build packages
+        run: bash scripts/setup-android.sh
+      - name: Verify actual NDK source notices
+        run: |
+          python3 scripts/check-ndk-native-notices.py \
+            "$ANDROID_HOME/ndk/28.2.13676358" evidence/ndk-cpufeatures
+      - name: Validate committed standard wrapper without regeneration
+        run: bash scripts/bootstrap-gradle.sh
+      - name: Resolve and build the initial candidate
+        run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/source-sha.txt
+          git archive --format=tar HEAD -o evidence/source.tar
+          java -version 2> evidence/java-version.txt
+          ./gradlew --version > evidence/gradle-version.txt
+          # Version locks are committed. Artifact authenticity is still a separate open gate.
+          ./gradlew --no-daemon --write-verification-metadata sha256 \
+            :core:test :app:lintDebug :app:assembleDebug :app:assembleRelease :app:assembleDebugAndroidTest
+          git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
+          sha256sum app/build/outputs/apk/debug/app-debug.apk \
+            app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+            app/build/outputs/apk/release/app-release-unsigned.apk > evidence/apk-sha256.txt
+      - name: Capture selected buildscript dependency ownership
+        run: |
+          ./gradlew --no-daemon --console=plain \
+            buildEnvironment :app:buildEnvironment :core:buildEnvironment :codec-native:buildEnvironment \
+            > evidence/buildscript-dependencies.txt
+          sha256sum evidence/buildscript-dependencies.txt > evidence/buildscript-dependencies.sha256
+          git diff --exit-code -- app/gradle.lockfile core/gradle.lockfile codec-native/gradle.lockfile
+      - name: Inspect actual APK libraries and canonical legal assets
+        run: |
+          python3 scripts/check-apk.py app/build/outputs/apk/debug/app-debug.apk > evidence/debug-native.json
+          python3 scripts/check-apk.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-native.json
+          python3 scripts/check-apk-legal.py app/build/outputs/apk/debug/app-debug.apk > evidence/debug-legal.json
+          python3 scripts/check-apk-legal.py app/build/outputs/apk/release/app-release-unsigned.apk > evidence/release-legal.json
+      - name: Preserve source-bound reports and bootstrap candidates
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bootstrap-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            evidence/
+            gradlew
+            gradlew.bat
+            gradle/wrapper/
+            gradle/verification-metadata.xml
+            **/gradle.lockfile
+            core/build/test-results/
+            app/build/reports/
+            app/build/outputs/apk/
+  smoke:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        api: ${{ fromJSON(needs.build.outputs.apis) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download exact build candidates
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: bootstrap-${{ github.sha }}
+          path: candidate
+      - name: Install pinned Android build packages
+        run: bash scripts/setup-android.sh
+      - name: Enable runner virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Real PNG and lossless WebP fixture tests
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          ram-size: 2048M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: |
+            bash scripts/configure-emulator-heap.sh ${{ matrix.api }}
+            bash scripts/run-device-smoke.sh candidate
+      - name: Preserve emulator evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: smoke-api-${{ matrix.api }}-${{ github.sha }}
+          retention-days: 14
+          path: evidence/
+
+  saf-provider:
+    needs: build
+    if: needs.build.outputs.legacy == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [26, 28]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Download exact build candidates
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: bootstrap-${{ github.sha }}
+          path: candidate
+      - name: Enable runner virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Actual folder picker, persisted grant and process restart
+        uses: ReactiveCircus/android-emulator-runner@1dcd0090116d15e7c562f8db72807de5e036a4ed
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          target: google_apis
+          profile: pixel_2
+          ram-size: 2048M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: bash scripts/run-saf-provider-smoke.sh candidate
+      - name: Preserve real-provider evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: saf-api-${{ matrix.api }}-${{ github.sha }}
+          retention-days: 7
+          path: evidence/
+

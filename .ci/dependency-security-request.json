@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "baseline_source_commit": "773b34f0f3eebb124cb415da41811aede369ecf9",
+  "paired_provenance_request_sha256": "eda0cfc56b209076d45a1a2c1d3349c88b78c738e24ed71dfefd1d98faf33099",
+  "native_commit": "4fa21912338357f89e4fd51cf2368325b59e9bd9",
+  "inputs": {
+    "docs/feasibility/evidence/gradle-baseline-773b34f0.xml": "e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67",
+    "app/gradle.lockfile": "97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b",
+    "core/gradle.lockfile": "c6c472230eb7772de2dc71b2e4a04889f9e8651a5be76b7ab58c7a20115925a7",
+    "codec-native/gradle.lockfile": "98f03edd2fce07085f9208a86c65c7d65038f21639f3bc43e600898c53088832",
+    "codec-native/src/main/cpp/CMakeLists.txt": "28c077daa48e54afc846f03e76a84c185d1578a37b44820f34357748a68df7b2"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "url": "https://dl.google.com/dl/android/maven2/com/android/tools/sdk-common/32.2.1/sdk-common-32.2.1-sources.jar",
+  "sha256": "fa6a65b1457ccc7f938e3dbdf4e3c9ced480a897338df8625a3602c6f079f56b",
+  "bytes": 712515,
+  "bouncycastle_referencing_source_files": [
+    {
+      "path": "com/android/ide/common/signing/KeystoreHelper.java",
+      "local": "sdk-common-com__android__ide__common__signing__KeystoreHelper.java",
+      "bytes": 13525,
+      "sha256": "395b0bb45725c9915bca17441b51d91eb3fecf08165a87493318e7f912302032"
+    }
+  ],
+  "publisher_authentication_claim": false
+}

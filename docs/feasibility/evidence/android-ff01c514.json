@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "source_commit": "ff01c51406fcc2f6b486f9ec88467c61e9f824bd",
+  "source_tree": "6a5d55fdcea180f5d27b9dd2fd8a4b8459f3ccc6",
+  "run_id": 40156666980,
+  "job_id": 121059397880,
+  "status": "FAIL_LOCKED_READ_BUILD",
+  "failed_task": ":app:processDebugNavigationResources",
+  "observed_error": "Resolved org.jetbrains.kotlin:kotlin-stdlib-common:2.4.21 in :app:debugRuntimeClasspath, absent from dependency lock state",
+  "artifact_id": 12584686290,
+  "artifact_bytes": 4183252,
+  "artifact_sha256": "1b42f0dcdb77b05c69ec6726391ab58f0e35f538ed84c1e73caf875b6b41e806",
+  "archive_crc_unique_safe_members_source_check": "PASS",
+  "archive_members": 20,
+  "core_tests": 69,
+  "core_failures_errors_skipped": 0,
+  "lint_apk_completion": "NOT_REACHED",
+  "api36": "SKIPPED_BUILD_FAILED",
+  "native_legal_packages": "NOT_REACHED",
+  "frozen_migration_acceptance": false,
+  "trust_security_license_approval": false
+}

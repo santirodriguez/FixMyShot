@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "status": "UNSIGNED_CANDIDATE_NOT_RELEASED",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.2",
+  "version_code": 2,
+  "source_commit": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "source_tree": "5b30eeeb7596ca595ac1a3ba880c64c356d17859",
+  "unsigned_apk": {
+    "bytes": 12356414,
+    "sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa"
+  },
+  "baseline": {
+    "workflow_run": 41710230009,
+    "artifact_id": 13266133766,
+    "archive_bytes": 46166656,
+    "archive_sha256": "d1c0e9ce9ca1842f3a93847d07d46928d491ce1d6fb7adad8a0e83b83ee58da9"
+  },
+  "smoke": {
+    "artifact_id": 13266399380,
+    "archive_bytes": 2474690,
+    "archive_sha256": "694bc213c2d480d99a17f59935b9a7f589ad629aa625d97949c68cdb7b334add",
+    "core_tests": 99,
+    "api36_instrumented_tests": 135,
+    "status": "PASS",
+    "theme_capture_inspection": "PASS_DARK_SETTINGS_LIGHT_SETTINGS_RETURNED_LIGHT_EDITOR_STATUS_AND_GESTURE_CONTRAST"
+  },
+  "toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9",
+    "gradle": "9.4.1",
+    "build_tools": "36.0.0",
+    "ndk": "28.2.13676358"
+  },
+  "independent_unsigned_rebuild": {
+    "workflow_run": 41713619611,
+    "status": "PASS_FULL_BYTE_IDENTITY",
+    "artifact_id": 13268284181,
+    "artifact_bytes": 47822653,
+    "artifact_sha256": "035b938ffaa275b2a863b57ca6c8cc48b0e15452e410689934d59272a14f809c",
+    "independently_downloaded_and_compared": true,
+    "core_tests": 99,
+    "clean_source_and_empty_caches_verified": true,
+    "byte_identical": true
+  },
+  "corresponding_source_materials": {
+    "workflow_run": 41714329031,
+    "status": "PASS_ORIGINAL_ARCHIVES_AND_ALL_MANIFEST_MEMBERS_VERIFIED",
+    "project_webp_kit": {
+      "workflow_run": 41713619657,
+      "artifact_id": 13269321638,
+      "bytes": 24394878,
+      "sha256": "be9a836178f58c7c4db5e4b580241c06ea53efc409fe4b926745085ad77792a0",
+      "status": "PASS_ORIGINAL_BYTES_MODES_GIT_BLOBS_TREES_COMMIT_OBJECTS",
+      "project_files": 770,
+      "webp_files": 343
+    },
+    "prior_bundle_attempt": "FAILED_HISTORICAL_ALPHA1_KIT_HASH_PIN__CORRECTED_IN_bc7c12df",
+    "artifact_id": 13269596362,
+    "artifact_bytes": 58608240,
+    "artifact_sha256": "926d549fa49406261d765d54962f3eb885fac98f8b42450c175181dc29e906d8",
+    "complete_bundle": {
+      "bytes": 34170964,
+      "sha256": "7804550f938ee944c6d5735644193fdd563eaf6feb1afc93d06d44c4a25dd3b1",
+      "members": 1282,
+      "manifest_members_verified": 1281,
+      "runtime_companion_archives_verified": 94,
+      "supplemental_protobuf_verified": true
+    },
+    "signing_or_publication": false,
+    "final_corresponding_source_distribution_approval": false
+  },
+  "dependency_input_review": "UNCHANGED_DECLARED_INPUTS_COMPLETED_REVIEW_REUSED",
+  "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED_SEE_0.1.0-alpha.2-assurance.json",
+  "production_signature": "COMPLETED_AND_INDEPENDENTLY_VERIFIED_SEE_SIGNED_RECEIPT",
+  "physical_alpha2_install": "NOT_RUN",
+  "sequential_upgrade": "NOT_RUN",
+  "obtainium": "NOT_RUN",
+  "remaining_manual_limits": "../TESTING.md#current-delivery-reconciliation--2026-11-02",
+  "publication": "NOT_AUTHORIZED_NOT_RUN",
+  "actual_binary_manifest": {
+    "status": "PASS",
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "0.1.0-alpha.2",
+    "version_code": 2,
+    "min_sdk": 26,
+    "target_sdk": 36,
+    "allow_backup": false,
+    "uses_permissions": [
+      "org.cajapersonal.fixmyshot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "declared_permission_protection_level": "signature",
+    "android_dangerous_or_network_permissions": []
+  },
+  "signed_candidate_receipt": "0.1.0-alpha.2-signed-build-info.json"
+}

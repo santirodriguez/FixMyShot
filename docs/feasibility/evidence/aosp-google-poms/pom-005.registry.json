@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.documentfile",
+    "documentfile",
+    "1.0.0",
+    "documentfile-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/documentfile/documentfile/1.0.0/documentfile-1.0.0.pom",
+  "directory_sha256": "c5006dedaf6979cf816ed75472e3bc441cbf90c77a0bda416edf2d1689760255",
+  "directory_tree": "a04b9dfc62afe97570f412c7c3eb10f2d18d0dd3",
+  "blob_sha1": "dfc9aaddb4dfd91489dd4116ba4e61eb134e20bd",
+  "bytes": 1608,
+  "sha256": "013288a9317a552706ce625fb24493e8223288529223ec578cf855a5ae9c16e5"
+}

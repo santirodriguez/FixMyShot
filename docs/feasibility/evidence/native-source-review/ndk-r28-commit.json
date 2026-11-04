@@ -1,0 +1,21 @@
+)]}'
+{
+  "commit": "805836ef53231ef86dd5fcc5652a1c28d74f4bc4",
+  "tree": "9244e00c3f141935643096e0a763675048931caf",
+  "parents": [
+    "f1c87f4ca16e672587f64fe186efc9b8224370ec",
+    "1aa91d4066b54b70a4afc605837a30fb3dfa36a4"
+  ],
+  "author": {
+    "name": "Android Build Coastguard Worker",
+    "email": "android-build-coastguard-worker@google.com",
+    "time": "Fri Jun 20 14:12:38 2025 -0700"
+  },
+  "committer": {
+    "name": "Gerrit Code Review",
+    "email": "noreply-gerritcodereview@google.com",
+    "time": "Fri Jun 20 14:12:38 2025 -0700"
+  },
+  "message": "Merge \"Merge cherrypicks of [\u0027android-review.googlesource.com/3667134\u0027, \u0027android-review.googlesource.com/3667571\u0027, \u0027googleplex-android-review.googlesource.com/34043657\u0027, \u0027googleplex-android-review.googlesource.com/34111458\u0027, \u0027googleplex-android-review.googlesource.com/34111459\u0027, \u0027googleplex-android-review.googlesource.com/34111460\u0027] into ndk-r28-release.\" into ndk-r28-release",
+  "tree_diff": []
+}

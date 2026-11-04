@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.localbroadcastmanager",
+    "localbroadcastmanager",
+    "1.0.0",
+    "localbroadcastmanager-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/localbroadcastmanager/localbroadcastmanager/1.0.0/localbroadcastmanager-1.0.0.pom",
+  "directory_sha256": "b99235b29ad2cf8bc10ffa28ec75c0c28a6d91441aac7e49157a282cf5a7f205",
+  "directory_tree": "a3339851e0a98d6b1d1ab17ad2ccf99e354e3b8f",
+  "blob_sha1": "abf4d6f44c33d4978575e9e0a524b75cdbbd2b98",
+  "bytes": 1636,
+  "sha256": "a000041f5a1f79283c5175e1bb60cf3683780f401c6a9d34fbe9751253fa6ff9"
+}

@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "2e642af117d9b2b5c09c46e9a73b4b8b4af5d98c",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b9f4cc6c6446f8602a1cf8579dfe3af1518e261d",
+      "name": "dynamicanimation-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "c74df0668c164efd1c637dc88f59f10699b38698",
+      "name": "dynamicanimation-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "dc09da5853ce10e045e7ee16832b458ba84267aa",
+      "name": "dynamicanimation-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "bc21a3a02bc6738633765a71311bda7e872a2c0c",
+      "name": "dynamicanimation-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "601f38104fc8a25efd11abbfd1209130b4fc7337",
+      "name": "origin.json"
+    }
+  ]
+}

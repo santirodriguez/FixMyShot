@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "request_id": "alpha.2-main-release-automation-2026-11-04",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "0.1.0-alpha.2",
+  "version_code": 2,
+  "compiled_source": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
+  "compiled_tree": "5b30eeeb7596ca595ac1a3ba880c64c356d17859",
+  "tag_name": "v0.1.0-alpha.2",
+  "signed_apk": {
+    "filename": "FixMyShot-0.1.0-alpha.2-universal.apk",
+    "bytes": 12401557,
+    "sha256": "2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57",
+    "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+    "unsigned_sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa"
+  },
+  "source_materials": {
+    "input_filename": "FixMyShot-source-materials.tar.gz",
+    "filename": "FixMyShot-0.1.0-alpha.2-source-materials.tar.gz",
+    "bytes": 34170964,
+    "sha256": "7804550f938ee944c6d5735644193fdd563eaf6feb1afc93d06d44c4a25dd3b1",
+    "project_kit_sha256": "be9a836178f58c7c4db5e4b580241c06ea53efc409fe4b926745085ad77792a0"
+  },
+  "signing": {
+    "run_id": 41719563373,
+    "artifact_name": "FixMyShot-0.1.0-alpha.2-signed-41719563373"
+  },
+  "sources": {
+    "run_id": 41714329031,
+    "artifact_name": "source-kit-bc7c12df8990c15d802aca95f4f00aafa9b4ab7e"
+  },
+  "integration_snapshot": {
+    "pr": 2,
+    "head_branch": "release/0.1.0",
+    "reviewed_parent": "f8dcc53e97b7857b8c4418fb3d4d65d51cc8deb7",
+    "base_branch": "main",
+    "base_sha": "eb430e13ac71fdf334978b88623acf1ae1944c7e",
+    "default_branch": "main",
+    "default_branch_sha": "eb430e13ac71fdf334978b88623acf1ae1944c7e"
+  }
+}

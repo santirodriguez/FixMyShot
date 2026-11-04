@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "c4729d8b54b4b13d5e932e74ac6c1624a33a9899",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d607544d9e7017db7721c88de3b68b60982c9f15",
+      "name": "bundletool-1.18.3.jar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "4f7ce3360639cda1862cbdc63a85b04d6e4eb59f",
+      "name": "bundletool-1.18.3.jar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f6f2c23829bdd8230e9220f0a2c4adf08d648147",
+      "name": "bundletool-1.18.3.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "3656088bf905fb06e700b4ad2de71242d73cdcd5",
+      "name": "bundletool-1.18.3.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "122b422bd20e0071b5c842607821f447751ef3a5",
+      "name": "origin.json"
+    }
+  ]
+}

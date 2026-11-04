@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "scope": "RECOVERABLE_PUBLISHED_RUNTIME_SOURCE_MATERIAL_STAGING_NOT_FINAL_DISTRIBUTION_APPROVAL",
+  "compiled_source": "e516aa89efae94fe2376fd9f62e143218b49ccac",
+  "frozen_components": 133,
+  "frozen_binary_archives": 95,
+  "companions_captured": 94,
+  "companion_compressed_bytes": 9438796,
+  "companion_source_files": 3673,
+  "companion_source_bytes": 36243975,
+  "capture_errors": 0,
+  "source_payload_companions": 87,
+  "empty_companions": 7,
+  "all_seven_empty_companions_exact_frozen_binary_classes": 0,
+  "no_captured_binary_rows": 38,
+  "metadata_only_or_variant_ownership_still_requires_reconciliation": false,
+  "known_empty_datastore_protobuf_companion_not_retried": true,
+  "mapped_upstream_protobuf_source_files": 159,
+  "mapped_upstream_protobuf_source_bytes": 3100354,
+  "mapped_upstream_protobuf_archive_sha256": "2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971",
+  "full_94_archive_crc_hash_and_member_digest_replay": "PASS",
+  "protobuf_archive_crc_and_hash_replay": "PASS",
+  "collector_offline_tests": 6,
+  "new_binary_upload_required": false,
+  "dependency_publisher_review_changed": false,
+  "active_verification_changed": false,
+  "complete_corresponding_source_approved": false,
+  "remaining_source_review": [
+    "Review packaged runtime closure against corresponding source including relocation and generation/build materials",
+    "Assemble final source asset with project/WebP/NDK/AndroidX native material and applicable original notices after accepted-source freeze"
+  ],
+  "publisher_gate": "UNCHANGED_325_REVIEWED_533_PENDING_11_RUNTIME_522_OTHER",
+  "physical_and_signing_gates_unchanged": true,
+  "retained_evidence": [
+    {
+      "path": "SOURCE-SHA256SUMS.txt",
+      "sha256": "c3f2b53eb74843fbdd79b4f20710f334a1272f80b268a0a4a8fc7d971c7d310d",
+      "bytes": 10902
+    },
+    {
+      "path": "capture.json",
+      "sha256": "f88e271b106e6f92484d7be1e5ac605ea66d6ff1e70bf0882e2501101fb5da31",
+      "bytes": 121727
+    },
+    {
+      "path": "empty-shell-original-text.json",
+      "sha256": "ebf2a5461a7c85071862b6695142768e5d31d7eeac6d55dac87fc35173c5edaa",
+      "bytes": 6230
+    },
+    {
+      "path": "empty-source-binaries.json",
+      "sha256": "d4da65a912b42f84654740a30dd8a54d55c609cd2cf705c9e85be7d709b44e95",
+      "bytes": 12768
+    },
+    {
+      "path": "metadata/androidx.annotation__annotation__1.9.1.module",
+      "sha256": "f204b05b728a97561718bc716242e47c629c0085a80ee74fca53d4d638bcbe3f",
+      "bytes": 43864
+    },
+    {
+      "path": "metadata/androidx.collection__collection__1.5.0.module",
+      "sha256": "bfeb7bd84f3f7dda7bd73b6709d4a1f61f5a37f843728bae08a067e3df9a0aef",
+      "bytes": 39702
+    },
+    {
+      "path": "metadata/androidx.compose.animation__animation-core__1.10.0.module",
+      "sha256": "2560e6513e16978300d7f1cb2593e9cdc0f57dbb37b788efd2ee6769c12d7921",
+      "bytes": 15011
+    },
+    {
+      "path": "metadata/androidx.compose.animation__animation__1.10.0.module",
+      "sha256": "2158c1b57ce292ac2fd0d1541ece2cd08bbfbbd80aa6417a0668076693855458",
+      "bytes": 15269
+    },
+    {
+      "path": "metadata/androidx.compose.foundation__foundation-layout__1.10.0.module",
+      "sha256": "421dccb4cf516955c206ca1cad456983934a9909b44b0e9a14f735a779a563d1",
+      "bytes": 11943
+    },
+    {
+      "path": "metadata/androidx.compose.foundation__foundation__1.10.0.module",
+      "sha256": "b9f547775ab6920e06afeb371322840ab72d738b5a694a6f733ad7049675c452",
+      "bytes": 12183
+    },
+    {
+      "path": "metadata/androidx.compose.material3__material3__1.4.0.module",
+      "sha256": "757081d128daf8801c1dd9acc431fa5269e656b28a0a490ae98ccee68e9c3452",
+      "bytes": 13368
+    },
+    {
+      "path": "metadata/androidx.compose.material__material-ripple__1.10.0.module",
+      "sha256": "31c55e4c7264b06da320bef7086a6bd4265a40422d36e5eb770798b33f9742c2",
+      "bytes": 9238
+    },
+    {
+      "path": "metadata/androidx.compose.runtime__runtime-annotation__1.10.0.module",
+      "sha256": "029616c9ddf00b22bf629e151fca5ce73a96f094c4b5d96dc813dd3faa585f02",
+      "bytes": 53230
+    },
+    {
+      "path": "metadata/androidx.compose.runtime__runtime-retain__1.10.0.module",
+      "sha256": "8254e7bfa01e5471e6917a3730ad0af5265f9d52e7ddb3c3aa7a5befdf75f91f",
+      "bytes": 53087
+    },
+    {
+      "path": "metadata/androidx.compose.runtime__runtime-saveable__1.10.0.module",
+      "sha256": "835897174ebee1ebcf01000661f6cfcc8aedca1dbf4d17cb76245a5347b8f028",
+      "bytes": 53185
+    },
+    {
+      "path": "metadata/androidx.compose.runtime__runtime__1.10.0.module",
+      "sha256": "c1be9e41b03bc50e3850e86e5827fdf3eca11707989d93affb38e1bc8b53d675",
+      "bytes": 51807
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui-geometry__1.10.0.module",
+      "sha256": "ed47254977efa73d57b1528d1d142cd1e662fb408321cb182affa3f82a2ab569",
+      "bytes": 27298
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui-graphics__1.10.0.module",
+      "sha256": "b29b99982c91b69dbd50ff989f6e33ed4d31548b3609492189dba634d0c589d9",
+      "bytes": 28146
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui-text__1.10.0.module",
+      "sha256": "9109b898376ca1af4e8748ac437beba461f0e9f806eddfe8384f81561e5733c8",
+      "bytes": 27724
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui-unit__1.10.0.module",
+      "sha256": "c10ac08770b2a090703664d21030e316cfddc4407c1b014b8ad3250f8bed51d5",
+      "bytes": 27722
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui-util__1.10.0.module",
+      "sha256": "8e3bedd5c2e1c813a73e5282dbbfced422f786083828c42f9202da3929e54122",
+      "bytes": 26881
+    },
+    {
+      "path": "metadata/androidx.compose.ui__ui__1.10.0.module",
+      "sha256": "48600c0d2ff9eaaf6d7888124496fa2dd4830a1cc328591054cafed5f6a657e3",
+      "bytes": 28549
+    },
+    {
+      "path": "metadata/androidx.compose__compose-bom__2025.12.00.pom",
+      "sha256": "08809b3b7ae43ba6bbd16bc22ef049561acda6968db4c0e8e6f2690907af0f17",
+      "bytes": 39897
+    },
+    {
+      "path": "metadata/androidx.datastore__datastore-core-okio__1.1.7.module",
+      "sha256": "47fadb8caff5982ac29ccc1ff38d4206ee29ecb947fa06d4070c0ebc1086a7eb",
+      "bytes": 27053
+    },
+    {
+      "path": "metadata/androidx.datastore__datastore-core__1.1.7.module",
+      "sha256": "4821397339e3272f95139e408985bc91384ada3ca66e424ed8af6577070de489",
+      "bytes": 27932
+    },
+    {
+      "path": "metadata/androidx.datastore__datastore-preferences-core__1.1.7.module",
+      "sha256": "109dc49114519f2672fb3178de01fb53953e9559be83394dc259444550caed99",
+      "bytes": 29643
+    },
+    {
+      "path": "metadata/androidx.datastore__datastore-preferences__1.1.7.module",
+      "sha256": "24f6866605ed027c6e13158ca18464d2a1af1ba8a5f0ce3ff2224b7604fe0a2b",
+      "bytes": 28732
+    },
+    {
+      "path": "metadata/androidx.datastore__datastore__1.1.7.module",
+      "sha256": "705450d5e0d0a84c1599ae1421a9969e3aa704bc39640ebcd671e4643d2fc8f8",
+      "bytes": 27538
+    },
+    {
+      "path": "metadata/androidx.lifecycle__lifecycle-common__2.9.4.module",
+      "sha256": "c578bd755ea46d7a77811309a3539538e2d7fb86a05fc2ad81c655ecf7dff7a4",
+      "bytes": 59297
+    },
+    {
+      "path": "metadata/androidx.lifecycle__lifecycle-runtime-compose__2.9.4.module",
+      "sha256": "27d864f40ca30b967b85daac6b917bbdaea637d63e123948c95045c21be58483",
+      "bytes": 63755
+    },
+    {
+      "path": "metadata/androidx.lifecycle__lifecycle-runtime-ktx__2.9.4.module",
+      "sha256": "05e5788e0005d3aa33e2d65a5dcb51bdab06094a254c135b820316d64931abc7",
+      "bytes": 25969
+    },
+    {
+      "path": "metadata/androidx.lifecycle__lifecycle-runtime__2.9.4.module",
+      "sha256": "dcbc5b5b50666e84258a74bfd8e514918c593a4ffcef0c0358562a02fbd80c58",
+      "bytes": 61469
+    },
+    {
+      "path": "metadata/androidx.lifecycle__lifecycle-viewmodel-savedstate__2.9.4.module",
+      "sha256": "4389cca0a9a801a71effaeb88f89f0a03d99c22be093c539a9c0f9c396295416",
+      "bytes": 65819
+    },
+    {
+      "path": "metadata/androidx.savedstate__savedstate-compose__1.3.2.module",
+      "sha256": "3e4b8353f8b738e7bf497b8a15631bf5fdf6abd09dcd125c13aeb5048fa6bc13",
+      "bytes": 44485
+    },
+    {
+      "path": "metadata/androidx.savedstate__savedstate__1.3.2.module",
+      "sha256": "320e8d0ad2fe7476f2242ae28d923fc74c8f785b78fa658707497b99ac950f4a",
+      "bytes": 43574
+    },
+    {
+      "path": "metadata/androidx.window__window-core__1.5.0.module",
+      "sha256": "595604f055a12508ec3c774f2d90c5e56414ba6246c754172d9c95c8a00ec04f",
+      "bytes": 45700
+    },
+    {
+      "path": "metadata/com.squareup.okio__okio__3.4.0.module",
+      "sha256": "69173608417a2113e6fa6afeb7b4540b20df70cfda3fa16c73aaa4fa702ffad3",
+      "bytes": 20764
+    },
+    {
+      "path": "metadata/org.jetbrains.kotlin__kotlin-stdlib-common__2.4.21.module",
+      "sha256": "aeae4f24688e1dd7ebee648ab2b12be685cbe33e9c72bc1439730a794d6e2d5b",
+      "bytes": 626
+    },
+    {
+      "path": "metadata/org.jetbrains.kotlinx__kotlinx-coroutines-bom__1.9.0.pom",
+      "sha256": "bea5511e9001f2c593ab5080df131b219ab5e2085cc5979ce583eacd4946fd78",
+      "bytes": 4291
+    },
+    {
+      "path": "metadata/org.jetbrains.kotlinx__kotlinx-coroutines-core__1.9.0.module",
+      "sha256": "ad534034a953b4e12cbeeb874c66adf8b1ca14df15fe0d2e6547aa34e86dfeca",
+      "bytes": 45570
+    },
+    {
+      "path": "metadata/org.jetbrains.kotlinx__kotlinx-serialization-bom__1.7.3.pom",
+      "sha256": "4226a491c5b59ce909f73b65aa98944191c8dcac3825637c6be1069e6b589a46",
+      "bytes": 4037
+    },
+    {
+      "path": "metadata/org.jetbrains.kotlinx__kotlinx-serialization-core__1.7.3.module",
+      "sha256": "39d09a6e02df2b32558440a64c628f9c605fae8c4f6090321798334c82177e64",
+      "bytes": 48820
+    },
+    {
+      "path": "metadata-ownership.json",
+      "sha256": "a6a5d7b0f475dd27bbe40dd467a93cd80f8089a71d1c524b755d0025d928c380",
+      "bytes": 72644
+    },
+    {
+      "path": "protobuf-upstream.json",
+      "sha256": "72aa9317d8f89570ab06be819341defa083ca351dc033a7b8800ae69bde9db3e",
+      "bytes": 1086
+    }
+  ],
+  "static_metadata_ownership_resolved": 38,
+  "metadata_ownership_counts": {
+    "METADATA_WITH_SELECTED_COMPONENT_TARGETS": 34,
+    "BOM_METADATA_ONLY_DESCRIPTOR": 3,
+    "DEPENDENCY_ONLY_METADATA_TO_SELECTED_STDLIB": 1
+  },
+  "actual_gradle_variant_selection_trace": false
+}

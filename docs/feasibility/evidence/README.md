@@ -1,0 +1,201 @@
+# Captured build inputs, with the receipt attached
+
+This folder preserves the original generated dependency inventory so later reviews do not depend on an expiring Actions artifact or another Android build.
+
+| Evidence | Identity |
+| --- | --- |
+| Application source | 773b34f0f3eebb124cb415da41811aede369ecf9 |
+| Source tree | 3574454a5e70607765a648eb33880777de1fb3ed |
+| Original run | [40047858334](https://github.com/santirodriguez/FixMyShot/actions/runs/40047858334) |
+| Build artifact | 12542905033 |
+| Artifact ZIP SHA256 | 9fdd171c785a2e766b492403b57a4d087a8487b08b3ed9967087553f30224134 |
+| Original XML SHA256 | e3122954d679a56876ba33efb4b8b25dad6510dc10c257c23b246c2aadadcb67 |
+| Captured inventory | 514 components; 921 exact artifact hashes; generated, unauthenticated |
+
+The XML is byte-for-byte equal to the downloaded original build artifact. Its nonstandard path and filename are deliberately inactive: Gradle does not load this as verification-metadata.xml. Generated hashes record observed bytes; they do not establish publisher authenticity. The independently reviewed subset lives in [the review record](../../../gradle/dependency-provenance-review.json), with full scope and limits in [committed inputs](../committed-gradle-inputs.md).
+
+For the historical773b34f0 baseline, the Google-route planner has **zero unattempted files**. Do not replace the active request with an empty plan or automatically retry the 118 deferred files. Inspect the current review record before selecting another publisher.
+
+The [retained dependency-review ZIP](dependency-review-64745e1f.zip) contains the Kotlin 2.2.0/2.2.20 manifests and complete bounded OSV captures. [Security triage](../dependency-security-review.md) owns the artifact/control/request/report digests, interpretation limits and offline security replay. These are repository evidence, not a trust policy.
+
+Reproduce the Kotlin extension from the repository root after checking/extracting that ZIP as described in the triage owner:
+
+```bash
+git show cbb9414a58be1efc77c501e70d7fcb8026fbfb19:gradle/dependency-provenance-review.json \
+  > /tmp/fixmyshot-prior-368.json
+python3 scripts/review-kotlin-manifests.py \
+  /tmp/fixmyshot-dependency-evidence-64745e1f \
+  docs/feasibility/evidence/gradle-baseline-773b34f0.xml \
+  /tmp/fixmyshot-prior-368.json \
+  docs/feasibility/evidence/kotlin-publisher-manifests.json \
+  /tmp/fixmyshot-kotlin-replayed \
+  --expected-control 64745e1f88df2ecf488f1fc650854f186f6abe7a \
+  --expected-request eda0cfc56b209076d45a1a2c1d3349c88b78c738e24ed71dfefd1d98faf33099 \
+  --expected-prior 49f7a64bf093b7a4b699014a7ab9bf7614f7917529af096ed9575f63968d63dc \
+  --expected-registry cb3fc072e6e97e7dd692e649cbc974e01f4c7bae4b9ac5d638753ec1e2ecccbe
+git show 8a6ba7828488a02382a0ba64b368f030b57c3959:gradle/dependency-provenance-review.json \
+  > /tmp/fixmyshot-after-kotlin-379.json
+cmp /tmp/fixmyshot-kotlin-replayed/dependency-provenance-review.json \
+  /tmp/fixmyshot-after-kotlin-379.json
+git show 8a6ba7828488a02382a0ba64b368f030b57c3959:gradle/reviewed-verification-candidate.xml \
+  > /tmp/fixmyshot-after-kotlin-379.xml
+cmp /tmp/fixmyshot-kotlin-replayed/reviewed-verification-candidate.xml \
+  /tmp/fixmyshot-after-kotlin-379.xml
+```
+
+Review performs no network request, build or trust activation. Previously attempted unsigned/unverified files remain deferred until explicitly reconsidered. Current acceptance gates and signing/publication boundaries still apply.
+
+
+## Runtime publisher capture
+
+`runtime-publishers-04a8aa02.zip` preserves the original 59-file public-only
+Actions artifact12570037960. Expected size2,152,718 bytes and SHA256
+`019f31f7526cbafc2b3d4da5e352bdb89334edd05954b24e9bafb655bcddfdc3`.
+Before extraction, check the hash, ZIP CRC, unique relative regular-file names,
+no links/special files/traversal, and member sizes within4MiB. Extract into a
+new empty temporary directory. Never execute downloaded artifact contents.
+The original job finished FAILURE/partial capture; retaining it does not change
+that result. Detailed outcomes and source pins are in
+[committed inputs](../committed-gradle-inputs.md).
+
+After verifying/extracting to `/tmp/fixmyshot-runtime-evidence-04a8aa02`, replay
+from the repository root into a fresh output directory:
+
+```bash
+git show 04a8aa0252d69b68bec6bbb1197f075b1f7beb2a:gradle/dependency-provenance-review.json \
+  > /tmp/fixmyshot-prior-379.json
+python3 scripts/review-runtime-publishers.py \
+  /tmp/fixmyshot-runtime-evidence-04a8aa02 \
+  docs/feasibility/evidence/gradle-baseline-773b34f0.xml \
+  /tmp/fixmyshot-prior-379.json \
+  docs/feasibility/evidence/runtime-publisher-anchors.json \
+  app/gradle.lockfile /tmp/fixmyshot-runtime-replayed \
+  --expected-control 04a8aa0252d69b68bec6bbb1197f075b1f7beb2a \
+  --expected-request 5c965e9a09b70683bc70529c2bb2cceafca890a3d48fa517821f83dd0786066b \
+  --expected-prior 3fa1fd05c8261169a3d8c625c8419410f9306c740b6870945d4728db5a67a207 \
+  --expected-registry b3d34114ca6b80308aa74520aa6f4268ea5054dfa72adc1286abc6e5592ea9e8 \
+  --expected-lock 97ac0f54a4a9a7368f9472ba72717a0b4dae60d30b6b643dc307350f8f84977b
+cmp /tmp/fixmyshot-runtime-replayed/dependency-provenance-review.json \
+  gradle/dependency-provenance-review.json
+cmp /tmp/fixmyshot-runtime-replayed/reviewed-verification-candidate.xml \
+  gradle/reviewed-verification-candidate.xml
+```
+
+Expected result:387 reviewed/534 pending, with8 newly verified exact files and
+all379 previous proofs retained. Review is offline and uses disposable public
+keyrings; it changes neither active Gradle trust nor the prior security snapshot.
+
+## Migrated f9434ab9 dependency evidence
+
+`dependency-evidence-f9434ab9.json` records the225042-byte package
+`dependency-evidence-f9434ab9.zip`, SHA256
+7b1fe28d705c14049ba6401e9dadbd346a1e2ba881ef249bc16d1505c974fbea.
+Local CRC,70safe members, manifest hashes and raw-capture/replay checks passed.
+The package is uploaded in commit98bdedb9caddeb2426328f9ce85b47dc56975202
+on release/0.1.0. Actual remote bytes matched size/SHA256/Git blob, CRC and
+every manifest entry; remote persistence is verified.
+It contains publisher/ (original Kotlin2.4.21 manifest capture), security/
+(all488queries/49detailresponses and capture report), inherited-review.json
+(the149-proof seed with unchanged attempted identities) and the full offline
+security replay receipt. It contains no application artifact or private input.
+
+Replay with the current repository scripts and frozen gradle-baseline-f9434ab9.xml
+plus the three matching locks. Use the explicit control/request/report/registry/
+prior pins in the package receipt: review-kotlin-manifests.py accepts publisher/,
+inherited-review.json and the pinned official registry; review-dependency-security.py
+accepts security/. Compare output bytes/counts to the migrated216/858 partial
+review and security-f9434ab9.json/full replay hash. Original387/921 remains at its
+old canonical path. Missing raw bytes cannot be reconstructed from this summary.
+
+## Google migration and runtime-license evidence
+
+`dependency-audit-746cc9d1.zip` is a prepared13170421-byte data package with
+SHA2566c1befb07d88cb24b24792ec5def69a7ecc1d151820ca9a3c1dd5798037bd833.
+Its actual uploaded bytes atb9256abd1dee6994860eb70f97230952b9c61f4c
+match size/SHA256/Git blob,282safe regular members, CRC and every manifest
+entry; remote persistence is verified. The package receipt and runtime-license review identify
+original/complete producers, reports, source and parent-POM pins.
+
+The Google replay uses google/ plus google-anchored-key.pub, the frozen
+gradle-baseline-f9434ab9.xml and the previous216-file receipt from immutable
+596989ea561b61de288ac9232c6b2b870a7dfe59. Explicit control/request/prior pins
+are in google-migrated-review-746cc9d1.json and the current partial receipt.
+Expected223reviewed/635pending; all216previous and387historical proofs retained.
+The original64-file collection is partial:12captured,7verified,4signature failures,
+1missing signature and52unavailable captures. No unverified bytes are approved.
+The license evidence is data only; do not execute archived JARs or producer files
+merely to inspect the archive. Updated package acceptance is a separate gate.
+
+## Updated package and exact Google source-copy evidence
+
+android-e8fd9c0f.json and source-audit-e8fd9c0f.json record the updated seven-file
+legal package, normal build/API36 and frozen dependency equivalence.
+independent-rebuild-e8fd9c0f.json records downloaded unsigned full byte equality
+after a pristine exact-source empty-cache rebuild40192020106. This source now
+has bounded build/runtime/reproducibility acceptance.
+
+The Google source-copy evidence is small plain text: aosp-compose-bom-* records
+one exact BOM; aosp-google-poms/ records60 later lookups,20 exact matches and40
+HTTP404 outcomes. aosp-google-pom-review.json pins the report and final244/858
+review. The [owner](../google-source-copy-review.md) specifies offline replay.
+These21 publisher-maintained exact source copies are not detached signatures;
+614files and full strict trust remain pending. No additional binary upload is
+needed for this text evidence. Preserve raw Gitiles XSSI prefixes and POM bytes.
+
+
+## Native source identity and omitted NDK notice
+
+native-source-review.json pins all text under native-source-review/: official
+WebP/NDK release anchors,343blob WebP source manifest, exact WebP notices and
+AUTHORS/build inputs, NDK cpufeatures source/header/module NOTICE, and exact
+AndroidX graphics-path/DataStore C++ release source. The
+[owner](../native-source-review.md) distinguishes source identity/notice review
+from actual SDK/package acceptance and full-source distribution. The new
+cpufeatures canonical notice requires eight package assets. Normal source5d
+passed actual SDK/build/eight-asset/native/API36 and local report replay; see
+android-5d568a7e.json, ndk-source-5d568a7e.json and source-audit-5d568a7e.json.
+Independent40197042011 passed; independent-rebuild-5d568a7e.json records actual
+22-member archive/source/tree/core69 checks and full unsigned byte equality. All evidence is small source text.
+
+
+## Runtime44 source copies, JetBrains six checksums and actual APK exposure
+
+The current publisher subset is325/858,533pending. runtime-source-review-ebfe90ec.json
+and runtime-source-report-ebfe90ec.json pin44exact AndroidX runtime artifact
+bytes, canonical routes and directory/blob membership. The prepared raw ZIP
+runtime-publisher-source-ebfe90ec.zip is1243209B/SHA256
+84f2b82d7f9468df49f364e1a0a0c635fa97adbbd85e394e978f9c3699d033fb,
+Git blob663b7776cf98f6aedd1de0567a6ffc662e891c3f,94safe regular unique members.
+Actual uploaded bytes at f7c1fa7f5e64a92659a3b507ff6b96e92880b930 match
+size/SHA256/Git blob; CRC/all 94 members and every manifest entry pass.
+Remote persistence is VERIFIED.
+
+kotlin-release-source-2.4.21.xml is the complete exact original publisher
+release-source checksum record. kotlin-source-checksum-review-2.4.21.json
+pins its release commit/blob/SHA256, the288→294 replay and all16remaining
+runtime identities. No PGP or whole trust approval is claimed.
+[Complete replay](../google-source-copy-review.md) preserves244→288→294→297→325.
+The historical six-checksum receipt retains its own 294 checkpoint; the
+okio-publisher-review-3.4.0.json receipt records its historical 13-file runtime checkpoint.
+Three exact Okio SHA512 signatures validate with square-issuer-key-2021.asc,
+a complete public bundle for the existing independently anchored issuer.
+The original stripped key remains rejected. No new binary upload is required.
+
+apk-tooling-types-5d568a7e.json records actual accepted debug/release DEX hashes,
+definitions/type counts and zero matches for all six tooling package families.
+tooling-risk-review-5d568a7e.json maps all49advisory IDs/18components to those
+families while leaving build-operation risk open. agp933-security-comparison/
+retains original official POMs and precise comparison limits. These text
+reviews require neither an Android rebuild nor a redundant unchanged OSV scan.
+
+
+## Google module and exact Guava extension
+
+[Capture and standalone replay](google-source-extension-13d08352/CAPTURE.md)
+retain all original text evidence for 26 new exact Google module copies and
+ownership/directory proof for two exact Guava files using their existing capture.
+The original report's runtime collector label is disclosed, not treated as
+selection evidence. The reviewer recomputes the 47 exact pending Google modules;
+21 absent directories remain unapproved. No foreign publisher or namespace is
+trusted, and no new binary upload is required. review.json records current
+325/858,533pending: runtime217/11 and other108/522, with prior297proofs unchanged.

@@ -1,0 +1,324 @@
+{
+  "scope": "FULL_CLASS_BYTES_AFTER_EXPLICIT_NAMESPACE_UTF8_RELOCATION_ONLY",
+  "matched": [],
+  "different": [
+    {
+      "original": "com/google/flatbuffers/ArrayReadWriteBuf.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ArrayReadWriteBuf.class",
+      "original_sha256": "14162571f472d29ef6dc831d37f55739dbd35a3e0c7941939d3d8eec8c4ef160",
+      "relocated_expected_sha256": "3a06944606f68f0d15e9e50d3e720ba605bd545b094113159a9b97b8fb62b2ad",
+      "frozen_sha256": "cb02f7502081d52b2d1ef903bd41f4a2aefbe284da85288c0120150734422a23"
+    },
+    {
+      "original": "com/google/flatbuffers/BaseVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/BaseVector.class",
+      "original_sha256": "718de53677dbb9103b8bda4356a592976c47d62c17b3449420c02a001597cf4d",
+      "relocated_expected_sha256": "f95d6971edd739a5464d4107872b6a6dff4171b1da0ad15c6f260f1a63d0bea9",
+      "frozen_sha256": "b091e848e97578df13031195f2edd30d6e5a24411325dd21661d634be06a52c5"
+    },
+    {
+      "original": "com/google/flatbuffers/BooleanVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/BooleanVector.class",
+      "original_sha256": "89ae5c404351568c598ad71ea941c3fbdb07bbfbd9b1a412d3793886582b2c22",
+      "relocated_expected_sha256": "02ca12f0d732fffc733a6ea8aae799004343d96ca7f215637a3450435ac26d1a",
+      "frozen_sha256": "c96a67dd176995ec0f0a8e95176f06ad303ed46b399ab74c30924c60caa87f9e"
+    },
+    {
+      "original": "com/google/flatbuffers/ByteBufferReadWriteBuf.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ByteBufferReadWriteBuf.class",
+      "original_sha256": "d952e7a2b8ce148316d0270db1392358a280ae8ee4adf66ea58feed0094e8563",
+      "relocated_expected_sha256": "ec6edddb5727a835c16b506dcf5cf6d0b58974dd09fbbbd9be31240c675b1c92",
+      "frozen_sha256": "0bd9d4bd638c0ad5179d33138aa5c4cb057a3ab7ae30ddad199244a04bc5850b"
+    },
+    {
+      "original": "com/google/flatbuffers/ByteBufferUtil.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ByteBufferUtil.class",
+      "original_sha256": "73730ae03378ef21b4dd40ae6fc290b1dc702f1fc866ad97024c0143c472dabe",
+      "relocated_expected_sha256": "5143a902e077cb904f0a038ace712829f2cd73420551bac8b9717c7cb1847386",
+      "frozen_sha256": "937215019d4ca47c2c287ac28e913bec226c967ca69e9071df1e916fb80a5b39"
+    },
+    {
+      "original": "com/google/flatbuffers/ByteVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ByteVector.class",
+      "original_sha256": "e115de58f28a189cec187e16761290cba260166d3720dcf4e56783dd1d8a2c0b",
+      "relocated_expected_sha256": "85578ac90cd1588cba6da4fe71ddb371876c74d291e91644d99db81fa30ab89d",
+      "frozen_sha256": "d23394430fcf6fd9ee0207f641d33128c4e7d27a921820522a1b3cf9ed6de3fa"
+    },
+    {
+      "original": "com/google/flatbuffers/Constants.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Constants.class",
+      "original_sha256": "f4e55bb63228063de3830089b3e20aeeb9ac35f136c280b62a8b46a9b6a9195c",
+      "relocated_expected_sha256": "9e6ba642b28d25766b0b9e9951d9552fa294252d0d4b2ad00d3ff1be1a8ea632",
+      "frozen_sha256": "342458bb53c520a0b48255c9c8332f8ceb6fa53a68befeff62306318032e0fc7"
+    },
+    {
+      "original": "com/google/flatbuffers/DoubleVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/DoubleVector.class",
+      "original_sha256": "c35ce8d47ae1e053e83547ceedc74aa81951f261c9ca98532a0e0363056d53d9",
+      "relocated_expected_sha256": "7537a8ccc9fecd0bb74b8afbbc6f628a70286c4d54c417db679cb10df79cbda2",
+      "frozen_sha256": "b2a62ccacf6dd80203dbb735bff460677498ca260d9b7f3dde2dc09fe12d9920"
+    },
+    {
+      "original": "com/google/flatbuffers/FlatBufferBuilder$ByteBufferBackedInputStream.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferBackedInputStream.class",
+      "original_sha256": "2a6d31d404f9c1b11af6734e1ed43d882242a8403357a729e3ceb8f0cebdd47e",
+      "relocated_expected_sha256": "7e4f7050a8cacaa10092487211fdf26c7579db9dbe5ec6d51e197ccb63bdfffe",
+      "frozen_sha256": "e4066d4250f3367865396ad8263a5ccae95da046ec5c1b018f78a2629502bd3d"
+    },
+    {
+      "original": "com/google/flatbuffers/FlatBufferBuilder$ByteBufferFactory.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$ByteBufferFactory.class",
+      "original_sha256": "ddc271a6914aa81851bd83af2b3c87c2c1790b133bcb5d3b62ee44814909004a",
+      "relocated_expected_sha256": "ae9c3c7a2eb0a9e11237f248bdd501ff1482ac927f6536efcb7aa6f3c6814b53",
+      "frozen_sha256": "8d58fcea925f4e1aae8d0cff42874d3f843b45cb5f7cba19361b488cf0b562fa"
+    },
+    {
+      "original": "com/google/flatbuffers/FlatBufferBuilder$HeapByteBufferFactory.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder$HeapByteBufferFactory.class",
+      "original_sha256": "fcc4ea1562c7db81ece1a0c1f18711a03c6d77299735d57254ea66a23911bfe0",
+      "relocated_expected_sha256": "d69abdb2ab2013d6b2b79d3e8a862f0278ce3c1c8857a031b5d1e381cbc44cb7",
+      "frozen_sha256": "91c09b9f963e907c18097ec9741d1b9a861d10004f2dda0f439b23b3031ac8c3"
+    },
+    {
+      "original": "com/google/flatbuffers/FlatBufferBuilder.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlatBufferBuilder.class",
+      "original_sha256": "c74f440b3fe9bab3085447ac9dabcaaa6581fcd7e0e13506f0ef6112e87db63f",
+      "relocated_expected_sha256": "8d55bed3f4c05a52f4f4313e8320e2fcf6bf4515ebf03c8010991afe41117ab1",
+      "frozen_sha256": "36b69b77d21e920d0739364682ea545415cd78f791307d946252c72d9abdc243"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Blob.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Blob.class",
+      "original_sha256": "7b0d016c5dbfaa6d22ae7b200258a23e9a18c1343569f066495ecda493e00623",
+      "relocated_expected_sha256": "5077323f7e6a24544ee84d90d7b3c1ff7071d7e8dbd63529292c95045cd9b25d",
+      "frozen_sha256": "eff00e765e8e80469c043a7805f864caf5ab6a4d3362b666fb60ad81241532b0"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$FlexBufferException.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$FlexBufferException.class",
+      "original_sha256": "4bec59fd087efe7553231a7f15b8f5a4324e3db152b50a73a7b104ae3b5885de",
+      "relocated_expected_sha256": "267c80cc36433c5ef520e4bdc04c07fc0a6fc890865548752f4b7cfc211b1088",
+      "frozen_sha256": "69ef8144a5b82f278c25f651fa720eda14ea0460cdc1571e03f21205a46fffa9"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Key.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Key.class",
+      "original_sha256": "9944e2d2edb317871c50cc4e97b2fc3adb3e07f88719ac6304f035d6596aae15",
+      "relocated_expected_sha256": "7d328f293d92d89b0ae80d785d77b3681810149d3550c7cfff1ec1616e7fe7c3",
+      "frozen_sha256": "0770695555df0d1befb290864c5d09b48498c12dd8c2dec558e32644eda7122a"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$KeyVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$KeyVector.class",
+      "original_sha256": "2b24483947a60edeb877e94c6b2e8641722760b3a6d0b57f8bb922eea41b1180",
+      "relocated_expected_sha256": "facf3bb57c9736657147921fcf2e0ca4b5556ea8731b04907e3069cd66419f74",
+      "frozen_sha256": "f2a5fa0d433518537590927a23ad725eb49f1a54c06f91f24f8fb606201a1d0e"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Map.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Map.class",
+      "original_sha256": "554b7b1902a00d5051c45c1e9178d94fd437686f82a3c2e8ce9603e6056a597e",
+      "relocated_expected_sha256": "652804c5543175e2f4ce31bcc60e4ae4a4ef79cfaddab5b22196111cec6c104e",
+      "frozen_sha256": "ce40510305c6cc4dd6e0782002f236c2f64f8d7d952a5c709c64d0cd9e6936e9"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Object.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Object.class",
+      "original_sha256": "e144c6e8ebe258f0a2edf378dd01c83e5cba692aa37b4c8222e20449070ac648",
+      "relocated_expected_sha256": "d5a5218109310061e0727c94f1b7bb17f375f4634327b1bbecc949c4c066bd58",
+      "frozen_sha256": "86f13401f928847609cfafe77f2c7cc8ae6b8208ee9f00b2d054bc738b3ae6df"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Reference.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Reference.class",
+      "original_sha256": "70e3891cde729cd2011c4b6bb25fe580e565313229962082849ec2f3a3a77144",
+      "relocated_expected_sha256": "194c3259ca64f39081b855d16ff4419d5a76bc1b8f96c92ba333d1e87358c048",
+      "frozen_sha256": "f36c49a68a41fbebdae65a0e5fbdeffa152210f52cd37188b39f0d9ae07e6997"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Sized.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Sized.class",
+      "original_sha256": "3c7faf0e8ff693b1f98c01afe45bd36974bb3b69532ec0643b05001ccd71f6a5",
+      "relocated_expected_sha256": "3377dda04e7f489e8cf578fe1bb4c4bec454e1b3dc387b2960ab8f1279c77c5e",
+      "frozen_sha256": "96ce2cfaf678bcb117ba59787eb701fe0c4d8c404b19a3071b7f5eef2729a31c"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$TypedVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$TypedVector.class",
+      "original_sha256": "ddd5dda9a3a07aa3cccf6df4b1f3b1044b95fb48e7a48b4814a3fee21473e1d8",
+      "relocated_expected_sha256": "dffcb389b3108cf39b2dd4ebfededde3329e787b1eede38af2828c1fe9b97a8d",
+      "frozen_sha256": "7e884983b3b020d9512227fb8d705da41d2a01f9a361726c63bafc1ac59fefc0"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Unsigned.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Unsigned.class",
+      "original_sha256": "0b426db96f7d6a83097bfe86fcfa9c1d91da153e3f4e021cf2d76c621a891ab3",
+      "relocated_expected_sha256": "91725f6a0d7defd6fa8563512871234cdd9b3d672d49a55c58a8feec6afc174d",
+      "frozen_sha256": "8e8c406f2c0c9e3ee486b7936e1a809fb99d87fc3b595a50fbcc88270817f90f"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers$Vector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers$Vector.class",
+      "original_sha256": "405b72722ef5c4dc6e65ba2c062aaa59c1f7edddea83ed3c7e573c86e641535c",
+      "relocated_expected_sha256": "d626aa8fb0a36793c860ed4f9b21bc344ceb19ef769e23f7d9b7a0cbc49f6ada",
+      "frozen_sha256": "8dbe3bed597424fc82e9ee0b46d29ccfbc6d1f3b67ce5b463cba53f8abbe1719"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffers.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffers.class",
+      "original_sha256": "5f4b3f52b7c50c8d7021d77d72e19b07b7bb9e79dbfb5e8da7c45195676ff4d5",
+      "relocated_expected_sha256": "34db13bd07bdbd246de1ea8b0d12abf03235374d99064191fd712073a49e920a",
+      "frozen_sha256": "6acc31d12a7f89ec6476ac706b4e9c31b7ef83515107c1835abc628e3eb7aa38"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffersBuilder$1.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$1.class",
+      "original_sha256": "55fb9908cc828d8f55badb3b719c1d075fbb2818ac54087f591e130d919ee6dc",
+      "relocated_expected_sha256": "27243ff16c873c5b5be9bf33b6ab86b64e1192617575e3f7237b368862cb58a7",
+      "frozen_sha256": "78da887a6476af2011231504d351928a49cce5608f4342b05b9388dae5b1fc77"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffersBuilder$Value.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder$Value.class",
+      "original_sha256": "5f53301974a606de8658578f0195c89d46ac6b94262a64e164636dd8a447b2bf",
+      "relocated_expected_sha256": "41145d13a8be3571340df2a68a7734f0bbf09c2c4be2558818c7354bd162368b",
+      "frozen_sha256": "a2eaf3605a1d5351f78d967867d4990d38770ebc35c0e3ad9d297f40be75061f"
+    },
+    {
+      "original": "com/google/flatbuffers/FlexBuffersBuilder.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FlexBuffersBuilder.class",
+      "original_sha256": "29ddda25851da01a2517be31a1cd289bf28a27551cdd4827fcb9ea0936ee33da",
+      "relocated_expected_sha256": "a3c5955b2984bbefd17b4fae073bdcdfde23f66bf74bc35fa954188147edc2a2",
+      "frozen_sha256": "2012a3695da41a237c70e1baef87ddf4ed2762220329f5024b032b2037815ccb"
+    },
+    {
+      "original": "com/google/flatbuffers/FloatVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/FloatVector.class",
+      "original_sha256": "9647c73c6d4d34566e26c2a16987253db701d15b0e159f967fc2395cf9d2dbe2",
+      "relocated_expected_sha256": "5caa5b2c3956bc9db2a5c5f817d2a43807479cd141b768329d9ecff6baad7fad",
+      "frozen_sha256": "83f7758549f93054502f9ff16bcd06ecf610644e87ba57858deeeca335b4c585"
+    },
+    {
+      "original": "com/google/flatbuffers/IntVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/IntVector.class",
+      "original_sha256": "29316c1a20b5b2d7dc2bf61f5f3bb85cb00aecd01e6b7f301d86a560f32828ba",
+      "relocated_expected_sha256": "58bc1f8255927a9bf9154a9c25e329e68623f096d5817fb2e9e793407936021a",
+      "frozen_sha256": "c2d18967b700528ac608bdaadff071a34986ef07386c3bdd86e5c08b31a4f1ed"
+    },
+    {
+      "original": "com/google/flatbuffers/LongVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/LongVector.class",
+      "original_sha256": "723dcd0d2c452b746a7ab3f83878040424788339ca835c21aeb974ed6a226898",
+      "relocated_expected_sha256": "c18023619491cedb53c7786ec1a6579e17107395913e1d2980e5ffef7644f627",
+      "frozen_sha256": "4c92c3fed79bfdba82af65c5e50a3d7145ccfca9cbd9b2e936924cc6f356c56e"
+    },
+    {
+      "original": "com/google/flatbuffers/ReadBuf.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ReadBuf.class",
+      "original_sha256": "6a7e02fc9d0c90f45d3325de438251e28ec23c05d0b51b04015a7023d957282f",
+      "relocated_expected_sha256": "99ba08e373ccb8e459796ca39dc8c7817d8972c451f8ea3f062dc7d87bd49273",
+      "frozen_sha256": "2bdd84c7c685130f1eb0a05403d69e96079e11f0cd3773e3558d5f54e0f6a47b"
+    },
+    {
+      "original": "com/google/flatbuffers/ReadWriteBuf.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ReadWriteBuf.class",
+      "original_sha256": "c2142997761a09095ef72b75d319691d5b4a1514996573ad233d59b6ed3547a9",
+      "relocated_expected_sha256": "2aff154cef556b33d7b3c7e619550237806b20464ec949f3ea90c336f608239f",
+      "frozen_sha256": "c19ba47e5de12f69f0aa9a7ed06c2e7b80b6c0355bd9cea4b2a8a31993dfc70d"
+    },
+    {
+      "original": "com/google/flatbuffers/ShortVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/ShortVector.class",
+      "original_sha256": "2b84543e010806e3917220241911b61273a8f11067461bbe69058d28ba83dce2",
+      "relocated_expected_sha256": "0234ddad84ea1a2581cedf4c0cae6a2c8153934bdaa75f74b1bb777dfe4cd905",
+      "frozen_sha256": "c96045c1834707b27e5d8a39f9b164bc29ab4e5e7ca6024b3c0300b3b612e250"
+    },
+    {
+      "original": "com/google/flatbuffers/StringVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/StringVector.class",
+      "original_sha256": "ef0f3f999bed06d13e85325a3800e681b5886f0adad72dc660c0d0e6427d98cd",
+      "relocated_expected_sha256": "00a8f4a27bfbe09d5c82fd13b0d4706e6209a998839f3ee6e1bf5fd1f2347a22",
+      "frozen_sha256": "af54a656952509cc61a1a2d44fab93b2b5759c6331f962fc303ac94430286df1"
+    },
+    {
+      "original": "com/google/flatbuffers/Struct.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Struct.class",
+      "original_sha256": "22c4d7088c26a40f04f07c98c18bf9d966866c55ffb4c7e775a8bae35f1dde52",
+      "relocated_expected_sha256": "95e049da670017e698970a82f1e327e225c73c1bec857c4097ddb396085c82d2",
+      "frozen_sha256": "990e112356403634b41e5996ba504e991644110d381586737c6c5cce633c7540"
+    },
+    {
+      "original": "com/google/flatbuffers/Table$1.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Table$1.class",
+      "original_sha256": "48de0ac31e30ed6935cee9c43ca813eb7b2a1d45579f8f6fc2bdae227a9bce04",
+      "relocated_expected_sha256": "cfa0854cf9f379877a0d501a13a74752a8341c51e9e7e5be6b0ee527b664613a",
+      "frozen_sha256": "e3629fa3f38dd08060c0aa99db7e4b81146465e701041c0f8d8df7331ef74297"
+    },
+    {
+      "original": "com/google/flatbuffers/Table.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Table.class",
+      "original_sha256": "b2b70cd50eb7597d3f9fd92e5efea5c0fb1149174a31acc45583c0c94a60abad",
+      "relocated_expected_sha256": "55a3edafae35f62fc15ed309d956c50b71c30aef4134c82fa32f3caf3cb3d8e3",
+      "frozen_sha256": "7d4bb69862ab57c4fd86d0fa0623e77b3868ff7398b5347e15118a8c876f00bc"
+    },
+    {
+      "original": "com/google/flatbuffers/UnionVector.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/UnionVector.class",
+      "original_sha256": "cadd06317f1dbd4b6e74c89e423dd7bf36f7028bc345f349dc91b8b16e7a47d2",
+      "relocated_expected_sha256": "697e33d39211a875bb2d9a1528520ea945c136abaf6db69c80d759b2fc352b15",
+      "frozen_sha256": "263b23e1b3a61442bbfa1c2c65fb1a119fba0372bfda9954c727d7cec4854973"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8$DecodeUtil.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8$DecodeUtil.class",
+      "original_sha256": "98c44724645645f772e43690da2d032b94cfc99898a5b862bea88545fc219995",
+      "relocated_expected_sha256": "9066d5d7f6566dfe5221f85bce1be93cb26e0ad916ec95fda7ab132328f468f6",
+      "frozen_sha256": "c0422289ac46eaa2d50f92d7dedb70ac59e4a11effc1dc6440eeb56c7052cfbc"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8$UnpairedSurrogateException.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8$UnpairedSurrogateException.class",
+      "original_sha256": "6a36203101b831ec4736d8da0293e0f1afb248cc7356c218d9e3e9d1023d8fbd",
+      "relocated_expected_sha256": "696faa6f8cca6ff3895874e1ba1028690e67f063249d9921ec88e54a2095e0f9",
+      "frozen_sha256": "e699614a6981f8b90f89e99b3853d32819d806645e87ab8f64f1077378ab5033"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8.class",
+      "original_sha256": "5840c865534cf2c16955537af4e9d1249bba239c165d688915134a5bd541d2fa",
+      "relocated_expected_sha256": "fc41c6920f6e7c3c6b04f18b9d60a433cb2b8fbee00c8f703d66cc6c089e0cf9",
+      "frozen_sha256": "53f2ed2d5d54070293d2481968cd49013ddc628b1469e15e8df61c0f5108d893"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8Old$Cache.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8Old$Cache.class",
+      "original_sha256": "71facc1cd55b1f1b63c16a239451716e108ef74abd6f1cad801fc915c366391f",
+      "relocated_expected_sha256": "1416eea71f7c9ab6f6522ce80be2690d53d272bf28a942512c05ac9f9de5cf0b",
+      "frozen_sha256": "7f7486d076f4f9af8d55b95bbc4bfa4943b083f385fd567c58231d4faf2744c7"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8Old.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8Old.class",
+      "original_sha256": "a14a228fb4366188b1164c2b1ed4e0b0d677a9540bd421cd3449034dbc616c37",
+      "relocated_expected_sha256": "833a60c4763f6b81e57974b3176abb9e885278e507678b5ccd03bdc6c6be7031",
+      "frozen_sha256": "2616e644d8068c21ac32cbb1fff8afe4e35fdec3c55d039767081a9b647059a0"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8Safe$UnpairedSurrogateException.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8Safe$UnpairedSurrogateException.class",
+      "original_sha256": "1af56e334b9ae51ff733563fcef6b005c9e360e8ccccf48c0e6522c4fb98b535",
+      "relocated_expected_sha256": "538c478ee3a898deadbeae2584cd92fbf94c974ffaadcc7973f2faaba2cde973",
+      "frozen_sha256": "60031523ad4c496ced7c4deef4c7c67943d3c0d9a942ff3516acd8bc2aa5d542"
+    },
+    {
+      "original": "com/google/flatbuffers/Utf8Safe.class",
+      "relocated": "androidx/emoji2/text/flatbuffer/Utf8Safe.class",
+      "original_sha256": "c37c6a60b0a50d5a77508c9cbfc073dc395789b4e49db5ab72509af7885f8e4b",
+      "relocated_expected_sha256": "34757c6a5938c5342b97a7f7923a09d8108c9d3c76b397d8bf50a7c2674bc38c",
+      "frozen_sha256": "27642090e9f8937286c39fe5cf09e74569248fe7297a1fab53d18f593b94f344"
+    }
+  ],
+  "original_binary_sha256": "3f8c088b4dd04a9858721f2e162508c94db0dd86f961e306ee63ef2eda871bf7",
+  "frozen_repackaged_jar_sha256": "de10d78b35a33c1ade2607b63c29b3b70a856cad821b5bc711a9018eed9a43ab",
+  "not_source_compilation_equivalence": true
+}

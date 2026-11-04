@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.customview",
+    "customview",
+    "1.0.0",
+    "customview-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/customview/customview/1.0.0/customview-1.0.0.pom",
+  "directory_sha256": "b56efb31f28e67ce5d63238ae9daab958e16507b23b95dcce5c189785fa9619a",
+  "directory_tree": "f3ddb0e0c50df6bee8d2361512c15562e74356ef",
+  "blob_sha1": "db3906ef20dc0f998a5ce505105cbe8ef90c37ac",
+  "bytes": 1795,
+  "sha256": "ce9e47b87184f5bd5e139e9becd5b26476d42d78c31bf2fdedc37acb41b9ad49"
+}

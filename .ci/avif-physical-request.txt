@@ -1,0 +1,19 @@
+Build a one-time isolated physical software AVIF diagnostic APK.
+Only arm64-v8a for the Pixel and x86_64 for disposable emulator testing.
+User screenshots must remain local, selected manually through the system picker, and never enter CI or repository artifacts.
+Report concurrent sampled PSS/native heap and real 1344x2992 sRGB visual fidelity; no claim of exact peak or production p95.
+Do not enable AVIF in normal exports, change app permissions or signing, merge, release or publish.
+
+Focused correction: verify Android Gradle Plugin stripped .so by reproducing the exact NDK llvm-objcopy --strip-unneeded transform from source-verified raw inputs, keep strict ZIP/ELF hashes, and prevent alloc-heavy RGB comparison and stale image selection. Recheck the same synthetic diagnostic only.
+
+Focused API36 runner readiness fix: require a real app-private JSON file, validate its contents before accepting it, and verify the synthetic AVIF is present. Preserve bounded polling, timeout logcat, all quality/PSS gates, isolated signing and unchanged normal exporter.
+
+Isolated Android AVIF decode-path comparison only: on the exact same synthetic AVIF compare default BitmapFactory, explicit sRGB BitmapFactory.Options and sRGB-targeted software ImageDecoder. Record error counts, RGB histogram and coarse spatial error grid without source pixels; keep all existing presentation-fidelity limits and no Pixel handoff while any selected path fails. Preserve separate no-permission debug identity and source pins.
+
+Synthetic-only AVIF RGB edge-point diagnostic: report 19 predefined source/decoded RGB triples for the built-in synthetic fixture, validate them against the deterministic generator, read emulator-only AVIF selector hints without system mutation, and preserve every existing Android pixel-fidelity gate. Never collect RGB samples from selected user images or install on the Pixel until acceptance.
+
+Synthetic evidence retention correction: move only the built-in CI AVIF out of evictable cache into private files, keep it through Activity teardown until emulator disposal, collect read-only selector hints before launch and fixed codec-tag emulator logs before extraction. Preserve real-image cleanup, native source pins and every fidelity threshold.
+
+Approved synthetic direct444 comparison: enable the pinned AOM decoder only in this isolated module, compare its original YUV444-to-RGB result with all three unchanged Android display routes, retain all 19 fixed RGB samples per route and exploratory decode-time/sampled-memory metrics, and report two-ABI diagnostic/native size growth versus the verified encoder-only APK. The Android fidelity gates remain independently blocking; no Pixel handoff, default preview change, normal format enablement or production acceptance.
+
+Approved bounded synthetic420-versus444 encoder comparison: same integrated fixture, source pins, quality100/speed6/threads2 and BT709/full-range/sRGB tags; compare all three Android routes and independent host decode. Retain the original444 direct comparator and all unchanged gates; no normal exporter, user RGB capture or physical handoff.

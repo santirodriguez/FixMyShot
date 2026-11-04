@@ -1,0 +1,91 @@
+FixMyShot - initial build/source inventory
+
+FixMyShot source: GNU GPL version 3 only. See LICENSE.
+
+libwebp 1.6.0
+Source: https://github.com/webmproject/libwebp
+Revision: 4fa21912338357f89e4fd51cf2368325b59e9bd9
+Use: source-built runtime lossless encoder in libfixmyshot_webp.so.
+License: upstream BSD-style license. Exact upstream COPYING and PATENTS
+are bundled under codec-native/src/main/assets/licenses/libwebp/.
+The complete source checkout also retains AUTHORS and source notices.
+The CMake fetch retains complete corresponding source in its build workspace.
+No opaque precompiled WebP binary is used.
+
+AndroidX HeifWriter 1.2.0-rc01 (release candidate)
+Source: https://android.googlesource.com/platform/frameworks/support/
+Use: Android native-device HEIC/AVIF bitmap-input still-image writer candidate.
+License: Apache License 2.0. Selected version in gradle/libs.versions.toml.
+Actual device capability, color fidelity and transitive inventory remain subject to G1 review.
+
+AndroidX / Jetpack Compose
+Source: https://android.googlesource.com/platform/frameworks/support/
+Use: Android UI and test dependencies, Apache License 2.0.
+AppCompat 1.7.1 owns the per-app locale bridge and locale persistence.
+Preferences DataStore 1.1.7 persists the theme asynchronously.
+These stable pins fit the existing toolchain; they are not latest-version claims.
+Exact directly selected versions: gradle/libs.versions.toml.
+Resolved transitive inventory/notices remain a G1 review deliverable.
+
+Kotlin and Gradle
+Sources: https://github.com/JetBrains/kotlin and https://github.com/gradle/gradle
+Build tooling / Kotlin runtime: Apache License 2.0.
+Current pins: Kotlin 2.4.21, Gradle 9.4.1; Android Gradle plugin 9.2.1.
+The committed standard Gradle9.4.1 wrapper/launchers retain their upstream notices.
+Apache License2.0 text: LICENSES/Apache-2.0.txt and the wrapper JAR META-INF/LICENSE.
+The wrapper was generated from the checksum-verified Gradle distribution; exact
+provenance and hashes are in docs/feasibility/committed-gradle-inputs.md.
+
+JUnit 4.13.2 (test only)
+Source: https://github.com/junit-team/junit4
+License: Eclipse Public License 1.0.
+
+This is an initial inventory, not a completed distribution notice bundle.
+Resolve and review all runtime and native transitive notices before a
+functional release. Signing, publication and store submission are separate.
+
+
+Language flag vectors (US, Argentina and traditional Catalan Senyera)
+are original project drawings under GPL-3.0-only, generated from simple
+geometric flag motifs. No third-party flag artwork or emoji is bundled.
+
+FixMyShot branding supplied by the repository owner
+Imported from release/0.1.0 upload commit8f52caac29f450db3858c602e2011b5e0e3f8e47.
+All five PNGs are preserved byte-for-byte under canonical branding/store paths.
+The Android build creates a packaging copy from the single shared512px icon.
+See docs/ARTWORK.md for original names, hashes and intended uses.
+The retained monochrome capture-frame vector is original project artwork.
+
+Canonical legal texts in Android packages
+The build copies LICENSE to assets/legal/project/LICENSE, this inventory to
+assets/legal/THIRD_PARTY_NOTICES, and LICENSES/ to assets/legal/licenses/.
+Apache-2.0.txt is the canonical Apache license text. WebP COPYING/PATENTS keep
+their existing assets/licenses/libwebp/ paths. These are build-generated copies.
+This explicit text bundle does not complete the transitive attribution review.
+
+Runtime component declarations
+------------------------------
+The selected runtime components and their declared licenses are listed in
+assets/legal/licenses/runtime-components.json (source: LICENSES/runtime-components.json).
+This list includes metadata-only entries; it does not imply every class from
+every selected component is packaged. Apache-2.0 terms are retained alongside
+this inventory. Native WebP COPYING and PATENTS remain at the paths above.
+
+AndroidX DataStore repackaged Protocol Buffers
+--------------------------------------------
+Component: androidx.datastore:datastore-preferences-external-protobuf:1.1.7.
+Declared license: BSD-3-Clause. Exact upstream copyright/conditions/disclaimer
+are retained in assets/legal/licenses/Protobuf-BSD-3-Clause.txt.
+AndroidX's release source420da5f291449f11801e378c6789a328a06ec6cb relocates
+protobuf-javalite4.28.2 into androidx.datastore.preferences.protobuf.
+Upstream: https://github.com/protocolbuffers/protobuf/tree/9fff46d7327c699ef970769d5c9fd0e44df08fc7
+License: https://github.com/protocolbuffers/protobuf/blob/9fff46d7327c699ef970769d5c9fd0e44df08fc7/LICENSE
+
+Android NDK cpufeatures compiled into the WebP JNI library
+--------------------------------------------------------
+libwebp's Android CMake target compiles the NDK cpu-features.c and includes
+cpu-features.h from NDK28.2.13676358 (r28c). Their original BSD two-clause
+copyright/conditions/disclaimer and the module's separate Apache NOTICE are
+retained verbatim in assets/legal/licenses/Android-NDK-cpufeatures.txt.
+Source release: https://android.googlesource.com/platform/ndk/+/805836ef53231ef86dd5fcc5652a1c28d74f4bc4/sources/android/cpufeatures/
+These source notices are distinct from a whole-NDK license or patent review.

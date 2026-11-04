@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "identity": [
+    "androidx.autofill",
+    "autofill",
+    "1.0.0",
+    "autofill-1.0.0.pom"
+  ],
+  "repository": "https://android.googlesource.com/platform/prebuilts/tools",
+  "commit": "7fd4bf2b791a54211e000dba6b24d696773dc792",
+  "tag": "studio-2026.2.1",
+  "tag_object": "eeb949f3e8d3a0305fbf4bd01b3b3bfb9d223b27",
+  "path": "common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom",
+  "url": "https://android.googlesource.com/platform/prebuilts/tools/+/7fd4bf2b791a54211e000dba6b24d696773dc792/common/m2/repository/androidx/autofill/autofill/1.0.0/autofill-1.0.0.pom",
+  "directory_sha256": "a4c24f770c876da0b4c87f1c9d4122c7f029d2aacec1b15115fa71012b9073b6",
+  "directory_tree": "7db9662d71cc5b09d5f2244933644a463629c3d2",
+  "blob_sha1": "7dc90a5fd94d0e3f793c277a02294fdf3bc2030f",
+  "bytes": 1324,
+  "sha256": "3677abead5d4e06cf76cbacb954151e051779c2274494451fb424e375aa9e450"
+}

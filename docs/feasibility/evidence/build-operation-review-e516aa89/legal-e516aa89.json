@@ -1,0 +1,47 @@
+{
+  "scope": "CANONICAL_LEGAL_BYTES_ONLY",
+  "status": "PASS",
+  "complete_third_party_license_review": false,
+  "files": [
+    {
+      "path": "assets/legal/project/LICENSE",
+      "bytes": 35149,
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "assets/legal/THIRD_PARTY_NOTICES",
+      "bytes": 5197,
+      "sha256": "ce1462bf0279ed831aac77e69d0f5c99890faef3964256bf70e287bdcf349af8"
+    },
+    {
+      "path": "assets/legal/licenses/Apache-2.0.txt",
+      "bytes": 23623,
+      "sha256": "e6910baa382be3b93a04782e019add39135d11e0dc96094a0661363af6c6b610"
+    },
+    {
+      "path": "assets/legal/licenses/Protobuf-BSD-3-Clause.txt",
+      "bytes": 1732,
+      "sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d"
+    },
+    {
+      "path": "assets/legal/licenses/runtime-components.json",
+      "bytes": 36605,
+      "sha256": "f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407"
+    },
+    {
+      "path": "assets/legal/licenses/Android-NDK-cpufeatures.txt",
+      "bytes": 1977,
+      "sha256": "973f10e1c5b8e7de22da312ee73a1d970d70643e41c56f15fbb285f8a1894e25"
+    },
+    {
+      "path": "assets/licenses/libwebp/COPYING",
+      "bytes": 1496,
+      "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf"
+    },
+    {
+      "path": "assets/licenses/libwebp/PATENTS",
+      "bytes": 1436,
+      "sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c"
+    }
+  ]
+}

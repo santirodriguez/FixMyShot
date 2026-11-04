@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "rows": [
+    {
+      "coordinate": "androidx.activity:activity-compose:1.11.0",
+      "actual_url": "https://dl.google.com/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.aar",
+      "canonical_url": "https://dl.google.com/dl/android/maven2/androidx/activity/activity-compose/1.11.0/activity-compose-1.11.0.aar",
+      "exit_code": 0,
+      "status": "EXACT_FROZEN_BYTES_CAPTURED_SAME_PUBLISHER_ALTERNATE_PATH",
+      "sha256": "03d5232a9371338475a3d9e40cabeb072faab16dd01d94b481c1ebf13535c59a"
+    },
+    {
+      "coordinate": "androidx.compose.animation:animation-android:1.10.0",
+      "actual_url": "https://dl.google.com/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.aar",
+      "canonical_url": "https://dl.google.com/dl/android/maven2/androidx/compose/animation/animation-android/1.10.0/animation-android-1.10.0.aar",
+      "exit_code": 0,
+      "status": "EXACT_FROZEN_BYTES_CAPTURED_SAME_PUBLISHER_ALTERNATE_PATH",
+      "sha256": "8a559dabdae5a4dcd45b9eba7fbc90df093135e43c7e29de2769911eec76eef9"
+    }
+  ]
+}

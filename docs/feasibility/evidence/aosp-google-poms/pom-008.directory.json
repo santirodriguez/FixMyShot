@@ -1,0 +1,42 @@
+)]}'
+{
+  "id": "01c2c012a18d70ba2cbcfdfb238bd87db95409f8",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "bccf86f791ae97dcb4bcc1c245c86d3d73a111e9",
+      "name": "interpolator-1.0.0.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6eac331c7502b49d20353caab6aea98a625a990f",
+      "name": "interpolator-1.0.0.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "49a663964345f69b668ccc07148b4274be77967e",
+      "name": "interpolator-1.0.0.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f8a0a708729f4170f181ca92ec3bee863651a68e",
+      "name": "interpolator-1.0.0.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "6b4811952ec2dd8fe4638352ea7f0fcb24aa11f4",
+      "name": "origin.json"
+    }
+  ]
+}

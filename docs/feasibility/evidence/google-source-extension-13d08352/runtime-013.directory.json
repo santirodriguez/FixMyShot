@@ -1,0 +1,66 @@
+)]}'
+{
+  "id": "3a160b2674ec17cf3b8d653ed489e2ad216e68ff",
+  "entries": [
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "d9a10c0d8e868ebf8da0b3dc95bb0be634c34bfe",
+      "name": "NOTICE"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "68ada5fd1e1102f3e03ab49e7faa3e38fa609df1",
+      "name": "lifecycle-livedata-core-ktx-2.8.7-versionMetadata.json"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "27399511ae32220e605cae9009a6de6c64ab3c2f",
+      "name": "lifecycle-livedata-core-ktx-2.8.7-versionMetadata.json.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "a6800985fe6bb01081acaa930ebb640c018177ab",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.aar"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "f7020703550c445e1d4093310009a25a8c9ead8c",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.aar.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "5ace935874dcb9f593e665f414e4d027e6d400d4",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.module"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "ec2594ceae7b173edd02468893d1eb7153451863",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.module.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "b7e5c1a87006167b4cd9c4475a538d6d7b094db4",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.pom"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "def904e7af6f1cb1cecbf5375f41c50d0065a1c0",
+      "name": "lifecycle-livedata-core-ktx-2.8.7.pom.sha1"
+    },
+    {
+      "mode": 33188,
+      "type": "blob",
+      "id": "650a1fafd68fa052e6fc026cad9bd4fbdfef6405",
+      "name": "origin.json"
+    }
+  ]
+}
