@@ -5,6 +5,7 @@ on:
     paths: ['.ci/signing-candidate-request.json']
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: fixmyshot-candidate-signing
   cancel-in-progress: false
@@ -14,15 +15,19 @@ jobs:
     timeout-minutes: 5
     outputs:
       enabled: ${{ steps.request.outputs.enabled }}
+      run: ${{ steps.request.outputs.run }}
+      artifact: ${{ steps.request.outputs.artifact }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
       - id: request
         name: Validate explicit signing request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import json, os
+          import json, os, re, subprocess
           from pathlib import Path
           def unique(pairs):
               result = {}
@@ -31,14 +36,28 @@ jobs:
                   result[key] = value
               return result
           request = json.loads(Path(".ci/signing-candidate-request.json").read_text(), object_pairs_hook=unique)
-          if set(request) != {"schema", "state", "request_id"} or type(request["schema"]) is not int or request["schema"] != 1:
+          if type(request["schema"]) is not int or request["schema"] != 1:
               raise ValueError("Unsupported signing request")
           if request["state"] not in ("PREPARED", "SIGN_CANDIDATE"):
               raise ValueError("Unsupported signing state")
           if not isinstance(request["request_id"], str) or not request["request_id"].strip():
               raise ValueError("Missing request identity")
+          if request["state"] == "SIGN_CANDIDATE":
+              for key, pattern in (("source_commit", r"[0-9a-f]{40}"), ("unsigned_sha256", r"[0-9a-f]{64}")):
+                  if re.fullmatch(pattern, request.get(key, "")) is None:
+                      raise ValueError("Missing exact signing pin")
+              if request.get("version_name") != "1.0.0" or request.get("version_code") != 1:
+                  raise ValueError("Wrong first-public version")
+              run_id = request.get("baseline_run_id")
+              if type(run_id) is not int or run_id <= 0:
+                  raise ValueError("Missing inspected build run")
+              run = json.loads(subprocess.check_output(["gh", "api", "repos/santirodriguez/FixMyShot/actions/runs/" + str(run_id)]))
+              if run["conclusion"] != "success" or run["path"] != ".github/workflows/android.yml" or run["repository"]["full_name"] != "santirodriguez/FixMyShot" or run["head_branch"] != "release/1.0.0" or run["event"] not in ("push", "pull_request"):
+                  raise ValueError("Build run is not the trusted successful release validation")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
               output.write("enabled=" + str(request["state"] == "SIGN_CANDIDATE").lower() + "\n")
+              if request["state"] == "SIGN_CANDIDATE":
+                  output.write("run=" + str(run_id) + "\nartifact=bootstrap-" + request["source_commit"] + "\n")
           PY
   sign:
     needs: request
@@ -60,8 +79,8 @@ jobs:
       - name: Download the original approved unsigned candidate
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
-          name: bootstrap-1f89c979a7b432e6117670d170ce8ca0df5e2567
-          run-id: 41710230009
+          name: ${{ needs.request.outputs.artifact }}
+          run-id: ${{ needs.request.outputs.run }}
           github-token: ${{ github.token }}
           path: candidate-input
       - name: Prepare pinned signing tools
@@ -76,7 +95,7 @@ jobs:
       - name: Publish the explicitly authorized public candidate artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: FixMyShot-0.1.0-alpha.2-signed-${{ github.run_id }}
+          name: FixMyShot-1.0.0-signed-${{ github.run_id }}
           path: candidate-output/
           if-no-files-found: error
           retention-days: 7

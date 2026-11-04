@@ -35,7 +35,7 @@ class FakeGitHub:
         if path.endswith("/releases?per_page=100"):
             return [self.release] if self.release else []
         if method == "POST" and path.endswith("/releases"):
-            self.release = dict(value, id=1, html_url="https://github.com/" + M["REPO"] + "/releases/tag/v0.1.0-alpha.2")
+            self.release = dict(value, id=1, html_url="https://github.com/" + M["REPO"] + "/releases/tag/v9.8.7-test.1")
             return self.release
         if path.endswith("/assets?per_page=100"):
             return self.assets
@@ -68,7 +68,13 @@ class PublicationTests(unittest.TestCase):
         self.kit = Path(self.temp.name)
         (self.kit / "assets").mkdir()
         (self.kit / "review").mkdir()
-        self.request = json.loads((ROOT / "docs/releases/0.1.0-alpha.2-release-request.json").read_text())
+        self.request = {
+            "schema":1,"application_id":"org.cajapersonal.fixmyshot",
+            "version_name":"9.8.7-test.1","version_code":1,"tag_name":"v9.8.7-test.1",
+            "compiled_source":"c"*40,"compiled_tree":"d"*40,
+            "signed_apk":{"filename":"FixMyShot-9.8.7-test.1-universal.apk"},
+            "source_materials":{"filename":"FixMyShot-9.8.7-test.1-source-materials.tar.gz"},
+        }
         data = {self.request["signed_apk"]["filename"]: b"synthetic APK fixture",
                 self.request["source_materials"]["filename"]: b"synthetic source fixture"}
         for key in ("signed_apk", "source_materials"):
@@ -96,7 +102,7 @@ class PublicationTests(unittest.TestCase):
     def write_plan(self):
         (self.kit / "review/release-plan.json").write_text(json.dumps(self.plan))
 
-    def publish(self, confirmation="PUBLISH v0.1.0-alpha.2"):
+    def publish(self, confirmation="PUBLISH v9.8.7-test.1"):
         return M["publish"](self.client, self.kit, CONTROL, MAIN, self.request, confirmation)
 
     def test_verified_publish_and_idempotent_readback(self):
