@@ -8,6 +8,50 @@
 > Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). The maintainer reports a successful alpha.1 → alpha.2 update and launch; detailed settings/default retention and Obtainium remain unverified. Historical alpha.1 receipts below remain bound to their original bytes.
 > No merge, release, store upload or publication is authorized by candidate signing.
 
+## Proposed development prerelease path — decision pending
+
+Status: **PROPOSED; NO MERGE OR PUBLICATION AUTHORITY**.
+
+The current alpha.2 already has verified build, source materials, byte-identical
+independent rebuild, exact-artifact assurance approval, a stable production
+signature and maintainer-reported update/launch. Its current English Home and
+Settings images were read back and visually accepted. The unresolved scope is
+listed in [the current delivery disposition](TESTING.md#current-delivery-disposition--2026-11-04),
+not a demand to repeat completed checks.
+
+Recommended next scope: prepare the existing `0.1.0-alpha.2` as a **development
+prerelease for testing**, explicitly stating that full functional0.1.0 acceptance
+is incomplete. Keep the immutable blueprint and its remaining M03–M07/M09/M10
+requirements. Do not relabel NOT_RUN as PASS or advertise a full functional
+release. This is a proposed staging/distribution sequence, not an adopted waiver.
+
+If the maintainer approves that preparation scope, the bounded work is:
+1. Stage the exact signed `FixMyShot-0.1.0-alpha.2-universal.apk`
+   (12,401,557 bytes; SHA256
+   `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`)
+   with `BUILD-INFO.json`, `SHA256SUMS.txt` and the already verified complete
+   corresponding-source archive; no rebuild/re-sign or replacement code2 bytes.
+2. Prepare the release note/download metadata around those exact files and
+   documented limitations; preserve genuine canonical screenshots and current
+   author/privacy/format links without claiming unpublished assets are live.
+3. Reconcile the intended tag/release-control commit with the separately pinned
+   compiled source `1f89c979` in BUILD-INFO and source instructions. Do not
+   claim a later documentation commit produced this APK or sign new bytes merely
+   to align a documentary tag.
+4. Present the complete asset manifest, exact source/tag plan and release copy
+   for the separate merge/publication decision. Do not create a tag, publish a
+   release, change the default branch, enroll a store or deploy a website.
+5. After a separately authorized accessible test release exists, verify the
+   actual Obtainium source/install/update path. Until then retain NOT_RUN; an
+   Actions ZIP or the reported manual APK update is not Obtainium acceptance.
+
+Store submissions, extra store-localized screenshot sets and stable1.0 are outside
+this proposed GitHub development-preview scope. The completed dependency/N01
+review and accepted manual comparisons are reused. Actual16KiB runtime,
+100-item mixed failures, full human locale/accessibility, wider independent
+privacy/color checks and detailed settings/default retention retain their
+recorded dispositions.
+
 ## Alpha.2 exact-candidate signing — executed and verified
 
 The maintainer separately authorized the exact signing operation on 2026-11-03.

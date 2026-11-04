@@ -5,18 +5,20 @@ Real changes. No imaginary release history.
 ## 0.1.0-alpha.2
 
 Signed Actions validation candidate handed off on 2026-11-03; no GitHub release.
-Installation and increasing-code upgrade acceptance remain pending.
+The maintainer reports successful alpha.1/code1 to alpha.2/code2 update and launch.
+Detailed settings/default retention and Obtainium acceptance remain pending.
 
 - Refine the home, information action and result buttons with a restrained layout and labelled icons.
 - Put common destinations before Google Play while retaining Original as the neutral default.
 - Separate background choices into a dialog and give lower editor actions clearer spacing.
 - Restore readable system-bar icons when Settings opens, changes theme or returns to the editor.
-- Preserve the installed alpha.1 identity in the version ledger; prepare code2 for a later same-certificate upgrade.
+- Preserve the installed alpha.1 signing identity and record the reported increasing-code update to code2.
 - Keep PNG/lossless WebP output, permissions and dependency/native inputs unchanged.
 
 This candidate was signed and independently inspected after its verified build,
 source materials, byte-identical rebuild and exact artifact-specific assurance
-approval. Actual installation/upgrade acceptance remains pending.
+approval. Update and launch are accepted by maintainer report; the remaining M09 checks
+retain their recorded limits.
 The maintainer accepted Preview2's visual/usability revision; the current API36
 dark/light/return captures passed independent inspection. No new physical Pixel
 measurement is inferred.

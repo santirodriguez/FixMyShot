@@ -1,5 +1,21 @@
 # Completion status
 
+## Delivery scope reconciled — 2026-11-04
+
+Signed alpha.2, its reported update/launch and the current English Home/Settings
+screenshots remain accepted within their recorded scopes. No application code,
+APK bytes, signing identity or prior test result changed in this reconciliation.
+The [current disposition](TESTING.md#current-delivery-disposition--2026-11-04)
+separates those completed items from the remaining manual/resource/privacy and
+Obtainium evidence; historical matrices below retain their original bindings.
+
+Full functional0.1.0 acceptance remains open. The
+[proposed development-prerelease path](RELEASING.md#proposed-development-prerelease-path--decision-pending)
+would prepare the already signed alpha.2 as an explicitly incomplete test release.
+That proposal requires a scope decision; merge/tag/publication remain unauthorized.
+No repeat of accepted visual, output, picker, update/launch or screenshot checks
+is requested.
+
 ## Alpha.2 update/launch accepted by maintainer — 2026-11-03
 
 The maintainer confirms the signed alpha.1/code1 → alpha.2/code2 update and

@@ -1,5 +1,37 @@
 # Testing and evidence
 
+## Current delivery disposition — 2026-11-04
+
+This reconciliation uses the exact signed alpha.2/code2 APK
+SHA256 `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`,
+compiled source `1f89c979`, the recorded maintainer report and current canonical
+screenshots verified at `e742f5c2`. It adds no new physical-test claim.
+
+| Check | Current disposition and genuinely remaining scope |
+| --- | --- |
+| M01 | Requested PNG/WebP visual comparison accepted by maintainer report; no repeat requested or new quantitative physical metric inferred |
+| M02 | HEIC/AVIF/JXL deferred for0.1.0 by approved amendments; no codec qualification work remains in this delivery's scope |
+| M03 | Automated current storage paths and structural16KiB alignment pass; actual16KiB runtime NOT_RUN; legacy SAF retains its best-effort limitation |
+| M04 | Existing batch/retry/recovery/transaction evidence retained; full100-item mixed resource/process-kill/provider exercise not recorded |
+| M05 | Three-language resources/completeness checks pass; exhaustive human wording/offline/system-manual language review not recorded |
+| M06 | Existing interaction/semantics/recreation evidence retained; full TalkBack/200%text/landscape/input-accessibility exercise not recorded |
+| M07 | Existing synthetic orientation/privacy/color and bounded manual output evidence retained; wider independent identifying-field/opt-out/alpha/HDR inspection not recorded |
+| M08 | Layout guidance only; optional social-preview evidence not claimed and no real post requested |
+| M09 | Signed same-ID/same-certificate code1→code2 update/launch accepted by maintainer report; detailed settings/default retention and actual Obtainium install/update remain unverified |
+| M10 | Current English Home/darkSettings image readback/visual inspection complete; final delivery copy/assets remain subject to the chosen release scope; future store/localized sets are not a new GitHub prerequisite |
+
+These gaps do not imply known failures, but they are not passing evidence.
+The unchanged blueprint's full functional0.1.0 acceptance remains open. Do not
+reopen accepted general editor/picker/PNG/WebP/Preview2 or update/launch checks,
+regenerate/re-sign code2, repeat deferred-codec diagnostics or require store
+submission/website deployment merely to proceed.
+
+The [development-prerelease proposal](RELEASING.md#proposed-development-prerelease-path--decision-pending)
+offers a separate, explicitly incomplete test channel for the existing alpha.2
+bytes. It is not approved and does not waive the functional gates. Obtainium
+cannot be called accepted before actual accessible release assets are tested.
+No merge, tag or publication is authorized by this reconciliation.
+
 ## Alpha.2 update/launch accepted by maintainer — 2026-11-03
 
 The maintainer answered “si go” to the specific request to confirm installing

@@ -67,8 +67,10 @@ Google Play are future distribution channels.
 On Android 10 and later, saved copies go to **Pictures/FixMyShot**.
 Android 8–9 uses a folder you select, with [best-effort compatibility](docs/decisions/compatibility-and-validation.md).
 
-Development APKs are separate test apps. They do not establish the production
-signing identity or upgrade path.
+Debug previews use separate app identities. The signed alpha.2 validation
+candidate uses the production identity; the maintainer reports a successful
+update and launch over alpha.1. See its [signed receipt](docs/releases/0.1.0-alpha.2-signed-build-info.json).
+GitHub-release and Obtainium acceptance remain pending.
 
 Once signed releases are published, add
 `https://github.com/santirodriguez/FixMyShot` to Obtainium and enable prereleases
