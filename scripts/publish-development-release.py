@@ -59,10 +59,10 @@ def select_run(client, run_id):
     require(type(run_id) is int and run_id > 0, "Invalid staging run ID")
     run = client.json("GET", API + "/actions/runs/" + str(run_id))
     require(run["conclusion"] == "success" and run["event"] == "push"
-            and run["head_branch"] == "release/0.1.0"
+            and run["head_branch"] == "release/1.0.0"
             and run["path"] == ".github/workflows/prepare-development-release.yml"
             and run["repository"]["full_name"] == REPO,
-            "Use a successful release/0.1.0 push run of the staging workflow")
+            "Use a successful release/1.0.0 push run of the staging workflow")
     control = run["head_sha"]
     require(re.fullmatch(r"[0-9a-f]{40}", control) is not None, "Invalid staging source")
     name = "development-release-kit-" + control
@@ -72,13 +72,23 @@ def select_run(client, run_id):
     return {"artifact": name, "control": control}
 
 
+def release_policy(request):
+    version = request["version_name"]
+    stable = re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", version) is not None
+    require(request.get("release_channel", "stable" if stable else "development-prerelease")
+            == ("stable" if stable else "development-prerelease"), "Version/channel mismatch")
+    return {"prerelease": not stable, "make_latest": stable}
+
+
 def verify_kit(kit, control, request):
+    require(request.get("state", "READY") == "READY", "Release inputs are not ready")
+    policy = release_policy(request)
     require(re.fullmatch(r"[0-9a-f]{40}", control or "") is not None, "Invalid kit control commit")
     plan = json.loads((kit / "review/release-plan.json").read_text())
     receipt = json.loads((kit / "review/staging-receipt.json").read_text())
     info = json.loads((kit / "assets/BUILD-INFO.json").read_text())
     tag = request["tag_name"]
-    require(plan["prerelease"] is True and plan["make_latest"] is False
+    require(plan["prerelease"] is policy["prerelease"] and plan["make_latest"] is policy["make_latest"]
             and plan["tag_name"] == tag and plan["proposed_tag_target_commit"] == control
             and receipt["control_commit"] == control
             and info["proposed_tag_target_commit"] == control, "Kit tag/control differs")
@@ -109,14 +119,21 @@ def verify_kit(kit, control, request):
     require((kit / "assets/SHA256SUMS.txt").read_text() == sums, "Checksum coverage differs")
     notes = (kit / "review/RELEASE-NOTES.md").read_text()
     require("{{" not in notes and "<!-- EDIT" not in notes and "Caja Personal" in notes
-            and "incomplete" in notes and control in notes, "Release notes are unresolved")
-    require(plan["coverage_limits"]["functional_0_1_0_acceptance"] == "INCOMPLETE"
-            and info["coverage_limits"]["obtainium_install_update"] == "NOT_RUN", "Coverage limits changed")
+            and control in notes, "Release notes are unresolved")
+    require(plan["coverage_limits"] == info["coverage_limits"], "Coverage limits differ")
+    if policy["prerelease"]:
+        require(plan["coverage_limits"]["functional_0_1_0_acceptance"] == "INCOMPLETE"
+                and "incomplete" in notes, "Development coverage changed")
+    else:
+        require(info["coverage_limits"].get("functional_acceptance") == "ACCEPTED"
+                and request.get("stable_acceptance_reviewed") is True,
+                "Stable acceptance has not been reviewed")
     return plan, notes
 
 
 def publish(client, kit, control, main, request, confirmation):
     plan, notes = verify_kit(kit, control, request)
+    policy = release_policy(request)
     tag = plan["tag_name"]
     require(confirmation == "PUBLISH " + tag, "Exact publication confirmation required")
     require(re.fullmatch(r"[0-9a-f]{40}", main or "") is not None, "Invalid main checkout")
@@ -140,7 +157,7 @@ def publish(client, kit, control, main, request, confirmation):
     if release:
         require(release["name"] == "FixMyShot " + request["version_name"]
                 and release["body"] == notes
-                and release["prerelease"] is True, "Existing release differs; reconcile manually")
+                and release["prerelease"] is policy["prerelease"], "Existing release differs; reconcile manually")
     if ref is None:
         require(release is None, "Release exists without its expected tag")
         client.json("POST", API + "/git/refs", {"ref": "refs/tags/" + tag, "sha": control})
@@ -148,7 +165,7 @@ def publish(client, kit, control, main, request, confirmation):
         release = client.json("POST", API + "/releases", {
             "tag_name": tag, "target_commitish": control,
             "name": "FixMyShot " + request["version_name"], "body": notes,
-            "draft": True, "prerelease": True, "make_latest": "false"})
+            "draft": True, "prerelease": policy["prerelease"], "make_latest": str(policy["make_latest"]).lower()})
     records = {r["filename"]: r for r in plan["assets"]}
 
     def check_assets(allow_upload):
@@ -175,15 +192,15 @@ def publish(client, kit, control, main, request, confirmation):
     require(actual_tag["type"] == "commit" and actual_tag["sha"] == control, "Tag changed during upload")
     current = client.json("GET", API + "/releases/" + str(release["id"]))
     require(current["name"] == release["name"] and current["body"] == notes
-            and current["draft"] == release["draft"] and current["prerelease"] is True,
+            and current["draft"] == release["draft"] and current["prerelease"] is policy["prerelease"],
             "Release changed during upload; inspect it before retrying")
     assets = client.json("GET", API + "/releases/" + str(release["id"]) + "/assets?per_page=100")
     require(len(assets) == 4 and {a["id"]: (a["name"], a["size"], a["state"]) for a in assets} == verified_assets,
             "Assets changed after verification; release remains a draft")
     if release["draft"]:
         release = client.json("PATCH", API + "/releases/" + str(release["id"]),
-                              {"draft": False, "prerelease": True, "make_latest": "false"})
-    require(release["draft"] is False and release["prerelease"] is True, "Publication readback failed")
+                              {"draft": False, "prerelease": policy["prerelease"], "make_latest": str(policy["make_latest"]).lower()})
+    require(release["draft"] is False and release["prerelease"] is policy["prerelease"], "Publication readback failed")
     return {"release_url": release["html_url"], "tag": tag, "tag_target": control,
             "assets_verified": 4, "obtainium_device_acceptance": "NOT_RUN"}
 

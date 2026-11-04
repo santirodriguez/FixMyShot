@@ -41,7 +41,7 @@ Images are processed locally. New sessions start with PNG and identifying-metada
 | [SHA256SUMS.txt](https://github.com/santirodriguez/FixMyShot/releases/download/{{TAG}}/SHA256SUMS.txt) | SHA-256 for the APK and build receipt |
 | [BUILD-INFO.json](https://github.com/santirodriguez/FixMyShot/releases/download/{{TAG}}/BUILD-INFO.json) | Source, unsigned/signed digests, public certificate and build-tool receipt |
 
-**Obtainium:** add `https://github.com/santirodriguez/FixMyShot`, enable prereleases for the 0.x channel and select the universal APK if needed. APK filter: `^FixMyShot-.*-universal\.apk$`. Fresh install and same-certificate upgrade must be verified on these exact bytes before claiming them supported.
+**Obtainium:** add `https://github.com/santirodriguez/FixMyShot`, use the stable channel and select the universal APK if needed. APK filter: `^FixMyShot-.*-universal\.apk$`. Fresh install and same-certificate upgrade must be verified on these exact bytes before claiming them supported.
 
 <details>
 <summary><strong>Under the hood · build {{CODE}}</strong></summary>

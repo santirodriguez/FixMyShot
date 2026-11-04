@@ -1,5 +1,19 @@
 # Completion status
 
+## First public 1.0.0 preparation — 2026-11-04
+
+The maintainer approved first public stable version **1.0.0 / code1**, unchanged
+production package and existing signing identity, and clean installation after
+uninstalling alpha.2. [The release amendment](decisions/first-public-release.md)
+supersedes alpha publication/numbering instructions. PR2 has already merged into
+main at c99f8df; subsequent alpha-oriented status entries are historical.
+
+The new candidate requires its own build, exact source material, independent
+rebuild, signing/inspection and truthful screenshot review. No alpha receipt
+proves these new bytes. Accepted unchanged UX/output checks remain preserved;
+manual tests not recorded below remain NOT_RUN. No 1.0.0 publication is claimed.
+
+
 ## Current pre-main review — 2026-11-04
 
 PR1 is merged into release/0.1.0. [PR2](https://github.com/santirodriguez/FixMyShot/pull/2)

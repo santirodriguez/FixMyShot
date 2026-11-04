@@ -135,8 +135,8 @@
     <string name="help_body">Elegí imágenes o compartilas con FixMyShot desde otra app. Seleccioná un destino o una proporción, revisá la vista previa y exportá copias nuevas. PNG es el formato predeterminado. También podés usar WebP sin pérdida. Los ajustes pueden aplicarse a todo el lote o solo a la imagen seleccionada. En Android 10 o posterior, las copias se guardan en Pictures/FixMyShot. Las versiones anteriores te piden una carpeta. Seleccioná las imágenes guardadas en los resultados para compartirlas. Si una exportación anterior necesita revisión, comprobá sus resultados antes de iniciar otra.</string>
     <string name="privacy_title">Privacidad</string>
     <string name="privacy_body">Las imágenes se procesan en tu dispositivo. FixMyShot no tiene permiso de red, cuentas ni analíticas. Los archivos originales solo se leen. Las copias nuevas eliminan los metadatos identificativos de forma predeterminada. En la revisión podés optar por conservar los campos compatibles, incluidos GPS y autoría. Las copias de trabajo privadas pueden permanecer hasta que descartes la sesión, vuelvas a abrir la app para la limpieza por antigüedad, borres sus datos o la desinstales. Los proveedores externos de imágenes pueden usar la red por su cuenta. Los enlaces de abajo abren un navegador externo solo cuando los elegís.</string>
-    <string name="about_version">Versión %1$s · compilación de desarrollo</string>
-    <string name="about_author">Creado por Santiago Rodriguez</string>
+    <string name="about_version">Versión %1$s</string>
+    <string name="about_author">Creado por Caja Personal</string>
     <string name="about_license">GNU GPL versión 3 únicamente</string>
     <string name="about_source">Código fuente</string>
     <string name="about_notices">Avisos de terceros</string>

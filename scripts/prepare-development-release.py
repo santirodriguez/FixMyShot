@@ -6,6 +6,7 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import runpy
 import tarfile
 import zipfile
 
@@ -42,6 +43,8 @@ def write_json(path, value):
 
 def stage(request, signed_root, source_root, output, control):
     require(not output.exists(), "Output directory must be fresh")
+    require(request.get("state", "READY") == "READY", "Release inputs are not ready")
+    policy = runpy.run_path(str(ROOT / "scripts/publish-development-release.py"))["release_policy"](request)
     require(request["schema"] == 1 and request["application_id"] == "org.cajapersonal.fixmyshot",
             "Unexpected request identity")
     require(re.fullmatch(r"[0-9a-f]{40}", control or "") is not None, "Invalid control commit")
@@ -50,8 +53,8 @@ def stage(request, signed_root, source_root, output, control):
     require(re.fullmatch(r"[0-9a-f]{40}", request["compiled_tree"]) is not None,
             "Invalid compiled tree")
     version = request["version_name"]
-    require(re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+-[A-Za-z0-9.-]+", version or "") is not None,
-            "Development prerelease version required")
+    require(re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+(?:-[A-Za-z0-9.-]+)?", version or "") is not None,
+            "Release version required")
     require(request["tag_name"] == "v" + version and type(request["version_code"]) is int
             and request["version_code"] > 0, "Version/tag mismatch")
     apk_record, source_record = request["signed_apk"], request["source_materials"]
@@ -109,9 +112,14 @@ def stage(request, signed_root, source_root, output, control):
         "detailed_settings_default_retention": "NOT_RUN",
         "obtainium_install_update": "NOT_RUN",
     }
+    if not policy["prerelease"]:
+        require(request.get("stable_acceptance_reviewed") is True,
+                "Stable acceptance has not been reviewed")
+        limitations = request["coverage_limits"]
+        require(limitations.get("functional_acceptance") == "ACCEPTED", "Stable acceptance incomplete")
     build_info = {
-        "schema": 1, "status": "SIGNED_AND_VERIFIED_DEVELOPMENT_CANDIDATE",
-        "channel": "development-prerelease", "application_id": request["application_id"],
+        "schema": 1, "status": "SIGNED_AND_VERIFIED_DEVELOPMENT_CANDIDATE" if policy["prerelease"] else "SIGNED_AND_VERIFIED_STABLE_CANDIDATE",
+        "channel": "development-prerelease" if policy["prerelease"] else "stable", "application_id": request["application_id"],
         "version_name": version, "version_code": request["version_code"],
         "source_commit": request["compiled_source"],
         "compiled_source_commit": request["compiled_source"], "compiled_source_tree": request["compiled_tree"],
@@ -132,7 +140,7 @@ def stage(request, signed_root, source_root, output, control):
             "artifact_specific_assurance": unsigned_receipt["artifact_specific_assurance"],
             "pending_publisher_classifications_retained": True,
             "dependency_authentication": unsigned_receipt["artifact_specific_assurance"],
-            "fresh_install": "NOT_RUN_ALPHA2_FRESH_INSTALL",
+            "fresh_install": signed_receipt.get("fresh_install_test", "NOT_RUN"),
             "same_certificate_upgrade": signed_receipt["sequential_upgrade_test"],
             "obtainium_install_and_update": "NOT_RUN",
             "remaining_limitations": limitations,
@@ -157,13 +165,13 @@ def stage(request, signed_root, source_root, output, control):
     require("{{" not in notes and "<!-- EDIT" not in notes, "Unresolved notes field")
     (review / "RELEASE-NOTES.md").write_text(notes, encoding="utf-8")
     plan = {
-        "schema": 1, "prepared_channel": "development-prerelease", "prerelease": True,
-        "make_latest": False, "tag_name": request["tag_name"], "proposed_tag_target_commit": control,
+        "schema": 1, "prepared_channel": "development-prerelease" if policy["prerelease"] else "stable", "prerelease": policy["prerelease"],
+        "make_latest": policy["make_latest"], "tag_name": request["tag_name"], "proposed_tag_target_commit": control,
         "compiled_source_commit": request["compiled_source"],
         "compiled_source_tree": request["compiled_tree"], "assets": rows,
         "integration_snapshot": request["integration_snapshot"],
-        "proposed_integration_sequence": ["Review PR2 and this exact prepared kit",
-            "Separately authorize release/0.1.0 into main",
+        "proposed_integration_sequence": ["Review the current candidate PR and this exact prepared kit",
+            "Separately authorize the candidate branch into main",
             "Separately authorize the manual publishing workflow with this successful staging run ID"],
         "integration_gate": "The exact packaging-control commit must be contained in main before publication. Staging does not merge, tag or publish.",
         "tag_source_explanation": "The tag identifies current documentation/packaging control. BUILD-INFO and the nested source kit identify the exact earlier compiled Git source; no rebuild of the tag is claimed.",

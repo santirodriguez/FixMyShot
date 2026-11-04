@@ -2,6 +2,24 @@
 
 Real changes. No imaginary release history.
 
+## 1.0.0
+
+First public release target; preparation in progress, not yet published.
+
+- Prepare screenshots individually or in batches, with content-preserving framing,
+  optional crop and background controls, and separate PNG/lossless WebP copies.
+- View saved results, share them and start another image directly.
+- Include offline English, Español and Català, light/dark/system themes and
+  default identifying-metadata removal without modifying originals.
+- Use Caja Personal in About and current public links.
+- Start the public Android counter at code1 with the existing FixMyShot signer.
+  Private alpha.2/code2 users must uninstall that alpha before a clean install.
+- Prepare stable GitHub/Obtainium distribution. HEIC, AVIF and JXL output remain
+  deferred; current acceptance limits are recorded in docs/TESTING.md.
+
+The alpha entries below describe historical testing candidates, not prior public
+GitHub releases. Their hashes and acceptance scopes remain unchanged.
+
 ## 0.1.0-alpha.2
 
 Signed validation candidate handed off on 2026-11-03. Published downloads, when

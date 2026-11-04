@@ -61,7 +61,8 @@ def validate(root=ROOT):
     name = candidate["version_name"]
     require(name in (root / "README.md").read_text(), "README must identify the current version")
     changelog = (root / "CHANGELOG.md").read_text()
-    heading = f"## Unreleased — {name}" if candidate["status"] == "planned" else f"## {name}"
+    heading = "## " + candidate.get("changelog_heading", f"Unreleased — {name}" if candidate["status"] == "planned" else name)
+    require(heading in (f"## {name}", f"## Unreleased — {name}"), "Invalid candidate changelog heading")
     require(heading in changelog.splitlines(), "Changelog/current ledger status mismatch")
     template = (root / "docs/releases/TEMPLATE.md").read_text()
     require(set(re.findall(r"\{\{([^{}]+)\}\}", template)) == {"VERSION", "TAG", "CODE", "APK"},

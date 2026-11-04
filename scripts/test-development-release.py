@@ -68,7 +68,7 @@ class PublicationTests(unittest.TestCase):
         self.kit = Path(self.temp.name)
         (self.kit / "assets").mkdir()
         (self.kit / "review").mkdir()
-        self.request = json.loads((ROOT / ".ci/development-release-request.json").read_text())
+        self.request = json.loads((ROOT / "docs/releases/0.1.0-alpha.2-release-request.json").read_text())
         data = {self.request["signed_apk"]["filename"]: b"synthetic APK fixture",
                 self.request["source_materials"]["filename"]: b"synthetic source fixture"}
         for key in ("signed_apk", "source_materials"):
@@ -173,7 +173,7 @@ class PublicationTests(unittest.TestCase):
             self.publish()
 
     def test_staging_run_requires_trusted_push_and_unexpired_exact_artifact(self):
-        run = {"conclusion": "success", "event": "push", "head_branch": "release/0.1.0",
+        run = {"conclusion": "success", "event": "push", "head_branch": "release/1.0.0",
                "path": ".github/workflows/prepare-development-release.yml",
                "repository": {"full_name": M["REPO"]}, "head_sha": CONTROL}
         artifact = {"name": "development-release-kit-" + CONTROL, "expired": False}
@@ -192,6 +192,51 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             M["select_run"](Runs(), 1)
 
+    def test_prepared_request_and_unreviewed_stable_release_are_refused(self):
+        self.request["state"] = "PREPARED"
+        with self.assertRaises(ValueError): self.publish()
+        self.assertEqual(self.client.writes, [])
+        self.request["state"] = "READY"
+        self.request["version_name"] = "1.0.0"
+        self.plan.update(prerelease=False, make_latest=True)
+        self.write_plan()
+        with self.assertRaises(ValueError): self.publish()
+        self.assertEqual(self.client.writes, [])
+
+    def test_reviewed_stable_release_is_latest_and_idempotent(self):
+        self.request.update(version_name="1.0.0", tag_name="v1.0.0",
+                            release_channel="stable", stable_acceptance_reviewed=True)
+        info_path = self.kit / "assets/BUILD-INFO.json"
+        info = json.loads(info_path.read_text())
+        info.update(version_name="1.0.0", coverage_limits={"functional_acceptance": "ACCEPTED",
+                                                        "obtainium_install_update": "NOT_RUN"})
+        info_path.write_text(json.dumps(info))
+        self.plan.update(prerelease=False, make_latest=True, tag_name="v1.0.0",
+                         coverage_limits=info["coverage_limits"])
+        assets = self.kit / "assets"
+        (assets / "SHA256SUMS.txt").write_text("".join(
+            hashlib.sha256(p.read_bytes()).hexdigest() + "  " + p.name + "\n"
+            for p in sorted(assets.iterdir()) if p.name != "SHA256SUMS.txt"))
+        rows = [{"filename": p.name, "bytes": p.stat().st_size,
+                 "sha256": hashlib.sha256(p.read_bytes()).hexdigest()} for p in sorted(assets.iterdir())]
+        self.plan["assets"] = rows
+        self.write_plan()
+        (self.kit / "review/staging-receipt.json").write_text(json.dumps({"control_commit": CONTROL, "assets": rows}))
+        self.client.files = {p.name: p.read_bytes() for p in assets.iterdir()}
+        result = self.publish("PUBLISH v1.0.0")
+        self.assertEqual(result["assets_verified"], 4)
+        self.assertFalse(self.client.release["prerelease"])
+        self.assertEqual(self.client.release["make_latest"], "true")
+        writes = self.client.writes.copy()
+        self.publish("PUBLISH v1.0.0")
+        self.assertEqual(self.client.writes, writes)
+
+    def test_version_channel_policy(self):
+        self.assertEqual(M["release_policy"]({"version_name": "1.0.0"}),
+                         {"prerelease": False, "make_latest": True})
+        with self.assertRaises(ValueError):
+            M["release_policy"]({"version_name": "1.0.0", "release_channel": "development-prerelease"})
+
     def test_obtainium_button_has_exact_source_prerelease_and_filter(self):
         import html
         readme = (ROOT / "README.md").read_text()
@@ -202,7 +247,7 @@ class PublicationTests(unittest.TestCase):
         config = json.loads(unquote(deep.split("obtainium://app/", 1)[1]))
         self.assertEqual(config["id"], "org.cajapersonal.fixmyshot")
         self.assertEqual(config["url"], "https://github.com/" + M["REPO"])
-        self.assertTrue(config["additionalSettings"]["includePrereleases"])
+        self.assertFalse(config["additionalSettings"]["includePrereleases"])
         regex = config["additionalSettings"]["apkFilterRegEx"]
         re = __import__("re")
         self.assertIsNotNone(re.fullmatch(regex, self.request["signed_apk"]["filename"]))

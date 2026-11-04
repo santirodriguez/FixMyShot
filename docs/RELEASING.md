@@ -1,5 +1,38 @@
 # A good release should be boring to install
 
+<a id="current-handoff-main-github-and-obtainium"></a>
+
+## Current handoff: first stable 1.0.0
+
+[Approved release identity and counter reset](decisions/first-public-release.md)
+govern the current candidate: **1.0.0 / versionCode1**, stable GitHub channel,
+`org.cajapersonal.fixmyshot`, existing FixMyShot certificate, Caja Personal About.
+The first public ledger starts at code1; preserve private alpha history separately.
+The changelog's 1.0.0 heading identifies the target, not a claim of publication.
+
+1. Build and test the new immutable source on release/1.0.0; inspect the actual
+   unsigned APK, manifest, checksums and original reports.
+2. Bind the independent-rebuild and corresponding-source requests to that exact
+   source and its actual artifact hashes. Inspect both results.
+3. Resolve exact-candidate assurance; the alpha-only decision is not inherited.
+   Sign only the verified new APK using the existing key and inspect its signature.
+4. Review current genuine screenshots, notes, four-asset kit and remaining
+   acceptance evidence before recommending the separately authorized main merge.
+5. After separate publication authority, publish v1.0.0 as stable/latest using
+   the reviewed kit and verify all hosted bytes and the Obtainium button.
+
+Do not publish the old alpha kit, rename its APK or reuse its source archive for
+1.0.0. Alpha.2/code2 requires uninstall before code1; app-private settings/drafts
+are lost. Real Obtainium update testing waits for a later increasing-code release;
+a reinstall is not an update. Other physical/manual limitations retain their
+recorded scope. The new release request stays PREPARED until exact assets exist.
+
+## Historical alpha preparation and evidence
+
+The sections below preserve their original bindings and instructions as history.
+They do not authorize alpha publication or override the current handoff above.
+
+
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
@@ -10,7 +43,7 @@
 
 <a id="proposed-development-prerelease-path--decision-pending"></a>
 
-## Current handoff: main, GitHub and Obtainium
+## Historical handoff: main, GitHub and Obtainium
 
 The first public candidate is the explicitly incomplete **0.1.0-alpha.2 / code2**
 development prerelease, using the verified signed APK and exact source archive.
