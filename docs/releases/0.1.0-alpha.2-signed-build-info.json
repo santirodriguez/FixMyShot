@@ -13,8 +13,8 @@
   "build_tools": "36.0.0",
   "workflow_commit": "65a87483346562617264599f156965ef12ea7aa1",
   "workflow_run_id": "41719563373",
-  "physical_install_test": "NOT_RUN",
-  "sequential_upgrade_test": "NOT_RUN",
+  "physical_install_test": "MAINTAINER_REPORTED_ALPHA2_UPDATE_AND_LAUNCH_ACCEPTANCE",
+  "sequential_upgrade_test": "MAINTAINER_REPORTED_ALPHA1_CODE1_TO_ALPHA2_CODE2_UPDATE_AND_LAUNCH",
   "obtainium_test": "NOT_RUN",
   "authorization": "Explicit maintainer \"si go\" for the exact alpha.2 signing and verification plan on 2026-11-03; no merge or release authorization",
   "signing_authorized": true,
@@ -53,5 +53,13 @@
   },
   "unsigned_build_receipt": "0.1.0-alpha.2-unsigned-build-info.json",
   "assurance_receipt": "0.1.0-alpha.2-assurance.json",
-  "merge_or_release_authorized": false
+  "merge_or_release_authorized": false,
+  "maintainer_acceptance": {
+    "scope": "Update over the installed alpha.1 and successful alpha.2 launch",
+    "evidence": "Maintainer replied \"si go\" to the explicit request to confirm update and successful launch",
+    "independently_observed_by_agent": false,
+    "separate_settings_retention_check": "NOT_RUN",
+    "obtainium": "NOT_RUN",
+    "exhaustive_functional_acceptance": false
+  }
 }

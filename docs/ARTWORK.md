@@ -70,3 +70,31 @@ download claim. Preserve that honest wording and the accepted captures.
 M10's final exact-candidate/locale/public-asset review remains open; source
 consistency, hashes and format alone do not close it. F-Droid/Play image export,
 additional marketing images and store submissions remain future work.
+
+## Alpha.2 current screenshot candidates — pending canonical upload
+
+Two original English API36 PNGs were recovered from smoke artifact13266399380
+in [Actions41710230009](https://github.com/santirodriguez/FixMyShot/actions/runs/41710230009).
+The original ZIP size/SHA256/CRC and source receipt were verified again.
+Capture source is `1f89c979a7b432e6117670d170ce8ca0df5e2567`, versionalpha.2/code2,
+the separate debug build of the same compiled app source used for the signed
+candidate. These are genuine emulator UI captures, not signed physical-device
+screenshots. No user image, version repaint, crop, resize or other pixel edit
+is included. Both entire images were visually inspected.
+
+| Original capture | Canonical upload target | Bytes | SHA256 | Git blob |
+| --- | --- | --- | --- | --- |
+| editor-start.png | fastlane/metadata/android/en-US/images/phoneScreenshots/1.png |452844 |58936d22d58972251a592812771291617e026c5ac87dcb531ad25f5a10e6b6ff |55b3c21cc7cdaf9db10aa88eac311f29673b01bf |
+| editor-settings-dark.png | fastlane/metadata/android/en-US/images/phoneScreenshots/2.png |93245 |234cbc5677ea8d7f4b9cd3e9f06abd88b4a66e04c65561b62c200c1ae477d1d0 |3d06e640ada80fcb2b5c97b034b899979656e5b4 |
+
+Both are1080×1920,8-bit/channel RGB PNG without alpha. Home shows the single
+main branding and outlined information action; dark Settings shows readable
+status and gesture indicators. The two staged files retain the existing
+Home/Settings ordering. They do not claim a full localized store screenshot set,
+four capability screens or store submission readiness.
+
+The existing canonical images remain historical13b50c18captures until these
+exact replacements are uploaded and their remote blobs/readback verified.
+Do not update the README caption to currentalpha.2 before that replacement.
+Its canonical paths can remain unchanged; no second independently edited
+screenshot set is needed.

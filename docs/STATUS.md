@@ -1,5 +1,20 @@
 # Completion status
 
+## Alpha.2 update/launch accepted by maintainer — 2026-11-03
+
+The maintainer confirms the signed alpha.1/code1 → alpha.2/code2 update and
+successful launch within the requested handoff. This is reported manual
+acceptance, not agent-operated device evidence. M09 remains PARTIAL for detailed
+settings/default retention and Obtainium. Do not repeat the accepted update
+or general Preview2/PNG/WebP/picker comparison.
+
+Next: commit the prepared authentic alpha.2 Home/dark Settings screenshots to
+their canonical targets, then verify exact remote bytes and README references.
+M03–M07 outstanding manual/resource coverage and other final-delivery limits
+retain the scope in [TESTING](TESTING.md). No merge or publication authority.
+
+Earlier signed-preparation statements below retain their historical scope.
+
 ## Alpha.2 unsigned preparation complete — 2026-11-03
 
 Compiled source `1f89c979` passed core99/API36instrumented135 and original

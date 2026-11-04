@@ -5,7 +5,7 @@
 > [!IMPORTANT]
 > **Signed alpha.2 validation candidate.** The current candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
 > Alpha.1/code1 was signed in [Actions41543938314](https://github.com/santirodriguez/FixMyShot/actions/runs/41543938314), independently inspected and installed/opened by the maintainer. Its ledger row preserves the exact source, APK and public certificate.
-> Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). Physical update acceptance remains pending. Historical alpha.1 receipts below remain bound to their original bytes.
+> Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). The maintainer reports a successful alpha.1 → alpha.2 update and launch; detailed settings/default retention and Obtainium remain unverified. Historical alpha.1 receipts below remain bound to their original bytes.
 > No merge, release, store upload or publication is authorized by candidate signing.
 
 ## Alpha.2 exact-candidate signing — executed and verified
@@ -15,7 +15,7 @@ It completed in Actions41719563373 and its original signed artifact was
 independently inspected. The existing app-signing identity and repository secrets
 were reused; no key, secret, credential, permission or environment setting changed.
 [Download the original signed candidate artifact](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373/artifacts/13272275462) before
-2026-11-10. Installation/upgrade acceptance remains pending.
+2026-11-10. The maintainer reports successful update and launch over alpha.1; remaining M09 scope is recorded in TESTING.
 
 | Binding | Exact executed target |
 | --- | --- |

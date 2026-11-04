@@ -1,5 +1,27 @@
 # Testing and evidence
 
+## Alpha.2 update/launch accepted by maintainer — 2026-11-03
+
+The maintainer answered “si go” to the specific request to confirm installing
+the signed alpha.2/code2 over alpha.1/code1 and successful launch. Record
+MAINTAINER_REPORTED_UPDATE_AND_LAUNCH_ACCEPTANCE for the exact handed-off signed
+APK in the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json).
+This is reported acceptance, not agent-operated physical testing or device logs.
+Do not request that same update/launch check again.
+
+M09 is PARTIAL: the same-ID/same-certificate increasing-code update and launch
+are accepted within that report. Detailed settings retention/new-session-default
+checks and Obtainium fresh install/update remain separately unverified.
+General editor/PNG/WebP/picker and Preview2 acceptance remain retained.
+Outstanding M03–M07 scope below is not waived or restarted wholesale.
+
+M10: current alpha.2 Home/dark Settings image candidates were recovered from
+the verified original API36 artifact and visually inspected. Their exact bytes
+and canonical upload targets are staged in [ARTWORK](ARTWORK.md#alpha2-current-screenshot-candidates--pending-canonical-upload).
+The current tracked images have not yet been replaced. Completing that upload
+and commit-pinned readback is the next independent documentation task; it does
+not require rebuilding or signing a different code2 APK.
+
 ## Alpha.2 signed candidate verified — 2026-11-03
 
 Explicitly authorized [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373)
