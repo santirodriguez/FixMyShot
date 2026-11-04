@@ -1,5 +1,31 @@
 # Shared artwork
 
+## Alpha.2 canonical screenshots verified
+
+The maintainer uploaded the two prepared images in commit
+`e742f5c20e5fa04a02aa6b3e69aee8c082c1f5a3`. Both files were read back through
+GitHub at that immutable commit, decoded, checked for exact length/SHA256/Git
+blob identity and opened for full visual inspection. Both are 1080×1920 RGB
+PNGs without alpha. Home has a single main logo and the information action;
+dark Settings has readable status and gesture indicators.
+
+| Canonical image | Bytes | SHA256 | Git blob |
+| --- | --- | --- | --- |
+| en-US/images/phoneScreenshots/1.png |452844 |58936d22d58972251a592812771291617e026c5ac87dcb531ad25f5a10e6b6ff |55b3c21cc7cdaf9db10aa88eac311f29673b01bf |
+| en-US/images/phoneScreenshots/2.png |93245 |234cbc5677ea8d7f4b9cd3e9f06abd88b4a66e04c65561b62c200c1ae477d1d0 |3d06e640ada80fcb2b5c97b034b899979656e5b4 |
+
+These exact bytes match the previously verified original API36 captures from
+compiled source `1f89c979a7b432e6117670d170ce8ca0df5e2567`, alpha.2/code2.
+They show the separate debug build of the same app source; they are authentic
+emulator captures, not signed physical-device screenshots. No pixels, supplied
+logos/header or APK bytes were changed. README continues to reuse these two
+canonical paths and now identifies the actual version and emulator provenance.
+
+The bounded M10 English Home/Settings replacement and readback task is complete.
+This does not establish a full localized store/capability screenshot set, store
+submission readiness or completion of every final release asset. Earlier
+screenshot/preparation sections below retain their historical state.
+
 One checked-in asset set serves the Android app, repository documentation and future distribution metadata. The repository owner's five PNG uploads from commit `8f52caac29f450db3858c602e2011b5e0e3f8e47` are moved without changing a byte. Original Git blobs and SHA-256 below preserve provenance. Original filenames under `docs/` are removed by the same tree update as the moves; Git history retains them.
 
 | Original upload | Canonical path | Dimensions | Use |
@@ -72,6 +98,8 @@ consistency, hashes and format alone do not close it. F-Droid/Play image export,
 additional marketing images and store submissions remain future work.
 
 ## Alpha.2 current screenshot candidates — pending canonical upload
+
+Historical preparation entry, superseded by the verified canonical upload above.
 
 Two original English API36 PNGs were recovered from smoke artifact13266399380
 in [Actions41710230009](https://github.com/santirodriguez/FixMyShot/actions/runs/41710230009).

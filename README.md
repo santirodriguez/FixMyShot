@@ -52,7 +52,7 @@ copies by default; visible content is still visible. [Privacy details](docs/PRIV
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="FixMyShot dark Settings with appearance and language choices" width="46%" />
 </p>
 
-<p align="center"><sub>Development preview · Start &amp; Settings</sub></p>
+<p align="center"><sub>0.1.0-alpha.2 · Home &amp; Settings · Android 36 emulator</sub></p>
 
 ## On your phone
 

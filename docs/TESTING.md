@@ -15,12 +15,13 @@ checks and Obtainium fresh install/update remain separately unverified.
 General editor/PNG/WebP/picker and Preview2 acceptance remain retained.
 Outstanding M03–M07 scope below is not waived or restarted wholesale.
 
-M10: current alpha.2 Home/dark Settings image candidates were recovered from
-the verified original API36 artifact and visually inspected. Their exact bytes
-and canonical upload targets are staged in [ARTWORK](ARTWORK.md#alpha2-current-screenshot-candidates--pending-canonical-upload).
-The current tracked images have not yet been replaced. Completing that upload
-and commit-pinned readback is the next independent documentation task; it does
-not require rebuilding or signing a different code2 APK.
+M10: the exact alpha.2 English Home/dark Settings images are now tracked in
+upload commit e742f5c20e5fa04a02aa6b3e69aee8c082c1f5a3. Commit-pinned GitHub
+readback, byte lengths/SHA256/Git blob identities, dimensions and full visual
+inspection PASS. See [ARTWORK](ARTWORK.md#alpha2-canonical-screenshots-verified).
+README reuses the canonical paths and identifies alpha.2/API36 emulator
+provenance. This closes this bounded replacement/readback subtask, not all
+localized/store/final-asset requirements. No APK rebuild or signature change.
 
 ## Alpha.2 signed candidate verified — 2026-11-03
 

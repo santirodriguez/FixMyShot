@@ -8,8 +8,10 @@ acceptance, not agent-operated device evidence. M09 remains PARTIAL for detailed
 settings/default retention and Obtainium. Do not repeat the accepted update
 or general Preview2/PNG/WebP/picker comparison.
 
-Next: commit the prepared authentic alpha.2 Home/dark Settings screenshots to
-their canonical targets, then verify exact remote bytes and README references.
+The maintainer uploaded the prepared alpha.2 Home/dark Settings images in
+e742f5c2. Exact commit-pinned GitHub readback, hashes/formats and full visual
+inspection now PASS; README/ARTWORK identify the actual emulator provenance.
+The bounded M10 English Home/Settings screenshot task is complete.
 M03–M07 outstanding manual/resource coverage and other final-delivery limits
 retain the scope in [TESTING](TESTING.md). No merge or publication authority.
 
