@@ -56,10 +56,13 @@ copies by default; visible content is still visible. [Privacy details](docs/PRIV
 
 ## On your phone
 
-**Development preview · 0.1.0-alpha.2.** A public release APK is not available yet.
+**Development preview · 0.1.0-alpha.2.** Signed validation builds are prepared for
+testing. Check [GitHub releases](https://github.com/santirodriguez/FixMyShot/releases)
+for published downloads and read each version's coverage limits. Full functional
+0.1.0 acceptance remains incomplete.
 
-The first release is planned for GitHub, with Obtainium updates. F-Droid and
-Google Play are future distribution channels.
+GitHub is the initial distribution channel; Obtainium uses its published
+prerelease assets. F-Droid and Google Play are future channels.
 
 <details>
 <summary><strong>Installation & compatibility</strong></summary>

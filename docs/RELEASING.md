@@ -8,9 +8,17 @@
 > Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). The maintainer reports a successful alpha.1 → alpha.2 update and launch; detailed settings/default retention and Obtainium remain unverified. Historical alpha.1 receipts below remain bound to their original bytes.
 > No merge, release, store upload or publication is authorized by candidate signing.
 
-## Proposed development prerelease path — decision pending
+<a id="proposed-development-prerelease-path--decision-pending"></a>
 
-Status: **PROPOSED; NO MERGE OR PUBLICATION AUTHORITY**.
+## Approved development prerelease preparation — 2026-11-04
+
+Status: **PREPARATION APPROVED; NO MERGE OR PUBLICATION AUTHORITY**.
+
+The maintainer's Go approved preparing this bounded test-release kit. The
+request-triggered [staging workflow](../.github/workflows/prepare-development-release.yml)
+only copies and checks the existing signed APK/source archive; it cannot build,
+sign, merge, create a tag or publish a release. Its output separates the four
+release assets from review-only notes, source/tag/integration plan and receipt.
 
 The current alpha.2 already has verified build, source materials, byte-identical
 independent rebuild, exact-artifact assurance approval, a stable production
@@ -19,13 +27,13 @@ Settings images were read back and visually accepted. The unresolved scope is
 listed in [the current delivery disposition](TESTING.md#current-delivery-disposition--2026-11-04),
 not a demand to repeat completed checks.
 
-Recommended next scope: prepare the existing `0.1.0-alpha.2` as a **development
+Approved preparation scope: prepare the existing `0.1.0-alpha.2` as a **development
 prerelease for testing**, explicitly stating that full functional0.1.0 acceptance
 is incomplete. Keep the immutable blueprint and its remaining M03–M07/M09/M10
 requirements. Do not relabel NOT_RUN as PASS or advertise a full functional
-release. This is a proposed staging/distribution sequence, not an adopted waiver.
+release. The preparation is approved; publication remains a separate decision and no functional gate is waived.
 
-If the maintainer approves that preparation scope, the bounded work is:
+The approved bounded work is:
 1. Stage the exact signed `FixMyShot-0.1.0-alpha.2-universal.apk`
    (12,401,557 bytes; SHA256
    `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`)
