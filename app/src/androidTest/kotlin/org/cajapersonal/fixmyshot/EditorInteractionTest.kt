@@ -145,13 +145,15 @@ class EditorInteractionTest {
     /** Find the accessible control inside the visible tool viewport, not above its clipped edge. */
     private fun reveal(label: String) {
         fun visibleInPane(): Boolean {
-            val control = find(label) ?: return false
+            // Resolve control and viewport from one window snapshot. Clearing the
+            // cache between these lookups can mix the editor with its dialog.
+            val root = freshRoot() ?: return false
+            val control = find(label, root) ?: return false
             val controlRect = Rect().also { control.getBoundsInScreen(it) }
             if (controlRect.width() <= 0 || controlRect.height() <= 0) return false
-            val pane = toolPane()
+            val pane = toolPane(root)
             if (pane == null) {
                 // Fully visible non-scrollable controls should never require a scroll action.
-                val root = freshRoot() ?: return false
                 val windowRect = Rect().also { root.getBoundsInScreen(it) }
                 return windowRect.contains(controlRect) && control.isVisibleToUser
             }

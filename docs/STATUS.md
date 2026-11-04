@@ -1,5 +1,18 @@
 # Completion status
 
+## Current pre-main review — 2026-11-04
+
+PR1 is merged into release/0.1.0 at1b03caf0; main is unchanged. The development
+kit was prepared and its four assets independently verified. Current public
+copy uses Caja Personal and the published project website; the frozen APK still
+has its original About attribution/links. The [pre-main review](releases/pre-main-review.md)
+records all six automatic merge-triggered CI outcomes, the known deferred AVIF
+failure and one newly observed Android test-helper failure being corrected.
+A draft main-integration PR must pass its affected exact-head checks before a
+merge decision. No main merge/tag/publication is authorized. Earlier dated
+proposal/status sections below are historical, not the current authority.
+
+
 ## Delivery scope reconciled — 2026-11-04
 
 Signed alpha.2, its reported update/launch and the current English Home/Settings

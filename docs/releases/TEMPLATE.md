@@ -57,4 +57,4 @@ Images are processed locally. New sessions start with PNG and identifying-metada
 
 </details>
 
-Made by [Santiago Rodriguez](https://santiagorodriguez.com) · [Support development](https://santiagorodriguez.com/donate) · GNU GPLv3 only.
+A [Caja Personal](https://cajapersonal.org/) project · [FixMyShot website](https://fixmyshot.cajapersonal.org/) · [Support development](https://cajapersonal.org/donate/) · GNU GPLv3 only.

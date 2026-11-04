@@ -8,6 +8,7 @@ Signed Actions validation candidate handed off on 2026-11-03; no GitHub release.
 The maintainer reports successful alpha.1/code1 to alpha.2/code2 update and launch.
 Detailed settings/default retention and Obtainium acceptance remain pending.
 
+- Refresh public documentation with Caja Personal identity and the project website; the frozen APK retains its original About links.
 - Refine the home, information action and result buttons with a restrained layout and labelled icons.
 - Put common destinations before Google Play while retaining Original as the neutral default.
 - Separate background choices into a dialog and give lower editor actions clearer spacing.

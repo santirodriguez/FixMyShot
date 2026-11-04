@@ -3,16 +3,26 @@
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
-> **Signed alpha.2 validation candidate.** The current candidate is `0.1.0-alpha.2` / versionCode `2` in [draft PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
+> **Signed alpha.2 validation candidate.** The current candidate is `0.1.0-alpha.2` / versionCode `2` integrated through [PR #1](https://github.com/santirodriguez/FixMyShot/pull/1).
 > Alpha.1/code1 was signed in [Actions41543938314](https://github.com/santirodriguez/FixMyShot/actions/runs/41543938314), independently inspected and installed/opened by the maintainer. Its ledger row preserves the exact source, APK and public certificate.
 > Alpha.2 retains the production application ID and accepted Preview2 UI. Its unsigned preparation passed: core99/API36instrumented135, actual three-state contrast captures, source materials and exact-source independent full-byte rebuild. The [alpha.2 receipt](releases/0.1.0-alpha.2-unsigned-build-info.json) binds the verified bytes. The maintainer approved the [exact alpha.2 assurance disposition](releases/0.1.0-alpha.2-assurance.json) on 2026-11-03; signing subsequently passed [Actions41719563373](https://github.com/santirodriguez/FixMyShot/actions/runs/41719563373) and independent inspection; see the [signed receipt](releases/0.1.0-alpha.2-signed-build-info.json). The maintainer reports a successful alpha.1 → alpha.2 update and launch; detailed settings/default retention and Obtainium remain unverified. Historical alpha.1 receipts below remain bound to their original bytes.
 > No merge, release, store upload or publication is authorized by candidate signing.
 
 <a id="proposed-development-prerelease-path--decision-pending"></a>
 
+## Current public identity and integration
+
+Public copy uses **Caja Personal**, with the [FixMyShot website](https://fixmyshot.cajapersonal.org/)
+and [Caja Personal support](https://cajapersonal.org/donate/). The
+[identity amendment](decisions/public-identity.md) records the frozen APK boundary.
+PR #1 is merged into `release/0.1.0` at `1b03caf0`; `main` is still unchanged.
+The earlier kit's review-only copy and proposed documentary tag need reconciliation
+with this current copy before publication; its exact four asset files remain
+unchanged. Do not publish the old personal-profile footer.
+
 ## Approved development prerelease preparation — 2026-11-04
 
-Status: **PREPARATION APPROVED; NO MERGE OR PUBLICATION AUTHORITY**.
+Status: **PREPARATION COMPLETE; PR1 MERGED TO RELEASE BRANCH; MAIN/PUBLICATION NOT AUTHORIZED**.
 
 The maintainer's Go approved preparing this bounded test-release kit. The
 request-triggered [staging workflow](../.github/workflows/prepare-development-release.yml)
@@ -64,7 +74,7 @@ recorded dispositions.
 
 [Actions41851782509](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509) **passed**. The [original prepared kit](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509/artifacts/13335176928) contains four release assets and three review files; it expires 2026-11-11. Its downloaded ZIP digest/size/CRC and all seven original files were independently checked. The APK and source archive remain byte-identical to their accepted inputs. See the [durable manifest and verification receipt](releases/0.1.0-alpha.2-staging.json).
 
-Proposed tag `v0.1.0-alpha.2` is frozen to packaging-control commit `c9137faf6dd2e84fdac6122f66ae812f72a5bd58`; the actual compiled source remains `1f89c979a7b432e6117670d170ce8ca0df5e2567`. This later receipt does not shift that tag target. The kit's review directory contains rendered release notes and the exact integration plan. PR #1 targets `release/0.1.0`, not `main`; separately authorized default-branch integration remains necessary before publication. No tag, merge, release or new signing occurred. Full functional0.1.0 acceptance remains incomplete.
+The original kit proposed tag `v0.1.0-alpha.2` at packaging-control commit `c9137faf6dd2e84fdac6122f66ae812f72a5bd58`; the actual compiled source remains `1f89c979a7b432e6117670d170ce8ca0df5e2567`. That historical receipt did not shift the proposed target. The kit's review directory preserves its original notes and integration snapshot; current Caja Personal copy supersedes those review notes. PR #1 subsequently merged into `release/0.1.0`; separately authorized default-branch integration and a reconciled documentary-tag plan remain necessary before publication. No tag, release or new signing occurred. Full functional0.1.0 acceptance remains incomplete.
 
 ## Alpha.2 exact-candidate signing — executed and verified
 
