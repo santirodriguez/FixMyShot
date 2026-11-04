@@ -60,6 +60,12 @@ review and accepted manual comparisons are reused. Actual16KiB runtime,
 privacy/color checks and detailed settings/default retention retain their
 recorded dispositions.
 
+## Verified development release kit — 2026-11-04
+
+[Actions41851782509](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509) **passed**. The [original prepared kit](https://github.com/santirodriguez/FixMyShot/actions/runs/41851782509/artifacts/13335176928) contains four release assets and three review files; it expires 2026-11-11. Its downloaded ZIP digest/size/CRC and all seven original files were independently checked. The APK and source archive remain byte-identical to their accepted inputs. See the [durable manifest and verification receipt](releases/0.1.0-alpha.2-staging.json).
+
+Proposed tag `v0.1.0-alpha.2` is frozen to packaging-control commit `c9137faf6dd2e84fdac6122f66ae812f72a5bd58`; the actual compiled source remains `1f89c979a7b432e6117670d170ce8ca0df5e2567`. This later receipt does not shift that tag target. The kit's review directory contains rendered release notes and the exact integration plan. PR #1 targets `release/0.1.0`, not `main`; separately authorized default-branch integration remains necessary before publication. No tag, merge, release or new signing occurred. Full functional0.1.0 acceptance remains incomplete.
+
 ## Alpha.2 exact-candidate signing — executed and verified
 
 The maintainer separately authorized the exact signing operation on 2026-11-03.
