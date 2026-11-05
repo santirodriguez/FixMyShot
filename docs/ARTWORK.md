@@ -1,5 +1,34 @@
 # Shared artwork
 
+## First public 1.0.0 screenshot review — maintainer decision 2026-11-05
+
+The maintainer reviewed the eight-image contact sheet assembled from the genuine
+API36 screenshots for compiled source `70f3baeebb096461eb5072ca125f0c05334703da`,
+[Android Actions run 41958251409](https://github.com/santirodriguez/FixMyShot/actions/runs/41958251409),
+original smoke artifact `13385305314`. The contact-sheet indices below refer to
+that review order, **not** permanent Fastlane/store slot numbers:
+
+| Review # | Original screenshot PNG | Maintainer visual decision |
+| --- | --- | --- |
+| 1 | `editor-start.png` | APPROVED |
+| 2 | `editor-settings-dark.png` | APPROVED |
+| 3 | `editor-settings-light.png` | REJECTED |
+| 4 | `editor-settings-return-light.png` | REJECTED |
+| 5 | `editor-destinations.png` | APPROVED |
+| 6 | `editor-automatic.png` | REJECTED |
+| 7 | `editor-next-image.png` | APPROVED |
+| 8 | `editor-arrows.png` | REJECTED |
+
+The four approved original files are valid visual candidates but this is
+**not approval of a complete public screenshot set**. Rejected captures must not
+be promoted or silently retouched. Replacement editor captures should use
+a representative realistic, non-sensitive example image rather than the current
+colored line test pattern; retain the actual captured application UI and
+unmodified PNG bytes. No new screenshot pixels or Fastlane files were changed
+by recording this decision. The existing two canonical Fastlane/README
+screenshots remain genuine *historical alpha.2* evidence until an explicitly
+approved complete replacement set is available.
+
 ## First public 1.0.0 preparation — 2026-11-04
 
 The maintainer approved first public stable version **1.0.0 / code1**, unchanged
