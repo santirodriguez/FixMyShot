@@ -176,6 +176,20 @@ internal fun ReviewCanvas(sample: Bitmap, image: DraftImage, plan: PreviewPlan,
         }
         drawRect(Color.Black, bounds.topLeft, bounds.size, style = Stroke(3f * density))
         drawRect(border, bounds.topLeft, bounds.size, style = Stroke(1.4f * density))
+        if (drawnCrop != null || drawnFrame != null) {
+            // Preview-only corner brackets use the real computed output bounds.
+            // They are NOT draggable handles and never appear in exported pixels.
+            val guide = minOf(bounds.width, bounds.height, 25f * density) * .5f
+            val thickness = 2.2f * density
+            fun bracket(x: Float, y: Float, dx: Float, dy: Float) {
+                drawLine(border, Offset(x, y), Offset(x + dx * guide, y), thickness)
+                drawLine(border, Offset(x, y), Offset(x, y + dy * guide), thickness)
+            }
+            bracket(bounds.left, bounds.top, 1f, 1f)
+            bracket(bounds.right, bounds.top, -1f, 1f)
+            bracket(bounds.left, bounds.bottom, 1f, -1f)
+            bracket(bounds.right, bounds.bottom, -1f, -1f)
+        }
         if (showOriginalOutline && contained != null) {
             val source = previewOriginalContentRect(output, size, drawnContain ?: contained)
             drawRect(Color.Black, source.topLeft, source.size, style = Stroke(3f * density))
