@@ -69,13 +69,40 @@ Choose light, dark or system appearance, with offline **English, Español and Ca
 
 ## A look inside
 
-<p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with Choose images" width="300" />
-  &nbsp;&nbsp;
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="FixMyShot Settings with appearance and language choices" width="300" />
-</p>
+<table>
+<tr>
+<td width="50%" align="center" valign="top">
+<strong>Start</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with its Choose images action" width="300" />
+</td>
+<td width="50%" align="center" valign="top">
+<strong>Review your image</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Image editor with an imported café photograph and export controls" width="300" />
+</td>
+</tr>
+<tr>
+<td align="center" valign="top">
+<strong>Choose a destination</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Offline destination picker with publication presets" width="300" />
+</td>
+<td align="center" valign="top">
+<strong>Adjust the framing</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Framing controls showing an explicit crop selection" width="300" />
+</td>
+</tr>
+<tr>
+<td align="center" valign="top">
+<strong>Save and share</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" alt="Verified successful export with options to view or share the saved image" width="300" />
+</td>
+<td align="center" valign="top">
+<strong>Settings and About</strong><br />
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" alt="Settings and About with the FixMyShot name and version 1.0.0" width="300" />
+</td>
+</tr>
+</table>
 
-<p align="center"><sub>Historical alpha.2 Home &amp; Settings captures (1.0.0 refresh pending) · Android API 36 emulator</sub></p>
+<p align="center"><sub>Original FixMyShot 1.0.0 UI captures from the Android API 36 emulator · Unmodified screenshot pixels</sub></p>
 
 ## On your phone
 
