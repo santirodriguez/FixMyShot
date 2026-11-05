@@ -267,24 +267,57 @@ class PublicationTests(unittest.TestCase):
 
     def test_first_public_signed_receipt_matches_staging_identity(self):
         request = json.loads((ROOT / ".ci/development-release-request.json").read_text())
-        receipt = json.loads((ROOT / "docs/releases/1.0.0-signed-build-info.json").read_text())
         signing = json.loads((ROOT / ".ci/signing-candidate-request.json").read_text())
+        receipt = json.loads(
+            (ROOT / "docs/releases/1.0.0-3437722-signed-build-info.json").read_text())
+        assurance = json.loads(
+            (ROOT / "docs/releases/1.0.0-3437722-assurance.json").read_text())
+        historical = json.loads(
+            (ROOT / "docs/releases/1.0.0-signed-build-info.json").read_text())
+
         self.assertEqual((request["version_name"], request["version_code"]), ("1.0.0", 1))
         self.assertEqual(request["state"], "PREPARED")
+        self.assertIsNone(request["compiled_source"])
+        self.assertIsNone(request["signed_apk"]["sha256"])
+        self.assertEqual(signing["state"], "PREPARED")
         self.assertEqual(receipt["status"],
                          "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE")
         self.assertEqual(receipt["source_commit"], signing["source_commit"])
         self.assertEqual(receipt["source_tree"], signing["source_tree"])
-        self.assertEqual(receipt["unsigned_apk_sha256"], signing["unsigned_sha256"])
-        self.assertEqual(receipt["signed_apk_sha256"], signing["completed_signed_apk_sha256"])
-        self.assertEqual(receipt["certificate_sha256"], signing["completed_certificate_sha256"])
-        self.assertEqual(receipt["version_name"], request["version_name"])
-        self.assertEqual(receipt["version_code"], request["version_code"])
-        self.assertTrue(receipt["independent_inspection"]["v2_signed_data_rsa_sha256_verified"])
-        self.assertTrue(receipt["independent_inspection"]["v3_signed_data_rsa_sha256_verified"])
-        self.assertEqual(receipt.get("signed_physical_install_test", "NOT_RUN"), "NOT_RUN")
-        self.assertEqual(receipt.get("sequential_upgrade_test", "NOT_RUN"), "NOT_RUN")
-        self.assertEqual(receipt.get("maintainer_acceptance", "NOT_RUN"), "NOT_RUN")
+        self.assertEqual(receipt["unsigned_apk"]["sha256"], signing["unsigned_sha256"])
+        self.assertEqual(receipt["signed_apk"]["sha256"],
+                         signing["completed_signed_apk_sha256"])
+        self.assertEqual(receipt["signing"]["certificate_sha256"],
+                         signing["completed_certificate_sha256"])
+        self.assertEqual(receipt["signing"]["run_id"],
+                         signing["completed_signing_workflow_run_id"])
+        self.assertEqual((receipt["version_name"], receipt["version_code"]), ("1.0.0", 1))
+        self.assertTrue(receipt["independent_inspection"]
+                        ["signature_v2_verified_against_embedded_certificate"])
+        self.assertTrue(receipt["independent_inspection"]
+                        ["signature_v3_verified_against_embedded_certificate"])
+        self.assertTrue(receipt["independent_inspection"]["signature_v2_content_digest_recomputed"])
+        self.assertTrue(receipt["independent_inspection"]["signature_v3_content_digest_recomputed"])
+        self.assertEqual(receipt["physical_signed_fresh_install"], "NOT_RUN")
+        self.assertEqual(receipt["sequential_public_version_update"], "NOT_RUN")
+        self.assertFalse(receipt["publication_authorized"])
+
+        self.assertEqual(assurance["compiled_source"], receipt["source_commit"])
+        self.assertEqual(assurance["unsigned_apk"]["sha256"], receipt["unsigned_apk"]["sha256"])
+        self.assertEqual(assurance["signed_apk_sha256"], receipt["signed_apk"]["sha256"])
+        self.assertEqual(assurance["certificate_sha256"],
+                         receipt["signing"]["certificate_sha256"])
+        self.assertEqual(assurance["production_signing_receipt"],
+                         "1.0.0-3437722-signed-build-info.json")
+        self.assertTrue(assurance["production_signing_authorized"])
+        self.assertTrue(assurance["production_signing_executed"])
+        self.assertFalse(assurance["full_source_distribution_approved"])
+        self.assertFalse(assurance["merge_release_or_deployment_authorized"])
+
+        self.assertNotEqual(historical["source_commit"], receipt["source_commit"])
+        self.assertNotEqual(historical["signed_apk_sha256"], receipt["signed_apk"]["sha256"])
+        self.assertEqual(historical["status"],
+                         "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE")
 
     def test_obtainium_button_has_exact_source_prerelease_and_filter(self):
         import html
