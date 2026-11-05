@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "source_commit": "1f89c979a7b432e6117670d170ce8ca0df5e2567",
-  "source_tree": "5b30eeeb7596ca595ac1a3ba880c64c356d17859",
-  "baseline_run_id": 41710230009,
-  "baseline_artifact_id": 13266133766,
-  "baseline_archive_sha256": "d1c0e9ce9ca1842f3a93847d07d46928d491ce1d6fb7adad8a0e83b83ee58da9",
-  "expected_unsigned_apk_sha256": "3fde1c9d38ac5517a4571ae8d4841f34e7f70ff2ddff64d24eea80f91d15a0fa",
-  "expected_unsigned_apk_bytes": 12356414
+  "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
+  "source_tree": "d091a8ad59a039072c9d768196e89955138ae3fc",
+  "baseline_run_id": 41958251409,
+  "baseline_artifact_id": 13383954401,
+  "baseline_archive_sha256": "110944040d24403a594c0d3fd4a47fff30c4ea4ca29f596339b0d23452ce0eed",
+  "expected_unsigned_apk_sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0",
+  "expected_unsigned_apk_bytes": 12356302
 }
