@@ -1,4 +1,4 @@
-# Privacy — development preview
+# Privacy — FixMyShot
 
 FixMyShot processes images locally. It requests no Internet, broad photo-library, camera or location permission. There are no accounts, advertising, analytics or subscriptions. Application backup is disabled. The Android picker or an external provider may fetch cloud files independently; FixMyShot does not upload your images. Optional links open an external browser only after you choose them.
 

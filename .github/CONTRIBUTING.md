@@ -25,7 +25,7 @@ python3 scripts/check-bootstrap.py
 
 The standard Gradle9.4.1 wrapper and three resolved version lockfiles are committed. `bootstrap-gradle.sh` checks the wrapper JAR, launcher bytes and distribution properties before execution; it does not regenerate or download a missing replacement. `./gradlew` performs the normal checksum-verified distribution download when needed. Integration builds respect the committed lock state and do not pass `--write-locks`; deliberate dependency changes require a reviewed update. These version locks do not authenticate dependency artifacts. Generated `--write-verification-metadata` output remains unapproved trust capture: independent artifact authentication, reviewed strict verification and an independent clean rebuild are still required before G1 closes. See [committed Gradle inputs](../docs/feasibility/committed-gradle-inputs.md) for exact source/hash boundaries and offline checks.
 
-Normal0.1.0 output is PNG/lossless WebP. HEIC/AVIF/JXL are deferred under the
+Normal 1.0.0 output is PNG/lossless WebP. HEIC/AVIF/JXL are deferred under the
 [approved amendments](../docs/decisions/compatibility-and-validation.md). The following
 bootstrap notes retain historical implementation context, not current codec qualification.
 
@@ -42,7 +42,7 @@ The release branch runs the build and a representative API36 emulator only when 
 Do not write a checkpoint file at the start of development or for documentation-only commits. Rework related failures as one bounded slice, and honor the 5-minute normal/10-minute hard passive CI waiting limit. Preserve applicable hardware, codec, reproducibility and signing gates; legacy compatibility requirements are qualified by docs/decisions/compatibility-and-validation.md.
 
 
-JXL is [deferred for v0.1.0](../docs/decisions/jxl-first-delivery.md) after the completed three-ABI reference experiment. Keep its opt-in helper/workflow as historical tooling; do not trigger another reference build as part of ordinary app work. Any later scoped reconsideration must measure the actual optimized package/runtime costs. Before interpreting Gradle trust candidates, run `python3 scripts/test-gradle-candidates.py` and `python3 scripts/audit-gradle-candidates.py <source-bound-bootstrap-artifact.zip>`; generated hashes remain untrusted until independently corroborated. The source-built JXL reports and their binary/measurement limits remain in `docs/feasibility/phase1-batch-preflight.md`.
+JXL is [deferred for v1.0.0](../docs/decisions/jxl-first-delivery.md) after the completed three-ABI reference experiment. Keep its opt-in helper/workflow as historical tooling; do not trigger another reference build as part of ordinary app work. Any later scoped reconsideration must measure the actual optimized package/runtime costs. Before interpreting Gradle trust candidates, run `python3 scripts/test-gradle-candidates.py` and `python3 scripts/audit-gradle-candidates.py <source-bound-bootstrap-artifact.zip>`; generated hashes remain untrusted until independently corroborated. The source-built JXL reports and their binary/measurement limits remain in `docs/feasibility/phase1-batch-preflight.md`.
 
 ## Ownership
 
