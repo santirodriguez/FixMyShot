@@ -1,8 +1,43 @@
 # Completion status
 
-## First-public 1.0.0 frozen unsigned candidate — 2026-11-05
+## First-public 1.0.0 signed candidate — 2026-11-05
 
-Frozen executable source `70f3bae` passed [branch Android CI #41958251409](https://github.com/santirodriguez/FixMyShot/actions/runs/41958251409) (build and API36 smoke, optional legacy SAF SKIPPED). The original unsigned APK is 12,356,302 bytes, SHA-256 `11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0`; [independent rebuild #41958986377](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986377) reproduced all bytes, verified from the downloaded original. [Source materials #41958986353](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986353) passed SHA-256 for all 1,282 manifest-listed members and bound source `70f3bae`. See [candidate-specific unsigned receipt](releases/1.0.0-unsigned-build-info.json). No signed APK, current hardware/locale/accessibility completion, full independent issuer authentication, complete distribution source approval, Obtainium install, main merge, tag or release is claimed. The [signing request](../.ci/signing-candidate-request.json) is PREPARED: its request job passed and signing was SKIPPED in [Actions 41959585959](https://github.com/santirodriguez/FixMyShot/actions/runs/41959585959). The [exact 1.0.0 Option B decision](decisions/dependency-assurance-1.0.0.md) now accepts only this candidate's residual issuer risk. It does not authenticate remaining publishers or inherit earlier alpha approvals. Signing of this exact candidate was separately authorized on 2026-11-05; the signed artifact must still be generated and independently inspected. Merge, publication, actual physical validation and complete source/license clearance remain separate gates.
+The exact source-frozen `org.cajapersonal.fixmyshot` **1.0.0 / code1**
+candidate was signed with the existing FixMyShot key in
+[Actions 41964708826](https://github.com/santirodriguez/FixMyShot/actions/runs/41964708826).
+The original signed archive (artifact **13386877823**) was downloaded and
+verified (SHA-256 `abee52b2fa83e874e7b2f891b5944b219b2bb021646dd295316ebeafb693aa35`).
+`FixMyShot-1.0.0-universal.apk` is **12,401,557 bytes**,
+SHA-256 `03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39`.
+The embedded certificate SHA-256
+`33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445`
+matches the previously established FixMyShot signer.
+Original Android `apksigner` v2/v3 verification passed; independent inspection
+confirmed both signature records over their signed data and unchanged content
+for all **467** original ZIP members (only three signing metadata entries added).
+The signed [build receipt](releases/1.0.0-signed-build-info.json) records
+the source, signature and remaining limits. The one-time signing request is
+now disabled again (`PREPARED`); no additional signing use is authorized.
+
+This verifies a *signed candidate*, **not release acceptance**. The prior
+[bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
+remains exact to this source and APK; no new publisher authentication is
+claimed. Signed physical install, 16 KiB device runtime, legacy SAF,
+human locale/accessibility/privacy/resource checks, truthful accepted screenshots,
+complete corresponding-source/license distribution disposition, and Obtainium
+installation/update remain incomplete or NOT_RUN as documented.
+No merge to `main`, GitHub release, tag or deployment has occurred.
+
+## Earlier unsigned 1.0.0 evidence — 2026-11-05
+
+The source `70f3bae` passed
+[branch build and API36 smoke 41958251409](https://github.com/santirodriguez/FixMyShot/actions/runs/41958251409);
+legacy SAF was SKIPPED. The original unsigned APK was 12,356,302 bytes,
+SHA-256 `11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0`.
+[Independent rebuild 41958986377](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986377)
+matched all original bytes; [source materials 41958986353](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986353)
+verified all 1,282 listed archive members.
+See [unsigned build receipt](releases/1.0.0-unsigned-build-info.json).
 
 ## First public 1.0.0 preparation — 2026-11-04
 

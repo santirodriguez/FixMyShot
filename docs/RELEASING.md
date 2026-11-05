@@ -12,14 +12,22 @@ code2 and later updates strictly increase. Private alpha candidates live only
 in a separate historical ledger section and cannot determine the public counter.
 The changelog's 1.0.0 heading identifies the target, not a claim of publication.
 
+The signed candidate has **not been published**: 1.0.0 / code1, source
+`70f3baeebb096461eb5072ca125f0c05334703da`, signed APK SHA-256
+`03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39`,
+previous FixMyShot certificate unchanged. The [one-time signing request](../.ci/signing-candidate-request.json)
+was reset to `PREPARED` after completion. The distribution request remains
+`PREPARED` until a complete reviewed release kit and separate authority exist.
+
 1. Build and test the new immutable source on release/1.0.0; inspect the actual
    unsigned APK, manifest, checksums and original reports.
 2. Bind the independent-rebuild and corresponding-source requests to that exact
    source and its actual artifact hashes. Inspect both results.
-3. The [1.0.0-specific issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
-   records the bounded Option B acceptance. Pending publisher proofs remain open.
-   After separate signing authorization, sign the exact APK with the existing key
-   and independently inspect its signature.
+3. The [bounded 1.0.0 issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
+   and separate signing authorization are recorded. The frozen exact APK was
+   signed in Actions 41964708826 and independently inspected; see its
+   [signed receipt](releases/1.0.0-signed-build-info.json). Remaining issuer
+   proofs and separate source/legal/manual gates are still open.
 4. Review current genuine screenshots, notes, four-asset kit and remaining
    acceptance evidence before recommending the separately authorized main merge.
 5. After separate publication authority, publish v1.0.0 as stable/latest using
