@@ -1,5 +1,11 @@
 # A good release should be boring to install
 
+## Integrated first-public 1.0.0: signed test candidate — 2026-11-05
+
+The user separately approved signing the fully verified integrated visual source `3437722`/unsigned SHA-256 `974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0` after the [new bounded Option B decision](decisions/dependency-assurance-1.0.0-3437722.md). [Actions 42123950177](https://github.com/santirodriguez/FixMyShot/actions/runs/42123950177) signed the original artifact with the existing FixMyShot identity. The [new signed receipt](releases/1.0.0-3437722-signed-build-info.json) records independently verified APK SHA-256 `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`, 12,417,941 bytes and the original public certificate. No rebuild or change of executable source was involved. The previous signed `70f3bae` candidate is historical-only; its proofs were not reused as the new signature.
+
+The one-time request is now `PREPARED`; this exact operation authorizes no further signing. Full corresponding-source/license distribution review, physical/device/16 KiB runtime/accessibility/privacy/locale/manual acceptance, future `main` merge, tag, stable GitHub release and real Obtainium checks remain separate. **Do not release or install on someone else's device under this authorization.**
+
 ## First-public 1.0.0 public-copy and signing boundary — 2026-11-05
 
 The [current pre-merge gate matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
@@ -23,9 +29,10 @@ are verified. The maintainer explicitly accepted **bounded Option B** only
 for that candidate: see [new decision](decisions/dependency-assurance-1.0.0-3437722.md)
 and [machine receipt](releases/1.0.0-3437722-assurance.json).
 The earlier signed `70f3bae` candidate remains historical and retains its
-original signing/disposition receipts unchanged. No new APK signing, complete
-license/source distribution clearance, manual functional acceptance, main merge,
-tag or publication has been approved by this issuer-risk decision.
+original signing/disposition receipts unchanged. Signing was authorized separately after that issuer-risk decision and verified
+in [Actions 42123950177](https://github.com/santirodriguez/FixMyShot/actions/runs/42123950177).
+Complete license/source distribution clearance, manual functional acceptance,
+main merge, tag and publication remain unapproved.
 Signing/distribution requests remain `PREPARED`; do not promote them by
 documentation review.
 
@@ -71,7 +78,7 @@ was reset to `PREPARED` after completion. The distribution request remains
 3. **ISSUER-RISK OPTION B APPROVED FOR NEW SOURCE ONLY:** use the
    [new candidate decision](decisions/dependency-assurance-1.0.0-3437722.md)
    and [receipt](releases/1.0.0-3437722-assurance.json).
-   **NEW SIGNING NOT AUTHORIZED.** The previous [signed receipt](releases/1.0.0-signed-build-info.json)
+   **NEW SIGNING SEPARATELY AUTHORIZED AND VERIFIED IN ACTIONS 42123950177; REQUEST RESET TO PREPARED.** The previous [signed receipt](releases/1.0.0-signed-build-info.json)
    is historical-only and must not be substituted for `3437722`.
    Source/legal/manual gates remain separately open.
 4. Review current genuine screenshots, notes, four-asset kit and remaining

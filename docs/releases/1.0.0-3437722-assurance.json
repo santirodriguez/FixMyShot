@@ -46,8 +46,8 @@
   "new_publisher_anchor_established": false,
   "active_gradle_verification_enabled": false,
   "full_source_distribution_approved": false,
-  "production_signing_authorized": false,
-  "production_signing_executed": false,
+  "production_signing_authorized": true,
+  "production_signing_executed": true,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
   "decision": "docs/decisions/dependency-assurance-1.0.0-3437722.md",
@@ -59,5 +59,18 @@
     "compiled_source": "70f3baeebb096461eb5072ca125f0c05334703da",
     "prior_signing_authorization_applies_to_current_candidate": false
   },
-  "residual_risk": "Unverified publisher provenance persists: 325 reviewed and 533 pending frozen files (including 2 runtime binary archives). Byte-identical rebuilds cannot authenticate original publisher or grant legal distribution clearance."
+  "residual_risk": "Unverified publisher provenance persists: 325 reviewed and 533 pending frozen files (including 2 runtime binary archives). Byte-identical rebuilds cannot authenticate original publisher or grant legal distribution clearance.",
+  "production_signing_authorization": {
+    "decision_date": "2026-11-05",
+    "authority": "Maintainer explicitly approved exact new 1.0.0/code1 candidate signing ('Si autorizo. Go') after approval of bounded Option B",
+    "scope": "Sign only source 3437722 unsigned sha256 974a0b7... with existing FixMyShot identity via guarded workflow; verify signed output; no merge, release, keys or permissions changes",
+    "source_commit": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
+    "unsigned_apk_sha256": "974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0",
+    "baseline_run_id": 42112670798
+  },
+  "production_signing_receipt": "1.0.0-3437722-signed-build-info.json",
+  "signed_apk_sha256": "1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde",
+  "signed_apk_bytes": 12417941,
+  "signing_workflow_run_id": 42123950177,
+  "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445"
 }
