@@ -1,5 +1,15 @@
 {
   "schema": 1,
   "state": "PREPARED",
-  "request_id": "1.0.0-awaiting-exact-unsigned-evidence"
+  "request_id": "1.0.0-unsigned-source-reviewed-2026-11-05",
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
+  "source_tree": "d091a8ad59a039072c9d768196e89955138ae3fc",
+  "unsigned_sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0",
+  "unsigned_bytes": 12356302,
+  "baseline_run_id": 41958251409,
+  "baseline_artifact_id": 13383954401,
+  "source_materials_run_id": 41958986353,
+  "independent_unsigned_rebuild_run_id": 41958986377
 }
