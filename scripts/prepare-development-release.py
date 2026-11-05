@@ -136,6 +136,8 @@ def candidate_receipts(request):
 def stage(request, signed_root, source_root, output, control):
     require(not output.exists(), "Output directory must be fresh")
     require(request.get("state") == "READY", "Release inputs are not ready")
+    require(request.get("branding_revision_pending") is not True,
+            "Branding changed after signature: rebuild and re-sign exact APK before release staging")
     policy = runpy.run_path(str(ROOT / "scripts/publish-development-release.py"))["release_policy"](request)
     require(request["schema"] == 1 and request["application_id"] == "org.cajapersonal.fixmyshot",
             "Unexpected request identity")

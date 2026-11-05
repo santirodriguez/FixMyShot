@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://fixmyshot.cajapersonal.org/"><img src="assets/branding/header.png" alt="FixMyShot" width="720" /></a>
+  <a href="https://fixmyshot.cajapersonal.org/"><img src="assets/branding/primary/readme-header.png" alt="FixMyShot" width="720" /></a>
 </p>
 
 <h1 align="center">Screenshots, ready anywhere.</h1>

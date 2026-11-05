@@ -277,6 +277,7 @@ class PublicationTests(unittest.TestCase):
         signing = json.loads((ROOT / ".ci/signing-candidate-request.json").read_text())
         self.assertEqual((request["version_name"], request["version_code"]), ("1.0.0", 1))
         self.assertEqual(request["state"], "PREPARED")
+        self.assertTrue(request["branding_revision_pending"])
         self.assertEqual(signing["state"], "PREPARED")
         self.assertEqual(request["compiled_source"], signing["source_commit"])
         self.assertEqual(request["compiled_tree"], signing["source_tree"])
@@ -319,6 +320,48 @@ class PublicationTests(unittest.TestCase):
         changed["evidence_receipts"]["signed"] = "../untrusted.json"
         with self.assertRaises(ValueError):
             stage_module["candidate_receipts"](changed)
+
+    def test_canonical_store_branding_and_png_specs(self):
+        import struct
+        primary = ROOT / "assets/branding/primary"
+        alternatives = ROOT / "assets/branding/alternatives"
+        listing = ROOT / "fastlane/metadata/android/en-US/images"
+        for source, published, dims, color_type in (
+            ("app-icon.png", "icon.png", (512, 512), 6),
+            ("google-play-feature-graphic.png", "featureGraphic.png", (1024, 500), 2),
+        ):
+            original = (primary / source).read_bytes()
+            self.assertEqual(original, (listing / published).read_bytes())
+            self.assertEqual(original[:8], b"\x89PNG\r\n\x1a\n")
+            self.assertEqual(original[12:16], b"IHDR")
+            width, height, depth, ctype = struct.unpack(">IIBB", original[16:26])
+            self.assertEqual((width, height, depth, ctype), (*dims, 8, color_type))
+        self.assertLessEqual((listing / "icon.png").stat().st_size, 1024 * 1024)
+        for name in (
+            "app-icon-02-phone.png", "app-icon-03-editor.png",
+            "app-icon-04-framing.png", "app-icon-previous-512.png",
+            "app-icon-previous-source-1254.png", "app-icon-previous-192.png",
+            "app-icon-previous-64.png",
+        ):
+            self.assertTrue((alternatives / name).is_file(), name)
+        self.assertIn("assets/branding/primary/readme-header.png",
+                      (ROOT / "README.md").read_text())
+        self.assertIn('file("assets/branding/primary/readme-header.png")',
+                      (ROOT / "app/build.gradle.kts").read_text())
+
+    def test_branding_revision_blocks_stale_release_candidate(self):
+        current = json.loads((ROOT / ".ci/development-release-request.json").read_text())
+        self.assertTrue(current["branding_revision_pending"])
+        forged = json.loads(json.dumps(current))
+        forged["state"] = "READY"
+        stage = runpy.run_path(str(ROOT / "scripts/prepare-development-release.py"))["stage"]
+        with self.assertRaisesRegex(ValueError, "Branding changed after signature"):
+            stage(forged, self.kit / "nonexistent-signed",
+                  self.kit / "nonexistent-sources", self.kit / "stale", CONTROL)
+        self.request["branding_revision_pending"] = True
+        with self.assertRaisesRegex(ValueError, "Branding changed after signature"):
+            self.publish()
+        self.assertEqual(self.client.writes, [])
 
     def test_obtainium_button_has_exact_source_prerelease_and_filter(self):
         import html

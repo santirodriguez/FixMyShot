@@ -1,5 +1,11 @@
 # A good release should be boring to install
 
+## New-icon 1.0.0 release gate — 2026-11-05
+
+The selected next-launcher artwork is the original `icon1.png`, now `assets/branding/primary/app-icon.png` and its exact canonical Fastlane `en-US/images/icon.png` copy. The original 1024×500 `promo.png` is the future Google Play/F-Droid `en-US/images/featureGraphic.png`; older designs remain alternatives. See [ARTWORK](ARTWORK.md).
+
+**The old signed APK was built before this launcher update** (compiled source `3437722`, signed SHA-256 `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`). Although the maintainer reports a successful basic APK trial, it is not a tested new-icon executable. The stable release request remains `PREPARED`, with `branding_revision_pending=true`. Both the staging and publication verifier explicitly refuse that stale signed candidate even if other flags are changed. Rebuild and independently compare the updated source, regenerate exact source materials, obtain a new candidate-specific issuer-risk disposition and **separate signing authorization** before proposing stable 1.0.0 staging. Physical/visual and complete source/license acceptance remain independently pending. No merge, tag, new signing or publication is authorized by this artwork change.
+
 ## Exact first-public 1.0.0 release-kit preparation — gated
 
 The [release request](../.ci/development-release-request.json) now contains exact, original artifact pins for the **integrated** `3437722` executable and the separately signed APK `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`. The four intended assets are `FixMyShot-1.0.0-universal.apk`, `FixMyShot-1.0.0-source-materials.tar.gz`, `BUILD-INFO.json` and `SHA256SUMS.txt`. The [new unsigned candidate receipt](releases/1.0.0-3437722-unsigned-build-info.json), [signed receipt](releases/1.0.0-3437722-signed-build-info.json), [accepted bounded issuer-risk receipt](releases/1.0.0-3437722-assurance.json) and [static source review](releases/1.0.0-3437722-static-source-review.json) are selected explicitly; original `1.0.0-unsigned-build-info.json` and `1.0.0-signed-build-info.json` remain **historical**.

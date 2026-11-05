@@ -93,6 +93,8 @@ def release_policy(request):
 def verify_kit(kit, control, request):
     require(request.get("state") == "READY", "Release inputs are not ready")
     policy = release_policy(request)
+    require(request.get("branding_revision_pending") is not True,
+            "Branding changed after signature: stale signed candidate cannot be published")
     version = request["version_name"]
     require(request["tag_name"] == "v" + version
             and request["signed_apk"]["filename"] == "FixMyShot-" + version + "-universal.apk"

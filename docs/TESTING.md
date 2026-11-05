@@ -1,5 +1,11 @@
 # Testing and evidence
 
+## 1.0.0 basic signed-APK trial reported; newer icon still untested — 2026-11-05
+
+The maintainer reported that the previously supplied signed 1.0.0 APK **worked** in a basic real-world test. The provided APK's SHA-256 was `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde` (compiled source `3437722`). No specific device build, comprehensive export/metadata/color, actual 16 KiB runtime, TalkBack, language or legacy SAF scenario was reported; those separate gates remain NOT_RUN/PARTIAL. The report is not permission to publish.
+
+After the report the maintainer selected the new `icon1.png` as the Android launcher and `promo.png` as the store feature graphic. This changes executable packaging resources, so the **old-icon signed APK's positive test does not establish acceptance of the future new-icon APK**. The new candidate must be compiled/reproduced and visually reviewed before any new signing and release authority.
+
 ## Newer visual 1.0.0 evidence and pre-merge boundary — 2026-11-05
 
 The newest visual candidate is draft PR #4, **not** the independently

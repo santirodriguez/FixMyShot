@@ -1,5 +1,13 @@
 # Shared artwork
 
+## Primary icon and Play/F-Droid feature graphic — 2026-11-05
+
+The maintainer selected the newly uploaded `icon1.png` for the **next Android launcher** and shared Google Play/F-Droid icon. The exact 512×512 RGBA (32-bit) PNG is now `assets/branding/primary/app-icon.png`, also reused byte-for-byte as `fastlane/metadata/android/en-US/images/icon.png`. Gradle already generates the actual launcher foreground from that Fastlane icon. The existing monochrome adaptive launcher vector remains unchanged pending visual review of Android 13+ themed icons.
+
+The newly uploaded `promo.png` is a distinct 1024×500 RGB (24-bit, no alpha) feature graphic. Its exact bytes are at `assets/branding/primary/google-play-feature-graphic.png` and `fastlane/metadata/android/en-US/images/featureGraphic.png`. The earlier transparent banner retains its pixels and now lives at `assets/branding/primary/readme-header.png`; README and Gradle use that path. `icon2.png`, `icon3.png`, `icon4.png`, the previous 512px launcher/store icon, and its older source/192/64px variants were **preserved** under `assets/branding/alternatives/`. See the [asset inventory](../assets/branding/README.md). No design was recompressed, retouched or resized, and all six approved native phone screenshots remain byte-identical.
+
+The source chosen for the next app icon changed **after** the prior signed candidate (source `3437722`, signed SHA-256 `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`). That APK is still valid historical evidence and was reportedly tried successfully by the maintainer, but is **not** the new-icon build. Release staging/publication is explicitly blocked by `branding_revision_pending=true` until a new source-bound build, independent comparison, matching source material and separately approved signing. Review the new adaptive/icon masks and Play feature-graphic safe-area crops before store submission. Promotional illustration must not be placed in `phoneScreenshots/`.
+
 ## 1.0.0 visual refresh — six approved native screenshots committed and verified
 
 The maintainer approved the **complete six-image visual set** on 2026-11-05
@@ -124,11 +132,11 @@ One checked-in asset set serves the Android app, repository documentation and fu
 
 | Original upload | Canonical path | Dimensions | Use |
 |---|---|---|---|
-| `FixMyShot_1254.png` | `assets/branding/icon-source.png` | 1254×1254 | Largest supplied source for future exports |
-| `FixMyShot_512.png` | `fastlane/metadata/android/en-US/images/icon.png` | 512×512 | Shared icon; F-Droid-compatible metadata path; Android packaging source |
-| `FixMyShot_192.png` | `assets/branding/icon-192.png` | 192×192 | Supplied small variant, available for future web/app uses |
-| `FixMyShot_64.png` | `assets/branding/icon-64.png` | 64×64 | Supplied small variant, available for future web/app uses |
-| `Neon FixMyShot Editing Banner2.png` | `assets/branding/header.png` | 1629×543 | README/shared header; original 3:1 proportions |
+| `FixMyShot_1254.png` | `assets/branding/alternatives/app-icon-previous-source-1254.png` | 1254×1254 | Largest supplied source for future exports |
+| `FixMyShot_512.png` | `assets/branding/alternatives/app-icon-previous-512.png` | 512×512 | Shared icon; F-Droid-compatible metadata path; Android packaging source |
+| `FixMyShot_192.png` | `assets/branding/alternatives/app-icon-previous-192.png` | 192×192 | Supplied small variant, available for future web/app uses |
+| `FixMyShot_64.png` | `assets/branding/alternatives/app-icon-previous-64.png` | 64×64 | Supplied small variant, available for future web/app uses |
+| `Neon FixMyShot Editing Banner2.png` | `assets/branding/primary/readme-header.png` | 1629×543 | README/shared header; original 3:1 proportions |
 
 Android's `prepareBrandingResources` task copies the canonical 512px icon into `app/build/generated/branding/res/drawable-nodpi/brand_icon.png`. `preBuild` owns that dependency, so clean builds, lint and APK assembly obtain it without a manual file-copy step. The adaptive foreground centers the artwork in a 66dp frame on a 108dp layer; launcher masks still require real visual review. Android 13+ additionally retains the original capture-frame vector as its monochrome layer. No generated PNG belongs in source control. README references the canonical header rather than a separate documentation copy.
 
@@ -136,7 +144,7 @@ The product name is invariant across locales. The shared metadata image therefor
 
 ## Future store preparation
 
-The fastlane directory is shared metadata structure supported by F-Droid and Play tooling; using it does not submit or publish a listing. F-Droid accepts PNG/JPEG and uses `en-US` as fallback. Google Play currently specifies a 512×512 sRGB 32-bit PNG icon, and a 1024×500 feature graphic. The supplied images are palette PNGs with transparency; the 512px icon still needs a deliberate 32-bit export and visual review for Play. Keep the untouched source available. The 1629×543 header is not a ready 1024×500 feature graphic: create a separate purposeful store composition from the shared source when store work is authorized, retaining aspect ratio rather than stretching it. No store acceptance, final masked-icon review or future listing readiness is claimed here.
+The fastlane directory is shared metadata structure supported by F-Droid and Play tooling; using it does not submit or publish a listing. F-Droid accepts PNG/JPEG and uses `en-US` as fallback. Google Play currently specifies a 512×512 sRGB 32-bit PNG icon, and a 1024×500 feature graphic. The earlier 512px icon was a palette PNG; it is now retained as a historical alternative. The currently selected `icon1` is a compliant-size RGBA/32-bit PNG; the new `promo` is a compliant-size 1024×500 RGB/24-bit PNG. Canonical store files retain the exact original bytes. Visual adaptive masks, tiny-icon readability, graphic safe zones and rights still require review before store submission. No store acceptance, final masked-icon review or future listing readiness is claimed here.
 
 Primary references, checked 2026-10-22:
 

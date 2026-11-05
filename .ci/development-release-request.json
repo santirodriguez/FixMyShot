@@ -58,5 +58,6 @@
     "signed_physical_install": "NOT_RUN",
     "legacy_saf": "NOT_RUN",
     "obtainium_install_update": "NOT_RUN"
-  }
+  },
+  "branding_revision_pending": true
 }
