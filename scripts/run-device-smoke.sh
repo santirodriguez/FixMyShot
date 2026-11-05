@@ -131,6 +131,31 @@ timeout 2m adb shell am instrument -w -r \
   "$package.test/androidx.test.runner.AndroidJUnitRunner" > evidence/thumbnail-instrumentation.txt 2>&1
 thumbnail_result=$?
 cat evidence/thumbnail-instrumentation.txt
+# Isolated original-UI capture from the full-realistic JPEG instrumented asset.
+# Save raw emulator PNG bytes before any assertions; never synthesize or retouch frames.
+set +e
+timeout 4m adb shell am instrument -w -r \
+  -e class org.cajapersonal.fixmyshot.VisualScreenshotTest \
+  "$package.test/androidx.test.runner.AndroidJUnitRunner" \
+  > evidence/visual-screenshot-instrumentation.txt 2>&1
+visual_result=$?
+cat evidence/visual-screenshot-instrumentation.txt
+for role in 01-start 02-editor 03-destinations 04-framing 05-saved 06-settings; do
+  output="evidence/visual-$role.png"
+  adb exec-out run-as "$package" cat "files/visual-$role.png" > "$output" 2>/dev/null ||
+    rm -f "$output"
+  if [[ -f "$output" &&
+    "$(od -An -tx1 -N8 "$output" | tr -d ' \n')" != "89504e470d0a1a0a" ]]; then
+    rm -f "$output"
+  fi
+done
+set -e
+[[ "$visual_result" -eq 0 ]]
+grep -q 'OK (1 test)' evidence/visual-screenshot-instrumentation.txt
+for role in 01-start 02-editor 03-destinations 04-framing 05-saved 06-settings; do
+  test -s "evidence/visual-$role.png"
+done
+
 # The private executor uses synthetic staged bytes; it never publishes outputs.
 timeout 4m adb shell am instrument -w -r \
   -e class org.cajapersonal.fixmyshot.PrivateOutputExecutorTest,org.cajapersonal.fixmyshot.PayloadCopyTest,org.cajapersonal.fixmyshot.MetadataPolicyTest,org.cajapersonal.fixmyshot.SourceAppearanceTest \
