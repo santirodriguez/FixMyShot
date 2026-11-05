@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot.review
 import org.cajapersonal.fixmyshot.design.ActionLabel
 import org.cajapersonal.fixmyshot.design.ActionIcon
 import org.cajapersonal.fixmyshot.design.ActionMark
+import org.cajapersonal.fixmyshot.design.SavedSuccessArtwork
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -43,11 +44,15 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean, nextIma
                 Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                    Spacer(Modifier.height(8.dp))
+                    // The visual confirmation is shown only after durable publication is verified.
+                    SavedSuccessArtwork(Modifier.size(156.dp))
                     Text(stringResource(R.string.quick_saved_count, count, total),
-                        style = MaterialTheme.typography.headlineMedium)
-                    Text(stringResource(R.string.quick_saved_hint), style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        style = MaterialTheme.typography.headlineMedium,
+                        color = MaterialTheme.colorScheme.primary)
+                    Text(stringResource(R.string.quick_saved_hint),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(horizontal = 8.dp))
                     Button(onClick = onNextImage, enabled = enabled && nextImageEnabled,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
                         ActionLabel(ActionMark.ADD, stringResource(R.string.quick_edit_another))
@@ -55,7 +60,7 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean, nextIma
                     Text(stringResource(R.string.quick_edit_another_hint),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Spacer(Modifier.height(4.dp))
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
                     OutlinedButton(onClick = onView, enabled = enabled,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
                         ActionLabel(ActionMark.VIEW, stringResource(R.string.quick_view_saved))
