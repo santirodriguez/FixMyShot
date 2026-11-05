@@ -1,37 +1,59 @@
 # Shared artwork
 
-## 1.0.0 visual refresh — new authentic screenshots required
+## 1.0.0 visual refresh — six native screenshots approved, pending Fastlane upload
 
-The first-public UI design refresh is being prepared separately from the
-already inspected signed 1.0.0 test candidate. No refreshed screenshots have
-been accepted, committed to Fastlane or claimed to show the current APK.
+The maintainer explicitly approved the complete six-image visual set on
+2026-11-05 after a full-resolution review. These are **genuine, unmodified UI
+captures** from the first-public 1.0.0 visual candidate, not screenshots of a
+signed published APK. Their source is the passing isolated Android Actions
+[run 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387),
+compiled commit `784bbdab61ac79c98a54c8de671bdf93332a0398`, smoke artifact
+`13450950882`. The current visual PR #4 implementation is source/test/script
+equivalent to that validated commit; only the CI trigger and this artwork
+documentation differ. API36 smoke and the six-capture instrumentation passed;
+SAF-provider was skipped in the current profile, not qualified.
 
-The intended final set consists of six **new native captures** from the exact
-updated app build: branded Start, actual large editor with source, offline
-destination picker, genuine framing/background controls, verified saved result,
-and Settings with Privacy/About. The maintainer requested that the earlier
-partially accepted test screenshots not be reused as final submissions.
+The six approved native 1080×1920 RGB PNGs retain exactly the captured pixels.
+Their numeric target files belong under
+`fastlane/metadata/android/en-US/images/phoneScreenshots/` on
+`ux/1.0.0-visual-polish` (PR #4). **The binary assets are not yet uploaded
+to the repository.** Do not replace README/metadata claims or represent the
+old tracked alpha.2 `1.png`/`2.png` as these 1.0.0 images before remote
+uploads are verified.
 
-For screenshot scenarios the example source will be a standalone realistic,
-non-sensitive café still life, imported by the app as a normal image. The
-verified fixture is `app/src/androidTest/assets/FixMyShot-visual-sample-cafe-hq.jpg`,
-JPEG `941x1672`, **387,379 bytes**, SHA-256
+| Proposed slot / role | Original capture | Approved SHA-256 |
+| --- | --- | --- |
+| `1.png` — Home | `visual-01-start.png` | `66c21df74523fea3a1e8dc49b3c876a52cfd0591a73d75ae07595b7c7716ee45` |
+| `2.png` — Editor | `visual-02-editor.png` | `460aea244e0fac3add9868eceed4dac43b20fe036f4bc5f57f8290f6c891f84c` |
+| `3.png` — Destinations | `visual-03-destinations.png` | `2baf40561df7774a8f47584a41b158726c67783948a361283d0ea2fad820a642` |
+| `4.png` — Framing | `visual-04-framing.png` | `adac0d4f3f521d10ad317e75dc471b3b4647678ba249d3588adf4c837c5c694e` |
+| `5.png` — Saved result | `visual-05-saved.png` | `fdc9f49084e1a5da18c3e169c49695a05c2a1e339cf29bc7f847fecd29fbe401` |
+| `6.png` — Settings/About | `visual-06-settings.png` | `71194a1d2ee14bb30316fa45873a559e3f2d08b00322c468a75fe5d078b00cbb` |
+
+The last UI iteration fixed the Saved dialog's dark status-bar icon contrast
+and replaced the debug-only `FixMyShot Preview 2` text in About with the
+canonical `FixMyShot` name and dynamic version 1.0.0. The normal debug
+launcher label remains distinct. The screenshots were visually checked for
+those regressions; all six were accepted together. Renaming `visual-*.png`
+to numeric files does not modify their image bytes.
+
+The input is a standalone non-sensitive café still life, imported through
+the app's normal share-intent path, from instrumentation-only fixture
+`app/src/androidTest/assets/FixMyShot-visual-sample-cafe-hq.jpg`
+(JPEG 941×1672, 387,379 bytes, SHA-256
 `50ff45c57d4c8e93570e5e5e3df99f7a863d625537fd7e9381963d785f968051`,
-Git blob `676b272413e8199607b7dfecf2c37b89f3fadd50`.
-The maintainer uploaded the prepared binary without renaming it; the complete
-repository blob was decoded and independently SHA-256 checked against the
-original source identity. This is an instrumentation-only asset, not part of
-the production APK. The dedicated screenshot test imports it through the real
-Android share-intent path and captures six original UI PNGs. Isolated CI
-validation and full visual review remain pending; test code alone does not
-establish screenshot acceptance.
+Git blob `676b272413e8199607b7dfecf2c37b89f3fadd50`).
+The fixture is not bundled into the production APK.
 
-All six shots must come from real UI pixels after importing this or another
-accepted original input; screenshot post-processing, generated UI overlays and
-synthetic successful-output states are forbidden. Original PNGs require
-full-resolution review, localized copy/theme checks, byte hashes and an explicit
-complete-set approval before replacing canonical Fastlane/README images.
-Release, signing and physical functional gates stay independent.
+Next gate: maintainer uploads only the six approved, numerically named PNG
+files into the target PR branch. Read back all six remote blobs, verify their
+SHA-256/size/dimensions and visual identity, and then synchronize README and
+other current-release documentation with that exact canonical screenshot set
+**before any default-branch release merge**. Do not repaint or transform the
+screenshots to pass review. Brand usage, localization and physical-device
+acceptance, exact candidate/signing/source assurance, merger and publication
+remain independent gates.
+
 
 ## First public 1.0.0 screenshot review — maintainer decision 2026-11-05
 
