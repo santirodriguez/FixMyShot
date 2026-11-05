@@ -10,6 +10,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.window.DialogWindowProvider
+import androidx.compose.ui.graphics.luminance
+import androidx.core.view.WindowCompat
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -29,6 +34,37 @@ internal fun QuickSavedResults(count: Int, total: Int, enabled: Boolean, nextIma
     require(total > 0 && count == total)
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(
         usePlatformDefaultWidth = false, decorFitsSystemWindows = false)) {
+        // The full-screen success dialog has its own Window. Match system-bar
+        // icon contrast to its surface without changing the Activity's bars.
+        val dialogView = LocalView.current
+        val lightSurface = MaterialTheme.colorScheme.surface.luminance() > 0.5f
+        val dialogWindow = (dialogView.parent as? DialogWindowProvider)?.window
+        DisposableEffect(dialogWindow, lightSurface) {
+            fun applyAppearance() {
+                dialogWindow?.let { window ->
+                    WindowCompat.getInsetsController(window, window.decorView).apply {
+                        isAppearanceLightStatusBars = lightSurface
+                        isAppearanceLightNavigationBars = lightSurface
+                    }
+                }
+            }
+            val deferredAppearance = Runnable { applyAppearance() }
+            fun requestAppearance() {
+                applyAppearance()
+                dialogView.removeCallbacks(deferredAppearance)
+                dialogView.post(deferredAppearance)
+            }
+            val observer = dialogView.viewTreeObserver
+            val listener = android.view.ViewTreeObserver.OnWindowFocusChangeListener { focused ->
+                if (focused) requestAppearance()
+            }
+            observer.addOnWindowFocusChangeListener(listener)
+            requestAppearance()
+            onDispose {
+                dialogView.removeCallbacks(deferredAppearance)
+                if (observer.isAlive) observer.removeOnWindowFocusChangeListener(listener)
+            }
+        }
         Surface(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).imePadding(),
             color = MaterialTheme.colorScheme.surface) {
             Column(Modifier.fillMaxSize().padding(horizontal = 24.dp, vertical = 18.dp),
