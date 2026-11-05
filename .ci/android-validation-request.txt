@@ -1,2 +1,3 @@
 Freeze first-public FixMyShot 1.0.0/code1 unsigned source candidate on the release branch for exact SHA/source/rebuild evidence. Retain Caja Personal, production ID, no publication.
+Capture six authentic UI screenshots with verified JPEG fixture on API36; source-bound visual smoke only.
 profile=current
