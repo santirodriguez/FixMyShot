@@ -1,5 +1,25 @@
 # Completion status
 
+## First-public 1.0.0 visual screenshots — approved and verified 2026-11-05
+
+The maintainer approved the full six-role 1.0.0 screenshot set in draft
+[PR #4](https://github.com/santirodriguez/FixMyShot/pull/4).
+All six exact original 1080×1920, 8-bit RGB PNGs from passing Android
+[Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387)
+(compiled source `784bbdab`, artifact `13450950882`) were uploaded to the
+canonical `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png`
+through `6.png` paths. GitHub readback **verified all six remote SHA-256,
+Git blob identities, sizes and image geometry**, with no pixel changes.
+The README now references these exact six files in Home, Editor, Destinations,
+Framing, Saved and Settings/About order. See [ARTWORK](ARTWORK.md) for the
+per-image original hashes, upload commit and source binding.
+
+This is an approved visual **screenshot-set preparation**, not first-public
+release acceptance. The newer PR #4 UI source has not been signed using the
+prior independent candidate receipt below; detailed device/locale/privacy,
+brand-rights, source/issuer/signing and combined release-copy reviews remain
+independent. PR #4 is DRAFT/unmerged; no main merge, tag, release or publication.
+
 ## First-public 1.0.0 signed candidate — 2026-11-05
 
 The exact source-frozen `org.cajapersonal.fixmyshot` **1.0.0 / code1**
