@@ -19,6 +19,16 @@ The signed [build receipt](releases/1.0.0-signed-build-info.json) records
 the source, signature and remaining limits. The one-time signing request is
 now disabled again (`PREPARED`); no additional signing use is authorized.
 
+**Maintainer feedback (2026-11-05):** the maintainer reported installing
+the signed 1.0.0 APK and that the application works. This is a reported
+basic installation/use PASS, without a device log or detailed checklist;
+it does not establish full physical/device, export/privacy, 16 KiB,
+accessibility or legacy SAF acceptance. The maintainer also approved only
+review images **1, 2, 5 and 7** from the genuine 1.0.0 source artifact;
+images **3, 4, 6 and 8** were rejected. See [ARTWORK](ARTWORK.md)
+for exact filenames/provenance. These are partial visual approvals:
+canonical Fastlane screenshots remain unchanged.
+
 This verifies a *signed candidate*, **not release acceptance**. The prior
 [bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
 remains exact to this source and APK; no new publisher authentication is
