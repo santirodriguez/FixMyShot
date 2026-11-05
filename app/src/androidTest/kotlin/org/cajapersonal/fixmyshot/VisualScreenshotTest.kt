@@ -201,6 +201,13 @@ class VisualScreenshotTest {
                 assertEquals(0x89, resolver.openInputStream(requireNotNull(output))!!.use { it.read() })
                 await { find(app.getString(R.string.quick_saved_title)) != null }
                 capture("05-saved")
+                assertTrue(model.canFinishSession)
+                scenario.onActivity { model.acknowledgePreviousExport(app) }
+                await(25_000L) {
+                    model.exportState.phase == ExportUiPhase.IDLE &&
+                        model.draft.images.isEmpty() && !model.exportState.outputError
+                }
+                assertEquals(0x89, resolver.openInputStream(requireNotNull(output))!!.use { it.read() })
             }
         } finally {
             output?.let { runCatching { resolver.delete(it, null, null) } }
