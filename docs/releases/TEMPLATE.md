@@ -27,7 +27,7 @@
 ## Before you install
 
 <!-- EDIT: Actual supported Android versions, format restrictions, unresolved issues and migration notes.
-     Never omit remaining alpha/native/upgrade gates or call an unexecuted check a pass. -->
+     Never omit candidate-specific format/native/upgrade gates or call an unexecuted check a pass. -->
 
 Images are processed locally. New sessions start with PNG and identifying-metadata removal. Originals remain unchanged. Removing metadata does not redact visible content.
 

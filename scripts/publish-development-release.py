@@ -73,15 +73,25 @@ def select_run(client, run_id):
 
 
 def release_policy(request):
-    version = request["version_name"]
-    stable = re.fullmatch(r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)", version) is not None
+    version = request.get("version_name")
+    match = re.fullmatch(r"((?:0|[1-9][0-9]*))\.((?:0|[1-9][0-9]*))\.((?:0|[1-9][0-9]*))(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?", version) if isinstance(version, str) else None
+    require(match is not None, "Public version must be valid SemVer")
+    core = tuple(int(match.group(i)) for i in (1, 2, 3))
+    code = request.get("version_code")
+    require(type(code) is int and ((version == "1.0.0" and code == 1)
+            or (core > (1, 0, 0) and code > 1)),
+            "Public release sequence must begin with 1.0.0/code1 and advance from there")
+    prerelease = match.group(4)
+    require(not prerelease or all(not part.isdigit() or part == "0" or not part.startswith("0")
+            for part in prerelease.split(".")), "Numeric prerelease identifiers cannot have leading zeroes")
+    stable = prerelease is None
     require(request.get("release_channel", "stable" if stable else "development-prerelease")
             == ("stable" if stable else "development-prerelease"), "Version/channel mismatch")
     return {"prerelease": not stable, "make_latest": stable}
 
 
 def verify_kit(kit, control, request):
-    require(request.get("state", "READY") == "READY", "Release inputs are not ready")
+    require(request.get("state") == "READY", "Release inputs are not ready")
     policy = release_policy(request)
     version = request["version_name"]
     require(request["tag_name"] == "v" + version
@@ -127,7 +137,7 @@ def verify_kit(kit, control, request):
             and control in notes, "Release notes are unresolved")
     require(plan["coverage_limits"] == info["coverage_limits"], "Coverage limits differ")
     if policy["prerelease"]:
-        require(plan["coverage_limits"]["functional_0_1_0_acceptance"] == "INCOMPLETE"
+        require(plan["coverage_limits"]["functional_acceptance"] == "INCOMPLETE"
                 and "incomplete" in notes, "Development coverage changed")
     else:
         require(info["coverage_limits"].get("functional_acceptance") == "ACCEPTED"

@@ -13,8 +13,15 @@ rebuild, signing/inspection and truthful screenshot review. No alpha receipt
 proves these new bytes. Accepted unchanged UX/output checks remain preserved;
 manual tests not recorded below remain NOT_RUN. No 1.0.0 publication is claimed.
 
+The current [draft PR #3](https://github.com/santirodriguez/FixMyShot/pull/3)
+prepares 1.0.0/code1. Its exact-head Android build and API36 smoke passed in
+[Actions 41910543641](https://github.com/santirodriguez/FixMyShot/actions/runs/41910543641);
+legacy SAF was skipped. Release-automation checks passed, but signing inputs
+remain PREPARED and no 1.0.0 signed/public artifact or current-version screenshot
+has been accepted. Main still contains PR2. Publication/merge are not authorized.
 
-## Current pre-main review — 2026-11-04
+<a id="current-pre-main-review--2026-11-04"></a>
+## Historical PR2 pre-main review — 2026-11-04
 
 PR1 is merged into release/0.1.0. [PR2](https://github.com/santirodriguez/FixMyShot/pull/2)
 prepares main integration; no main merge or publication has occurred.

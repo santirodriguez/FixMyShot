@@ -43,7 +43,7 @@ def write_json(path, value):
 
 def stage(request, signed_root, source_root, output, control):
     require(not output.exists(), "Output directory must be fresh")
-    require(request.get("state", "READY") == "READY", "Release inputs are not ready")
+    require(request.get("state") == "READY", "Release inputs are not ready")
     policy = runpy.run_path(str(ROOT / "scripts/publish-development-release.py"))["release_policy"](request)
     require(request["schema"] == 1 and request["application_id"] == "org.cajapersonal.fixmyshot",
             "Unexpected request identity")
@@ -103,7 +103,7 @@ def stage(request, signed_root, source_root, output, control):
     require(signed_receipt["signed_apk_sha256"] == apk_record["sha256"], "Repository receipt differs")
     require(unsigned_receipt["source_commit"] == request["compiled_source"], "Unsigned source differs")
     limitations = {
-        "functional_0_1_0_acceptance": "INCOMPLETE",
+        "functional_acceptance": "INCOMPLETE",
         "actual_16k_runtime": "NOT_RUN",
         "full_100_item_mixed_failure_exercise": "NOT_RUN",
         "exhaustive_human_locale_review": "NOT_RUN",

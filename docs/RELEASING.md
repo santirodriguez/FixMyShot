@@ -7,7 +7,9 @@
 [Approved release identity and counter reset](decisions/first-public-release.md)
 govern the current candidate: **1.0.0 / versionCode1**, stable GitHub channel,
 `org.cajapersonal.fixmyshot`, existing FixMyShot certificate, Caja Personal About.
-The first public ledger starts at code1; preserve private alpha history separately.
+The public release ledger starts at 1.0.0/code1; the next public update uses
+code2 and later updates strictly increase. Private alpha candidates live only
+in a separate historical ledger section and cannot determine the public counter.
 The changelog's 1.0.0 heading identifies the target, not a claim of publication.
 
 1. Build and test the new immutable source on release/1.0.0; inspect the actual
@@ -29,8 +31,12 @@ recorded scope. The new release request stays PREPARED until exact assets exist.
 
 ## Historical alpha preparation and evidence
 
-The sections below preserve their original bindings and instructions as history.
-They do not authorize alpha publication or override the current handoff above.
+The sections below preserve the former alpha development evidence and its
+original timestamps, hashes and exact-APK bindings. Wording such as "current",
+"first release" or "publish" in this historical section refers only to its
+old checkpoint. **None of those steps is executable release guidance now.**
+Do not use the historical alpha request, tag, notes or staged artifact to
+publish FixMyShot. The active first-public contract is 1.0.0/code1 above.
 
 
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>

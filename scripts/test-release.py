@@ -26,10 +26,10 @@ class ReleaseChecks(unittest.TestCase):
         current = self.ledger["releases"][-1]
         for name in ("app/build.gradle.kts", "README.md", "CHANGELOG.md"):
             path = self.root / name
-            path.write_text(path.read_text().replace(current["version_name"], "0.1.0-alpha.1")
+            path.write_text(path.read_text().replace(current["version_name"], "1.0.0")
                             .replace(f'versionCode = {current["version_code"]}', "versionCode = 1"))
-        self.ledger["releases"] = [dict(version_name="0.1.0-alpha.1", version_code=1, status="planned")]
-        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## Unreleased — 0.1.0-alpha.1\n")
+        self.ledger["releases"] = [dict(version_name="1.0.0", version_code=1, status="planned")]
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## Unreleased — 1.0.0\n")
 
     def write(self):
         (self.root / "docs/releases/ledger.json").write_text(json.dumps(self.ledger))
@@ -47,7 +47,7 @@ class ReleaseChecks(unittest.TestCase):
         self.assertNotIn("{{", text)
         self.assertIn("UNPUBLISHED DRAFT", text)
         self.assertIn("EDIT", text)
-        self.assertIn("FixMyShot-0.1.0-alpha.1-universal.apk", text)
+        self.assertIn("FixMyShot-1.0.0-universal.apk", text)
         with self.assertRaises(FileExistsError):
             MODULE["render_notes"](template, fields, output)
         self.assertEqual(text, output.read_text())
@@ -59,7 +59,8 @@ class ReleaseChecks(unittest.TestCase):
                 self.check()
 
     def test_invalid_versions(self):
-        for name in ("v0.1.0", "00.1.0", "0.1", "0.1.0-alpha.01", "0.1.0/evil", "0.1.0+untracked"):
+        for name in ("v1.0.0", "00.1.0", "0.1", "0.1.0", "0.1.0-alpha.1",
+                     "1.0.0-alpha.1", "1.0.0-alpha.01", "1.0.0/evil", "1.0.0+untracked", "1.0.1"):
             with self.subTest(name=name), self.assertRaises(ValueError):
                 self.ledger["releases"][0]["version_name"] = name
                 self.check()
@@ -67,7 +68,7 @@ class ReleaseChecks(unittest.TestCase):
     def test_source_version_mismatch(self):
         path = self.root / "app/build.gradle.kts"
         text = path.read_text()
-        for old, new in (("versionCode = 1", "versionCode = 2"), ('versionName = "0.1.0-alpha.1"', 'versionName = "0.1.0-alpha.2"'),
+        for old, new in (("versionCode = 1", "versionCode = 2"), ('versionName = "1.0.0"', 'versionName = "1.0.1"'),
                          ('applicationId = "org.cajapersonal.fixmyshot"', 'applicationId = "org.cajapersonal.fixmyshot.debug"')):
             path.write_text(text.replace(old, new))
             with self.subTest(field=old), self.assertRaises(ValueError):
@@ -82,7 +83,7 @@ class ReleaseChecks(unittest.TestCase):
                 self.check()
 
     def test_changelog_status_mismatch(self):
-        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## 0.1.0-alpha.1\n")
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## 1.0.0\n")
         with self.assertRaises(ValueError):
             self.check()
 
@@ -90,10 +91,10 @@ class ReleaseChecks(unittest.TestCase):
         first = self.ledger["releases"][0]
         first.update(status="distributed", signed_apk_sha256="a" * 64,
                      certificate_sha256="b" * 64, source_commit="c" * 40)
-        self.ledger["releases"].append(dict(version_name="0.1.0-alpha.2", version_code=2, status="planned"))
+        self.ledger["releases"].append(dict(version_name="1.0.1", version_code=2, status="planned"))
         for name in ("app/build.gradle.kts", "README.md", "CHANGELOG.md"):
             path = self.root / name
-            path.write_text(path.read_text().replace("0.1.0-alpha.1", "0.1.0-alpha.2").replace("versionCode = 1", "versionCode = 2"))
+            path.write_text(path.read_text().replace("1.0.0", "1.0.1").replace("versionCode = 1", "versionCode = 2"))
         return first
 
     def test_sequential_history_and_required_receipts(self):
@@ -118,7 +119,7 @@ class ReleaseChecks(unittest.TestCase):
         second = self.ledger["releases"][1]
         second.update(status="distributed", signed_apk_sha256="d" * 64,
                       certificate_sha256="b" * 64, source_commit="e" * 40)
-        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## 0.1.0-alpha.2\n")
+        (self.root / "CHANGELOG.md").write_text("# Changelog\n\n## 1.0.1\n")
         self.check()
         second["signed_apk_sha256"] = first["signed_apk_sha256"]
         with self.assertRaises(ValueError):
@@ -131,6 +132,12 @@ class ReleaseChecks(unittest.TestCase):
     def test_only_latest_may_be_planned(self):
         self.history()
         self.ledger["releases"][0]["status"] = "planned"
+        with self.assertRaises(ValueError):
+            self.check()
+
+    def test_public_version_names_never_regress(self):
+        self.history()
+        self.ledger["releases"][1]["version_name"] = "0.2.0"
         with self.assertRaises(ValueError):
             self.check()
 

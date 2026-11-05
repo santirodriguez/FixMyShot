@@ -18,21 +18,25 @@ publication proposal. It does not claim that unfinished validation passed.
 | Privacy | https://fixmyshot.cajapersonal.org/privacy/ |
 | Support | https://cajapersonal.org/donate/ |
 
-## One-time version counter reset
+## Public version sequence starts at 1
 
 Alpha.1/code1 and alpha.2/code2 were signed testing candidates handed to the
 maintainer through Actions, not GitHub releases. Preserve their receipts and
 history under `private_candidates` in the release ledger; do not relabel their
 APK bytes or erase the installation evidence. The public release sequence
-starts at 1.0.0/code1. Subsequent publicly distributed APKs must strictly increase
-the code, including any public prereleases; this reset must never repeat after
-public distribution.
+starts at 1.0.0/code1. The next public update uses code2, and later updates
+use strictly increasing codes; never reset this public sequence after the first
+release. A later public prerelease, if explicitly chosen, also consumes its code.
+Public version names advance from 1.0.0 (for example, 1.0.1), never back to 0.x.
 
-The maintainer explicitly accepts uninstalling alpha.2 before installing 1.0.0.
-Android will normally reject code1 over code2 as a downgrade. Uninstalling removes
-app-private drafts/preferences; published copies remain user-owned. Do not call
-this transition an upgrade, promise preference retention, manufacture an older
-APK or change the production package to work around Android's check.
+The maintainer is the only private-alpha tester and explicitly chose code1 for
+this first public release. An installed alpha.2/code2 cannot be updated in
+place to code1: Android normally rejects the downgrade. The maintainer must
+uninstall that alpha manually before installing 1.0.0, if it remains installed.
+That clears app-private drafts/preferences; previously exported user files
+remain separately owned. This does not authorize ChatGPT to uninstall anything
+or erase data. Do not call this a seamless alpha upgrade, change package ID,
+or rotate the signing identity to bypass Android's check.
 
 ## Preserved scope and evidence
 

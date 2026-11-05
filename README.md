@@ -97,9 +97,9 @@ Requires Android 8/API 26 or later; Android 8–9 storage is
 [best effort](docs/decisions/compatibility-and-validation.md).
 
 The first public release uses `org.cajapersonal.fixmyshot`, version `1.0.0` and
-Android versionCode `1`, with the existing FixMyShot signature. If you installed
-the private alpha.2/code2, uninstall it first; its app-private drafts and settings
-will be removed. This is a clean install, not an upgrade from that alpha.
+Android versionCode `1`, with the established FixMyShot signing identity.
+Future publicly distributed updates increase the versionCode (starting at `2`)
+while preserving the package and compatible signing certificate.
 
 After an authorized release is published, add
 `https://github.com/santirodriguez/FixMyShot` to Obtainium; prereleases are not

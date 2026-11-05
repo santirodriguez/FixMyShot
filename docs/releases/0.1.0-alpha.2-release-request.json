@@ -1,5 +1,6 @@
 {
   "schema": 1,
+  "state": "ARCHIVED_PRIVATE_TEST_ONLY",
   "request_id": "alpha.2-main-release-automation-2026-11-04",
   "application_id": "org.cajapersonal.fixmyshot",
   "version_name": "0.1.0-alpha.2",

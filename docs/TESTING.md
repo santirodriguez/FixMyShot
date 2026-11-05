@@ -13,8 +13,14 @@ rebuild, signing/inspection and truthful screenshot review. No alpha receipt
 proves these new bytes. Accepted unchanged UX/output checks remain preserved;
 manual tests not recorded below remain NOT_RUN. No 1.0.0 publication is claimed.
 
+The current draft PR3 exact-head Android build and API36 smoke passed in
+[Actions 41910543641](https://github.com/santirodriguez/FixMyShot/actions/runs/41910543641);
+legacy SAF was skipped. These tests validate the unsigned 1.0.0 source, not a
+signed release, a fresh physical installation, a current-version screenshot,
+full functional acceptance or an Obtainium update. Final signed candidate
+and source-provenance acceptance remain open.
 
-## Pre-main automation review — 2026-11-04
+## Historical PR2 pre-main automation review — 2026-11-04
 
 [PR2 Android CI41858529484](https://github.com/santirodriguez/FixMyShot/actions/runs/41858529484)
 completed SUCCESS for headf8dcc53e. GitHub compiled synthetic mergef9bc363b,
@@ -34,7 +40,8 @@ trusted staging-run selection and the Obtainium link's actual configuration.
 The exact real APK/source kit also passed restaging and local kit verification.
 Live release API writes remain unexecuted pending separate publication approval.
 
-## Current delivery disposition — 2026-11-04
+<a id="current-delivery-disposition--2026-11-04"></a>
+## Historical alpha.2 delivery disposition — 2026-11-04
 
 This reconciliation uses the exact signed alpha.2/code2 APK
 SHA256 `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`,

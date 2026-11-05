@@ -1,5 +1,7 @@
 # FixMyShot — first functional release blueprint
 
+> **Current first-public-release amendment (2026-11-04):** [First public release — 1.0.0](../decisions/first-public-release.md) supersedes only the original `0.1.0` public-prerelease sequence, its `versionCode` numbering for public distribution, and the version-specific instructions in R03/R29/phases 6–7. The first public GitHub release is stable **`1.0.0` / `versionCode 1`**; later public versions must use higher codes and version names. Private alpha artifacts remain historical evidence and are not releases. All unaffected functionality, security, verification requirements and open gates below remain governing. Historical version labels in this original Phase 0 blueprint do **not** authorize an alpha release.
+
 Document version: 1.0 · Research date: 2026-10-20 UTC · Phase 0 governing artifact
 
 Repository: `santirodriguez/FixMyShot`  
