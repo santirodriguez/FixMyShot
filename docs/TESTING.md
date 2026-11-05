@@ -1,5 +1,25 @@
 # Testing and evidence
 
+## Newer visual 1.0.0 evidence and pre-merge boundary — 2026-11-05
+
+The newest visual candidate is draft PR #4, **not** the independently
+signed `70f3bae` source documented in the following historical candidate
+section. [Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387)
+passed Android build/API36 smoke and genuine six-screen capture on executable
+source `784bbdab`; its source-equivalent PR #4 has six independently
+hash-verified, visually approved and committed `en-US` screenshot PNGs.
+Current Fastlane/README screenshots thus supersede the partial earlier
+1.0.0 contact-sheet review described below. They do **not** prove that
+the older signed APK includes the new interface.
+
+The [current pre-merge release-readiness matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
+distinguishes completed visual evidence, earlier source-bound signature and
+provenance receipts, accepted limited tests, legacy SAF skips, and still-open
+physical, accessibility, privacy/color/resource and source-distribution work.
+No missing manual evidence is relabeled PASS, and publication is not authorized.
+The applicable compatibility amendments continue to govern the legacy
+Android 8–9 best-effort limitations and the deferred HEIC/AVIF/JXL codecs.
+
 ## First-public 1.0.0 signed candidate — 2026-11-05
 
 The exact source-frozen `org.cajapersonal.fixmyshot` **1.0.0 / code1**
