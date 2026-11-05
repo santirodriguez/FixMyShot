@@ -1,5 +1,35 @@
 # Shared artwork
 
+## 1.0.0 visual refresh — new authentic screenshots required
+
+The first-public UI design refresh is being prepared separately from the
+already inspected signed 1.0.0 test candidate. No refreshed screenshots have
+been accepted, committed to Fastlane or claimed to show the current APK.
+
+The intended final set consists of six **new native captures** from the exact
+updated app build: branded Start, actual large editor with source, offline
+destination picker, genuine framing/background controls, verified saved result,
+and Settings with Privacy/About. The maintainer requested that the earlier
+partially accepted test screenshots not be reused as final submissions.
+
+For screenshot scenarios the example source will be a standalone realistic,
+non-sensitive café still life, imported by the app as a normal image. The
+proposed fixture is `app/src/androidTest/assets/visual_reference_cafe.jpg`,
+JPEG `941x1672`, **387,379 bytes**, SHA-256
+`50ff45c57d4c8e93570e5e5e3df99f7a863d625537fd7e9381963d785f968051`.
+The source file is prepared externally, **not yet present in the repository**;
+no test may silently substitute a striped diagnostic fixture and call its
+screenshots promotional. A maintainer-uploaded file must have its actual remote
+blob/SHA-256 confirmed before camera-source tests run. This reference image
+must not be bundled into the production APK.
+
+All six shots must come from real UI pixels after importing this or another
+accepted original input; screenshot post-processing, generated UI overlays and
+synthetic successful-output states are forbidden. Original PNGs require
+full-resolution review, localized copy/theme checks, byte hashes and an explicit
+complete-set approval before replacing canonical Fastlane/README images.
+Release, signing and physical functional gates stay independent.
+
 ## First public 1.0.0 screenshot review — maintainer decision 2026-11-05
 
 The maintainer reviewed the eight-image contact sheet assembled from the genuine
