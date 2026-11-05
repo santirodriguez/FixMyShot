@@ -35,9 +35,17 @@
   "new_publisher_anchor_established": false,
   "active_gradle_verification_enabled": false,
   "full_source_distribution_approved": false,
-  "production_signing_authorized": false,
+  "production_signing_authorized": true,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
   "decision": "docs/decisions/dependency-assurance-1.0.0.md",
-  "residual_risk": "Unverified publisher provenance persists. Reproducibility and source availability cannot establish origin of frozen dependency bytes."
+  "residual_risk": "Unverified publisher provenance persists. Reproducibility and source availability cannot establish origin of frozen dependency bytes.",
+  "production_signing_authorization": {
+    "decision_date": "2026-11-05",
+    "authority": "Maintainer Go explicitly approving signing of the exact 1.0.0/code1 candidate as the immediately preceding agreed step",
+    "scope": "Sign the exact pinned unsigned APK with existing FixMyShot identity using the existing guarded GitHub Actions workflow; inspect signed output; no merge, tag, release, deployment or key change",
+    "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
+    "unsigned_apk_sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0",
+    "baseline_run_id": 41958251409
+  }
 }

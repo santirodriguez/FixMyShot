@@ -16,3 +16,15 @@ The prior frozen dependency inputs are unchanged in the source diff. The app run
 **Accepted risk:** missing independent publisher corroboration for this exact source, frozen inputs, version and unsigned APK, consistent with the previous Option B posture. Reproducible builds can reproduce the same unverified dependency bytes. A changed input, source, APK SHA-256 or version requires a new decision.
 
 **Not authorized or waived:** APK signing or credentials; merge, tag, GitHub publication or deployment; full corresponding-source/license approval; physical, accessibility, language, privacy, 16 KiB runtime, signed-certificate and Obtainium acceptance. Their evidence remains separately required. See [machine-readable receipt](../releases/1.0.0-assurance.json) and [unsigned build evidence](../releases/1.0.0-unsigned-build-info.json).
+
+## Subsequent candidate signing approval — 2026-11-05
+
+The maintainer separately authorized signing **only** the exact first-public
+`1.0.0` / `versionCode 1` unsigned APK bound above, using the established
+FixMyShot signing identity and the existing guarded GitHub Actions workflow.
+This authorization follows the bounded issuer-risk decision; it does not
+replace, broaden or retroactively change that earlier risk decision.
+
+The signature and resulting signed APK require independent inspection; signing
+is not publication acceptance. No branch merge, tag, public GitHub release,
+store submission, deployment, key rotation or permission change is authorized.
