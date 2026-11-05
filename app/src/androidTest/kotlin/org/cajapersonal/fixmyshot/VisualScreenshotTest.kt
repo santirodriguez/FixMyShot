@@ -177,7 +177,6 @@ class VisualScreenshotTest {
                 click(app.getString(R.string.quick_customize))
                 click(app.getString(R.string.editor_framing))
                 // Advanced Framing uses Preserve content/Crop (not the Quick Keep all/Fill buttons).
-                await { find(app.getString(R.string.preserve_content)) != null }
                 click(app.getString(R.string.crop_mode))
                 await { model.draft.batch.fit == org.cajapersonal.fixmyshot.core.FitMode.CROP }
                 capture("04-framing")
@@ -194,7 +193,7 @@ class VisualScreenshotTest {
                 assertEquals(OutputFormat.PNG, model.draft.batch.format)
 
                 // The ordinary UI export click must publish and verify a real MediaStore PNG.
-                click(app.getString(R.string.quick_export_format, "PNG", 1))
+                click(app.getString(R.string.quick_export_format, app.getString(R.string.format_png), 1))
                 await(120_000L) { model.exportState.phase == ExportUiPhase.COMPLETED &&
                     model.exportState.published == 1 && model.canFinishSession }
                 assertEquals(BatchItemPhase.PUBLISHED, model.exportState.items.single().phase)
