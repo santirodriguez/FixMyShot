@@ -16,8 +16,10 @@ The changelog's 1.0.0 heading identifies the target, not a claim of publication.
    unsigned APK, manifest, checksums and original reports.
 2. Bind the independent-rebuild and corresponding-source requests to that exact
    source and its actual artifact hashes. Inspect both results.
-3. Resolve exact-candidate assurance; the alpha-only decision is not inherited.
-   Sign only the verified new APK using the existing key and inspect its signature.
+3. The [1.0.0-specific issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
+   records the bounded Option B acceptance. Pending publisher proofs remain open.
+   After separate signing authorization, sign the exact APK with the existing key
+   and independently inspect its signature.
 4. Review current genuine screenshots, notes, four-asset kit and remaining
    acceptance evidence before recommending the separately authorized main merge.
 5. After separate publication authority, publish v1.0.0 as stable/latest using

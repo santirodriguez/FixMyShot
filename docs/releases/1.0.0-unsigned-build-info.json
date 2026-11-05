@@ -58,12 +58,13 @@
     "apk_canonical_license_assets": "PASS",
     "full_third_party_license_review": false
   },
-  "artifact_specific_assurance": "PENDING_EXPLICIT_1_0_0_DISPOSITION__PRIOR_ALPHA_ONLY_RISK_APPROVAL_NOT_TRANSFERABLE",
+  "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED__SEE_1.0.0-assurance.json",
   "publisher_authentication": "OPEN",
   "production_signature": "NOT_RUN__NOT_AUTHORIZED",
   "physical_signed_fresh_install": "NOT_RUN",
   "physical_and_accessibility_acceptance": "INCOMPLETE__SEE_DOCS_TESTING",
   "obtainium_fresh_install": "NOT_RUN__REQUIRES_PUBLIC_RELEASE",
   "obtainium_higher_code_update": "NOT_RUN__REQUIRES_LATER_PUBLIC_VERSION",
-  "publication": "NOT_AUTHORIZED_NOT_RUN"
+  "publication": "NOT_AUTHORIZED_NOT_RUN",
+  "assurance_receipt": "1.0.0-assurance.json"
 }
