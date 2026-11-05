@@ -1,5 +1,43 @@
 # A good release should be boring to install
 
+## First-public 1.0.0 public-copy and signing boundary — 2026-11-05
+
+The [current pre-merge gate matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
+covers the draft visual PR #4 that targets draft release PR #3. The six
+authentic 1.0.0 emulator screenshots are approved, committed to canonical
+Fastlane paths and reused by README. CHANGELOG and README still correctly
+describe the release as **not yet published**; the file
+`releases/1.0.0-notes.md` remains a release-note **template** with
+`{{CONTROL_COMMIT}}` deliberately unresolved until the actual reviewed
+release-control commit exists. Never publish that literal placeholder, invent
+a commit, or label the previous signed source as the current visual source.
+
+The validated visual app/test/scripts are source-equivalent to Android
+[Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387),
+but the older candidate was compiled at `70f3bae` and is the **only**
+1.0.0 APK whose unsigned rebuild, sources, accepted issuer risk and signing
+are currently bound to original bytes. Prepare new source-bound build,
+independent rebuild/source materials and residual-issuer-risk decision
+**after** any separately approved visual integration; signing that new
+candidate needs its own explicit authorization. Keep both earlier receipts
+unchanged as historical evidence. Current `PREPARED` requests must not
+be promoted to READY/SIGN_CANDIDATE by documentation review.
+
+The custom FixMyShot Site and the advertised `/privacy/` route are not
+independently verified as reachable/consistent with [PRIVACY](PRIVACY.md)
+using the available external browser; the donation link is likewise
+unverified here. Verify the actual URL/content through a suitable live
+browser before publication. An inaccessible verification tool does not prove
+an outage. Do not change Sites, DNS, Hostinger, Cloudflare, credentials or
+permissions as part of this gate.
+
+This copy audit does not waive any physical, locale/accessibility,
+metadata/color, legacy SAF, 16 KiB runtime, corresponding-source/license,
+branding or first-install acceptance gates. Obtainium's actual fresh
+installation can be verified only after an accessible release; a genuine
+higher-version-code update must await a later version. Merge, tags, signing
+and publication remain separate approvals.
+
 <a id="current-handoff-main-github-and-obtainium"></a>
 
 ## Current handoff: first stable 1.0.0
