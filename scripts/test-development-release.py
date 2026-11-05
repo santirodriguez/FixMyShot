@@ -219,7 +219,8 @@ class PublicationTests(unittest.TestCase):
             original.rename(original.with_name(self.request[key]["filename"]))
         info_path = self.kit / "assets/BUILD-INFO.json"
         info = json.loads(info_path.read_text())
-        info.update(version_name="1.0.0", signed_apk=self.request["signed_apk"], coverage_limits={"functional_acceptance": "ACCEPTED",
+        info.update(version_name="1.0.0", version_code=1, signed_apk=self.request["signed_apk"],
+                    coverage_limits={"functional_acceptance": "ACCEPTED",
                                                         "obtainium_install_update": "NOT_RUN"})
         info_path.write_text(json.dumps(info))
         self.plan.update(prerelease=False, make_latest=True, tag_name="v1.0.0",
