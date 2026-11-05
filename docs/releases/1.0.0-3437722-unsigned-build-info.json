@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "status": "UNSIGNED_VERIFIED__NOT_FINAL_RELEASE_ACCEPTANCE",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "source_commit": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
+  "source_tree": "5025043fb7aacc4330eb52458bbd80da708c0590",
+  "unsigned_apk": {
+    "filename": "app-release-unsigned.apk",
+    "bytes": 12373110,
+    "sha256": "974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0",
+    "android_gradle_metadata": "org.cajapersonal.fixmyshot / 1.0.0 / code1",
+    "elf_zip_16k_structural_alignment": "PASS",
+    "physical_16k_runtime": "NOT_RUN"
+  },
+  "baseline": {
+    "workflow_run": 42112670798,
+    "artifact_id": 13454568712,
+    "original_artifact_zip_sha256": "3662c7c565131b30f0d475bd96de1e07f5abe8c5e640eb6e8db55e5a8f12e7cf",
+    "build": "PASS",
+    "api36_smoke": "PASS_SYNTHETIC",
+    "legacy_saf": "SKIPPED"
+  },
+  "toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9",
+    "gradle": "9.4.1",
+    "android_build_tools": "36.0.0",
+    "ndk": "28.2.13676358",
+    "agp": "9.2.1",
+    "kotlin": "2.4.21"
+  },
+  "independent_unsigned_rebuild": {
+    "workflow_run": 42119230855,
+    "artifact_id": 13457827673,
+    "artifact_archive_bytes": 49894546,
+    "artifact_archive_sha256": "802397ec0ae81d45317d1d1853beb3211e8296fa888d5db9352d6bd679c62ebd",
+    "status": "PASS_FULL_BYTE_IDENTITY",
+    "byte_identical": true,
+    "source_commit": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
+    "production_signature": "NOT_RUN_IN_REBUILD"
+  },
+  "corresponding_source_materials": {
+    "workflow_run": 42119231007,
+    "artifact_id": 13457213846,
+    "artifact_archive_sha256": "29a85bf618cca059bad4fb99c50b987d8730ef12dcd8f8ab2fa115b3edaa06d6",
+    "source_materials_archive_bytes": 35851337,
+    "source_materials_sha256": "d9a71e1c71425a74226e38f1a72c70473ad070ce38a6f1e33bf29cad9894ccc4",
+    "source_kit_sha256": "72842f9d0062f301bc9004fefccf15b4a99b255ce6d02c705ed14872a4819110",
+    "total_archive_members": 1283,
+    "manifest_members_verified": 1282,
+    "source_binding": "PASS",
+    "deterministic_reconstruction": "PASS",
+    "final_corresponding_source_distribution_approval": false
+  },
+  "legal_bytes": {
+    "apk_canonical_license_assets": "PASS",
+    "full_third_party_license_review": false
+  },
+  "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED",
+  "assurance_receipt": "1.0.0-3437722-assurance.json",
+  "publisher_authentication": "OPEN_533_FROZEN_FILES",
+  "signing_workflow": "42123950177_SEPARATE_SIGNED_RECEIPT",
+  "physical_signed_fresh_install": "NOT_RUN",
+  "physical_and_accessibility_acceptance": "INCOMPLETE__SEE_DOCS_TESTING",
+  "obtainium_fresh_install": "NOT_RUN__REQUIRES_PUBLIC_RELEASE",
+  "obtainium_higher_code_update": "NOT_RUN__REQUIRES_LATER_PUBLIC_VERSION",
+  "publication": "NOT_AUTHORIZED_NOT_RUN"
+}

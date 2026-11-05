@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage an exact signed development prerelease kit; no build, signing or publication."""
+"""Stage only an explicitly accepted, source-bound release kit; never publish."""
 import argparse
 import hashlib
 import json
@@ -39,6 +39,98 @@ def checked(path, record):
 
 def write_json(path, value):
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def candidate_receipts(request):
+    """Resolve current candidate receipts, never historical same-version defaults."""
+    names = request.get("evidence_receipts")
+    require(type(names) is dict and set(names) == {"signed", "unsigned", "issuer_risk", "source_review"},
+            "Missing exact candidate receipt mapping")
+    receipts = {}
+    for kind, value in names.items():
+        name = filename(value)
+        require(name.startswith(request["version_name"] + "-") and name.endswith(".json"),
+                "Unsafe or stale candidate receipt path")
+        path = ROOT / "docs/releases" / name
+        require(path.is_file() and not path.is_symlink(), "Missing candidate receipt: " + kind)
+        receipts[kind] = json.loads(path.read_text(encoding="utf-8"))
+
+    signed, unsigned = receipts["signed"], receipts["unsigned"]
+    risk, review = receipts["issuer_risk"], receipts["source_review"]
+    source, tree = request["compiled_source"], request["compiled_tree"]
+    apk, sources = request["signed_apk"], request["source_materials"]
+    require(signed.get("status") == "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE"
+            and unsigned.get("status") == "UNSIGNED_VERIFIED__NOT_FINAL_RELEASE_ACCEPTANCE"
+            and risk.get("status") == "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED",
+            "Candidate evidence is incomplete or wrong type")
+    for record in (signed, unsigned):
+        require(record["source_commit"] == source and record["source_tree"] == tree,
+                "Candidate source/tree differs")
+        require((record["version_name"], record["version_code"]) ==
+                (request["version_name"], request["version_code"]),
+                "Candidate version differs")
+        require(record["application_id"] == request["application_id"],
+                "Candidate application ID differs")
+    require(risk["compiled_source"] == source and risk["compiled_tree"] == tree
+            and risk["application_id"] == request["application_id"]
+            and (risk["version_name"], risk["version_code"]) ==
+            (request["version_name"], request["version_code"]),
+            "Assurance source/version differs")
+    require(risk["production_signing_authorized"] is True
+            and risk["production_signing_executed"] is True
+            and risk["merge_release_or_deployment_authorized"] is False,
+            "Risk receipt signing or publication authority differs")
+    classifications = risk["issuer_classifications"]
+    require(classifications["reviewed"] + classifications["pending"] == classifications["frozen_files"]
+            and risk["classifications_changed"] is False,
+            "Issuer provenance classifications differ")
+    require(signed["signed_apk"] == {"filename": apk["filename"],
+            "bytes": apk["bytes"], "sha256": apk["sha256"]},
+            "Exact signed APK receipt differs")
+    require(signed["unsigned_apk"]["sha256"] == apk["unsigned_sha256"]
+            and unsigned["unsigned_apk"]["sha256"] == apk["unsigned_sha256"]
+            and signed["unsigned_apk"]["bytes"] == unsigned["unsigned_apk"]["bytes"]
+            and risk["unsigned_apk"] == {"bytes": signed["unsigned_apk"]["bytes"],
+            "sha256": apk["unsigned_sha256"]},
+            "Unsigned APK binding differs")
+    require(signed["signing"]["certificate_sha256"] == apk["certificate_sha256"]
+            and signed["signing"]["run_id"] == request["signing"]["run_id"]
+            and signed["signing"]["conclusion"] == "success"
+            and signed["signing"]["original_actions_artifact_id"] ==
+            request["signing"]["artifact_id"]
+            and risk["signed_apk_sha256"] == apk["sha256"]
+            and risk["certificate_sha256"] == apk["certificate_sha256"],
+            "Signature or original signed artifact differs")
+    inspection = signed["independent_inspection"]
+    for key in ("signature_v2_verified_against_embedded_certificate",
+                "signature_v3_verified_against_embedded_certificate",
+                "signature_v2_content_digest_recomputed",
+                "signature_v3_content_digest_recomputed",
+                "original_unsigned_apk_sha256_rechecked",
+                "signed_apk_sha256_rechecked"):
+        require(inspection.get(key) is True, "Signed APK verification incomplete: " + key)
+    require(unsigned["baseline"]["workflow_run"] == signed["unsigned_apk"]["baseline_run_id"]
+            and unsigned["baseline"]["workflow_run"] == risk["baseline"]["workflow_run"]
+            and unsigned["independent_unsigned_rebuild"]["byte_identical"] is True
+            and unsigned["independent_unsigned_rebuild"]["workflow_run"] ==
+            signed["unsigned_apk"]["independent_rebuild_run_id"]
+            and risk["identical_unsigned_bytes"] is True,
+            "Unsigned independent reproduction not proven")
+    materials = unsigned["corresponding_source_materials"]
+    require(materials["workflow_run"] == request["sources"]["run_id"]
+            and materials["source_materials_sha256"] == sources["sha256"]
+            and materials["source_materials_archive_bytes"] == sources["bytes"]
+            and materials["source_kit_sha256"] == sources["project_kit_sha256"]
+            and risk["source_materials_sha256"] == sources["sha256"],
+            "Source archive provenance differs")
+    candidate = review["candidate"]
+    require(candidate["compiled_source"] == source and candidate["compiled_tree"] == tree
+            and candidate["signed_apk_sha256"] == apk["sha256"]
+            and candidate["unsigned_apk_sha256"] == apk["unsigned_sha256"]
+            and candidate["certificate_sha256"] == apk["certificate_sha256"]
+            and review["original_artifacts"]["source_materials"]["source_tar_sha256"] ==
+            sources["sha256"], "Source and APK review differs")
+    return receipts
 
 
 def stage(request, signed_root, source_root, output, control):
@@ -98,20 +190,11 @@ def stage(request, signed_root, source_root, output, control):
         kit = archive.extractfile("project-and-webp-source.tar.gz").read()
         require(hashlib.sha256(kit).hexdigest() == source_record["project_kit_sha256"],
                 "Nested project/WebP kit differs")
-    signed_receipt = json.loads((ROOT / "docs/releases" / (version + "-signed-build-info.json")).read_text())
-    unsigned_receipt = json.loads((ROOT / "docs/releases" / (version + "-unsigned-build-info.json")).read_text())
-    require(signed_receipt.get("status") == "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE",
-            "Signed receipt has not been independently inspected")
-    for key, expected in (("signed_apk_sha256", apk_record["sha256"]),
-                          ("unsigned_apk_sha256", apk_record["unsigned_sha256"]),
-                          ("certificate_sha256", apk_record["certificate_sha256"]),
-                          ("signed_apk_bytes", apk_record["bytes"]),
-                          ("source_commit", request["compiled_source"]),
-                          ("source_tree", request["compiled_tree"]),
-                          ("version_name", version),
-                          ("version_code", request["version_code"])):
-        require(signed_receipt.get(key) == expected, "Signed receipt differs: " + key)
-    require(unsigned_receipt["source_commit"] == request["compiled_source"], "Unsigned source differs")
+    receipts = candidate_receipts(request)
+    signed_receipt = receipts["signed"]
+    unsigned_receipt = receipts["unsigned"]
+    risk = receipts["issuer_risk"]
+    source_review = receipts["source_review"]
     limitations = {
         "functional_acceptance": "INCOMPLETE",
         "actual_16k_runtime": "NOT_RUN",
@@ -127,6 +210,11 @@ def stage(request, signed_root, source_root, output, control):
                 "Stable acceptance has not been reviewed")
         limitations = request["coverage_limits"]
         require(limitations.get("functional_acceptance") == "ACCEPTED", "Stable acceptance incomplete")
+        require(request.get("source_distribution_reviewed") is True
+                and risk["full_source_distribution_approved"] is True
+                and source_review["distribution_disposition"]
+                ["complete_corresponding_source_and_license_legal_review"] == "APPROVED",
+                "Corresponding-source/license distribution is not approved")
     build_info = {
         "schema": 1, "status": "SIGNED_AND_VERIFIED_DEVELOPMENT_CANDIDATE" if policy["prerelease"] else "SIGNED_AND_VERIFIED_STABLE_CANDIDATE",
         "channel": "development-prerelease" if policy["prerelease"] else "stable", "application_id": request["application_id"],
@@ -150,12 +238,14 @@ def stage(request, signed_root, source_root, output, control):
             "artifact_specific_assurance": unsigned_receipt["artifact_specific_assurance"],
             "pending_publisher_classifications_retained": True,
             "dependency_authentication": unsigned_receipt["artifact_specific_assurance"],
-            "fresh_install": signed_receipt.get("signed_physical_install_test", "NOT_RUN"),
-            "same_certificate_upgrade": signed_receipt.get("sequential_upgrade_test", "NOT_RUN"),
+            "fresh_install": signed_receipt.get("physical_signed_fresh_install", "NOT_RUN"),
+            "same_certificate_upgrade": signed_receipt.get("sequential_public_version_update", "NOT_RUN"),
             "obtainium_install_and_update": "NOT_RUN",
             "remaining_limitations": limitations,
         },
         "coverage_limits": limitations,
+        "source_distribution_reviewed": request.get("source_distribution_reviewed") is True,
+        "evidence_receipts": request["evidence_receipts"],
         "publication_state": "Not asserted by this immutable build receipt; inspect the actual GitHub release.",
     }
     assets, review = output / "assets", output / "review"
@@ -187,7 +277,9 @@ def stage(request, signed_root, source_root, output, control):
         "tag_source_explanation": "The tag identifies current documentation/packaging control. BUILD-INFO and the nested source kit identify the exact earlier compiled Git source; no rebuild of the tag is claimed.",
         "obtainium_source": "https://github.com/santirodriguez/FixMyShot",
         "obtainium_apk_filter": r"^FixMyShot-.*-universal\.apk$",
-        "coverage_limits": limitations, "merge_tag_publication_authorized_by_staging": False,
+        "coverage_limits": limitations,
+        "source_distribution_reviewed": request.get("source_distribution_reviewed") is True,
+        "merge_tag_publication_authorized_by_staging": False,
     }
     write_json(review / "release-plan.json", plan)
     receipt = {

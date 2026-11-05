@@ -143,6 +143,10 @@ def verify_kit(kit, control, request):
         require(info["coverage_limits"].get("functional_acceptance") == "ACCEPTED"
                 and request.get("stable_acceptance_reviewed") is True,
                 "Stable acceptance has not been reviewed")
+        require(request.get("source_distribution_reviewed") is True
+                and info.get("source_distribution_reviewed") is True
+                and plan.get("source_distribution_reviewed") is True,
+                "Corresponding-source/license distribution has not been reviewed")
     return plan, notes
 
 

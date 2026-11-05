@@ -212,7 +212,8 @@ class PublicationTests(unittest.TestCase):
 
     def test_reviewed_stable_release_is_latest_and_idempotent(self):
         self.request.update(version_name="1.0.0", version_code=1, tag_name="v1.0.0",
-                            release_channel="stable", stable_acceptance_reviewed=True)
+                            release_channel="stable", stable_acceptance_reviewed=True,
+                            source_distribution_reviewed=True)
         for key, suffix in (("signed_apk", "-universal.apk"), ("source_materials", "-source-materials.tar.gz")):
             original = self.kit / "assets" / self.request[key]["filename"]
             self.request[key]["filename"] = "FixMyShot-1.0.0" + suffix
@@ -221,10 +222,12 @@ class PublicationTests(unittest.TestCase):
         info = json.loads(info_path.read_text())
         info.update(version_name="1.0.0", version_code=1, signed_apk=self.request["signed_apk"],
                     coverage_limits={"functional_acceptance": "ACCEPTED",
-                                                        "obtainium_install_update": "NOT_RUN"})
+                                     "obtainium_install_update": "NOT_RUN"},
+                    source_distribution_reviewed=True)
         info_path.write_text(json.dumps(info))
         self.plan.update(prerelease=False, make_latest=True, tag_name="v1.0.0",
-                         coverage_limits=info["coverage_limits"])
+                         coverage_limits=info["coverage_limits"],
+                         source_distribution_reviewed=True)
         assets = self.kit / "assets"
         (assets / "SHA256SUMS.txt").write_text("".join(
             hashlib.sha256(p.read_bytes()).hexdigest() + "  " + p.name + "\n"
@@ -239,6 +242,10 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError): self.publish("PUBLISH v1.0.0")
         self.assertEqual(self.client.writes, [])
         self.request["stable_acceptance_reviewed"] = True
+        self.request["source_distribution_reviewed"] = False
+        with self.assertRaises(ValueError): self.publish("PUBLISH v1.0.0")
+        self.assertEqual(self.client.writes, [])
+        self.request["source_distribution_reviewed"] = True
         result = self.publish("PUBLISH v1.0.0")
         self.assertEqual(result["assets_verified"], 4)
         self.assertFalse(self.client.release["prerelease"])
@@ -268,56 +275,50 @@ class PublicationTests(unittest.TestCase):
     def test_first_public_signed_receipt_matches_staging_identity(self):
         request = json.loads((ROOT / ".ci/development-release-request.json").read_text())
         signing = json.loads((ROOT / ".ci/signing-candidate-request.json").read_text())
-        receipt = json.loads(
-            (ROOT / "docs/releases/1.0.0-3437722-signed-build-info.json").read_text())
-        assurance = json.loads(
-            (ROOT / "docs/releases/1.0.0-3437722-assurance.json").read_text())
-        historical = json.loads(
-            (ROOT / "docs/releases/1.0.0-signed-build-info.json").read_text())
-
         self.assertEqual((request["version_name"], request["version_code"]), ("1.0.0", 1))
         self.assertEqual(request["state"], "PREPARED")
-        self.assertIsNone(request["compiled_source"])
-        self.assertIsNone(request["signed_apk"]["sha256"])
         self.assertEqual(signing["state"], "PREPARED")
-        self.assertEqual(receipt["status"],
-                         "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE")
-        self.assertEqual(receipt["source_commit"], signing["source_commit"])
-        self.assertEqual(receipt["source_tree"], signing["source_tree"])
-        self.assertEqual(receipt["unsigned_apk"]["sha256"], signing["unsigned_sha256"])
-        self.assertEqual(receipt["signed_apk"]["sha256"],
-                         signing["completed_signed_apk_sha256"])
-        self.assertEqual(receipt["signing"]["certificate_sha256"],
+        self.assertEqual(request["compiled_source"], signing["source_commit"])
+        self.assertEqual(request["compiled_tree"], signing["source_tree"])
+        self.assertEqual(request["signed_apk"]["unsigned_sha256"], signing["unsigned_sha256"])
+        self.assertEqual(request["signed_apk"]["sha256"], signing["completed_signed_apk_sha256"])
+        self.assertEqual(request["signed_apk"]["certificate_sha256"],
                          signing["completed_certificate_sha256"])
-        self.assertEqual(receipt["signing"]["run_id"],
-                         signing["completed_signing_workflow_run_id"])
-        self.assertEqual((receipt["version_name"], receipt["version_code"]), ("1.0.0", 1))
-        self.assertTrue(receipt["independent_inspection"]
-                        ["signature_v2_verified_against_embedded_certificate"])
-        self.assertTrue(receipt["independent_inspection"]
-                        ["signature_v3_verified_against_embedded_certificate"])
-        self.assertTrue(receipt["independent_inspection"]["signature_v2_content_digest_recomputed"])
-        self.assertTrue(receipt["independent_inspection"]["signature_v3_content_digest_recomputed"])
-        self.assertEqual(receipt["physical_signed_fresh_install"], "NOT_RUN")
-        self.assertEqual(receipt["sequential_public_version_update"], "NOT_RUN")
-        self.assertFalse(receipt["publication_authorized"])
+        self.assertEqual(request["signing"]["run_id"], signing["completed_signing_workflow_run_id"])
+        self.assertIs(request["stable_acceptance_reviewed"], False)
+        self.assertIs(request["source_distribution_reviewed"], False)
+        self.assertEqual(request["coverage_limits"]["functional_acceptance"], "INCOMPLETE")
+        self.assertEqual(request["coverage_limits"]["complete_corresponding_source_license_distribution"],
+                         "OPEN")
 
-        self.assertEqual(assurance["compiled_source"], receipt["source_commit"])
-        self.assertEqual(assurance["unsigned_apk"]["sha256"], receipt["unsigned_apk"]["sha256"])
-        self.assertEqual(assurance["signed_apk_sha256"], receipt["signed_apk"]["sha256"])
-        self.assertEqual(assurance["certificate_sha256"],
-                         receipt["signing"]["certificate_sha256"])
-        self.assertEqual(assurance["production_signing_receipt"],
-                         "1.0.0-3437722-signed-build-info.json")
-        self.assertTrue(assurance["production_signing_authorized"])
-        self.assertTrue(assurance["production_signing_executed"])
-        self.assertFalse(assurance["full_source_distribution_approved"])
-        self.assertFalse(assurance["merge_release_or_deployment_authorized"])
+        stage_module = runpy.run_path(str(ROOT / "scripts/prepare-development-release.py"))
+        receipts = stage_module["candidate_receipts"](request)
+        self.assertEqual(receipts["signed"]["signed_apk"]["sha256"], request["signed_apk"]["sha256"])
+        self.assertEqual(receipts["unsigned"]["source_tree"], request["compiled_tree"])
+        self.assertFalse(receipts["issuer_risk"]["full_source_distribution_approved"])
+        self.assertEqual(receipts["source_review"]["distribution_disposition"]
+                         ["complete_corresponding_source_and_license_legal_review"], "OPEN")
+        historical = json.loads((ROOT / "docs/releases/1.0.0-signed-build-info.json").read_text())
+        self.assertNotEqual(historical["source_commit"], request["compiled_source"])
+        self.assertNotEqual(historical["signed_apk_sha256"], request["signed_apk"]["sha256"])
 
-        self.assertNotEqual(historical["source_commit"], receipt["source_commit"])
-        self.assertNotEqual(historical["signed_apk_sha256"], receipt["signed_apk"]["sha256"])
-        self.assertEqual(historical["status"],
-                         "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE")
+        with self.assertRaises(ValueError):
+            stage_module["stage"](request, self.kit / "nonexistent-signed",
+                                  self.kit / "nonexistent-source", self.kit / "prepared", CONTROL)
+
+        for key, wrong in (("signed_apk", "0" * 64), ("source_materials", "f" * 64)):
+            changed = json.loads(json.dumps(request))
+            changed[key]["sha256"] = wrong
+            with self.assertRaises(ValueError):
+                stage_module["candidate_receipts"](changed)
+        changed = json.loads(json.dumps(request))
+        changed["evidence_receipts"]["signed"] = "1.0.0-signed-build-info.json"
+        with self.assertRaises(ValueError):
+            stage_module["candidate_receipts"](changed)
+        changed = json.loads(json.dumps(request))
+        changed["evidence_receipts"]["signed"] = "../untrusted.json"
+        with self.assertRaises(ValueError):
+            stage_module["candidate_receipts"](changed)
 
     def test_obtainium_button_has_exact_source_prerelease_and_filter(self):
         import html
