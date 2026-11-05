@@ -118,7 +118,7 @@ androidComponents {
         val suffix = variant.name.replaceFirstChar { it.uppercase() }
         val branding = tasks.register<PrepareBrandingTask>("prepare${suffix}BrandingResources") {
             sourceIcon.set(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
-            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/primary/readme-header.png")
+            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/primary/readme-header.png"))
             outputDirectory.set(layout.buildDirectory.dir("generated/branding/${variant.name}/res"))
         }
         val legal = tasks.register<PrepareLegalTask>("prepare${suffix}LegalAssets") {
