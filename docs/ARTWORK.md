@@ -14,14 +14,17 @@ partially accepted test screenshots not be reused as final submissions.
 
 For screenshot scenarios the example source will be a standalone realistic,
 non-sensitive café still life, imported by the app as a normal image. The
-proposed fixture is `app/src/androidTest/assets/visual_reference_cafe.jpg`,
+verified fixture is `app/src/androidTest/assets/FixMyShot-visual-sample-cafe-hq.jpg`,
 JPEG `941x1672`, **387,379 bytes**, SHA-256
-`50ff45c57d4c8e93570e5e5e3df99f7a863d625537fd7e9381963d785f968051`.
-The source file is prepared externally, **not yet present in the repository**;
-no test may silently substitute a striped diagnostic fixture and call its
-screenshots promotional. A maintainer-uploaded file must have its actual remote
-blob/SHA-256 confirmed before camera-source tests run. This reference image
-must not be bundled into the production APK.
+`50ff45c57d4c8e93570e5e5e3df99f7a863d625537fd7e9381963d785f968051`,
+Git blob `676b272413e8199607b7dfecf2c37b89f3fadd50`.
+The maintainer uploaded the prepared binary without renaming it; the complete
+repository blob was decoded and independently SHA-256 checked against the
+original source identity. This is an instrumentation-only asset, not part of
+the production APK. The dedicated screenshot test imports it through the real
+Android share-intent path and captures six original UI PNGs. Isolated CI
+validation and full visual review remain pending; test code alone does not
+establish screenshot acceptance.
 
 All six shots must come from real UI pixels after importing this or another
 accepted original input; screenshot post-processing, generated UI overlays and
