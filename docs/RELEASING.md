@@ -3,25 +3,31 @@
 ## First-public 1.0.0 public-copy and signing boundary — 2026-11-05
 
 The [current pre-merge gate matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
-covers the draft visual PR #4 that targets draft release PR #3. The six
-authentic 1.0.0 emulator screenshots are approved, committed to canonical
-Fastlane paths and reused by README. CHANGELOG and README still correctly
-describe the release as **not yet published**; the file
+covers visual PR #4 already merged into `release/1.0.0` and draft release
+PR #3, which is still unmerged into `main`. The six authentic 1.0.0 emulator
+screenshots are approved, committed to canonical Fastlane paths and reused by
+README. CHANGELOG and README still correctly describe the release as **not yet
+published**; the file
 `releases/1.0.0-notes.md` remains a release-note **template** with
 `{{CONTROL_COMMIT}}` deliberately unresolved until the actual reviewed
 release-control commit exists. Never publish that literal placeholder, invent
 a commit, or label the previous signed source as the current visual source.
 
-The validated visual app/test/scripts are source-equivalent to Android
-[Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387),
-but the older candidate was compiled at `70f3bae` and is the **only**
-1.0.0 APK whose unsigned rebuild, sources, accepted issuer risk and signing
-are currently bound to original bytes. Prepare new source-bound build,
-independent rebuild/source materials and residual-issuer-risk decision
-**after** any separately approved visual integration; signing that new
-candidate needs its own explicit authorization. Keep both earlier receipts
-unchanged as historical evidence. Current `PREPARED` requests must not
-be promoted to READY/SIGN_CANDIDATE by documentation review.
+The **new integrated-visual executable** is source `3437722060019fdf8f892fddc4cc8121e0b61aa4` /
+tree `5025043fb7aacc4330eb52458bbd80da708c0590`, unsigned APK SHA-256
+`974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0` (12,373,110 bytes).
+[Exact Android build/API36 smoke](https://github.com/santirodriguez/FixMyShot/actions/runs/42112670798),
+[independent byte-identical rebuild](https://github.com/santirodriguez/FixMyShot/actions/runs/42119230855)
+and [technical source materials](https://github.com/santirodriguez/FixMyShot/actions/runs/42119231007)
+are verified. The maintainer explicitly accepted **bounded Option B** only
+for that candidate: see [new decision](decisions/dependency-assurance-1.0.0-3437722.md)
+and [machine receipt](releases/1.0.0-3437722-assurance.json).
+The earlier signed `70f3bae` candidate remains historical and retains its
+original signing/disposition receipts unchanged. No new APK signing, complete
+license/source distribution clearance, manual functional acceptance, main merge,
+tag or publication has been approved by this issuer-risk decision.
+Signing/distribution requests remain `PREPARED`; do not promote them by
+documentation review.
 
 The custom FixMyShot Site and the advertised `/privacy/` route are not
 independently verified as reachable/consistent with [PRIVACY](PRIVACY.md)
@@ -50,22 +56,24 @@ code2 and later updates strictly increase. Private alpha candidates live only
 in a separate historical ledger section and cannot determine the public counter.
 The changelog's 1.0.0 heading identifies the target, not a claim of publication.
 
-The signed candidate has **not been published**: 1.0.0 / code1, source
+The **historical signed test candidate** has **not been published**:
+1.0.0 / code1, source
 `70f3baeebb096461eb5072ca125f0c05334703da`, signed APK SHA-256
 `03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39`,
 previous FixMyShot certificate unchanged. The [one-time signing request](../.ci/signing-candidate-request.json)
 was reset to `PREPARED` after completion. The distribution request remains
 `PREPARED` until a complete reviewed release kit and separate authority exist.
 
-1. Build and test the new immutable source on release/1.0.0; inspect the actual
-   unsigned APK, manifest, checksums and original reports.
-2. Bind the independent-rebuild and corresponding-source requests to that exact
-   source and its actual artifact hashes. Inspect both results.
-3. The [bounded 1.0.0 issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
-   and separate signing authorization are recorded. The frozen exact APK was
-   signed in Actions 41964708826 and independently inspected; see its
-   [signed receipt](releases/1.0.0-signed-build-info.json). Remaining issuer
-   proofs and separate source/legal/manual gates are still open.
+1. **DONE:** build and test new immutable source `3437722`, inspect actual unsigned
+   APK/manifest/checksums and original reports.
+2. **DONE:** bind independent rebuild and source materials to that exact source,
+   verify both original artifacts and the matching bytes.
+3. **ISSUER-RISK OPTION B APPROVED FOR NEW SOURCE ONLY:** use the
+   [new candidate decision](decisions/dependency-assurance-1.0.0-3437722.md)
+   and [receipt](releases/1.0.0-3437722-assurance.json).
+   **NEW SIGNING NOT AUTHORIZED.** The previous [signed receipt](releases/1.0.0-signed-build-info.json)
+   is historical-only and must not be substituted for `3437722`.
+   Source/legal/manual gates remain separately open.
 4. Review current genuine screenshots, notes, four-asset kit and remaining
    acceptance evidence before recommending the separately authorized main merge.
 5. After separate publication authority, publish v1.0.0 as stable/latest using
