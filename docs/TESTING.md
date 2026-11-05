@@ -1,5 +1,25 @@
 # Testing and evidence
 
+## Newer visual 1.0.0 evidence and pre-merge boundary — 2026-11-05
+
+The newest visual candidate is draft PR #4, **not** the independently
+signed `70f3bae` source documented in the following historical candidate
+section. [Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387)
+passed Android build/API36 smoke and genuine six-screen capture on executable
+source `784bbdab`; its source-equivalent PR #4 has six independently
+hash-verified, visually approved and committed `en-US` screenshot PNGs.
+Current Fastlane/README screenshots thus supersede the partial earlier
+1.0.0 contact-sheet review described below. They do **not** prove that
+the older signed APK includes the new interface.
+
+The [current pre-merge release-readiness matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
+distinguishes completed visual evidence, earlier source-bound signature and
+provenance receipts, accepted limited tests, legacy SAF skips, and still-open
+physical, accessibility, privacy/color/resource and source-distribution work.
+No missing manual evidence is relabeled PASS, and publication is not authorized.
+The applicable compatibility amendments continue to govern the legacy
+Android 8–9 best-effort limitations and the deferred HEIC/AVIF/JXL codecs.
+
 ## First-public 1.0.0 signed candidate — 2026-11-05
 
 The exact source-frozen `org.cajapersonal.fixmyshot` **1.0.0 / code1**
@@ -28,8 +48,11 @@ Do not infer those cases passed or replace their NOT_RUN statuses.
 **Visual review:** the maintainer approved review-image indices 1, 2, 5
 and 7 and rejected 3, 4, 6 and 8 from the exact-source API36 contact
 sheet. [ARTWORK](ARTWORK.md) identifies each original PNG and the build
-artifact. This is partial capture-level acceptance, not completed release
-screenshot-set approval or promotion to canonical Fastlane files.
+artifact. That was partial capture-level acceptance for the **earlier signed-source**
+contact sheet, not approval of those old frames for public use. The
+subsequent PR #4 six-role set is now fully approved and committed in the
+canonical Fastlane paths as recorded in the newer section above; the older
+signed APK remains bound to its original UI source.
 
 This verifies a *signed candidate*, **not release acceptance**. The prior
 [bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)

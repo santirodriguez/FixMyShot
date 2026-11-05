@@ -46,6 +46,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.cajapersonal.fixmyshot.R
+import org.cajapersonal.fixmyshot.design.PrivacyShield
 import org.cajapersonal.fixmyshot.core.*
 
 /** The empty state has one product action, not an extra onboarding step. */
@@ -78,8 +79,17 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
                 if (canUndo) TextButton(onClick = onUndo, enabled = enabled) { Text(stringResource(R.string.undo_last)) }
                 Text(stringResource(R.string.quick_share_hint), style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center, color = colors.onSurfaceVariant)
-                Text(stringResource(R.string.quick_local_promise), style = MaterialTheme.typography.labelMedium,
-                    color = colors.primary, textAlign = TextAlign.Center)
+                Surface(shape = RoundedCornerShape(28.dp), color = colors.surfaceContainerLow,
+                    border = BorderStroke(1.dp, colors.outlineVariant)) {
+                    Row(Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        PrivacyShield(Modifier.size(20.dp))
+                        Text(stringResource(R.string.quick_local_promise),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = colors.primary, textAlign = TextAlign.Center)
+                    }
+                }
             }
         }
         if (wide) Row(Modifier.fillMaxSize().padding(24.dp), verticalAlignment = Alignment.CenterVertically,
@@ -93,7 +103,12 @@ internal fun BrandStart(enabled: Boolean, onChoose: () -> Unit, canUndo: Boolean
                 .padding(horizontal = 24.dp, vertical = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box(Modifier.widthIn(max = 176.dp)) { art() }
+                Surface(shape = MaterialTheme.shapes.extraLarge,
+                    color = colors.surfaceContainerLow,
+                    border = BorderStroke(1.dp, colors.outlineVariant),
+                    modifier = Modifier.widthIn(max = 184.dp).padding(top = 8.dp)) {
+                    Box(Modifier.padding(6.dp)) { art() }
+                }
                 copy()
             }
             Button(onClick = onChoose, enabled = enabled,

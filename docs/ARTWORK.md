@@ -1,5 +1,56 @@
 # Shared artwork
 
+## 1.0.0 visual refresh — six approved native screenshots committed and verified
+
+The maintainer approved the **complete six-image visual set** on 2026-11-05
+after full-resolution review. These are original, unmodified Android UI pixels
+captured from the first-public FixMyShot 1.0.0 visual source, **not** screenshots
+of a published/signed APK. Their provenance is passing isolated Android
+[Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387),
+compiled source `784bbdab61ac79c98a54c8de671bdf93332a0398` and smoke artifact
+`13450950882` (build and API36 smoke PASS, including the six-capture test;
+SAF-provider SKIPPED by `profile=current`).
+
+The maintainer uploaded all six exact PNG bytes onto PR #4 branch
+`ux/1.0.0-visual-polish` in commit `2cffe800d0280ae824e361aae754d97b54318019`.
+All six remote files were fetched again as Base64, decoded and checked against
+the approved SHA-256 and Git blob identities, with exact byte size, 1080×1920
+geometry and 8-bit RGB PNG color type. Every value matched. The canonical
+paths are `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png`
+through `6.png`; the old alpha.2 Home and Settings pixels at `1.png` and
+`2.png` were replaced, and `3.png`–`6.png` added. Their original historical
+blobs remain in Git history. README now reuses all six canonical files.
+
+| Canonical slot / role | Original capture | Bytes | SHA-256 | Git blob SHA-1 |
+| --- | --- | ---: | --- | --- |
+| `1.png` — Home | `visual-01-start.png` | 446495 | `66c21df74523fea3a1e8dc49b3c876a52cfd0591a73d75ae07595b7c7716ee45` | `c709cbf49a4cc7a1f866169b76045ce3f01cbbc1` |
+| `2.png` — Editor | `visual-02-editor.png` | 512768 | `460aea244e0fac3add9868eceed4dac43b20fe036f4bc5f57f8290f6c891f84c` | `50c6601bad34c1b98a1a933282cb9c77a2a49a48` |
+| `3.png` — Destinations | `visual-03-destinations.png` | 173623 | `2baf40561df7774a8f47584a41b158726c67783948a361283d0ea2fad820a642` | `488b2691f2884439e15aa6b352f3de62ca6dd3e8` |
+| `4.png` — Framing | `visual-04-framing.png` | 412989 | `adac0d4f3f521d10ad317e75dc471b3b4647678ba249d3588adf4c837c5c694e` | `5cf1b104ae386d968ea2e71ad3c50d6260284987` |
+| `5.png` — Saved result | `visual-05-saved.png` | 137908 | `fdc9f49084e1a5da18c3e169c49695a05c2a1e339cf29bc7f847fecd29fbe401` | `0b4e8e8a038c249cf465b6dd83c50e969bd55844` |
+| `6.png` — Settings/About | `visual-06-settings.png` | 175624 | `71194a1d2ee14bb30316fa45873a559e3f2d08b00322c468a75fe5d078b00cbb` | `ac662fa161a921300761e83061671ed29d79bf91` |
+
+The final visual changes corrected the Saved dialog's Android status-bar icon
+contrast and showed canonical `FixMyShot`, Version 1.0.0, in About; the
+separate debug-launcher label remains unchanged. The source fixture is a
+non-sensitive generated café still life imported through the app's genuine
+share-intent path, not presented as a user's photograph:
+`app/src/androidTest/assets/FixMyShot-visual-sample-cafe-hq.jpg`, JPEG
+941×1672, 387379 bytes, SHA-256
+`50ff45c57d4c8e93570e5e5e3df99f7a863d625537fd7e9381963d785f968051`,
+Git blob `676b272413e8199607b7dfecf2c37b89f3fadd50`. The fixture is
+instrumentation-only and not in the production APK.
+
+These six approved images complete the English 1.0.0 screenshot-set visual
+selection and canonical byte-promotion step for the draft visual PR. They do
+**not** establish signed-APK equivalence, all-locales screenshot coverage,
+physical-device acceptance, brand-rights clearance or store/publication
+readiness. Before a default-branch release merge, reconcile final public copy,
+README/CHANGELOG/release notes, exact source/reproducible build, dependency
+and signing proof, accessibility/locale/device tests and required review gates.
+Do not repaint or change the PNG bytes.
+
+
 ## First public 1.0.0 screenshot review — maintainer decision 2026-11-05
 
 The maintainer reviewed the eight-image contact sheet assembled from the genuine
@@ -25,9 +76,9 @@ be promoted or silently retouched. Replacement editor captures should use
 a representative realistic, non-sensitive example image rather than the current
 colored line test pattern; retain the actual captured application UI and
 unmodified PNG bytes. No new screenshot pixels or Fastlane files were changed
-by recording this decision. The existing two canonical Fastlane/README
-screenshots remain genuine *historical alpha.2* evidence until an explicitly
-approved complete replacement set is available.
+by recording this decision. At that earlier review checkpoint, the two existing Fastlane/README images
+were historical alpha.2 evidence; they have since been superseded by the six
+explicitly approved and verified 1.0.0 images documented above.
 
 ## First public 1.0.0 preparation — 2026-11-04
 
@@ -61,8 +112,8 @@ These exact bytes match the previously verified original API36 captures from
 compiled source `1f89c979a7b432e6117670d170ce8ca0df5e2567`, alpha.2/code2.
 They show the separate debug build of the same app source; they are authentic
 emulator captures, not signed physical-device screenshots. No pixels, supplied
-logos/header or APK bytes were changed. README continues to reuse these two
-canonical paths and now identifies the actual version and emulator provenance.
+logos/header or APK bytes were changed. At that historical alpha.2 checkpoint README reused these two canonical
+paths. README now displays the six verified 1.0.0 captures documented above.
 
 The bounded M10 English Home/Settings replacement and readback task is complete.
 This does not establish a full localized store/capability screenshot set, store
@@ -105,12 +156,12 @@ Primary references, checked 2026-10-22:
 
 ## Development screenshots and support badge
 
-The README reuses the canonical `en-US/images/phoneScreenshots/1.png` (Start) and
-`2.png` (dark Settings) metadata images. These are unedited 1080×1920 PNG captures
-from the actual Android36 emulator build at `13b50c1827317fa208829fa50381d5111fbb32d1`,
-Actions40954636417, not reconstructed interface images or physical-device acceptance.
-Store publication still requires the final candidate screenshot review. Editor test
-patterns are retained as engineering evidence rather than promotional screenshots.
+The README now reuses all six canonical 1.0.0 phone screenshot paths from the
+verified first-public capture set above. Earlier alpha.2 README captures were
+original emulator UI pixels from `13b50c1827317fa208829fa50381d5111fbb32d1`,
+Actions40954636417, now preserved only as historical evidence in Git history.
+No emulator screenshot is signed physical-device proof. Editor test patterns
+remain engineering evidence, not promotional screenshots.
 
 `docs/assets/badges/donate.svg` is the repository's GPL-3.0-only support button, with
 accessible title/description and the Caja Personal support destination.
@@ -118,9 +169,9 @@ accessible title/description and the Caja Personal support destination.
 not a copy of the Obtainium logo. Its configuration selects the GitHub source,
 prereleases and the single universal APK; no catalog listing is implied.
 
-## Current tracked screenshot inspection — 2026-11-02
+## Historical tracked screenshot inspection — 2026-11-02
 
-The actual current tracked image bytes were opened and visually inspected.
+At that date, the tracked screenshot bytes were opened and visually inspected.
 Their Git blob hashes match the inspected candidate tree; both are1080x1920,
 8-bit RGB PNG without alpha. No image was replaced or edited.
 
@@ -137,13 +188,13 @@ likewise do not constitute a new capture. No visible version label was repainted
 The dark Settings capture also has low-contrast status-bar icons; it is historical
 image evidence, not proof of a current runtime defect.
 
-README already labels these images Development preview and makes no public
-download claim. Preserve that honest wording and the accepted captures.
+At that checkpoint README identified those images as Development previews;
+its current gallery instead references the six authentic 1.0.0 images above.
 M10's final exact-candidate/locale/public-asset review remains open; source
 consistency, hashes and format alone do not close it. F-Droid/Play image export,
 additional marketing images and store submissions remain future work.
 
-## Alpha.2 current screenshot candidates — pending canonical upload
+## Alpha.2 screenshot upload preparation — historical
 
 Historical preparation entry, superseded by the verified canonical upload above.
 
@@ -167,9 +218,8 @@ status and gesture indicators. The two staged files retain the existing
 Home/Settings ordering. They do not claim a full localized store screenshot set,
 four capability screens or store submission readiness.
 
-The existing canonical images remain historical13b50c18captures until these
-exact replacements are uploaded and their remote blobs/readback verified.
-Do not update the README caption to currentalpha.2 before that replacement.
-Its canonical paths can remain unchanged; no second independently edited
-screenshot set is needed.
+At that alpha.2 checkpoint the canonical images were historical captures
+pending their own upload verification. They have since been replaced by the
+six accepted 1.0.0 captures described at the top of this document. The
+canonical paths were reused; no independent edited screenshot set exists.
 

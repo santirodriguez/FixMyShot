@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
+import org.cajapersonal.fixmyshot.design.DestinationPlatformMark
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.selected
@@ -38,6 +39,7 @@ internal fun DestinationPicker(destination: DestinationChoice, enabled: Boolean,
     var open by rememberSaveable { mutableStateOf(false) }
     val id = (destination as? DestinationChoice.Preset)?.id
     val initialGroup = destinationGroups.firstOrNull { id in it.ids }?.name ?: "custom"
+    val displayGroup = destinationGroups.firstOrNull { id in it.ids }?.name ?: "Original"
     var group by rememberSaveable(destination) { mutableStateOf(initialGroup) }
     val chooseLabel = stringResource(R.string.quick_choose_destination)
     Surface(onClick = { open = true }, enabled = enabled, shape = MaterialTheme.shapes.large,
@@ -47,6 +49,7 @@ internal fun DestinationPicker(destination: DestinationChoice, enabled: Boolean,
             .semantics { contentDescription = chooseLabel }) {
         Row(Modifier.padding(horizontal = 16.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            DestinationPlatformMark(displayGroup, Modifier.size(32.dp))
             Column(Modifier.weight(1f)) {
                 Text(stringResource(R.string.ux_destination), style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary)
@@ -70,12 +73,19 @@ internal fun DestinationPicker(destination: DestinationChoice, enabled: Boolean,
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)) {
             items(destinationGroups, key = { it.name }) { platform ->
-                Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerLow,
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)) {
+                Surface(shape = MaterialTheme.shapes.medium,
+                    color = if (group == platform.name) MaterialTheme.colorScheme.surfaceContainer
+                        else MaterialTheme.colorScheme.surfaceContainerLow,
+                    border = BorderStroke(if (group == platform.name) 1.5.dp else 1.dp,
+                        if (group == platform.name) MaterialTheme.colorScheme.primary
+                            else MaterialTheme.colorScheme.outlineVariant)) {
                     Column {
                         TextButton(onClick = { group = if (group == platform.name) "" else platform.name },
                             modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
-                            Text(if (platform.name == "Original") stringResource(R.string.quick_original_layout) else platform.name, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                            DestinationPlatformMark(platform.name, Modifier.size(32.dp))
+                            Spacer(Modifier.width(10.dp))
+                            Text(if (platform.name == "Original") stringResource(R.string.quick_original_layout) else platform.name,
+                                style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
                             Text(if (group == platform.name) "\u2212" else "+")
                         }
                         if (group == platform.name) {
@@ -131,6 +141,8 @@ private fun DestinationOption(id: String, active: Boolean, enabled: Boolean, onC
     val label = stringResource(quickTemplateLabel(id))
     Surface(onClick = onClick, enabled = enabled,
         color = if (active) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceContainerLow,
+        border = BorderStroke(if (active) 1.5.dp else 1.dp,
+            if (active) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant),
         shape = MaterialTheme.shapes.small,
         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 2.dp).heightIn(min = 48.dp)
             .semantics { selected = active; contentDescription = label }) {

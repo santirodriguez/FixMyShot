@@ -3,6 +3,7 @@ package org.cajapersonal.fixmyshot.settings
 import org.cajapersonal.fixmyshot.design.ActionLabel
 import org.cajapersonal.fixmyshot.design.ActionIcon
 import org.cajapersonal.fixmyshot.design.ActionMark
+import org.cajapersonal.fixmyshot.design.PrivacyShield
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.BorderStroke
@@ -133,7 +134,8 @@ internal fun SettingsDialog(
                 }
                 if (!editable) Text(stringResource(R.string.settings_wait))
                 if (saveError) Text(stringResource(R.string.settings_save_error), color = MaterialTheme.colorScheme.error)
-                SettingsDisclosure(stringResource(R.string.help_title)) {
+                SettingsDisclosure(stringResource(R.string.help_title),
+                    leading = { ActionIcon(ActionMark.INFO) }) {
                     Text(stringResource(R.string.help_body))
                     Text(stringResource(R.string.metadata_preserve_warning))
                     Text(stringResource(R.string.metadata_supported_tags), style = MaterialTheme.typography.bodySmall)
@@ -141,9 +143,31 @@ internal fun SettingsDialog(
                     TextButton(enabled = editable, onClick = onNativeCheck) { Text(stringResource(R.string.native_check_title)) }
                     TextButton(enabled = editable, onClick = onOddAvifCheck) { Text(stringResource(R.string.odd_check_title)) }
                 }
-                SettingsDisclosure(stringResource(R.string.privacy_title)) { Text(stringResource(R.string.privacy_body)) }
-                SettingsDisclosure(stringResource(R.string.ux_about)) {
-                    Text(stringResource(R.string.about_version, version))
+                SettingsDisclosure(stringResource(R.string.privacy_title),
+                    leading = { PrivacyShield(Modifier.size(24.dp)) }) {
+                    Text(stringResource(R.string.privacy_body),
+                        style = MaterialTheme.typography.bodyMedium)
+                }
+                SettingsDisclosure(stringResource(R.string.ux_about),
+                    leading = { Image(painterResource(R.drawable.brand_icon), null,
+                        modifier = Modifier.size(24.dp)) }) {
+                    Surface(color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = MaterialTheme.shapes.large) {
+                        Row(Modifier.fillMaxWidth().padding(14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                            Image(painterResource(R.drawable.brand_icon), null,
+                                modifier = Modifier.size(66.dp))
+                            Column {
+                                Text(stringResource(R.string.about_product_name),
+                                    style = MaterialTheme.typography.titleLarge,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer)
+                                Text(stringResource(R.string.about_version, version),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            }
+                        }
+                    }
                     Text(stringResource(R.string.about_author))
                     Text(stringResource(R.string.about_license))
                     TextButton(onClick = { onLink("https://github.com/santirodriguez/FixMyShot") }) {
@@ -190,7 +214,8 @@ private fun SettingsSection(title: String, content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun SettingsDisclosure(title: String, content: @Composable () -> Unit) {
+private fun SettingsDisclosure(title: String, leading: (@Composable () -> Unit)? = null,
+    content: @Composable () -> Unit) {
     var expanded by rememberSaveable { mutableStateOf(false) }
     val state = stringResource(if (expanded) R.string.ux_expanded else R.string.ux_collapsed)
     Surface(shape = MaterialTheme.shapes.medium, color = MaterialTheme.colorScheme.surfaceContainerLow,
@@ -198,6 +223,10 @@ private fun SettingsDisclosure(title: String, content: @Composable () -> Unit) {
         Column(Modifier.fillMaxWidth()) {
             TextButton(onClick = { expanded = !expanded }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)
                 .semantics { stateDescription = state }) {
+                if (leading != null) {
+                    Box(Modifier.size(28.dp), contentAlignment = Alignment.Center) { leading() }
+                    Spacer(Modifier.width(10.dp))
+                }
                 Text(title, modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
                 Text(if (expanded) "\u2212" else "+", color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
