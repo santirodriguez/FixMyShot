@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Assemble the bound alpha.2 runtime source materials, offline; no release approval."""
+"""Assemble source-bound runtime materials without signing or distribution approval."""
 import argparse
 import gzip
 import hashlib
 import io
 import json
+import re
 from pathlib import Path, PurePosixPath
 import sys
 import tarfile
 import zipfile
 import zlib
 
-KIT_SHA = 'be9a836178f58c7c4db5e4b580241c06ea53efc409fe4b926745085ad77792a0'
+
 CAPTURE_SHA = 'f88e271b106e6f92484d7be1e5ac605ea66d6ff1e70bf0882e2501101fb5da31'
 PLAN_SHA = '3a0e1aae590a2296f8315d097b083758663c5f8fbb22e5f50c39bf60047fb08e'
 PROTO_SHA = '2460a92938259e4441826e57638193d0bde9cb5cdd0dafd5367aacb833f9a971'
@@ -30,8 +31,42 @@ def pinned(path, expected):
     return raw
 
 
-def package(kit, source_root, binaries, evidence, supplemental, protobuf):
+def kit_binding(kit, receipt_path, source_commit, source_tree):
+    """Verify source archive against an exact current-source producer receipt."""
+    for name, value in (("source_commit", source_commit), ("source_tree", source_tree)):
+        if not isinstance(value, str) or re.fullmatch(r"[0-9a-f]{40}", value) is None:
+            raise ValueError("Invalid " + name)
+    if receipt_path.is_symlink() or not receipt_path.is_file() or receipt_path.stat().st_size > 16384:
+        raise ValueError("Missing or oversized source-kit receipt")
+    def unique_fields(pairs):
+        result = {}
+        for name, item in pairs:
+            if name in result:
+                raise ValueError("Repeated source-kit receipt field")
+            result[name] = item
+        return result
+    original = receipt_path.read_bytes()
+    receipt = json.loads(original, object_pairs_hook=unique_fields)
+    if not isinstance(receipt, dict) or type(receipt.get("schema")) is not int or receipt["schema"] != 1:
+        raise ValueError("Unknown source-kit receipt schema")
+    if (receipt.get("scope") != "EXACT_PROJECT_AND_FULL_WEBP_SOURCE_KIT_NOT_DISTRIBUTION_CLEARANCE"
+            or receipt.get("project_commit") != source_commit or receipt.get("project_tree") != source_tree):
+        raise ValueError("Source-kit receipt does not belong to the compiled candidate")
+    digest, size = receipt.get("archive_sha256"), receipt.get("archive_bytes")
+    if (not isinstance(digest, str) or re.fullmatch(r"[0-9a-f]{64}", digest) is None
+            or type(size) is not int or not 0 < size <= 64 * 1024 * 1024):
+        raise ValueError("Invalid source-kit archive pin")
+    raw = pinned(kit, digest)
+    if len(raw) != size:
+        raise ValueError("Source-kit archive size differs")
+    return raw, original, digest
+
+
+def package(kit, source_root, binaries, evidence, supplemental, protobuf,
+            source_kit_receipt, source_commit, source_tree):
     entries, owners = {}, []
+    source_kit_bytes, kit_receipt_bytes, kit_sha = kit_binding(
+        kit, source_kit_receipt, source_commit, source_tree)
 
     def add(name, raw):
         p = PurePosixPath(name)
@@ -39,7 +74,8 @@ def package(kit, source_root, binaries, evidence, supplemental, protobuf):
             raise ValueError('Unsafe or repeated source material path')
         entries[name] = raw
 
-    add('project-and-webp-source.tar.gz', pinned(kit, KIT_SHA))
+    add('project-and-webp-source.tar.gz', source_kit_bytes)
+    add('records/compiled-project-source-kit.json', kit_receipt_bytes)
     capture_raw = pinned(evidence/'capture.json', CAPTURE_SHA)
     plan_raw = pinned(supplemental/'binary-plan.json', PLAN_SHA)
     capture, plan = json.loads(capture_raw), json.loads(plan_raw)
@@ -80,24 +116,28 @@ def package(kit, source_root, binaries, evidence, supplemental, protobuf):
                     raise ValueError('Oversized evidence file')
                 add(prefix+'/'+path.relative_to(root).as_posix(), path.read_bytes())
     add('prepare-source-material-bundle.py', Path(__file__).read_bytes())
-    record = {'schema': 1, 'scope': 'BOUND_ALPHA2_SOURCE_MATERIALS_NOT_COMPLETE_DISTRIBUTION_APPROVAL',
-              'compiled_source': '1f89c979a7b432e6117670d170ce8ca0df5e2567',
-              'project_webp_kit_sha256': KIT_SHA, 'source_capture_sha256': CAPTURE_SHA,
+    record = {'schema': 1, 'scope': 'BOUND_CANDIDATE_SOURCE_MATERIALS_NOT_COMPLETE_DISTRIBUTION_APPROVAL',
+              'compiled_source': source_commit, 'compiled_tree': source_tree,
+              'project_webp_kit_sha256': kit_sha, 'source_kit_receipt_sha256': sha(kit_receipt_bytes),
+              'source_capture_sha256': CAPTURE_SHA,
               'upstream_protobuf_sha256': PROTO_SHA, 'aar_material_owners': owners,
               'publisher_authentication_approved': False, 'binary_source_equivalence_approved': False,
               'complete_offline_build': False, 'final_corresponding_source_approved': False,
               'signing_or_publication': False}
     add('SOURCE-MATERIALS.json', (json.dumps(record, indent=2)+'\n').encode())
-    add('README-SOURCES.md', b'''# FixMyShot alpha.2 source materials
+    add('README-SOURCES.md', b'''# FixMyShot candidate source materials
 
-The nested project-and-webp-source.tar.gz retains the exact accepted project
+SOURCE-MATERIALS.json identifies the compiled source commit/tree and current
+project/WebP kit digest. The nested archive retains that exact project
 and full pinned WebP source plus its original Git restoration helpers. Extract
 it separately and follow its README. runtime-sources/ contains original source
 companions and mapped upstream Protobuf. aar-inputs/ preserves published AAR
 resources, manifests and rules, with exact original archive owners recorded in
 SOURCE-MATERIALS.json. These are published build inputs, not proof every asset
-is its original preferred editing form. records/ retains original notices,
-supplemental JNI/FlatBuffers/AIDL sources and precise review limits.
+is its original preferred editing form. records/ retains prior reviewed runtime source-capture inputs, original notices,
+supplemental JNI/FlatBuffers/AIDL sources and precise review limits. An unchanged
+dependency-source capture is not new issuer authentication or proof of final
+corresponding-source acceptance.
 
 After extraction run sha256sum -c MANIFEST.sha256 from this directory. This
 verifies bytes, not publisher identity or source/binary equivalence. Read the
@@ -127,10 +167,14 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     for name in ('kit', 'source_root', 'binaries', 'evidence', 'supplemental', 'protobuf', 'output', 'receipt'):
         p.add_argument(name, type=Path)
+    p.add_argument('--source-kit-receipt', required=True, type=Path)
+    p.add_argument('--source-commit', required=True)
+    p.add_argument('--source-tree', required=True)
     a = p.parse_args()
     if a.output.exists() or a.receipt.exists():
         raise ValueError('Outputs must be fresh')
-    raw, receipt = package(a.kit, a.source_root, a.binaries, a.evidence, a.supplemental, a.protobuf)
+    raw, receipt = package(a.kit, a.source_root, a.binaries, a.evidence, a.supplemental,
+                           a.protobuf, a.source_kit_receipt, a.source_commit, a.source_tree)
     with a.output.open('xb') as f:
         f.write(raw)
     with a.receipt.open('x') as f:

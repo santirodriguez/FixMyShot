@@ -185,8 +185,22 @@ jobs:
           PY
       - name: Assemble current source materials twice without changing reviewed inputs
         run: |
-          python3 controller/scripts/prepare-source-material-bundle.py evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries project/docs/feasibility/evidence/runtime-source-companions-e516aa89 project/docs/feasibility/evidence/runtime-source-closure-e516aa89 material-inputs/protobuf.jar evidence/FixMyShot-source-materials.tar.gz evidence/source-materials.json
-          python3 controller/scripts/prepare-source-material-bundle.py evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries project/docs/feasibility/evidence/runtime-source-companions-e516aa89 project/docs/feasibility/evidence/runtime-source-closure-e516aa89 material-inputs/protobuf.jar evidence/materials-repeat.tar.gz evidence/materials-repeat.json
+          python3 controller/scripts/prepare-source-material-bundle.py \
+            evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries \
+            project/docs/feasibility/evidence/runtime-source-companions-e516aa89 \
+            project/docs/feasibility/evidence/runtime-source-closure-e516aa89 \
+            material-inputs/protobuf.jar evidence/FixMyShot-source-materials.tar.gz evidence/source-materials.json \
+            --source-kit-receipt evidence/source-kit.json \
+            --source-commit "${{ steps.request.outputs.source_commit }}" \
+            --source-tree "${{ steps.request.outputs.source_tree }}"
+          python3 controller/scripts/prepare-source-material-bundle.py \
+            evidence/FixMyShot-source.tar.gz material-inputs/sources material-inputs/binaries \
+            project/docs/feasibility/evidence/runtime-source-companions-e516aa89 \
+            project/docs/feasibility/evidence/runtime-source-closure-e516aa89 \
+            material-inputs/protobuf.jar evidence/materials-repeat.tar.gz evidence/materials-repeat.json \
+            --source-kit-receipt evidence/source-kit.json \
+            --source-commit "${{ steps.request.outputs.source_commit }}" \
+            --source-tree "${{ steps.request.outputs.source_tree }}"
           cmp evidence/FixMyShot-source-materials.tar.gz evidence/materials-repeat.tar.gz
           mkdir material-check
           tar -xzf evidence/FixMyShot-source-materials.tar.gz -C material-check

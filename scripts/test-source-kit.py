@@ -16,6 +16,11 @@ spec=importlib.util.spec_from_file_location('kit',Path(__file__).with_name('prep
 m=importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 
+bundle_spec = importlib.util.spec_from_file_location(
+    'source_material_bundle', Path(__file__).with_name('prepare-source-material-bundle.py'))
+bundle = importlib.util.module_from_spec(bundle_spec)
+bundle_spec.loader.exec_module(bundle)
+
 
 class SourceKit(unittest.TestCase):
     def setUp(self):
@@ -81,6 +86,36 @@ class SourceKit(unittest.TestCase):
             m.snapshot.restore(self.target,self.record,self.raw+b'changed')
         (self.target/'.git').mkdir()
         with self.assertRaises(ValueError):self.restore()
+
+    def test_materials_source_kit_binding_refuses_wrong_candidate_or_bytes(self):
+        kit = self.base / 'source.tar.gz'
+        kit.write_bytes(b'synthetic project-and-webp source')
+        receipt_path = self.base / 'source-kit.json'
+        receipt = {
+            'schema': 1,
+            'scope': 'EXACT_PROJECT_AND_FULL_WEBP_SOURCE_KIT_NOT_DISTRIBUTION_CLEARANCE',
+            'project_commit': self.commit,
+            'project_tree': self.tree,
+            'archive_sha256': hashlib.sha256(kit.read_bytes()).hexdigest(),
+            'archive_bytes': kit.stat().st_size,
+        }
+        receipt_path.write_text(json.dumps(receipt))
+        data, original, digest = bundle.kit_binding(kit, receipt_path, self.commit, self.tree)
+        self.assertEqual(data, kit.read_bytes())
+        self.assertEqual(original, receipt_path.read_bytes())
+        self.assertEqual(digest, receipt['archive_sha256'])
+        for key, value in (('project_commit', 'f' * 40), ('project_tree', 'f' * 40),
+                           ('archive_bytes', receipt['archive_bytes'] + 1),
+                           ('archive_sha256', '0' * 64)):
+            receipt_path.write_text(json.dumps(dict(receipt, **{key: value})))
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                bundle.kit_binding(kit, receipt_path, self.commit, self.tree)
+        receipt_path.write_text(json.dumps(receipt))
+        with self.assertRaises(ValueError):
+            bundle.kit_binding(kit, receipt_path, '0' * 40, self.tree)
+        kit.write_bytes(b'altered source kit')
+        with self.assertRaises(ValueError):
+            bundle.kit_binding(kit, receipt_path, self.commit, self.tree)
 
     def test_wrong_source_tree_and_noncommit_ref_refused(self):
         for commit,tree in [(self.commit,'0'*40),('HEAD',self.tree)]:
