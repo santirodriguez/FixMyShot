@@ -130,26 +130,34 @@ class VisualScreenshotTest {
             values.put(MediaStore.MediaColumns.IS_PENDING, 0)
             assertEquals(1, resolver.update(input, values, null, null))
 
+            // Capture a fresh start screen before importing. Then open the real
+            // ACTION_SEND entry point as a separate activity; onNewIntent is protected.
             ActivityScenario.launch(MainActivity::class.java).use { scenario ->
+                lateinit var startModel: ReviewViewModel
+                scenario.onActivity { activity ->
+                    activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                    startModel = ViewModelProvider(activity)[ReviewViewModel::class.java]
+                }
+                await { startModel.quickPreferencesReady && startModel.exportState.phase == ExportUiPhase.IDLE }
+                await { find(app.getString(R.string.choose_images)) != null }
+                capture("01-start")
+            }
+
+            // Exercise the actual Android share-intent importer; no draft or preview is fabricated.
+            val shared = Intent(app, MainActivity::class.java).apply {
+                action = Intent.ACTION_SEND
+                type = "image/jpeg"
+                putExtra(Intent.EXTRA_STREAM, input)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+            ActivityScenario.launch<MainActivity>(shared).use { scenario ->
                 lateinit var model: ReviewViewModel
                 scenario.onActivity { activity ->
                     activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                     model = ViewModelProvider(activity)[ReviewViewModel::class.java]
                 }
-                await { model.quickPreferencesReady && model.exportState.phase == ExportUiPhase.IDLE }
-                await { find(app.getString(R.string.choose_images)) != null }
-                capture("01-start")
-
-                // Exercise the actual Android share-intent importer; no draft or preview is fabricated.
-                val shared = Intent(app, MainActivity::class.java).apply {
-                    action = Intent.ACTION_SEND
-                    type = "image/jpeg"
-                    putExtra(Intent.EXTRA_STREAM, input)
-                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                }
-                scenario.onActivity { it.onNewIntent(shared) }
-                await(40_000L) { model.draft.images.size == 1 && !model.isBusy &&
-                    model.preview != null && model.latestImport?.added == 1 }
+                await(40_000L) { model.quickPreferencesReady && model.draft.images.size == 1 &&
+                    !model.isBusy && model.preview != null && model.latestImport?.added == 1 }
                 assertEquals(941, model.draft.images.single().orientedSize.width)
                 assertEquals(1672, model.draft.images.single().orientedSize.height)
                 scenario.onActivity { model.clearImportFeedback() }
