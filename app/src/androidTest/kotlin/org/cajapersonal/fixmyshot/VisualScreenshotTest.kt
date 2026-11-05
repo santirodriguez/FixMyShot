@@ -176,8 +176,10 @@ class VisualScreenshotTest {
 
                 click(app.getString(R.string.quick_customize))
                 click(app.getString(R.string.editor_framing))
-                await { find(app.getString(R.string.quick_keep_all)) != null }
-                click(app.getString(R.string.quick_fill_crop))
+                // Advanced Framing uses Preserve content/Crop (not the Quick Keep all/Fill buttons).
+                await { find(app.getString(R.string.preserve_content)) != null }
+                click(app.getString(R.string.crop_mode))
+                await { model.draft.batch.fit == org.cajapersonal.fixmyshot.core.FitMode.CROP }
                 capture("04-framing")
                 click(app.getString(R.string.quick_automatic))
 
