@@ -48,8 +48,11 @@ Do not infer those cases passed or replace their NOT_RUN statuses.
 **Visual review:** the maintainer approved review-image indices 1, 2, 5
 and 7 and rejected 3, 4, 6 and 8 from the exact-source API36 contact
 sheet. [ARTWORK](ARTWORK.md) identifies each original PNG and the build
-artifact. This is partial capture-level acceptance, not completed release
-screenshot-set approval or promotion to canonical Fastlane files.
+artifact. That was partial capture-level acceptance for the **earlier signed-source**
+contact sheet, not approval of those old frames for public use. The
+subsequent PR #4 six-role set is now fully approved and committed in the
+canonical Fastlane paths as recorded in the newer section above; the older
+signed APK remains bound to its original UI source.
 
 This verifies a *signed candidate*, **not release acceptance**. The prior
 [bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
