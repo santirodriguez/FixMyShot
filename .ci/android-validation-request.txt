@@ -1,2 +1,2 @@
-Validate advanced-mode Framing controls in six-shot genuine UI capture after screenshot test label correction.
+Run API36 six native screenshot capture with correct Advanced framing controls and localized PNG export action.
 profile=current
