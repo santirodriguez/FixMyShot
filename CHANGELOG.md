@@ -9,6 +9,7 @@ First public release target; preparation in progress, not yet published.
 - Prepare screenshots individually or in batches, with content-preserving framing,
   optional crop and background controls, and separate PNG/lossless WebP copies.
 - View saved results, share them and start another image directly.
+- Polish Home and the editor with geometric framing guides and clearer destination choices; refine the verified saved-result screen and About identity.
 - Include offline English, Español and Català, light/dark/system themes and
   default identifying-metadata removal without modifying originals.
 - Use Caja Personal in About and current public links.
