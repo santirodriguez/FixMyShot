@@ -1,5 +1,9 @@
 # Testing and evidence
 
+## First-public 1.0.0 frozen unsigned candidate — 2026-11-05
+
+Frozen executable source `70f3bae` passed [branch Android CI #41958251409](https://github.com/santirodriguez/FixMyShot/actions/runs/41958251409) (build and API36 smoke, optional legacy SAF SKIPPED). The original unsigned APK is 12,356,302 bytes, SHA-256 `11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0`; [independent rebuild #41958986377](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986377) reproduced all bytes, verified from the downloaded original. [Source materials #41958986353](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986353) passed SHA-256 for all 1,282 manifest-listed members and bound source `70f3bae`. See [candidate-specific unsigned receipt](releases/1.0.0-unsigned-build-info.json). No signed APK, current hardware/locale/accessibility completion, issuer-publisher authorization, complete distribution source approval, Obtainium install, main merge, tag or release is claimed. The [signing request](../.ci/signing-candidate-request.json) is PREPARED: its request job passed and signing was SKIPPED in [Actions 41959585959](https://github.com/santirodriguez/FixMyShot/actions/runs/41959585959). Earlier private alpha Option B assurance is not inherited by this changed APK/source/version; explicit 1.0.0 risk disposition and separate signing approval are required.
+
 ## First public 1.0.0 preparation — 2026-11-04
 
 The maintainer approved first public stable version **1.0.0 / code1**, unchanged
