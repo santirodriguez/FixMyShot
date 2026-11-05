@@ -187,6 +187,11 @@ class VisualScreenshotTest {
                 reveal(app.getString(R.string.ux_about))
                 click(app.getString(R.string.ux_about))
                 reveal(app.getString(R.string.about_version, "1.0.0"))
+                await { find(app.getString(R.string.about_product_name)) != null }
+                if (app.getString(R.string.app_name) != app.getString(R.string.about_product_name)) {
+                    assertNull("About should not show the debug launcher label",
+                        find(app.getString(R.string.app_name)))
+                }
                 capture("06-settings")
                 click(app.getString(R.string.close_action))
                 await { model.canPrepareExport }
