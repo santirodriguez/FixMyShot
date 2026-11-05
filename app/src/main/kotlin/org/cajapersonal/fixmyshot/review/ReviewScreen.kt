@@ -696,7 +696,7 @@ internal fun ReviewScreen(
                 Button(onClick = { finishGesture(); onExport() }, enabled = editEnabled && canPrepareExport,
                     modifier = Modifier.weight(1f).heightIn(min = 52.dp)) {
                     val formats = plans.map { it.settings.format }.distinct()
-                    Text(if (formats.size == 1)
+                    ActionLabel(ActionMark.EXPORT, if (formats.size == 1)
                         stringResource(R.string.quick_export_format, formatLabel(formats.single()), draft.images.size)
                         else stringResource(R.string.export_batch, draft.images.size))
                 }
