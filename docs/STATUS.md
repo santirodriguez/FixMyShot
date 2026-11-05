@@ -1,5 +1,32 @@
 # Completion status
 
+## First-public 1.0.0 pre-merge readiness — 2026-11-05
+
+**Scope:** release-copy and outstanding-gate review for draft [PR #4](https://github.com/santirodriguez/FixMyShot/pull/4)
+(visual UI and screenshots) targeting draft [PR #3](https://github.com/santirodriguez/FixMyShot/pull/3)
+(`release/1.0.0`). Both remain unmerged; the stable GitHub release and
+`v1.0.0` tag do not exist. This review is **not** a merge, signing or
+publication approval.
+
+| Area | Grounded status | Required reconciliation |
+| --- | --- | --- |
+| Identity and public copy | **CONSISTENT, PREPUBLICATION:** README, CHANGELOG, [release notes](releases/1.0.0-notes.md) and [privacy source](PRIVACY.md) describe FixMyShot, Caja Personal, `1.0.0`/code1, local PNG/lossless WebP output, default metadata removal and deferred HEIC/AVIF/JXL without claiming a published APK. | Confirm combined source/notes at the eventual control commit. The notes are a **template**: `{{CONTROL_COMMIT}}` must resolve in the generated publication asset; it is not an unknown source SHA to guess now. |
+| Screenshots / visual source | **APPROVED:** all six genuine, unchanged `en-US` API36 emulator PNGs in Fastlane and README were read back and matched original SHA-256 and Git blob identifiers; [ARTWORK](ARTWORK.md) retains the evidence. | Recheck against the final source only if executable UI or images change; do not imply other locales or a signed-device screenshot review. |
+| Current Android build | **PASS for visual source:** [Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387), API36 smoke, with legacy SAF **SKIPPED** under `profile=current`. | After separately approved PR #4 integration, run source-bound trusted Android validation on `release/1.0.0`; a screenshot run on an isolated validation branch is not a signing input. |
+| Signed APK, independent rebuild and source kit | **OLD SOURCE ONLY:** [signed receipt](releases/1.0.0-signed-build-info.json) binds source `70f3bae`, not the new visual executable. | Freeze the new integration source, rebuild/reproduce and prepare matching corresponding sources; obtain a separate exact-candidate signing authorization, then independently inspect its signature and bytes. |
+| Dependency issuer and legal/source assurance | **PARTIAL:** the previous 1.0.0 [Option B decision](decisions/dependency-assurance-1.0.0.md) is bound to the older APK. Identified locked Gradle inputs match the visual source, but **533/858** frozen files remain pending issuer provenance; N01's narrow implementation-correspondence hold was previously closed. | Rebind the actual new APK/source/input hashes; make an explicit new candidate-specific residual-risk decision. Review final corresponding-source/license distribution; do not relabel pending issuer files authenticated or reopen N01 without new evidence. |
+| API26–28 / SAF / 16 KiB | **LIMITED / NOT_RUN:** API26–28 SAF remains best-effort under the approved [compatibility amendment](decisions/compatibility-and-validation.md). A skipped SAF job is not a pass; physical 16 KiB runtime has not been established. | Decide and document the explicit scoped validation/limitations against [TESTING](TESTING.md); do not infer physical/runtime acceptance from ELF structural checks. |
+| Manual device, resource and interaction coverage | **PARTIAL / NOT_RUN:** the older signed candidate was reportedly installed and used, not the new visual candidate. Full mixed 100-image/provider/process-death, physical privacy/color/metadata, detailed preference retention, three-language human review, TalkBack, 200% text and other M03–M07/M09 exercises have no complete new-source acceptance record. | Preserve valid older limited evidence; record exact new-candidate checks and any explicitly accepted limitations before claiming functional release readiness. Optional M08 social-post preview and future Play/F-Droid submission are not prerequisites for initial GitHub delivery. |
+| Brand and localized listing claims | **LIMITED:** destination references use original descriptive pictograms, not claimed official platform marks. The accepted six screenshots show the English UI only. | Review final text and visual claims; do not represent a third-party endorsement, official logo license or translated screenshot set without evidence. |
+| Public web links | **UNVERIFIED from this review:** the project has a separately maintained ChatGPT Site reported by the maintainer, but live `https://fixmyshot.cajapersonal.org/`, `/privacy/` and the donor URL could not be independently accessed by the available external browser. Inaccessibility to that tool is **not** proof the sites are down. | Check actual live DNS/HTTPS and privacy-page content through a suitable independent browser before publication; do not silently change DNS, Sites or hosting. The repository [privacy source](PRIVACY.md) remains the app policy authority. |
+| Release control and Obtainium | **PREPARED / NOT_PUBLISHED:** release request and signing request remain `PREPARED`; no GitHub Release/tag exists. | Reconcile final release-kit/source/control hashes and separately authorize merge, signing and publication. Actual Obtainium fresh install requires accessible published assets; higher-code update is a later-version test, not a reason to block first install. |
+
+For the detailed historically bound M01–M10 tests and their original positive
+and negative evidence, see [TESTING](TESTING.md). A limited or skipped result
+does not become PASS because a newer Android CI run is green. Do not
+regenerate accepted screenshots or re-run closed diagnostics without a change
+that materially invalidates their evidence.
+
 ## First-public 1.0.0 visual screenshots — approved and verified 2026-11-05
 
 The maintainer approved the full six-role 1.0.0 screenshot set in draft
