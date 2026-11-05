@@ -1,2 +1,2 @@
-Run API36 six native screenshot capture with correct Advanced framing controls and localized PNG export action.
+Validate API36 real six-screen capture after explicit export-journal review and test-order isolation.
 profile=current
