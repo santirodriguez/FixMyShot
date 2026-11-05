@@ -73,8 +73,10 @@ it does not establish full physical/device, export/privacy, 16 KiB,
 accessibility or legacy SAF acceptance. The maintainer also approved only
 review images **1, 2, 5 and 7** from the genuine 1.0.0 source artifact;
 images **3, 4, 6 and 8** were rejected. See [ARTWORK](ARTWORK.md)
-for exact filenames/provenance. These are partial visual approvals:
-canonical Fastlane screenshots remain unchanged.
+for exact filenames/provenance. These were **partial approvals of the earlier signed-source contact sheet**,
+not the later six-image visual set. The newer PR #4 captures were subsequently
+approved and replaced the canonical Fastlane files; see the current section
+above. The old signed APK still does not contain that newer interface.
 
 This verifies a *signed candidate*, **not release acceptance**. The prior
 [bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
