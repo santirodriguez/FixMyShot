@@ -100,7 +100,17 @@ def stage(request, signed_root, source_root, output, control):
                 "Nested project/WebP kit differs")
     signed_receipt = json.loads((ROOT / "docs/releases" / (version + "-signed-build-info.json")).read_text())
     unsigned_receipt = json.loads((ROOT / "docs/releases" / (version + "-unsigned-build-info.json")).read_text())
-    require(signed_receipt["signed_apk_sha256"] == apk_record["sha256"], "Repository receipt differs")
+    require(signed_receipt.get("status") == "SIGNED_AND_INDEPENDENTLY_INSPECTED__NOT_FINAL_RELEASE_ACCEPTANCE",
+            "Signed receipt has not been independently inspected")
+    for key, expected in (("signed_apk_sha256", apk_record["sha256"]),
+                          ("unsigned_apk_sha256", apk_record["unsigned_sha256"]),
+                          ("certificate_sha256", apk_record["certificate_sha256"]),
+                          ("signed_apk_bytes", apk_record["bytes"]),
+                          ("source_commit", request["compiled_source"]),
+                          ("source_tree", request["compiled_tree"]),
+                          ("version_name", version),
+                          ("version_code", request["version_code"])):
+        require(signed_receipt.get(key) == expected, "Signed receipt differs: " + key)
     require(unsigned_receipt["source_commit"] == request["compiled_source"], "Unsigned source differs")
     limitations = {
         "functional_acceptance": "INCOMPLETE",
@@ -136,12 +146,12 @@ def stage(request, signed_root, source_root, output, control):
             "core_tests": 99, "api36_instrumented_tests": 135,
             "independent_unsigned_rebuild": unsigned_receipt["independent_unsigned_rebuild"],
             "independent_signature_inspection": signed_receipt["independent_inspection"],
-            "maintainer_report": signed_receipt["maintainer_acceptance"],
+            "maintainer_report": signed_receipt.get("maintainer_acceptance", "NOT_RUN"),
             "artifact_specific_assurance": unsigned_receipt["artifact_specific_assurance"],
             "pending_publisher_classifications_retained": True,
             "dependency_authentication": unsigned_receipt["artifact_specific_assurance"],
-            "fresh_install": signed_receipt.get("fresh_install_test", "NOT_RUN"),
-            "same_certificate_upgrade": signed_receipt["sequential_upgrade_test"],
+            "fresh_install": signed_receipt.get("signed_physical_install_test", "NOT_RUN"),
+            "same_certificate_upgrade": signed_receipt.get("sequential_upgrade_test", "NOT_RUN"),
             "obtainium_install_and_update": "NOT_RUN",
             "remaining_limitations": limitations,
         },
