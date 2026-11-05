@@ -159,7 +159,7 @@ internal fun SettingsDialog(
                             Image(painterResource(R.drawable.brand_icon), null,
                                 modifier = Modifier.size(66.dp))
                             Column {
-                                Text(stringResource(R.string.app_name),
+                                Text(stringResource(R.string.about_product_name),
                                     style = MaterialTheme.typography.titleLarge,
                                     color = MaterialTheme.colorScheme.onPrimaryContainer)
                                 Text(stringResource(R.string.about_version, version),
