@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -108,7 +109,7 @@ internal fun DestinationPlatformMark(platform: String, modifier: Modifier = Modi
         "Google Play" -> Color(0xFF257D9C)
         else -> Color(0xFF52667E)
     }
-    Box(modifier.background(background, RoundedCornerShape(10.dp)),
+    Box(modifier.clearAndSetSemantics { }.background(background, RoundedCornerShape(10.dp)),
         contentAlignment = Alignment.Center) {
         when (platform) {
             "Facebook" -> Text("F", color = Color.White, fontSize = 18.sp,
