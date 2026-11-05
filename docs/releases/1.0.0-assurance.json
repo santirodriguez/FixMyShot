@@ -47,5 +47,8 @@
     "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
     "unsigned_apk_sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0",
     "baseline_run_id": 41958251409
-  }
+  },
+  "production_signing_executed": true,
+  "production_signing_receipt": "1.0.0-signed-build-info.json",
+  "signed_apk_sha256": "03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39"
 }

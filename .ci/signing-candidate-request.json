@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "state": "SIGN_CANDIDATE",
-  "request_id": "1.0.0-code1-signed-candidate-authorized-2026-11-05",
+  "state": "PREPARED",
+  "request_id": "1.0.0-code1-signing-finished-41964708826",
   "version_name": "1.0.0",
   "version_code": 1,
   "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
@@ -11,5 +11,8 @@
   "baseline_run_id": 41958251409,
   "baseline_artifact_id": 13383954401,
   "source_materials_run_id": 41958986353,
-  "independent_unsigned_rebuild_run_id": 41958986377
+  "independent_unsigned_rebuild_run_id": 41958986377,
+  "completed_signing_workflow_run_id": 41964708826,
+  "completed_signed_apk_sha256": "03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39",
+  "completed_certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445"
 }
