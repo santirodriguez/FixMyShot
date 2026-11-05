@@ -1,2 +1,2 @@
-Validate native visual screenshots after correcting protected onNewIntent call in instrumentation.
+Validate advanced-mode Framing controls in six-shot genuine UI capture after screenshot test label correction.
 profile=current
