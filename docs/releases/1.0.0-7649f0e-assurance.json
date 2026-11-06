@@ -45,7 +45,7 @@
   "new_publisher_anchor_established": false,
   "active_gradle_verification_enabled": false,
   "full_source_distribution_approved": false,
-  "production_signing_authorized": false,
+  "production_signing_authorized": true,
   "production_signing_executed": false,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
@@ -57,5 +57,22 @@
   "actual_16k_runtime": "NOT_RUN",
   "current_screenshot1_new_icon_approved": false,
   "branding_revision_pending": true,
-  "residual_risk": "325 of 858 frozen issuer files reviewed; 533 pending including 2 runtime archives. Byte-identical builds do not independently prove publisher identity or full source/license distribution compliance."
+  "residual_risk": "325 of 858 frozen issuer files reviewed; 533 pending including 2 runtime archives. Byte-identical builds do not independently prove publisher identity or full source/license distribution compliance.",
+  "production_signing_authorization": {
+    "scope": "EXACT_UNSIGNED_APK_SIGN_ONLY",
+    "maintainer_authorization": "Separately authorized in chat: 'si go' after the exact new icon1 APK signing recommendation; subsequent 'go' confirmed the previously agreed bounded signing step.",
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "1.0.0",
+    "version_code": 1,
+    "source_commit": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+    "source_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
+    "unsigned_apk_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+    "unsigned_apk_bytes": 12629654,
+    "baseline_artifact_id": 13465741212,
+    "baseline_workflow_run_id": 42134905825,
+    "existing_signer_certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+    "execution_status": "BLOCKED_BY_EXISTING_WORKFLOW_ARTIFACT_PROVENANCE",
+    "signing_executed": false,
+    "merge_or_publication_authorized": false
+  }
 }
