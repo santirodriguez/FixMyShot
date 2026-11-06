@@ -59,7 +59,9 @@ class SixteenKPrivacyTest {
     @Test fun emitFourSyntheticPrivacyOutputsForIndependentHostInspection() {
         assertEquals(16384L, Os.sysconf(OsConstants._SC_PAGE_SIZE))
         // Explicitly synthetic EXIF/GPS/XMP, never camera or user media.
-        val source = File(app.cacheDir, "ci-synthetic-${UUID.randomUUID()}.source")
+        val id = UUID.randomUUID().toString().replace("-", "")
+        val sourceDirectory = File(app.cacheDir, "review-sources").apply { assertTrue(isDirectory || mkdirs()) }
+        val source = File(sourceDirectory, "$id.source")
         val bitmap = Bitmap.createBitmap(64, 48, Bitmap.Config.ARGB_8888)
         try {
             bitmap.setHasAlpha(false)
@@ -82,8 +84,10 @@ class SixteenKPrivacyTest {
             }
             val fingerprint = MessageDigest.getInstance("SHA-256").digest(source.readBytes())
                 .joinToString("") { "%02x".format(it.toInt() and 255) }
-            val image = DraftImage(source.name.removeSuffix(".source"), "ci-synthetic",
+            val image = DraftImage(id, "ci-synthetic",
                 PixelSize(48, 64), false, contentSha256 = fingerprint)
+            assertTrue("Synthetic source must match the private staging contract",
+                ReviewSources(app).matchesFingerprint(id, fingerprint))
             for (format in listOf(OutputFormat.PNG, OutputFormat.WEBP_LOSSLESS)) {
                 for (policy in listOf(MetadataPolicy.REMOVE_IDENTIFYING, MetadataPolicy.PRESERVE_ALLOWLIST)) {
                     val session = DraftSession(destination = DestinationChoice.Custom.of(1, 1),
