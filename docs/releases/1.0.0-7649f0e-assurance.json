@@ -46,7 +46,7 @@
   "active_gradle_verification_enabled": false,
   "full_source_distribution_approved": false,
   "production_signing_authorized": true,
-  "production_signing_executed": false,
+  "production_signing_executed": true,
   "merge_release_or_deployment_authorized": false,
   "other_delivery_gates_waived": false,
   "decision": "docs/decisions/dependency-assurance-1.0.0-7649f0e.md",
@@ -71,8 +71,18 @@
     "baseline_artifact_id": 13465741212,
     "baseline_workflow_run_id": 42134905825,
     "existing_signer_certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
-    "execution_status": "BLOCKED_BY_EXISTING_WORKFLOW_ARTIFACT_PROVENANCE",
-    "signing_executed": false,
-    "merge_or_publication_authorized": false
-  }
+    "execution_status": "SIGNED_AND_INDEPENDENTLY_VERIFIED__NOT_PUBLISHED",
+    "signing_executed": true,
+    "merge_or_publication_authorized": false,
+    "execution_workflow_run_id": 42226227569,
+    "signed_apk_sha256": "92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428",
+    "signed_apk_bytes": 12675989,
+    "signed_receipt": "docs/releases/1.0.0-7649f0e-signed-build-info.json"
+  },
+  "completed_signing_workflow_run_id": 42226227569,
+  "completed_signed_apk_sha256": "92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428",
+  "completed_certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+  "signed_receipt": "docs/releases/1.0.0-7649f0e-signed-build-info.json",
+  "source_distribution_reviewed": false,
+  "publication_authorized": false
 }

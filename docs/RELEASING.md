@@ -1,5 +1,11 @@
 # A good release should be boring to install
 
+## Latest verified icon1 signed test candidate — 2026-11-06
+
+[Actions 42226227569](https://github.com/santirodriguez/FixMyShot/actions/runs/42226227569) completed the **separately authorized exact icon1** signing with the existing app identity. The original signed `FixMyShot-1.0.0-universal.apk` is **12,675,989 bytes**, SHA-256 `92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`; the [machine receipt](releases/1.0.0-7649f0e-signed-build-info.json) records the source, original input artifacts, byte-identical rebuild, certificate and independent v2/v3 signatures, preserved APK content and static 16 KiB alignment. This supersedes earlier sections' **signing pending** statements for icon1 only; their old-source evidence remains historical.
+
+The request control returned to `PREPARED` with its prior historical stage identity. **Do not** use that old `.ci/development-release-request.json` as a new-icon release kit: it is still `PREPARED`, points to the old-icon signed APK and has `branding_revision_pending=true`. Before any public staging, reconcile the exact new signed APK, matching source assets, release tests and full corresponding-source/license/legal and physical/manual gates under a separately agreed preparation step. Screenshot #1 new launcher identity, real 16 KiB device runtime, locales/accessibility/privacy/SAF, merge, tag, GitHub Release, Obtainium and website/store release remain OPEN. No public release is authorized by candidate signing.
+
 ## New-icon 1.0.0 release gate — 2026-11-05
 
 The selected next-launcher artwork is the original `icon1.png`, now `assets/branding/primary/app-icon.png` and its exact canonical Fastlane `en-US/images/icon.png` copy. The original 1024×500 `promo.png` is the future Google Play/F-Droid `en-US/images/featureGraphic.png`; older designs remain alternatives. See [ARTWORK](ARTWORK.md).
