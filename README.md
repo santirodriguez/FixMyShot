@@ -84,12 +84,12 @@ Six genuine FixMyShot 1.0.0 screenshots. Select any image to view it in full siz
 
 <table>
 <tr>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with its Choose images action" width="150" /></a></td>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Image editor with an imported café photograph and export controls" width="150" /></a></td>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Offline destination picker with publication presets" width="150" /></a></td>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Framing controls showing an explicit crop selection" width="150" /></a></td>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" alt="Verified successful export with options to view or share the saved image" width="150" /></a></td>
-<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" alt="Settings and About with the FixMyShot name and version 1.0.0" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with its Choose images action" height="265" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Image editor with an imported café photograph and export controls" height="265" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Offline destination picker with publication presets" height="265" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Framing controls showing an explicit crop selection" height="265" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" alt="Verified successful export with options to view or share the saved image" height="265" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" alt="Settings and About with the FixMyShot name and version 1.0.0" height="265" /></a></td>
 </tr>
 <tr>
 <td align="center"><strong>Home</strong></td>
