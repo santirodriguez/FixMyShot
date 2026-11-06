@@ -1,5 +1,11 @@
 # Testing and evidence
 
+## Signed icon1 APK basic maintainer acceptance — 2026-11-06
+
+The maintainer explicitly reported **"Aprobado el apk, probado, funciona bien"** for the exact signed FixMyShot 1.0.0/code1 icon1 APK (SHA-256 `92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`; executable source `7649f0e002aca9c91cdf1294ab3033a9572029a9`; [signed evidence](releases/1.0.0-7649f0e-signed-build-info.json); [successful signing run](https://github.com/santirodriguez/FixMyShot/actions/runs/42226227569)). Record **MAINTAINER_REPORTED_BASIC_APK_ACCEPTANCE**. This is user-reported basic working-app evidence, not a logged clean install, a full prescribed device test or an agent-operated physical measurement; the user did not provide OS/build, a case-by-case checklist or full-resolution screenshots in this report.
+
+Retain separate OPEN/NOT_RUN gates for actual 16 KiB-page device runtime, the launcher mask and stale first canonical screenshot, full locale/accessibility and privacy/color/metadata checks, wider provider/legacy SAF testing, corresponding-source/license distribution, and Obtainium. The old-icon signed test was a different immutable APK and remains historical. Public staging stays `PREPARED`; this approval does not authorize a merge, tag, GitHub Release, website deployment or store submission.
+
 ## 1.0.0 basic signed-APK trial reported; newer icon still untested — 2026-11-05
 
 The maintainer reported that the previously supplied signed 1.0.0 APK **worked** in a basic real-world test. The provided APK's SHA-256 was `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde` (compiled source `3437722`). No specific device build, comprehensive export/metadata/color, actual 16 KiB runtime, TalkBack, language or legacy SAF scenario was reported; those separate gates remain NOT_RUN/PARTIAL. The report is not permission to publish.

@@ -7,6 +7,8 @@ on:
     paths:
       - '.ci/android-validation-request.txt'
   pull_request:
+    # Validate PR integration at review boundaries, not each draft synchronize.
+    types: [opened, reopened, ready_for_review]
     branches: [main]
 permissions:
   contents: read

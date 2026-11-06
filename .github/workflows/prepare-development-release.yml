@@ -9,6 +9,8 @@ on:
       - 'scripts/*development-release.py'
       - 'docs/releases/1.0.0-notes.md'
   pull_request:
+    # PR path filters see the cumulative diff; avoid repeat checks on each commit.
+    types: [opened, reopened, ready_for_review]
     branches: [main]
     paths:
       - '.ci/development-release-request.json'
