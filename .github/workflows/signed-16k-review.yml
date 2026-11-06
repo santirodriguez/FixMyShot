@@ -1,0 +1,58 @@
+name: Exact signed APK 16 KiB review
+on:
+  push:
+    branches: ['release/1.0.0']
+    paths:
+      - '.ci/signed-16k-validation-request.txt'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: signed-16k-review-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  signed-runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Fetch original independently signed 1.0.0 artifact without rebuilding
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: FixMyShot-1.0.0-signed-42226227569
+          run-id: 42226227569
+          github-token: ${{ github.token }}
+          path: signed-original
+      - name: Verify original exact SHA-256 before emulator launch
+        run: echo '92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428  signed-original/FixMyShot-1.0.0-universal.apk' | sha256sum -c -
+      - name: Enable virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install, start and restart signed APK on real 16 KiB emulator runtime
+        uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis_ps16k
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 768M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: bash scripts/run-signed-16k-review.sh signed-original
+      - name: Preserve signed runtime evidence even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: signed-16k-review-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: evidence/signed-16k/
