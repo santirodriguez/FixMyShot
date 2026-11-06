@@ -2,11 +2,31 @@
 
 Real changes. No imaginary release history.
 
+## 1.0.0
+
+First public stable GitHub milestone (1.0.0/code1). The release archive, source and checksums are distributed together when the stable GitHub Release is published. The unchanged signed icon1 APK was verified on a 16 KiB emulator for install/launch/relaunch; full physical/manual, independent signed-output metadata and 100-item stress coverage remain explicitly limited, not reported as passing.
+
+- Prepare screenshots individually or in batches, with content-preserving framing,
+  optional crop and background controls, and separate PNG/lossless WebP copies.
+- View saved results, share them and start another image directly.
+- Polish Home and the editor with geometric framing guides and clearer destination choices; refine the verified saved-result screen and About identity.
+- Include offline English, Español and Català, light/dark/system themes and
+  default identifying-metadata removal without modifying originals.
+- Use Caja Personal in About and current public links.
+- Start the public Android counter at code1 with the existing FixMyShot signer;
+  future public updates use strictly increasing codes and version names.
+- Prepare stable GitHub/Obtainium distribution. HEIC, AVIF and JXL output remain
+  deferred; current acceptance limits are recorded in docs/TESTING.md.
+
+The alpha entries below describe historical testing candidates, not prior public
+GitHub releases. Their hashes and acceptance scopes remain unchanged.
+
 ## 0.1.0-alpha.2
 
-Signed validation candidate handed off on 2026-11-03. Published downloads, when
-available, are listed on GitHub Releases; the development prerelease preserves
-these exact signed bytes.
+Private signed validation candidate handed off through GitHub Actions on
+2026-11-03, never published as a GitHub release. The proposed alpha publication
+was superseded by the first public stable 1.0.0 decision; its original signed
+bytes and validation evidence remain historical.
 The maintainer reports successful alpha.1/code1 to alpha.2/code2 update and launch.
 Detailed settings/default retention and Obtainium acceptance remain pending.
 

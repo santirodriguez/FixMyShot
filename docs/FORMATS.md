@@ -1,9 +1,9 @@
 # Codec status
 
-## Current0.1.0 scope — 2026-11-01
+## Current 1.0.0 scope — 2026-11-04
 
 **Normal output choices are PNG and lossless WebP. HEIC, AVIF and JXL
-are deferred from0.1.0.** New sessions default to PNG. New format menus
+are deferred from the first public 1.0.0.** New sessions default to PNG. New format menus
 omit the deferred codecs; restored draft identities remain readable and
 explicitly unavailable, without automatic substitution or fingerprint
 changes. Import support is unchanged.
@@ -114,9 +114,9 @@ HEIC/AVIF remain gated and PNG/lossless WebP are unaffected.
 |---|---|---|
 | PNG | Android PNG encoder on API 26+ | Synthetic instrumentation asserts opaque RGB / alpha RGBA, container CRCs, independent reopen and exact normalized pixels. Runtime/device results must come from the matching CI/device report. |
 | Lossless WebP | Source-built libwebp 1.6.0 on API 26-29; explicit Android `WEBP_LOSSLESS` on API 30+ | Tests require a real VP8L bitstream and exact decoded opaque pixels. API eligibility alone is not acceptance. |
-| HEIC | Deferred for0.1.0; not offered for new selections | Existing drafts stay readable/unavailable. Native diagnostics and failed Pixel/host fidelity evidence are retained; no shipping route is qualified. |
-| AVIF | Deferred for0.1.0; not offered for new selections | Existing drafts stay readable/unavailable. Native and software diagnostics are retained as failed/unqualified evidence; the approved scope amendment does not enable any production route. |
-| JXL | Deferred for v0.1.0; not offered in the format menu | The pinned three-ABI reference build succeeded, but qualified shipping cost/fidelity/runtime evidence is absent. See [the measured deferral decision](decisions/jxl-first-delivery.md). No codec failure or optimized-APK budget overrun is inferred. |
+| HEIC | Deferred for 1.0.0; not offered for new selections | Existing drafts stay readable/unavailable. Native diagnostics and failed Pixel/host fidelity evidence are retained; no shipping route is qualified. |
+| AVIF | Deferred for 1.0.0; not offered for new selections | Existing drafts stay readable/unavailable. Native and software diagnostics are retained as failed/unqualified evidence; the approved scope amendment does not enable any production route. |
+| JXL | Deferred for v1.0.0; not offered in the format menu | The pinned three-ABI reference build succeeded, but qualified shipping cost/fidelity/runtime evidence is absent. See [the measured deferral decision](decisions/jxl-first-delivery.md). No codec failure or optimized-APK budget overrun is inferred. |
 
 Current Photo Picker/share intake accepts supported static SDR JPEG, PNG and WebP sources. The normal image export path now includes private full-resolution encoding, strict candidate verification, journalled public publication, results, sharing and guarded recovery. It is a functional implementation with bounded automated acceptance, **not** an approved production distribution or an assertion of full physical output fidelity. JPEG output is excluded. Unsupported selections return typed errors and are never replaced with another format.
 

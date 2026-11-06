@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "status": "UNSIGNED_VERIFIED__NOT_FINAL_RELEASE_ACCEPTANCE",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "source_commit": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+  "source_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
+  "unsigned_apk": {
+    "filename": "app-release-unsigned.apk",
+    "bytes": 12629654,
+    "sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+    "android_gradle_metadata": "org.cajapersonal.fixmyshot / 1.0.0 / code1",
+    "elf_zip_16k_structural_alignment": "PASS",
+    "physical_16k_runtime": "NOT_RUN"
+  },
+  "baseline": {
+    "workflow_run": 42132693754,
+    "artifact_id": 13464257643,
+    "original_artifact_zip_sha256": "2655ae7f3b33d5bc437b302c8e094443d6d18b270bf2f48e0e6e262806a81962",
+    "original_run_conclusion": "failure",
+    "pr_merge_comparison": "FAIL_NON_EQUIVALENT_EMBEDDED_REVISION",
+    "clean_source_apk_retained": true,
+    "reason": "PR-merge embedded revision differs from exact source; clean-source APK retained",
+    "api36_smoke": "NOT_ASSERTED_FOR_FAILED_PR_MERGE_RUN",
+    "legacy_saf": "NOT_RUN"
+  },
+  "independent_unsigned_rebuild": {
+    "workflow_run": 42134905825,
+    "artifact_id": 13465741212,
+    "artifact_archive_bytes": 54137813,
+    "artifact_archive_sha256": "98fca5f73a3607d888216f3205739a7ab7a7e58d999b3e02c12f0c637b260b95",
+    "status": "PASS_BYTE_IDENTICAL_TO_CLEAN_SOURCE_UNSIGNED",
+    "byte_identical": true,
+    "source_commit": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+    "production_signature": "NOT_RUN_IN_REBUILD"
+  },
+  "corresponding_source_materials": {
+    "workflow_run": 42132693740,
+    "artifact_id": 13463158916,
+    "artifact_archive_bytes": 69364173,
+    "artifact_archive_sha256": "dded1b252f626f30c19d427a229393035bbb6bdf5f34b7f218d80b6c68092305",
+    "source_materials_archive_bytes": 39548907,
+    "source_materials_sha256": "07ec6845cb4e9dda7731a854f8130cf87b9803e920c8f02f376ab55ea879cd3a",
+    "source_kit_sha256": "398947d62b0ebe20640795ac26318be68ab4eddc03935261ed0f4666e0c1655a",
+    "total_archive_members": 1283,
+    "manifest_members_verified": 1282,
+    "nested_manifest_members_verified": 1161,
+    "source_binding": "PASS",
+    "deterministic_git_source_restoration": "PASS",
+    "full_offline_android_build": "NOT_RUN",
+    "final_corresponding_source_distribution_approval": false
+  },
+  "source_input_discrepancy": {
+    "historical_expected_unsigned_sha256": "0a1b88ee6ebbbfaaa4752540b28f45e11dbe50efa30e229bea5fec766851fcfd",
+    "actual_signed_input_unsigned_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+    "explanation": "Historical source archive request pinned an earlier PR-baseline unsigned digest; independently rebuilt clean-source bytes authorized for signing are distinct. Do not rewrite the archival request or falsely claim the original PR-merge comparison passed."
+  },
+  "legal_bytes": {
+    "apk_canonical_legal_assets": "EIGHT_OF_EIGHT_MATCH_EXACT_ORIGINALS",
+    "full_third_party_license_review": false,
+    "complete_corresponding_source_and_license_legal_review": "OPEN"
+  },
+  "artifact_specific_assurance": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED",
+  "assurance_receipt": "1.0.0-7649f0e-assurance.json",
+  "publisher_authentication": "OPEN_533_FROZEN_FILES",
+  "signing_workflow": "42226227569_SEPARATE_SIGNED_RECEIPT",
+  "physical_signed_fresh_install": "MAINTAINER_REPORTED_BASIC_WORKS__FULL_CHECK_NOT_RUN",
+  "physical_and_accessibility_acceptance": "INCOMPLETE__SEE_DOCS_TESTING",
+  "obtainium_fresh_install": "NOT_RUN__REQUIRES_PUBLIC_RELEASE",
+  "obtainium_higher_code_update": "NOT_RUN__REQUIRES_LATER_PUBLIC_VERSION",
+  "publication": "NOT_AUTHORIZED_NOT_RUN",
+  "toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9",
+    "gradle": "9.4.1",
+    "android_build_tools": "36.0.0",
+    "ndk": "28.2.13676358",
+    "agp": "9.2.1",
+    "kotlin": "2.4.21"
+  },
+  "toolchain_evidence": {
+    "independent_unsigned_workflow_run": 42134905825,
+    "jdk_and_gradle_ndk": "Independent rebuild job log confirms Temurin 17.0.21+9, Gradle 9.4.1 wrapper and NDK r28c installation.",
+    "agp_kotlin_build_tools": "Compiled source 7649f0e pins AGP 9.2.1, Kotlin 2.4.21 and Android Build Tools 36.0.0 in Gradle catalog/app build."
+  }
+}

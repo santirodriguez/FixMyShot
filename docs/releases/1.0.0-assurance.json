@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED",
+  "decision_date": "2026-11-05",
+  "approval": "Maintainer Go applying the established bounded Option B residual issuer-risk criterion to this exact first public 1.0.0 candidate only.",
+  "application_id": "org.cajapersonal.fixmyshot",
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "compiled_source": "70f3baeebb096461eb5072ca125f0c05334703da",
+  "compiled_tree": "d091a8ad59a039072c9d768196e89955138ae3fc",
+  "unsigned_apk": {
+    "bytes": 12356302,
+    "sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0"
+  },
+  "frozen_input_bindings": {
+    "inventory_sha256": "1fd918b7e439fb421cd18848d37f0d2a744aa6fb623553e6b7a77d38d43b5755",
+    "inactive_proof_record_sha256": "9c3fb232913c5225d62f8aa0351961be17a03c791ebce034dc6a2fd79f76f467",
+    "app_runtime_lock_sha256": "82e2f2f1f037385a526645b68e25bc1ac12a1c9882e3004b929d42cc3c3c3935",
+    "runtime_component_catalog_sha256": "f3b2d280a7c140e431ff643565c6bab8fe01f04edfb6bbfef9c7e3d073c8b407"
+  },
+  "issuer_classifications": {
+    "frozen_files": 858,
+    "reviewed": 325,
+    "pending": 533,
+    "pending_runtime_binary_archives": 2,
+    "source": "0.1.0-alpha.1-assurance.json"
+  },
+  "prior_precedent": "docs/decisions/dependency-assurance-alpha-proposal.md",
+  "independent_build_run": 41958986377,
+  "identical_unsigned_bytes": true,
+  "source_materials_run": 41958986353,
+  "source_materials_sha256": "297ab1574a0e8de2aaa7774a57cdcf9648f5261405b24bc1a966f81e74d5d192",
+  "input_comparison": "Source comparison found no Gradle dependency input or runtime catalog modifications; app lockfile, catalog and provenance report Git blobs verified unchanged.",
+  "classifications_changed": false,
+  "new_publisher_anchor_established": false,
+  "active_gradle_verification_enabled": false,
+  "full_source_distribution_approved": false,
+  "production_signing_authorized": true,
+  "merge_release_or_deployment_authorized": false,
+  "other_delivery_gates_waived": false,
+  "decision": "docs/decisions/dependency-assurance-1.0.0.md",
+  "residual_risk": "Unverified publisher provenance persists. Reproducibility and source availability cannot establish origin of frozen dependency bytes.",
+  "production_signing_authorization": {
+    "decision_date": "2026-11-05",
+    "authority": "Maintainer Go explicitly approving signing of the exact 1.0.0/code1 candidate as the immediately preceding agreed step",
+    "scope": "Sign the exact pinned unsigned APK with existing FixMyShot identity using the existing guarded GitHub Actions workflow; inspect signed output; no merge, tag, release, deployment or key change",
+    "source_commit": "70f3baeebb096461eb5072ca125f0c05334703da",
+    "unsigned_apk_sha256": "11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0",
+    "baseline_run_id": 41958251409
+  },
+  "production_signing_executed": true,
+  "production_signing_receipt": "1.0.0-signed-build-info.json",
+  "signed_apk_sha256": "03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39"
+}

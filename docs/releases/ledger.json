@@ -3,6 +3,14 @@
   "application_id": "org.cajapersonal.fixmyshot",
   "releases": [
     {
+      "version_name": "1.0.0",
+      "version_code": 1,
+      "status": "planned",
+      "changelog_heading": "1.0.0"
+    }
+  ],
+  "private_candidates": [
+    {
       "version_name": "0.1.0-alpha.1",
       "version_code": 1,
       "status": "distributed",
@@ -22,5 +30,11 @@
       "distribution_channel": "Initially handed off to maintainer as signed Actions validation candidate",
       "signing_workflow_run": 41719563373
     }
-  ]
+  ],
+  "public_counter_reset": {
+    "approved": "2026-11-04",
+    "last_private_version_code": 2,
+    "requires_clean_install_from_alpha2": true,
+    "decision": "docs/decisions/first-public-release.md"
+  }
 }

@@ -1,20 +1,22 @@
-name: Prepare development release kit
+name: Prepare reviewed release kit
 on:
   push:
-    branches: ['release/0.1.0-editor', 'release/0.1.0']
+    branches: ['release/1.0.0']
     paths:
       - '.ci/development-release-request.json'
       - '.github/workflows/prepare-development-release.yml'
       - '.github/workflows/publish-development-release.yml'
       - 'scripts/*development-release.py'
-      - 'docs/releases/0.1.0-alpha.2-notes.md'
+      - 'docs/releases/1.0.0-notes.md'
   pull_request:
+    # PR path filters see the cumulative diff; avoid repeat checks on each commit.
+    types: [opened, reopened, ready_for_review]
     branches: [main]
     paths:
       - '.ci/development-release-request.json'
       - '.github/workflows/*development-release.yml'
       - 'scripts/*development-release.py'
-      - 'docs/releases/0.1.0-alpha.2-notes.md'
+      - 'docs/releases/1.0.0-notes.md'
       - 'README.md'
       - 'docs/assets/badges/obtainium.svg'
   workflow_dispatch:
@@ -34,9 +36,28 @@ jobs:
           persist-credentials: false
       - name: Check release publishing and Obtainium boundaries offline
         run: python3 scripts/test-development-release.py
+  readiness:
+    runs-on: ubuntu-24.04
+    outputs:
+      ready: ${{ steps.request.outputs.ready }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - id: request
+        run: |
+          python3 - <<'PYCODE'
+          import json, os
+          from pathlib import Path
+          request = json.loads(Path('.ci/development-release-request.json').read_text())
+          if request.get('state') not in ('PREPARED', 'READY'):
+              raise ValueError('Unknown release readiness')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write('ready=' + str(request['state'] == 'READY').lower() + '\n')
+          PYCODE
   stage:
-    needs: verify
-    if: github.event_name != 'pull_request'
+    needs: [verify, readiness]
+    if: github.event_name != 'pull_request' && needs.readiness.outputs.ready == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

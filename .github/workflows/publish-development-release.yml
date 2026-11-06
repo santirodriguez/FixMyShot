@@ -1,13 +1,13 @@
-name: Publish reviewed development prerelease
+name: Publish reviewed GitHub release
 on:
   workflow_dispatch:
     inputs:
       prepared_run_id:
-        description: Successful release/0.1.0 push run of Prepare development release kit
+        description: Successful release/1.0.0 push run of Prepare reviewed release kit
         required: true
         type: string
       confirmation:
-        description: 'Explicit publication approval: PUBLISH v0.1.0-alpha.2'
+        description: 'Explicit publication approval: PUBLISH v1.0.0'
         required: true
         type: string
 permissions:

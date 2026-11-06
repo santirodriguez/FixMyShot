@@ -26,13 +26,18 @@ def validate(root=ROOT):
             "Unexpected ledger schema or application ID")
     releases = ledger.get("releases")
     require(isinstance(releases, list) and bool(releases), "Release ledger is empty")
-    require(releases[0].get("version_code") == 1, "The first versionCode must be 1")
+    require(releases[0].get("version_name") == "1.0.0" and releases[0].get("version_code") == 1,
+            "The first public release must be 1.0.0 / versionCode 1")
     previous = 0
+    previous_core = (0, 0, 0)
     names, hashes, certificates = set(), set(), set()
     for index, entry in enumerate(releases):
         name, code, status = entry.get("version_name"), entry.get("version_code"), entry.get("status")
         match = VERSION.fullmatch(name) if isinstance(name, str) else None
         require(match is not None, "Version must be SemVer without a leading v or build suffix")
+        core = tuple(int(v) for v in name.split("-", 1)[0].split("."))
+        require(index == 0 or core > (1, 0, 0), "Public versions after 1.0.0 must advance beyond 1.0.0")
+        require(core >= previous_core, "Public version names cannot move backwards")
         prerelease = match.group(1)
         require(not prerelease or all(not part.isdigit() or part == "0" or not part.startswith("0")
                 for part in prerelease.split(".")), "Numeric prerelease identifiers cannot have leading zeroes")
@@ -49,6 +54,7 @@ def validate(root=ROOT):
             certificates.add(entry["certificate_sha256"])
             require(len(certificates) == 1, "Signing identity changed; explicit lineage review is required")
         previous = code
+        previous_core = core
         names.add(name)
     candidate = releases[-1]
     gradle = (root / "app/build.gradle.kts").read_text()
@@ -61,7 +67,8 @@ def validate(root=ROOT):
     name = candidate["version_name"]
     require(name in (root / "README.md").read_text(), "README must identify the current version")
     changelog = (root / "CHANGELOG.md").read_text()
-    heading = f"## Unreleased — {name}" if candidate["status"] == "planned" else f"## {name}"
+    heading = "## " + candidate.get("changelog_heading", f"Unreleased — {name}" if candidate["status"] == "planned" else name)
+    require(heading in (f"## {name}", f"## Unreleased — {name}"), "Invalid candidate changelog heading")
     require(heading in changelog.splitlines(), "Changelog/current ledger status mismatch")
     template = (root / "docs/releases/TEMPLATE.md").read_text()
     require(set(re.findall(r"\{\{([^{}]+)\}\}", template)) == {"VERSION", "TAG", "CODE", "APK"},

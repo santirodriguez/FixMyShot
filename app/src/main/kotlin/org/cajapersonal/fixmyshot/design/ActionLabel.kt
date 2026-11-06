@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-internal enum class ActionMark { INFO, VIEW, SHARE, ADD, EDIT, DISCARD, CLOSE }
+internal enum class ActionMark { INFO, VIEW, SHARE, ADD, EDIT, EXPORT, DISCARD, CLOSE }
 
 /** Decorative local vectors accompany localized labels; no icon font or dependency. */
 @Composable
@@ -24,6 +24,11 @@ internal fun ActionIcon(mark: ActionMark, description: String? = null) {
                 ActionMark.SHARE -> { moveTo(6f,12f); lineTo(18f,5f); moveTo(6f,12f); lineTo(18f,19f); moveTo(3f,10f); lineTo(7f,10f); lineTo(7f,14f); lineTo(3f,14f); close(); moveTo(16f,3f); lineTo(20f,3f); lineTo(20f,7f); lineTo(16f,7f); close(); moveTo(16f,17f); lineTo(20f,17f); lineTo(20f,21f); lineTo(16f,21f); close() }
                 ActionMark.ADD -> { moveTo(12f,4f); lineTo(12f,20f); moveTo(4f,12f); lineTo(20f,12f) }
                 ActionMark.EDIT -> { moveTo(4f,20f); lineTo(5f,15f); lineTo(17f,3f); lineTo(21f,7f); lineTo(9f,19f); close(); moveTo(14f,6f); lineTo(18f,10f) }
+                ActionMark.EXPORT -> {
+                    moveTo(12f,3f); lineTo(12f,15f)
+                    moveTo(7f,10f); lineTo(12f,15f); lineTo(17f,10f)
+                    moveTo(4f,17f); lineTo(4f,21f); lineTo(20f,21f); lineTo(20f,17f)
+                }
                 ActionMark.DISCARD -> { moveTo(4f,6f); lineTo(20f,6f); moveTo(9f,6f); lineTo(9f,3f); lineTo(15f,3f); lineTo(15f,6f); moveTo(6f,6f); lineTo(7f,21f); lineTo(17f,21f); lineTo(18f,6f); moveTo(10f,10f); lineTo(10f,17f); moveTo(14f,10f); lineTo(14f,17f) }
                 ActionMark.CLOSE -> { moveTo(6f,6f); lineTo(18f,18f); moveTo(18f,6f); lineTo(6f,18f) }
             }

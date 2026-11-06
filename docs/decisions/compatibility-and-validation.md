@@ -1,5 +1,7 @@
 # Compatibility and validation scope — 2026-10-22
 
+> **First-public 1.0.0 clarification (2026-11-04):** The [approved 1.0.0 release identity](first-public-release.md) supersedes the old public `0.1.0` sequence. The already approved HEIC and AVIF deferrals apply unchanged to the first public 1.0.0 candidate, while PNG/WebP, privacy, validation and distribution gates remain in effect. References below to 0.1.0 and the exact alpha assurance exception are dated evidence; those exceptions do not approve a new 1.0.0 APK or signing operation.
+
 ## Approved exact-alpha issuer-assurance exception — 2026-11-02
 
 The maintainer explicitly chose Option B in the [bounded assurance decision](dependency-assurance-alpha-proposal.md).

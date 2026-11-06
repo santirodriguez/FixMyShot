@@ -1,5 +1,7 @@
 # JPEG XL decision for the first functional delivery
 
+> **Current release scope:** The 2026-11-04 [first-public amendment](first-public-release.md) moved the initial public version to stable 1.0.0/code1; this JXL deferral carries forward without new implementation or a waived validation gate. The v0.1.0 labels below remain the original experiment's historical context.
+
 Decision: **DEFER JXL for v0.1.0**. Date: 2026-10-23.
 
 The conditional gate in the immutable first-functional-release blueprint permits deferral after a bounded source-build/measurement attempt. That attempt is complete. The measured reference build is useful evidence, but there is no integrated, cost-qualified Android encoder/decoder ready to ship. Keep optional JXL work outside the remaining first-delivery critical path.

@@ -1,5 +1,19 @@
 {
   "schema": 1,
-  "state": "SIGN_CANDIDATE",
-  "request_id": "alpha.2-authorized-signing-2026-11-03"
+  "state": "PREPARED",
+  "request_id": "1.0.0-code1-visual-signing-finished-42123950177",
+  "version_name": "1.0.0",
+  "version_code": 1,
+  "source_commit": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
+  "source_tree": "5025043fb7aacc4330eb52458bbd80da708c0590",
+  "unsigned_sha256": "974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0",
+  "unsigned_bytes": 12373110,
+  "baseline_run_id": 42112670798,
+  "baseline_artifact_id": 13454568712,
+  "source_materials_run_id": 42119231007,
+  "independent_unsigned_rebuild_run_id": 42119230855,
+  "issuer_assurance_receipt": "docs/releases/1.0.0-3437722-assurance.json",
+  "completed_signing_workflow_run_id": 42123950177,
+  "completed_signed_apk_sha256": "1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde",
+  "completed_certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445"
 }

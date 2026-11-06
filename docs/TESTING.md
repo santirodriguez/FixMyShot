@@ -1,6 +1,116 @@
 # Testing and evidence
 
-## Pre-main automation review — 2026-11-04
+## Canonical icon1 Home screenshot — separate maintainer visual approval 2026-11-06
+
+The maintainer expressly approved the authentic 1080×1920 8-bit RGB `visual-01-start.png` from API36 [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342), smoke artifact `13506561951`, for **only** Fastlane Home slot `1.png`. The original PNG is **363925 bytes**, SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`, expected and verified remote Git blob `829599968a412393fc80fbf722edba071e3675f8`. Git [commit 08bfa43](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed) changed exactly `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png`; canonical slots 2–6 remained unchanged. The 2026-11-05 approval set is historical for Home only. Record `MAINTAINER_APPROVED_HOME_SCREENSHOT_ICON1` separately from the prior signed-APK basic trial. This visual approval does not establish signed-device UI equivalence, 16 KiB runtime, masked launcher behavior, accessibility/locales, privacy/metadata/provider tests, complete source/license distribution or publication approval.
+
+## Signed icon1 APK basic maintainer acceptance — 2026-11-06
+
+The maintainer explicitly reported **"Aprobado el apk, probado, funciona bien"** for the exact signed FixMyShot 1.0.0/code1 icon1 APK (SHA-256 `92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`; executable source `7649f0e002aca9c91cdf1294ab3033a9572029a9`; [signed evidence](releases/1.0.0-7649f0e-signed-build-info.json); [successful signing run](https://github.com/santirodriguez/FixMyShot/actions/runs/42226227569)). Record **MAINTAINER_REPORTED_BASIC_APK_ACCEPTANCE**. This is user-reported basic working-app evidence, not a logged clean install, a full prescribed device test or an agent-operated physical measurement; the user did not provide OS/build, a case-by-case checklist or full-resolution screenshots in this report.
+
+Retain separate OPEN/NOT_RUN gates for actual 16 KiB-page device runtime, the launcher mask and full locale/accessibility and privacy/color/metadata checks, wider provider/legacy SAF testing, corresponding-source/license distribution, and Obtainium. The old-icon signed test was a different immutable APK and remains historical. Public staging stays `PREPARED`; this approval does not authorize a merge, tag, GitHub Release, website deployment or store submission.
+
+## 1.0.0 basic signed-APK trial reported; newer icon still untested — 2026-11-05
+
+The maintainer reported that the previously supplied signed 1.0.0 APK **worked** in a basic real-world test. The provided APK's SHA-256 was `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde` (compiled source `3437722`). No specific device build, comprehensive export/metadata/color, actual 16 KiB runtime, TalkBack, language or legacy SAF scenario was reported; those separate gates remain NOT_RUN/PARTIAL. The report is not permission to publish.
+
+After the report the maintainer selected the new `icon1.png` as the Android launcher and `promo.png` as the store feature graphic. This changes executable packaging resources, so the **old-icon signed APK's positive test does not establish acceptance of the future new-icon APK**. The new candidate must be compiled/reproduced and visually reviewed before any new signing and release authority.
+
+## Newer visual 1.0.0 evidence and pre-merge boundary — 2026-11-05
+
+The newest visual candidate is draft PR #4, **not** the independently
+signed `70f3bae` source documented in the following historical candidate
+section. [Actions 42101163387](https://github.com/santirodriguez/FixMyShot/actions/runs/42101163387)
+passed Android build/API36 smoke and genuine six-screen capture on executable
+source `784bbdab`; its source-equivalent PR #4 has six independently
+hash-verified, visually approved and committed `en-US` screenshot PNGs.
+Current Fastlane/README screenshots thus supersede the partial earlier
+1.0.0 contact-sheet review described below. They do **not** prove that
+the older signed APK includes the new interface.
+
+The [current pre-merge release-readiness matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
+distinguishes completed visual evidence, earlier source-bound signature and
+provenance receipts, accepted limited tests, legacy SAF skips, and still-open
+physical, accessibility, privacy/color/resource and source-distribution work.
+No missing manual evidence is relabeled PASS, and publication is not authorized.
+The applicable compatibility amendments continue to govern the legacy
+Android 8–9 best-effort limitations and the deferred HEIC/AVIF/JXL codecs.
+
+## First-public 1.0.0 signed candidate — 2026-11-05
+
+The exact source-frozen `org.cajapersonal.fixmyshot` **1.0.0 / code1**
+candidate was signed with the existing FixMyShot key in
+[Actions 41964708826](https://github.com/santirodriguez/FixMyShot/actions/runs/41964708826).
+The original signed archive (artifact **13386877823**) was downloaded and
+verified (SHA-256 `abee52b2fa83e874e7b2f891b5944b219b2bb021646dd295316ebeafb693aa35`).
+`FixMyShot-1.0.0-universal.apk` is **12,401,557 bytes**,
+SHA-256 `03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39`.
+The embedded certificate SHA-256
+`33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445`
+matches the previously established FixMyShot signer.
+Original Android `apksigner` v2/v3 verification passed; independent inspection
+confirmed both signature records over their signed data and unchanged content
+for all **467** original ZIP members (only three signing metadata entries added).
+The signed [build receipt](releases/1.0.0-signed-build-info.json) records
+the source, signature and remaining limits. The one-time signing request is
+now disabled again (`PREPARED`); no additional signing use is authorized.
+
+**Maintainer-reported installation (2026-11-05):** the signed 1.0.0 APK
+installed successfully and the app worked in the maintainer's basic check.
+The report does not supply a recorded device model/log, full export/privacy
+scenario, accessibility exercise, 16 KiB device test or remaining matrix.
+Do not infer those cases passed or replace their NOT_RUN statuses.
+
+**Visual review:** the maintainer approved review-image indices 1, 2, 5
+and 7 and rejected 3, 4, 6 and 8 from the exact-source API36 contact
+sheet. [ARTWORK](ARTWORK.md) identifies each original PNG and the build
+artifact. That was partial capture-level acceptance for the **earlier signed-source**
+contact sheet, not approval of those old frames for public use. The
+subsequent PR #4 six-role set is now fully approved and committed in the
+canonical Fastlane paths as recorded in the newer section above; the older
+signed APK remains bound to its original UI source.
+
+This verifies a *signed candidate*, **not release acceptance**. The prior
+[bounded issuer-risk decision](decisions/dependency-assurance-1.0.0.md)
+remains exact to this source and APK; no new publisher authentication is
+claimed. Signed physical install, 16 KiB device runtime, legacy SAF,
+human locale/accessibility/privacy/resource checks, truthful accepted screenshots,
+complete corresponding-source/license distribution disposition, and Obtainium
+installation/update remain incomplete or NOT_RUN as documented.
+No merge to `main`, GitHub release, tag or deployment has occurred.
+
+## Earlier unsigned 1.0.0 evidence — 2026-11-05
+
+The source `70f3bae` passed
+[branch build and API36 smoke 41958251409](https://github.com/santirodriguez/FixMyShot/actions/runs/41958251409);
+legacy SAF was SKIPPED. The original unsigned APK was 12,356,302 bytes,
+SHA-256 `11ff3b0554a616ea3eff73a6ac89fb80b9bffc32936e8cbc1bedaba90c633ff0`.
+[Independent rebuild 41958986377](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986377)
+matched all original bytes; [source materials 41958986353](https://github.com/santirodriguez/FixMyShot/actions/runs/41958986353)
+verified all 1,282 listed archive members.
+See [unsigned build receipt](releases/1.0.0-unsigned-build-info.json).
+
+## First public 1.0.0 preparation — 2026-11-04
+
+The maintainer approved first public stable version **1.0.0 / code1**, unchanged
+production package and existing signing identity, and clean installation after
+uninstalling alpha.2. [The release amendment](decisions/first-public-release.md)
+supersedes alpha publication/numbering instructions. PR2 has already merged into
+main at c99f8df; subsequent alpha-oriented status entries are historical.
+
+The new candidate requires its own build, exact source material, independent
+rebuild, signing/inspection and truthful screenshot review. No alpha receipt
+proves these new bytes. Accepted unchanged UX/output checks remain preserved;
+manual tests not recorded below remain NOT_RUN. No 1.0.0 publication is claimed.
+
+The current draft PR3 exact-head Android build and API36 smoke passed in
+[Actions 41910543641](https://github.com/santirodriguez/FixMyShot/actions/runs/41910543641);
+legacy SAF was skipped. These tests validate the unsigned 1.0.0 source, not a
+signed release, a fresh physical installation, a current-version screenshot,
+full functional acceptance or an Obtainium update. Final signed candidate
+and source-provenance acceptance remain open.
+
+## Historical PR2 pre-main automation review — 2026-11-04
 
 [PR2 Android CI41858529484](https://github.com/santirodriguez/FixMyShot/actions/runs/41858529484)
 completed SUCCESS for headf8dcc53e. GitHub compiled synthetic mergef9bc363b,
@@ -20,7 +130,8 @@ trusted staging-run selection and the Obtainium link's actual configuration.
 The exact real APK/source kit also passed restaging and local kit verification.
 Live release API writes remain unexecuted pending separate publication approval.
 
-## Current delivery disposition — 2026-11-04
+<a id="current-delivery-disposition--2026-11-04"></a>
+## Historical alpha.2 delivery disposition — 2026-11-04
 
 This reconciliation uses the exact signed alpha.2/code2 APK
 SHA256 `2ebaf204f51e6580c7ce625af4e86394552b23dd045dbaf10e98147a71617c57`,

@@ -1,0 +1,112 @@
+{
+  "schema": 1,
+  "scope": "EXACT_SIGNED_1_0_0_ICON1_OFFLINE_SOURCE_LICENSE_AND_STATIC_APK_REVIEW",
+  "review_date": "2026-11-06",
+  "candidate": {
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "1.0.0",
+    "version_code": 1,
+    "compiled_source": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+    "compiled_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
+    "unsigned_apk_bytes": 12629654,
+    "unsigned_apk_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+    "signed_apk_bytes": 12675989,
+    "signed_apk_sha256": "92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428",
+    "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445"
+  },
+  "original_artifacts": {
+    "source_materials": {
+      "run_id": 42132693740,
+      "artifact_id": 13463158916,
+      "outer_zip_bytes": 69364173,
+      "outer_zip_sha256": "dded1b252f626f30c19d427a229393035bbb6bdf5f34b7f218d80b6c68092305",
+      "source_tar_bytes": 39548907,
+      "source_tar_sha256": "07ec6845cb4e9dda7731a854f8130cf87b9803e920c8f02f376ab55ea879cd3a",
+      "project_webp_kit_sha256": "398947d62b0ebe20640795ac26318be68ab4eddc03935261ed0f4666e0c1655a"
+    },
+    "unsigned_clean_baseline": {
+      "run_id": 42132693754,
+      "artifact_id": 13464257643,
+      "original_zip_sha256": "2655ae7f3b33d5bc437b302c8e094443d6d18b270bf2f48e0e6e262806a81962",
+      "original_run_conclusion": "failure",
+      "pr_merge_byte_comparison": "FAIL_NON_EQUIVALENT_EMBEDDED_REVISION"
+    },
+    "independent_unsigned_rebuild": {
+      "run_id": 42134905825,
+      "artifact_id": 13465741212,
+      "outer_zip_sha256": "98fca5f73a3607d888216f3205739a7ab7a7e58d999b3e02c12f0c637b260b95",
+      "byte_identical": true
+    },
+    "signed": {
+      "run_id": 42226227569,
+      "artifact_id": 13504789246,
+      "original_zip_bytes": 10794910,
+      "original_zip_sha256": "b308c502967c8a66692d7b9fe75079a3e0743290d8b4a3b64b5345d19dffa510",
+      "expires_at_utc": "2026-11-13T13:31:52Z"
+    }
+  },
+  "independent_static_checks": {
+    "original_outer_zips_crc_and_safe_unique_paths": "PASS",
+    "compiled_source_and_tree_pins": "PASS",
+    "source_materials_archive_members": 1283,
+    "source_materials_member_sha256_verified": 1282,
+    "nested_project_webp_archive_members": 1162,
+    "nested_project_webp_member_sha256_verified": 1161,
+    "project_git_source_files_verified": 812,
+    "pinned_libwebp_git_source_files_verified": 343,
+    "runtime_source_archives_opened_and_crc_verified": 95,
+    "published_AAR_inputs_original_integrity_verified": 541,
+    "signed_apk_original_eight_legal_assets_equal_exact_project_or_upstream_bytes": true,
+    "legal_assets_compared": 8,
+    "signed_apk_payload_entries_identical_to_unsigned": 467,
+    "native_abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86_64"
+    ],
+    "native_libs_with_zip_16k_and_elf_pt_load_alignment_pass": 9,
+    "signed_apk_embedded_git_source_matches": true,
+    "signed_apk_sha256_verified": true,
+    "signature_v2_and_v3_recomputed": true,
+    "actual_real_device_16k_runtime_tested": false,
+    "new_signed_apk_independent_output_metadata_inspected": false,
+    "full_source_build_from_all_original_dependencies_reproduced_offline": false
+  },
+  "prior_engineering_review": {
+    "n01_emoji2_bounded_implementation_correspondence": "CLOSED_PREVIOUSLY_NOT_REOPENED",
+    "declared_runtime_licenses": {
+      "Apache-2.0": 132,
+      "BSD-3-Clause": 1
+    },
+    "license_compatibility": "PREVIOUS_BOUNDED_NO_INCOMPATIBILITY_IDENTIFIED",
+    "packaged_AndroidX_and_app_PNG_source_correspondence": "PASS_168_OF_168",
+    "original_runtime_SOURCE_jar_NOTICE_named_members": 0,
+    "NOTICE_member_absence_not_full_original_notice_clearance": true,
+    "additional_preferred_source_form_for_distributed_rasters": "NO_DIFFERENT_PREFERRED_FORM_DEMONSTRATED",
+    "pending_issuer_files_accepted_by_exact_candidate_Option_B": 533,
+    "new_publisher_authentication_claimed": false
+  },
+  "distribution_disposition": {
+    "technical_source_and_packaged_notice_consistency": "PASS_WITH_RECORDED_LIMITS",
+    "complete_corresponding_source_and_license_legal_review": "OPEN",
+    "suitable_public_source_access_collocated_with_public_binary": "NOT_RUN_NOT_PUBLISHED",
+    "source_and_binary_publication_authorized": false,
+    "physical_functional_accessibility_locale_privacy_color_acceptance": "INCOMPLETE",
+    "actual_signed_apk_16k_runtime": "NOT_RUN",
+    "maintainer_reported_synthetic_png_webp_export": "WORKS__GENERATED_OUTPUTS_NOT_SHARED",
+    "independent_exported_output_metadata_inspection": "NOT_RUN",
+    "install_upgrade_obtainium": "NOT_RUN",
+    "main_merge_tag_or_release_authorized": false
+  },
+  "supporting_existing_documents": [
+    "docs/releases/1.0.0-7649f0e-source-distribution-preflight.md",
+    "docs/releases/1.0.0-7649f0e-attribution-disposition.md",
+    "docs/releases/1.0.0-7649f0e-source-offer-and-notice-plan.md",
+    "docs/releases/1.0.0-7649f0e-16k-privacy-preparation.md",
+    "docs/releases/1.0.0-7649f0e-signed-build-info.json",
+    "docs/releases/1.0.0-7649f0e-unsigned-build-info.json",
+    "docs/decisions/dependency-assurance-1.0.0-7649f0e.md",
+    "docs/TESTING.md"
+  ],
+  "methodology": "Reconciled previously preserved exact original artifact checks, frozen source manifests, signed-byte cryptography, immutable provenance and subsequent bounded maintainer reports. No new binary download, Git source rebuild, device exercise, signing, action, merge or publication. The baseline PR-merge embedded-revision failure remains a failure; only the separately rebuilt clean-source APK passed byte identity. This static receipt does not establish publisher authentication, full legal-compliant corresponding-source distribution or independent user-output metadata inspection."
+}

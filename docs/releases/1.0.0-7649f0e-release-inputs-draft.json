@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "status": "PREPARED_INPUTS_ONLY_NOT_WORKFLOW_REQUEST",
+  "purpose": "Review exact 1.0.0 icon1 release-kit inputs without staging, signing, tagging or publication",
+  "active_workflow_request": ".ci/development-release-request.json",
+  "active_workflow_request_is_unchanged": true,
+  "publication_authorized": false,
+  "compiled_candidate": {
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "1.0.0",
+    "version_code": 1,
+    "compiled_source": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+    "compiled_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
+    "proposed_tag": "v1.0.0"
+  },
+  "signed_apk": {
+    "filename": "FixMyShot-1.0.0-universal.apk",
+    "bytes": 12675989,
+    "sha256": "92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428",
+    "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+    "unsigned_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+    "signing_run_id": 42226227569,
+    "signing_artifact_id": 13504789246,
+    "signing_artifact_name": "FixMyShot-1.0.0-signed-42226227569",
+    "receipt": "1.0.0-7649f0e-signed-build-info.json"
+  },
+  "source_materials": {
+    "original_archive_member": "FixMyShot-source-materials.tar.gz",
+    "proposed_release_filename": "FixMyShot-1.0.0-source-materials.tar.gz",
+    "bytes": 39548907,
+    "sha256": "07ec6845cb4e9dda7731a854f8130cf87b9803e920c8f02f376ab55ea879cd3a",
+    "nested_project_and_webp_kit_sha256": "398947d62b0ebe20640795ac26318be68ab4eddc03935261ed0f4666e0c1655a",
+    "source_run_id": 42132693740,
+    "source_artifact_id": 13463158916,
+    "source_artifact_name": "source-kit-532507cf460f2369b084ef2b0b2670de9ddf39f4",
+    "technical_preflight": "1.0.0-7649f0e-source-distribution-preflight.md",
+    "source_offer_plan": "1.0.0-7649f0e-source-offer-and-notice-plan.md"
+  },
+  "candidate_specific_receipts": {
+    "signed": "1.0.0-7649f0e-signed-build-info.json",
+    "issuer_risk": "1.0.0-7649f0e-assurance.json",
+    "unsigned": "1.0.0-7649f0e-unsigned-build-info.json",
+    "source_review": "1.0.0-7649f0e-static-source-review.json"
+  },
+  "gates": {
+    "source_distribution_reviewed": false,
+    "stable_acceptance_reviewed": false,
+    "full_source_distribution_approved": false,
+    "signed_16k_runtime": "NOT_RUN",
+    "actual_signed_synthetic_png_webp_export": "MAINTAINER_REPORTED_WORKS_NO_OUTPUT_INSPECTION",
+    "independent_signed_metadata_inspection": "NOT_RUN",
+    "current_pr_merge_ref_ci": "NOT_RUN",
+    "publication_authorized": false
+  },
+  "limitations": [
+    "Do not reuse old-icon source3437722 receipt names or hashes.",
+    "The two exact new-icon unsigned/source-review receipts now exist; the current live stager still expects legacy signed-receipt baseline fields and requires a separate guarded compatibility adaptation before staging.",
+    "The issuer-risk receipt still has full_source_distribution_approved=false; stage() must refuse until the distinct legal/source gate has real approval.",
+    "The existing source-kit request stores a historical unsigned expectation different from the independently verified signed input; preserve both original evidence records.",
+    "Use original exact approved archives already under maintainer independent custody; do not ask for repeated backups.",
+    "Do not set READY, edit the active .ci release request, trigger an Action, sign, merge, tag or release based on this draft.",
+    "No standalone offline verifier result may promote full legal source approval, signed physical 16 KiB runtime, stable acceptance, READY, merge or public distribution."
+  ],
+  "offline_receipt_verification": {
+    "script": "scripts/check-icon1-release-receipts.py",
+    "tested_script_blob": "4d5a88d6646a7e36adfd7802cf99eb8a3dab561c",
+    "status": "LOCAL_SYNTHETIC_SELF_TEST_PASS_6_NEGATIVE_MUTATIONS__EXACT_GITHUB_RECORDS_CROSS_CHECKED",
+    "independent_of_active_staging": true,
+    "live_stager_compatible_without_changes": false,
+    "incompatibility": "Existing scripts/prepare-development-release.py candidate_receipts() expects baseline_run_id and independent_rebuild_run_id inside the immutable original signed receipt; they are not present. The original PR-merge baseline run had failure, while the separately rebuilt clean-source unsigned APK was byte-identical. Future stager/test changes must preserve that distinction and require explicit CI activation.",
+    "next_required_action": "Separately authorize changing the CI-triggering release stager/tests and their verification. Do not run CI automatically in this documentation-only step."
+  }
+}

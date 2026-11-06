@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FixMyShot</string>
+    <string name="about_product_name">FixMyShot</string>
     <string name="tagline">Captures llestes per publicar.</string>
     <string name="development_status">Versió de desenvolupament</string>
     <string name="development_detail">La importació i la previsualització estan en desenvolupament. Encara no es pot exportar.</string>
@@ -135,8 +136,8 @@
     <string name="help_body">Tria imatges o comparteix-les amb FixMyShot des d’una altra aplicació. Selecciona una destinació o una proporció, revisa la previsualització i exporta còpies noves. PNG és el format predeterminat. També pots fer servir WebP sense pèrdua. La configuració es pot aplicar a tot el lot o només a la imatge seleccionada. A Android 10 o posterior, les còpies es desen a Pictures/FixMyShot. Les versions anteriors demanen una carpeta. Selecciona les imatges desades als resultats per compartir-les. Si cal revisar una exportació anterior, comprova’n els resultats abans de començar-ne una altra.</string>
     <string name="privacy_title">Privadesa</string>
     <string name="privacy_body">Les imatges es processen al teu dispositiu. FixMyShot no té permís de xarxa, comptes ni analítica. Els fitxers originals només es llegeixen. Les còpies noves eliminen les metadades identificatives de manera predeterminada. A la revisió pots optar per conservar els camps compatibles, inclosos GPS i autoria. Les còpies de treball privades poden romandre fins que descartis la sessió, tornis a obrir l’aplicació per a la neteja per antiguitat, n’esborris les dades o la desinstal·lis. Els proveïdors externs d’imatges poden fer servir la xarxa pel seu compte. Els enllaços de sota només obren un navegador extern quan els tries.</string>
-    <string name="about_version">Versió %1$s · compilació de desenvolupament</string>
-    <string name="about_author">Creat per Santiago Rodriguez</string>
+    <string name="about_version">Versió %1$s</string>
+    <string name="about_author">Creat per Caja Personal</string>
     <string name="about_license">Només GNU GPL versió 3</string>
     <string name="about_source">Codi font</string>
     <string name="about_notices">Avisos de tercers</string>

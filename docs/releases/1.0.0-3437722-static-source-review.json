@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "scope": "EXACT_SIGNED_1_0_0_OFFLINE_SOURCE_LICENSE_AND_STATIC_APK_REVIEW",
+  "review_date": "2026-11-05",
+  "candidate": {
+    "application_id": "org.cajapersonal.fixmyshot",
+    "version_name": "1.0.0",
+    "version_code": 1,
+    "compiled_source": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
+    "compiled_tree": "5025043fb7aacc4330eb52458bbd80da708c0590",
+    "unsigned_apk_bytes": 12373110,
+    "unsigned_apk_sha256": "974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0",
+    "signed_apk_bytes": 12417941,
+    "signed_apk_sha256": "1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde",
+    "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445"
+  },
+  "original_artifacts": {
+    "source_materials": {
+      "run_id": 42119231007,
+      "artifact_id": 13457213846,
+      "outer_zip_bytes": 61968602,
+      "outer_zip_sha256": "29a85bf618cca059bad4fb99c50b987d8730ef12dcd8f8ab2fa115b3edaa06d6",
+      "source_tar_bytes": 35851337,
+      "source_tar_sha256": "d9a71e1c71425a74226e38f1a72c70473ad070ce38a6f1e33bf29cad9894ccc4",
+      "project_webp_kit_sha256": "72842f9d0062f301bc9004fefccf15b4a99b255ce6d02c705ed14872a4819110"
+    },
+    "unsigned_baseline": {
+      "run_id": 42112670798,
+      "artifact_id": 13454568712,
+      "original_zip_sha256": "3662c7c565131b30f0d475bd96de1e07f5abe8c5e640eb6e8db55e5a8f12e7cf"
+    },
+    "signed": {
+      "run_id": 42123950177,
+      "artifact_id": 13458779468,
+      "original_zip_bytes": 10538749,
+      "original_zip_sha256": "c0c5a6d9ca47caff192b23eebd9472ae04f77115bc5d992b804660739b425f52",
+      "expires_at_utc": "2026-11-12T22:43:56Z"
+    }
+  },
+  "independent_static_checks": {
+    "original_outer_zips_crc_and_safe_unique_paths": "PASS",
+    "compiled_source_and_tree_pins": "PASS",
+    "source_materials_archive_members": 1283,
+    "source_materials_member_sha256_verified": 1282,
+    "nested_project_webp_archive_members": 1147,
+    "nested_project_webp_member_sha256_verified": 1146,
+    "runtime_source_archives_opened_and_crc_verified": 95,
+    "source_companions_without_code_files": 7,
+    "source_archive_license_or_notice_entries": 47,
+    "aar_input_members": 1074,
+    "eight_canonical_apk_legal_assets_equal_exact_project_or_upstream_source_bytes": true,
+    "legal_assets_compared": 8,
+    "signed_apk_payload_entries_identical_to_unsigned": 467,
+    "signing_metadata_entries_added": 3,
+    "native_abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86_64"
+    ],
+    "native_libs_with_zip_16k_and_elf_pt_load_alignment_pass": 9,
+    "signed_apk_embedded_git_source_matches": true,
+    "binary_manifest": {
+      "parsed": true,
+      "package_name": "org.cajapersonal.fixmyshot",
+      "version_code": 1,
+      "version_name": "1.0.0",
+      "min_sdk": 26,
+      "target_sdk": 36,
+      "requested_permissions": [
+        "org.cajapersonal.fixmyshot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+      ],
+      "internet_or_broad_storage_permission_requested": false,
+      "allow_backup": false,
+      "extract_native_libs": false
+    },
+    "actual_real_device_16k_runtime_tested": false,
+    "new_signed_apk_fresh_device_install_tested": false,
+    "full_source_build_from_all_original_dependencies_reproduced_offline": false
+  },
+  "prior_engineering_review": {
+    "n01_emoji2_bounded_implementation_correspondence": "CLOSED_PREVIOUSLY_NOT_REOPENED",
+    "declared_runtime_licenses": {
+      "Apache-2.0": 132,
+      "BSD-3-Clause": 1
+    },
+    "license_compatibility": "PREVIOUS_BOUNDED_NO_INCOMPATIBILITY_IDENTIFIED",
+    "source_form_of_all_third_party_resource_inputs_established": false,
+    "extra_issuer_authentication_from_this_review": false,
+    "pending_issuer_files_accepted_by_earlier_exact_candidate_Option_B": 533
+  },
+  "distribution_disposition": {
+    "technical_source_and_packaged_notice_consistency": "PASS_WITH_RECORDED_LIMITS",
+    "complete_corresponding_source_and_license_legal_review": "OPEN",
+    "suitable_public_source_access_collocated_with_public_binary": "NOT_RUN_NOT_PUBLISHED",
+    "source_and_binary_publication_authorized": false,
+    "physical_functional_accessibility_locale_privacy_color_acceptance": "INCOMPLETE",
+    "install_upgrade_obtainium": "NOT_RUN",
+    "main_merge_tag_or_release_authorized": false
+  },
+  "supporting_existing_documents": [
+    "docs/feasibility/runtime-license-review.md",
+    "docs/feasibility/runtime-source-review.md",
+    "docs/feasibility/evidence/source-license-disposition-7cbed17d.json",
+    "docs/feasibility/evidence/n01-implementation-7cbed17d/review.json",
+    "docs/releases/1.0.0-3437722-signed-build-info.json"
+  ],
+  "methodology": "Downloaded original Actions ZIPs and inspected data only, never executed archive payloads; compared SHA256/CRC and every source tar member manifest; compared eight APK legal blobs byte-for-byte with corresponding pinned project/upstream source kit files; compared every original APK member to unsigned baseline; parsed binary AXML and native ZIP/ELF headers. This does not establish publisher provenance, a full legal compliance opinion or physical device acceptance."
+}

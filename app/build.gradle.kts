@@ -25,8 +25,8 @@ android {
         applicationId = "org.cajapersonal.fixmyshot"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.1.0-alpha.2"
+        versionCode = 1
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
     }
@@ -118,7 +118,7 @@ androidComponents {
         val suffix = variant.name.replaceFirstChar { it.uppercase() }
         val branding = tasks.register<PrepareBrandingTask>("prepare${suffix}BrandingResources") {
             sourceIcon.set(rootProject.layout.projectDirectory.file("fastlane/metadata/android/en-US/images/icon.png"))
-            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/header.png"))
+            sourceHeader.set(rootProject.layout.projectDirectory.file("assets/branding/primary/readme-header.png"))
             outputDirectory.set(layout.buildDirectory.dir("generated/branding/${variant.name}/res"))
         }
         val legal = tasks.register<PrepareLegalTask>("prepare${suffix}LegalAssets") {

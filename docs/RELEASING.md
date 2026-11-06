@@ -1,5 +1,150 @@
 # A good release should be boring to install
 
+## First public icon1 1.0.0 — final signed-source review (2026-11-06)
+
+Maintainer original three ZIP custody/sha validation is **MAINTAINER_REPORTED_COMPLETE**; do not request it again. Exact signed icon1 APK/source and 168/168 original PNG provenance remain unchanged. The [current signed 16KiB emulator Action #42292629807](https://github.com/santirodriguez/FixMyShot/actions/runs/42292629807) PASS proves installation/launch/relaunch of the original signed APK on actual 16,384-byte pages, **not** a signed native export or physical-device test.
+
+- [Exact source/license review and release-tagged supplemental notice disposition](releases/1.0.0-7649f0e-final-source-license-disposition.md) documents 95 frozen original binary owners and original license files, actual corresponding-source material, GPLv3/Apache2 conditions, explicit residuals and a same-public-release source-link requirement. It supplements (does not change) the original initial APK THIRD_PARTY_NOTICES. Any actual missing mandatory legal material is still a stop condition.
+- [One-session signed-device acceptance](releases/1.0.0-7649f0e-signed-device-acceptance.md) records the signed 16KiB emulator PASS and the maintainer-approved narrow first GitHub scope. Exhaustive manual, independent signed output metadata and physical test rows remain explicitly NOT_RUN/PARTIAL, not PASS.
+- The icon1 [actual request](../.ci/development-release-request.json) now targets exact source `7649f0e`, correct original signed APK and corresponding source; **it remains PREPARED until this signed/source decision is integrated and exact 4-asset staging passes**. Earlier sections below documenting the historic old-icon PREPARED request must be read as dated history, **not current release-control authority**. No second signing is needed for unchanged executable bytes.
+
+
+## Approved icon1 Home screenshot — 2026-11-06
+
+Canonical Fastlane screenshot `en-US/images/phoneScreenshots/1.png` is now the genuine maintainer-approved Home capture from [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342), promoted in the one-file Git commit [08bfa43](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed). Its remote Git blob `829599968a412393fc80fbf722edba071e3675f8` and size **363925 bytes** match the original approved SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`; screenshots 2–6 remain unchanged. README already references the canonical screenshot. [ARTWORK](ARTWORK.md#current-canonical-home-screenshot--icon1-approved-2026-11-06) records source and review history.
+
+The old-icon `.ci/development-release-request.json` remains `PREPARED` and still carries `branding_revision_pending=true`; it must not be reused to stage this new signed APK. Adaptive launcher mask, real 16 KiB runtime and manual locale/accessibility/privacy/SAF, exact source/license distribution review and release-kit publication gates remain independent and open. No executable rebuild, re-sign, merge, tag or publication is implied.
+
+## Draft PR CI trigger policy — 2026-11-06
+
+The Android bootstrap and release-kit PR workflows now respond to PR `opened`, `reopened`, and `ready_for_review` events, **not** to every `synchronize` event. This avoids repeated heavy Android build/emulator runs and repeated release-stage checks on administrative commits to a large draft release PR. GitHub compares PR path filters against the **whole PR diff**, so adding more `paths` filters would not solve that accumulated-diff trigger problem. The Android workflow still runs on an explicit `release/**` push changing `.ci/android-validation-request.txt`, and the release-kit workflow retains its guarded `release/1.0.0` push paths and manual `workflow_dispatch`; workflow jobs, stage authorization conditions, permissions, pinned actions, and signing remain unchanged.
+
+**Pre-merge gate:** a check from an earlier PR revision is not evidence for a later head. Before requesting approval for `main`, trigger and inspect a fresh PR-merge validation at the current head (e.g. transition the draft PR to ready for review after the final code/receipt changes, or deliberately re-trigger the proper PR validation). If further commits land after that validation, revalidate again; an explicit push-only run does not itself prove the current PR merge ref. GitHub can leave required checks pending when workflows are filtered or commits carry `[skip ci]`, and current branch-protection settings were not readable through the available integration. **Do not merge until required checks are satisfied**; do not bypass protection by omitting CI. Existing signed-candidate and staged-release guards remain independent.
+
+## Latest verified icon1 signed test candidate — 2026-11-06
+
+[Actions 42226227569](https://github.com/santirodriguez/FixMyShot/actions/runs/42226227569) completed the **separately authorized exact icon1** signing with the existing app identity. The original signed `FixMyShot-1.0.0-universal.apk` is **12,675,989 bytes**, SHA-256 `92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`; the [machine receipt](releases/1.0.0-7649f0e-signed-build-info.json) records the source, original input artifacts, byte-identical rebuild, certificate and independent v2/v3 signatures, preserved APK content and static 16 KiB alignment. This supersedes earlier sections' **signing pending** statements for icon1 only; their old-source evidence remains historical.
+
+The request control returned to `PREPARED` with its prior historical stage identity. **Do not** use that old `.ci/development-release-request.json` as a new-icon release kit: it is still `PREPARED`, points to the old-icon signed APK and has `branding_revision_pending=true`. Before any public staging, reconcile the exact new signed APK, matching source assets, release tests and full corresponding-source/license/legal and physical/manual gates under a separately agreed preparation step. Adaptive launcher mask and real 16 KiB device runtime, locales/accessibility/privacy/SAF, merge, tag, GitHub Release, Obtainium and website/store release remain OPEN. No public release is authorized by candidate signing.
+
+## New-icon 1.0.0 release gate — 2026-11-05
+
+The selected next-launcher artwork is the original `icon1.png`, now `assets/branding/primary/app-icon.png` and its exact canonical Fastlane `en-US/images/icon.png` copy. The original 1024×500 `promo.png` is the future Google Play/F-Droid `en-US/images/featureGraphic.png`; older designs remain alternatives. See [ARTWORK](ARTWORK.md).
+
+**The old signed APK was built before this launcher update** (compiled source `3437722`, signed SHA-256 `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`). Although the maintainer reports a successful basic APK trial, it is not a tested new-icon executable. The stable release request remains `PREPARED`, with `branding_revision_pending=true`. Both the staging and publication verifier explicitly refuse that stale signed candidate even if other flags are changed. Rebuild and independently compare the updated source, regenerate exact source materials, obtain a new candidate-specific issuer-risk disposition and **separate signing authorization** before proposing stable 1.0.0 staging. Physical/visual and complete source/license acceptance remain independently pending. No merge, tag, new signing or publication is authorized by this artwork change.
+
+## Exact first-public 1.0.0 release-kit preparation — gated
+
+The [release request](../.ci/development-release-request.json) now contains exact, original artifact pins for the **integrated** `3437722` executable and the separately signed APK `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`. The four intended assets are `FixMyShot-1.0.0-universal.apk`, `FixMyShot-1.0.0-source-materials.tar.gz`, `BUILD-INFO.json` and `SHA256SUMS.txt`. The [new unsigned candidate receipt](releases/1.0.0-3437722-unsigned-build-info.json), [signed receipt](releases/1.0.0-3437722-signed-build-info.json), [accepted bounded issuer-risk receipt](releases/1.0.0-3437722-assurance.json) and [static source review](releases/1.0.0-3437722-static-source-review.json) are selected explicitly; original `1.0.0-unsigned-build-info.json` and `1.0.0-signed-build-info.json` remain **historical**.
+
+The staging code checks candidate identities, SHA-256, source/manifest pins, issuer-risk scope, actual signature verification, original signing/source run and artifact IDs, current corresponding-source review and release acceptance gates. Both `stable_acceptance_reviewed` and `source_distribution_reviewed` remain **false** and the request remains **PREPARED**. Merely editing a version or replacing an old receipt cannot promote this candidate to READY. Stable staging requires separate recorded functional and distribution approval, and the publication verifier also checks those approval flags.
+
+An isolated local QA rehearsal with **temporarily simulated approval flags** reproduced the intended four-asset layout using the unchanged original 12,417,941-byte APK and 35,851,337-byte sources. That was a technical test, **not** actual release approval, release-kit Actions staging, signed-device acceptance or legal clearance. The [physical-device handoff](releases/1.0.0-3437722-device-handoff.md) identifies the exact APK and still-open exercises without asking for another signature or repeating accepted screenshot captures.
+
+Only after independently recorded legal/distribution disposition and physical/manual acceptance may a later explicitly scoped preparation step review a switch to READY, inspect its actual staging run and decide whether to ask for **separate** `main` merge, `v1.0.0` tag and GitHub release authority. Actual Obtainium fresh install follows accessible publication, and a real code-increasing update requires a future version.
+
+## Integrated first-public 1.0.0: signed test candidate — 2026-11-05
+
+The user separately approved signing the fully verified integrated visual source `3437722`/unsigned SHA-256 `974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0` after the [new bounded Option B decision](decisions/dependency-assurance-1.0.0-3437722.md). [Actions 42123950177](https://github.com/santirodriguez/FixMyShot/actions/runs/42123950177) signed the original artifact with the existing FixMyShot identity. The [new signed receipt](releases/1.0.0-3437722-signed-build-info.json) records independently verified APK SHA-256 `1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde`, 12,417,941 bytes and the original public certificate. No rebuild or change of executable source was involved. The previous signed `70f3bae` candidate is historical-only; its proofs were not reused as the new signature.
+
+The one-time request is now `PREPARED`; this exact operation authorizes no further signing. Full corresponding-source/license distribution review, physical/device/16 KiB runtime/accessibility/privacy/locale/manual acceptance, future `main` merge, tag, stable GitHub release and real Obtainium checks remain separate. **Do not release or install on someone else's device under this authorization.**
+
+## First-public 1.0.0 public-copy and signing boundary — 2026-11-05
+
+The [current pre-merge gate matrix](STATUS.md#first-public-100-pre-merge-readiness--2026-11-05)
+covers visual PR #4 already merged into `release/1.0.0` and draft release
+PR #3, which is still unmerged into `main`. The six authentic 1.0.0 emulator
+screenshots are approved, committed to canonical Fastlane paths and reused by
+README. CHANGELOG and README still correctly describe the release as **not yet
+published**; the file
+`releases/1.0.0-notes.md` remains a release-note **template** with
+`{{CONTROL_COMMIT}}` deliberately unresolved until the actual reviewed
+release-control commit exists. Never publish that literal placeholder, invent
+a commit, or label the previous signed source as the current visual source.
+
+The **new integrated-visual executable** is source `3437722060019fdf8f892fddc4cc8121e0b61aa4` /
+tree `5025043fb7aacc4330eb52458bbd80da708c0590`, unsigned APK SHA-256
+`974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0` (12,373,110 bytes).
+[Exact Android build/API36 smoke](https://github.com/santirodriguez/FixMyShot/actions/runs/42112670798),
+[independent byte-identical rebuild](https://github.com/santirodriguez/FixMyShot/actions/runs/42119230855)
+and [technical source materials](https://github.com/santirodriguez/FixMyShot/actions/runs/42119231007)
+are verified. The maintainer explicitly accepted **bounded Option B** only
+for that candidate: see [new decision](decisions/dependency-assurance-1.0.0-3437722.md)
+and [machine receipt](releases/1.0.0-3437722-assurance.json).
+The earlier signed `70f3bae` candidate remains historical and retains its
+original signing/disposition receipts unchanged. Signing was authorized separately after that issuer-risk decision and verified
+in [Actions 42123950177](https://github.com/santirodriguez/FixMyShot/actions/runs/42123950177).
+Complete license/source distribution clearance, manual functional acceptance,
+main merge, tag and publication remain unapproved.
+Signing/distribution requests remain `PREPARED`; do not promote them by
+documentation review.
+
+The custom FixMyShot Site and the advertised `/privacy/` route are not
+independently verified as reachable/consistent with [PRIVACY](PRIVACY.md)
+using the available external browser; the donation link is likewise
+unverified here. Verify the actual URL/content through a suitable live
+browser before publication. An inaccessible verification tool does not prove
+an outage. Do not change Sites, DNS, Hostinger, Cloudflare, credentials or
+permissions as part of this gate.
+
+This copy audit does not waive any physical, locale/accessibility,
+metadata/color, legacy SAF, 16 KiB runtime, corresponding-source/license,
+branding or first-install acceptance gates. Obtainium's actual fresh
+installation can be verified only after an accessible release; a genuine
+higher-version-code update must await a later version. Merge, tags, signing
+and publication remain separate approvals.
+
+<a id="current-handoff-main-github-and-obtainium"></a>
+
+## Current handoff: first stable 1.0.0
+
+[Approved release identity and counter reset](decisions/first-public-release.md)
+govern the current candidate: **1.0.0 / versionCode1**, stable GitHub channel,
+`org.cajapersonal.fixmyshot`, existing FixMyShot certificate, Caja Personal About.
+The public release ledger starts at 1.0.0/code1; the next public update uses
+code2 and later updates strictly increase. Private alpha candidates live only
+in a separate historical ledger section and cannot determine the public counter.
+The changelog's 1.0.0 heading identifies the target, not a claim of publication.
+
+The **historical signed test candidate** has **not been published**:
+1.0.0 / code1, source
+`70f3baeebb096461eb5072ca125f0c05334703da`, signed APK SHA-256
+`03ab939bf8cc2f0afe3901b1c311ed2698528d63e6b90ca1d98c3eb8f138eb39`,
+previous FixMyShot certificate unchanged. The [one-time signing request](../.ci/signing-candidate-request.json)
+was reset to `PREPARED` after completion. The distribution request remains
+`PREPARED` until a complete reviewed release kit and separate authority exist.
+
+1. **DONE:** build and test new immutable source `3437722`, inspect actual unsigned
+   APK/manifest/checksums and original reports.
+2. **DONE:** bind independent rebuild and source materials to that exact source,
+   verify both original artifacts and the matching bytes.
+3. **ISSUER-RISK OPTION B APPROVED FOR NEW SOURCE ONLY:** use the
+   [new candidate decision](decisions/dependency-assurance-1.0.0-3437722.md)
+   and [receipt](releases/1.0.0-3437722-assurance.json).
+   **NEW SIGNING SEPARATELY AUTHORIZED AND VERIFIED IN ACTIONS 42123950177; REQUEST RESET TO PREPARED.** The previous [signed receipt](releases/1.0.0-signed-build-info.json)
+   is historical-only and must not be substituted for `3437722`.
+   Source/legal/manual gates remain separately open.
+4. Review current genuine screenshots, notes, four-asset kit and remaining
+   acceptance evidence before recommending the separately authorized main merge.
+5. After separate publication authority, publish v1.0.0 as stable/latest using
+   the reviewed kit and verify all hosted bytes and the Obtainium button.
+
+Do not publish the old alpha kit, rename its APK or reuse its source archive for
+1.0.0. Alpha.2/code2 requires uninstall before code1; app-private settings/drafts
+are lost. Real Obtainium update testing waits for a later increasing-code release;
+a reinstall is not an update. Other physical/manual limitations retain their
+recorded scope. The new release request stays PREPARED until exact assets exist.
+
+## Historical alpha preparation and evidence
+
+The sections below preserve the former alpha development evidence and its
+original timestamps, hashes and exact-APK bindings. Wording such as "current",
+"first release" or "publish" in this historical section refers only to its
+old checkpoint. **None of those steps is executable release guidance now.**
+Do not use the historical alpha request, tag, notes or staged artifact to
+publish FixMyShot. The active first-public contract is 1.0.0/code1 above.
+
+
 <p align="center"><strong>One APK. Clear notes. The same app when you update.</strong><br /><sub>FixMyShot · GitHub first · Obtainium-friendly</sub></p>
 
 > [!IMPORTANT]
@@ -10,7 +155,7 @@
 
 <a id="proposed-development-prerelease-path--decision-pending"></a>
 
-## Current handoff: main, GitHub and Obtainium
+## Historical handoff: main, GitHub and Obtainium
 
 The first public candidate is the explicitly incomplete **0.1.0-alpha.2 / code2**
 development prerelease, using the verified signed APK and exact source archive.

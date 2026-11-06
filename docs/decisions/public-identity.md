@@ -32,3 +32,11 @@ restage the documentary tag/build receipt/notes together before publication.
 The previous c9137faf tag target is historical preparation, not approval to
 publish obsolete public copy. No tag or publication is authorized here.
 
+
+## 1.0.0 source identity completion — 2026-11-04
+
+The first-public-release amendment authorizes the new candidate's About copy
+and links to use Caja Personal as well as the public documentation. Historical
+alpha APK/source bytes remain immutable; rebuild and sign the 1.0.0 candidate
+with the existing identity. The approved one-time code1 reset is a clean-install
+transition, not an upgrade from alpha.2/code2.

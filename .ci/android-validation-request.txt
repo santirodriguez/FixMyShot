@@ -1,3 +1,4 @@
-Validate dialog light-theme transition after platform window parameter updates.
-Check actual focused-window status/navigation appearance on API30+ before all three theme captures; retain all editor assertions.
-profile=current
+Validate corrected 16k-privacy debug test harness at source 337219e044c77b863799600775eac41fd3c677d4 (one approved CI run).
+Merged code/tree source: a31ff7654734a8d792b60f0e9d2b6e482abf5c85.
+Scope: release-branch Android build, lint, core tests and API36 device smoke with six real UI screenshots; legacy SAF intentionally excluded under current profile. No signing, tag, main merge or publication.
+profile=16k-privacy
