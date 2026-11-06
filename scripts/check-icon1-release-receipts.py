@@ -6,6 +6,7 @@ or replace the separate stable release staging/approval validation.
 """
 import argparse
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -24,6 +25,7 @@ FILES = {
     'unsigned': 'docs/releases/1.0.0-7649f0e-unsigned-build-info.json',
     'review': 'docs/releases/1.0.0-7649f0e-static-source-review.json',
     'active': '.ci/development-release-request.json',
+    'approval': 'docs/releases/1.0.0-7649f0e-final-release-approval.json',
 }
 
 
@@ -90,7 +92,7 @@ def validate(r):
             draft['compiled_candidate']['compiled_source'] == SOURCE and
             draft['signed_apk']['sha256'] == SIGNED and
             draft['source_materials']['sha256'] == SOURCES, 'draft input differs')
-    require(active['state'] == 'PREPARED' and
+    require(active['state'] in ('PREPARED', 'READY') and
             active['compiled_source'] == SOURCE and active['compiled_tree'] == TREE and
             active['signed_apk']['sha256'] == SIGNED and
             active['signed_apk']['unsigned_sha256'] == UNSIGNED and
@@ -105,11 +107,76 @@ def validate(r):
                 'unsigned': '1.0.0-7649f0e-unsigned-build-info.json',
                 'issuer_risk': '1.0.0-7649f0e-assurance.json',
                 'source_review': '1.0.0-7649f0e-static-source-review.json'} and
-            active['stable_acceptance_reviewed'] is False and
-            active['source_distribution_reviewed'] is False and
             active['branding_revision_pending'] is False,
-            'PREPARED icon1 request differs or was prematurely approved')
-    return 'PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN'
+            'Exact icon1 request differs from frozen original executable and source')
+    if active['state'] == 'PREPARED':
+        require(active['stable_acceptance_reviewed'] is False and
+                active['source_distribution_reviewed'] is False and
+                active['coverage_limits']['functional_acceptance'] == 'INCOMPLETE',
+                'PREPARED state improperly approved')
+        return 'PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN'
+    # Original archive-era reviews remain immutable. A distinct, later
+    # release-tagged decision may approve only this bounded first public scope.
+    decision = r['approval']
+    candidate = decision['candidate']
+    distribution = decision['source_distribution']
+    runtime = decision['signed_runtime']
+    functional = decision['functional_acceptance']
+    constraints = decision['release_constraints']
+    require(decision['status'] == 'CONDITIONAL_FIRST_PUBLIC_GITHUB_RELEASE_APPROVAL' and
+            decision['authorization'] == 'MAINTAINER_GO_TO_CONDITIONAL_FULL_FIRST_PUBLIC_RELEASE_2026-11-06',
+            'Missing separate maintainer release approval')
+    require((candidate['source_commit'], candidate['source_tree'],
+             candidate['signed_apk_sha256'], candidate['unsigned_apk_sha256'],
+             candidate['source_tar_sha256'], candidate['certificate_sha256']) ==
+            (SOURCE, TREE, SIGNED, UNSIGNED, SOURCES, CERT),
+            'Release approval candidate not bound to immutable originals')
+    require(distribution['review'] == 'BOUNDED_RELEASE_DISTRIBUTION_REVIEW_APPROVED' and
+            distribution['original_binary_archives_inventory'] == 95 and
+            distribution['original_embedded_license_members'] == 57 and
+            distribution['original_embedded_NOTICE_members'] == 0 and
+            distribution['original_apk_legal_assets_verified'] == 8 and
+            distribution['mandatory_missing_legal_material_discovered'] is False and
+            distribution['halt_on_new_mandatory_notice_or_source_gap'] is True and
+            distribution['source_offer_requirement'] == 'PUBLIC_APK_AND_IDENTICAL_SOURCE_TAR_ON_SAME_RELEASE',
+            'Source distribution review insufficient or source offer waived')
+    review_path = distribution['supplemental_review_path']
+    require(review_path == 'docs/releases/1.0.0-7649f0e-final-source-license-disposition.md',
+            'Source review document locator differs')
+    document = (Path(__file__).resolve().parents[1] / review_path).read_bytes()
+    require(hashlib.sha1(b'blob ' + str(len(document)).encode() + b'\0' + document).hexdigest() ==
+            distribution['supplemental_review_git_blob_sha'] ==
+            '47b8ad6f121e3ce0a67702944137cc9a4ec725c9',
+            'Actual reviewed source disposition document has changed')
+    require(runtime['status'] ==
+            'PASS_SIGNED_APK_INSTALL_LAUNCH_RELAUNCH_EMULATED_16K__NATIVE_EXPORT_NOT_EXERCISED' and
+            runtime['run_id'] == 42292629807 and
+            runtime['evidence_artifact_id'] == 13540536980 and
+            runtime['runtime_page_size_bytes'] == 16384 and
+            runtime['physical_device_16k'] == 'NOT_RUN' and
+            runtime['signed_native_end_to_end_export'] == 'NOT_RUN',
+            'Signed-device proof is overstated')
+    require(functional['scope'] == 'ACCEPTED_BOUNDED_FIRST_PUBLIC_GITHUB_1_0_0' and
+            functional['full_100_mixed_batch_stress'] == 'NOT_RUN' and
+            functional['independent_signed_output_metadata_color'] == 'NOT_RUN' and
+            functional['no_claim_of_exhaustive_manual_pass'] is True and
+            constraints['requires_successful_exact_4_asset_stage_ci'] is True and
+            constraints['requires_approved_final_current_PR_merge_ref_CI'] is True and
+            constraints['requires_published_and_downloadable_apk_and_corresponding_source_with_matching_sha'] is True,
+            'Manual gaps or public source/CI conditions silently waived')
+    limits = active['coverage_limits']
+    require(active['stable_acceptance_reviewed'] is True and
+            active['source_distribution_reviewed'] is True and
+            limits['functional_acceptance'] == 'ACCEPTED' and
+            limits['actual_16k_runtime'] == 'PASS_SIGNED_EMULATOR_16K_LAUNCH_ONLY' and
+            limits['full_100_item_mixed_failure_exercise'] == 'NOT_RUN' and
+            limits['wider_independent_privacy_color_review'] == 'NOT_RUN' and
+            limits['signed_physical_install'] == 'NOT_RUN' and
+            limits['obtainium_install_update'] == 'NOT_RUN' and
+            limits['complete_corresponding_source_license_distribution'] ==
+            'REVIEW_APPROVED_WITH_CONDITIONS__PUBLIC_SOURCE_ACCESS_REQUIRED',
+            'READY coverage limits hide untested behavior or source obligations')
+    return 'PASS_EXACT_ICON1_READY_BOUNDED_APPROVAL__PUBLISHING_NOT_YET_DONE'
 
 
 def fixture():
@@ -191,7 +258,42 @@ def self_test():
         except ValueError:
             continue
         raise AssertionError('Negative mutation unexpectedly accepted: ' + label)
-    return len(mutations)
+
+    # The release-ready path requires the separate later decision and exact
+    # source documentation; a bare flip of PREPARED may never suffice.
+    ready = copy.deepcopy(original)
+    ready['approval'] = json.loads((Path(__file__).resolve().parents[1] /
+                                    FILES['approval']).read_text())
+    ready['active'].update(state='READY', stable_acceptance_reviewed=True,
+                           source_distribution_reviewed=True)
+    ready['active']['coverage_limits'] = {
+        'functional_acceptance': 'ACCEPTED',
+        'actual_16k_runtime': 'PASS_SIGNED_EMULATOR_16K_LAUNCH_ONLY',
+        'full_100_item_mixed_failure_exercise': 'NOT_RUN',
+        'wider_independent_privacy_color_review': 'NOT_RUN',
+        'signed_physical_install': 'NOT_RUN',
+        'obtainium_install_update': 'NOT_RUN',
+        'complete_corresponding_source_license_distribution':
+            'REVIEW_APPROVED_WITH_CONDITIONS__PUBLIC_SOURCE_ACCESS_REQUIRED'}
+    require(validate(ready).startswith('PASS_EXACT_ICON1_READY_'), 'READY fixture rejected')
+    ready_mutations = [
+        ('READY with missing source review', lambda r: r.pop('approval')),
+        ('READY with falsified signed test', lambda r: r['approval']['signed_runtime'].update(
+            runtime_page_size_bytes=4096)),
+        ('READY masking 100-item stress', lambda r: r['active']['coverage_limits'].update(
+            full_100_item_mixed_failure_exercise='PASS')),
+        ('READY changed source offer', lambda r: r['approval']['source_distribution'].update(
+            source_offer_requirement='EXPIRES_AFTER_7_DAYS')),
+    ]
+    for label, change in ready_mutations:
+        changed = copy.deepcopy(ready)
+        change(changed)
+        try:
+            validate(changed)
+        except (ValueError, KeyError):
+            continue
+        raise AssertionError('Negative READY mutation accepted: ' + label)
+    return len(mutations) + len(ready_mutations)
 
 
 def main():
@@ -206,7 +308,7 @@ def main():
     records = {key: json.loads((root / path).read_text(encoding='utf-8'))
                for key, path in FILES.items()}
     print(validate(records))
-    print('Scope: offline receipts only; signed 16 KiB physical, legal approval and release remain OPEN.')
+    print('Scope: original signed source + bounded later approval only; physical review is NOT_RUN; public source offer must be checked after publication.')
 
 
 if __name__ == '__main__':

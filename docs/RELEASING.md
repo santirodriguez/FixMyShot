@@ -1,12 +1,13 @@
 # A good release should be boring to install
 
-## First public icon1 1.0.0 — source and signed-device acceptance current handoff (2026-11-06)
+## First public icon1 1.0.0 — final signed-source review (2026-11-06)
 
-The previous original artifact custody task is **MAINTAINER_REPORTED_COMPLETE**; do not request another download, backup or hash check on unchanged originals. Actual signed icon1 APK/source hashes and 168/168 packaged PNG provenance remain verified; keep the same signed executable.
+Maintainer original three ZIP custody/sha validation is **MAINTAINER_REPORTED_COMPLETE**; do not request it again. Exact signed icon1 APK/source and 168/168 original PNG provenance remain unchanged. The [current signed 16KiB emulator Action #42292629807](https://github.com/santirodriguez/FixMyShot/actions/runs/42292629807) PASS proves installation/launch/relaunch of the original signed APK on actual 16,384-byte pages, **not** a signed native export or physical-device test.
 
-- **Stage 1 technical notice/source offer prepared, not final legal approval:** [exact source offer and grouped NOTICE disposition](releases/1.0.0-7649f0e-source-offer-and-notice-plan.md). No mandatory missing embedded NOTICE, source/visual corruption or need for re-signing has been demonstrated. Actual applicable original third-party notices, complete corresponding-source usability and explicit legal distribution clearance remain **OPEN**; this plan is not a public download.
-- **Stage 2 acceptance handoff prepared, not a phone test:** [exact signed icon1 device checklist](releases/1.0.0-7649f0e-signed-device-acceptance.md). Retain prior basic maintainer approval, four bounded manual checks and debug-only 16 KiB automation; the new signed 16 KiB device, synthetic real-export metadata/color, human locale/accessibility and recovery observations remain individually **NOT_RUN/PARTIAL** until actually supplied.
-- The old-icon `.ci/development-release-request.json` is still `PREPARED` with its original source and unapproved `stable_acceptance_reviewed` / `source_distribution_reviewed` flags. Do not claim `READY`, trigger staging, merge, sign, tag or publish on the strength of documentation alone.
+- [Exact source/license review and release-tagged supplemental notice disposition](releases/1.0.0-7649f0e-final-source-license-disposition.md) documents 95 frozen original binary owners and original license files, actual corresponding-source material, GPLv3/Apache2 conditions, explicit residuals and a same-public-release source-link requirement. It supplements (does not change) the original initial APK THIRD_PARTY_NOTICES. Any actual missing mandatory legal material is still a stop condition.
+- [One-session signed-device acceptance](releases/1.0.0-7649f0e-signed-device-acceptance.md) records the signed 16KiB emulator PASS and the maintainer-approved narrow first GitHub scope. Exhaustive manual, independent signed output metadata and physical test rows remain explicitly NOT_RUN/PARTIAL, not PASS.
+- The icon1 [actual request](../.ci/development-release-request.json) now targets exact source `7649f0e`, correct original signed APK and corresponding source; **it remains PREPARED until this signed/source decision is integrated and exact 4-asset staging passes**. Earlier sections below documenting the historic old-icon PREPARED request must be read as dated history, **not current release-control authority**. No second signing is needed for unchanged executable bytes.
+
 
 ## Approved icon1 Home screenshot — 2026-11-06
 

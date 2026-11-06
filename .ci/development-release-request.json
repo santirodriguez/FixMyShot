@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "request_id": "first-public-1.0.0-code1-icon1-7649f0e-prepared-2026-11-06",
+  "request_id": "first-public-1.0.0-code1-icon1-7649f0e-ready-2026-11-06",
   "application_id": "org.cajapersonal.fixmyshot",
   "version_name": "1.0.0",
   "version_code": 1,
@@ -36,7 +36,7 @@
     "base_branch": "main",
     "base_sha": "c99f8df332bcad25699866ea9c296c92ecf25a8e"
   },
-  "state": "PREPARED",
+  "state": "READY",
   "release_channel": "stable",
   "evidence_receipts": {
     "signed": "1.0.0-7649f0e-signed-build-info.json",
@@ -44,17 +44,17 @@
     "issuer_risk": "1.0.0-7649f0e-assurance.json",
     "source_review": "1.0.0-7649f0e-static-source-review.json"
   },
-  "stable_acceptance_reviewed": false,
-  "source_distribution_reviewed": false,
+  "stable_acceptance_reviewed": true,
+  "source_distribution_reviewed": true,
   "coverage_limits": {
-    "functional_acceptance": "INCOMPLETE",
-    "actual_16k_runtime": "NOT_RUN",
+    "functional_acceptance": "ACCEPTED",
+    "actual_16k_runtime": "PASS_SIGNED_EMULATOR_16K_LAUNCH_ONLY",
     "full_100_item_mixed_failure_exercise": "NOT_RUN",
     "exhaustive_human_locale_review": "NOT_RUN",
     "full_accessibility_review": "NOT_RUN",
     "wider_independent_privacy_color_review": "NOT_RUN",
     "detailed_settings_default_retention": "NOT_RUN",
-    "complete_corresponding_source_license_distribution": "OPEN",
+    "complete_corresponding_source_license_distribution": "REVIEW_APPROVED_WITH_CONDITIONS__PUBLIC_SOURCE_ACCESS_REQUIRED",
     "signed_physical_install": "NOT_RUN",
     "legacy_saf": "NOT_RUN",
     "obtainium_install_update": "NOT_RUN"

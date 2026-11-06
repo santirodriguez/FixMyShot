@@ -106,10 +106,9 @@ Choose light, dark or system appearance, with offline **English, Español and Ca
 
 ## On your phone
 
-**First public release target · 1.0.0.** A new release candidate is being prepared.
-Published APKs, checksums and exact source materials are listed on the
-[releases page](https://github.com/santirodriguez/FixMyShot/releases) when available.
-Candidate build, signature and remaining acceptance checks are tracked in [release status](docs/STATUS.md).
+**FixMyShot 1.0.0 · Android versionCode 1.** The stable signed APK and its original corresponding source, checksums and build information are paired on the
+[GitHub releases page](https://github.com/santirodriguez/FixMyShot/releases) **when the stable release is published**.
+The exact original signed APK, reproducible unsigned provenance, bounded device testing and source/license disposition are documented in [release status](docs/STATUS.md) and [the 1.0.0 distribution review](docs/releases/1.0.0-7649f0e-final-source-license-disposition.md).
 
 GitHub is the first distribution channel. The **Add to Obtainium** button
 configures the GitHub source for stable releases and selects the universal APK.
@@ -142,10 +141,7 @@ PNG and lossless WebP are implemented. HEIC and AVIF are
 [deferred from the first public release](docs/decisions/compatibility-and-validation.md), alongside
 [JPEG XL](docs/decisions/jxl-first-delivery.md).
 
-Actual 16 KiB runtime, broader resource/recovery exercises, exhaustive human
-locale/accessibility review, wider privacy/color cases and detailed preference
-retention still need recorded acceptance. See [status](docs/STATUS.md) and
-[testing evidence](docs/TESTING.md) for the precise scope.
+The **original signed APK** installed, launched and relaunched on an emulated Android 15 **16 KiB** runtime. Native WebP/privacy test evidence was collected separately in the debug test variant; signed native export on the 16 KiB emulator, physical hardware, 100-item mixed stress, exhaustive human locale/accessibility, independent signed-output metadata/color and detailed preference retention were **not tested exhaustively**. See [status](docs/STATUS.md) and [testing evidence](docs/TESTING.md) for the exact limitations.
 
 The 1.0.0 source uses Caja Personal throughout the app and documentation.
 Historical alpha receipts remain bound to their original bytes; they are not

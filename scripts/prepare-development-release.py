@@ -149,17 +149,25 @@ def candidate_receipts(request):
             and candidate["certificate_sha256"] == apk["certificate_sha256"]
             and review["original_artifacts"]["source_materials"]["source_tar_sha256"] ==
             sources["sha256"], "Source and APK review differs")
-    # Validate this exact icon1 PREPARED request with the independently tested
-    # verifier. READY requests remain subject to stage()'s stricter legal and
-    # stable acceptance gates; an offline PASS never grants release authority.
-    if source == "7649f0e002aca9c91cdf1294ab3033a9572029a9" and request.get("state") == "PREPARED":
+    # Validate both exact icon1 states. The original signer/risk/source receipts
+    # remain immutable historical evidence; only a distinct later release
+    # approval can authorize READY without erasing their original NOT_APPROVED.
+    if source == "7649f0e002aca9c91cdf1294ab3033a9572029a9":
         draft_path = ROOT / "docs/releases/1.0.0-7649f0e-release-inputs-draft.json"
         require(draft_path.is_file() and not draft_path.is_symlink(),
                 "Missing exact icon1 release inputs draft")
         draft = json.loads(draft_path.read_text(encoding="utf-8"))
-        validate = runpy.run_path(str(ROOT / "scripts/check-icon1-release-receipts.py"))["validate"]
-        validate(dict(draft=draft, signed=signed, unsigned=unsigned, risk=risk,
-                      review=review, active=request))
+        validator = runpy.run_path(str(ROOT / "scripts/check-icon1-release-receipts.py"))
+        decision_path = ROOT / validator["FILES"]["approval"]
+        require(decision_path.is_file() and not decision_path.is_symlink(),
+                "Missing separately authorized icon1 release decision")
+        decision = json.loads(decision_path.read_text(encoding="utf-8"))
+        verdict = validator["validate"](dict(draft=draft, signed=signed, unsigned=unsigned,
+                                             risk=risk, review=review, active=request,
+                                             approval=decision))
+        if request.get("state") == "READY":
+            require(verdict == "PASS_EXACT_ICON1_READY_BOUNDED_APPROVAL__PUBLISHING_NOT_YET_DONE",
+                    "Ready release has no separately reviewed source and functional acceptance")
     return receipts
 
 
@@ -242,11 +250,21 @@ def stage(request, signed_root, source_root, output, control):
                 "Stable acceptance has not been reviewed")
         limitations = request["coverage_limits"]
         require(limitations.get("functional_acceptance") == "ACCEPTED", "Stable acceptance incomplete")
-        require(request.get("source_distribution_reviewed") is True
-                and risk["full_source_distribution_approved"] is True
-                and source_review["distribution_disposition"]
-                ["complete_corresponding_source_and_license_legal_review"] == "APPROVED",
+        require(request.get("source_distribution_reviewed") is True,
                 "Corresponding-source/license distribution is not approved")
+        if request["compiled_source"] == "7649f0e002aca9c91cdf1294ab3033a9572029a9":
+            # Same frozen original historical reviews remain NOT_APPROVED as of
+            # their respective capture dates. The separate later approval is
+            # required and verified by candidate_receipts() for this READY state.
+            require(risk["full_source_distribution_approved"] is False
+                    and source_review["distribution_disposition"]
+                    ["complete_corresponding_source_and_license_legal_review"] == "OPEN",
+                    "Original source-risk evidence was retroactively rewritten")
+        else:
+            require(risk["full_source_distribution_approved"] is True
+                    and source_review["distribution_disposition"]
+                    ["complete_corresponding_source_and_license_legal_review"] == "APPROVED",
+                    "Corresponding-source/license distribution is not approved")
     build_info = {
         "schema": 1, "status": "SIGNED_AND_VERIFIED_DEVELOPMENT_CANDIDATE" if policy["prerelease"] else "SIGNED_AND_VERIFIED_STABLE_CANDIDATE",
         "channel": "development-prerelease" if policy["prerelease"] else "stable", "application_id": request["application_id"],
@@ -273,6 +291,14 @@ def stage(request, signed_root, source_root, output, control):
             "fresh_install": signed_receipt.get("physical_signed_fresh_install", "NOT_RUN"),
             "same_certificate_upgrade": signed_receipt.get("sequential_public_version_update", "NOT_RUN"),
             "obtainium_install_and_update": "NOT_RUN",
+            "signed_16k_emulator_launch": (
+                "PASS_ORIGINAL_SIGNED_APK_API35_16384B_LAUNCH_RELAUNCH__NATIVE_EXPORT_NOT_TESTED"
+                if request["compiled_source"] == "7649f0e002aca9c91cdf1294ab3033a9572029a9"
+                else "NOT_RUN"),
+            "first_public_source_distribution_review": (
+                "CONDITIONAL_SEPARATE_2026_11_06_REVIEW__SAME_RELEASE_SOURCE_REQUIRED"
+                if request["compiled_source"] == "7649f0e002aca9c91cdf1294ab3033a9572029a9"
+                else "NOT_RUN"),
             "remaining_limitations": limitations,
         },
         "coverage_limits": limitations,

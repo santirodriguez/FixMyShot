@@ -276,7 +276,7 @@ class PublicationTests(unittest.TestCase):
         request = json.loads((ROOT / ".ci/development-release-request.json").read_text())
         signing = json.loads((ROOT / ".ci/signing-candidate-request.json").read_text())
         self.assertEqual((request["version_name"], request["version_code"]), ("1.0.0", 1))
-        self.assertEqual(request["state"], "PREPARED")
+        self.assertEqual(request["state"], "READY")
         self.assertFalse(request["branding_revision_pending"])
         self.assertEqual(signing["state"], "PREPARED")
         self.assertNotEqual(request["compiled_source"], signing["source_commit"],
@@ -294,19 +294,32 @@ class PublicationTests(unittest.TestCase):
                          "1.0.0-7649f0e-unsigned-build-info.json")
         self.assertEqual(request["evidence_receipts"]["source_review"],
                          "1.0.0-7649f0e-static-source-review.json")
-        self.assertIs(request["stable_acceptance_reviewed"], False)
-        self.assertIs(request["source_distribution_reviewed"], False)
-        self.assertEqual(request["coverage_limits"]["functional_acceptance"], "INCOMPLETE")
+        self.assertIs(request["stable_acceptance_reviewed"], True)
+        self.assertIs(request["source_distribution_reviewed"], True)
+        self.assertEqual(request["coverage_limits"]["functional_acceptance"], "ACCEPTED")
+        self.assertEqual(request["coverage_limits"]["actual_16k_runtime"],
+                         "PASS_SIGNED_EMULATOR_16K_LAUNCH_ONLY")
         self.assertEqual(request["coverage_limits"]["complete_corresponding_source_license_distribution"],
-                         "OPEN")
+                         "REVIEW_APPROVED_WITH_CONDITIONS__PUBLIC_SOURCE_ACCESS_REQUIRED")
+        for untested in ("full_100_item_mixed_failure_exercise",
+                         "wider_independent_privacy_color_review", "signed_physical_install"):
+            self.assertEqual(request["coverage_limits"][untested], "NOT_RUN")
 
         stage_module = runpy.run_path(str(ROOT / "scripts/prepare-development-release.py"))
         receipts = stage_module["candidate_receipts"](request)
         self.assertEqual(receipts["signed"]["signed_apk"]["sha256"], request["signed_apk"]["sha256"])
         self.assertEqual(receipts["unsigned"]["source_tree"], request["compiled_tree"])
+        # The original source/risk receipts are still historical, NOT retroactively
+        # altered. Their later approval is separately attested and hash-bound.
         self.assertFalse(receipts["issuer_risk"]["full_source_distribution_approved"])
         self.assertEqual(receipts["source_review"]["distribution_disposition"]
                          ["complete_corresponding_source_and_license_legal_review"], "OPEN")
+        approval = json.loads((ROOT / "docs/releases/1.0.0-7649f0e-final-release-approval.json").read_text())
+        self.assertEqual(approval["status"], "CONDITIONAL_FIRST_PUBLIC_GITHUB_RELEASE_APPROVAL")
+        self.assertEqual(approval["source_distribution"]["supplemental_review_git_blob_sha"],
+                         "47b8ad6f121e3ce0a67702944137cc9a4ec725c9")
+        self.assertEqual(approval["signed_runtime"]["runtime_page_size_bytes"], 16384)
+        self.assertEqual(approval["functional_acceptance"]["full_100_mixed_batch_stress"], "NOT_RUN")
         historical = json.loads((ROOT / "docs/releases/1.0.0-signed-build-info.json").read_text())
         self.assertNotEqual(historical["source_commit"], request["compiled_source"])
         self.assertNotEqual(historical["signed_apk_sha256"], request["signed_apk"]["sha256"])
@@ -329,16 +342,25 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             stage_module["candidate_receipts"](changed)
 
-    def test_exact_icon1_prepared_receipts_reject_forgery(self):
+    def test_exact_icon1_ready_receipts_reject_forgery(self):
         verifier = runpy.run_path(str(ROOT / "scripts/check-icon1-release-receipts.py"))
-        self.assertEqual(verifier["self_test"](), 8)
+        self.assertEqual(verifier["self_test"](), 12)
         records = {key: json.loads((ROOT / path).read_text())
                    for key, path in verifier["FILES"].items()}
         self.assertEqual(verifier["validate"](records),
-                         "PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN")
-        records["active"]["state"] = "READY"
+                         "PASS_EXACT_ICON1_READY_BOUNDED_APPROVAL__PUBLISHING_NOT_YET_DONE")
+        changed = json.loads(json.dumps(records))
+        changed["active"]["state"] = "PREPARED"
         with self.assertRaises(ValueError):
-            verifier["validate"](records)
+            verifier["validate"](changed)
+        changed = json.loads(json.dumps(records))
+        changed["approval"]["source_distribution"]["original_embedded_NOTICE_members"] = 3
+        with self.assertRaises(ValueError):
+            verifier["validate"](changed)
+        changed = json.loads(json.dumps(records))
+        changed["active"]["coverage_limits"]["full_100_item_mixed_failure_exercise"] = "PASS"
+        with self.assertRaises(ValueError):
+            verifier["validate"](changed)
 
     def test_canonical_store_branding_and_png_specs(self):
         import struct

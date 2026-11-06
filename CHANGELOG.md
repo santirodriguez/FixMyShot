@@ -4,7 +4,7 @@ Real changes. No imaginary release history.
 
 ## 1.0.0
 
-First public release target; preparation in progress, not yet published.
+First public stable GitHub milestone (1.0.0/code1). The release archive, source and checksums are distributed together when the stable GitHub Release is published. The unchanged signed icon1 APK was verified on a 16 KiB emulator for install/launch/relaunch; full physical/manual, independent signed-output metadata and 100-item stress coverage remain explicitly limited, not reported as passing.
 
 - Prepare screenshots individually or in batches, with content-preserving framing,
   optional crop and background controls, and separate PNG/lossless WebP copies.
