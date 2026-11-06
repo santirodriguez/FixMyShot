@@ -1,4 +1,4 @@
 Validate the reviewed visual PR #4 source merged into FixMyShot 1.0.0 release preparation.
 Merged code/tree source: a31ff7654734a8d792b60f0e9d2b6e482abf5c85.
 Scope: release-branch Android build, lint, core tests and API36 device smoke with six real UI screenshots; legacy SAF intentionally excluded under current profile. No signing, tag, main merge or publication.
-profile=current
+profile=16k-privacy
