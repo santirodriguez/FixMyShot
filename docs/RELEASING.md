@@ -1,5 +1,13 @@
 # A good release should be boring to install
 
+## First public icon1 1.0.0 — source and signed-device acceptance current handoff (2026-11-06)
+
+The previous original artifact custody task is **MAINTAINER_REPORTED_COMPLETE**; do not request another download, backup or hash check on unchanged originals. Actual signed icon1 APK/source hashes and 168/168 packaged PNG provenance remain verified; keep the same signed executable.
+
+- **Stage 1 technical notice/source offer prepared, not final legal approval:** [exact source offer and grouped NOTICE disposition](releases/1.0.0-7649f0e-source-offer-and-notice-plan.md). No mandatory missing embedded NOTICE, source/visual corruption or need for re-signing has been demonstrated. Actual applicable original third-party notices, complete corresponding-source usability and explicit legal distribution clearance remain **OPEN**; this plan is not a public download.
+- **Stage 2 acceptance handoff prepared, not a phone test:** [exact signed icon1 device checklist](releases/1.0.0-7649f0e-signed-device-acceptance.md). Retain prior basic maintainer approval, four bounded manual checks and debug-only 16 KiB automation; the new signed 16 KiB device, synthetic real-export metadata/color, human locale/accessibility and recovery observations remain individually **NOT_RUN/PARTIAL** until actually supplied.
+- The old-icon `.ci/development-release-request.json` is still `PREPARED` with its original source and unapproved `stable_acceptance_reviewed` / `source_distribution_reviewed` flags. Do not claim `READY`, trigger staging, merge, sign, tag or publish on the strength of documentation alone.
+
 ## Approved icon1 Home screenshot — 2026-11-06
 
 Canonical Fastlane screenshot `en-US/images/phoneScreenshots/1.png` is now the genuine maintainer-approved Home capture from [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342), promoted in the one-file Git commit [08bfa43](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed). Its remote Git blob `829599968a412393fc80fbf722edba071e3675f8` and size **363925 bytes** match the original approved SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`; screenshots 2–6 remain unchanged. README already references the canonical screenshot. [ARTWORK](ARTWORK.md#current-canonical-home-screenshot--icon1-approved-2026-11-06) records source and review history.
