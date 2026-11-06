@@ -22,6 +22,7 @@ jobs:
     outputs:
       apis: ${{ steps.profile.outputs.apis }}
       legacy: ${{ steps.profile.outputs.legacy }}
+      ps16k: ${{ steps.profile.outputs.ps16k }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -29,12 +30,20 @@ jobs:
       - name: Select explicit batch validation profile
         id: profile
         run: |
-          if [[ "$(tail -n 1 .ci/android-validation-request.txt)" == profile=extended ]]; then
+          # Dedicated 16 KiB suite is an opt-in release-branch request only.
+          # PR review events always retain their ordinary API 36 coverage.
+          if [[ "$GITHUB_EVENT_NAME" == push && "$(tail -n 1 .ci/android-validation-request.txt)" == profile=16k-privacy ]]; then
+            echo 'apis=[36]' >> "$GITHUB_OUTPUT"
+            echo 'legacy=false' >> "$GITHUB_OUTPUT"
+            echo 'ps16k=true' >> "$GITHUB_OUTPUT"
+          elif [[ "$(tail -n 1 .ci/android-validation-request.txt)" == profile=extended ]]; then
             echo 'apis=[26,36]' >> "$GITHUB_OUTPUT"
             echo 'legacy=true' >> "$GITHUB_OUTPUT"
+            echo 'ps16k=false' >> "$GITHUB_OUTPUT"
           else
             echo 'apis=[36]' >> "$GITHUB_OUTPUT"
             echo 'legacy=false' >> "$GITHUB_OUTPUT"
+            echo 'ps16k=false' >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
         with:
@@ -109,6 +118,7 @@ jobs:
             app/build/outputs/apk/
   smoke:
     needs: build
+    if: needs.build.outputs.ps16k != 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     strategy:
@@ -199,3 +209,52 @@ jobs:
           retention-days: 7
           path: evidence/
 
+
+  ps16k-privacy:
+    needs: build
+    # Never run on ordinary PR opened/reopened/ready-for-review events.
+    if: github.event_name == 'push' && needs.build.outputs.ps16k == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download only the exact same-run debug candidates
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: bootstrap-${{ github.sha }}
+          path: candidate
+      - name: Enable runner virtualization
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Verify the independent evidence checker on synthetic fixtures
+        run: python3 scripts/test-16k-privacy-evidence.py
+      - name: Check actual 16 KiB runtime and synthetic privacy output
+        # Updated emulator-runner pinned for the experimental 16 KiB system image.
+        # This uses debug instrumentation, NOT the independently signed release APK.
+        uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 35
+          arch: x86_64
+          target: google_apis_ps16k
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 768M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot-save -no-metrics
+          script: bash scripts/run-16k-privacy-smoke.sh candidate
+      - name: Preserve bounded emulator evidence (pass or fail)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ps16k-privacy-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: warn
+          path: evidence/16k-privacy/
