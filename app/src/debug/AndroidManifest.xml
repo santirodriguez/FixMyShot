@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Debug only: request enough process heap for the 1344x2992 synthetic stress fixture. -->
+    <!-- The runtime budget check remains unchanged; the actual heap is verified by the test. -->
+    <application android:largeHeap="true" />
+</manifest>
