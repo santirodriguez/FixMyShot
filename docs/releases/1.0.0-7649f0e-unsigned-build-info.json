@@ -69,5 +69,18 @@
   "physical_and_accessibility_acceptance": "INCOMPLETE__SEE_DOCS_TESTING",
   "obtainium_fresh_install": "NOT_RUN__REQUIRES_PUBLIC_RELEASE",
   "obtainium_higher_code_update": "NOT_RUN__REQUIRES_LATER_PUBLIC_VERSION",
-  "publication": "NOT_AUTHORIZED_NOT_RUN"
+  "publication": "NOT_AUTHORIZED_NOT_RUN",
+  "toolchain": {
+    "jdk": "Eclipse Temurin 17.0.21+9",
+    "gradle": "9.4.1",
+    "android_build_tools": "36.0.0",
+    "ndk": "28.2.13676358",
+    "agp": "9.2.1",
+    "kotlin": "2.4.21"
+  },
+  "toolchain_evidence": {
+    "independent_unsigned_workflow_run": 42134905825,
+    "jdk_and_gradle_ndk": "Independent rebuild job log confirms Temurin 17.0.21+9, Gradle 9.4.1 wrapper and NDK r28c installation.",
+    "agp_kotlin_build_tools": "Compiled source 7649f0e pins AGP 9.2.1, Kotlin 2.4.21 and Android Build Tools 36.0.0 in Gradle catalog/app build."
+  }
 }

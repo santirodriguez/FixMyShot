@@ -97,10 +97,19 @@ def candidate_receipts(request):
             and signed["signing"]["run_id"] == request["signing"]["run_id"]
             and signed["signing"]["conclusion"] == "success"
             and signed["signing"]["original_actions_artifact_id"] ==
-            request["signing"]["artifact_id"]
-            and risk["signed_apk_sha256"] == apk["sha256"]
-            and risk["certificate_sha256"] == apk["certificate_sha256"],
+            request["signing"]["artifact_id"],
             "Signature or original signed artifact differs")
+    # Both archived assurance schemas bind the same executable and certificate.
+    # Check every present field instead of inventing legacy names in icon1.
+    for field, expected in (("signed_apk_sha256", apk["sha256"]),
+                            ("completed_signed_apk_sha256", apk["sha256"]),
+                            ("certificate_sha256", apk["certificate_sha256"]),
+                            ("completed_certificate_sha256", apk["certificate_sha256"])):
+        if field in risk:
+            require(risk[field] == expected, "Original assurance signing proof differs: " + field)
+    require(("signed_apk_sha256" in risk or "completed_signed_apk_sha256" in risk)
+            and ("certificate_sha256" in risk or "completed_certificate_sha256" in risk),
+            "Original assurance signing identity missing")
     inspection = signed["independent_inspection"]
     for key in ("signature_v2_verified_against_embedded_certificate",
                 "signature_v3_verified_against_embedded_certificate",
@@ -109,13 +118,23 @@ def candidate_receipts(request):
                 "original_unsigned_apk_sha256_rechecked",
                 "signed_apk_sha256_rechecked"):
         require(inspection.get(key) is True, "Signed APK verification incomplete: " + key)
-    require(unsigned["baseline"]["workflow_run"] == signed["unsigned_apk"]["baseline_run_id"]
-            and unsigned["baseline"]["workflow_run"] == risk["baseline"]["workflow_run"]
+    require(unsigned["baseline"]["workflow_run"] == risk["baseline"]["workflow_run"]
             and unsigned["independent_unsigned_rebuild"]["byte_identical"] is True
-            and unsigned["independent_unsigned_rebuild"]["workflow_run"] ==
-            signed["unsigned_apk"]["independent_rebuild_run_id"]
+            and unsigned["independent_unsigned_rebuild"]["workflow_run"] == risk["independent_build_run"]
             and risk["identical_unsigned_bytes"] is True,
             "Unsigned independent reproduction not proven")
+    # Old receipts separately bind the baseline and the rebuild; the immutable
+    # icon1 receipt binds the actual independently rebuilt signed input.
+    signed_input = signed["unsigned_apk"]
+    if "baseline_run_id" in signed_input or "independent_rebuild_run_id" in signed_input:
+        require(signed_input.get("baseline_run_id") == unsigned["baseline"]["workflow_run"]
+                and signed_input.get("independent_rebuild_run_id") ==
+                unsigned["independent_unsigned_rebuild"]["workflow_run"],
+                "Historical signed-input build provenance differs")
+    else:
+        require(signed_input.get("producer_run_id") == risk["independent_build_run"]
+                and signed_input.get("original_artifact_id") == risk["independent_build_artifact_id"],
+                "Exact icon1 signed-input independent rebuild differs")
     materials = unsigned["corresponding_source_materials"]
     require(materials["workflow_run"] == request["sources"]["run_id"]
             and materials["source_materials_sha256"] == sources["sha256"]
@@ -130,6 +149,17 @@ def candidate_receipts(request):
             and candidate["certificate_sha256"] == apk["certificate_sha256"]
             and review["original_artifacts"]["source_materials"]["source_tar_sha256"] ==
             sources["sha256"], "Source and APK review differs")
+    # Validate this exact icon1 PREPARED request with the independently tested
+    # verifier. READY requests remain subject to stage()'s stricter legal and
+    # stable acceptance gates; an offline PASS never grants release authority.
+    if source == "7649f0e002aca9c91cdf1294ab3033a9572029a9" and request.get("state") == "PREPARED":
+        draft_path = ROOT / "docs/releases/1.0.0-7649f0e-release-inputs-draft.json"
+        require(draft_path.is_file() and not draft_path.is_symlink(),
+                "Missing exact icon1 release inputs draft")
+        draft = json.loads(draft_path.read_text(encoding="utf-8"))
+        validate = runpy.run_path(str(ROOT / "scripts/check-icon1-release-receipts.py"))["validate"]
+        validate(dict(draft=draft, signed=signed, unsigned=unsigned, risk=risk,
+                      review=review, active=request))
     return receipts
 
 

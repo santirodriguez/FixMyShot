@@ -91,11 +91,24 @@ def validate(r):
             draft['signed_apk']['sha256'] == SIGNED and
             draft['source_materials']['sha256'] == SOURCES, 'draft input differs')
     require(active['state'] == 'PREPARED' and
-            active['compiled_source'] == '3437722060019fdf8f892fddc4cc8121e0b61aa4' and
+            active['compiled_source'] == SOURCE and active['compiled_tree'] == TREE and
+            active['signed_apk']['sha256'] == SIGNED and
+            active['signed_apk']['unsigned_sha256'] == UNSIGNED and
+            active['signed_apk']['certificate_sha256'] == CERT and
+            active['signing']['run_id'] == 42226227569 and
+            active['signing']['artifact_id'] == 13504789246 and
+            active['sources']['run_id'] == 42132693740 and
+            active['sources']['artifact_id'] == 13463158916 and
+            active['source_materials']['sha256'] == SOURCES and
+            active['evidence_receipts'] == {
+                'signed': '1.0.0-7649f0e-signed-build-info.json',
+                'unsigned': '1.0.0-7649f0e-unsigned-build-info.json',
+                'issuer_risk': '1.0.0-7649f0e-assurance.json',
+                'source_review': '1.0.0-7649f0e-static-source-review.json'} and
             active['stable_acceptance_reviewed'] is False and
             active['source_distribution_reviewed'] is False and
-            active['branding_revision_pending'] is True,
-            'active staging request changed/was prematurely approved')
+            active['branding_revision_pending'] is False,
+            'PREPARED icon1 request differs or was prematurely approved')
     return 'PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN'
 
 
@@ -138,9 +151,19 @@ def fixture():
                                  'signed_apk_sha256': SIGNED, 'certificate_sha256': CERT},
                    'original_artifacts': {'source_materials': {'source_tar_sha256': SOURCES}},
                    'distribution_disposition': {'complete_corresponding_source_and_license_legal_review': 'OPEN'}},
-        'active': {'state': 'PREPARED', 'compiled_source': '3437722060019fdf8f892fddc4cc8121e0b61aa4',
+        'active': {'state': 'PREPARED', 'compiled_source': SOURCE, 'compiled_tree': TREE,
+                   'signed_apk': {'sha256': SIGNED, 'unsigned_sha256': UNSIGNED,
+                                  'certificate_sha256': CERT},
+                   'signing': {'run_id': 42226227569, 'artifact_id': 13504789246},
+                   'sources': {'run_id': 42132693740, 'artifact_id': 13463158916},
+                   'source_materials': {'sha256': SOURCES},
+                   'evidence_receipts': {
+                       'signed': '1.0.0-7649f0e-signed-build-info.json',
+                       'unsigned': '1.0.0-7649f0e-unsigned-build-info.json',
+                       'issuer_risk': '1.0.0-7649f0e-assurance.json',
+                       'source_review': '1.0.0-7649f0e-static-source-review.json'},
                    'stable_acceptance_reviewed': False, 'source_distribution_reviewed': False,
-                   'branding_revision_pending': True},
+                   'branding_revision_pending': False},
     }
 
 
@@ -156,6 +179,9 @@ def self_test():
             complete_corresponding_source_and_license_legal_review='APPROVED')),
         ('unauthorized source approval', lambda r: r['risk'].update(full_source_distribution_approved=True)),
         ('staging armed', lambda r: r['active'].update(state='READY')),
+        ('wrong active signed APK', lambda r: r['active']['signed_apk'].update(sha256='f' * 64)),
+        ('stale receipt binding', lambda r: r['active']['evidence_receipts'].update(
+            unsigned='1.0.0-3437722-unsigned-build-info.json')),
     ]
     for label, change in mutations:
         altered = copy.deepcopy(original)

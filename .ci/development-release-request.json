@@ -1,35 +1,35 @@
 {
   "schema": 1,
-  "request_id": "first-public-1.0.0-code1-integrated-3437722-prepared-2026-11-05",
+  "request_id": "first-public-1.0.0-code1-icon1-7649f0e-prepared-2026-11-06",
   "application_id": "org.cajapersonal.fixmyshot",
   "version_name": "1.0.0",
   "version_code": 1,
-  "compiled_source": "3437722060019fdf8f892fddc4cc8121e0b61aa4",
-  "compiled_tree": "5025043fb7aacc4330eb52458bbd80da708c0590",
+  "compiled_source": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+  "compiled_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
   "tag_name": "v1.0.0",
   "signed_apk": {
     "filename": "FixMyShot-1.0.0-universal.apk",
-    "bytes": 12417941,
-    "sha256": "1e67611b53dbb79a039dbee7e22a9f9731d076c6ebd9167d8028b6ba44cc4cde",
+    "bytes": 12675989,
+    "sha256": "92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428",
     "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
-    "unsigned_sha256": "974a0b70982b9950d19f4ed476ab2915a23dbf72614d28c1790679147b3f73b0"
+    "unsigned_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2"
   },
   "source_materials": {
     "input_filename": "FixMyShot-source-materials.tar.gz",
     "filename": "FixMyShot-1.0.0-source-materials.tar.gz",
-    "bytes": 35851337,
-    "sha256": "d9a71e1c71425a74226e38f1a72c70473ad070ce38a6f1e33bf29cad9894ccc4",
-    "project_kit_sha256": "72842f9d0062f301bc9004fefccf15b4a99b255ce6d02c705ed14872a4819110"
+    "bytes": 39548907,
+    "sha256": "07ec6845cb4e9dda7731a854f8130cf87b9803e920c8f02f376ab55ea879cd3a",
+    "project_kit_sha256": "398947d62b0ebe20640795ac26318be68ab4eddc03935261ed0f4666e0c1655a"
   },
   "signing": {
-    "run_id": 42123950177,
-    "artifact_name": "FixMyShot-1.0.0-signed-42123950177",
-    "artifact_id": 13458779468
+    "run_id": 42226227569,
+    "artifact_name": "FixMyShot-1.0.0-signed-42226227569",
+    "artifact_id": 13504789246
   },
   "sources": {
-    "run_id": 42119231007,
-    "artifact_name": "source-kit-d4975930f40462ca0f5c1d34ce7df3c4f0162473",
-    "artifact_id": 13457213846
+    "run_id": 42132693740,
+    "artifact_name": "source-kit-532507cf460f2369b084ef2b0b2670de9ddf39f4",
+    "artifact_id": 13463158916
   },
   "integration_snapshot": {
     "head_branch": "release/1.0.0",
@@ -39,10 +39,10 @@
   "state": "PREPARED",
   "release_channel": "stable",
   "evidence_receipts": {
-    "signed": "1.0.0-3437722-signed-build-info.json",
-    "unsigned": "1.0.0-3437722-unsigned-build-info.json",
-    "issuer_risk": "1.0.0-3437722-assurance.json",
-    "source_review": "1.0.0-3437722-static-source-review.json"
+    "signed": "1.0.0-7649f0e-signed-build-info.json",
+    "unsigned": "1.0.0-7649f0e-unsigned-build-info.json",
+    "issuer_risk": "1.0.0-7649f0e-assurance.json",
+    "source_review": "1.0.0-7649f0e-static-source-review.json"
   },
   "stable_acceptance_reviewed": false,
   "source_distribution_reviewed": false,
@@ -59,5 +59,5 @@
     "legacy_saf": "NOT_RUN",
     "obtainium_install_update": "NOT_RUN"
   },
-  "branding_revision_pending": true
+  "branding_revision_pending": false
 }

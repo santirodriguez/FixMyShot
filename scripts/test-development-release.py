@@ -277,15 +277,23 @@ class PublicationTests(unittest.TestCase):
         signing = json.loads((ROOT / ".ci/signing-candidate-request.json").read_text())
         self.assertEqual((request["version_name"], request["version_code"]), ("1.0.0", 1))
         self.assertEqual(request["state"], "PREPARED")
-        self.assertTrue(request["branding_revision_pending"])
+        self.assertFalse(request["branding_revision_pending"])
         self.assertEqual(signing["state"], "PREPARED")
-        self.assertEqual(request["compiled_source"], signing["source_commit"])
-        self.assertEqual(request["compiled_tree"], signing["source_tree"])
-        self.assertEqual(request["signed_apk"]["unsigned_sha256"], signing["unsigned_sha256"])
-        self.assertEqual(request["signed_apk"]["sha256"], signing["completed_signed_apk_sha256"])
+        self.assertNotEqual(request["compiled_source"], signing["source_commit"],
+                            "Historical old-icon signing request must remain distinct")
+        signed = json.loads((ROOT / "docs/releases/1.0.0-7649f0e-signed-build-info.json").read_text())
+        self.assertEqual(request["compiled_source"], signed["source_commit"])
+        self.assertEqual(request["compiled_tree"], signed["source_tree"])
+        self.assertEqual(request["signed_apk"]["unsigned_sha256"], signed["unsigned_apk"]["sha256"])
+        self.assertEqual(request["signed_apk"]["sha256"], signed["signed_apk"]["sha256"])
         self.assertEqual(request["signed_apk"]["certificate_sha256"],
-                         signing["completed_certificate_sha256"])
-        self.assertEqual(request["signing"]["run_id"], signing["completed_signing_workflow_run_id"])
+                         signed["signing"]["certificate_sha256"])
+        self.assertEqual(request["signing"]["run_id"], signed["signing"]["run_id"])
+        self.assertEqual(request["sources"]["run_id"], signed["technical_source_materials"]["run_id"])
+        self.assertEqual(request["evidence_receipts"]["unsigned"],
+                         "1.0.0-7649f0e-unsigned-build-info.json")
+        self.assertEqual(request["evidence_receipts"]["source_review"],
+                         "1.0.0-7649f0e-static-source-review.json")
         self.assertIs(request["stable_acceptance_reviewed"], False)
         self.assertIs(request["source_distribution_reviewed"], False)
         self.assertEqual(request["coverage_limits"]["functional_acceptance"], "INCOMPLETE")
@@ -321,6 +329,17 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             stage_module["candidate_receipts"](changed)
 
+    def test_exact_icon1_prepared_receipts_reject_forgery(self):
+        verifier = runpy.run_path(str(ROOT / "scripts/check-icon1-release-receipts.py"))
+        self.assertEqual(verifier["self_test"](), 8)
+        records = {key: json.loads((ROOT / path).read_text())
+                   for key, path in verifier["FILES"].items()}
+        self.assertEqual(verifier["validate"](records),
+                         "PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN")
+        records["active"]["state"] = "READY"
+        with self.assertRaises(ValueError):
+            verifier["validate"](records)
+
     def test_canonical_store_branding_and_png_specs(self):
         import struct
         primary = ROOT / "assets/branding/primary"
@@ -351,9 +370,10 @@ class PublicationTests(unittest.TestCase):
 
     def test_branding_revision_blocks_stale_release_candidate(self):
         current = json.loads((ROOT / ".ci/development-release-request.json").read_text())
-        self.assertTrue(current["branding_revision_pending"])
+        self.assertFalse(current["branding_revision_pending"])
         forged = json.loads(json.dumps(current))
         forged["state"] = "READY"
+        forged["branding_revision_pending"] = True
         stage = runpy.run_path(str(ROOT / "scripts/prepare-development-release.py"))["stage"]
         with self.assertRaisesRegex(ValueError, "Branding changed after signature"):
             stage(forged, self.kit / "nonexistent-signed",
