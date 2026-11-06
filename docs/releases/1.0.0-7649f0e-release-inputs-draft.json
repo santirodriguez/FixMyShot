@@ -39,8 +39,8 @@
   "candidate_specific_receipts": {
     "signed": "1.0.0-7649f0e-signed-build-info.json",
     "issuer_risk": "1.0.0-7649f0e-assurance.json",
-    "unsigned": "MISSING_EXACT_SOURCE_RELEASE_STAGING_RECEIPT",
-    "source_review": "MISSING_EXACT_SOURCE_RELEASE_STAGING_RECEIPT"
+    "unsigned": "1.0.0-7649f0e-unsigned-build-info.json",
+    "source_review": "1.0.0-7649f0e-static-source-review.json"
   },
   "gates": {
     "source_distribution_reviewed": false,
@@ -54,10 +54,20 @@
   },
   "limitations": [
     "Do not reuse old-icon source3437722 receipt names or hashes.",
-    "The signed receipt and bounded assurance are not substitutes for the unsigned/source-review schema required by prepare-development-release.py.",
+    "The two exact new-icon unsigned/source-review receipts now exist; the current live stager still expects legacy signed-receipt baseline fields and requires a separate guarded compatibility adaptation before staging.",
     "The issuer-risk receipt still has full_source_distribution_approved=false; stage() must refuse until the distinct legal/source gate has real approval.",
     "The existing source-kit request stores a historical unsigned expectation different from the independently verified signed input; preserve both original evidence records.",
     "Use original exact approved archives already under maintainer independent custody; do not ask for repeated backups.",
-    "Do not set READY, edit the active .ci release request, trigger an Action, sign, merge, tag or release based on this draft."
-  ]
+    "Do not set READY, edit the active .ci release request, trigger an Action, sign, merge, tag or release based on this draft.",
+    "No standalone offline verifier result may promote full legal source approval, signed physical 16 KiB runtime, stable acceptance, READY, merge or public distribution."
+  ],
+  "offline_receipt_verification": {
+    "script": "scripts/check-icon1-release-receipts.py",
+    "tested_script_blob": "4d5a88d6646a7e36adfd7802cf99eb8a3dab561c",
+    "status": "LOCAL_SYNTHETIC_SELF_TEST_PASS_6_NEGATIVE_MUTATIONS__EXACT_GITHUB_RECORDS_CROSS_CHECKED",
+    "independent_of_active_staging": true,
+    "live_stager_compatible_without_changes": false,
+    "incompatibility": "Existing scripts/prepare-development-release.py candidate_receipts() expects baseline_run_id and independent_rebuild_run_id inside the immutable original signed receipt; they are not present. The original PR-merge baseline run had failure, while the separately rebuilt clean-source unsigned APK was byte-identical. Future stager/test changes must preserve that distinction and require explicit CI activation.",
+    "next_required_action": "Separately authorize changing the CI-triggering release stager/tests and their verification. Do not run CI automatically in this documentation-only step."
+  }
 }
