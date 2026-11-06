@@ -1,5 +1,11 @@
 # Completion status
 
+## icon1 Home screenshot now canonical — 2026-11-06
+
+The maintainer approved the actual API36 Home capture from [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342) and committed the exact image as the **only** modified path in [08bfa43](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed). `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png` is **363925 bytes**, approved-original SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`, confirmed blob `829599968a412393fc80fbf722edba071e3675f8`. Canonical `2.png`–`6.png` are byte-identical to their previous approved Git blobs. The README image URL and Home alt text are already correct. [ARTWORK](ARTWORK.md#current-canonical-home-screenshot--icon1-approved-2026-11-06) owns the exact provenance; dated sections below that still call screenshot #1 stale are historical.
+
+**Still blocked:** adaptive launcher mask/themed icon review, remaining explicit physical/manual/API26–28/real 16 KiB, language/accessibility/privacy/provider acceptance, final source/license distribution clearance, and stable asset kit/publication. The existing release staging request intentionally remains `PREPARED` with `branding_revision_pending=true` because it is still pinned to an old-icon signed APK, not the accepted icon1 candidate. Do not mark the old kit READY, merge, tag, sign again or publish from this screenshot approval.
+
 ## Signed icon1 APK field acceptance and CI-trigger discipline — 2026-11-06
 
 The maintainer **approved the exact signed icon1 APK in a basic real-world trial** (`92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`, 12,675,989 bytes; see [TESTING](TESTING.md#signed-icon1-apk-basic-maintainer-acceptance--2026-11-06)). Record `MAINTAINER_REPORTED_BASIC_APK_ACCEPTANCE`; preserve separate missing clean-install details, runtime 16 KiB, screenshot #1, full manual/accessibility/locale/privacy/SAF and full corresponding-source/license distribution gates. This is not public release authorization.

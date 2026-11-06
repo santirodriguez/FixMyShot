@@ -1,5 +1,13 @@
 # Shared artwork
 
+## Current canonical Home screenshot — icon1 approved 2026-11-06
+
+The maintainer explicitly approved the original, unmodified `visual-01-start.png` from the real Android API36 UI capture in [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342), smoke artifact `13506561951`. It is an authentic **emulator** Home screen, not a signed physical-device capture or a retouched mockup.
+
+The user manually replaced **only** `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png` in [commit 08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed). The approved PNG is **363925 bytes**, 1080×1920, 8-bit RGB, SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`; the checked current Git blob is `829599968a412393fc80fbf722edba071e3675f8`, exactly the expected blob for the approved original. The previous `1.png` (**446495 bytes**, blob `c709cbf49a4cc7a1f866169b76045ce3f01cbbc1`) remains in Git history. Five other screenshot blobs remain unchanged: `2.png` `50c6601`, `3.png` `488b269`, `4.png` `5cf1b10`, `5.png` `0b4e8e8`, `6.png` `ac662fa`. The older six-role approval table below is historical as of 2026-11-05, superseded **only for Home** by this later approval.
+
+README reuses canonical Fastlane `1.png` and its Home / Choose images alt text remains accurate. No duplicate media, pixel edit, executable change, APK rebuild or additional signature was needed. Separate launcher mask/themed icon review, manual acceptance and complete source/license/publication gates remain open.
+
 ## Primary icon and Play/F-Droid feature graphic — 2026-11-05
 
 The maintainer selected the newly uploaded `icon1.png` for the **next Android launcher** and shared Google Play/F-Droid icon. The exact 512×512 RGBA (32-bit) PNG is now `assets/branding/primary/app-icon.png`, also reused byte-for-byte as `fastlane/metadata/android/en-US/images/icon.png`. Gradle already generates the actual launcher foreground from that Fastlane icon. The existing monochrome adaptive launcher vector remains unchanged pending visual review of Android 13+ themed icons.

@@ -1,10 +1,14 @@
 # Testing and evidence
 
+## Canonical icon1 Home screenshot — separate maintainer visual approval 2026-11-06
+
+The maintainer expressly approved the authentic 1080×1920 8-bit RGB `visual-01-start.png` from API36 [Actions 42226235342](https://github.com/santirodriguez/FixMyShot/actions/runs/42226235342), smoke artifact `13506561951`, for **only** Fastlane Home slot `1.png`. The original PNG is **363925 bytes**, SHA-256 `c9c55bed86c56478eeb3474130f00e3726e4ea89fb87375cbff2b23d4169975f`, expected and verified remote Git blob `829599968a412393fc80fbf722edba071e3675f8`. Git [commit 08bfa43](https://github.com/santirodriguez/FixMyShot/commit/08bfa43d9f4cc06b8f0d9d6b713aa547e68703ed) changed exactly `fastlane/metadata/android/en-US/images/phoneScreenshots/1.png`; canonical slots 2–6 remained unchanged. The 2026-11-05 approval set is historical for Home only. Record `MAINTAINER_APPROVED_HOME_SCREENSHOT_ICON1` separately from the prior signed-APK basic trial. This visual approval does not establish signed-device UI equivalence, 16 KiB runtime, masked launcher behavior, accessibility/locales, privacy/metadata/provider tests, complete source/license distribution or publication approval.
+
 ## Signed icon1 APK basic maintainer acceptance — 2026-11-06
 
 The maintainer explicitly reported **"Aprobado el apk, probado, funciona bien"** for the exact signed FixMyShot 1.0.0/code1 icon1 APK (SHA-256 `92efebea8ebfce6a88865a8b4842f61e4362d8951fb7949ea626c0a0245ea428`; executable source `7649f0e002aca9c91cdf1294ab3033a9572029a9`; [signed evidence](releases/1.0.0-7649f0e-signed-build-info.json); [successful signing run](https://github.com/santirodriguez/FixMyShot/actions/runs/42226227569)). Record **MAINTAINER_REPORTED_BASIC_APK_ACCEPTANCE**. This is user-reported basic working-app evidence, not a logged clean install, a full prescribed device test or an agent-operated physical measurement; the user did not provide OS/build, a case-by-case checklist or full-resolution screenshots in this report.
 
-Retain separate OPEN/NOT_RUN gates for actual 16 KiB-page device runtime, the launcher mask and stale first canonical screenshot, full locale/accessibility and privacy/color/metadata checks, wider provider/legacy SAF testing, corresponding-source/license distribution, and Obtainium. The old-icon signed test was a different immutable APK and remains historical. Public staging stays `PREPARED`; this approval does not authorize a merge, tag, GitHub Release, website deployment or store submission.
+Retain separate OPEN/NOT_RUN gates for actual 16 KiB-page device runtime, the launcher mask and full locale/accessibility and privacy/color/metadata checks, wider provider/legacy SAF testing, corresponding-source/license distribution, and Obtainium. The old-icon signed test was a different immutable APK and remains historical. Public staging stays `PREPARED`; this approval does not authorize a merge, tag, GitHub Release, website deployment or store submission.
 
 ## 1.0.0 basic signed-APK trial reported; newer icon still untested — 2026-11-05
 
