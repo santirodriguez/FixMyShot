@@ -1,30 +1,41 @@
+# FixMyShot
+
 <p align="center">
-  <a href="https://fixmyshot.cajapersonal.org/"><img src="assets/branding/primary/readme-header.png" alt="FixMyShot" width="720" /></a>
+  <a href="https://fixmyshot.cajapersonal.org/"><img src="assets/branding/primary/readme-header.png" alt="FixMyShot" width="600" /></a>
 </p>
-
-<h1 align="center">Screenshots, ready anywhere.</h1>
-
+<p align="center"><strong>Screenshots, ready anywhere.</strong></p>
 <p align="center">
-  <strong>Pick a screenshot. Find its frame. Share a fresh copy.</strong><br />
+  Pick a screenshot. Find its frame. Share a fresh copy.<br />
   A small Android app for the moment between taking a screenshot and posting it.
 </p>
-
 <p align="center">
-  <a href="https://fixmyshot.cajapersonal.org/"><img src="https://img.shields.io/badge/Explore-FixMyShot-68DCEB?style=for-the-badge" alt="Visit the FixMyShot website" height="36" /></a>
-  <a href="https://github.com/santirodriguez/FixMyShot/releases"><img src="https://img.shields.io/badge/GitHub-Releases-26364D?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Browse published GitHub releases" height="36" /></a>
-  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium%3A%2F%2Fapp%2F%257B%2522id%2522%253A%2522org.cajapersonal.fixmyshot%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fgithub.com%252Fsantirodriguez%252FFixMyShot%2522%252C%2522author%2522%253A%2522Caja%2520Personal%2522%252C%2522name%2522%253A%2522FixMyShot%2522%252C%2522additionalSettings%2522%253A%257B%2522includePrereleases%2522%253Afalse%252C%2522apkFilterRegEx%2522%253A%2522%255EFixMyShot-.%252A-universal%255C%255C.apk%2524%2522%257D%257D"><img src="docs/assets/badges/obtainium.svg" alt="Add FixMyShot to Obtainium" height="36" /></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/Open_source-GPLv3-BDA7FF?style=for-the-badge" alt="GNU GPL version 3 only" height="36" /></a>
-</p>
-
-<p align="center">
+  <a href="#download">Download</a> ·
   <a href="#a-little-framing-goes-a-long-way">Features</a> ·
   <a href="#a-look-inside">Screenshots</a> ·
-  <a href="#on-your-phone">Install</a> ·
+  <a href="#on-your-phone">Android</a> ·
   <a href="docs/PRIVACY.md">Privacy</a> ·
   <a href="#support-fixmyshot">Support</a>
 </p>
 
 ---
+
+<a name="download"></a>
+<p align="center"><strong>Download</strong></p>
+<p align="center">
+  <a href="https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/FixMyShot-1.0.0-universal.apk"><img src="https://img.shields.io/badge/Android-APK-3D8065?style=for-the-badge&amp;logo=android&amp;logoColor=white" alt="Download the signed Android APK for FixMyShot 1.0.0" height="28" /></a>
+  <a href="https://fixmyshot.cajapersonal.org/"><img src="https://img.shields.io/badge/Website-FixMyShot-68DCEB?style=for-the-badge" alt="Visit the FixMyShot website" height="28" /></a>
+</p>
+<p align="center">
+  <a href="https://apps.obtainium.imranr.dev/redirect?r=obtainium%3A%2F%2Fapp%2F%257B%2522id%2522%253A%2522org.cajapersonal.fixmyshot%2522%252C%2522url%2522%253A%2522https%253A%252F%252Fgithub.com%252Fsantirodriguez%252FFixMyShot%2522%252C%2522author%2522%253A%2522Caja%2520Personal%2522%252C%2522name%2522%253A%2522FixMyShot%2522%252C%2522additionalSettings%2522%253A%257B%2522includePrereleases%2522%253Afalse%252C%2522apkFilterRegEx%2522%253A%2522%255EFixMyShot-.%252A-universal%255C%255C.apk%2524%2522%257D%257D"><img src="docs/assets/badges/obtainium.svg" alt="Add FixMyShot to Obtainium" height="48" /></a><br />
+  <sub>Follow stable Android releases through Obtainium. The signed v1.0.0 APK is available now on GitHub.</sub>
+</p>
+
+FixMyShot requires **Android 8.0 (API 26) or later**. The
+[signed APK](https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/FixMyShot-1.0.0-universal.apk),
+[corresponding source archive](https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/FixMyShot-1.0.0-source-materials.tar.gz),
+[checksums](https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/SHA256SUMS.txt) and
+[build information](https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/BUILD-INFO.json)
+are provided together in the [public v1.0.0 release](https://github.com/santirodriguez/FixMyShot/releases/tag/v1.0.0).
 
 ## A little framing goes a long way
 
@@ -69,36 +80,24 @@ Choose light, dark or system appearance, with offline **English, Español and Ca
 
 ## A look inside
 
+Six genuine FixMyShot 1.0.0 screenshots. Select any image to view it in full size.
+
 <table>
 <tr>
-<td width="50%" align="center" valign="top">
-<strong>Start</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with its Choose images action" width="300" />
-</td>
-<td width="50%" align="center" valign="top">
-<strong>Review your image</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Image editor with an imported café photograph and export controls" width="300" />
-</td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="FixMyShot Home with its Choose images action" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Image editor with an imported café photograph and export controls" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Offline destination picker with publication presets" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Framing controls showing an explicit crop selection" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" alt="Verified successful export with options to view or share the saved image" width="150" /></a></td>
+<td align="center" valign="bottom"><a href="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" alt="Settings and About with the FixMyShot name and version 1.0.0" width="150" /></a></td>
 </tr>
 <tr>
-<td align="center" valign="top">
-<strong>Choose a destination</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Offline destination picker with publication presets" width="300" />
-</td>
-<td align="center" valign="top">
-<strong>Adjust the framing</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4.png" alt="Framing controls showing an explicit crop selection" width="300" />
-</td>
-</tr>
-<tr>
-<td align="center" valign="top">
-<strong>Save and share</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/5.png" alt="Verified successful export with options to view or share the saved image" width="300" />
-</td>
-<td align="center" valign="top">
-<strong>Settings and About</strong><br />
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/6.png" alt="Settings and About with the FixMyShot name and version 1.0.0" width="300" />
-</td>
+<td align="center"><strong>Home</strong></td>
+<td align="center"><strong>Editor</strong></td>
+<td align="center"><strong>Destinations</strong></td>
+<td align="center"><strong>Framing</strong></td>
+<td align="center"><strong>Results</strong></td>
+<td align="center"><strong>Settings</strong></td>
 </tr>
 </table>
 
@@ -106,14 +105,18 @@ Choose light, dark or system appearance, with offline **English, Español and Ca
 
 ## On your phone
 
-**FixMyShot 1.0.0 · Android versionCode 1.** The stable signed APK and its original corresponding source, checksums and build information are paired on the
-[GitHub releases page](https://github.com/santirodriguez/FixMyShot/releases) **when the stable release is published**.
-The exact original signed APK, reproducible unsigned provenance, bounded device testing and source/license disposition are documented in [release status](docs/STATUS.md) and [the 1.0.0 distribution review](docs/releases/1.0.0-7649f0e-final-source-license-disposition.md).
+**FixMyShot 1.0.0 · Android versionCode 1** is now public as a
+[signed universal APK](https://github.com/santirodriguez/FixMyShot/releases/download/v1.0.0/FixMyShot-1.0.0-universal.apk).
+The exact corresponding source, checksums and build information are available on
+[the same release](https://github.com/santirodriguez/FixMyShot/releases/tag/v1.0.0).
+The build provenance, bounded test results and source/license disposition remain
+documented in [release status](docs/STATUS.md) and
+[the 1.0.0 distribution review](docs/releases/1.0.0-7649f0e-final-source-license-disposition.md).
 
-GitHub is the first distribution channel. The **Add to Obtainium** button
-configures the GitHub source for stable releases and selects the universal APK.
-It becomes installable when a release is published; actual Obtainium installation
-and updates still require device acceptance.
+GitHub is the first distribution channel. The **Add to Obtainium** badge above
+configures the GitHub source for stable releases and filters for the universal APK.
+The stable release is available; actual Obtainium installation and a future
+higher-versionCode upgrade still require device verification.
 F-Droid and Google Play are future channels.
 
 <details>
@@ -127,10 +130,11 @@ Android versionCode `1`, with the established FixMyShot signing identity.
 Future publicly distributed updates increase the versionCode (starting at `2`)
 while preserving the package and compatible signing certificate.
 
-After an authorized release is published, add
-`https://github.com/santirodriguez/FixMyShot` to Obtainium; prereleases are not
-needed for the stable channel. The [release guide](docs/RELEASING.md) records exact files,
-checksums and remaining update checks.
+To follow updates, add
+`https://github.com/santirodriguez/FixMyShot` to Obtainium and use the stable
+channel; prereleases are not needed. The
+[release guide](docs/RELEASING.md) records exact files, checksums and remaining
+installation/update checks.
 
 </details>
 
