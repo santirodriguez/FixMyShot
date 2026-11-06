@@ -230,7 +230,8 @@ def fixture():
                        'issuer_risk': '1.0.0-7649f0e-assurance.json',
                        'source_review': '1.0.0-7649f0e-static-source-review.json'},
                    'stable_acceptance_reviewed': False, 'source_distribution_reviewed': False,
-                   'branding_revision_pending': False},
+                   'branding_revision_pending': False,
+                   'coverage_limits': {'functional_acceptance': 'INCOMPLETE'}},
     }
 
 
