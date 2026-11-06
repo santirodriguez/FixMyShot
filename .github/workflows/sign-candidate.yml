@@ -27,37 +27,104 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import json, os, re, subprocess
+          import json, os, subprocess
           from pathlib import Path
+
+          PIN = {
+              "source_commit": "7649f0e002aca9c91cdf1294ab3033a9572029a9",
+              "source_tree": "a222fb9964e2f328c59acf352e23e67e45650744",
+              "unsigned_sha256": "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2",
+              "unsigned_bytes": 12629654,
+              "run_id": 42134905825,
+              "control_commit": "915a2f91e163a495265ab3a69d56c309690fc749",
+              "artifact_id": 13465741212,
+              "artifact_name": "independent-rebuild-915a2f91e163a495265ab3a69d56c309690fc749-1",
+              "artifact_digest": "sha256:98fca5f73a3607d888216f3205739a7ab7a7e58d999b3e02c12f0c637b260b95",
+              "artifact_size": 54137813,
+              "assurance_path": "docs/releases/1.0.0-7649f0e-assurance.json",
+              "certificate_sha256": "33e626f0980ffd263e24e688a372ff840fd877f400f2a9ea5db5759655bbf445",
+          }
+
           def unique(pairs):
-              result = {}
+              out = {}
               for key, value in pairs:
-                  if key in result: raise ValueError("Duplicate request field")
-                  result[key] = value
-              return result
-          request = json.loads(Path(".ci/signing-candidate-request.json").read_text(), object_pairs_hook=unique)
-          if type(request["schema"]) is not int or request["schema"] != 1:
-              raise ValueError("Unsupported signing request")
-          if request["state"] not in ("PREPARED", "SIGN_CANDIDATE"):
-              raise ValueError("Unsupported signing state")
-          if not isinstance(request["request_id"], str) or not request["request_id"].strip():
-              raise ValueError("Missing request identity")
-          if request["state"] == "SIGN_CANDIDATE":
-              for key, pattern in (("source_commit", r"[0-9a-f]{40}"), ("unsigned_sha256", r"[0-9a-f]{64}")):
-                  if re.fullmatch(pattern, request.get(key, "")) is None:
-                      raise ValueError("Missing exact signing pin")
-              if request.get("version_name") != "1.0.0" or request.get("version_code") != 1:
-                  raise ValueError("Wrong first-public version")
-              run_id = request.get("baseline_run_id")
-              if type(run_id) is not int or run_id <= 0:
-                  raise ValueError("Missing inspected build run")
-              run = json.loads(subprocess.check_output(["gh", "api", "repos/santirodriguez/FixMyShot/actions/runs/" + str(run_id)]))
-              if run["conclusion"] != "success" or run["path"] != ".github/workflows/android.yml" or run["repository"]["full_name"] != "santirodriguez/FixMyShot" or run["head_branch"] != "release/1.0.0" or run["event"] not in ("push", "pull_request"):
-                  raise ValueError("Build run is not the trusted successful release validation")
+                  if key in out:
+                      raise ValueError("Duplicate JSON field")
+                  out[key] = value
+              return out
+
+          def load(path):
+              return json.loads(Path(path).read_text(), object_pairs_hook=unique)
+
+          def require(condition, msg):
+              if not condition:
+                  raise ValueError(msg)
+
+          def api(path):
+              return json.loads(subprocess.check_output(["gh", "api", path]), object_pairs_hook=unique)
+
+          req = load(".ci/signing-candidate-request.json")
+          require(type(req) is dict and type(req.get("schema")) is int and req["schema"] == 1,
+                  "Unsupported signing request")
+          require(req.get("state") in ("PREPARED", "SIGN_CANDIDATE"), "Invalid signing state")
+          require(isinstance(req.get("request_id"), str) and req["request_id"].strip(), "Missing request ID")
+          enabled = req["state"] == "SIGN_CANDIDATE"
+          if enabled:
+              expected = {
+                  "source_commit": PIN["source_commit"],
+                  "source_tree": PIN["source_tree"],
+                  "unsigned_sha256": PIN["unsigned_sha256"],
+                  "unsigned_bytes": PIN["unsigned_bytes"],
+                  "baseline_run_id": PIN["run_id"],
+                  "baseline_artifact_id": PIN["artifact_id"],
+                  "independent_unsigned_rebuild_run_id": PIN["run_id"],
+                  "source_materials_run_id": 42132693740,
+                  "issuer_assurance_receipt": PIN["assurance_path"],
+                  "version_name": "1.0.0",
+                  "version_code": 1,
+              }
+              for field, val in expected.items():
+                  require(type(req.get(field)) is type(val) and req[field] == val, "Signing pin mismatch: " + field)
+              require(not any(k.startswith("completed_") for k in req), "Stale completed signing metadata")
+              independent = load(".ci/independent-rebuild-request.json")
+              independent_expected = {
+                  "schema": 1,
+                  "source_commit": PIN["source_commit"],
+                  "source_tree": PIN["source_tree"],
+                  "baseline_run_id": 42132693754,
+                  "baseline_artifact_id": 13464257643,
+                  "baseline_archive_sha256": "2655ae7f3b33d5bc437b302c8e094443d6d18b270bf2f48e0e6e262806a81962",
+                  "expected_unsigned_apk_sha256": PIN["unsigned_sha256"],
+                  "expected_unsigned_apk_bytes": PIN["unsigned_bytes"],
+              }
+              require(independent == independent_expected, "Independent rebuild request drift")
+              approved = load(PIN["assurance_path"])
+              require(approved.get("schema") == 1 and approved.get("status") == "ARTIFACT_SPECIFIC_RESIDUAL_ISSUER_RISK_ACCEPTED", "Assurance not accepted")
+              require(approved.get("compiled_source") == PIN["source_commit"] and approved.get("compiled_tree") == PIN["source_tree"], "Assurance source drift")
+              require(approved.get("application_id") == "org.cajapersonal.fixmyshot" and approved.get("version_name") == "1.0.0" and approved.get("version_code") == 1, "Assurance identity drift")
+              require(approved.get("unsigned_apk") == {"bytes": PIN["unsigned_bytes"], "sha256": PIN["unsigned_sha256"]}, "Assurance APK drift")
+              require(approved.get("independent_build_run") == PIN["run_id"] and approved.get("independent_build_artifact_id") == PIN["artifact_id"], "Assurance rebuild drift")
+              require(approved.get("independent_build_artifact_archive_sha256") == PIN["artifact_digest"].split(":",1)[1], "Assurance archive drift")
+              require(approved.get("identical_unsigned_bytes") is True and approved.get("production_signing_authorized") is True and approved.get("production_signing_executed") is False, "No valid one-time authorization")
+              require(approved.get("merge_release_or_deployment_authorized") is False, "This bridge must not authorize publication")
+              require(approved.get("issuer_classifications", {}).get("reviewed") == 325 and approved.get("issuer_classifications", {}).get("pending") == 533, "Issuer-risk scope drift")
+              auth = approved.get("production_signing_authorization", {})
+              require(auth.get("scope") == "EXACT_UNSIGNED_APK_SIGN_ONLY" and auth.get("signing_executed") is False and auth.get("merge_or_publication_authorized") is False, "Authorization scope drift")
+              for field, value in (("source_commit", PIN["source_commit"]), ("source_tree", PIN["source_tree"]), ("unsigned_apk_sha256", PIN["unsigned_sha256"]), ("unsigned_apk_bytes", PIN["unsigned_bytes"]), ("baseline_artifact_id", PIN["artifact_id"]), ("baseline_workflow_run_id", PIN["run_id"]), ("existing_signer_certificate_sha256", PIN["certificate_sha256"])):
+                  require(type(auth.get(field)) is type(value) and auth[field] == value, "Approved signing scope drift: " + field)
+              run = api("repos/santirodriguez/FixMyShot/actions/runs/" + str(PIN["run_id"]))
+              require(run.get("id") == PIN["run_id"] and run.get("status") == "completed" and run.get("conclusion") == "success", "Rebuild run did not succeed")
+              require(run.get("path") == ".github/workflows/independent-rebuild.yml" and run.get("event") == "push", "Incorrect producer workflow/event")
+              require(run.get("repository", {}).get("full_name") == "santirodriguez/FixMyShot" and run.get("head_branch") == "release/1.0.0" and run.get("head_sha") == PIN["control_commit"], "Unexpected producer repository/ref")
+              art = api("repos/santirodriguez/FixMyShot/actions/artifacts/" + str(PIN["artifact_id"]))
+              require(art.get("id") == PIN["artifact_id"] and art.get("name") == PIN["artifact_name"], "Wrong immutable artifact")
+              require(art.get("expired") is False and art.get("digest") == PIN["artifact_digest"] and art.get("size_in_bytes") == PIN["artifact_size"], "Artifact expired or digest/size changed")
+              require(art.get("workflow_run", {}).get("id") == PIN["run_id"] and art.get("workflow_run", {}).get("head_sha") == PIN["control_commit"], "Artifact producer mismatch")
           with open(os.environ["GITHUB_OUTPUT"], "a") as output:
-              output.write("enabled=" + str(request["state"] == "SIGN_CANDIDATE").lower() + "\n")
-              if request["state"] == "SIGN_CANDIDATE":
-                  output.write("run=" + str(run_id) + "\nartifact=bootstrap-" + request["source_commit"] + "\n")
+              output.write("enabled=" + str(enabled).lower() + "\n")
+              if enabled:
+                  output.write("run=" + str(PIN["run_id"]) + "\n")
+                  output.write("artifact=" + PIN["artifact_name"] + "\n")
           PY
   sign:
     needs: request
@@ -83,6 +150,56 @@ jobs:
           run-id: ${{ needs.request.outputs.run }}
           github-token: ${{ github.token }}
           path: candidate-input
+      - name: Verify original independent rebuild evidence before secret use
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+
+          folder = Path("candidate-input")
+          source = "7649f0e002aca9c91cdf1294ab3033a9572029a9"
+          tree = "a222fb9964e2f328c59acf352e23e67e45650744"
+          control = "915a2f91e163a495265ab3a69d56c309690fc749"
+          expected_hash = "bc1cc4f0ca0be8e1469081b323da760d576d87b608bc5d5a59b6d162993776e2"
+          expected_bytes = 12629654
+
+          def unique(pairs):
+              out = {}
+              for key, val in pairs:
+                  if key in out:
+                      raise ValueError("Duplicate evidence field")
+                  out[key] = val
+              return out
+
+          def read_json(path):
+              if not path.is_file() or path.is_symlink() or path.stat().st_size > 65536:
+                  raise ValueError("Missing/unsafe original rebuild evidence: " + str(path))
+              return json.loads(path.read_text(), object_pairs_hook=unique)
+
+          def require(ok, message):
+              if not ok: raise ValueError(message)
+
+          request = read_json(folder / "evidence/rebuild-request.json")
+          report = read_json(folder / "evidence/independent-rebuild.json")
+          require(request.get("source_commit") == source and request.get("source_tree") == tree, "Rebuild source mismatch")
+          require(request.get("expected_unsigned_apk_sha256") == expected_hash and request.get("expected_unsigned_apk_bytes") == expected_bytes, "Rebuild APK pin mismatch")
+          require(request.get("baseline_run_id") == 42132693754 and request.get("baseline_artifact_id") == 13464257643, "Original clean-rebuild provenance mismatch")
+          require(report.get("schema") == 1 and report.get("scope") == "UNSIGNED_APK_BYTE_COMPARISON", "Wrong report")
+          require(report.get("workflow_control_commit") == control and report.get("request") == request, "Report/request producer mismatch")
+          require(report.get("source_identity_checked") is True and report.get("byte_identical") is True, "Unsigned byte identity not established")
+          require(report.get("actual_unsigned_apk_sha256") == expected_hash and report.get("actual_unsigned_apk_bytes") == expected_bytes, "Rebuild report APK mismatch")
+          require(report.get("dependency_authentication") == "OPEN" and report.get("production_signature") == "NOT_RUN", "Evidence scope changed")
+          require((folder / "evidence/source-sha.txt").read_text().strip() == source and (folder / "evidence/source-tree.txt").read_text().strip() == tree, "Embedded source identity mismatch")
+          apks = list(folder.rglob("app-release-unsigned.apk"))
+          require(len(apks) == 1 and apks[0].is_file() and not apks[0].is_symlink(), "Expected exactly one unsigned candidate")
+          require(apks[0].stat().st_size == expected_bytes, "Unsigned candidate size mismatch")
+          digest = hashlib.sha256()
+          with apks[0].open("rb") as stream:
+              for block in iter(lambda: stream.read(1024 * 1024), b""):
+                  digest.update(block)
+          require(digest.hexdigest() == expected_hash, "Unsigned candidate bytes mismatch")
+          print("PASS: single exact-source, byte-identical, unsigned icon1 candidate")
+          PY
       - name: Prepare pinned signing tools
         run: |
           test -n "$ANDROID_HOME"
