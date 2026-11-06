@@ -31,14 +31,46 @@ timeout 22m adb shell am instrument -w -r -e class "$classes" \
 result=$?
 set -e
 cat "$out/instrumentation.txt"
-[[ "$result" -eq 0 ]] || { echo 'Android instrumentation failed' >&2; exit 1; }
+# `am instrument` may return status 0 despite JUnit failures.
+if [[ "$result" -ne 0 ]] ||
+   ! grep -Eq '^OK \(9 tests\)\r?$' "$out/instrumentation.txt" ||
+   ! grep -Eq '^INSTRUMENTATION_CODE: -1\r?$' "$out/instrumentation.txt" ||
+   grep -Eq 'FAILURES!!!|INSTRUMENTATION_FAILED' "$out/instrumentation.txt"; then
+  echo 'FAIL 16k-privacy: The expected nine instrumentation tests did not pass' >&2
+  exit 1
+fi
+
+# A failed `run-as cat` may print its error to stdout and still return 0.
+# Require real PNG/WebP signatures before collecting any image evidence.
+pull_image() {
+  local source="$1" dest="$2" format="$3" expected actual count
+  if ! adb exec-out run-as "$package" cat "$source" > "$dest"; then
+    echo "FAIL 16k-privacy: Could not collect $source" >&2
+    return 1
+  fi
+  [[ -s "$dest" ]] || { echo "FAIL 16k-privacy: Empty evidence $source" >&2; return 1; }
+  case "$format" in
+    png) expected=89504e470d0a1a0a; count=8 ;;
+    webp) expected=52494646; count=4 ;;
+    *) echo "FAIL 16k-privacy: Unknown evidence format" >&2; return 1 ;;
+  esac
+  actual="$(od -An -tx1 -N "$count" "$dest" | tr -d '[:space:]')"
+  [[ "$actual" == "$expected" ]] || {
+    echo "FAIL 16k-privacy: Non-image evidence $source" >&2
+    return 1
+  }
+}
+
 for extension in png webp; do
-  adb exec-out run-as "$package" cat "files/g1-fixture-0.$extension" > "$out/g1-fixture-0.$extension"
+  pull_image "files/g1-fixture-0.$extension" "$out/g1-fixture-0.$extension" "$extension"
   for mode in default preserve; do
-    adb exec-out run-as "$package" cat "files/ci-16k-privacy/privacy-$mode.$extension" \
-      > "$out/privacy-$mode.$extension"
+    pull_image "files/ci-16k-privacy/privacy-$mode.$extension" \
+      "$out/privacy-$mode.$extension" "$extension"
   done
 done
 adb exec-out run-as "$package" cat files/g1-smoke.json > "$out/g1-smoke.json"
-adb exec-out run-as "$package" cat files/ci-16k-privacy/native-webp-16k.webp > "$out/native-webp-16k.webp"
+[[ -s "$out/g1-smoke.json" && "$(head -c 1 "$out/g1-smoke.json")" == '{' ]] || {
+  echo 'FAIL 16k-privacy: Missing or invalid G1 report' >&2; exit 1
+}
+pull_image files/ci-16k-privacy/native-webp-16k.webp "$out/native-webp-16k.webp" webp
 python3 scripts/check-16k-privacy-evidence.py "$out"
