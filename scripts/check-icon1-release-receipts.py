@@ -117,6 +117,8 @@ def validate(r):
         return 'PASS_EXACT_ICON1_OFFLINE_PROVENANCE__DISTRIBUTION_GATES_OPEN'
     # Original archive-era reviews remain immutable. A distinct, later
     # release-tagged decision may approve only this bounded first public scope.
+    require('approval' in r and type(r['approval']) is dict,
+            'Missing separate later release approval')
     decision = r['approval']
     candidate = decision['candidate']
     distribution = decision['source_distribution']
